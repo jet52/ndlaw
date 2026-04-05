@@ -178,3 +178,22 @@ Full-name surrogates normalized: Adam Gefreh→Gefreh, Beryl J. Levine→Levine,
 OCR-mangled "Per Curiam" labels set to author→NULL, per_curiam→1.
 
 Variants: Cueiam (12), Oueiam (3), Pee (3), Per Curiam (2), Cubiam, Cuetam, Cuexam, Cukiam, Curium, Curriam, Curtam, Oubiam, Ourtam, Ourxam (1 each).
+
+## Batch 06c: Stragglers (4 rows)
+
+Case normalization missed in batch 01: ENGLERT→Englert (2), Engleet→Englert (2).
+
+## Batch: manual-review (8 rows)
+
+"Chas" opinions reviewed interactively via `review.py` (2026-04-04). "Chas" was a fragment from "CHAS. A. POLLOCK" or "CHAS. FISK" (Charles Fisk) in the disqualification boilerplate. True authors identified from "LastName, J." lines in the opinion text.
+
+## Pending: Westlaw batch1 corrections (not yet applied)
+
+46 pre-1920 opinions downloaded from Westlaw Quick Check and compared via `ingest_westlaw.py`. Results:
+
+- **10 author corrections**: OCR-wrong authors identified by Westlaw (e.g., Bruce→Christianson, Birdzell→Robinson, Crawford→Fisk, Buttz→Christianson, Crace→Grace, Any→Morgan)
+- **3 date corrections**: Two placeholder dates (1903-07-01) and one 8-day discrepancy (1905-10-02→1905-10-10)
+- **4 case name diffs**: Mostly abbreviation/formatting; one possible citation mismatch (Murphy v. District Court vs State v. Poull — needs investigation)
+- **Text comparison**: Opinion text is substantially identical; OCR artifacts are minor (duplicate words, missing spaces, symbol handling)
+
+To apply: `python -m ndcourts_mcp.ingest_westlaw input-data/batch1/ --apply --batch westlaw-batch1`

@@ -88,6 +88,7 @@ Add to `~/.mcp.json`:
 | `python -m ndcourts_mcp.cleanup revert <batch>` | Revert a correction batch |
 | `python -m ndcourts_mcp.cleanup log` | Show changelog summary |
 | `python -m ndcourts_mcp.review [--author X] [--min-count N] [--flagged]` | Interactive author review |
+| `python -m ndcourts_mcp.ingest_westlaw <dir> [--apply] [--batch NAME]` | Compare/correct from Westlaw .doc downloads |
 
 ## Data Quality: Known Issues and Remaining Cleanup
 
@@ -144,6 +145,30 @@ A terminal or web-based tool for browsing and spot-checking the database:
 5. Use Westlaw metadata (case name, date, author, judges) to validate our fields
 
 This is particularly valuable for the pre-1920 opinions where OCR quality is worst.
+
+### Tested
+
+Batch1: 46 pre-1920 opinions downloaded as .doc from Westlaw Quick Check. Comparison found 10 author corrections, 3 date corrections, and confirmed opinion text is substantially identical with only minor OCR artifacts. Ready to apply with `--apply`.
+
+## Next Steps
+
+### Immediate (ready to do)
+
+1. **Apply Westlaw batch1 corrections** — 10 author + 3 date fixes from the 46 opinions already downloaded. Run `python -m ndcourts_mcp.ingest_westlaw input-data/batch1/ --apply --batch westlaw-batch1`.
+2. **Investigate Murphy v. District Court mismatch** — Westlaw says the citation maps to Murphy v. District Court, but our DB has State v. Poull. One of the records may have a wrong citation link.
+3. **Continue manual author review** — ~580 opinions with unrecognized authors. Run `python -m ndcourts_mcp.review --min-count 2` to work through the remaining junk words and OCR noise. Most can be auto-detected from "LastName, J." in the opinion text or set to NULL.
+
+### Short-term
+
+4. **Generate more Westlaw citation batches** — Export citations for pre-1920 opinions in groups of 50, download via Quick Check, and run through `ingest_westlaw.py` to systematically validate and correct metadata.
+5. **Rebuild judges field for pre-1997 opinions** — Use court composition dates from `justices.py` to infer the default panel, then parse disqualification/substitution lines from opinion text to note surrogates.
+6. **Null out remaining junk-word authors** — After manual review identifies which can be recovered from text, set the rest (Being, Been, Dist, Any, Action, etc.) to NULL in a batch.
+
+### Medium-term
+
+7. **Text quality correction** — For opinions where we have Westlaw downloads, consider replacing OCR text with Westlaw's clean text (keeping our case headers/citations separate).
+8. **Interactive data browser** — Terminal or web-based tool for browsing and spot-checking the database.
+9. **Citation network analysis** — Build a graph of which opinions cite which others by parsing citation references within opinion text.
 
 ## Reference Files
 
