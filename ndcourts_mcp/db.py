@@ -28,6 +28,12 @@ def create_schema(conn: sqlite3.Connection) -> None:
             per_curiam INTEGER DEFAULT 0,
             author TEXT,
             absolute_url TEXT,
+            opinion_url TEXT,
+            case_type TEXT,
+            highlight TEXT,
+            voting_record TEXT,
+            all_justices TEXT,
+            unanimous INTEGER,
             source_reporter TEXT NOT NULL,
             source_path TEXT NOT NULL,
             text_content TEXT NOT NULL
