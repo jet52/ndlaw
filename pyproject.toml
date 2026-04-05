@@ -5,8 +5,13 @@ description = "MCP server for North Dakota Supreme Court opinions (1889–presen
 requires-python = ">=3.12"
 dependencies = [
     "fastmcp>=2.0",
+    "fastapi[standard]>=0.115",
 ]
 
 [project.scripts]
 ndcourts-mcp = "ndcourts_mcp.server:main"
 ndcourts-ingest = "ndcourts_mcp.ingest:main"
+ndcourts-web = "ndcourts_mcp.webapp:main"
+
+[tool.setuptools.packages.find]
+include = ["ndcourts_mcp*"]

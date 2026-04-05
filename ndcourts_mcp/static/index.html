@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ND Courts — Opinion Browser</title>
+<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+<script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+<style>
+:root {
+  --blue: #4A90D9;
+  --orange: #E08A3C;
+  --purple: #8B5CF6;
+  --yellow: #D4AA3C;
+  --bg: #1a1a2e;
+  --bg-surface: #222240;
+  --bg-input: #2a2a4a;
+  --text: #e0e0e8;
+  --text-muted: #8888a0;
+  --border: #3a3a5a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.toolbar input, .toolbar select {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 13px;
+}
+.toolbar input:focus, .toolbar select:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+.toolbar label {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.toolbar .search-box { width: 220px; }
+.toolbar .date-input { width: 130px; }
+.toolbar select { max-width: 200px; }
+.toolbar .sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+}
+.toolbar .stats {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.toolbar button {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.toolbar button:hover { border-color: var(--blue); }
+.toolbar button.active { border-color: var(--purple); color: var(--purple); }
+
+/* ── Column picker ── */
+.col-picker-wrap { position: relative; }
+.col-picker {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  z-index: 100;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.col-picker.open { display: block; }
+.col-picker label {
+  display: flex;
+  padding: 3px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ── Main split ── */
+.main-split {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.table-pane {
+  flex: 1;
+  min-width: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.divider {
+  width: 5px;
+  background: var(--border);
+  cursor: col-resize;
+  flex-shrink: 0;
+}
+.divider:hover { background: var(--blue); }
+.reader-pane {
+  width: 40%;
+  min-width: 280px;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.reader-pane.collapsed { display: none; }
+.reader-pane.collapsed + .divider { display: none; }
+
+/* ── Table overrides ── */
+#opinion-table { flex: 1; }
+.tabulator {
+  background: var(--bg) !important;
+  border: none !important;
+  font-size: 13px !important;
+}
+.tabulator-row.tabulator-selected { background: rgba(74, 144, 217, 0.2) !important; }
+.tabulator-row:hover { background: rgba(74, 144, 217, 0.1) !important; }
+.tabulator-footer { background: var(--bg-surface) !important; border-top: 1px solid var(--border) !important; }
+.tabulator-page.active { background: var(--blue) !important; color: #fff !important; }
+
+.author-bad { color: var(--orange); }
+.author-bad::before { content: "\25CF "; font-size: 8px; }
+.notes-indicator { color: var(--purple); font-weight: bold; }
+.snippet-text { font-size: 12px; color: var(--text-muted); font-style: italic; }
+.flag-indicator { color: var(--yellow); }
+.row-flagged { border-left: 3px solid var(--yellow) !important; }
+
+/* ── Reader pane ── */
+.reader-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.reader-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.reader-header h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.reader-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  font-size: 13px;
+}
+.reader-meta dt { color: var(--text-muted); }
+.reader-meta dd { margin: 0; }
+.reader-meta a { color: var(--blue); text-decoration: none; }
+.reader-meta a:hover { text-decoration: underline; }
+
+.meta-section {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.meta-section summary {
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.voting-table {
+  width: 100%;
+  font-size: 13px;
+  border-collapse: collapse;
+}
+.voting-table td, .voting-table th {
+  padding: 3px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.changelog-list {
+  font-size: 12px;
+  list-style: none;
+}
+.changelog-list li {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.changelog-list .field { color: var(--purple); }
+
+.reader-text {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ── Flag bar ── */
+.flag-bar {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+}
+.flag-bar.flagged { background: rgba(212, 170, 60, 0.08); border-left: 3px solid var(--yellow); }
+.flag-btn {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.flag-btn:hover { border-color: var(--yellow); }
+.flag-btn.is-flagged { border-color: var(--yellow); color: var(--yellow); }
+.flag-category {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+.flag-note-input {
+  flex: 1;
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: inherit;
+}
+.flag-note-input:focus { outline: none; border-color: var(--yellow); }
+.flag-note-display {
+  flex: 1;
+  font-size: 12px;
+  color: var(--yellow);
+  cursor: pointer;
+  padding: 4px 0;
+}
+.flag-note-display:hover { text-decoration: underline; }
+
+/* ── Editable fields ── */
+.editable {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--border);
+  padding: 1px 2px;
+}
+.editable:hover { border-color: var(--blue); }
+.edit-input {
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--blue);
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+}
+.flash-success { animation: flash-blue 0.5s; }
+.flash-error { animation: flash-orange 0.5s; }
+@keyframes flash-blue { 0%,100% { background: transparent; } 50% { background: rgba(74,144,217,0.3); } }
+@keyframes flash-orange { 0%,100% { background: transparent; } 50% { background: rgba(224,138,60,0.3); } }
+
+/* ── Keyboard help overlay ── */
+.help-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.help-overlay.open { display: flex; }
+.help-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 32px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.help-card h3 {
+  font-size: 15px;
+  margin: 16px 0 8px;
+  color: var(--blue);
+}
+.help-card h3:first-child { margin-top: 0; }
+.help-card table { width: 100%; border-collapse: collapse; }
+.help-card td {
+  padding: 3px 0;
+  font-size: 13px;
+  vertical-align: top;
+}
+.help-card td:first-child {
+  width: 100px;
+  color: var(--yellow);
+  font-family: monospace;
+  white-space: nowrap;
+}
+.help-card .close-hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+/* ── Merge overlay ── */
+.merge-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 900;
+  overflow-y: auto;
+  padding: 20px;
+}
+.merge-overlay.open { display: block; }
+.merge-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.merge-header {
+  padding: 16px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.merge-header h3 { font-size: 15px; }
+.merge-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.merge-close:hover { border-color: var(--blue); color: var(--text); }
+.merge-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.merge-meta-table th {
+  background: var(--bg);
+  padding: 6px 12px;
+  text-align: left;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.merge-meta-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.merge-meta-table .field-name { color: var(--text-muted); width: 100px; }
+.merge-meta-table .pick-radio { cursor: pointer; }
+.merge-meta-table .val-same { color: var(--text-muted); }
+.merge-meta-table .val-diff { color: var(--orange); }
+.merge-meta-table .val-winner { color: var(--blue); font-weight: 600; }
+.merge-meta-table .val-null { color: var(--text-muted); font-style: italic; }
+
+.merge-text-header {
+  padding: 12px 20px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.merge-text-header .score-badge {
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+.score-winner { background: rgba(74,144,217,0.2); color: var(--blue); }
+.score-loser { background: rgba(136,136,160,0.15); color: var(--text-muted); }
+
+.merge-diff {
+  padding: 16px 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.7;
+  max-height: 50vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+.diff-hunk {
+  display: inline;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+  position: relative;
+}
+.diff-hunk-replace .diff-left { background: rgba(74,144,217,0.15); }
+.diff-hunk-replace .diff-right { background: rgba(224,138,60,0.15); display: none; }
+.diff-hunk-replace.pick-right .diff-left { display: none; }
+.diff-hunk-replace.pick-right .diff-right { display: inline; }
+.diff-hunk-insert { background: rgba(139,92,246,0.15); }
+.diff-hunk-delete { background: rgba(224,138,60,0.15); text-decoration: line-through; }
+.diff-hunk-ocr { outline: 2px dashed var(--orange); outline-offset: 1px; }
+.diff-hunk:hover { outline: 1px solid var(--blue); outline-offset: 1px; }
+.diff-hunk.focused { outline: 2px solid var(--blue); outline-offset: 1px; }
+
+.merge-actions {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.merge-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+.merge-btn-primary {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+.merge-btn-primary:hover { opacity: 0.9; }
+.merge-btn-cancel {
+  background: var(--bg-input);
+  color: var(--text);
+}
+.merge-btn-cancel:hover { border-color: var(--blue); }
+.merge-stats {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Mode indicator ── */
+.mode-indicator {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  z-index: 50;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+</style>
+</head>
+<body>
+
+<!-- Toolbar -->
+<div class="toolbar">
+  <input type="search" class="search-box" id="search" placeholder="/ to search..." title="FTS5: supports AND, OR, NOT, &quot;phrases&quot;">
+  <div class="sep"></div>
+  <input type="date" class="date-input" id="date-from" title="From date">
+  <span style="color:var(--text-muted)">&ndash;</span>
+  <input type="date" class="date-input" id="date-to" title="To date">
+  <div class="sep"></div>
+  <select id="author-filter"><option value="">All authors</option></select>
+  <select id="type-filter"><option value="">All types</option></select>
+  <select id="reporter-filter"><option value="">All reporters</option></select>
+  <div class="sep"></div>
+  <label><input type="checkbox" id="has-notes"> Notes</label>
+  <label><input type="checkbox" id="bad-author"> Bad author</label>
+  <label><input type="checkbox" id="no-author"> No author</label>
+  <label><input type="checkbox" id="has-dupes"> Dupes</label>
+  <label><input type="checkbox" id="flagged-only"> Flagged</label>
+  <div class="sep"></div>
+  <div class="col-picker-wrap">
+    <button id="col-picker-btn">Columns</button>
+    <div class="col-picker" id="col-picker"></div>
+  </div>
+  <button id="toggle-reader" title="Toggle reader pane">Reader</button>
+  <div class="sep"></div>
+  <select id="page-size" title="Rows per page" style="width:65px">
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="500">500</option>
+    <option value="50000">All</option>
+  </select>
+  <span class="stats" id="stats"></span>
+</div>
+
+<!-- Main content -->
+<div class="main-split">
+  <div class="table-pane">
+    <div id="opinion-table"></div>
+  </div>
+  <div class="divider" id="divider"></div>
+  <div class="reader-pane" id="reader">
+    <div class="reader-empty" id="reader-empty">Click a row or press <kbd>j</kbd>/<kbd>k</kbd> &mdash; <kbd>?</kbd> for help</div>
+  </div>
+</div>
+
+<!-- Mode indicator -->
+<div class="mode-indicator" id="mode-indicator"></div>
+
+<!-- Merge overlay -->
+<div class="merge-overlay" id="merge-overlay"></div>
+
+<!-- Help overlay -->
+<div class="help-overlay" id="help-overlay">
+  <div class="help-card">
+    <h3>Navigation</h3>
+    <table>
+      <tr><td>j / k</td><td>Next / previous row</td></tr>
+      <tr><td>Enter, l</td><td>Open selected row in reader</td></tr>
+      <tr><td>h</td><td>Close reader pane</td></tr>
+      <tr><td>gg</td><td>First row on page</td></tr>
+      <tr><td>G</td><td>Last row on page</td></tr>
+      <tr><td>Ctrl-d / u</td><td>Next / previous page</td></tr>
+    </table>
+    <h3>Search &amp; Filters</h3>
+    <table>
+      <tr><td>/</td><td>Focus search box</td></tr>
+      <tr><td>Escape</td><td>Return focus to table / close overlays</td></tr>
+    </table>
+    <h3>Review Flags</h3>
+    <table>
+      <tr><td>f</td><td>Toggle flag on selected opinion</td></tr>
+      <tr><td>n</td><td>Add/edit note on flagged opinion</td></tr>
+      <tr><td>1&ndash;5</td><td>Set flag category (1=review 2=bad-author 3=wrong-date 4=duplicate 5=other)</td></tr>
+      <tr><td>x</td><td>Remove flag from selected opinion</td></tr>
+    </table>
+    <h3>Editing</h3>
+    <table>
+      <tr><td>ea</td><td>Edit author</td></tr>
+      <tr><td>ec</td><td>Edit case name</td></tr>
+      <tr><td>ed</td><td>Edit date filed</td></tr>
+      <tr><td>et</td><td>Edit case type</td></tr>
+      <tr><td>ej</td><td>Edit judges</td></tr>
+      <tr><td>ek</td><td>Edit docket number</td></tr>
+      <tr><td>en</td><td>Edit notes</td></tr>
+    </table>
+    <h3>Merge</h3>
+    <table>
+      <tr><td>m</td><td>Open merge panel (if duplicates exist)</td></tr>
+      <tr><td>Tab/S-Tab</td><td>Navigate diff hunks (in merge panel)</td></tr>
+      <tr><td>Space</td><td>Toggle hunk selection (left/right)</td></tr>
+      <tr><td>Enter</td><td>Execute merge</td></tr>
+      <tr><td>Escape</td><td>Close merge panel</td></tr>
+    </table>
+    <h3>Other</h3>
+    <table>
+      <tr><td>?</td><td>Toggle this help</td></tr>
+      <tr><td>r</td><td>Reload table data</td></tr>
+    </table>
+    <div class="close-hint">Press <kbd>?</kbd> or <kbd>Escape</kbd> to close</div>
+  </div>
+</div>
+
+<script>
+// ── State ──
+let facets = null;
+let currentOpinionId = null;
+let currentOpinionData = null;
+let authorList = [];
+let flagsMap = {};       // opinion_id -> flag object
+let selectedRowIdx = -1; // index within visible rows
+let gPending = false;    // for gg
+let ePending = false;    // for ea/ec
+
+const FLAG_CATEGORIES = ["review", "bad-author", "wrong-date", "duplicate", "other"];
+
+// ── Load flags ──
+async function loadFlags() {
+  const resp = await fetch("/api/flags");
+  const arr = await resp.json();
+  flagsMap = {};
+  for (const f of arr) flagsMap[f.opinion_id] = f;
+}
+loadFlags();
+
+// ── Tabulator setup ──
+const table = new Tabulator("#opinion-table", {
+  ajaxURL: "/api/opinions",
+  ajaxConfig: "GET",
+  ajaxURLGenerator: (url, config, params) => {
+    const p = new URLSearchParams(getFilterParams());
+    p.set("page", params.page || 1);
+    p.set("size", params.size || parseInt(document.getElementById("page-size").value));
+    const sorters = table.getSorters();
+    if (sorters.length) {
+      p.set("sort", sorters[0].field);
+      p.set("sort_dir", sorters[0].dir);
+    }
+    return url + "?" + p.toString();
+  },
+  ajaxResponse: (url, params, resp) => {
+    const u = new URL(url, location.origin);
+    const page = u.searchParams.get("page") || 1;
+    document.getElementById("stats").textContent =
+      resp.last_page > 1
+        ? `Page ${page}/${resp.last_page} \u00b7 ${resp.total.toLocaleString()} opinions`
+        : `${resp.total.toLocaleString()} opinions`;
+    return resp;
+  },
+  pagination: true,
+  paginationMode: "remote",
+  paginationSize: 50,
+  sortMode: "remote",
+  filterMode: "remote",
+  initialSort: [{ column: "date_filed", dir: "desc" }],
+  layout: "fitColumns",
+  height: "100%",
+  selectable: 1,
+  placeholder: "No opinions found",
+  rowFormatter: (row) => {
+    const d = row.getData();
+    if (flagsMap[d.id]) {
+      row.getElement().classList.add("row-flagged");
+    } else {
+      row.getElement().classList.remove("row-flagged");
+    }
+  },
+  columns: [
+    {
+      title: "", field: "id", width: 30, headerSort: false, hozAlign: "center",
+      cssClass: "flag-col",
+      formatter: (cell) => {
+        const d = cell.getRow().getData();
+        return flagsMap[d.id]
+          ? '<span class="flag-indicator" title="Flagged for review">&#9873;</span>'
+          : "";
+      },
+    },
+    {
+      title: "Date", field: "date_filed", width: 110, sorter: "string",
+      headerSort: true,
+    },
+    {
+      title: "Case Name", field: "case_name", minWidth: 200,
+      sorter: "string", headerSort: true,
+      formatter: (cell) => {
+        const d = cell.getRow().getData();
+        let html = escHtml(cell.getValue() || "");
+        if (d.snippet) {
+          html += `<div class="snippet-text">${escHtml(d.snippet)}</div>`;
+        }
+        return html;
+      },
+    },
+    {
+      title: "ND Cite", field: "cite_nd", width: 120,
+      sorter: "string", headerSort: false,
+    },
+    {
+      title: "N.D.", field: "cite_nd_old", width: 110,
+      sorter: "string", headerSort: false,
+    },
+    {
+      title: "N.W.", field: "cite_nw", width: 120,
+      sorter: "string", headerSort: false,
+    },
+    {
+      title: "Author", field: "author", width: 120, sorter: "string",
+      headerSort: true,
+      formatter: (cell) => {
+        const d = cell.getRow().getData();
+        const v = cell.getValue();
+        if (!v && d.per_curiam) {
+          return '<span style="color:var(--text-muted);font-style:italic">Per Curiam</span>';
+        }
+        if (!v) {
+          return '<span style="color:var(--orange);font-style:italic">unknown</span>';
+        }
+        if (!d.author_recognized) {
+          return `<span class="author-bad">${escHtml(v)}</span>`;
+        }
+        return escHtml(v);
+      },
+    },
+    {
+      title: "Reporter", field: "source_reporter", width: 80,
+      sorter: "string", headerSort: true,
+    },
+    {
+      title: "PC", field: "per_curiam", width: 50, hozAlign: "center",
+      headerSort: false,
+      formatter: (cell) => cell.getValue() ? "Y" : "",
+    },
+    {
+      title: "Notes", field: "has_notes", width: 60, hozAlign: "center",
+      headerSort: false,
+      formatter: (cell) => cell.getValue()
+        ? '<span class="notes-indicator">N</span>' : "",
+    },
+    // Hidden by default
+    {
+      title: "Type", field: "case_type", visible: false, minWidth: 160,
+      sorter: "string", headerSort: true,
+    },
+    {
+      title: "Docket", field: "docket_number", visible: false, width: 130,
+      sorter: "string", headerSort: true,
+    },
+    {
+      title: "Unan", field: "unanimous", visible: false, width: 55,
+      hozAlign: "center", headerSort: false,
+      formatter: (cell) => {
+        const v = cell.getValue();
+        return v === true ? "Y" : v === false ? "N" : "";
+      },
+    },
+  ],
+});
+
+table.on("rowClick", (e, row) => {
+  selectRow(row.getPosition());
+  const id = row.getData().id;
+  loadOpinion(id);
+});
+
+table.on("dataProcessed", () => {
+  // Re-apply selection after data reload
+  if (selectedRowIdx >= 0) {
+    const rows = table.getRows();
+    if (selectedRowIdx >= rows.length) selectedRowIdx = rows.length - 1;
+    if (rows[selectedRowIdx]) rows[selectedRowIdx].select();
+  }
+});
+
+// ── Row selection helpers ──
+function selectRow(idx) {
+  const rows = table.getRows();
+  if (idx < 0 || idx >= rows.length) return;
+  selectedRowIdx = idx;
+  table.deselectRow();
+  rows[idx].select();
+  // Scroll row into view
+  rows[idx].getElement().scrollIntoView({ block: "nearest" });
+}
+
+function getSelectedData() {
+  const rows = table.getSelectedRows();
+  return rows.length ? rows[0].getData() : null;
+}
+
+// ── Filter params ──
+function getFilterParams() {
+  const p = {};
+  const search = document.getElementById("search").value.trim();
+  if (search) p.search = search;
+  const df = document.getElementById("date-from").value;
+  if (df) p.date_from = df;
+  const dt = document.getElementById("date-to").value;
+  if (dt) p.date_to = dt;
+  const author = document.getElementById("author-filter").value;
+  if (author) p.author = author;
+  const ctype = document.getElementById("type-filter").value;
+  if (ctype) p.case_type = ctype;
+  const reporter = document.getElementById("reporter-filter").value;
+  if (reporter) p.source_reporter = reporter;
+  if (document.getElementById("has-notes").checked) p.has_notes = true;
+  if (document.getElementById("bad-author").checked) p.bad_author = true;
+  if (document.getElementById("no-author").checked) p.no_author = true;
+  if (document.getElementById("has-dupes").checked) p.has_dupes = true;
+  // "Flagged" filter is client-side — we'll handle it specially
+  return p;
+}
+
+// ── Filter change handler ──
+let searchTimer = null;
+document.getElementById("search").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => table.setData(), 300);
+});
+for (const id of ["date-from", "date-to", "author-filter", "type-filter",
+                   "reporter-filter", "has-notes", "bad-author", "no-author", "has-dupes"]) {
+  document.getElementById(id).addEventListener("change", () => table.setData());
+}
+// Page size selector
+document.getElementById("page-size").addEventListener("change", (e) => {
+  table.setPageSize(parseInt(e.target.value));
+});
+
+// Flagged-only checkbox: client-side filter
+document.getElementById("flagged-only").addEventListener("change", (e) => {
+  if (e.target.checked) {
+    table.addFilter((data) => !!flagsMap[data.id]);
+  } else {
+    table.clearFilter();
+  }
+});
+
+// ── Facets ──
+async function loadFacets() {
+  const resp = await fetch("/api/facets");
+  facets = await resp.json();
+
+  const authorSel = document.getElementById("author-filter");
+  for (const a of facets.authors) {
+    const opt = document.createElement("option");
+    opt.value = a.name;
+    opt.textContent = `${a.name} (${a.count})${a.recognized ? "" : " *"}`;
+    if (!a.recognized) opt.style.color = "#E08A3C";
+    authorSel.appendChild(opt);
+  }
+  authorList = facets.authors.filter(a => a.recognized).map(a => a.name);
+
+  const typeSel = document.getElementById("type-filter");
+  for (const t of facets.case_types) {
+    const opt = document.createElement("option");
+    opt.value = t.name;
+    opt.textContent = `${t.name} (${t.count})`;
+    typeSel.appendChild(opt);
+  }
+
+  const repSel = document.getElementById("reporter-filter");
+  for (const r of facets.reporters) {
+    const opt = document.createElement("option");
+    opt.value = r.name;
+    opt.textContent = `${r.name} (${r.count})`;
+    repSel.appendChild(opt);
+  }
+}
+loadFacets();
+
+// ── Column picker ──
+const pickerBtn = document.getElementById("col-picker-btn");
+const pickerDiv = document.getElementById("col-picker");
+
+pickerBtn.addEventListener("click", () => {
+  pickerDiv.classList.toggle("open");
+  if (pickerDiv.classList.contains("open")) buildColumnPicker();
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".col-picker-wrap")) {
+    pickerDiv.classList.remove("open");
+  }
+});
+
+function buildColumnPicker() {
+  pickerDiv.innerHTML = "";
+  for (const col of table.getColumns()) {
+    const def = col.getDefinition();
+    if (!def.title) continue;
+    const label = document.createElement("label");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = col.isVisible();
+    cb.addEventListener("change", () => {
+      cb.checked ? col.show() : col.hide();
+    });
+    label.appendChild(cb);
+    label.append(" " + def.title);
+    pickerDiv.appendChild(label);
+  }
+}
+
+// ── Reader toggle ──
+function toggleReader(forceOpen) {
+  const reader = document.getElementById("reader");
+  const divider = document.getElementById("divider");
+  const btn = document.getElementById("toggle-reader");
+  if (forceOpen === true) {
+    reader.classList.remove("collapsed");
+  } else if (forceOpen === false) {
+    reader.classList.add("collapsed");
+  } else {
+    reader.classList.toggle("collapsed");
+  }
+  divider.style.display = reader.classList.contains("collapsed") ? "none" : "";
+  btn.classList.toggle("active", !reader.classList.contains("collapsed"));
+  table.redraw();
+}
+
+document.getElementById("toggle-reader").addEventListener("click", () => toggleReader());
+
+// ── Resizable divider ──
+const divider = document.getElementById("divider");
+let dragging = false;
+divider.addEventListener("mousedown", (e) => {
+  dragging = true;
+  e.preventDefault();
+});
+document.addEventListener("mousemove", (e) => {
+  if (!dragging) return;
+  const reader = document.getElementById("reader");
+  const container = document.querySelector(".main-split");
+  const rect = container.getBoundingClientRect();
+  const readerWidth = rect.right - e.clientX;
+  const pct = Math.max(15, Math.min(70, (readerWidth / rect.width) * 100));
+  reader.style.width = pct + "%";
+  reader.style.flex = "none";
+  localStorage.setItem("readerWidth", pct);
+  table.redraw();
+});
+document.addEventListener("mouseup", () => { dragging = false; });
+
+// Restore saved width
+const savedWidth = localStorage.getItem("readerWidth");
+if (savedWidth) {
+  document.getElementById("reader").style.width = savedWidth + "%";
+  document.getElementById("reader").style.flex = "none";
+}
+
+// ── Load opinion detail ──
+async function loadOpinion(id) {
+  currentOpinionId = id;
+  const reader = document.getElementById("reader");
+  toggleReader(true);
+
+  reader.innerHTML = '<div class="reader-empty">Loading...</div>';
+
+  const resp = await fetch(`/api/opinions/${id}`);
+  if (!resp.ok) {
+    reader.innerHTML = '<div class="reader-empty">Error loading opinion</div>';
+    return;
+  }
+  currentOpinionData = await resp.json();
+  renderOpinion(currentOpinionData);
+}
+
+function renderOpinion(op) {
+  const reader = document.getElementById("reader");
+  const citations = (op.citations || []).map(c => escHtml(c.citation)).join(", ");
+  const flag = flagsMap[op.id];
+
+  // Build links
+  let links = "";
+  if (op.absolute_url) {
+    links += `<a href="https://www.courtlistener.com${op.absolute_url}" target="_blank">CourtListener</a>`;
+  }
+  if (op.opinion_url) {
+    links += `${links ? " | " : ""}<a href="${escHtml(op.opinion_url)}" target="_blank">ndcourts.gov</a>`;
+  }
+
+  // Flag bar
+  const flagCategory = flag ? flag.category : "review";
+  const flagNote = flag ? flag.note : "";
+  const flagBarClass = flag ? "flag-bar flagged" : "flag-bar";
+  const flagBtnClass = flag ? "flag-btn is-flagged" : "flag-btn";
+  const flagBarHtml = `
+    <div class="${flagBarClass}" id="flag-bar">
+      <button class="${flagBtnClass}" id="flag-toggle-btn" title="f to toggle">${flag ? "Flagged" : "Flag"}</button>
+      <select class="flag-category" id="flag-category" title="1-5 to set category">
+        ${FLAG_CATEGORIES.map((c, i) =>
+          `<option value="${c}" ${c === flagCategory ? "selected" : ""}>${i+1}:${c}</option>`
+        ).join("")}
+      </select>
+      ${flag
+        ? `<span class="flag-note-display" id="flag-note-display" title="n to edit note">${escHtml(flagNote) || "click or press n to add note"}</span>`
+        : `<span style="font-size:12px;color:var(--text-muted)">press f to flag for review</span>`
+      }
+    </div>
+  `;
+
+  // Voting record
+  let votingHtml = "";
+  if (op.voting_record && typeof op.voting_record === "object") {
+    votingHtml = `<details class="meta-section" open>
+      <summary>Voting Record</summary>
+      <table class="voting-table">
+        <tr><th>Justice</th><th>Vote</th></tr>
+        ${Object.entries(op.voting_record).map(([name, vote]) =>
+          `<tr><td>${escHtml(name)}</td><td>${escHtml(vote)}</td></tr>`
+        ).join("")}
+      </table>
+    </details>`;
+  }
+
+  // Changelog
+  let changelogHtml = "";
+  if (op.changelog && op.changelog.length) {
+    changelogHtml = `<details class="meta-section">
+      <summary>Changelog (${op.changelog.length})</summary>
+      <ul class="changelog-list">
+        ${op.changelog.map(c =>
+          `<li>${escHtml(c.timestamp)} <span class="field">${escHtml(c.field)}</span>: "${escHtml(c.old_value || "")}" &rarr; "${escHtml(c.new_value || "")}" <small>[${escHtml(c.batch)}]</small></li>`
+        ).join("")}
+      </ul>
+    </details>`;
+  }
+
+  let notesHtml = "";
+
+  // Author display
+  const authorDisplay = op.author
+    ? (op.author_recognized
+      ? escHtml(op.author)
+      : `<span class="author-bad">${escHtml(op.author)}</span>`)
+    : "<em>none</em>";
+
+  // Strip YAML frontmatter from text
+  let text = op.text_content || "";
+  text = text.replace(/^---\n[\s\S]*?\n---\n*/, "");
+
+  reader.innerHTML = `
+    ${flagBarHtml}
+    <div class="reader-header">
+      <h2><span class="editable" data-field="case_name" data-id="${op.id}">${escHtml(op.case_name || "")}</span></h2>
+      <dl class="reader-meta">
+        <dt>Author</dt>
+        <dd><span class="editable" data-field="author" data-id="${op.id}">${authorDisplay}</span></dd>
+        <dt>Date</dt><dd><span class="editable" data-field="date_filed" data-id="${op.id}">${escHtml(op.date_filed || "")}</span></dd>
+        <dt>Citations</dt><dd>${citations || "<em>none</em>"}</dd>
+        <dt>Docket</dt><dd><span class="editable" data-field="docket_number" data-id="${op.id}">${escHtml(op.docket_number || "")}</span></dd>
+        <dt>Type</dt><dd><span class="editable" data-field="case_type" data-id="${op.id}">${escHtml(op.case_type || "")}</span></dd>
+        <dt>Judges</dt><dd><span class="editable" data-field="judges" data-id="${op.id}">${escHtml(op.judges || "")}</span></dd>
+        <dt>Reporter</dt><dd>${escHtml(op.source_reporter || "")}</dd>
+        <dt>Notes</dt><dd><span class="editable" data-field="notes" data-id="${op.id}">${escHtml(op.notes || "")}</span></dd>
+        ${op.per_curiam ? "<dt>Per Curiam</dt><dd>Yes</dd>" : ""}
+        ${op.unanimous !== null ? `<dt>Unanimous</dt><dd>${op.unanimous ? "Yes" : "No"}</dd>` : ""}
+        ${links ? `<dt>Links</dt><dd>${links}</dd>` : ""}
+      </dl>
+    </div>
+    ${votingHtml}
+    ${notesHtml}
+    ${changelogHtml}
+    <div class="reader-text">${escHtml(text)}</div>
+  `;
+
+  // Wire up editable fields
+  reader.querySelectorAll(".editable").forEach(el => {
+    el.addEventListener("click", () => startEdit(el));
+  });
+
+  // Wire up flag bar
+  const flagBtn = document.getElementById("flag-toggle-btn");
+  if (flagBtn) flagBtn.addEventListener("click", () => toggleFlag());
+
+  const catSel = document.getElementById("flag-category");
+  if (catSel) catSel.addEventListener("change", () => {
+    if (flagsMap[currentOpinionId]) saveFlag(catSel.value);
+  });
+
+  const noteDisplay = document.getElementById("flag-note-display");
+  if (noteDisplay) noteDisplay.addEventListener("click", () => startNoteEdit());
+}
+
+// ── Flag operations ──
+async function toggleFlag(category) {
+  if (!currentOpinionId) return;
+  if (flagsMap[currentOpinionId]) {
+    // Remove flag
+    await fetch(`/api/flags/${currentOpinionId}`, { method: "DELETE" });
+    delete flagsMap[currentOpinionId];
+  } else {
+    // Add flag
+    await saveFlag(category || "review");
+  }
+  refreshAfterFlagChange();
+}
+
+async function saveFlag(category, note) {
+  if (!currentOpinionId) return;
+  const existing = flagsMap[currentOpinionId];
+  const body = {
+    opinion_id: currentOpinionId,
+    category: category || (existing ? existing.category : "review"),
+    note: note !== undefined ? note : (existing ? existing.note : ""),
+  };
+  const resp = await fetch("/api/flags", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (resp.ok) {
+    const flag = await resp.json();
+    flagsMap[currentOpinionId] = flag;
+  }
+  refreshAfterFlagChange();
+}
+
+async function removeFlag() {
+  if (!currentOpinionId || !flagsMap[currentOpinionId]) return;
+  await fetch(`/api/flags/${currentOpinionId}`, { method: "DELETE" });
+  delete flagsMap[currentOpinionId];
+  refreshAfterFlagChange();
+}
+
+function refreshAfterFlagChange() {
+  table.redraw(true); // Redraw to update flag indicators + row styles
+  if (currentOpinionData) renderOpinion(currentOpinionData);
+}
+
+function startNoteEdit() {
+  const display = document.getElementById("flag-note-display");
+  if (!display) return;
+  const flag = flagsMap[currentOpinionId];
+  const currentNote = flag ? flag.note : "";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "flag-note-input";
+  input.value = currentNote;
+  input.placeholder = "What looks wrong?";
+  display.replaceWith(input);
+  input.focus();
+
+  const save = async () => {
+    const val = input.value.trim();
+    await saveFlag(null, val);
+  };
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { e.preventDefault(); save(); }
+    if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      if (currentOpinionData) renderOpinion(currentOpinionData);
+    }
+  });
+  input.addEventListener("blur", save);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// ── Keyboard navigation ──
+// ══════════════════════════════════════════════════════════════════
+
+function isInputFocused() {
+  const el = document.activeElement;
+  if (!el) return false;
+  const tag = el.tagName;
+  return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable;
+}
+
+function showMode(text) {
+  const el = document.getElementById("mode-indicator");
+  el.textContent = text;
+  el.style.opacity = "1";
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => { el.style.opacity = "0"; }, 1500);
+}
+
+document.addEventListener("keydown", (e) => {
+  const helpOverlay = document.getElementById("help-overlay");
+
+  // Help overlay toggle
+  if (e.key === "?" && !isInputFocused()) {
+    e.preventDefault();
+    helpOverlay.classList.toggle("open");
+    return;
+  }
+
+  // Close overlays with Escape
+  if (e.key === "Escape") {
+    const mergeOverlay = document.getElementById("merge-overlay");
+    if (mergeOverlay.classList.contains("open")) {
+      mergeOverlay.classList.remove("open");
+      mergeOverlay.innerHTML = "";
+      return;
+    }
+    if (helpOverlay.classList.contains("open")) {
+      helpOverlay.classList.remove("open");
+      return;
+    }
+    if (isInputFocused()) {
+      document.activeElement.blur();
+      return;
+    }
+    pickerDiv.classList.remove("open");
+    return;
+  }
+
+  // Everything below only when no input is focused
+  if (isInputFocused()) return;
+
+  const rows = table.getRows();
+  const maxIdx = rows.length - 1;
+
+  // Handle g prefix (gg)
+  if (gPending) {
+    gPending = false;
+    if (e.key === "g") {
+      e.preventDefault();
+      selectRow(0);
+      showMode("gg");
+      return;
+    }
+    // Not 'g' — fall through
+  }
+
+  // Handle e prefix (ea, ec, ed, et, ej, ek, en)
+  if (ePending) {
+    ePending = false;
+    const editMap = {
+      a: "author", c: "case_name", d: "date_filed",
+      t: "case_type", j: "judges", k: "docket_number", n: "notes",
+    };
+    const field = editMap[e.key];
+    if (field) {
+      e.preventDefault();
+      const el = document.querySelector(`.editable[data-field="${field}"]`);
+      if (el) { startEdit(el); showMode(`edit ${field.replace("_", " ")}`); }
+      return;
+    }
+  }
+
+  switch (e.key) {
+    // Navigation
+    case "j":
+      e.preventDefault();
+      selectRow(Math.min(selectedRowIdx + 1, maxIdx));
+      { const d = getSelectedData(); if (d) loadOpinion(d.id); }
+      break;
+    case "k":
+      e.preventDefault();
+      selectRow(Math.max(selectedRowIdx - 1, 0));
+      { const d = getSelectedData(); if (d) loadOpinion(d.id); }
+      break;
+    case "Enter":
+    case "l": {
+      e.preventDefault();
+      const d = getSelectedData();
+      if (d) loadOpinion(d.id);
+      break;
+    }
+    case "h":
+      e.preventDefault();
+      toggleReader(false);
+      break;
+    case "g":
+      e.preventDefault();
+      gPending = true;
+      setTimeout(() => { gPending = false; }, 500);
+      break;
+    case "G":
+      e.preventDefault();
+      selectRow(maxIdx);
+      showMode("G");
+      break;
+
+    // Page navigation (Ctrl-d / Ctrl-u)
+    case "d":
+      if (e.ctrlKey) {
+        e.preventDefault();
+        table.nextPage();
+        selectedRowIdx = 0;
+        showMode("next page");
+      }
+      break;
+    case "u":
+      if (e.ctrlKey) {
+        e.preventDefault();
+        table.previousPage();
+        selectedRowIdx = 0;
+        showMode("prev page");
+      }
+      break;
+
+    // Search
+    case "/":
+      e.preventDefault();
+      document.getElementById("search").focus();
+      break;
+
+    // Reload
+    case "r":
+      e.preventDefault();
+      table.setData();
+      showMode("reload");
+      break;
+
+    // Flag operations
+    case "f":
+      e.preventDefault();
+      if (currentOpinionId) {
+        toggleFlag();
+        showMode(flagsMap[currentOpinionId] ? "flagged" : "unflagged");
+      } else {
+        // Flag the selected row even without reader open
+        const d = getSelectedData();
+        if (d) {
+          currentOpinionId = d.id;
+          currentOpinionData = d;
+          toggleFlag();
+          showMode("flagged");
+        }
+      }
+      break;
+    case "n":
+      e.preventDefault();
+      if (currentOpinionId) {
+        // Ensure flagged first
+        if (!flagsMap[currentOpinionId]) {
+          saveFlag("review", "").then(() => startNoteEdit());
+        } else {
+          startNoteEdit();
+        }
+        showMode("edit note");
+      }
+      break;
+    case "x":
+      e.preventDefault();
+      if (currentOpinionId) {
+        removeFlag();
+        showMode("unflagged");
+      }
+      break;
+    case "1": case "2": case "3": case "4": case "5": {
+      e.preventDefault();
+      const cat = FLAG_CATEGORIES[parseInt(e.key) - 1];
+      if (currentOpinionId) {
+        saveFlag(cat);
+        showMode(`category: ${cat}`);
+      }
+      break;
+    }
+
+    // Merge
+    case "m":
+      e.preventDefault();
+      if (currentOpinionId) {
+        openMergePanel(currentOpinionId);
+      }
+      break;
+
+    // Edit prefix
+    case "e":
+      e.preventDefault();
+      if (currentOpinionId) {
+        ePending = true;
+        showMode("e...");
+        setTimeout(() => { ePending = false; }, 800);
+      }
+      break;
+  }
+});
+
+// ── Inline editing ──
+function startEdit(el) {
+  if (el.querySelector("input")) return;
+  const field = el.dataset.field;
+  const id = el.dataset.id;
+  const currentVal = field === "author"
+    ? (el.textContent || "").replace(/^\u25CF /, "").trim()
+    : el.textContent.trim();
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "edit-input";
+  input.value = currentVal;
+
+  // Add datalist for author field
+  if (field === "author" && authorList.length) {
+    const dlId = "author-datalist";
+    let dl = document.getElementById(dlId);
+    if (!dl) {
+      dl = document.createElement("datalist");
+      dl.id = dlId;
+      authorList.forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        dl.appendChild(opt);
+      });
+      document.body.appendChild(dl);
+    }
+    input.setAttribute("list", dlId);
+  }
+
+  el.textContent = "";
+  el.appendChild(input);
+  input.focus();
+  input.select();
+
+  const save = async () => {
+    const newVal = input.value.trim();
+    input.remove();
+    el.textContent = newVal || currentVal;
+
+    if (newVal === currentVal || !newVal) return;
+
+    try {
+      const resp = await fetch(`/api/opinions/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ field, value: newVal }),
+      });
+      if (resp.ok) {
+        el.classList.add("flash-success");
+        setTimeout(() => el.classList.remove("flash-success"), 500);
+        table.setData();
+        loadOpinion(parseInt(id));
+      } else {
+        el.textContent = currentVal;
+        el.classList.add("flash-error");
+        setTimeout(() => el.classList.remove("flash-error"), 500);
+      }
+    } catch {
+      el.textContent = currentVal;
+      el.classList.add("flash-error");
+      setTimeout(() => el.classList.remove("flash-error"), 500);
+    }
+  };
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { e.preventDefault(); save(); }
+    if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); input.remove(); el.textContent = currentVal; }
+  });
+  input.addEventListener("blur", save);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// ── Merge panel ──
+// ══════════════════════════════════════════════════════════════════
+
+let mergeData = null;      // current diff response
+let mergeHunkIdx = -1;     // focused hunk index
+let mergeHunks = [];       // DOM elements for diff hunks
+
+async function openMergePanel(opinionId) {
+  showMode("finding duplicates...");
+  const resp = await fetch(`/api/opinions/${opinionId}/duplicates`);
+  const dupes = await resp.json();
+  if (!dupes.length) {
+    showMode("no duplicates found");
+    // Also show a visible flash in the reader pane
+    const bar = document.getElementById("flag-bar");
+    if (bar) {
+      const msg = document.createElement("span");
+      msg.style.cssText = "color:var(--text-muted);font-size:12px;margin-left:8px";
+      msg.textContent = "No duplicates found for this opinion";
+      bar.appendChild(msg);
+      setTimeout(() => msg.remove(), 3000);
+    }
+    return;
+  }
+
+  // If multiple duplicates, use the first (most common case is pairs)
+  const otherId = dupes[0].id;
+  showMode("loading diff...");
+
+  const diffResp = await fetch(`/api/opinions/${opinionId}/diff/${otherId}`);
+  mergeData = await diffResp.json();
+
+  renderMergePanel();
+}
+
+function renderMergePanel() {
+  const overlay = document.getElementById("merge-overlay");
+  const d = mergeData;
+  const baseLabel = d.opinion_a.id === d.base_id ? "A (base)" : "B (base)";
+  const otherLabel = d.opinion_a.id === d.base_id ? "B" : "A (base)";
+  const baseOp = d.opinion_a.id === d.base_id ? d.opinion_a : d.opinion_b;
+  const otherOp = d.opinion_a.id === d.base_id ? d.opinion_b : d.opinion_a;
+
+  // Metadata rows
+  let metaRows = "";
+  for (const [field, info] of Object.entries(d.metadata)) {
+    if (info.same) {
+      metaRows += `<tr>
+        <td class="field-name">${escHtml(field)}</td>
+        <td class="val-same" colspan="2">${fmtVal(info.a.value)}</td>
+      </tr>`;
+    } else {
+      // Pre-select: prefer non-null, prefer base
+      const aIsBase = info.a.id === d.base_id;
+      const aVal = info.a.value, bVal = info.b.value;
+      let defaultPick;
+      if (aVal != null && bVal == null) defaultPick = "a";
+      else if (aVal == null && bVal != null) defaultPick = "b";
+      else defaultPick = aIsBase ? "a" : "b";
+
+      metaRows += `<tr>
+        <td class="field-name">${escHtml(field)}</td>
+        <td>
+          <label class="pick-radio">
+            <input type="radio" name="meta_${field}" value="a" ${defaultPick === "a" ? "checked" : ""}>
+            <span class="${defaultPick === 'a' ? 'val-winner' : 'val-diff'}">${fmtVal(aVal)}</span>
+            <span style="font-size:11px;color:var(--text-muted)"> (${escHtml(d.opinion_a.source_reporter)})</span>
+          </label>
+        </td>
+        <td>
+          <label class="pick-radio">
+            <input type="radio" name="meta_${field}" value="b" ${defaultPick === "b" ? "checked" : ""}>
+            <span class="${defaultPick === 'b' ? 'val-winner' : 'val-diff'}">${fmtVal(bVal)}</span>
+            <span style="font-size:11px;color:var(--text-muted)"> (${escHtml(d.opinion_b.source_reporter)})</span>
+          </label>
+        </td>
+      </tr>`;
+    }
+  }
+
+  // Diff hunks
+  let diffHtml = "";
+  let hunkNum = 0;
+  for (const h of d.hunks) {
+    if (h.type === "equal") {
+      diffHtml += escHtml(h.text) + " ";
+    } else if (h.type === "replace") {
+      const isOcr = h.ocr_likelihood > 0.6;
+      const cls = `diff-hunk diff-hunk-replace${isOcr ? " diff-hunk-ocr" : ""}`;
+      // Pre-select: if OCR, pick the base (left) since it's higher quality
+      diffHtml += `<span class="${cls}" data-hunk="${hunkNum}" tabindex="0">` +
+        `<span class="diff-left">${escHtml(h.left)}</span>` +
+        `<span class="diff-right">${escHtml(h.right)}</span>` +
+        `</span> `;
+      hunkNum++;
+    } else if (h.type === "insert") {
+      diffHtml += `<span class="diff-hunk diff-hunk-insert" data-hunk="${hunkNum}" tabindex="0">${escHtml(h.right)}</span> `;
+      hunkNum++;
+    } else if (h.type === "delete") {
+      diffHtml += `<span class="diff-hunk diff-hunk-delete" data-hunk="${hunkNum}" tabindex="0">${escHtml(h.left)}</span> `;
+      hunkNum++;
+    }
+  }
+
+  overlay.innerHTML = `
+    <div class="merge-panel">
+      <div class="merge-header">
+        <h3>Merge: ${escHtml(d.opinion_a.source_reporter)} #${d.opinion_a.id} + ${escHtml(d.opinion_b.source_reporter)} #${d.opinion_b.id}</h3>
+        <button class="merge-close" id="merge-close-btn">Close (Esc)</button>
+      </div>
+
+      <table class="merge-meta-table">
+        <tr>
+          <th>Field</th>
+          <th>${escHtml(d.opinion_a.source_reporter)} (id ${d.opinion_a.id})
+            <span class="score-badge ${d.opinion_a.id === d.base_id ? 'score-winner' : 'score-loser'}">
+              score ${d.score_a}
+            </span>
+          </th>
+          <th>${escHtml(d.opinion_b.source_reporter)} (id ${d.opinion_b.id})
+            <span class="score-badge ${d.opinion_b.id === d.base_id ? 'score-winner' : 'score-loser'}">
+              score ${d.score_b}
+            </span>
+          </th>
+        </tr>
+        <tr>
+          <td class="field-name">text</td>
+          <td>${d.opinion_a.text_length.toLocaleString()} chars</td>
+          <td>${d.opinion_b.text_length.toLocaleString()} chars</td>
+        </tr>
+        <tr>
+          <td class="field-name">citations</td>
+          <td>${d.opinion_a.citations.map(c => escHtml(c.citation)).join(", ")}</td>
+          <td>${d.opinion_b.citations.map(c => escHtml(c.citation)).join(", ")}</td>
+        </tr>
+        ${metaRows}
+      </table>
+
+      <div class="merge-text-header">
+        <strong>Text diff</strong>
+        <span>${d.diff_count} differences, ${d.ocr_count} likely OCR</span>
+        <span style="font-size:12px;color:var(--text-muted)">
+          <span style="background:rgba(74,144,217,0.15);padding:1px 4px">base</span>
+          <span style="background:rgba(224,138,60,0.15);padding:1px 4px">alternate</span>
+          <span style="outline:2px dashed var(--orange);padding:1px 4px">OCR suspect</span>
+        </span>
+      </div>
+      <div class="merge-diff" id="merge-diff">${diffHtml}</div>
+
+      <div class="merge-actions">
+        <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id})</button>
+        <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
+        <span class="merge-stats">
+          Survivor: <strong>${d.base_id === d.opinion_a.id ? d.opinion_a.source_reporter : d.opinion_b.source_reporter}</strong> #${d.base_id}
+          &mdash; absorbs #${d.other_id}
+        </span>
+      </div>
+    </div>
+  `;
+
+  overlay.classList.add("open");
+
+  // Wire up buttons
+  document.getElementById("merge-close-btn").addEventListener("click", closeMerge);
+  document.getElementById("merge-cancel-btn").addEventListener("click", closeMerge);
+  document.getElementById("merge-execute-btn").addEventListener("click", executeMerge);
+
+  // Wire up diff hunk clicks
+  mergeHunks = Array.from(document.querySelectorAll(".diff-hunk"));
+  mergeHunkIdx = -1;
+  mergeHunks.forEach(el => {
+    el.addEventListener("click", () => {
+      if (el.classList.contains("diff-hunk-replace")) {
+        el.classList.toggle("pick-right");
+      } else if (el.classList.contains("diff-hunk-insert")) {
+        el.classList.toggle("diff-hunk-delete");
+        el.classList.toggle("diff-hunk-insert");
+      } else if (el.classList.contains("diff-hunk-delete")) {
+        el.classList.toggle("diff-hunk-insert");
+        el.classList.toggle("diff-hunk-delete");
+      }
+    });
+  });
+
+  // Merge-panel keyboard handler
+  overlay._keyHandler = (e) => {
+    if (e.key === "Escape") { e.preventDefault(); closeMerge(); return; }
+    if (e.key === "Tab") {
+      e.preventDefault();
+      if (e.shiftKey) {
+        mergeHunkIdx = Math.max(0, mergeHunkIdx - 1);
+      } else {
+        mergeHunkIdx = Math.min(mergeHunks.length - 1, mergeHunkIdx + 1);
+      }
+      mergeHunks.forEach(h => h.classList.remove("focused"));
+      if (mergeHunks[mergeHunkIdx]) {
+        mergeHunks[mergeHunkIdx].classList.add("focused");
+        mergeHunks[mergeHunkIdx].scrollIntoView({ block: "nearest" });
+      }
+      return;
+    }
+    if (e.key === " " && mergeHunkIdx >= 0) {
+      e.preventDefault();
+      mergeHunks[mergeHunkIdx].click();
+      return;
+    }
+    if (e.key === "Enter" && !isInputFocused()) {
+      e.preventDefault();
+      executeMerge();
+      return;
+    }
+  };
+  document.addEventListener("keydown", overlay._keyHandler, true);
+}
+
+function closeMerge() {
+  const overlay = document.getElementById("merge-overlay");
+  overlay.classList.remove("open");
+  if (overlay._keyHandler) {
+    document.removeEventListener("keydown", overlay._keyHandler, true);
+    overlay._keyHandler = null;
+  }
+  overlay.innerHTML = "";
+  mergeData = null;
+  mergeHunks = [];
+  mergeHunkIdx = -1;
+}
+
+async function executeMerge() {
+  if (!mergeData) return;
+  const d = mergeData;
+
+  // Collect metadata picks
+  const metadataPicks = {};
+  for (const field of Object.keys(d.metadata)) {
+    const radio = document.querySelector(`input[name="meta_${field}"]:checked`);
+    if (radio) metadataPicks[field] = radio.value;
+  }
+
+  // Build merged text from hunks
+  const textParts = [];
+  let hunkNum = 0;
+  for (const h of d.hunks) {
+    if (h.type === "equal") {
+      textParts.push(h.text);
+    } else {
+      const el = mergeHunks[hunkNum];
+      if (h.type === "replace") {
+        textParts.push(el.classList.contains("pick-right") ? h.right : h.left);
+      } else if (h.type === "insert" || h.type === "delete") {
+        // If it's currently showing as "insert" (visible), include it
+        if (el.classList.contains("diff-hunk-insert")) {
+          textParts.push(h.right || h.left);
+        }
+        // If "delete" (struck through), omit it
+      }
+      hunkNum++;
+    }
+  }
+  const mergedText = textParts.join(" ");
+
+  showMode("merging...");
+
+  const resp = await fetch(`/api/opinions/${d.base_id}/merge`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      loser_id: d.other_id,
+      metadata_picks: metadataPicks,
+      text_source: "merged",
+      merged_text: mergedText,
+    }),
+  });
+
+  if (resp.ok) {
+    const result = await resp.json();
+    closeMerge();
+    showMode(`merged → #${result.survivor_id}`);
+    // Reload table and reader
+    table.setData();
+    loadOpinion(result.survivor_id);
+  } else {
+    showMode("merge failed!");
+  }
+}
+
+function fmtVal(v) {
+  if (v === null || v === undefined) return '<span class="val-null">null</span>';
+  if (v === true) return "yes";
+  if (v === false) return "no";
+  const s = String(v);
+  return escHtml(s.length > 80 ? s.substring(0, 80) + "..." : s);
+}
+
+// ── Utilities ──
+function escHtml(s) {
+  if (!s) return "";
+  const d = document.createElement("div");
+  d.textContent = String(s);
+  return d.innerHTML;
+}
+</script>
+</body>
+</html>

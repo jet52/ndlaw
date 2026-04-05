@@ -57,6 +57,20 @@ def create_schema(conn: sqlite3.Connection) -> None:
             new_value TEXT
         );
 
+        CREATE TABLE IF NOT EXISTS opinion_sources (
+            id INTEGER PRIMARY KEY,
+            opinion_id INTEGER NOT NULL REFERENCES opinions(id),
+            source_reporter TEXT NOT NULL,
+            source_path TEXT NOT NULL,
+            cluster_id INTEGER,
+            text_length INTEGER,
+            is_primary INTEGER DEFAULT 0,
+            added_at TEXT
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_opinion_sources_opinion_id ON opinion_sources(opinion_id);
+        CREATE INDEX IF NOT EXISTS idx_opinion_sources_path ON opinion_sources(source_path);
+
         CREATE INDEX IF NOT EXISTS idx_changelog_batch ON changelog(batch);
         CREATE INDEX IF NOT EXISTS idx_changelog_opinion_id ON changelog(opinion_id);
 
