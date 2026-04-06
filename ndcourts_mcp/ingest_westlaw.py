@@ -522,36 +522,55 @@ def process_batch(
     return stats
 
 
-REFS_DIR = Path.home() / "refs" / "opin" / "N.D."
-WESTLAW_REFS_DIR = Path.home() / "refs" / "opin" / "westlaw"
-
-
-def _cite_to_filename(citation: str) -> str:
-    """Convert a citation like '20 N.D. 261' to '20_ND_261'."""
-    return re.sub(r'[.\s]+', '_', citation).replace('__', '_').strip('_')
+REFS_BASE = Path.home() / "refs" / "opin"
 
 
 def _archive_single_doc(doc_path: Path, parsed: dict, volume: int | None) -> Path:
-    """Archive a single .doc file. Returns the archive path.
+    """Archive a single .doc file to ~/refs/opin/{reporter}/{vol}/{page}-{Name}.doc.
 
-    Volume downloads go to ~/refs/opin/N.D./{vol}/{page}-{Name}.doc.
-    Individual downloads go to ~/refs/opin/westlaw/{cite_slug}.doc.
+    Determines the reporter directory (N.D., NW2d, NW) and volume/page from
+    the opinion's citations. Volume downloads are handled by the batch
+    archiver (_archive_westlaw_docs) instead.
     """
     if volume is not None:
-        # Volume-based: will be handled by _archive_westlaw_docs batch copy
+        # Volume-based: batch archiver handles these
         return doc_path
 
-    # Individual case: archive by citation
-    dest_dir = WESTLAW_REFS_DIR
+    all_cites = parsed.get("all_citations", [])
+    if parsed.get("primary_citation"):
+        all_cites = [parsed["primary_citation"]] + all_cites
+
+    # Find a citation we can parse into volume/page for filing
+    dest_dir = None
+    page = None
+    for cite in all_cites:
+        m = re.match(r"(\d+)\s+N\.D\.\s+(\d+)", cite)
+        if m:
+            vol_num, page = int(m.group(1)), int(m.group(2))
+            dest_dir = REFS_BASE / "N.D." / str(vol_num)
+            break
+        m = re.match(r"(\d+)\s+N\.W\.2d\s+(\d+)", cite)
+        if m:
+            vol_num, page = int(m.group(1)), int(m.group(2))
+            dest_dir = REFS_BASE / "NW2d" / str(vol_num)
+            break
+        m = re.match(r"(\d+)\s+N\.W\.\s+(\d+)", cite)
+        if m:
+            vol_num, page = int(m.group(1)), int(m.group(2))
+            dest_dir = REFS_BASE / "NW" / str(vol_num)
+            break
+
+    if dest_dir is None or page is None:
+        # Can't determine volume/page — keep in batch dir
+        return doc_path
+
     dest_dir.mkdir(parents=True, exist_ok=True)
 
-    cite = parsed.get("primary_citation", "")
-    if cite:
-        slug = _cite_to_filename(cite)
-    else:
-        slug = doc_path.stem.replace(' ', '_')
+    # Build case name slug from Westlaw filename
+    name_m = re.match(r"\d+\s*-\s*(.+)\.doc$", doc_path.name)
+    case_slug = name_m.group(1).strip().replace(" ", "-") if name_m else doc_path.stem.replace(" ", "-")
 
-    dest_path = dest_dir / f"{slug}.doc"
+    dest_path = dest_dir / f"{page:04d}-{case_slug}.doc"
     if not dest_path.exists():
         shutil.copy2(doc_path, dest_path)
 
@@ -564,7 +583,7 @@ def _archive_westlaw_docs(batch_dir: Path, volume: int) -> None:
     Renames from Westlaw format "NNN - Case Name.doc" to "{page:04d}-{Case-Name}.doc"
     using the N.D. page number extracted from the opinion text.
     """
-    dest = REFS_DIR / str(volume)
+    dest = REFS_BASE / "N.D." / str(volume)
     dest.mkdir(parents=True, exist_ok=True)
 
     doc_files = sorted(batch_dir.glob("*.doc"))
