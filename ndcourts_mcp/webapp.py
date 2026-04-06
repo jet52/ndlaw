@@ -1184,6 +1184,14 @@ async def merge_opinions(survivor_id: int, request: Request):
             if pick == "b":
                 new_val = loser[field]
                 old_val = survivor[field]
+                if field == "cluster_id" and new_val is not None:
+                    # Check for UNIQUE conflict before updating
+                    conflict = conn.execute(
+                        "SELECT id FROM opinions WHERE cluster_id = ? AND id != ?",
+                        (new_val, survivor_id),
+                    ).fetchone()
+                    if conflict:
+                        continue  # skip — would violate UNIQUE
                 if new_val != old_val:
                     updates[field] = new_val
                     conn.execute(
@@ -1191,7 +1199,9 @@ async def merge_opinions(survivor_id: int, request: Request):
                         ("merge", survivor_id, field, str(old_val) if old_val else None, str(new_val) if new_val else None),
                     )
             elif pick is None and survivor[field] is None and loser[field] is not None:
-                # Auto-fill nulls from loser
+                # Auto-fill nulls from loser (skip cluster_id — UNIQUE constraint)
+                if field == "cluster_id":
+                    continue
                 updates[field] = loser[field]
                 conn.execute(
                     "INSERT INTO changelog (batch, opinion_id, field, old_value, new_value) VALUES (?, ?, ?, ?, ?)",
