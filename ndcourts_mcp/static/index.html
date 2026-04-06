@@ -1155,6 +1155,27 @@ function renderOpinion(op) {
     </details>`;
   }
 
+  let sourcesHtml = "";
+  if (op.sources && op.sources.length > 1) {
+    const current = op.source_reporter;
+    sourcesHtml = `<details class="meta-section">
+      <summary>Sources<span class="citing-count-badge">${op.sources.length}</span></summary>
+      <ul class="citing-list">
+        ${op.sources.map(s => {
+          const isCurrent = s.source_reporter === current && s.is_primary;
+          const shortPath = s.source_path.replace(/.*refs\/opin\//, '');
+          return `<li>
+            <span style="color:${isCurrent ? 'var(--blue)' : 'var(--text-muted)'};font-weight:${isCurrent ? '600' : '400'};flex-shrink:0">
+              ${escHtml(s.source_reporter)}${isCurrent ? ' (current)' : ''}
+            </span>
+            <span class="citing-name" style="font-size:11px">${escHtml(shortPath)}</span>
+            ${!isCurrent ? `<button class="flag-btn" onclick="openSourceCompare(${op.id},${s.id})" style="font-size:11px">Compare</button>` : ''}
+          </li>`;
+        }).join("")}
+      </ul>
+    </details>`;
+  }
+
   let notesHtml = "";
 
   // Author display
@@ -1201,6 +1222,7 @@ function renderOpinion(op) {
     </div>
     ${votingHtml}
     ${citingHtml}
+    ${sourcesHtml}
     ${notesHtml}
     ${changelogHtml}
     <div class="reader-text">${escHtml(text)}</div>
@@ -1675,8 +1697,43 @@ function startEdit(el) {
 let mergeData = null;      // current diff response
 let mergeHunkIdx = -1;     // focused hunk index
 let mergeHunks = [];       // DOM elements for diff hunks
+let mergeMode = "merge";   // "merge" (dedup) or "source-compare"
+let sourceCompareId = null; // alternate_source_id for source-compare mode
+
+async function openSourceCompare(opinionId, sourceId) {
+  showMode("loading source diff...");
+  const resp = await fetch(`/api/opinions/${opinionId}/source-diff/${sourceId}`);
+  if (!resp.ok) {
+    const err = await resp.text();
+    alert("Could not load source diff: " + err);
+    showMode("");
+    return;
+  }
+  mergeMode = "source-compare";
+  sourceCompareId = sourceId;
+  mergeData = await resp.json();
+  // Adapt mergeData to work with renderMergePanel
+  mergeData.base_id = opinionId;
+  mergeData.other_id = null;
+  mergeData.opinion_a = {
+    id: opinionId,
+    source_reporter: mergeData.current_source,
+    text_length: 0,
+  };
+  mergeData.opinion_b = {
+    id: null,
+    source_reporter: mergeData.alternate_source,
+    text_length: 0,
+  };
+  mergeData.score_a = mergeData.score_current;
+  mergeData.score_b = mergeData.score_alternate;
+  mergeData.metadata = {};
+  renderMergePanel();
+}
 
 async function openMergePanel(opinionId) {
+  mergeMode = "merge";
+  sourceCompareId = null;
   showMode("finding duplicates...");
   const resp = await fetch(`/api/opinions/${opinionId}/duplicates`);
   const dupes = await resp.json();
@@ -1838,14 +1895,24 @@ function renderMergePanel() {
       </div>
 
       <div class="merge-actions">
-        <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id}, delete #${d.other_id})</button>
-        <button class="merge-btn" id="merge-swap-btn" title="Swap which opinion survives">Swap survivor</button>
-        <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
-        <button class="merge-btn" id="merge-notdup-btn" style="background:var(--blue);color:#fff">Not Duplicates (n)</button>
-        <span class="merge-stats" id="merge-stats-label">
-          Survivor: <strong>${d.base_id === d.opinion_a.id ? d.opinion_a.source_reporter : d.opinion_b.source_reporter}</strong> #${d.base_id}
-          &mdash; deletes #${d.other_id}
-        </span>
+        ${mergeMode === "source-compare" ? `
+          <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Apply Changes</button>
+          <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
+          <span class="merge-stats" id="merge-stats-label">
+            Comparing: <strong>${d.current_source || d.opinion_a?.source_reporter || '?'}</strong> (current)
+            vs <strong>${d.alternate_source || d.opinion_b?.source_reporter || '?'}</strong>
+            &mdash; ${d.diff_count} differences
+          </span>
+        ` : `
+          <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id}, delete #${d.other_id})</button>
+          <button class="merge-btn" id="merge-swap-btn" title="Swap which opinion survives">Swap survivor</button>
+          <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
+          <button class="merge-btn" id="merge-notdup-btn" style="background:var(--blue);color:#fff">Not Duplicates (n)</button>
+          <span class="merge-stats" id="merge-stats-label">
+            Survivor: <strong>${d.base_id === d.opinion_a.id ? d.opinion_a.source_reporter : d.opinion_b.source_reporter}</strong> #${d.base_id}
+            &mdash; deletes #${d.other_id}
+          </span>
+        `}
       </div>
     </div>
   `;
@@ -1856,8 +1923,10 @@ function renderMergePanel() {
   document.getElementById("merge-close-btn").addEventListener("click", closeMerge);
   document.getElementById("merge-cancel-btn").addEventListener("click", closeMerge);
   document.getElementById("merge-execute-btn").addEventListener("click", executeMerge);
-  document.getElementById("merge-notdup-btn").addEventListener("click", markNotDuplicates);
-  document.getElementById("merge-swap-btn").addEventListener("click", () => {
+  const notdupBtn = document.getElementById("merge-notdup-btn");
+  if (notdupBtn) notdupBtn.addEventListener("click", markNotDuplicates);
+  const swapBtn = document.getElementById("merge-swap-btn");
+  if (swapBtn) swapBtn.addEventListener("click", () => {
     // Swap base and other
     const tmp = mergeData.base_id;
     mergeData.base_id = mergeData.other_id;
@@ -1868,7 +1937,7 @@ function renderMergePanel() {
     const srcA = mergeData.opinion_a, srcB = mergeData.opinion_b;
     const survivorSrc = mergeData.base_id === srcA.id ? srcA.source_reporter : srcB.source_reporter;
     label.innerHTML = `Survivor: <strong>${survivorSrc}</strong> #${mergeData.base_id} &mdash; deletes #${mergeData.other_id}`;
-  });
+  })
 
   // Wire up side-by-side hunk clicks
   // mergeHunks stores pairs: [{left: el, right: el}, ...]
@@ -2054,51 +2123,87 @@ async function executeMerge() {
   }
   const mergedText = textParts.join(" ");
 
-  // Confirm dialog
   const totalDiffs = changesFromLeft + changesFromRight;
-  const srcA = d.opinion_a.source_reporter;
-  const srcB = d.opinion_b.source_reporter;
-  const survivorSrc = d.base_id === d.opinion_a.id ? srcA : srcB;
-  const loserSrc = d.base_id === d.opinion_a.id ? srcB : srcA;
 
-  const msg = `Merge opinions:\n\n` +
-    `KEEP: #${d.base_id} (${survivorSrc})\n` +
-    `DELETE: #${d.other_id} (${loserSrc})\n\n` +
-    `Text: ${totalDiffs} differences resolved ` +
-    `(${changesFromLeft} from left, ${changesFromRight} from right).\n` +
-    `Citations from #${d.other_id} will be moved to #${d.base_id}.\n\n` +
-    `Proceed?`;
+  if (mergeMode === "source-compare") {
+    // Source compare mode — apply text changes only, no deletion
+    const msg = `Apply text changes from ${d.alternate_source || 'alternate'} source:\n\n` +
+      `${totalDiffs} differences resolved ` +
+      `(${changesFromLeft} kept from current, ${changesFromRight} taken from alternate).\n\n` +
+      `This updates the opinion text. No opinions will be deleted.\n\nProceed?`;
 
-  if (!confirm(msg)) return;
+    if (!confirm(msg)) return;
+    showMode("applying...");
 
-  showMode("merging...");
+    try {
+      const resp = await fetch(`/api/opinions/${d.opinion_id}/apply-source-diff`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          alternate_source_id: sourceCompareId,
+          merged_text: mergedText,
+        }),
+      });
 
-  try {
-    const resp = await fetch(`/api/opinions/${d.base_id}/merge`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        loser_id: d.other_id,
-        metadata_picks: metadataPicks,
-        text_source: "merged",
-        merged_text: mergedText,
-      }),
-    });
-
-    if (resp.ok) {
-      const result = await resp.json();
-      closeMerge();
-      showMode(`merged #${result.loser_id} into #${result.survivor_id}`);
-      table.setData();
-      loadOpinion(result.survivor_id);
-    } else {
-      const err = await resp.text();
-      alert("Merge failed: " + err);
-      showMode("merge failed");
+      if (resp.ok) {
+        closeMerge();
+        showMode("text updated");
+        table.setData();
+        loadOpinion(d.opinion_id);
+      } else {
+        const err = await resp.text();
+        alert("Apply failed: " + err);
+        showMode("apply failed");
+      }
+    } catch (e) {
+      alert("Apply error: " + e.message);
+      showMode("apply error");
     }
-  } catch (e) {
-    alert("Merge error: " + e.message);
-    showMode("merge error");
+  } else {
+    // Merge mode — dedup, deletes loser
+    const srcA = d.opinion_a.source_reporter;
+    const srcB = d.opinion_b.source_reporter;
+    const survivorSrc = d.base_id === d.opinion_a.id ? srcA : srcB;
+    const loserSrc = d.base_id === d.opinion_a.id ? srcB : srcA;
+
+    const msg = `Merge opinions:\n\n` +
+      `KEEP: #${d.base_id} (${survivorSrc})\n` +
+      `DELETE: #${d.other_id} (${loserSrc})\n\n` +
+      `Text: ${totalDiffs} differences resolved ` +
+      `(${changesFromLeft} from left, ${changesFromRight} from right).\n` +
+      `Citations from #${d.other_id} will be moved to #${d.base_id}.\n\n` +
+      `Proceed?`;
+
+    if (!confirm(msg)) return;
+    showMode("merging...");
+
+    try {
+      const resp = await fetch(`/api/opinions/${d.base_id}/merge`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          loser_id: d.other_id,
+          metadata_picks: metadataPicks,
+          text_source: "merged",
+          merged_text: mergedText,
+        }),
+      });
+
+      if (resp.ok) {
+        const result = await resp.json();
+        closeMerge();
+        showMode(`merged #${result.loser_id} into #${result.survivor_id}`);
+        table.setData();
+        loadOpinion(result.survivor_id);
+      } else {
+        const err = await resp.text();
+        alert("Merge failed: " + err);
+        showMode("merge failed");
+      }
+    } catch (e) {
+      alert("Merge error: " + e.message);
+      showMode("merge error");
+    }
   }
 }
 
@@ -2162,6 +2267,8 @@ async function openDupQueue() {
 }
 
 async function openMergePanelDirect(idA, idB) {
+  mergeMode = "merge";
+  sourceCompareId = null;
   const resp = await fetch("/api/opinions/" + idA + "/diff/" + idB);
   if (!resp.ok) {
     alert("Could not load diff: " + (await resp.text()));

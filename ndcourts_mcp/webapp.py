@@ -423,6 +423,13 @@ def get_opinion(opinion_id: int):
             (opinion_id,),
         ).fetchall()
 
+        sources = conn.execute(
+            """SELECT id, source_reporter, source_path, text_length, is_primary
+               FROM opinion_sources WHERE opinion_id = ?
+               ORDER BY is_primary DESC, source_reporter""",
+            (opinion_id,),
+        ).fetchall()
+
     d = dict(row)
     d["per_curiam"] = bool(d.get("per_curiam"))
     d["unanimous"] = bool(d.get("unanimous")) if d.get("unanimous") is not None else None
@@ -430,6 +437,7 @@ def get_opinion(opinion_id: int):
     d["citations"] = [dict(c) for c in citations]
     d["changelog"] = [dict(c) for c in changelog]
     d["citing_opinions"] = [dict(c) for c in citing]
+    d["sources"] = [dict(s) for s in sources]
     if quality:
         qd = dict(quality)
         d["quality_score"] = qd["overall_score"]
@@ -937,6 +945,154 @@ def diff_opinions(opinion_id: int, other_id: int):
         "hunks": hunks,
         "diff_count": diff_count,
         "ocr_count": ocr_count,
+    }
+
+
+# ── Source text comparison ────────────────────────────────────────────
+
+REFS_BASE = Path.home() / "refs" / "opin"
+
+
+def _load_source_text(source: dict) -> str | None:
+    """Load opinion text from a source file. Returns plain text body (no frontmatter)."""
+    reporter = source["source_reporter"]
+    source_path = source["source_path"]
+
+    # Resolve path — may be relative to ~/refs/opin/ or absolute
+    if source_path.startswith("/"):
+        path = Path(source_path)
+    else:
+        path = REFS_BASE / source_path
+
+    if not path.exists():
+        return None
+
+    if reporter == "westlaw" and path.suffix == ".doc":
+        # Parse Westlaw .doc via textutil
+        from .ingest_westlaw import _doc_to_text, _parse_westlaw_doc
+        try:
+            raw = _doc_to_text(path)
+            parsed = _parse_westlaw_doc(raw)
+            return parsed.get("opinion_text") if parsed else None
+        except Exception:
+            return None
+    elif reporter == "archive" and path.suffix == ".htm":
+        # Parse archive HTML
+        from .scrape_archive import _html_to_text
+        try:
+            html_text = path.read_text(encoding="utf-8", errors="replace")
+            return _html_to_text(html_text)
+        except Exception:
+            return None
+    else:
+        # Markdown (.md) — strip YAML frontmatter
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace")
+            return re.sub(r'^---\n[\s\S]*?\n---\n*', '', text)
+        except Exception:
+            return None
+
+
+@app.get("/api/opinions/{opinion_id}/source-diff/{source_id}")
+def source_diff(opinion_id: int, source_id: int):
+    """Compare current opinion text with text from an alternate source."""
+    with _db() as conn:
+        opinion = conn.execute(
+            "SELECT * FROM opinions WHERE id = ?", (opinion_id,)
+        ).fetchone()
+        if not opinion:
+            raise HTTPException(404, "Opinion not found")
+
+        source = conn.execute(
+            "SELECT * FROM opinion_sources WHERE id = ? AND opinion_id = ?",
+            (source_id, opinion_id),
+        ).fetchone()
+        if not source:
+            raise HTTPException(404, "Source not found")
+
+    # Load alternate source text
+    alt_text = _load_source_text(dict(source))
+    if alt_text is None:
+        raise HTTPException(
+            404, f"Could not load text from source: {source['source_path']}"
+        )
+
+    # Current text (strip frontmatter)
+    current_text = re.sub(r'^---\n[\s\S]*?\n---\n*', '', opinion["text_content"])
+
+    # Quality scores
+    score_current = _text_quality_score(current_text, opinion["source_reporter"])
+    score_alt = _text_quality_score(alt_text, source["source_reporter"])
+
+    # Diff — current is left (base), alternate is right
+    hunks = _word_diff(current_text, alt_text)
+
+    diff_count = sum(1 for h in hunks if h["type"] != "equal")
+    ocr_count = sum(1 for h in hunks if h.get("ocr_likelihood", 0) > 0.6)
+
+    return {
+        "opinion_id": opinion_id,
+        "current_source": opinion["source_reporter"],
+        "alternate_source": source["source_reporter"],
+        "alternate_source_id": source_id,
+        "alternate_source_path": source["source_path"],
+        "score_current": round(score_current, 1),
+        "score_alternate": round(score_alt, 1),
+        "hunks": hunks,
+        "diff_count": diff_count,
+        "ocr_count": ocr_count,
+    }
+
+
+@app.post("/api/opinions/{opinion_id}/apply-source-diff")
+async def apply_source_diff(opinion_id: int, request: Request):
+    """Apply text changes from a source comparison."""
+    body = await request.json()
+    merged_text = body.get("merged_text")
+    source_id = body.get("alternate_source_id")
+
+    if not merged_text:
+        raise HTTPException(400, "merged_text required")
+
+    with _db() as conn:
+        opinion = conn.execute(
+            "SELECT * FROM opinions WHERE id = ?", (opinion_id,)
+        ).fetchone()
+        if not opinion:
+            raise HTTPException(404, "Opinion not found")
+
+        source = conn.execute(
+            "SELECT source_reporter FROM opinion_sources WHERE id = ?",
+            (source_id,),
+        ).fetchone() if source_id else None
+
+        # Preserve frontmatter, replace body
+        fm_match = re.match(r'(---\n[\s\S]*?\n---\n*)', opinion["text_content"])
+        frontmatter = fm_match.group(1) if fm_match else ""
+        new_text = frontmatter + merged_text
+
+        old_len = len(opinion["text_content"])
+        new_len = len(new_text)
+        alt_reporter = source["source_reporter"] if source else "unknown"
+
+        conn.execute(
+            "UPDATE opinions SET text_content = ? WHERE id = ?",
+            (new_text, opinion_id),
+        )
+        conn.execute(
+            "INSERT INTO changelog (batch, opinion_id, field, old_value, new_value) "
+            "VALUES ('source-merge', ?, 'text_content', ?, ?)",
+            (opinion_id,
+             f"[{old_len} chars from {opinion['source_reporter']}]",
+             f"[{new_len} chars, merged with {alt_reporter}]"),
+        )
+        conn.commit()
+
+    return {
+        "status": "applied",
+        "opinion_id": opinion_id,
+        "old_length": old_len,
+        "new_length": new_len,
     }
 
 
