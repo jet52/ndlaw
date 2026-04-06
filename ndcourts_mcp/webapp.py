@@ -1,6 +1,7 @@
 """Opinion browser — FastAPI backend serving REST API + static HTML."""
 
 import json
+import os
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
@@ -12,6 +13,40 @@ from .db import get_connection
 from .justices import KNOWN_LAST_NAMES
 
 app = FastAPI(title="ND Courts Opinion Browser")
+
+
+@app.get("/health")
+def health():
+    """Health check endpoint — verifies DB is accessible and returns key stats."""
+    try:
+        with _db() as conn:
+            total = conn.execute("SELECT COUNT(*) FROM opinions").fetchone()[0]
+            latest = conn.execute("SELECT MAX(date_filed) FROM opinions").fetchone()[0]
+            sources = conn.execute(
+                "SELECT source_reporter, COUNT(*) as n FROM opinion_sources GROUP BY source_reporter"
+            ).fetchall()
+            last_provenance = conn.execute(
+                "SELECT operation, timestamp FROM provenance ORDER BY timestamp DESC LIMIT 1"
+            ).fetchone()
+        return {
+            "status": "ok",
+            "readonly": READONLY,
+            "total_opinions": total,
+            "latest_opinion": latest,
+            "sources": {r["source_reporter"]: r["n"] for r in sources},
+            "last_pipeline_run": dict(last_provenance) if last_provenance else None,
+        }
+    except Exception as e:
+        return JSONResponse(status_code=503, content={"status": "error", "detail": str(e)})
+
+# Read-only mode: set NDCOURTS_READONLY=1 to disable write endpoints
+READONLY = os.environ.get("NDCOURTS_READONLY", "").strip() in ("1", "true", "yes")
+
+
+def _require_write():
+    """Raise 403 if in read-only mode."""
+    if READONLY:
+        raise HTTPException(403, "Server is in read-only mode")
 
 STATIC_DIR = Path(__file__).parent / "static"
 
@@ -474,6 +509,7 @@ EDITABLE_FIELDS = {"author", "case_name", "date_filed", "case_type", "judges", "
 
 @app.patch("/api/opinions/{opinion_id}")
 async def update_opinion(opinion_id: int, request: Request):
+    _require_write()
     body = await request.json()
     field = body.get("field")
     value = body.get("value")
@@ -548,6 +584,7 @@ def list_not_duplicates():
 
 @app.post("/api/not-duplicates")
 async def add_not_duplicate(request: Request):
+    _require_write()
     body = await request.json()
     id_a, id_b = body.get("id_a"), body.get("id_b")
     if not id_a or not id_b:
@@ -561,6 +598,7 @@ async def add_not_duplicate(request: Request):
 
 @app.delete("/api/not-duplicates/{id_a}/{id_b}")
 def remove_not_duplicate(id_a: int, id_b: int):
+    _require_write()
     pairs = _load_not_duplicates()
     before = len(pairs)
     pairs = [p for p in pairs if set(p) != {id_a, id_b}]
@@ -615,6 +653,7 @@ def duplicate_queue(
 
 @app.post("/api/duplicate-queue/{candidate_id}/resolve")
 async def resolve_duplicate(candidate_id: int, request: Request):
+    _require_write()
     """Mark a duplicate candidate as reviewed."""
     body = await request.json()
     resolved_as = body.get("resolved_as")  # 'merged', 'not-duplicate', 'deferred'
@@ -1046,6 +1085,7 @@ def source_diff(opinion_id: int, source_id: int):
 
 @app.post("/api/opinions/{opinion_id}/apply-source-diff")
 async def apply_source_diff(opinion_id: int, request: Request):
+    _require_write()
     """Apply text changes from a source comparison."""
     body = await request.json()
     merged_text = body.get("merged_text")
@@ -1098,6 +1138,7 @@ async def apply_source_diff(opinion_id: int, request: Request):
 
 @app.post("/api/opinions/{survivor_id}/merge")
 async def merge_opinions(survivor_id: int, request: Request):
+    _require_write()
     """Merge another opinion into the survivor.
 
     Body: {
@@ -1255,6 +1296,7 @@ def get_confirmed_authors():
 
 @app.post("/api/confirmed-authors")
 async def confirm_author(request: Request):
+    _require_write()
     body = await request.json()
     name = body.get("name", "").strip()
     if not name:
@@ -1280,6 +1322,7 @@ async def confirm_author(request: Request):
 
 @app.delete("/api/confirmed-authors/{name}")
 def unconfirm_author(name: str):
+    _require_write()
     lower = name.strip().lower()
     if lower not in _confirmed_authors:
         raise HTTPException(404, "Author not in confirmed list")
@@ -1314,6 +1357,7 @@ def get_flags():
 
 @app.post("/api/flags")
 async def upsert_flag(request: Request):
+    _require_write()
     body = await request.json()
     opinion_id = body.get("opinion_id")
     if not opinion_id:
@@ -1353,6 +1397,7 @@ async def upsert_flag(request: Request):
 
 @app.delete("/api/flags/{opinion_id}")
 def delete_flag(opinion_id: int):
+    _require_write()
     flags = _load_flags()
     before = len(flags)
     flags = [f for f in flags if f["opinion_id"] != opinion_id]

@@ -194,35 +194,6 @@ def search_opinions(
         conn.close()
 
 
-@mcp.tool()
-def get_opinion_metadata(citation: str) -> dict:
-    """Get metadata for an opinion without the full text.
-
-    Lighter than lookup_opinion — use when you just need case name,
-    date, author, and citations without the full text.
-
-    Args:
-        citation: A legal citation like "2024 ND 156".
-    """
-    conn = get_connection(DB_PATH)
-    try:
-        row = conn.execute(
-            """SELECT o.* FROM opinions o
-               JOIN citations c ON c.opinion_id = o.id
-               WHERE c.citation = ?""",
-            (citation.strip(),),
-        ).fetchone()
-
-        if not row:
-            return {"error": f"No opinion found for citation: {citation}"}
-
-        result = _opinion_summary(row)
-        result["citations"] = _get_citations(conn, row["id"])
-        result["absolute_url"] = row["absolute_url"]
-        return result
-    finally:
-        conn.close()
-
 
 @mcp.tool()
 def list_opinions_by_date(
@@ -359,62 +330,56 @@ def get_database_stats() -> dict:
 
 
 @mcp.tool()
-def get_voting_record(citation: str) -> dict:
-    """Get the voting record for an opinion — who was in the majority,
-    dissented, concurred, or wrote separately.
-
-    Args:
-        citation: A legal citation like "2024 ND 156".
-    """
-    conn = get_connection(DB_PATH)
-    try:
-        row = conn.execute(
-            """SELECT o.case_name, o.date_filed, o.author, o.voting_record,
-                      o.all_justices, o.unanimous
-               FROM opinions o
-               JOIN citations c ON c.opinion_id = o.id
-               WHERE c.citation = ?""",
-            (citation.strip(),),
-        ).fetchone()
-
-        if not row:
-            return {"error": f"No opinion found for citation: {citation}"}
-
-        import json as _json
-
-        return {
-            "citation": citation,
-            "case_name": row["case_name"],
-            "date_filed": row["date_filed"],
-            "author": row["author"],
-            "unanimous": bool(row["unanimous"]) if row["unanimous"] is not None else None,
-            "justices": _json.loads(row["all_justices"]) if row["all_justices"] else None,
-            "voting_record": _json.loads(row["voting_record"]) if row["voting_record"] else None,
-        }
-    finally:
-        conn.close()
-
-
-@mcp.tool()
-def get_justice_stats(
+def justice_info(
     justice: str,
+    citation: str | None = None,
     date_from: str | None = None,
     date_to: str | None = None,
 ) -> dict:
-    """Get statistics for a justice — authorship count, dissent rate, etc.
+    """Get justice information — voting record for a specific case, or
+    aggregate statistics across cases.
 
-    Searches the all_justices and voting_record fields for the given name.
+    If citation is provided, returns the voting record for that opinion.
+    Otherwise, returns aggregate stats (authorship count, dissent rate, etc.)
+    for the justice across all cases (optionally filtered by date range).
+
     Only covers opinions from 1997–present (neutral-cite era with voting data).
 
     Args:
         justice: Justice's last name (e.g., "Tufte", "Crothers").
-        date_from: Optional start date (YYYY-MM-DD).
-        date_to: Optional end date (YYYY-MM-DD).
+        citation: Optional citation for a specific opinion's voting record.
+        date_from: Optional start date (YYYY-MM-DD) for aggregate stats.
+        date_to: Optional end date (YYYY-MM-DD) for aggregate stats.
     """
     import json as _json
 
     conn = get_connection(DB_PATH)
     try:
+        # Single-opinion voting record
+        if citation:
+            row = conn.execute(
+                """SELECT o.case_name, o.date_filed, o.author, o.voting_record,
+                          o.all_justices, o.unanimous
+                   FROM opinions o
+                   JOIN citations c ON c.opinion_id = o.id
+                   WHERE c.citation = ?""",
+                (citation.strip(),),
+            ).fetchone()
+
+            if not row:
+                return {"error": f"No opinion found for citation: {citation}"}
+
+            return {
+                "citation": citation,
+                "case_name": row["case_name"],
+                "date_filed": row["date_filed"],
+                "author": row["author"],
+                "unanimous": bool(row["unanimous"]) if row["unanimous"] is not None else None,
+                "justices": _json.loads(row["all_justices"]) if row["all_justices"] else None,
+                "voting_record": _json.loads(row["voting_record"]) if row["voting_record"] else None,
+            }
+
+        # Aggregate stats
         sql = """SELECT voting_record, author, date_filed FROM opinions
                  WHERE all_justices LIKE ?"""
         params: list = [f"%{justice}%"]
@@ -437,16 +402,13 @@ def get_justice_stats(
 
         for row in rows:
             vr = _json.loads(row["voting_record"]) if row["voting_record"] else {}
-            # Find justice in voting record (case-insensitive match)
             vote = None
             for name, v in vr.items():
                 if name.lower() == justice.lower():
                     vote = v
                     break
-
             if vote is None:
                 continue
-
             total += 1
             if vote == "majority":
                 majority += 1
@@ -456,7 +418,6 @@ def get_justice_stats(
                 concurring += 1
             elif vote == "separate":
                 separate += 1
-
             if row["author"] and row["author"].lower() == justice.lower():
                 authored += 1
 
