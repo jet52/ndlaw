@@ -221,6 +221,37 @@ body {
 }
 .changelog-list .field { color: var(--purple); }
 
+.citing-list {
+  font-size: 12px;
+  list-style: none;
+}
+.citing-list li {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.citing-list .citing-cite {
+  color: var(--blue);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.citing-list .citing-cite:hover { text-decoration: underline; }
+.citing-list .citing-name { color: var(--text); flex: 1; min-width: 0; }
+.citing-list .citing-author { color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+.citing-count-badge {
+  display: inline-block;
+  background: rgba(74, 144, 217, 0.15);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+}
+
 .reader-text {
   flex: 1;
   overflow-y: auto;
@@ -546,6 +577,7 @@ body {
   <label><input type="checkbox" id="no-author"> No author</label>
   <label><input type="checkbox" id="has-dupes"> Dupes</label>
   <label><input type="checkbox" id="flagged-only"> Flagged</label>
+  <select id="quality-filter" title="Filter by text quality score"><option value="">Quality</option><option value="low">Low (&lt;40)</option><option value="mid">Mid (40–65)</option><option value="high">High (&gt;65)</option></select>
   <div class="sep"></div>
   <div class="col-picker-wrap">
     <button id="col-picker-btn">Columns</button>
@@ -744,6 +776,27 @@ const table = new Tabulator("#opinion-table", {
       sorter: "string", headerSort: false,
     },
     {
+      title: "Cited", field: "cited_by_count", width: 65, hozAlign: "center",
+      sorter: "number", headerSort: true,
+      formatter: (cell) => {
+        const v = cell.getValue();
+        if (!v) return "";
+        return `<span style="color:var(--blue);font-weight:600">${v}</span>`;
+      },
+    },
+    {
+      title: "Qual", field: "quality_score", width: 60, hozAlign: "center",
+      sorter: "number", headerSort: true, visible: false,
+      formatter: (cell) => {
+        const v = cell.getValue();
+        if (v == null) return "";
+        let color = "var(--text-muted)";
+        if (v > 65) color = "var(--blue)";
+        else if (v < 40) color = "var(--orange)";
+        return `<span style="color:${color};font-weight:600">${Math.round(v)}</span>`;
+      },
+    },
+    {
       title: "Author", field: "author", width: 120, sorter: "string",
       headerSort: true,
       formatter: (cell) => {
@@ -848,6 +901,8 @@ function getFilterParams() {
   if (document.getElementById("bad-author").checked) p.bad_author = true;
   if (document.getElementById("no-author").checked) p.no_author = true;
   if (document.getElementById("has-dupes").checked) p.has_dupes = true;
+  const qual = document.getElementById("quality-filter").value;
+  if (qual) p.quality = qual;
   // "Flagged" filter is client-side — we'll handle it specially
   return p;
 }
@@ -869,8 +924,14 @@ document.getElementById("citation-filter").addEventListener("input", () => {
   }, 300);
 });
 for (const id of ["date-from", "date-to", "author-filter", "type-filter",
-                   "reporter-filter", "has-notes", "bad-author", "no-author", "has-dupes"]) {
-  document.getElementById(id).addEventListener("change", () => table.setData());
+                   "reporter-filter", "has-notes", "bad-author", "no-author", "has-dupes", "quality-filter"]) {
+  document.getElementById(id).addEventListener("change", () => {
+    if (id === "quality-filter") {
+      const col = table.getColumn("quality_score");
+      if (col) { document.getElementById("quality-filter").value ? col.show() : col.hide(); }
+    }
+    table.setData();
+  });
 }
 // Page size selector
 document.getElementById("page-size").addEventListener("change", (e) => {
@@ -1076,6 +1137,23 @@ function renderOpinion(op) {
     </details>`;
   }
 
+  let citingHtml = "";
+  if (op.citing_opinions && op.citing_opinions.length) {
+    citingHtml = `<details class="meta-section" open>
+      <summary>Cited By<span class="citing-count-badge">${op.citing_opinions.length}</span></summary>
+      <ul class="citing-list">
+        ${op.citing_opinions.map(c => {
+          const author = c.author ? escHtml(c.author) : (c.per_curiam ? "Per Curiam" : "");
+          return `<li>
+            <span class="citing-cite" data-id="${c.id}">${escHtml(c.cite_nd || c.date_filed)}</span>
+            <span class="citing-name">${escHtml(c.case_name)}</span>
+            ${author ? `<span class="citing-author">${author}</span>` : ""}
+          </li>`;
+        }).join("")}
+      </ul>
+    </details>`;
+  }
+
   let notesHtml = "";
 
   // Author display
@@ -1105,10 +1183,23 @@ function renderOpinion(op) {
         <dt>Notes</dt><dd><span class="editable" data-field="notes" data-id="${op.id}">${escHtml(op.notes || "")}</span></dd>
         ${op.per_curiam ? "<dt>Per Curiam</dt><dd>Yes</dd>" : ""}
         ${op.unanimous !== null ? `<dt>Unanimous</dt><dd>${op.unanimous ? "Yes" : "No"}</dd>` : ""}
+        ${op.quality_score != null ? `<dt>Quality</dt><dd>${(() => {
+          const q = op.quality_score;
+          const color = q > 65 ? "var(--blue)" : q < 40 ? "var(--orange)" : "var(--text-muted)";
+          const details = [];
+          if (op.quality_details) {
+            if (op.quality_details.ocr_artifacts) details.push(op.quality_details.ocr_artifacts + " OCR");
+            if (op.quality_details.garbage_chars) details.push(op.quality_details.garbage_chars + " garbage");
+            if (op.quality_details.has_html) details.push("HTML");
+            if (op.quality_details.para_markers) details.push("¶×" + op.quality_details.para_markers);
+          }
+          return `<span style="color:${color};font-weight:600">${Math.round(q)}</span>` + (details.length ? ` <span style="font-size:11px;color:var(--text-muted)">(${details.join(", ")})</span>` : "");
+        })()}</dd>` : ""}
         ${links ? `<dt>Links</dt><dd>${links}</dd>` : ""}
       </dl>
     </div>
     ${votingHtml}
+    ${citingHtml}
     ${notesHtml}
     ${changelogHtml}
     <div class="reader-text">${escHtml(text)}</div>
@@ -1117,6 +1208,14 @@ function renderOpinion(op) {
   // Wire up editable fields
   reader.querySelectorAll(".editable").forEach(el => {
     el.addEventListener("click", () => startEdit(el));
+  });
+
+  // Wire up citing opinion clicks
+  reader.querySelectorAll(".citing-cite[data-id]").forEach(el => {
+    el.addEventListener("click", () => {
+      const id = parseInt(el.dataset.id);
+      if (id) loadOpinion(id);
+    });
   });
 
   // Wire up flag bar

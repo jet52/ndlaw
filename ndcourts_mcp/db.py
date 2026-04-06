@@ -109,6 +109,19 @@ def create_schema(conn: sqlite3.Connection) -> None:
         CREATE INDEX IF NOT EXISTS idx_cited_by_cited ON cited_by(cited_opinion_id);
         CREATE INDEX IF NOT EXISTS idx_cited_by_citing ON cited_by(citing_opinion_id);
 
+        -- Quality scores for opinion text
+        CREATE TABLE IF NOT EXISTS quality_scores (
+            opinion_id INTEGER PRIMARY KEY REFERENCES opinions(id),
+            ocr_artifacts INTEGER,
+            garbage_chars INTEGER,
+            short_line_ratio REAL,
+            has_html INTEGER DEFAULT 0,
+            para_markers INTEGER,
+            dupe_cites INTEGER DEFAULT 0,
+            overall_score REAL,
+            scanned_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now'))
+        );
+
         -- Checkpoint tracking for citation extraction
         CREATE TABLE IF NOT EXISTS cite_extract_progress (
             opinion_id INTEGER PRIMARY KEY REFERENCES opinions(id),

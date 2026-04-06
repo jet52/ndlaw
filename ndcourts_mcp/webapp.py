@@ -132,13 +132,14 @@ def list_opinions(
     no_author: bool | None = None,
     has_dupes: bool | None = None,
     citation: str | None = None,
+    quality: str | None = None,
 ):
     # Whitelist sortable columns
     allowed_sort = {
         "date_filed", "case_name", "author", "primary_citation",
         "cite_nd", "cite_nd_old", "cite_nw",
         "case_type", "docket_number", "source_reporter", "per_curiam",
-        "unanimous", "id",
+        "unanimous", "id", "cited_by_count", "quality_score",
     }
     if sort not in allowed_sort:
         sort = "date_filed"
@@ -151,6 +152,7 @@ def list_opinions(
                 conn, search, page, size, sort, sort_dir,
                 date_from, date_to, author, case_type,
                 source_reporter, has_notes, bad_author, no_author, has_dupes, citation,
+                quality,
             )
 
         where_clauses: list[str] = []
@@ -195,11 +197,23 @@ def list_opinions(
                 "EXISTS (SELECT 1 FROM citations ct WHERE ct.opinion_id = o.id AND ct.citation LIKE ?)"
             )
             params.append(f"%{citation}%")
+        if quality == "low":
+            where_clauses.append(
+                "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score < 40)"
+            )
+        elif quality == "mid":
+            where_clauses.append(
+                "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score BETWEEN 40 AND 65)"
+            )
+        elif quality == "high":
+            where_clauses.append(
+                "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score > 65)"
+            )
 
         where_sql = (" WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
 
         # Sort mapping — subquery aliases don't need table prefix
-        if sort in ("primary_citation", "cite_nd", "cite_nd_old", "cite_nw"):
+        if sort in ("primary_citation", "cite_nd", "cite_nd_old", "cite_nw", "cited_by_count", "quality_score"):
             order_col = sort
         else:
             order_col = f"o.{sort}"
@@ -220,7 +234,9 @@ def list_opinions(
                      (SELECT c.citation FROM citations c WHERE c.opinion_id = o.id AND c.reporter = 'NW2d' LIMIT 1),
                      (SELECT c.citation FROM citations c WHERE c.opinion_id = o.id AND c.reporter = 'NW' AND c.citation LIKE '%N.W.%' LIMIT 1)
                    ) as cite_nw,
-                   (SELECT GROUP_CONCAT(c.citation, '; ') FROM citations c WHERE c.opinion_id = o.id AND c.citation NOT LIKE '%N.W.%' AND c.citation NOT LIKE '%ND %' AND c.citation NOT LIKE '%N.D. %') as cite_other
+                   (SELECT GROUP_CONCAT(c.citation, '; ') FROM citations c WHERE c.opinion_id = o.id AND c.citation NOT LIKE '%N.W.%' AND c.citation NOT LIKE '%ND %' AND c.citation NOT LIKE '%N.D. %') as cite_other,
+                   (SELECT COUNT(*) FROM cited_by cb WHERE cb.cited_opinion_id = o.id) as cited_by_count,
+                   (SELECT qs.overall_score FROM quality_scores qs WHERE qs.opinion_id = o.id) as quality_score
             FROM opinions o
             {where_sql}
             ORDER BY {order_col} {sort_dir}
@@ -237,13 +253,26 @@ def list_opinions(
     }
 
 
+def _fts5_sanitize(query: str) -> str:
+    """Escape a user search string for FTS5 MATCH.
+
+    Wrap each whitespace-delimited token in double quotes so that
+    apostrophes, hyphens, and other FTS5 meta-characters are treated
+    as literals.  Double-quote characters inside tokens are doubled
+    per FTS5 escaping rules.
+    """
+    tokens = query.split()
+    return " ".join('"' + t.replace('"', '""') + '"' for t in tokens)
+
+
 def _search_opinions(
     conn, search, page, size, sort, sort_dir,
     date_from, date_to, author, case_type,
     source_reporter, has_notes, bad_author, no_author, has_dupes, citation,
+    quality=None,
 ):
     where_clauses: list[str] = []
-    params: list = [search]
+    params: list = [_fts5_sanitize(search)]
 
     if date_from:
         where_clauses.append("o.date_filed >= ?")
@@ -284,6 +313,18 @@ def _search_opinions(
             "EXISTS (SELECT 1 FROM citations ct WHERE ct.opinion_id = o.id AND ct.citation LIKE ?)"
         )
         params.append(f"%{citation}%")
+    if quality == "low":
+        where_clauses.append(
+            "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score < 40)"
+        )
+    elif quality == "mid":
+        where_clauses.append(
+            "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score BETWEEN 40 AND 65)"
+        )
+    elif quality == "high":
+        where_clauses.append(
+            "EXISTS (SELECT 1 FROM quality_scores qs WHERE qs.opinion_id = o.id AND qs.overall_score > 65)"
+        )
 
     extra_where = (" AND " + " AND ".join(where_clauses)) if where_clauses else ""
 
@@ -299,7 +340,7 @@ def _search_opinions(
     # Use rank for FTS sort, otherwise user-specified
     if sort == "date_filed":
         order_clause = f"o.date_filed {sort_dir}"
-    elif sort in ("primary_citation", "cite_nd", "cite_nd_old", "cite_nw"):
+    elif sort in ("primary_citation", "cite_nd", "cite_nd_old", "cite_nw", "cited_by_count", "quality_score"):
         order_clause = f"{sort} {sort_dir}"
     else:
         order_clause = "rank"
@@ -316,6 +357,8 @@ def _search_opinions(
                  (SELECT c.citation FROM citations c WHERE c.opinion_id = o.id AND c.reporter = 'NW' AND c.citation LIKE '%N.W.%' LIMIT 1)
                ) as cite_nw,
                (SELECT GROUP_CONCAT(c.citation, '; ') FROM citations c WHERE c.opinion_id = o.id AND c.citation NOT LIKE '%N.W.%' AND c.citation NOT LIKE '%ND %' AND c.citation NOT LIKE '%N.D. %') as cite_other,
+               (SELECT COUNT(*) FROM cited_by cb WHERE cb.cited_opinion_id = o.id) as cited_by_count,
+               (SELECT qs.overall_score FROM quality_scores qs WHERE qs.opinion_id = o.id) as quality_score,
                snippet(opinions_fts, 1, '«', '»', '…', 30) as snippet
         FROM opinions_fts
         JOIN opinions o ON o.id = opinions_fts.rowid
@@ -365,12 +408,41 @@ def get_opinion(opinion_id: int):
             (opinion_id,),
         ).fetchall()
 
+        quality = conn.execute(
+            "SELECT * FROM quality_scores WHERE opinion_id = ?",
+            (opinion_id,),
+        ).fetchone()
+
+        citing = conn.execute(
+            """SELECT o.id, o.case_name, o.date_filed, o.author, o.per_curiam,
+                      (SELECT c.citation FROM citations c WHERE c.opinion_id = o.id AND c.reporter = 'ND' LIMIT 1) as cite_nd
+               FROM cited_by cb
+               JOIN opinions o ON o.id = cb.citing_opinion_id
+               WHERE cb.cited_opinion_id = ?
+               ORDER BY o.date_filed DESC""",
+            (opinion_id,),
+        ).fetchall()
+
     d = dict(row)
     d["per_curiam"] = bool(d.get("per_curiam"))
     d["unanimous"] = bool(d.get("unanimous")) if d.get("unanimous") is not None else None
     d["author_recognized"] = _is_recognized_author(d.get("author"))
     d["citations"] = [dict(c) for c in citations]
     d["changelog"] = [dict(c) for c in changelog]
+    d["citing_opinions"] = [dict(c) for c in citing]
+    if quality:
+        qd = dict(quality)
+        d["quality_score"] = qd["overall_score"]
+        d["quality_details"] = {
+            "ocr_artifacts": qd["ocr_artifacts"],
+            "garbage_chars": qd["garbage_chars"],
+            "short_line_ratio": qd["short_line_ratio"],
+            "has_html": qd["has_html"],
+            "para_markers": qd["para_markers"],
+        }
+    else:
+        d["quality_score"] = None
+        d["quality_details"] = None
 
     # Parse JSON fields
     for field in ("voting_record", "all_justices"):
