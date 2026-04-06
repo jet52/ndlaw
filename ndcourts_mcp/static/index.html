@@ -2018,6 +2018,10 @@ async function executeMerge() {
     if (radio) metadataPicks[field] = radio.value;
   }
 
+  // Count how many hunks the user changed from default
+  let changesFromLeft = 0;
+  let changesFromRight = 0;
+
   // Build merged text from side-by-side hunks
   const textParts = [];
   let mergeHunkNum = 0;
@@ -2025,54 +2029,76 @@ async function executeMerge() {
     if (h.type === "equal") {
       textParts.push(h.text);
     } else {
-      const pair = mergeHunks[mergeHunkNum];
+      const pair = mergeHunks[mergeHunkNum] || {};
       if (h.type === "replace") {
-        // If right side is picked, use right text; otherwise left (base)
         if (pair.right && pair.right.classList.contains("diff-hunk-picked")) {
           textParts.push(h.right);
+          changesFromRight++;
         } else {
-          textParts.push(h.left);
+          textParts.push(h.left || "");
+          changesFromLeft++;
         }
       } else if (h.type === "insert") {
-        // Insert only exists on right side
         if (pair.right && pair.right.classList.contains("diff-hunk-picked")) {
           textParts.push(h.right);
+          changesFromRight++;
         }
-        // If rejected, omit
       } else if (h.type === "delete") {
-        // Delete only exists on left side
-        if (pair.left && pair.left.classList.contains("diff-hunk-picked")) {
-          textParts.push(h.left);
+        if (!pair.left || pair.left.classList.contains("diff-hunk-picked")) {
+          textParts.push(h.left || "");
+          changesFromLeft++;
         }
-        // If rejected, omit
       }
       mergeHunkNum++;
     }
   }
   const mergedText = textParts.join(" ");
 
+  // Confirm dialog
+  const totalDiffs = changesFromLeft + changesFromRight;
+  const srcA = d.opinion_a.source_reporter;
+  const srcB = d.opinion_b.source_reporter;
+  const survivorSrc = d.base_id === d.opinion_a.id ? srcA : srcB;
+  const loserSrc = d.base_id === d.opinion_a.id ? srcB : srcA;
+
+  const msg = `Merge opinions:\n\n` +
+    `KEEP: #${d.base_id} (${survivorSrc})\n` +
+    `DELETE: #${d.other_id} (${loserSrc})\n\n` +
+    `Text: ${totalDiffs} differences resolved ` +
+    `(${changesFromLeft} from left, ${changesFromRight} from right).\n` +
+    `Citations from #${d.other_id} will be moved to #${d.base_id}.\n\n` +
+    `Proceed?`;
+
+  if (!confirm(msg)) return;
+
   showMode("merging...");
 
-  const resp = await fetch(`/api/opinions/${d.base_id}/merge`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      loser_id: d.other_id,
-      metadata_picks: metadataPicks,
-      text_source: "merged",
-      merged_text: mergedText,
-    }),
-  });
+  try {
+    const resp = await fetch(`/api/opinions/${d.base_id}/merge`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        loser_id: d.other_id,
+        metadata_picks: metadataPicks,
+        text_source: "merged",
+        merged_text: mergedText,
+      }),
+    });
 
-  if (resp.ok) {
-    const result = await resp.json();
-    closeMerge();
-    showMode(`merged → #${result.survivor_id}`);
-    // Reload table and reader
-    table.setData();
-    loadOpinion(result.survivor_id);
-  } else {
-    showMode("merge failed!");
+    if (resp.ok) {
+      const result = await resp.json();
+      closeMerge();
+      showMode(`merged #${result.loser_id} into #${result.survivor_id}`);
+      table.setData();
+      loadOpinion(result.survivor_id);
+    } else {
+      const err = await resp.text();
+      alert("Merge failed: " + err);
+      showMode("merge failed");
+    }
+  } catch (e) {
+    alert("Merge error: " + e.message);
+    showMode("merge error");
   }
 }
 
