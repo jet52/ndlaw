@@ -17,7 +17,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-from .db import DEFAULT_DB_PATH, create_schema, get_connection
+from .db import DEFAULT_DB_PATH, create_schema, get_connection, log_provenance
 
 # Normalize reporter edition spacing: "N.W.2d" <-> "N.W. 2d", "N.W.3d" <-> "N.W. 3d"
 _EDITION_RE = re.compile(r'(\.\w\.)\s*(\d[a-z]+)')
@@ -328,6 +328,8 @@ def process_all(
         f"{tc_count} text_citations, {cb_count} cited_by links.",
         flush=True,
     )
+    log_provenance(conn, "cite_extract", rows_affected=processed,
+                   notes=f"{tc_count} text_citations, {cb_count} cited_by")
     conn.close()
 
 

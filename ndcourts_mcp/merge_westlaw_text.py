@@ -16,7 +16,7 @@ import argparse
 import re
 from pathlib import Path
 
-from .db import DEFAULT_DB_PATH, get_connection
+from .db import DEFAULT_DB_PATH, get_connection, log_provenance
 from .ingest_westlaw import _doc_to_text, _parse_westlaw_doc
 
 # Headnote leak detection
@@ -190,6 +190,8 @@ def process_all(
 
     if not dry_run:
         conn.commit()
+        log_provenance(conn, "merge_westlaw_text", rows_affected=replaced,
+                       notes=f"replaced={replaced}, rejected={rejected}, errors={errors}")
 
     conn.close()
 

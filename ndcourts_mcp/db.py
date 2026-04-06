@@ -14,6 +14,23 @@ def get_connection(db_path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
     return conn
 
 
+def log_provenance(
+    conn: sqlite3.Connection,
+    operation: str,
+    command: str | None = None,
+    source_paths: str | None = None,
+    rows_affected: int | None = None,
+    notes: str | None = None,
+) -> None:
+    """Record a pipeline run in the provenance table."""
+    conn.execute(
+        """INSERT INTO provenance (operation, command, source_paths, rows_affected, notes)
+           VALUES (?, ?, ?, ?, ?)""",
+        (operation, command, source_paths, rows_affected, notes),
+    )
+    conn.commit()
+
+
 def create_schema(conn: sqlite3.Connection) -> None:
     conn.executescript("""
         CREATE TABLE IF NOT EXISTS opinions (
@@ -139,6 +156,17 @@ def create_schema(conn: sqlite3.Connection) -> None:
         CREATE INDEX IF NOT EXISTS idx_dupcand_a ON duplicate_candidates(opinion_a);
         CREATE INDEX IF NOT EXISTS idx_dupcand_b ON duplicate_candidates(opinion_b);
         CREATE INDEX IF NOT EXISTS idx_dupcand_reviewed ON duplicate_candidates(reviewed);
+
+        -- Pipeline run provenance
+        CREATE TABLE IF NOT EXISTS provenance (
+            id INTEGER PRIMARY KEY,
+            timestamp TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now')),
+            operation TEXT NOT NULL,
+            command TEXT,
+            source_paths TEXT,
+            rows_affected INTEGER,
+            notes TEXT
+        );
 
         -- Westlaw volume processing progress
         CREATE TABLE IF NOT EXISTS westlaw_progress (

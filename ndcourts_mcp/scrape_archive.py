@@ -19,7 +19,7 @@ from pathlib import Path
 
 import httpx
 
-from .db import DEFAULT_DB_PATH, create_schema, get_connection
+from .db import DEFAULT_DB_PATH, create_schema, get_connection, log_provenance
 
 BASE_URL = "https://archive.ndcourts.gov"
 ARCHIVE_DIR = Path.home() / "refs" / "opin" / "archive"
@@ -381,6 +381,11 @@ def main() -> None:
         conn = get_connection(args.db)
         create_schema(conn)
         stats = ingest_opinions(conn, all_opinions)
+        years_str = f"{min(years)}-{max(years)}" if len(years) > 1 else str(years[0])
+        log_provenance(conn, "scrape_archive",
+                       source_paths=f"archive.ndcourts.gov ({years_str})",
+                       rows_affected=stats["new"] + stats["source_added"],
+                       notes=f"new={stats['new']}, sources_added={stats['source_added']}")
         conn.close()
         print(f"\nIngestion results:")
         print(f"  New opinions created: {stats['new']}")

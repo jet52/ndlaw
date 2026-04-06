@@ -14,7 +14,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-from .db import DEFAULT_DB_PATH, create_schema, get_connection
+from .db import DEFAULT_DB_PATH, create_schema, get_connection, log_provenance
 
 # ── Detection patterns ───────────────────────────────────────────────
 
@@ -264,6 +264,8 @@ def process_all(
         f"  Duplicate reporter citations: {stats['dupe_cite_count']}",
         flush=True,
     )
+    log_provenance(conn, "quality_scan", rows_affected=stats["total"],
+                   notes=f"avg={stats['avg_score']:.1f}, html={stats['html_count']}, ocr={stats['total_ocr']}")
     conn.close()
 
 

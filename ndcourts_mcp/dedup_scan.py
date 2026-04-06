@@ -20,7 +20,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-from .db import DEFAULT_DB_PATH, create_schema, get_connection
+from .db import DEFAULT_DB_PATH, create_schema, get_connection, log_provenance
 
 
 def _strip_frontmatter(text: str) -> str:
@@ -272,6 +272,8 @@ def run_scan(
     for r in by_strategy:
         print(f"  {r['strategy']}: {r['n']}")
 
+    log_provenance(conn, "dedup_scan", rows_affected=inserted,
+                   notes=f"total={total}, unreviewed={unreviewed}")
     conn.close()
 
 

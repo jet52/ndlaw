@@ -297,9 +297,40 @@ def get_database_stats() -> dict:
                GROUP BY decade ORDER BY decade"""
         ).fetchall()
 
+        # Source breakdown
+        by_source = conn.execute(
+            """SELECT source_reporter, COUNT(*) as n FROM opinions
+               GROUP BY source_reporter ORDER BY n DESC"""
+        ).fetchall()
+
+        # Correction count
+        corrections = conn.execute(
+            "SELECT COUNT(*) as n FROM changelog"
+        ).fetchone()["n"]
+
+        # Data freshness from provenance
+        last_runs = conn.execute(
+            """SELECT operation, timestamp, rows_affected, notes
+               FROM provenance ORDER BY timestamp DESC LIMIT 5"""
+        ).fetchall()
+
+        # Quality summary
+        quality = conn.execute(
+            """SELECT AVG(overall_score) as avg_score,
+                      MIN(overall_score) as min_score,
+                      MAX(overall_score) as max_score
+               FROM quality_scores"""
+        ).fetchone()
+
+        # Cited-by count
+        cited_by_count = conn.execute(
+            "SELECT COUNT(*) as n FROM cited_by"
+        ).fetchone()["n"]
+
         return {
             "total_opinions": total,
             "total_citations": citations_count,
+            "cited_by_links": cited_by_count,
             "earliest": date_range["earliest"],
             "latest": date_range["latest"],
             "top_authors": [
@@ -307,6 +338,20 @@ def get_database_stats() -> dict:
             ],
             "by_decade": [
                 {"decade": r["decade"], "count": r["n"]} for r in by_decade
+            ],
+            "by_source": [
+                {"source": r["source_reporter"], "count": r["n"]} for r in by_source
+            ],
+            "corrections_applied": corrections,
+            "quality": {
+                "avg_score": round(quality["avg_score"], 1) if quality["avg_score"] else None,
+                "min_score": quality["min_score"],
+                "max_score": quality["max_score"],
+            } if quality else None,
+            "recent_pipeline_runs": [
+                {"operation": r["operation"], "timestamp": r["timestamp"],
+                 "rows_affected": r["rows_affected"], "notes": r["notes"]}
+                for r in last_runs
             ],
         }
     finally:
