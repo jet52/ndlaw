@@ -1838,12 +1838,13 @@ function renderMergePanel() {
       </div>
 
       <div class="merge-actions">
-        <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id})</button>
+        <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id}, delete #${d.other_id})</button>
+        <button class="merge-btn" id="merge-swap-btn" title="Swap which opinion survives">Swap survivor</button>
         <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
         <button class="merge-btn" id="merge-notdup-btn" style="background:var(--blue);color:#fff">Not Duplicates (n)</button>
-        <span class="merge-stats">
+        <span class="merge-stats" id="merge-stats-label">
           Survivor: <strong>${d.base_id === d.opinion_a.id ? d.opinion_a.source_reporter : d.opinion_b.source_reporter}</strong> #${d.base_id}
-          &mdash; absorbs #${d.other_id}
+          &mdash; deletes #${d.other_id}
         </span>
       </div>
     </div>
@@ -1856,6 +1857,18 @@ function renderMergePanel() {
   document.getElementById("merge-cancel-btn").addEventListener("click", closeMerge);
   document.getElementById("merge-execute-btn").addEventListener("click", executeMerge);
   document.getElementById("merge-notdup-btn").addEventListener("click", markNotDuplicates);
+  document.getElementById("merge-swap-btn").addEventListener("click", () => {
+    // Swap base and other
+    const tmp = mergeData.base_id;
+    mergeData.base_id = mergeData.other_id;
+    mergeData.other_id = tmp;
+    const btn = document.getElementById("merge-execute-btn");
+    btn.textContent = `Merge (keep #${mergeData.base_id}, delete #${mergeData.other_id})`;
+    const label = document.getElementById("merge-stats-label");
+    const srcA = mergeData.opinion_a, srcB = mergeData.opinion_b;
+    const survivorSrc = mergeData.base_id === srcA.id ? srcA.source_reporter : srcB.source_reporter;
+    label.innerHTML = `Survivor: <strong>${survivorSrc}</strong> #${mergeData.base_id} &mdash; deletes #${mergeData.other_id}`;
+  });
 
   // Wire up side-by-side hunk clicks
   // mergeHunks stores pairs: [{left: el, right: el}, ...]

@@ -705,12 +705,33 @@ def _text_quality_score(text: str, source_reporter: str) -> float:
     return score
 
 
+_QUOTE_NORM = str.maketrans({
+    "\u2018": "'", "\u2019": "'",   # '' → '
+    "\u201C": '"', "\u201D": '"',   # "" → "
+    "\u2013": "-", "\u2014": "-",   # –— → -
+})
+
+
+def _normalize_quotes(text: str) -> str:
+    """Normalize curly quotes/apostrophes to straight equivalents for diffing."""
+    return text.translate(_QUOTE_NORM)
+
+
 def _word_diff(text_a: str, text_b: str) -> list[dict]:
-    """Compute word-level diff between two texts. Returns list of hunks."""
+    """Compute word-level diff between two texts. Returns list of hunks.
+
+    Normalizes curly/straight quotes before comparison so typographic
+    differences don't appear as changes.
+    """
+    # Normalize quotes for comparison, but preserve original text in output
+    norm_a = _normalize_quotes(text_a)
+    norm_b = _normalize_quotes(text_b)
+    words_a_norm = norm_a.split()
+    words_b_norm = norm_b.split()
     words_a = text_a.split()
     words_b = text_b.split()
 
-    sm = difflib.SequenceMatcher(None, words_a, words_b, autojunk=False)
+    sm = difflib.SequenceMatcher(None, words_a_norm, words_b_norm, autojunk=False)
     hunks = []
 
     for tag, i1, i2, j1, j2 in sm.get_opcodes():
@@ -723,7 +744,7 @@ def _word_diff(text_a: str, text_b: str) -> list[dict]:
             text_left = " ".join(words_a[i1:i2])
             text_right = " ".join(words_b[j1:j2])
             ocr = max(
-                (_ocr_score(wa, wb) for wa, wb in zip(words_a[i1:i2], words_b[j1:j2])),
+                (_ocr_score(wa, wb) for wa, wb in zip(words_a_norm[i1:i2], words_b_norm[j1:j2])),
                 default=0.0,
             )
             hunks.append({
