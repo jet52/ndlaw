@@ -1057,17 +1057,23 @@ async def merge_opinions(survivor_id: int, request: Request):
             ("merge", survivor_id, "merge", f"absorbed opinion id={loser_id}", f"loser_path={loser['source_path']}"),
         )
 
-        # 6. Delete loser's citations, changelog refs, and the opinion itself
+        # 6. Delete loser — must remove all FK references first
         conn.execute("DELETE FROM citations WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM text_citations WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM cited_by WHERE cited_opinion_id = ? OR citing_opinion_id = ?", (loser_id, loser_id))
+        conn.execute("DELETE FROM quality_scores WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM opinion_sources WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM cite_extract_progress WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM changelog WHERE opinion_id = ?", (loser_id,))
+        conn.execute("DELETE FROM duplicate_candidates WHERE opinion_a = ? OR opinion_b = ?", (loser_id, loser_id))
         conn.execute("DELETE FROM opinions WHERE id = ?", (loser_id,))
 
-        # Mark any duplicate candidates involving these opinions as resolved
+        # Mark any remaining duplicate candidates involving the survivor as resolved
         conn.execute(
             """UPDATE duplicate_candidates SET reviewed = 1, resolved_as = 'merged',
                reviewed_at = strftime('%Y-%m-%dT%H:%M:%S', 'now')
-               WHERE (opinion_a = ? OR opinion_b = ? OR opinion_a = ? OR opinion_b = ?)
-               AND reviewed = 0""",
-            (survivor_id, survivor_id, loser_id, loser_id),
+               WHERE (opinion_a = ? OR opinion_b = ?) AND reviewed = 0""",
+            (survivor_id, survivor_id),
         )
 
         conn.commit()
