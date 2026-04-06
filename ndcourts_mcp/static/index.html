@@ -362,7 +362,7 @@ body {
 }
 .merge-overlay.open { display: block; }
 .merge-panel {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -430,14 +430,33 @@ body {
 .score-winner { background: rgba(74,144,217,0.2); color: var(--blue); }
 .score-loser { background: rgba(136,136,160,0.15); color: var(--text-muted); }
 
-.merge-diff {
+/* ── Side-by-side diff (Meld-style) ── */
+.merge-diff-container {
+  display: flex;
+  max-height: 60vh;
+  border-top: 1px solid var(--border);
+}
+.merge-diff-pane {
+  flex: 1;
   padding: 16px 20px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 14px;
   line-height: 1.7;
-  max-height: 50vh;
   overflow-y: auto;
   white-space: pre-wrap;
+}
+.merge-diff-pane-left {
+  border-right: 1px solid var(--border);
+}
+.merge-diff-pane-label {
+  display: block;
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .diff-hunk {
   display: inline;
@@ -446,15 +465,18 @@ body {
   padding: 1px 2px;
   position: relative;
 }
-.diff-hunk-replace .diff-left { background: rgba(74,144,217,0.15); }
-.diff-hunk-replace .diff-right { background: rgba(224,138,60,0.15); display: none; }
-.diff-hunk-replace.pick-right .diff-left { display: none; }
-.diff-hunk-replace.pick-right .diff-right { display: inline; }
+.diff-hunk-changed { background: rgba(224,138,60,0.18); }
+.diff-hunk-picked { background: rgba(74,144,217,0.25); outline: 2px solid var(--blue); outline-offset: 0; }
+.diff-hunk-rejected { background: rgba(136,136,160,0.1); color: var(--text-muted); text-decoration: line-through; }
 .diff-hunk-insert { background: rgba(139,92,246,0.15); }
-.diff-hunk-delete { background: rgba(224,138,60,0.15); text-decoration: line-through; }
+.diff-hunk-insert.diff-hunk-picked { background: rgba(74,144,217,0.25); outline: 2px solid var(--blue); }
+.diff-hunk-insert.diff-hunk-rejected { background: rgba(136,136,160,0.1); color: var(--text-muted); text-decoration: line-through; }
+.diff-hunk-absent { background: rgba(136,136,160,0.08); color: var(--text-muted); font-style: italic; font-size: 11px; }
 .diff-hunk-ocr { outline: 2px dashed var(--orange); outline-offset: 1px; }
-.diff-hunk:hover { outline: 1px solid var(--blue); outline-offset: 1px; }
+.diff-hunk-ocr.diff-hunk-picked { outline: 2px solid var(--blue); }
+.diff-hunk:hover { filter: brightness(1.15); }
 .diff-hunk.focused { outline: 2px solid var(--blue); outline-offset: 1px; }
+.diff-hunk.focused.diff-hunk-rejected { outline: 2px dashed var(--text-muted); }
 
 .merge-actions {
   padding: 16px 20px;
@@ -602,6 +624,7 @@ body {
       <tr><td>Tab/S-Tab</td><td>Navigate diff hunks (in merge panel)</td></tr>
       <tr><td>Space</td><td>Toggle hunk selection (left/right)</td></tr>
       <tr><td>Enter</td><td>Execute merge</td></tr>
+      <tr><td>n</td><td>Mark as not duplicates (close merge panel)</td></tr>
       <tr><td>Escape</td><td>Close merge panel</td></tr>
     </table>
     <h3>Other</h3>
@@ -1626,26 +1649,31 @@ function renderMergePanel() {
     }
   }
 
-  // Diff hunks
-  let diffHtml = "";
+  // Build side-by-side diff panes
+  let leftHtml = "";
+  let rightHtml = "";
   let hunkNum = 0;
   for (const h of d.hunks) {
     if (h.type === "equal") {
-      diffHtml += escHtml(h.text) + " ";
+      const t = escHtml(h.text) + " ";
+      leftHtml += t;
+      rightHtml += t;
     } else if (h.type === "replace") {
       const isOcr = h.ocr_likelihood > 0.6;
-      const cls = `diff-hunk diff-hunk-replace${isOcr ? " diff-hunk-ocr" : ""}`;
-      // Pre-select: if OCR, pick the base (left) since it's higher quality
-      diffHtml += `<span class="${cls}" data-hunk="${hunkNum}" tabindex="0">` +
-        `<span class="diff-left">${escHtml(h.left)}</span>` +
-        `<span class="diff-right">${escHtml(h.right)}</span>` +
-        `</span> `;
+      const ocrCls = isOcr ? " diff-hunk-ocr" : "";
+      // Left (base) is pre-selected as picked
+      leftHtml += `<span class="diff-hunk diff-hunk-changed diff-hunk-picked${ocrCls}" data-hunk="${hunkNum}" data-side="left" tabindex="0">${escHtml(h.left)}</span> `;
+      rightHtml += `<span class="diff-hunk diff-hunk-changed diff-hunk-rejected${ocrCls}" data-hunk="${hunkNum}" data-side="right" tabindex="0">${escHtml(h.right)}</span> `;
       hunkNum++;
     } else if (h.type === "insert") {
-      diffHtml += `<span class="diff-hunk diff-hunk-insert" data-hunk="${hunkNum}" tabindex="0">${escHtml(h.right)}</span> `;
+      // Only exists on right; left gets a placeholder
+      leftHtml += `<span class="diff-hunk diff-hunk-absent" data-hunk="${hunkNum}" data-side="left" tabindex="0">\u2205</span> `;
+      rightHtml += `<span class="diff-hunk diff-hunk-insert diff-hunk-rejected" data-hunk="${hunkNum}" data-side="right" tabindex="0">${escHtml(h.right)}</span> `;
       hunkNum++;
     } else if (h.type === "delete") {
-      diffHtml += `<span class="diff-hunk diff-hunk-delete" data-hunk="${hunkNum}" tabindex="0">${escHtml(h.left)}</span> `;
+      // Only exists on left; right gets a placeholder
+      leftHtml += `<span class="diff-hunk diff-hunk-insert diff-hunk-picked" data-hunk="${hunkNum}" data-side="left" tabindex="0">${escHtml(h.left)}</span> `;
+      rightHtml += `<span class="diff-hunk diff-hunk-absent" data-hunk="${hunkNum}" data-side="right" tabindex="0">\u2205</span> `;
       hunkNum++;
     }
   }
@@ -1688,16 +1716,31 @@ function renderMergePanel() {
         <strong>Text diff</strong>
         <span>${d.diff_count} differences, ${d.ocr_count} likely OCR</span>
         <span style="font-size:12px;color:var(--text-muted)">
-          <span style="background:rgba(74,144,217,0.15);padding:1px 4px">base</span>
-          <span style="background:rgba(224,138,60,0.15);padding:1px 4px">alternate</span>
+          click a side to pick &mdash;
+          <span style="background:rgba(74,144,217,0.25);padding:1px 4px;outline:2px solid var(--blue)">picked</span>
+          <span style="background:rgba(224,138,60,0.18);padding:1px 4px">changed</span>
           <span style="outline:2px dashed var(--orange);padding:1px 4px">OCR suspect</span>
         </span>
       </div>
-      <div class="merge-diff" id="merge-diff">${diffHtml}</div>
+      <div class="merge-diff-container">
+        <div class="merge-diff-pane merge-diff-pane-left" id="merge-diff-left">
+          <span class="merge-diff-pane-label">${escHtml(d.opinion_a.source_reporter)} #${d.opinion_a.id}
+            <span class="score-badge ${d.opinion_a.id === d.base_id ? 'score-winner' : 'score-loser'}">score ${d.score_a}</span>
+          </span>
+          ${leftHtml}
+        </div>
+        <div class="merge-diff-pane" id="merge-diff-right">
+          <span class="merge-diff-pane-label">${escHtml(d.opinion_b.source_reporter)} #${d.opinion_b.id}
+            <span class="score-badge ${d.opinion_b.id === d.base_id ? 'score-winner' : 'score-loser'}">score ${d.score_b}</span>
+          </span>
+          ${rightHtml}
+        </div>
+      </div>
 
       <div class="merge-actions">
         <button class="merge-btn merge-btn-primary" id="merge-execute-btn">Merge (keep #${d.base_id})</button>
         <button class="merge-btn merge-btn-cancel" id="merge-cancel-btn">Cancel</button>
+        <button class="merge-btn" id="merge-notdup-btn" style="background:var(--blue);color:#fff">Not Duplicates (n)</button>
         <span class="merge-stats">
           Survivor: <strong>${d.base_id === d.opinion_a.id ? d.opinion_a.source_reporter : d.opinion_b.source_reporter}</strong> #${d.base_id}
           &mdash; absorbs #${d.other_id}
@@ -1712,44 +1755,99 @@ function renderMergePanel() {
   document.getElementById("merge-close-btn").addEventListener("click", closeMerge);
   document.getElementById("merge-cancel-btn").addEventListener("click", closeMerge);
   document.getElementById("merge-execute-btn").addEventListener("click", executeMerge);
+  document.getElementById("merge-notdup-btn").addEventListener("click", markNotDuplicates);
 
-  // Wire up diff hunk clicks
-  mergeHunks = Array.from(document.querySelectorAll(".diff-hunk"));
+  // Wire up side-by-side hunk clicks
+  // mergeHunks stores pairs: [{left: el, right: el}, ...]
+  const leftPane = document.getElementById("merge-diff-left");
+  const rightPane = document.getElementById("merge-diff-right");
+  const allHunkEls = document.querySelectorAll(".diff-hunk");
+  const hunkPairs = {};
+  allHunkEls.forEach(el => {
+    const idx = parseInt(el.dataset.hunk);
+    const side = el.dataset.side;
+    if (!hunkPairs[idx]) hunkPairs[idx] = {};
+    hunkPairs[idx][side] = el;
+  });
+  mergeHunks = [];
+  for (let i = 0; i < hunkNum; i++) {
+    mergeHunks.push(hunkPairs[i] || {});
+  }
   mergeHunkIdx = -1;
-  mergeHunks.forEach(el => {
+
+  // Click a hunk to pick that side
+  allHunkEls.forEach(el => {
     el.addEventListener("click", () => {
-      if (el.classList.contains("diff-hunk-replace")) {
-        el.classList.toggle("pick-right");
-      } else if (el.classList.contains("diff-hunk-insert")) {
-        el.classList.toggle("diff-hunk-delete");
-        el.classList.toggle("diff-hunk-insert");
-      } else if (el.classList.contains("diff-hunk-delete")) {
-        el.classList.toggle("diff-hunk-insert");
-        el.classList.toggle("diff-hunk-delete");
+      const idx = parseInt(el.dataset.hunk);
+      const side = el.dataset.side;
+      const pair = mergeHunks[idx];
+      if (!pair) return;
+      const leftEl = pair.left;
+      const rightEl = pair.right;
+      if (side === "left") {
+        leftEl.classList.add("diff-hunk-picked");
+        leftEl.classList.remove("diff-hunk-rejected");
+        if (rightEl) {
+          rightEl.classList.remove("diff-hunk-picked");
+          rightEl.classList.add("diff-hunk-rejected");
+        }
+      } else {
+        rightEl.classList.add("diff-hunk-picked");
+        rightEl.classList.remove("diff-hunk-rejected");
+        if (leftEl) {
+          leftEl.classList.remove("diff-hunk-picked");
+          leftEl.classList.add("diff-hunk-rejected");
+        }
       }
     });
   });
+
+  // Synchronized scrolling
+  let syncing = false;
+  function syncScroll(source, target) {
+    if (syncing) return;
+    syncing = true;
+    const pct = source.scrollTop / (source.scrollHeight - source.clientHeight || 1);
+    target.scrollTop = pct * (target.scrollHeight - target.clientHeight || 1);
+    syncing = false;
+  }
+  leftPane.addEventListener("scroll", () => syncScroll(leftPane, rightPane));
+  rightPane.addEventListener("scroll", () => syncScroll(rightPane, leftPane));
 
   // Merge-panel keyboard handler
   overlay._keyHandler = (e) => {
     if (e.key === "Escape") { e.preventDefault(); closeMerge(); return; }
     if (e.key === "Tab") {
       e.preventDefault();
+      // Remove focus from previous pair
+      if (mergeHunkIdx >= 0 && mergeHunks[mergeHunkIdx]) {
+        const prev = mergeHunks[mergeHunkIdx];
+        if (prev.left) prev.left.classList.remove("focused");
+        if (prev.right) prev.right.classList.remove("focused");
+      }
       if (e.shiftKey) {
         mergeHunkIdx = Math.max(0, mergeHunkIdx - 1);
       } else {
         mergeHunkIdx = Math.min(mergeHunks.length - 1, mergeHunkIdx + 1);
       }
-      mergeHunks.forEach(h => h.classList.remove("focused"));
-      if (mergeHunks[mergeHunkIdx]) {
-        mergeHunks[mergeHunkIdx].classList.add("focused");
-        mergeHunks[mergeHunkIdx].scrollIntoView({ block: "nearest" });
+      const pair = mergeHunks[mergeHunkIdx];
+      if (pair) {
+        if (pair.left) { pair.left.classList.add("focused"); pair.left.scrollIntoView({ block: "nearest" }); }
+        if (pair.right) { pair.right.classList.add("focused"); pair.right.scrollIntoView({ block: "nearest" }); }
       }
       return;
     }
+    // Space toggles: pick the currently rejected side
     if (e.key === " " && mergeHunkIdx >= 0) {
       e.preventDefault();
-      mergeHunks[mergeHunkIdx].click();
+      const pair = mergeHunks[mergeHunkIdx];
+      if (!pair) return;
+      // If right is currently rejected (left is picked), click right to swap
+      if (pair.right && pair.right.classList.contains("diff-hunk-rejected")) {
+        pair.right.click();
+      } else if (pair.left && pair.left.classList.contains("diff-hunk-rejected")) {
+        pair.left.click();
+      }
       return;
     }
     if (e.key === "Enter" && !isInputFocused()) {
@@ -1757,8 +1855,30 @@ function renderMergePanel() {
       executeMerge();
       return;
     }
+    if (e.key === "n" && !isInputFocused()) {
+      e.preventDefault();
+      markNotDuplicates();
+      return;
+    }
   };
   document.addEventListener("keydown", overlay._keyHandler, true);
+}
+
+async function markNotDuplicates() {
+  if (!mergeData) return;
+  const idA = mergeData.opinion_a.id;
+  const idB = mergeData.opinion_b.id;
+  const resp = await fetch("/api/not-duplicates", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_a: idA, id_b: idB }),
+  });
+  if (resp.ok) {
+    closeMerge();
+    showMode(`marked #${idA} and #${idB} as not duplicates`);
+  } else {
+    showMode("error marking not-duplicates");
+  }
 }
 
 function closeMerge() {
@@ -1785,24 +1905,35 @@ async function executeMerge() {
     if (radio) metadataPicks[field] = radio.value;
   }
 
-  // Build merged text from hunks
+  // Build merged text from side-by-side hunks
   const textParts = [];
-  let hunkNum = 0;
+  let mergeHunkNum = 0;
   for (const h of d.hunks) {
     if (h.type === "equal") {
       textParts.push(h.text);
     } else {
-      const el = mergeHunks[hunkNum];
+      const pair = mergeHunks[mergeHunkNum];
       if (h.type === "replace") {
-        textParts.push(el.classList.contains("pick-right") ? h.right : h.left);
-      } else if (h.type === "insert" || h.type === "delete") {
-        // If it's currently showing as "insert" (visible), include it
-        if (el.classList.contains("diff-hunk-insert")) {
-          textParts.push(h.right || h.left);
+        // If right side is picked, use right text; otherwise left (base)
+        if (pair.right && pair.right.classList.contains("diff-hunk-picked")) {
+          textParts.push(h.right);
+        } else {
+          textParts.push(h.left);
         }
-        // If "delete" (struck through), omit it
+      } else if (h.type === "insert") {
+        // Insert only exists on right side
+        if (pair.right && pair.right.classList.contains("diff-hunk-picked")) {
+          textParts.push(h.right);
+        }
+        // If rejected, omit
+      } else if (h.type === "delete") {
+        // Delete only exists on left side
+        if (pair.left && pair.left.classList.contains("diff-hunk-picked")) {
+          textParts.push(h.left);
+        }
+        // If rejected, omit
       }
-      hunkNum++;
+      mergeHunkNum++;
     }
   }
   const mergedText = textParts.join(" ");

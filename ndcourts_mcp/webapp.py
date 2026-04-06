@@ -439,6 +439,56 @@ async def update_opinion(opinion_id: int, request: Request):
 import difflib
 import re
 
+# ── Not-duplicates exclusion list ──────────────────────────────────
+
+NOT_DUPLICATES_PATH = Path(__file__).parent.parent / "not-duplicates.json"
+
+
+def _load_not_duplicates() -> list[list[int]]:
+    if NOT_DUPLICATES_PATH.exists():
+        return json.loads(NOT_DUPLICATES_PATH.read_text())
+    return []
+
+
+def _save_not_duplicates(pairs: list[list[int]]) -> None:
+    NOT_DUPLICATES_PATH.write_text(json.dumps(pairs, indent=2) + "\n")
+
+
+def _is_excluded_pair(id_a: int, id_b: int) -> bool:
+    for pair in _load_not_duplicates():
+        if set(pair) == {id_a, id_b}:
+            return True
+    return False
+
+
+@app.get("/api/not-duplicates")
+def list_not_duplicates():
+    return _load_not_duplicates()
+
+
+@app.post("/api/not-duplicates")
+async def add_not_duplicate(request: Request):
+    body = await request.json()
+    id_a, id_b = body.get("id_a"), body.get("id_b")
+    if not id_a or not id_b:
+        raise HTTPException(400, "id_a and id_b required")
+    pairs = _load_not_duplicates()
+    if not any(set(p) == {id_a, id_b} for p in pairs):
+        pairs.append([id_a, id_b])
+        _save_not_duplicates(pairs)
+    return {"status": "added", "pair": [id_a, id_b]}
+
+
+@app.delete("/api/not-duplicates/{id_a}/{id_b}")
+def remove_not_duplicate(id_a: int, id_b: int):
+    pairs = _load_not_duplicates()
+    before = len(pairs)
+    pairs = [p for p in pairs if set(p) != {id_a, id_b}]
+    if len(pairs) == before:
+        raise HTTPException(404, "Pair not found")
+    _save_not_duplicates(pairs)
+    return {"status": "removed"}
+
 # OCR confusion pairs (common misreads)
 _OCR_PAIRS = [
     ("rn", "m"), ("li", "h"), ("cl", "d"), ("tl", "d"),
@@ -623,6 +673,9 @@ def find_duplicates(opinion_id: int):
                 if overlap >= 2 and overlap >= len(src_words) * 0.5:
                     candidates.append(s)
                     found_ids.add(s["id"])
+
+        # Filter out pairs marked as not-duplicates
+        candidates = [c for c in candidates if not _is_excluded_pair(opinion_id, c["id"])]
 
         return [dict(c) for c in candidates]
 
