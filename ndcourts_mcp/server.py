@@ -475,6 +475,52 @@ def search_by_case_type(
         conn.close()
 
 
+@mcp.tool()
+def get_citing_opinions(citation: str, limit: int = 20) -> list[dict]:
+    """Find opinions that cite a given opinion.
+
+    Returns opinions that reference the given citation in their text,
+    ordered by date (newest first). Requires citation extraction to have
+    been run (python -m ndcourts_mcp.cite_extract).
+
+    Args:
+        citation: A legal citation like "2024 ND 156" or "585 N.W.2d 129".
+        limit: Maximum results (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = get_connection(DB_PATH)
+    try:
+        # Find the cited opinion
+        row = conn.execute(
+            "SELECT opinion_id FROM citations WHERE citation = ?", (citation,)
+        ).fetchone()
+        if not row:
+            return {"error": f"No opinion found for citation: {citation}"}
+        cited_id = row["opinion_id"]
+
+        # Get citing opinions via cited_by
+        citing_rows = conn.execute(
+            """SELECT o.*, cb.citation as matched_citation
+               FROM cited_by cb
+               JOIN opinions o ON o.id = cb.citing_opinion_id
+               WHERE cb.cited_opinion_id = ?
+               ORDER BY o.date_filed DESC
+               LIMIT ?""",
+            (cited_id, limit),
+        ).fetchall()
+
+        results = []
+        for r in citing_rows:
+            result = _opinion_summary(r)
+            result["citations"] = _get_citations(conn, r["id"])
+            result["matched_citation"] = r["matched_citation"]
+            results.append(result)
+
+        return results
+    finally:
+        conn.close()
+
+
 def main():
     mcp.run()
 

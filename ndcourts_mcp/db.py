@@ -80,6 +80,41 @@ def create_schema(conn: sqlite3.Connection) -> None:
         CREATE INDEX IF NOT EXISTS idx_opinions_cluster_id ON opinions(cluster_id);
         CREATE INDEX IF NOT EXISTS idx_opinions_author ON opinions(author);
 
+        -- Citations extracted from opinion text by jetcite
+        CREATE TABLE IF NOT EXISTS text_citations (
+            id INTEGER PRIMARY KEY,
+            opinion_id INTEGER NOT NULL REFERENCES opinions(id),
+            normalized TEXT NOT NULL,
+            cite_type TEXT NOT NULL,
+            jurisdiction TEXT,
+            raw_text TEXT NOT NULL,
+            url TEXT,
+            parallel_group INTEGER,
+            UNIQUE(opinion_id, normalized)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_text_citations_opinion_id ON text_citations(opinion_id);
+        CREATE INDEX IF NOT EXISTS idx_text_citations_normalized ON text_citations(normalized);
+        CREATE INDEX IF NOT EXISTS idx_text_citations_cite_type ON text_citations(cite_type);
+
+        -- Reverse index: which opinions cite which
+        CREATE TABLE IF NOT EXISTS cited_by (
+            id INTEGER PRIMARY KEY,
+            cited_opinion_id INTEGER NOT NULL REFERENCES opinions(id),
+            citing_opinion_id INTEGER NOT NULL REFERENCES opinions(id),
+            citation TEXT NOT NULL,
+            UNIQUE(cited_opinion_id, citing_opinion_id)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_cited_by_cited ON cited_by(cited_opinion_id);
+        CREATE INDEX IF NOT EXISTS idx_cited_by_citing ON cited_by(citing_opinion_id);
+
+        -- Checkpoint tracking for citation extraction
+        CREATE TABLE IF NOT EXISTS cite_extract_progress (
+            opinion_id INTEGER PRIMARY KEY REFERENCES opinions(id),
+            processed_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now'))
+        );
+
         CREATE VIRTUAL TABLE IF NOT EXISTS opinions_fts USING fts5(
             case_name,
             text_content,
