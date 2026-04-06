@@ -561,6 +561,85 @@ def remove_not_duplicate(id_a: int, id_b: int):
     _save_not_duplicates(pairs)
     return {"status": "removed"}
 
+# ── Duplicate candidate queue ────────────────────────────────────────
+
+
+@app.get("/api/duplicate-queue")
+def duplicate_queue(
+    strategy: str | None = None,
+    min_confidence: float = 0.0,
+    limit: int = 50,
+):
+    """Get unreviewed duplicate candidates for review."""
+    with _db() as conn:
+        where = ["dc.reviewed = 0"]
+        params: list = []
+        if strategy:
+            where.append("dc.strategy = ?")
+            params.append(strategy)
+        if min_confidence > 0:
+            where.append("dc.confidence >= ?")
+            params.append(min_confidence)
+
+        where_sql = " AND ".join(where)
+        rows = conn.execute(f"""
+            SELECT dc.*,
+                   oa.case_name as name_a, oa.date_filed as date_a,
+                   oa.source_reporter as src_a, oa.author as author_a,
+                   (SELECT c.citation FROM citations c WHERE c.opinion_id = dc.opinion_a AND c.is_primary = 1 LIMIT 1) as cite_a,
+                   ob.case_name as name_b, ob.date_filed as date_b,
+                   ob.source_reporter as src_b, ob.author as author_b,
+                   (SELECT c.citation FROM citations c WHERE c.opinion_id = dc.opinion_b AND c.is_primary = 1 LIMIT 1) as cite_b
+            FROM duplicate_candidates dc
+            JOIN opinions oa ON oa.id = dc.opinion_a
+            JOIN opinions ob ON ob.id = dc.opinion_b
+            WHERE {where_sql}
+            ORDER BY dc.confidence DESC, dc.text_similarity DESC
+            LIMIT ?
+        """, params + [limit]).fetchall()
+
+    total = len(rows)  # approximate since we have a limit
+    return {
+        "total": total,
+        "candidates": [dict(r) for r in rows],
+    }
+
+
+@app.post("/api/duplicate-queue/{candidate_id}/resolve")
+async def resolve_duplicate(candidate_id: int, request: Request):
+    """Mark a duplicate candidate as reviewed."""
+    body = await request.json()
+    resolved_as = body.get("resolved_as")  # 'merged', 'not-duplicate', 'deferred'
+    if resolved_as not in ("merged", "not-duplicate", "deferred"):
+        raise HTTPException(400, "resolved_as must be 'merged', 'not-duplicate', or 'deferred'")
+
+    with _db() as conn:
+        row = conn.execute(
+            "SELECT * FROM duplicate_candidates WHERE id = ?", (candidate_id,)
+        ).fetchone()
+        if not row:
+            raise HTTPException(404, "Candidate not found")
+
+        conn.execute(
+            """UPDATE duplicate_candidates
+               SET reviewed = 1, resolved_as = ?, reviewed_at = strftime('%Y-%m-%dT%H:%M:%S', 'now')
+               WHERE id = ?""",
+            (resolved_as, candidate_id),
+        )
+
+        # Also add to not-duplicates list if resolved as such
+        if resolved_as == "not-duplicate":
+            pairs = _load_not_duplicates()
+            id_a, id_b = row["opinion_a"], row["opinion_b"]
+            if not any(set(p) == {id_a, id_b} for p in pairs):
+                pairs.append([id_a, id_b])
+                _save_not_duplicates(pairs)
+
+        conn.commit()
+
+    return {"status": "resolved", "resolved_as": resolved_as}
+
+
 # OCR confusion pairs (common misreads)
 _OCR_PAIRS = [
     ("rn", "m"), ("li", "h"), ("cl", "d"), ("tl", "d"),
@@ -960,6 +1039,15 @@ async def merge_opinions(survivor_id: int, request: Request):
         # 6. Delete loser's citations, changelog refs, and the opinion itself
         conn.execute("DELETE FROM citations WHERE opinion_id = ?", (loser_id,))
         conn.execute("DELETE FROM opinions WHERE id = ?", (loser_id,))
+
+        # Mark any duplicate candidates involving these opinions as resolved
+        conn.execute(
+            """UPDATE duplicate_candidates SET reviewed = 1, resolved_as = 'merged',
+               reviewed_at = strftime('%Y-%m-%dT%H:%M:%S', 'now')
+               WHERE (opinion_a = ? OR opinion_b = ? OR opinion_a = ? OR opinion_b = ?)
+               AND reviewed = 0""",
+            (survivor_id, survivor_id, loser_id, loser_id),
+        )
 
         conn.commit()
 

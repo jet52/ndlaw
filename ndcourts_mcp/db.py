@@ -122,6 +122,24 @@ def create_schema(conn: sqlite3.Connection) -> None:
             scanned_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now'))
         );
 
+        -- Duplicate candidate pairs
+        CREATE TABLE IF NOT EXISTS duplicate_candidates (
+            id INTEGER PRIMARY KEY,
+            opinion_a INTEGER NOT NULL REFERENCES opinions(id),
+            opinion_b INTEGER NOT NULL REFERENCES opinions(id),
+            strategy TEXT NOT NULL,
+            confidence REAL NOT NULL,
+            text_similarity REAL,
+            reviewed INTEGER DEFAULT 0,
+            resolved_as TEXT,
+            reviewed_at TEXT,
+            UNIQUE(opinion_a, opinion_b)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_dupcand_a ON duplicate_candidates(opinion_a);
+        CREATE INDEX IF NOT EXISTS idx_dupcand_b ON duplicate_candidates(opinion_b);
+        CREATE INDEX IF NOT EXISTS idx_dupcand_reviewed ON duplicate_candidates(reviewed);
+
         -- Westlaw volume processing progress
         CREATE TABLE IF NOT EXISTS westlaw_progress (
             id INTEGER PRIMARY KEY,

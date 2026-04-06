@@ -584,6 +584,7 @@ body {
     <div class="col-picker" id="col-picker"></div>
   </div>
   <button id="toggle-reader" title="Toggle reader pane">Reader</button>
+  <button id="dup-queue-btn" title="Review duplicate candidates">Dup Queue</button>
   <div class="sep"></div>
   <select id="page-size" title="Rows per page" style="width:65px">
     <option value="50">50</option>
@@ -2071,6 +2072,77 @@ function fmtVal(v) {
 }
 
 // ── Utilities ──
+// ══════════════════════════════════════════════════════════════════
+// ── Duplicate Queue ──
+// ══════════════════════════════════════════════════════════════════
+
+async function openDupQueue() {
+  const reader = document.getElementById("reader");
+  const resp = await fetch("/api/duplicate-queue?limit=100");
+  const data = await resp.json();
+  const candidates = data.candidates || [];
+
+  reader.innerHTML = `
+    <div class="reader-header">
+      <h2>Duplicate Candidates (${candidates.length} unreviewed)</h2>
+    </div>
+    <div style="padding:12px 16px;overflow-y:auto;flex:1">
+      ${candidates.length === 0 ? "<p style='color:var(--text-muted)'>No unreviewed candidates.</p>" :
+        `<table style="width:100%;font-size:12px;border-collapse:collapse">
+          <tr style="color:var(--text-muted);text-align:left">
+            <th style="padding:4px 8px">Strategy</th>
+            <th style="padding:4px 8px">Conf</th>
+            <th style="padding:4px 8px">Opinion A</th>
+            <th style="padding:4px 8px">Opinion B</th>
+            <th style="padding:4px 8px">Actions</th>
+          </tr>
+          ${candidates.map(c => `
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:4px 8px;color:var(--purple)">${escHtml(c.strategy)}</td>
+              <td style="padding:4px 8px">${(c.confidence * 100).toFixed(0)}%${c.text_similarity ? ` <span style="color:var(--text-muted)">(${(c.text_similarity * 100).toFixed(0)}% sim)</span>` : ""}</td>
+              <td style="padding:4px 8px">
+                <span class="citing-cite" onclick="loadOpinion(${c.opinion_a})">${escHtml(c.cite_a || "#" + c.opinion_a)}</span>
+                <span style="color:var(--text-muted)">${escHtml(c.name_a)}</span>
+                <span style="font-size:11px;color:var(--text-muted)">[${escHtml(c.src_a)}]</span>
+              </td>
+              <td style="padding:4px 8px">
+                <span class="citing-cite" onclick="loadOpinion(${c.opinion_b})">${escHtml(c.cite_b || "#" + c.opinion_b)}</span>
+                <span style="color:var(--text-muted)">${escHtml(c.name_b)}</span>
+                <span style="font-size:11px;color:var(--text-muted)">[${escHtml(c.src_b)}]</span>
+              </td>
+              <td style="padding:4px 8px;white-space:nowrap">
+                <button class="flag-btn" onclick="openMergePanelDirect(${c.opinion_a},${c.opinion_b})" title="Compare & merge">Merge</button>
+                <button class="flag-btn" onclick="resolveDupCandidate(${c.id},'not-duplicate')" title="Mark as not duplicates">Not Dup</button>
+              </td>
+            </tr>
+          `).join("")}
+        </table>`
+      }
+    </div>
+  `;
+}
+
+async function openMergePanelDirect(idA, idB) {
+  const resp = await fetch("/api/opinions/" + idA + "/diff/" + idB);
+  if (!resp.ok) {
+    alert("Could not load diff: " + (await resp.text()));
+    return;
+  }
+  mergeData = await resp.json();
+  renderMergePanel();
+}
+
+async function resolveDupCandidate(candidateId, resolution) {
+  await fetch("/api/duplicate-queue/" + candidateId + "/resolve", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({resolved_as: resolution}),
+  });
+  openDupQueue(); // refresh
+}
+
+document.getElementById("dup-queue-btn").addEventListener("click", openDupQueue);
+
 function escHtml(s) {
   if (!s) return "";
   const d = document.createElement("div");
