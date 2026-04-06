@@ -187,13 +187,140 @@ Case normalization missed in batch 01: ENGLERT→Englert (2), Engleet→Englert 
 
 "Chas" opinions reviewed interactively via `review.py` (2026-04-04). "Chas" was a fragment from "CHAS. A. POLLOCK" or "CHAS. FISK" (Charles Fisk) in the disqualification boilerplate. True authors identified from "LastName, J." lines in the opinion text.
 
-## Pending: Westlaw batch1 corrections (not yet applied)
+## Batch: westlaw-batch1 (13 rows)
 
-46 pre-1920 opinions downloaded from Westlaw Quick Check and compared via `ingest_westlaw.py`. Results:
+46 pre-1920 opinions downloaded from Westlaw Quick Check and compared via `ingest_westlaw.py`. Applied 2026-04-05.
 
-- **10 author corrections**: OCR-wrong authors identified by Westlaw (e.g., Bruce→Christianson, Birdzell→Robinson, Crawford→Fisk, Buttz→Christianson, Crace→Grace, Any→Morgan)
-- **3 date corrections**: Two placeholder dates (1903-07-01) and one 8-day discrepancy (1905-10-02→1905-10-10)
-- **4 case name diffs**: Mostly abbreviation/formatting; one possible citation mismatch (Murphy v. District Court vs State v. Poull — needs investigation)
-- **Text comparison**: Opinion text is substantially identical; OCR artifacts are minor (duplicate words, missing spaces, symbol handling)
+**10 author corrections:**
 
-To apply: `python -m ndcourts_mcp.ingest_westlaw input-data/batch1/ --apply --batch westlaw-batch1`
+| Citation | Old (DB) | New (Westlaw) |
+|----------|----------|---------------|
+| 38 N.D. 499 (Beauchamp) | Bruce | Christianson |
+| 44 N.D. 89 (Gray v. Gray) | Birdzell | Christianson |
+| 38 N.D. 425 (Hope Nat. Bank) | Robinson | Grace |
+| 44 N.D. 111 (Livingston) | Birdzell | Robinson |
+| 22 N.D. 251 (Morrison v. Lee) | Crawford | Fisk |
+| 31 N.D. 504 (Ramstad v. Carr) | Buttz | Christianson |
+| 44 N.D. 5 (Sandvig v. Kleppe) | Crace | Grace |
+| 14 N.D. 501 (State v. Harris) | Any | Morgan |
+| 41 N.D. 55 (State v. Hiertz) | Birdzell | Grace |
+| 41 N.D. 599 (Vanevery) | Grace | Robinson |
+
+**3 date corrections:**
+
+| Citation | Old (DB) | New (Westlaw) | Note |
+|----------|----------|---------------|------|
+| 11 N.D. 376 (Brandrup v. Britten) | 1903-07-01 | 1902-11-24 | Placeholder date |
+| 14 N.D. 445 (Hanson v. Skogman) | 1905-10-02 | 1905-10-10 | 8-day discrepancy |
+| 11 N.D. 458 (Ross v. Page) | 1903-07-01 | 1902-12-10 | Placeholder date |
+
+**3 case name diffs skipped:**
+- Fargo & S W R Co. v. Brewer (Westlaw) vs Fargo & Southwestern Ry. Co. v. Brewer (DB) — DB has better expanded form, kept DB
+- Murphy v. District Court (Westlaw) vs State v. Poull (DB) — both opinions share citation 14 N.D. 557 with different N.W. parallel cites (105 N.W. 717 for Poull, 105 N.W. 734 for Murphy). Both exist in DB as separate records. However, both opinions span multiple N.W. pages — unlikely they truly share the same N.D. start page. Flagged in `notes` field on both records (ids 146, 152) for manual verification.
+- Phoenix case name handled in ligature normalization batch below
+
+## Batch: westlaw-batch1-casenames (6 rows)
+
+Normalized Unicode ligatures (Æ, œ) to plain ASCII in case names. These are OCR artifacts from old typesetting that interfere with search. Applied 2026-04-05.
+
+| ID | Old | New |
+|----|-----|-----|
+| 799 | Boos v. Ætna Insurance | Boos v. Aetna Insurance |
+| 2835 | Coughlin v. Ætna Life Insurance | Coughlin v. Aetna Life Insurance |
+| 3593 | Wenstrom v. Ætna Life Insurance | Wenstrom v. Aetna Life Insurance |
+| 3868 | Pipan v. Ætna Insurance | Pipan v. Aetna Insurance |
+| 5487 | Red River Lumber Co. v. Children of Isræl | Red River Lumber Co. v. Children of Israel |
+| 5499 | Phœnix Assurance Co. v. McDermont | Phoenix Assurance Co. v. McDermont |
+
+## Batch: auto-author-text (257 rows)
+
+Auto-detected real authors from "LastName, J." / "LastName, C. J." / "LastName, District Judge." lines in opinion text. Applied 2026-04-05 via `python -m ndcourts_mcp.auto_author --apply`.
+
+These opinions had junk-word authors (Being, Been, Dist, Action, etc.) or OCR garbles from CourtListener's broken judge-field parsing. The script scans the first 3000 chars of the opinion body for the authorship line pattern.
+
+Top corrections by old author:
+
+| Old author | Recovered as | Count |
+|------------|-------------|-------|
+| Being | Fisk, Bruce, Spalding, Robinson, Morgan, Burke, Christianson, Goss, Birdzell, Grace, Bronson, others | 126 |
+| Been | Young, Morgan, Corliss, Wallin, Fisk, Spalding, Birdzell | 30 |
+| Other | Wallin | 6 |
+| Any | Corliss, Bartholomew, Young, Wallin, Spalding, Goss | 11 |
+| Account | Spalding, Fisk, Carmody | 8 |
+| Action | Young, Morgan, Bruce, Spalding, Grace | 6 |
+| Below | Burke, Bruce, Fisk, Pollock | 6 |
+| + 70 more single/double-count mappings | various | 64 |
+
+Also corrected OCR garbles: Bartxiolomew→Bartholomew, Engertjd→Engerud, Engebud→Morgan, Moelxjring→Moellring, Birdzeell→Robinson, and others.
+
+## Schema change: notes column (2026-04-05)
+
+Added `notes TEXT` column to the `opinions` table for flagging records that need manual investigation. Used to flag the shared 14 N.D. 557 citation between State v. Poull (id=146) and Murphy v. District Court (id=152).
+
+## Batch: westlaw-nd-vol1-2 (6 rows, 1 reverted)
+
+Complete Westlaw download of volumes 1–2 N.D. Reports (118 opinions, 1890–1892). Compared against DB via `ingest_westlaw.py`. Applied 2026-04-05. Source files saved to `~/refs/opin/N.D./vol1-2/`.
+
+**3 author corrections:**
+
+| Citation | Old | New |
+|----------|-----|-----|
+| 1 N.D. 143 (Devore v. Woodruff) | Been | Corliss |
+| 1 N.D. 159 (Short v. Northern Pac. Elevator) | Bartholomew | Wallin |
+| 1 N.D. 121 (Bode v. New England Inv. Co.) | Corliss | Wallin |
+
+**2 date corrections (1 reverted):**
+
+| Citation | Old | New | Note |
+|----------|-----|-----|------|
+| 2 N.D. 310 (Northern Pac. R. Co. v. Barnes) | 1892-01-12 | 1892-01-21 | |
+| 2 N.D. 30 (Mills v. Howland) | 1891-06-07 | 1891-07-07 | |
+| 2 N.D. 397 (Cleary v. County of Eddy) | 1892-02-09 | 1892-01-12 | **Reverted** — citation collision with Tressler; wrong opinion matched |
+
+**3 not found in DB:** Clark v. Sullivan (2 N.D. 103), Bowne v. Wolcott (1 N.D. 497), State ex rel. Ohlquist v. Swan (1 N.D. 5)
+
+**2 citation collisions flagged:** Cleary/Tressler at 2 N.D. 397 (different N.W. cites: 51 N.W. 586 vs 51 N.W. 787). Notes added to both records.
+
+## Batch: westlaw-nd-vol1-2-casenames (8 rows)
+
+Genuine spelling corrections identified by comparing Westlaw case names with DB. Applied 2026-04-05.
+
+| Old | New |
+|-----|-----|
+| O'Hara v. Town of Park River | O'Hare v. Town of Park River |
+| Garr, Scott & Co. v. Spaulding | Garr, Scott & Co. v. Spalding |
+| Brathwaite v. Aikin | Braithwaite v. Aikin |
+| Linton v. Minnepolis & Northern Elevator Co. | Linton v. Minneapolis & Northern Elevator Co. |
+| Power v. Larabee (2 records) | Powers v. Larabee |
+| State ex rel. Faussett v. Harris | State ex rel. Fausett v. Harris |
+| State ex rel. Goodsill v. Woodmansee | State ex rel. Goodsill v. Woodmanse |
+
+## Batch: westlaw-nd-vol3-4 (14 rows)
+
+Complete Westlaw download of volumes 3–4 N.D. Reports (125 opinions, 1892–1895). Applied 2026-04-05. Source files saved to `~/refs/opin/N.D./vol3-4/`.
+
+**11 author corrections** (mostly Bartholomew↔Corliss/Wallin swaps — early court had only 3 justices and CourtListener picked wrong one), **1 OCR fix** (Coirliss→Corliss), **1 date fix** (1893-12-03→1893-12-23).
+
+**1 citation collision flagged:** Globe Inv. Co. v. Boyum / Kellogg, Johnson & Co. v. Gilman both at 3 N.D. 538.
+
+## Batch: westlaw-nd-vol3-4-casenames (5 rows)
+
+Spelling corrections: McMillen→McMillan (3 records), Hegar→Heger, Braithwaite v. Akin→Aiken.
+
+## Batch: westlaw-nd-vol5 (2 rows) + westlaw-nd-vol5-casenames (1 row)
+
+Volume 5 N.D. Reports (65 opinions, 1895–1896). Applied 2026-04-05.
+
+2 author corrections (Bartholomew→Wallin, Corliss→Wallin). 1 case name fix: State v. Kent→State v. Pancoast (wrong defendant name in DB).
+
+## Batch: westlaw-nd-vol6 (3 rows, 1 reverted) + westlaw-nd-vol5-6-casenames (3 rows)
+
+Volume 6 N.D. Reports (69 opinions, 1896–1897). Applied 2026-04-05.
+
+2 author corrections (Bartholomew→Corliss). 1 correction reverted: Westlaw had a typo "Barholomew" which was wrongly applied. Case name fixes: Shuttuck→Shattuck, Ellestad→Elstad, Fryer→Fryar.
+
+## Batch: westlaw-nd-vol7 (8 rows)
+
+Volume 7 N.D. Reports (88 opinions, 1897–1898). Applied 2026-04-05.
+
+4 author corrections (3× Bartholomew→Corliss/Wallin). 4 date corrections. 3 citation collisions flagged (Red River v. Friel / Children of Israel at 7 N.D. 46; Gull River v. Brock / Lee at 7 N.D. 135; Knight v. Barnes / Tribune Printing at 7 N.D. 591).

@@ -36,13 +36,16 @@ MCP server providing access to North Dakota Supreme Court opinions (1889–prese
 
 ### Data Corrections Applied
 
-5,900+ corrections across 10 batches, all logged in the `changelog` table. See [CHANGELOG-data.md](CHANGELOG-data.md) for details.
+6,100+ corrections across 19 batches, all logged in the `changelog` table. See [CHANGELOG-data.md](CHANGELOG-data.md) for details.
 
 - Case normalization (ALL CAPS → title case)
 - OCR misread consolidation (Birdzell, Bronson, Bruce, Burke, Christianson, Fisk, etc.)
 - Per curiam detection
 - Full-name → last-name normalization for surrogates
 - Manual review corrections via interactive tool
+- Westlaw Quick Check validation (author, date corrections from 46 pre-1920 opinions)
+- Unicode ligature normalization (Æ→Ae, œ→oe) in case names
+- Auto-detected authors from opinion text (257 opinions with junk-word authors recovered)
 
 ## Setup
 
@@ -154,21 +157,22 @@ Batch1: 46 pre-1920 opinions downloaded as .doc from Westlaw Quick Check. Compar
 
 ### Immediate (ready to do)
 
-1. **Apply Westlaw batch1 corrections** — 10 author + 3 date fixes from the 46 opinions already downloaded. Run `python -m ndcourts_mcp.ingest_westlaw input-data/batch1/ --apply --batch westlaw-batch1`.
-2. **Investigate Murphy v. District Court mismatch** — Westlaw says the citation maps to Murphy v. District Court, but our DB has State v. Poull. One of the records may have a wrong citation link.
+1. ~~**Apply Westlaw batch1 corrections**~~ — Done (2026-04-05). 10 author + 3 date + 6 ligature corrections applied.
+2. ~~**Investigate Murphy v. District Court mismatch**~~ — Partially resolved (2026-04-05). Both State v. Poull and Murphy v. District Court share citation 14 N.D. 557 with different N.W. parallel cites. Both exist as separate DB records, but sharing an N.D. start page is suspicious given both opinions are multi-page. Flagged in `notes` field for manual verification.
 3. **Continue manual author review** — ~580 opinions with unrecognized authors. Run `python -m ndcourts_mcp.review --min-count 2` to work through the remaining junk words and OCR noise. Most can be auto-detected from "LastName, J." in the opinion text or set to NULL.
 
 ### Short-term
 
-4. **Generate more Westlaw citation batches** — Export citations for pre-1920 opinions in groups of 50, download via Quick Check, and run through `ingest_westlaw.py` to systematically validate and correct metadata.
-5. **Rebuild judges field for pre-1997 opinions** — Use court composition dates from `justices.py` to infer the default panel, then parse disqualification/substitution lines from opinion text to note surrogates.
-6. **Null out remaining junk-word authors** — After manual review identifies which can be recovered from text, set the rest (Being, Been, Dist, Any, Action, etc.) to NULL in a batch.
+4. **Simplify MCP tools to reduce token cost** — The current 9-tool surface area is expensive for LLM clients that load all tool schemas into context. Consolidate overlapping tools (e.g., merge `get_opinion_metadata` into `lookup_opinion`, combine `get_justice_stats` and `get_voting_record`) to reduce the number of tools and total schema tokens.
+5. **Generate more Westlaw citation batches** — Export citations for pre-1920 opinions in groups of 50, download via Quick Check, and run through `ingest_westlaw.py` to systematically validate and correct metadata.
+6. **Rebuild judges field for pre-1997 opinions** — Use court composition dates from `justices.py` to infer the default panel, then parse disqualification/substitution lines from opinion text to note surrogates.
+7. **Null out remaining junk-word authors** — After manual review identifies which can be recovered from text, set the rest (Being, Been, Dist, Any, Action, etc.) to NULL in a batch.
 
 ### Medium-term
 
-7. **Text quality correction** — For opinions where we have Westlaw downloads, consider replacing OCR text with Westlaw's clean text (keeping our case headers/citations separate).
-8. **Interactive data browser** — Terminal or web-based tool for browsing and spot-checking the database.
-9. **Citation network analysis** — Build a graph of which opinions cite which others by parsing citation references within opinion text.
+8. **Text quality correction** — For opinions where we have Westlaw downloads, consider replacing OCR text with Westlaw's clean text (keeping our case headers/citations separate).
+9. **Interactive data browser** — Terminal or web-based tool for browsing and spot-checking the database.
+10. **Citation network analysis** — Build a graph of which opinions cite which others by parsing citation references within opinion text.
 
 ## Reference Files
 

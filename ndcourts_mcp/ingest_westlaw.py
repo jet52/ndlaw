@@ -246,13 +246,101 @@ def _case_names_match(wl_name: str, db_name: str) -> bool:
     return False
 
 
+# Words that stay lowercase in case names (unless first word)
+_LOWERCASE_WORDS = {
+    "v", "ex", "rel", "of", "the", "in", "on", "and", "for", "a", "an",
+    "at", "by", "to", "et", "al", "ux", "vir",
+}
+
+# Words/abbreviations that have specific capitalization in case names
+_CASE_NAME_ABBREVS = {
+    "co": "Co.", "cos": "Cos.", "corp": "Corp.", "inc": "Inc.",
+    "ltd": "Ltd.", "llc": "LLC", "llp": "LLP",
+    "ry": "Ry.", "rr": "R.R.",
+    "ins": "Ins.", "mfg": "Mfg.", "mfrs": "Mfrs.",
+    "nat": "Nat.", "natl": "Nat'l",
+    "assn": "Ass'n", "assoc": "Assoc.",
+    "dept": "Dep't", "dist": "Dist.",
+    "cty": "Cty.", "twp": "Twp.",
+    "commrs": "Comm'rs", "commn": "Comm'n",
+    "hosp": "Hosp.", "univ": "Univ.",
+    "elec": "Elec.", "tel": "Tel.",
+    "bd": "Bd.",
+    "st": "St.", "ss": "S.S.",
+    "pac": "Pac.", "sw": "S.W.",
+    "nw": "N.W.", "ne": "N.E.", "se": "S.E.",
+    "no": "No.", "nos": "Nos.",
+}
+
+
+def _titlecase_case_name(name: str) -> str:
+    """Convert a Westlaw ALL CAPS case name to our title case standard.
+
+    Handles: party names, 'v.', abbreviations, 'ex rel.', 'et al.',
+    and preserves particles like 'Mc', 'Mac', 'De', 'Van'.
+    """
+    # Strip trailing periods and footnote markers
+    name = name.strip().rstrip(".")
+    name = re.sub(r"[.a]?\d+$", "", name).strip()
+
+    parts = name.split()
+    result = []
+
+    for i, word in enumerate(parts):
+        low = word.lower().rstrip(".,;:")
+        trailing = word[len(low):]  # preserve trailing punctuation
+
+        # "v." stays as-is
+        if low == "v" or word == "v.":
+            result.append("v.")
+            continue
+
+        # Check abbreviation table
+        if low in _CASE_NAME_ABBREVS:
+            result.append(_CASE_NAME_ABBREVS[low] + trailing.lstrip("."))
+            continue
+
+        # Lowercase particles (not at start of a party name)
+        if low in _LOWERCASE_WORDS and i > 0 and (not result or result[-1] != "v."):
+            result.append(low + trailing)
+            continue
+
+        # Title-case the word
+        titled = word.capitalize()
+
+        # Handle Mc/Mac prefixes: McCANNA → McCanna
+        mc = re.match(r"(Mc|Mac)([a-z])", titled, re.IGNORECASE)
+        if mc:
+            titled = mc.group(1) + mc.group(2).upper() + titled[len(mc.group(0)):]
+
+        # Handle O' prefix: O'TOOLE → O'Toole (straight or curly apostrophe)
+        opre = re.match(r"(O['\u2019])(\w)(.*)", titled, re.IGNORECASE)
+        if opre:
+            titled = "O'" + opre.group(2).upper() + opre.group(3).lower()
+
+        # Strip stray trailing period from footnote-marker cleanup
+        if titled.endswith(".") and not any(titled.endswith(a) for a in
+                ("Co.", "Corp.", "Inc.", "Ltd.", "Ry.", "Ins.", "Mfg.", "Nat.",
+                 "Assoc.", "Dist.", "Cty.", "Twp.", "Hosp.", "Univ.", "Elec.",
+                 "Tel.", "Bd.", "St.", "Pac.", "No.", "Nos.", "Jr.", "Sr.",
+                 "v.", "R.R.", "S.W.", "N.W.", "N.E.", "S.E.", "S.S.",
+                 "Ass'n", "Dep't", "Comm'rs", "Comm'n", "Nat'l",
+                 "Mfrs.", "Cos.",)):
+            titled = titled.rstrip(".")
+
+        result.append(titled)
+
+    return " ".join(result)
+
+
 def _compare_fields(westlaw: dict, db: dict) -> list[tuple[str, str, str]]:
     """Compare Westlaw and DB fields. Returns list of (field, westlaw_val, db_val) diffs."""
     diffs = []
 
     if westlaw.get("case_name") and db.get("case_name"):
-        if not _case_names_match(westlaw["case_name"], db["case_name"]):
-            diffs.append(("case_name", westlaw["case_name"], db["case_name"]))
+        wl_title = _titlecase_case_name(westlaw["case_name"])
+        if not _case_names_match(wl_title, db["case_name"]):
+            diffs.append(("case_name", wl_title, db["case_name"]))
 
     if westlaw.get("date_filed") and db.get("date_filed"):
         if westlaw["date_filed"] != db["date_filed"]:
@@ -268,7 +356,8 @@ def _compare_fields(westlaw: dict, db: dict) -> list[tuple[str, str, str]]:
 
 
 def process_batch(
-    batch_dir: Path, db_path: Path, apply: bool = False, batch_name: str = "westlaw-batch"
+    batch_dir: Path, db_path: Path, apply: bool = False, batch_name: str = "westlaw-batch",
+    case_name_mode: str = "ask",
 ):
     doc_files = sorted(batch_dir.glob("*.doc"))
     if not doc_files:
@@ -323,7 +412,33 @@ def process_batch(
                 print(f"    {YELLOW}DB:     {RESET} {db_val}")
 
                 if apply:
-                    new_val = wl_val if wl_val != "(NULL)" else None
+                    if field == "case_name":
+                        if case_name_mode == "skip":
+                            print(f"    {DIM}→ Skipped (--case-names=skip){RESET}")
+                            continue
+                        elif case_name_mode == "westlaw":
+                            new_val = wl_val
+                        elif case_name_mode == "db":
+                            print(f"    {DIM}→ Keeping DB value{RESET}")
+                            continue
+                        else:
+                            # Interactive prompt
+                            print(f"    {BOLD}Pick case name:{RESET}")
+                            print(f"      [1] {CYAN}{wl_val}{RESET}")
+                            print(f"      [2] {YELLOW}{db_val}{RESET}")
+                            print(f"      [s] skip")
+                            choice = input(f"    Choice [1/2/s]: ").strip().lower()
+                            if choice == "1":
+                                new_val = wl_val
+                            elif choice == "2":
+                                print(f"    {DIM}→ Keeping DB value{RESET}")
+                                continue
+                            else:
+                                print(f"    {DIM}→ Skipped{RESET}")
+                                continue
+                    else:
+                        new_val = wl_val if wl_val != "(NULL)" else None
+
                     conn.execute(
                         "INSERT INTO changelog (batch, opinion_id, field, old_value, new_value) "
                         "VALUES (?, ?, ?, ?, ?)",
@@ -356,9 +471,16 @@ def main():
     parser.add_argument("--apply", action="store_true", help="Apply corrections to database")
     parser.add_argument("--batch", default="westlaw-batch", help="Changelog batch name")
     parser.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    parser.add_argument(
+        "--case-names", choices=["ask", "skip", "westlaw", "db"],
+        default="ask", help="How to handle case name diffs (default: ask interactively)",
+    )
     args = parser.parse_args()
 
-    process_batch(args.batch_dir, args.db, apply=args.apply, batch_name=args.batch)
+    process_batch(
+        args.batch_dir, args.db, apply=args.apply, batch_name=args.batch,
+        case_name_mode=args.case_names,
+    )
 
 
 if __name__ == "__main__":
