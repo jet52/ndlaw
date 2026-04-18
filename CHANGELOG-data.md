@@ -324,3 +324,58 @@ Volume 6 N.D. Reports (69 opinions, 1896–1897). Applied 2026-04-05.
 Volume 7 N.D. Reports (88 opinions, 1897–1898). Applied 2026-04-05.
 
 4 author corrections (3× Bartholomew→Corliss/Wallin). 4 date corrections. 3 citation collisions flagged (Red River v. Friel / Children of Israel at 7 N.D. 46; Gull River v. Brock / Lee at 7 N.D. 135; Knight v. Barnes / Tribune Printing at 7 N.D. 591).
+
+## Batches: westlaw-nd-vol20 through westlaw-nd-vol23 (55 rows)
+
+Volumes 20–23 N.D. Reports (341 opinions, 1910–1912). Applied 2026-04-15. Source files archived to `~/refs/opin/N.D./{20..23}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 20 | 79 | 10 | 2 | 12 |
+| 21 | 93 | 15 | 8 | 23 |
+| 22 | 94 | 10 | 2 | 12 |
+| 23 | 75 | 5 | 3 | 8 |
+
+All files matched DB records.
+
+## Batches: westlaw-nd-vol24 through westlaw-nd-vol31 (69 rows)
+
+Volumes 24–31 N.D. Reports (484 opinions, 1912–1915). Applied 2026-04-16. Source files archived to `~/refs/opin/N.D./{24..31}/`. Run with `--case-names skip` (case-name diffs deferred for separate review).
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 24 | 61 | 5 | 4 | 9 |
+| 25 | 51 | 7 | 2 | 9 |
+| 26 | 59 | 5 | 4 | 9 |
+| 27 | 64 | 7 | 1 | 8 |
+| 28 | 56 | 4 | 5 | 9 |
+| 29 | 63 | 8 | 1 | 9 |
+| 30 | 65 | 4 | 4 | 8 |
+| 31 | 65 | 4 | 4 | 8 |
+
+**3 not found in DB** (logged to `input-data/vol{25,29}/unmatched.txt`):
+- 25 N.D. 268 — Great West Life Assur. Co. v. Shumway
+- 29 N.D. 90 — First Nat. Bank v. Simmons Hardware Co.
+- 29 N.D. 94 — Heitsch v. Minneapolis Threshing Mach. Co.
+
+## Batches: westlaw-nd-vol32 through westlaw-nd-vol44 (269 rows)
+
+Volumes 32–44 N.D. Reports (867 opinions, 1915–1920). Applied 2026-04-17 and 2026-04-18. Source files archived to `~/refs/opin/N.D./{32..44}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 32 | 60 | 4 | 1 | 5 |
+| 33 | 60 | 4 | 4 | 8 |
+| 34 | 65 | 5 | 8 | 13 |
+| 35 | 54 | 6 | 6 | 12 |
+| 36 | 66 | 6 | 4 | 10 |
+| 37 | 74 | 15 | 1 | 16 |
+| 38 | 57 | 15 | 0 | 15 |
+| 39 | 68 | 23 | 1 | 24 |
+| 40 | 54 | 11 | 1 | 12 |
+| 41 | 84 | 28 | 9 | 37 |
+| 42 | 88 | 30 | 2 | 32 |
+| 43 | 75 | 30 | 7 | 37 |
+| 44 | 62 | 38 | 2 | 40 |
+
+All files matched DB records. Author-correction counts climb sharply from vol 37 onward as the Birdzell/Bronson/Christianson era of OCR misreads becomes denser.

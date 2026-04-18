@@ -31,7 +31,7 @@ Full-featured web UI at `http://localhost:8765` with:
 - **20,383 opinions** from 1890–2026
 - **113K+ cited-by links** from citation extraction
 - **Text quality scores** for all opinions (OCR artifacts, HTML contamination, etc.)
-- **1,349 duplicate candidates** for review
+- **716 duplicate candidates** for review (citation-overlap pairs now require text-similarity confirmation)
 - **Full changelog** for auditable, revertible corrections
 
 ### Data Sources
@@ -42,22 +42,23 @@ Full-featured web UI at `http://localhost:8765` with:
 | CourtListener (NW2d) | ~12,200 opinions, 1941–present | Text + JSON metadata |
 | ndcourts.gov (ND) | ~2,135 opinions, 1997–present | Markdown text with ¶ markers |
 | ndcourts.gov metadata | ~7,150 opinions, 1997–present | Case type, voting record, justice panel, etc. |
-| Westlaw Quick Check | Vols 1–10 N.D. Reports + 40 individual cases | .doc files with clean text |
+| Westlaw Quick Check | Vols 1–44 N.D. Reports + 40 individual cases | .doc files with clean text |
 | archive.ndcourts.gov | ~5,300 opinions, 1997–2019 | HTML with ¶ markers |
 
 ### Data Corrections Applied
 
-6,500+ corrections across 20+ batches, all logged in the `changelog` table. See [CHANGELOG-data.md](CHANGELOG-data.md) for details.
+7,100+ corrections across 65+ batches, all logged in the `changelog` table. See [CHANGELOG-data.md](CHANGELOG-data.md) for details.
 
 - Case normalization (ALL CAPS → title case)
 - OCR misread consolidation (Birdzell, Bronson, Bruce, Burke, Christianson, Fisk, etc.)
 - Per curiam detection
 - Full-name → last-name normalization for surrogates
 - Manual review corrections via interactive tool
-- Westlaw Quick Check validation (vols 1–10 + 40 individual cases)
+- Westlaw Quick Check validation (vols 1–44 + 40 individual cases)
 - Unicode ligature normalization (Æ→Ae, œ→oe) in case names
 - Auto-detected authors from opinion text (257 opinions recovered)
 - Text replacement with clean Westlaw text (36 pre-1997 opinions)
+- Citation-based dedup tightened to require text similarity (eliminated false positives from citation collisions where different cases share a reporter page)
 
 ## Setup
 
@@ -120,10 +121,10 @@ NDCOURTS_READONLY=1 python -m uvicorn ndcourts_mcp.webapp:app --port 8765
 ## Ongoing Work
 
 ### Continue Westlaw Downloads
-Volumes 1–10 of N.D. Reports are processed. Resume with volume 11. Use `ingest_westlaw status` to check progress and `ingest_westlaw export` to generate citation lists for Quick Check.
+Volumes 1–44 of N.D. Reports are processed. Resume with volume 45. Use `ingest_westlaw status` to check progress and `ingest_westlaw export` to generate citation lists for Quick Check.
 
 ### Review Duplicate Candidates
-1,349 candidates found via citation overlap, name+date+text similarity, and minhash fingerprinting. Use the "Dup Queue" button in the web UI to review and merge or dismiss.
+716 candidates found via citation overlap (with text-similarity confirmation), name+date+text similarity, and minhash fingerprinting. Use the "Dup Queue" button in the web UI to review and merge or dismiss.
 
 ### Multi-Source Text Comparison
 5,300+ opinions have archive.ndcourts.gov sources available alongside CourtListener text. Use the "Sources" section in the reader pane to compare and apply corrections. ndcourts.gov text is authoritative for 1997+ opinions — use Westlaw/archive only as reference for corrections, not wholesale replacement.
