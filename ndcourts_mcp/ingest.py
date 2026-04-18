@@ -134,6 +134,11 @@ def _ingest_nw_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path,
             if existing:
                 # Add any new citations from this reporter
                 _add_citations(conn, existing["id"], citations, reporter)
+                # Record this reporter's file as a secondary source
+                _record_source(
+                    conn, existing["id"], reporter, md_path, refs_dir, text,
+                    is_primary=0, cluster_id=cluster_id,
+                )
                 stats["deduped"] += 1
                 continue
 
@@ -162,6 +167,10 @@ def _ingest_nw_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path,
         )
         opinion_id = cur.lastrowid
         _add_citations(conn, opinion_id, citations, reporter)
+        _record_source(
+            conn, opinion_id, reporter, md_path, refs_dir, text,
+            is_primary=1, cluster_id=cluster_id,
+        )
         stats["ingested"] += 1
 
     conn.commit()
@@ -197,15 +206,34 @@ def _ingest_nd_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path,
         ).fetchone()
 
         if existing:
-            # Already have it from NW/NW2d ingest — update text if the ND
-            # version has paragraph markers and the existing one doesn't
+            # Already have it from NW/NW2d ingest
             opinion_id = existing["opinion_id"]
-            old_text = conn.execute(
-                "SELECT text_content FROM opinions WHERE id = ?", (opinion_id,)
-            ).fetchone()["text_content"]
+            op_row = conn.execute(
+                "SELECT text_content, date_filed, source_reporter FROM opinions WHERE id = ?",
+                (opinion_id,),
+            ).fetchone()
+
+            # Record the ND markdown as a source. Mark it primary for 1997+
+            # (ndcourts.gov is authoritative for that era).
+            nd_is_primary = 1 if op_row["date_filed"] >= "1997-01-01" else 0
+            inserted = _record_source(
+                conn, opinion_id, reporter, md_path, refs_dir, text,
+                is_primary=nd_is_primary,
+            )
+            if inserted and nd_is_primary and op_row["source_reporter"] != "ND":
+                # Flip existing primary flag off, promote the opinions row
+                conn.execute(
+                    "UPDATE opinion_sources SET is_primary = 0 "
+                    "WHERE opinion_id = ? AND source_reporter != 'ND'",
+                    (opinion_id,),
+                )
+                conn.execute(
+                    "UPDATE opinions SET source_reporter = 'ND', source_path = ? WHERE id = ?",
+                    (str(md_path.relative_to(refs_dir)), opinion_id),
+                )
 
             # ND opinions have [¶N] markers — prefer those
-            if "[¶" in text and "[¶" not in old_text:
+            if "[¶" in text and "[¶" not in op_row["text_content"]:
                 conn.execute(
                     "UPDATE opinions SET text_content = ?, source_path = ? WHERE id = ?",
                     (text, str(md_path.relative_to(refs_dir)), opinion_id),
@@ -243,6 +271,9 @@ def _ingest_nd_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path,
         )
         opinion_id = cur.lastrowid
         _add_citations(conn, opinion_id, [neutral_cite], reporter)
+        _record_source(
+            conn, opinion_id, reporter, md_path, refs_dir, text, is_primary=1,
+        )
         stats["ingested"] += 1
 
     conn.commit()
@@ -301,6 +332,42 @@ def _add_citations(
                 "INSERT INTO citations (opinion_id, citation, reporter, is_primary) VALUES (?, ?, ?, ?)",
                 (opinion_id, cite, reporter, is_primary),
             )
+
+
+def _record_source(
+    conn,
+    opinion_id: int,
+    reporter: str,
+    md_path: Path,
+    refs_dir: Path,
+    text: str,
+    is_primary: int,
+    cluster_id: int | None = None,
+) -> bool:
+    """Insert an opinion_sources row if one doesn't already exist for this
+    (opinion_id, source_reporter). Returns True if a row was inserted."""
+    existing = conn.execute(
+        "SELECT id FROM opinion_sources WHERE opinion_id = ? AND source_reporter = ?",
+        (opinion_id, reporter),
+    ).fetchone()
+    if existing:
+        return False
+    conn.execute(
+        """INSERT INTO opinion_sources
+           (opinion_id, source_reporter, source_path, cluster_id, text_length,
+            is_primary, added_at)
+           VALUES (?, ?, ?, ?, ?, ?,
+            strftime('%Y-%m-%dT%H:%M:%S', 'now'))""",
+        (
+            opinion_id,
+            reporter,
+            str(md_path.relative_to(refs_dir)),
+            cluster_id,
+            len(text),
+            is_primary,
+        ),
+    )
+    return True
 
 
 def main():

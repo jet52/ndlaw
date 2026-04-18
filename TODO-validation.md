@@ -42,10 +42,12 @@ The issue isn't missed duplicates — name+date matching actually catches 2020s 
 
 This matters because: (a) we can't text-diff between sources if we never recorded the second source, (b) ndcourts.gov is the authoritative text for 1997+ but NW2d is currently "primary" for 616 of the 2020s opinions, and (c) the same bug almost certainly affects 2000s and 2010s merges as well.
 
-- [ ] Write a `backfill_sources` pass: for every opinion with parallel citations, check the filesystem for a matching markdown/json at each expected path and insert a row in `opinion_sources` if missing. For neutral cites (`YYYY ND N`), look under `~/refs/opin/ND/YYYY/YYYYND{N}.md`. For NW2d, look under `~/refs/opin/NW2d/{vol}/{page}.md`. For archive, reuse `scrape_archive` matching.
-- [ ] After backfill, for 1997+ opinions where ndcourts.gov source exists, set it as `is_primary=1` in `opinion_sources` and optionally update the opinions row's `source_reporter` to `ND`. Keep NW2d as secondary. ndcourts.gov is authoritative per project policy.
-- [ ] Fix the root cause in the merge logic (in `ingest.py` / `merge_nd_metadata.py`) so future ingests record all available sources, not just the first one hit.
-- [ ] Resolve the 2 known cross-source leaks: Holter v. City of Mandan (IDs 17670/19516) and Swanson v. Larson (IDs 17913/19616).
+- [x] Write `audit_sources` to measure the gap (2026-04-18).
+- [x] Write `backfill_sources` pass: for every opinion with parallel citations, check filesystem for expected markdown/HTML and insert missing `opinion_sources` rows. 5,548 rows linked on 2026-04-18 (batch `backfill-sources-insert`).
+- [x] Promote ndcourts.gov to primary for 1997+ opinions where the ND source now exists. 5,260 opinions flipped on 2026-04-18 (batch `backfill-sources-promote`).
+- [ ] Fix the root cause in `ingest.py` `_ingest_nd_opinions` (and any parallel path in `merge_nd_metadata.py` / `ingest_westlaw.py`) so future ingests record every available source in `opinion_sources`, not just the first one encountered. Without this, the next weekly scrape reopens the gap for any newly-arriving opinions.
+- [ ] Align `opinions.source_path` and `text_content` with the newly-promoted primary. After the promote pass, 5,260 opinions have `source_reporter='ND'` but `source_path` still pointing at `NW2d/...md`; text_content for 29 of those 616 2020s opinions also lacks the `[¶N]` markers that ndcourts.gov provides. Audit first (check whether any callers treat `source_path` as authoritative — if not, just update it for consistency; otherwise plan a text migration).
+- [ ] Resolve the 2 known cross-source leaks that name+date dedup missed: Holter v. City of Mandan (IDs 17670/19516) and Swanson v. Larson (IDs 17913/19616).
 
 ## 5 · New-opinions pipeline — keep the DB current
 
