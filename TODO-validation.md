@@ -62,13 +62,21 @@ Existing state: `/Users/jerod/code/scraper` has a weekly launchd job (`com.jerod
 - [ ] Work through the 713 unreviewed citation-overlap dup candidates via the Dup Queue UI. Post-tightening (citation + text similarity), these are real candidates rather than collisions.
 - [ ] Keep the name+date+text strategy running on new ingests; it stays at 0 unreviewed currently.
 
-## 7 · Quality and metadata cleanup — long tail
+## 7 · Missing source files — small gaps
+
+Cases where the opinion record claims a source but the underlying file is absent. Discovered by `audit_sources`.
+
+- [ ] Recover `~/refs/opin/ND/1997/1997ND5.md` (State v. Torres, 1997-01-16, opinion id 20383). Not on disk; adjacent files 1997ND50–59 exist. Re-scrape from ndcourts.gov or restore from `~/refs/nd/opin/` JSON.
+- [ ] Recover `~/refs/opin/ND/1998/1998ND22.md` (State v. Schmidt, 1998-01-22, opinion id 20384). Same pattern — adjacent 1998ND220–228 exist but not the single-digit file.
+- [ ] Investigate whether the missing-file pattern is systemic to low-numbered ND opinions (ND5, ND22 ⇒ possibly naming collision with ND50/ND220 during download). Audit for other gaps via `audit_sources` once the primary backfill is done.
+
+## 8 · Quality and metadata cleanup — long tail
 
 - [ ] 17 opinions with `overall_score < 0.5`. Review in the low-quality queue; most will be OCR-garbled early-1900s opinions that Westlaw vols 45–79 will fix.
 - [ ] 90 opinions with no author and not per_curiam. Run `python -m ndcourts_mcp.review` and `auto_author` to recover what's recoverable.
 - [ ] Rebuild pre-1997 judges field (panel membership) from `justices.py` service dates plus disqualification lines in opinion text. Currently unusable from CourtListener metadata.
 
-## 8 · Definition of "fully validated"
+## 9 · Definition of "fully validated"
 
 An opinion is considered validated when:
 - It has at least two independent source texts linked in `opinion_sources` (OR it sits in the 1953–1996 single-source era and has been either auto-verified against Westlaw Quick Check or manually spot-checked), AND
