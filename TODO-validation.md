@@ -9,8 +9,8 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 | 1890–1920 | 3,268 | CourtListener NW (OCR) | Westlaw vols 1–44 applied | ✓ Complete |
 | 1920–1953 | ~3,286 | CourtListener NW/NW2d (OCR) | Westlaw vols 45–79 pending | ⏳ 35 vols to go |
 | 1953–1996 | ~8,476 | CourtListener NW2d (OCR) | None — N.D. Reports series ended | ⚠ Targeted only |
-| 1997–2019 | 5,978 | ndcourts.gov | archive.ndcourts.gov: 5,312 (89%) | ⚠ 666 gap, plus source-attachment bug |
-| 2020–present | 1,541 | ndcourts.gov + NW2d | Both exist but not linked in `opinion_sources` | ⚠ Source-attachment bug |
+| 1997–2019 | 5,978 | ndcourts.gov | archive.ndcourts.gov: 5,312 (89%) | ⏳ 666 archive-gap remaining (source-attachment fixed 2026-04-18) |
+| 2020–present | 1,542 | ndcourts.gov | NW2d linked where available | ✓ Source-attachment fixed 2026-04-18 |
 
 Totals below are "outstanding units of review work," not opinions.
 
@@ -45,7 +45,7 @@ This matters because: (a) we can't text-diff between sources if we never recorde
 - [x] Write `audit_sources` to measure the gap (2026-04-18).
 - [x] Write `backfill_sources` pass: for every opinion with parallel citations, check filesystem for expected markdown/HTML and insert missing `opinion_sources` rows. 5,548 rows linked on 2026-04-18 (batch `backfill-sources-insert`).
 - [x] Promote ndcourts.gov to primary for 1997+ opinions where the ND source now exists. 5,260 opinions flipped on 2026-04-18 (batch `backfill-sources-promote`).
-- [ ] Fix the root cause in `ingest.py` `_ingest_nd_opinions` (and any parallel path in `merge_nd_metadata.py` / `ingest_westlaw.py`) so future ingests record every available source in `opinion_sources`, not just the first one encountered. Without this, the next weekly scrape reopens the gap for any newly-arriving opinions.
+- [x] Fix the root cause in `ingest.py` so future ingests record every available source in `opinion_sources`, not just the first one encountered (2026-04-18, commit `4e16481`). Added `_record_source` helper called from all four ingest paths (NW/NW2d fresh + dedup, ND fresh + dedup; ND dedup also promotes to primary for 1997+). Verified idempotent by re-running ingest against the backfilled DB — no duplicate rows, no re-flipped primaries. Spot-checked `merge_nd_metadata.py` (doesn't touch `opinion_sources` — safe) and `ingest_westlaw.py` (already inserts correctly — line 424).
 - [x] Align `opinions.source_path` and `opinion_sources.is_primary` with `opinions.source_reporter` (2026-04-18). `align_primary_source --apply` rewrote 5,281 stale source_path values and flipped 34 primary flags on westlaw-sourced opinions where `merge_westlaw_text` had updated source_reporter without touching opinion_sources. Verified integrity: every opinion has exactly one primary source row. Root cause also fixed in `merge_westlaw_text.py` so future runs won't reopen the gap.
 - [ ] Text_content alignment: 85 opinions are ND-primary but have no `[¶N]` markers. Inspection showed these are short disciplinary orders where neither the NW2d nor the ND version has paragraph markers, so replacement would be no-op content. No action needed unless a future source (e.g., Westlaw Quick Check) provides a cleaner text for specific ones — capture case-by-case.
 - [ ] Resolve the 2 known cross-source leaks that name+date dedup missed: Holter v. City of Mandan (IDs 17670/19516) and Swanson v. Larson (IDs 17913/19616).
@@ -73,9 +73,9 @@ This matters because: (a) we can't text-diff between sources if we never recorde
 
 Cases where the opinion record claims a source but the underlying file is absent. Discovered by `audit_sources`.
 
-- [ ] Recover `~/refs/opin/ND/1997/1997ND5.md` (State v. Torres, 1997-01-16, opinion id 20383). Not on disk; adjacent files 1997ND50–59 exist. Re-scrape from ndcourts.gov or restore from `~/refs/nd/opin/` JSON.
-- [ ] Recover `~/refs/opin/ND/1998/1998ND22.md` (State v. Schmidt, 1998-01-22, opinion id 20384). Same pattern — adjacent 1998ND220–228 exist but not the single-digit file.
-- [ ] Investigate whether the missing-file pattern is systemic to low-numbered ND opinions (ND5, ND22 ⇒ possibly naming collision with ND50/ND220 during download). Audit for other gaps via `audit_sources` once the primary backfill is done.
+- [ ] Recover `~/refs/nd/opin/markdown/1997/1997ND5.md` (State v. Torres, 1997-01-16, opinion id 20383). Not on disk; adjacent files 1997ND50–59 exist. Re-scrape from ndcourts.gov or restore from `~/refs/nd/opin/1997_opinions.json`.
+- [ ] Recover `~/refs/nd/opin/markdown/1998/1998ND22.md` (State v. Schmidt, 1998-01-22, opinion id 20384). Same pattern — adjacent 1998ND220–228 exist but not the single-digit file.
+- [ ] Investigate whether the missing-file pattern is systemic to low-numbered ND opinions (ND5, ND22 ⇒ possibly naming collision with ND50/ND220 during download). Re-run `audit_sources` periodically to catch new gaps.
 
 ## 8 · Quality and metadata cleanup — long tail
 
