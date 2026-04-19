@@ -1163,7 +1163,7 @@ function renderOpinion(op) {
       <ul class="citing-list">
         ${op.sources.map(s => {
           const isCurrent = s.source_reporter === current && s.is_primary;
-          const shortPath = s.source_path.replace(/.*refs\/opin\//, '');
+          const shortPath = s.source_path.replace(/.*refs\/nd\/opin\//, '');
           return `<li>
             <span style="color:${isCurrent ? 'var(--blue)' : 'var(--text-muted)'};font-weight:${isCurrent ? '600' : '400'};flex-shrink:0">
               ${escHtml(s.source_reporter)}${isCurrent ? ' (current)' : ''}

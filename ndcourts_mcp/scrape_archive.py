@@ -1,7 +1,7 @@
 """Scrape opinions from archive.ndcourts.gov (1997–2019).
 
 Fetches the citation index for each year, downloads opinion HTML pages,
-extracts metadata and text, archives HTML to ~/refs/opin/archive/,
+extracts metadata and text, archives HTML to ~/refs/nd/opin/archive/,
 and optionally ingests into the database as source_reporter='archive'.
 
 Usage:
@@ -22,7 +22,7 @@ import httpx
 from .db import DEFAULT_DB_PATH, create_schema, get_connection, log_provenance
 
 BASE_URL = "https://archive.ndcourts.gov"
-ARCHIVE_DIR = Path.home() / "refs" / "opin" / "archive"
+ARCHIVE_DIR = Path.home() / "refs" / "nd" / "opin" / "archive"
 YEARS = list(range(1997, 2020))
 
 # Rate limiting
@@ -227,7 +227,7 @@ def scrape_year(
         parsed["docket"] = docket
         parsed["case_name_index"] = entry["case_name"]
         parsed["year"] = year
-        parsed["source_path"] = str(htm_path.relative_to(Path.home() / "refs" / "opin"))
+        parsed["source_path"] = str(htm_path.relative_to(Path.home() / "refs" / "nd" / "opin"))
         opinions.append(parsed)
 
         if (i + 1) % 50 == 0:

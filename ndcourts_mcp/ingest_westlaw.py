@@ -516,17 +516,17 @@ def process_batch(
         progress_conn.close()
         print(f"  Recorded progress for vol {volume}")
 
-        # Archive .doc files to ~/refs/opin/N.D./{volume}/
+        # Archive .doc files to ~/refs/nd/opin/N.D./{volume}/
         _archive_westlaw_docs(batch_dir, volume)
 
     return stats
 
 
-REFS_BASE = Path.home() / "refs" / "opin"
+REFS_BASE = Path.home() / "refs" / "nd" / "opin"
 
 
 def _archive_single_doc(doc_path: Path, parsed: dict, volume: int | None) -> Path:
-    """Archive a single .doc file to ~/refs/opin/{reporter}/{vol}/{page}-{Name}.doc.
+    """Archive a single .doc file to ~/refs/nd/opin/{reporter}/{vol}/{page}-{Name}.doc.
 
     Determines the reporter directory (N.D., NW2d, NW) and volume/page from
     the opinion's citations. Volume downloads are handled by the batch
@@ -578,7 +578,7 @@ def _archive_single_doc(doc_path: Path, parsed: dict, volume: int | None) -> Pat
 
 
 def _archive_westlaw_docs(batch_dir: Path, volume: int) -> None:
-    """Copy .doc files to ~/refs/opin/N.D./{volume}/ with standardized names.
+    """Copy .doc files to ~/refs/nd/opin/N.D./{volume}/ with standardized names.
 
     Renames from Westlaw format "NNN - Case Name.doc" to "{page:04d}-{Case-Name}.doc"
     using the N.D. page number extracted from the opinion text.

@@ -989,7 +989,7 @@ def diff_opinions(opinion_id: int, other_id: int):
 
 # ── Source text comparison ────────────────────────────────────────────
 
-REFS_BASE = Path.home() / "refs" / "opin"
+REFS_BASE = Path.home() / "refs" / "nd" / "opin"
 
 
 def _load_source_text(source: dict) -> str | None:
@@ -997,7 +997,7 @@ def _load_source_text(source: dict) -> str | None:
     reporter = source["source_reporter"]
     source_path = source["source_path"]
 
-    # Resolve path — may be relative to ~/refs/opin/ or absolute
+    # Resolve path — may be relative to ~/refs/nd/opin/ or absolute
     if source_path.startswith("/"):
         path = Path(source_path)
     else:

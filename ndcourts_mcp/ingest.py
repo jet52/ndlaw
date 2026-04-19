@@ -1,8 +1,8 @@
-"""Ingest opinions from ~/refs/opin/ into SQLite.
+"""Ingest opinions from ~/refs/nd/opin/ into SQLite.
 
 Processes NW and NW2d opinions first (they have rich JSON metadata from
-CourtListener), then ND neutral-cite opinions, deduplicating against
-already-ingested records by matching parallel citations.
+CourtListener), then ND neutral-cite opinions (under markdown/), deduplicating
+against already-ingested records by matching parallel citations.
 """
 
 import json
@@ -12,11 +12,13 @@ from pathlib import Path
 
 from .db import DEFAULT_DB_PATH, create_schema, get_connection
 
-REFS_DIR = Path.home() / "refs" / "opin"
+REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 
 # Reporters to ingest, in order. NW/NW2d first because they have JSON metadata.
-# ND neutral-cite opinions are then matched against existing records.
+# ND neutral-cite opinions (under markdown/) are then matched against existing records.
+# Map logical reporter name → actual subdirectory name under REFS_DIR.
 REPORTERS = ["NW", "NW2d", "ND"]
+REPORTER_DIRS = {"NW": "NW", "NW2d": "NW2d", "ND": "markdown"}
 
 
 def _parse_json_metadata(json_path: Path) -> dict | None:
@@ -398,7 +400,7 @@ def main():
 
     print(f"Ingesting from {refs_dir} into {args.db}")
     for reporter in REPORTERS:
-        reporter_dir = refs_dir / reporter
+        reporter_dir = refs_dir / REPORTER_DIRS[reporter]
         ingest_reporter_opinions(conn, reporter, reporter_dir, refs_dir, stats)
         print(
             f"    Running totals: {stats['ingested']} ingested, "

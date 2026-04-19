@@ -24,7 +24,7 @@ from pathlib import Path
 
 from .db import DEFAULT_DB_PATH, get_connection
 
-REFS_DIR = Path.home() / "refs" / "opin"
+REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 DEFAULT_BATCH = "backfill-sources"
 
 
@@ -39,7 +39,7 @@ def _expected_paths(
             m = re.match(r"(\d{4})\s+ND\s+(\d+)", citation)
             if m:
                 year, num = m.group(1), m.group(2)
-                paths["ND"] = REFS_DIR / "ND" / year / f"{year}ND{num}.md"
+                paths["ND"] = REFS_DIR / "markdown" / year / f"{year}ND{num}.md"
         elif reporter in ("NW", "NW2d"):
             m = re.match(r"(\d+)\s+N\.?\s*W\.?(?:\s*2d)?\s+(\d+)", citation)
             if m:

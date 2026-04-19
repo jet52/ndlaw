@@ -101,7 +101,7 @@ NDCOURTS_READONLY=1 python -m uvicorn ndcourts_mcp.webapp:app --port 8765
 
 | Command | Purpose |
 |---------|---------|
-| `python -m ndcourts_mcp.ingest [--rebuild]` | Ingest opinions from ~/refs/opin/ |
+| `python -m ndcourts_mcp.ingest [--rebuild]` | Ingest opinions from ~/refs/nd/opin/ |
 | `python -m ndcourts_mcp.merge_nd_metadata` | Merge ndcourts.gov JSON metadata |
 | `python -m ndcourts_mcp.cleanup apply` | Apply pending corrections |
 | `python -m ndcourts_mcp.cleanup revert <batch>` | Revert a correction batch |

@@ -6,18 +6,19 @@ How to recreate `opinions.db` from source data. All commands assume you're in th
 
 - Python 3.12+
 - Virtual environment: `python3 -m venv .venv && source .venv/bin/activate && pip install -e .`
-- Source data in `~/refs/opin/` (see Source Data below)
+- Source data in `~/refs/nd/opin/` (see Source Data below)
 
 ## Source Data
 
 | Directory | Source | Coverage | Format |
 |-----------|--------|----------|--------|
-| `~/refs/opin/NW/` | CourtListener | ~6,000 opinions, 1890–1997 | .md + .json metadata |
-| `~/refs/opin/NW2d/` | CourtListener | ~12,200 opinions, 1941–present | .md + .json metadata |
-| `~/refs/opin/ND/` | ndcourts.gov scrape | ~7,150 opinions, 1997–present | .md with ¶ markers |
-| `~/refs/opin/N.D./{vol}/` | Westlaw Quick Check | Vols 1–10 (~800 opinions) | .doc files |
-| `~/refs/opin/archive/` | archive.ndcourts.gov | ~5,300 opinions, 1997–2019 | .htm files |
-| `~/refs/nd/opin/` | ndcourts.gov metadata | ~7,150 opinions, 1997–present | JSON (case_type, voting_record, etc.) |
+| `~/refs/nd/opin/NW/` | CourtListener | ~6,000 opinions, 1890–1997 | .md + .json metadata |
+| `~/refs/nd/opin/NW2d/` | CourtListener | ~12,200 opinions, 1941–present | .md + .json metadata |
+| `~/refs/nd/opin/markdown/` | ndcourts.gov scrape | ~7,150 opinions, 1997–present | .md with ¶ markers |
+| `~/refs/nd/opin/N.D./{vol}/` | Westlaw Quick Check | Vols 1–44 (~3,300 opinions) | .doc files |
+| `~/refs/nd/opin/archive/` | archive.ndcourts.gov | ~5,300 opinions, 1997–2019 | .htm files |
+| `~/refs/nd/opin/pdfs/<year>/` | scraper | raw PDFs, weekly from ndcourts.gov | .pdf (not text-indexed) |
+| `~/refs/nd/opin/<year>_opinions.json` | scraper | ~7,150 opinions, 1997–present | JSON (case_type, voting_record, etc.) |
 
 ## Build Steps (in order)
 
