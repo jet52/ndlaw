@@ -1,13 +1,16 @@
 # TODO — Path to a Fully Validated Corpus
 
-Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-04-18.
+Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-04-24.
+
+**End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 
 ## Status snapshot
 
 | Era | Opinions | Primary source | Cross-check coverage | Status |
 |-----|----------|----------------|----------------------|--------|
-| 1890–1920 | 3,268 | CourtListener NW (OCR) | Westlaw vols 1–44 applied | ✓ Complete |
-| 1920–1953 | ~3,286 | CourtListener NW/NW2d (OCR) | Westlaw vols 45–79 pending | ⏳ 35 vols to go |
+| 1890–1924 | ~3,748 | CourtListener NW (OCR) | Westlaw vols 1–52 applied | ✓ Complete (metadata); text-merge triage pending for 455 rows |
+| 1924–1932 | 1,119 | CourtListener NW (OCR) | Westlaw vols 53–62 applied | ✓ Complete (metadata) |
+| 1932–1953 | ~1,687 | CourtListener NW/NW2d (OCR) | Westlaw vols 63–79 pending | ⏳ 17 vols to go |
 | 1953–1996 | ~8,476 | CourtListener NW2d (OCR) | None — N.D. Reports series ended | ⚠ Targeted only |
 | 1997–2019 | 5,978 | ndcourts.gov | archive.ndcourts.gov: 5,312 (89%) | ⏳ 666 archive-gap remaining (source-attachment fixed 2026-04-18) |
 | 2020–present | 1,542 | ndcourts.gov | NW2d linked where available | ✓ Source-attachment fixed 2026-04-18 |
@@ -16,10 +19,12 @@ Totals below are "outstanding units of review work," not opinions.
 
 ## 1 · Westlaw cross-check — finish the N.D. Reports series
 
-- [ ] Download and process Westlaw vols 45–79 (35 volumes, ~3,286 opinions, 1920–1953)
-  - Workflow already proven on vols 1–44. Two-volume Westlaw searches work well; daily Quick Check limits apply.
-  - Each volume yields 5–40 metadata corrections (author swaps, date fixes).
+- [ ] Download and process Westlaw vols 63–79 (17 volumes, ~1,687 opinions, 1932–1953). Vols 1–62 complete as of 2026-04-24.
+  - Workflow already proven on vols 1–62. Two-volume Westlaw searches work well; daily Quick Check limits apply.
+  - Each volume yields 5–80+ metadata corrections (author swaps, date fixes). Later vols trend higher.
   - Progress tracked in `westlaw_progress` table; resume via `ingest_westlaw status`.
+- [ ] **Triage 455 `merge_westlaw_text` errors (as of 2026-04-21 run).** Opinions where a Westlaw source exists but the text-similarity guard blocks a safe text replacement. Almost certainly a mix of (a) real mismatches where Westlaw has the wrong case (don't replace), (b) legitimate cases where OCR noise pushed similarity below threshold (should replace — loosen threshold or manual confirm), and (c) cases where the Westlaw .doc pairs to the wrong opinion row in the DB. Build a report: for each of the 455, show the Westlaw citation, the DB opinion's citation, the similarity score, and a side-by-side text snippet. Sort by similarity descending so the easy wins surface first. Do not auto-apply — this is a human-review pass for authoritative-text work. Tool: `merge_westlaw_text --errors-report` (to add).
+- [ ] **Case-name sweep across vols 1–62.** Every Westlaw ingest so far has run with `--case-names skip`, deferring the case-name deltas. Vols 49–52 had 42 skipped diffs; vols 53–54 added 39 (15 + 24); vols 55–57 added 56 (19 + 21 + 16); vols 58–62 added 82 more (23 + 10 + 20 + 14 + 15); across vols 1–62 the backlog is likely several hundred. Westlaw's case names are typically cleaner than NW/NW2d's ALL CAPS headnote-style names, but not always right (headnote drift, "et al." handling, abbreviation style). Build a review tool that presents each diff with citation, DB value, Westlaw value, and both text snippets so the human can pick or edit. Output as a named changelog batch per volume (`westlaw-nd-volNN-casenames`). Revisit cadence: batch through it after every 10 volumes or so rather than per-volume — easier to stay in context.
 
 ## 2 · 1953–1996 single-source gap — targeted Westlaw validation
 

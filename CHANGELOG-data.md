@@ -380,6 +380,75 @@ Volumes 32–44 N.D. Reports (867 opinions, 1915–1920). Applied 2026-04-17 and
 
 All files matched DB records. Author-correction counts climb sharply from vol 37 onward as the Birdzell/Bronson/Christianson era of OCR misreads becomes denser.
 
+## Batches: westlaw-nd-vol45 through westlaw-nd-vol48 (214 rows)
+
+Volumes 45–48 N.D. Reports (390 opinions, 1919–1922). Applied 2026-04-19. Source files archived to `~/refs/nd/opin/N.D./{45..48}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 45 | 73 | 35 | 2 | 37 |
+| 46 | 76 | 34 | 2 | 36 |
+| 47 | 60 | 28 | 4 | 32 |
+| 48 | 181 | 95 | 14 | 109 |
+
+One unmatched file in vol 47 (47 N.D. 375, Merchants' State Bank v. Sawyer Farmers' Co-op Ass'n) — citation not present in DB; follow-up to investigate. Vol 48 is unusually large (181 opinions) and dense with corrections as the Birdzell/Bronson/Christianson OCR-misread era continues.
+
+## Batches: westlaw-nd-vol49 through westlaw-nd-vol52 (186 rows)
+
+Volumes 49–52 N.D. Reports (480 opinions, 1921–1924). Applied 2026-04-21. Source files archived to `~/refs/nd/opin/N.D./{49..52}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 49 | 155 | 76 | 4 | 80 |
+| 50 | 109 | 55 | 4 | 59 |
+| 51 | 104 | 13 | 4 | 17 |
+| 52 | 112 | 27 | 3 | 30 |
+
+All 480 files matched existing opinions (no unmatched citations). Case-name diffs skipped per prior convention; 42 case-name deltas visible in the run log are candidates for a follow-up case-name pass if/when desired.
+
+## Batches: westlaw-nd-vol53 and westlaw-nd-vol54 (40 rows)
+
+Volumes 53–54 N.D. Reports (248 opinions, 1925–1926). Applied 2026-04-22. Source files archived to `~/refs/nd/opin/N.D./{53,54}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 53 | 118 | 28 | 3 | 31 |
+| 54 | 130 | 7 | 2 | 9 |
+
+All 248 files matched existing opinions (no unmatched citations). 39 case-name diffs skipped (15 in vol 53, 24 in vol 54) — added to the deferred case-name review backlog.
+
+## Batches: westlaw-nd-vol55 through westlaw-nd-vol57 (64 rows)
+
+Volumes 55–57 N.D. Reports (370 opinions, 1926–1928). Applied 2026-04-23. Source files archived to `~/refs/nd/opin/N.D./{55,56,57}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 55 | 137 | 20 | 3 | 23 |
+| 56 | 121 | 22 | 0 | 22 |
+| 57 | 112 | 18 | 1 | 19 |
+
+All 370 files matched existing opinions (no unmatched citations). 56 case-name diffs skipped (19 in vol 55, 21 in vol 56, 16 in vol 57) — added to the deferred case-name review backlog.
+
+## Batches: westlaw-nd-vol58 through westlaw-nd-vol62 (148 rows)
+
+Volumes 58–62 N.D. Reports (501 opinions, 1928–1932). Applied 2026-04-24. Source files archived to `~/refs/nd/opin/N.D./{58..62}/`. Run with `--case-names skip`.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 58 | 120 | 34 | 2 | 36 |
+| 59 | 82  | 38 | 1 | 39 |
+| 60 | 106 | 18 | 3 | 21 |
+| 61 | 99  | 25 | 1 | 26 |
+| 62 | 94  | 25 | 1 | 26 |
+
+All 501 files matched existing opinions (no unmatched citations). 82 case-name diffs skipped (23+10+20+14+15 across vols 58–62) — added to the deferred case-name review backlog.
+
+## Batch: westlaw-text-merge (incremental, 5,730 rows added 2026-04-21)
+
+`python -m ndcourts_mcp.merge_westlaw_text --apply` run after the vol 49–52 ingest to replace text_content with cleaner Westlaw copies where the pre-1997 Westlaw source beats the OCR NW/NW2d text. Run twice in error (the second was triggered accidentally when a shell pipe failed); of the 5,730 changelog rows, 2,866 are no-op duplicates (old_value = new_value, text_content field only) and 371 reflect minor Westlaw-reparse differences. DB state is correct — the stored text_content is the Westlaw version. Revert of the batch still unwinds correctly because entries replay in reverse timestamp order.
+
+2,865 distinct opinions received replacement text. 455 errors reported by the tool (opinions where the Westlaw source exists but the text-similarity check prevented a safe replace) — worth triaging in a follow-up.
+
 ## Batches: backfill-sources-insert (5,548 rows) + backfill-sources-promote (5,260 rows)
 
 Applied 2026-04-18. Script: `python -m ndcourts_mcp.backfill_sources --apply [--promote]`.
