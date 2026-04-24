@@ -138,6 +138,9 @@ Pre-1997 judges data from CourtListener is largely unusable. Could infer panels 
 ### Court Rules (Future)
 Add ND court rules as a separate data source — either a new DB table or a separate project. Rules are the court's other key output alongside opinions.
 
+### Distribution & Update System (Future)
+Ship the ~800 MB `opinions.db` via GitHub Releases with an annual base + monthly SQL patches. Build after data-validation work stabilizes. See [TODO-distribution.md](TODO-distribution.md).
+
 ## Reference Files
 
 | File | Purpose |
@@ -145,4 +148,6 @@ Add ND court rules as a separate data source — either a new DB table or a sepa
 | `BUILD.md` | Step-by-step database rebuild instructions |
 | `CHANGELOG-data.md` | Log of every correction batch |
 | `MISSING_OPINIONS.md` | Audit report of citation gaps and data anomalies |
+| `TODO-validation.md` | Roadmap for reaching full two-source corpus validation |
+| `TODO-distribution.md` | Roadmap for distributing the DB with monthly updates |
 | `ndcourts_mcp/justices.py` | All 52 elected justices (1889–present) with service dates |
