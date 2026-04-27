@@ -1,6 +1,6 @@
 # TODO — Path to a Fully Validated Corpus
 
-Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-04-24.
+Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-04-27.
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 
@@ -9,22 +9,21 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 | Era | Opinions | Primary source | Cross-check coverage | Status |
 |-----|----------|----------------|----------------------|--------|
 | 1890–1924 | ~3,748 | CourtListener NW (OCR) | Westlaw vols 1–52 applied | ✓ Complete (metadata); text-merge triage pending for 455 rows |
-| 1924–1932 | 1,119 | CourtListener NW (OCR) | Westlaw vols 53–62 applied | ✓ Complete (metadata) |
-| 1932–1953 | ~1,687 | CourtListener NW/NW2d (OCR) | Westlaw vols 63–79 pending | ⏳ 17 vols to go |
+| 1924–1938 | 1,618 | CourtListener NW (OCR) | Westlaw vols 53–68 applied | ✓ Complete (metadata) |
+| 1938–1946 | 453 | CourtListener NW/NW2d (OCR) | Westlaw vols 69–74 applied | ✓ Complete (metadata) |
+| 1946–1953 | 343 | CourtListener NW2d (OCR) | Westlaw vols 75–79 applied | ✓ Complete (metadata) |
 | 1953–1996 | ~8,476 | CourtListener NW2d (OCR) | None — N.D. Reports series ended | ⚠ Targeted only |
 | 1997–2019 | 5,978 | ndcourts.gov | archive.ndcourts.gov: 5,312 (89%) | ⏳ 666 archive-gap remaining (source-attachment fixed 2026-04-18) |
 | 2020–present | 1,542 | ndcourts.gov | NW2d linked where available | ✓ Source-attachment fixed 2026-04-18 |
 
 Totals below are "outstanding units of review work," not opinions.
 
-## 1 · Westlaw cross-check — finish the N.D. Reports series
+## 1 · Westlaw cross-check — bound N.D. Reports series complete
 
-- [ ] Download and process Westlaw vols 63–79 (17 volumes, ~1,687 opinions, 1932–1953). Vols 1–62 complete as of 2026-04-24.
-  - Workflow already proven on vols 1–62. Two-volume Westlaw searches work well; daily Quick Check limits apply.
-  - Each volume yields 5–80+ metadata corrections (author swaps, date fixes). Later vols trend higher.
-  - Progress tracked in `westlaw_progress` table; resume via `ingest_westlaw status`.
-- [ ] **Triage 455 `merge_westlaw_text` errors (as of 2026-04-21 run).** Opinions where a Westlaw source exists but the text-similarity guard blocks a safe text replacement. Almost certainly a mix of (a) real mismatches where Westlaw has the wrong case (don't replace), (b) legitimate cases where OCR noise pushed similarity below threshold (should replace — loosen threshold or manual confirm), and (c) cases where the Westlaw .doc pairs to the wrong opinion row in the DB. Build a report: for each of the 455, show the Westlaw citation, the DB opinion's citation, the similarity score, and a side-by-side text snippet. Sort by similarity descending so the easy wins surface first. Do not auto-apply — this is a human-review pass for authoritative-text work. Tool: `merge_westlaw_text --errors-report` (to add).
-- [ ] **Case-name sweep across vols 1–62.** Every Westlaw ingest so far has run with `--case-names skip`, deferring the case-name deltas. Vols 49–52 had 42 skipped diffs; vols 53–54 added 39 (15 + 24); vols 55–57 added 56 (19 + 21 + 16); vols 58–62 added 82 more (23 + 10 + 20 + 14 + 15); across vols 1–62 the backlog is likely several hundred. Westlaw's case names are typically cleaner than NW/NW2d's ALL CAPS headnote-style names, but not always right (headnote drift, "et al." handling, abbreviation style). Build a review tool that presents each diff with citation, DB value, Westlaw value, and both text snippets so the human can pick or edit. Output as a named changelog batch per volume (`westlaw-nd-volNN-casenames`). Revisit cadence: batch through it after every 10 volumes or so rather than per-volume — easier to stay in context.
+- [x] Download and process Westlaw vols 75–79 (5 volumes, 343 opinions, 1946–1953). Applied 2026-04-27 — 10 date_filed corrections, 0 author corrections, 44 case-name diffs deferred. **All 79 volumes of the bound N.D. Reports series now Quick-Checked against Westlaw (1890–1953).**
+- [x] Re-run `merge_westlaw_text --apply` to incorporate vols 49–79 .doc files (2026-04-27, batch `westlaw-text-merge-2026-04-27`). 2,733 opinions migrated to Westlaw text. Idempotency bug also fixed — query now skips already-merged opinions. **5,698 stale `source_path` rows backfilled** in the same session — long-standing bug where volume-based ingest recorded the staging path instead of the final archive path; root cause fixed in `ingest_westlaw.py`.
+- [ ] **Triage 137 `merge_westlaw_text` residuals (post 2026-04-27 run).** Down from 455 once the stale-path bug was fixed. Composition: 110 opinions where the .doc parser couldn't extract opinion text (SKIP) and 27 where the Westlaw text was too short vs. the existing DB text (REJECT < 30%). Build a report: for each, show the Westlaw citation, the DB opinion's citation, the .doc length and parse output, and a snippet for human review. Sort by something useful (DB quality_score asc?) so the easy wins surface first. Do not auto-apply — this is a human-review pass for authoritative-text work. Tool: `merge_westlaw_text --errors-report` (to add).
+- [ ] **Case-name sweep across vols 1–79.** Every Westlaw ingest ran with `--case-names skip`, deferring the case-name deltas. Vols 49–52 had 42 skipped diffs; vols 53–54 added 39 (15 + 24); vols 55–57 added 56 (19 + 21 + 16); vols 58–62 added 82 more (23 + 10 + 20 + 14 + 15); vols 63–68 added 84 more (12 + 17 + 14 + 16 + 10 + 15); vols 69–74 added 95 more (12 + 14 + 19 + 14 + 20 + 16); vols 75–79 added 44 more (7 + 6 + 13 + 14 + 4); across vols 1–79 the backlog is likely several hundred. Westlaw's case names are typically cleaner than NW/NW2d's ALL CAPS headnote-style names, but not always right (headnote drift, "et al." handling, abbreviation style). Build a review tool that presents each diff with citation, DB value, Westlaw value, and both text snippets so the human can pick or edit. Output as a named changelog batch per volume (`westlaw-nd-volNN-casenames`). Revisit cadence: batch through it after every 10 volumes or so rather than per-volume — easier to stay in context.
 
 ## 2 · 1953–1996 single-source gap — targeted Westlaw validation
 

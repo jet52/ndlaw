@@ -443,11 +443,88 @@ Volumes 58–62 N.D. Reports (501 opinions, 1928–1932). Applied 2026-04-24. So
 
 All 501 files matched existing opinions (no unmatched citations). 82 case-name diffs skipped (23+10+20+14+15 across vols 58–62) — added to the deferred case-name review backlog.
 
+## Batches: westlaw-nd-vol63 through westlaw-nd-vol68 (14 rows)
+
+Volumes 63–68 N.D. Reports (499 opinions, 1932–1938). Applied 2026-04-25. Source files archived to `~/refs/nd/opin/N.D./{63..68}/`. Run with `--case-names skip`. The 64-65 and 66-67 Westlaw zips were combined exports; split locally by scanning each `.doc` for its `\b{vol}\s+N\.D\.\s+\d+` citation.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 63 | 87  | 4 | 0 | 4 |
+| 64 | 94  | 0 | 0 | 0 |
+| 65 | 78  | 0 | 1 | 1 |
+| 66 | 89  | 0 | 3 | 3 |
+| 67 | 65  | 0 | 3 | 3 |
+| 68 | 86  | 0 | 3 | 3 |
+
+All 499 files matched existing opinions (no unmatched citations). Sharp drop in correction rate vs. vols 58–62 (14 fixes here vs. 148 prior) — author metadata in this run was largely clean already. 84 case-name diffs skipped (12+17+14+16+10+15 across vols 63–68) — added to the deferred case-name review backlog.
+
+## Batches: westlaw-nd-vol69 through westlaw-nd-vol74 (9 rows)
+
+Volumes 69–74 N.D. Reports (453 opinions, 1938–1946). Applied 2026-04-26. Source files archived to `~/refs/nd/opin/N.D./{69..74}/`. Run with `--case-names skip`. The 69-70 and 71-72 Westlaw zips were combined exports; split locally by scanning each `.doc` for its `\b{vol}\s+N\.D\.\s+\d+` citation.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 69 | 72 | 0 | 0 | 0 |
+| 70 | 87 | 0 | 1 | 1 |
+| 71 | 73 | 0 | 1 | 1 |
+| 72 | 79 | 0 | 4 | 4 |
+| 73 | 77 | 0 | 3 | 3 |
+| 74 | 65 | 0 | 0 | 0 |
+
+All 453 files matched existing opinions (no unmatched citations). All 9 corrections were date_filed; zero author corrections in this run, continuing the clean-author trend that started at vol 64. 95 case-name diffs skipped (12+14+19+14+20+16 across vols 69–74) — added to the deferred case-name review backlog.
+
+## Batches: westlaw-nd-vol75 through westlaw-nd-vol79 (10 rows) — **bound N.D. Reports series complete**
+
+Volumes 75–79 N.D. Reports (343 opinions, 1946–1953). Applied 2026-04-27. Source files archived to `~/refs/nd/opin/N.D./{75..79}/`. Run with `--case-names skip`. The 75-76, 77-78, and 79-80 Westlaw zips were combined exports; split locally by scanning each `.doc` for its `\b{vol}\s+N\.D\.\s+\d+` citation.
+
+| Volume | Files | Author fixes | Date fixes | Total |
+|--------|-------|--------------|------------|-------|
+| 75 | 64 | 0 | 2 | 2 |
+| 76 | 59 | 0 | 2 | 2 |
+| 77 | 78 | 0 | 1 | 1 |
+| 78 | 73 | 0 | 3 | 3 |
+| 79 | 69 | 0 | 2 | 2 |
+
+All 343 files matched existing opinions (no unmatched citations). All 10 corrections were date_filed; zero author corrections, continuing the clean-author trend from vol 64. 44 case-name diffs skipped (7+6+13+14+4 across vols 75–79) — added to the deferred case-name review backlog.
+
+The 79-80 zip's "80 ND" search hits were all modern neutral-cite false positives (the bound N.D. Reports series ends at vol 79); the splitter routed zero files to vol 80, confirmed by manual inspection of unmatched files. Eight files in the 75-76 zip were also modern neutral-cite hits (post-1953 NW2d-only opinions plus one 1906 case already archived under vol 15) and were correctly excluded.
+
+**Series milestone:** Westlaw cross-check now applied to all 79 volumes of the bound N.D. Reports (1890–1953). Total Westlaw ingest: ~6,750 .doc files, ~440 metadata corrections across vols 1–79. The 1953–1996 NW2d-only era has no further bound-reporter source; targeted Westlaw Quick Check on low-confidence opinions is the next stage (TODO-validation §2).
+
 ## Batch: westlaw-text-merge (incremental, 5,730 rows added 2026-04-21)
 
 `python -m ndcourts_mcp.merge_westlaw_text --apply` run after the vol 49–52 ingest to replace text_content with cleaner Westlaw copies where the pre-1997 Westlaw source beats the OCR NW/NW2d text. Run twice in error (the second was triggered accidentally when a shell pipe failed); of the 5,730 changelog rows, 2,866 are no-op duplicates (old_value = new_value, text_content field only) and 371 reflect minor Westlaw-reparse differences. DB state is correct — the stored text_content is the Westlaw version. Revert of the batch still unwinds correctly because entries replay in reverse timestamp order.
 
 2,865 distinct opinions received replacement text. 455 errors reported by the tool (opinions where the Westlaw source exists but the text-similarity check prevented a safe replace) — worth triaging in a follow-up.
+
+## Batches: backfill-westlaw-source-paths (4,087) + backfill-westlaw-source-paths-tmp (1,611)
+
+Applied 2026-04-27. Script: `python -m ndcourts_mcp.backfill_westlaw_paths --apply [--batch NAME]`.
+
+Repaired stale `opinion_sources.source_path` values for 5,698 westlaw rows. Volume-based ingest had been recording the temporary staging path (`input-data/volN/...` for vols 11–79 + `/tmp/westlaw-volN/...` for vols 53–62 + `/tmp/westlaw-stage/volN/...` for vols 63–68) instead of the final archive path under `~/refs/nd/opin/N.D./N/`. The DB row was set in `_archive_single_doc` *before* the batch archiver `_archive_westlaw_docs` ran, and was never updated.
+
+Discovered when `merge_westlaw_text --dry-run` reported 2,070 "errors" (most prior runs had ~455 — the gap was the new vols 49–79 batches with the same stale-path bug). After the backfill, the dry-run dropped to 110 genuine parse errors + 27 suspicious-length rejects.
+
+Resolution algorithm: for each stale path, extract `vol(\d+)` from the path prefix, build a slug from the `NNN - Case Name.doc` filename, then `glob(f"*-{slug}.doc")` in `~/refs/nd/opin/N.D./{vol}/`. 125 same-slug collisions within a volume disambiguated by matching the `{page:04d}-` prefix to the page from the opinion's `vol N.D. page` citation. All 5,698 resolved cleanly.
+
+**Root cause fixed in `ingest_westlaw.py`** (same date): `_archive_single_doc` now computes and returns the predicted archive path even in volume mode (instead of returning `doc_path`), so future ingests record the correct path on insert. The batch archiver still does the actual file copy after the per-file loop.
+
+## Batch: westlaw-text-merge-2026-04-27 (5,466 rows)
+
+`python -m ndcourts_mcp.merge_westlaw_text --apply --batch westlaw-text-merge-2026-04-27`. Replaced text_content with cleaner Westlaw copies for 2,733 opinions across vols 49–79. Two changelog rows per opinion (`text_content` + `source_reporter`).
+
+Bug fix vs. 2026-04-21 run: query now filters out `o.source_reporter='westlaw'` (already-merged opinions), preventing the no-op-duplicate behavior that produced 2,866 spurious rows last time.
+
+| Source reporter pre-merge | Opinions migrated to westlaw |
+|----|----:|
+| NW   | 2,144 |
+| NW2d | 589 |
+
+Residuals (137 opinions with a westlaw .doc still not migrated):
+- 110 — parser couldn't extract opinion text from the .doc (`SKIP: could not parse opinion text from Westlaw doc`)
+- 27 — Westlaw text suspiciously short vs. existing DB text (`REJECT: < 30%` rule)
+
+These are candidates for a manual triage pass — separate batch, do not auto-apply. After this batch, 5,598 opinions are westlaw-primary (out of 5,735 with a westlaw source linked).
 
 ## Batches: backfill-sources-insert (5,548 rows) + backfill-sources-promote (5,260 rows)
 
