@@ -580,6 +580,96 @@ Post-run integrity: every opinion has exactly one `opinion_sources` row with `is
 
 Root cause of the westlaw drift fixed in `merge_westlaw_text.py` (now updates `source_path` and flips `opinion_sources.is_primary` atomically with the text replacement).
 
+## Batches: westlaw-merge-residuals-2026-04-27-pairings (27 rows) + westlaw-text-merge-2026-04-27-pairings (36 rows)
+
+Applied 2026-04-27. Fixed nine Westlaw .doc pairings that had been attached to the wrong opinion at ingest, and merged the now-correctly-paired text.
+
+Each of nine vol/page locations in the bound N.D. Reports has two short opinions (a lead opinion plus a per curiam follow-on filed the same day) that legitimately share the same `<vol> N.D. <page>` cite. The volume-based ingest paired one .doc with one of the two arbitrarily and orphaned the other. The triage report at `triage/westlaw-merge-residuals-2026-04-27.md` flagged these as "westlaw-text-too-short" because the wrong-paired .doc was a 4-line per curiam follow-on while the DB row was the lead opinion (or vice versa).
+
+Pair fixes (vol/page → wrong-paired opinion / correct opinion):
+
+| Vol/Page | Wrong-paired (deleted) | .doc reattached to | Orphan .doc reattached to |
+|---|---|---|---|
+| 14/557 | 146 State v. Poull | 152 Murphy v. Dist. Ct. | 146 (0557-State-v-Poull.doc) |
+| 24/326 | 1012 Burger v. Sinclair | 1013 Seckerson v. Sinclair | 1012 (0326-Burger.doc) |
+| 17/266 | 382 Ross v. Prante | 383 Skeffington v. Prante | 382 (0266-Ross.doc) |
+| 17/393 | 415 Soliah v. Cormack | 422 Erickson v. Elliott | 415 (0393-Soliah.doc) |
+| 16/106 | 295 Farquhar v. Higham | 296 Harvey v. Davies | 295 (0106-Farquhar.doc) |
+| 51/13 | 2955 Hintz v. Jackson | 2958 Klingenstein | 2955 (0013-Hintz.doc) |
+| 48/577 | 2597 Johnson Const. | 2606 Hanson v. Houska | 2597 (0577-Johnson-Const.doc) |
+| 64/367 | 4482 Thorvaldson-Johnson | 4484 Ott v. Kelley | 4482 (0367-Thorvaldson.doc) |
+| 50/813 | 2935 Farmers Bank v. Jeske | 2946 Hassen v. Salem | 2935 (0813-Farmers.doc) |
+
+Pairing batch: 9 deletions + 18 insertions in `opinion_sources` (27 changelog rows under `field='opinion_sources.westlaw'`). Text-merge batch: all 18 newly-paired rows merged successfully (36 changelog rows: 18 × `text_content` + 18 × `source_reporter`).
+
+Applied via `python -m ndcourts_mcp.fix_westlaw_pairings --apply` followed by `python -m ndcourts_mcp.merge_westlaw_text --apply --batch westlaw-text-merge-2026-04-27-pairings`. Both batches revertible (deletions/insertions are reflected in changelog and could be reversed by hand if needed; the standard `cleanup revert` only handles `opinions`-table fields).
+
+Side issues surfaced and deferred to TODO-validation §1:
+- Opinions 4484/4485 are duplicate Ott v. Kelley rows; the .doc was attached to 4484 only.
+- Opinion 2946 (Hassen v. Salem rehearing) is cited `50 N.D. 825` in the DB but Westlaw's "All Citations" footer says `50 N.D. 813`. Cite conflict left in place pending bound-volume verification.
+
+## Batch: westlaw-text-remerge-2026-04-28-full-bound (62 rows)
+
+Applied 2026-04-28. Re-merged 31 Westlaw-paired opinions with a corrected parser that extracts the full bound publication entry (Syllabus by the Court + Attorneys + Opinion + in-publication rehearing material), instead of the body-only extraction the prior parser produced.
+
+**Why:** verifying whether the prior pairing-batch had stripped any "Syllabus by the Court" content surfaced a corpus-wide finding — CourtListener's source .md files contain *no* "Syllabus by the Court" content for any pre-1953 opinion checked (0 of 18 in this batch; 0% of CL .md files vs ~97% of corresponding Westlaw .docs). CL never preserved the court's own syllabus. The bound N.D. Reports series (1890–1953) routinely included a "Syllabus by the Court" section as the court's official restatement of the holding — see *Sargent County v. State*, 47 N.D. 561 (1921), and ~5,500 other pre-1953 opinions in the corpus.
+
+**Parser changes (`ndcourts_mcp/ingest_westlaw.py`):**
+- New `_extract_full_bound_text(lines, all_cites_idx)` extracts the published bound entry, anchored at the first court-published section (Syllabus by the Court → Syllabus → Synopsis → Attorneys and Law Firms) rather than just the "Opinion" header.
+- Drops `West Headnotes` (unambiguously Westlaw editorial). Preserves `Synopsis` because in older bound publications Westlaw's "Synopsis" section often contains the court's published statement of facts (referenced in opinions as "after stating the facts as above"); modern Synopsis sections are short editorial summaries that are harmless to retain.
+- Preserves `Syllabus by the Court` (court's own text, the historical practice). "Syllabus by Editorial Staff" is a distinct line that does not match my header set, so editorial-staff syllabi are correctly excluded by virtue of falling before the "Synopsis" header where extraction begins.
+- New `full_bound_text` field on `_parse_westlaw_doc` result; `merge_westlaw_text` now prefers it over the legacy `opinion_text` body-only extraction.
+
+**Validator changes (`ndcourts_mcp/merge_westlaw_text.py`):**
+- Renamed `_HEADNOTE_STARTS` → `_EDITORIAL_STARTS`. Only `West Headnotes` is unambiguously editorial leakage worth rejecting at the start of a body. `Syllabus by the Court`, `Syllabus`, `Synopsis`, and `Attorneys and Law Firms` are now valid starting markers since they're intentionally included by the new parser.
+- Added idempotency check: skip rows where the new text equals the current text (no-op).
+- Added `--include-westlaw` flag to re-process rows already at `source_reporter='westlaw'` (use after parser fixes).
+- Added `--ids` flag to limit processing to specific opinion IDs.
+
+**Re-merge results:** 33 IDs processed (the 18 just-paired in the previous batch + 15 Type X residuals from the original 29 in `triage/westlaw-merge-residuals-2026-04-27.md`). 31 successfully replaced with longer/cleaner text; 1 unchanged (Klingenstein 2958 — full_bound text matched current); 1 rejected (Chester 9128 — reclassified as Type Y, handled below).
+
+Notable size changes:
+- Stormon v. Weiss (13627): 397,178 → 204,723 chars. The DB previously contained the opinion text *twice* (two different OCR encodings concatenated by an old ingest bug); the replacement is the deduplicated full bound entry.
+- Sargent County v. State (2502): 203,316 → 204,035 chars. Now correctly captures the syllabus + statement of facts + main opinion + Birdzell's rehearing analysis + Grace's further dissent — the full bound entry. Prior parser was extracting only the post-opinion-header content (~27% of bound entry).
+- 14 cases gained 100–5000 chars by adding the syllabus.
+
+## Batch: westlaw-supplemental-publications-2026-04-28 (37 rows)
+
+Applied 2026-04-28. Inserted 6 new opinion rows for Westlaw .docs that are SEPARATE supplemental publications — concurring opinions, rehearings, per-curiam follow-ons, and memoranda published in the bound reporter at a discontinuous N.W. cite from the main opinion. The volume-based ingest had paired each supplemental .doc with the main DB row (because they share the N.D. starting page) and orphaned the supplemental publication entirely.
+
+**Discovery context:** the user proposed two hypotheses: (a) the bound reporter sometimes published supplementals at discontinuous page ranges, and (b) the "headnotes/syllabus" content I was treating as CL editorial was in fact the court's official syllabus. Both hypotheses confirmed by the data — see audit notes above.
+
+**The 6 supplementals (new opinion IDs 20386–20391):**
+
+| Main OID | Main cite | New OID | Supplemental cite | Nature |
+|---|---|---|---|---|
+| 458 | 118 N.W. 820 | 20386 | 118 N.W. 823 (Mem) | Per curiam follow-on |
+| 2125 | 172 N.W. 663 (Bronson, J.) | 20387 | 182 N.W. 700 (Mem) | Robinson, J., separate opinion (10 N.W. vols later) |
+| 2473 | 181 N.W. 590 | 20388 | 181 N.W. 908 | Concurring opinion |
+| 2635 | 187 N.W. 233 (1922-02-11) | 20389 | 187 N.W. 619 (1922-04-11) | On rehearing — denied |
+| 2863 | 195 N.W. 14 | 20390 | 195 N.W. 33 (Mem) | Per curiam (joint with Baker v. Lenhart) |
+| 9128 | 34 N.W.2d 418 (1948-10-27) | 20391 | 35 N.W.2d 137 (1948-12-06) | On petition for rehearing |
+
+Each new row carries: case_name with disambiguation suffix; primary citation = the supplemental's distinct N.W. cite; parallel citation = the shared N.D. cite; date_filed parsed from the .doc; `notes` field linking back to the main opinion. The .doc opinion_sources westlaw row was detached from the main opinion and re-attached to the new row (is_primary=1).
+
+Special case for Chester (9128): the citation `35 N.W.2d 137` had been incorrectly listed on the main row alongside `34 N.W.2d 418`; that citation was moved to the new supplemental row 20391 since it actually pertains to the rehearing publication, not the main.
+
+Applied via `python -m ndcourts_mcp.insert_supplemental_opinions --apply`. Changelog entries: 6 detaches + 6 opinion inserts + 12 citation inserts + 1 citation move + 6 fresh opinion_sources rows + provenance row = 37 total.
+
+**Pattern signal for future ingests:** when a Westlaw .doc has a different N.W. cite from the existing DB row that shares its N.D. cite, treat it as a separate publication, not as a re-pairing target. Update `ingest_westlaw.py` to detect this case at ingest time rather than relying on volume-page filename collision.
+
+## Batch: westlaw-syllabus-recovery-corpus-wide-2026-04-28 (11,402 rows)
+
+Applied 2026-04-28. Corpus-wide re-merge of every Westlaw-paired opinion through the corrected parser, recovering the court's official "Syllabus by the Court" text and any other published bound-entry content the prior body-only parser had dropped.
+
+**Scope:** 5,744 eligible opinions (every row with `opinion_sources.source_reporter='westlaw'` and `opinions.source_reporter NOT IN ('ND')`). Of those, **5,701 replaced** with cleaner full-bound-entry text, **43 skipped** as idempotent (text already at the new format from earlier batches), **0 rejected**, **0 errors**. Each replaced row produced 2 changelog entries (`text_content` + `source_reporter`), totaling 11,402 rows.
+
+**Result:** 4,717 pre-1953 opinions now contain "Syllabus by the Court" content, up from a near-zero baseline. The 1,022 pre-1953 westlaw opinions still without a syllabus marker are predominantly per-curiam follow-ons, memorandum decisions, and short rehearing-only publications that did not have a published syllabus in the bound reporter — these match the `(Mem)` cite pattern Westlaw uses for memoranda.
+
+**Why this matters for the authoritative-text goal:** CourtListener's NW/NW2d source files contain zero "Syllabus by the Court" content for pre-1953 opinions (verified earlier in this session: 0 of 18 audited CL .md files). The court's own syllabus is part of the published opinion as the bound N.D. Reports printed it; without it, the DB was systematically missing court-authored content. This batch closes that gap for the entire bound-series era.
+
+Applied via `python -m ndcourts_mcp.merge_westlaw_text --apply --include-westlaw --batch westlaw-syllabus-recovery-corpus-wide-2026-04-28`. Single-threaded run took roughly 13 minutes for 5,744 docs (~7 docs/sec including textutil + parser + SQL). One bug fixed mid-run: format string crashed on rows with NULL `quality_score`; nothing committed before the crash, restarted cleanly.
+
 ## Batch: refs-migration-nd-opin (14,877 rows)
 
 Applied 2026-04-18. Not a correction — a path-rewrite migration to align `source_path` values with the move of the source tree from `~/refs/opin/` to `~/refs/nd/opin/` (the canonical path documented in `~/refs/CLAUDE.md`).
@@ -591,3 +681,30 @@ Rewrite rules:
 Tables touched: `opinions.source_path` (7,429 rows), `opinion_sources.source_path` (7,448 rows). Every row logged in changelog. No content changed, only paths.
 
 Filesystem moves were atomic `mv` operations within the same filesystem. Backward-compat symlinks at `~/refs/opin/{ND,NW,NW2d,NW3d,N.D.,archive}` point into the new tree so other consumers (jetmemo-skill, jetcite, etc.) continue working through the symlink.
+
+## Freshness ingest 2026-05-04 — ND 71–90 (20 new opinions)
+
+Closed a 6-week gap between the DB's last ingested opinion (2026 ND 70, 2026-03-26) and ndcourts.gov's current state (2026 ND 90, 2026-04-22). Two release days had accumulated unscraped: 2026-04-09 (ND 71–77) and 2026-04-22 (ND 78–90).
+
+The scraper's launchd job had been running weekly and downloading PDFs + JSON metadata correctly, but the chained `ndcourts_mcp.ingest` + `merge_nd_metadata` step (§5 of TODO-validation.md) is not yet wired into `weekly_scrape.sh`, so opinions sat on disk without entering the DB. Manual ingest run today plugged the gap.
+
+20 new rows inserted, ids 20392–20411. After `merge_nd_metadata`, all carry correct `case_name`, `date_filed`, `author`, `case_type`, `judges`, `voting_record`, and `opinion_url` from `~/refs/nd/opin/2026_opinions.json`.
+
+### Side fix: 2026 ND 62 / 2026 ND 73 docket-collision (Romanyshyn)
+
+ND 62 (filed 2026-02-26) and ND 73 (filed 2026-04-09) are two distinct opinions in the same Stark County criminal case (docket 20250295) — ND 73 is the post-remand merits opinion that ND 62 set up. The scraper's docket-keyed dedup mistakenly assigned ND 73's JSON record the same `pdf_path` and `markdown_path` as ND 62, leaving the actual `2026ND73.pdf` (downloaded fine) without a corresponding markdown file and pointing the JSON at the wrong text.
+
+Corpus sweep across 2000–2026 found 20 docket-collision pairs total; **19 were handled correctly with distinct paths** — only ND 62/73 was broken. This is a recent regression, not systemic.
+
+Resolution:
+- `2026_opinions.json` ND 73 record: `pdf_path` and `markdown_path` rewritten to point at the correct `2026ND73.{pdf,md}` files; stale `claude_query_hash` and `claude_query_timestamp` (which had been computed against ND 62's text) cleared so a future analysis run will re-do.
+- `2026ND73.md` regenerated from the actual `2026ND73.pdf` via `extract_text_from_pdf` + `cleanup_markdown` + `save_text_to_markdown_file`. 9,534 chars, 20 ¶ markers, ¶5 explicitly references "State v. Romanyshyn, 2026 ND 62, ¶¶ 6-7. On remand …" confirming distinct content.
+- Backup of pre-edit JSON kept at `2026_opinions.json.backup_pre-nd73-fix-20260504_161948`.
+
+Root cause in the scraper not yet diagnosed — see TODO-validation.md §5 follow-ups.
+
+### Scraper code fix: opinion_processor.py:752 (markdown-write skip)
+
+Companion fix to the long-standing §5 bug. `--skip-analysis` mode was treating `existing_data.get('markdown_path')` as proof the markdown file existed, without verifying. Updated to also call `os.path.exists()` against the resolved path; if the file is missing, fall through to regenerate. Mirrors the check the non-`skip_analysis` branch already does on lines 766–781.
+
+In practice this bug only fired once in this session (against the conflated ND 73 JSON record above, where `markdown_path` pointed to ND 62's existing file — so the "file exists" guard wouldn't have caught it anyway). But it closes a real silent-skip path going forward.
