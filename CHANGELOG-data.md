@@ -709,6 +709,33 @@ Companion fix to the long-standing §5 bug. `--skip-analysis` mode was treating 
 
 In practice this bug only fired once in this session (against the conflated ND 73 JSON record above, where `markdown_path` pointed to ND 62's existing file — so the "file exists" guard wouldn't have caught it anyway). But it closes a real silent-skip path going forward.
 
+## Batch: fix-feldmann-2017-2026-05-04 (8 rows)
+
+Applied 2026-05-04. Final Type Y candidate from the deep triage. The CourtListener metadata at `NW2d/889/399.json` mistakenly lists `2017 ND 255` as a parallel cite of *In the Matter of a Petition to Permit Temporary Provision of Legal Services* (the Dakota Access Pipeline pro hac vice order, 2017 ND 1, filed 2017-01-18). When ingest dutifully attached the bogus cite, the ND-side ingest then matched `2017 ND 255` to `markdown/2017/2017ND255.md` (which is actually the Estate of Feldmann opinion at oid 17060) and linked it as the primary source — replacing the correct `2017ND1.md`. `merge_nd_metadata` then overwrote case_name, date_filed, and author with Feldmann's data.
+
+So oid 16829's row was thoroughly contaminated: correct cites (`2017 ND 1`, `889 N.W.2d 399`) but Feldmann's case_name, Feldmann's filing date, Feldmann's text_content, and Feldmann's archive linkage. The Feldmann opinion itself was already correct at oid 17060, untouched.
+
+Fixes applied via `python -m ndcourts_mcp.fix_feldmann_2017 --apply`:
+
+| oid | Field | Old | New |
+|---|---|---|---|
+| 16829 | `citations.stray` | `'2017 ND 255'` | (removed; CL metadata contamination) |
+| 16829 | `opinion_sources.archive` | row → `archive/2017/20170034.htm` | (detached; Feldmann's archive, owned by 17060) |
+| 16829 | `opinion_sources.ND.source_path` | `markdown/2017/2017ND255.md` | `markdown/2017/2017ND1.md` |
+| 16829 | `opinions.case_name` | "Estate of Feldmann" | "Petition to Permit Temporary Provision of Legal Services" |
+| 16829 | `opinions.date_filed` | `2017-10-26` | `2017-01-18` |
+| 16829 | `opinions.source_path` | `markdown/2017/2017ND255.md` | `markdown/2017/2017ND1.md` |
+| 16829 | `opinions.per_curiam` | `0` | `1` |
+| 16829 | `opinions.text_content` | (was Feldmann content, ~13.7k chars) | (now Pipeline Petition content, 13,275 chars) |
+
+`opinions.author` left at NULL (per curiam) — already NULL, no change recorded.
+
+Followed by clearing `cite_extract_progress` and `text_citations`/`cited_by` for oid 16829 and re-running `python -m ndcourts_mcp.cite_extract`, which scanned the corrected text and extracted 5 outgoing citations.
+
+Post-fix: opinion 16829 represents the actual Pipeline Petition opinion with clean cites, correct text, and no archive. Invariants stayed clean (13 ok / 2 baseline / 0 regressed). Diff audit `<0.20` band: 89 → 88. **All 5 Type Y candidates from the deep triage are now resolved.**
+
+The CL metadata error at `NW2d/889/399.json` itself isn't fixable from our side, but the dedup-by-cluster_id behavior in `_ingest_nw_opinions` means the bogus `2017 ND 255` cite won't be re-introduced on subsequent re-ingests.
+
 ## Batch: fix-kitchen-kleinsmith-2013-2026-05-04 (5 rows)
 
 Applied 2026-05-04. The Kleinsmith Type Y candidate from the deep triage was untangled by reading the actual markdown content. Two reciprocal-discipline opinions filed Feb 12, 2013:
