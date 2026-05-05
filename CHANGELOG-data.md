@@ -709,6 +709,25 @@ Companion fix to the long-standing §5 bug. `--skip-analysis` mode was treating 
 
 In practice this bug only fired once in this session (against the conflated ND 73 JSON record above, where `markdown_path` pointed to ND 62's existing file — so the "file exists" guard wouldn't have caught it anyway). But it closes a real silent-skip path going forward.
 
+## Batch: fix-westlaw-pairings-round2-2026-05-04 (12 rows + 8 followup) + text-merge
+
+Applied 2026-05-04. Four more wrong-paired Westlaw .docs surfaced by the multi-source diff audit's westlaw+NW <0.20 band — same shape as the original §1 9-pairings cluster fix but in volumes that batch missed. Two opinions share each bound N.D. page; volume-based ingest paired one .doc with the wrong opinion and orphaned the other.
+
+| Vol/page | Wrong-paired opinion (had wrong .doc) | True home of wrong .doc | Sim before |
+|---|---|---|---|
+| 51 N.D. 300 | 3011 *Dorr County State Bank v. Adams* | 3007 *County of Dickey v. Gesme* | 0.014 |
+| 21 N.D. 69 | 699 *Willis v. Weatherwax* | 733 *State ex rel. Kramer v. Kiefer* | 0.132 |
+| 12 N.D. 504 | 5982 *Montgomery v. Tucker* | 6023 *Sykes v. Allen* | 0.132 |
+| 27 N.D. 458 | 1186 *Hackney v. Lynn* | 1189 *Bussey v. Boynton* | 0.139 |
+
+Applied via `python -m ndcourts_mcp.fix_westlaw_pairings_round2 --apply`: 4 deletes + 8 inserts = 12 changelog rows under batch `fix-westlaw-pairings-round2-2026-05-04`. Followed by `merge_westlaw_text --apply` (4 home-opinion text replacements) + a manual `is_primary` / `source_path` correction on the 4 wrong-paired opinions (8 followup rows in the same batch — needed because `align_primary_source` skipped them; see follow-up below) + `merge_westlaw_text --apply --include-westlaw --ids 3011,699,5982,1186` to force-refresh text for the originally-wrong-paired rows (4 more replacements).
+
+Notable replacement: oid 3011 *Dorr v. Adams* text_content went from **9,775 chars to 18,222 chars** — the wrongly-paired Dickey .doc was a much shorter opinion. The other 3 swaps were closer in length.
+
+Diff audit `<0.20` band: 87 → 83. Invariants: 13 ok / 2 baseline / 0 regressed.
+
+**Bug surfaced in `align_primary_source`:** its driving query at `align_primary_source.py:31-35` is an INNER JOIN on `opinion_sources s ON s.opinion_id = o.id AND s.is_primary = 1`. When all `opinion_sources` rows for an opinion have `is_primary = 0`, the opinion doesn't match the JOIN and the script silently skips it — exactly the case here, since this batch's deletes-then-inserts left the 4 affected opinions with no primary row at all. Captured as a TODO follow-up. The invariants dashboard correctly caught it (`primary_source_unique` went from 0 → 4 violations until the manual fix landed).
+
 ## Batch: fix-cl-metadata-contamination-2026-05-04 (10 rows) + fix-archive-pairings-post-cl-cleanup-2026-05-04 (4 rows) + manual detach (1 row)
 
 Applied 2026-05-04. Sweep for the same CourtListener-metadata contamination pattern the Feldmann fix uncovered.
