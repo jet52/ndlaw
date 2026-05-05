@@ -709,6 +709,49 @@ Companion fix to the long-standing §5 bug. `--skip-analysis` mode was treating 
 
 In practice this bug only fired once in this session (against the conflated ND 73 JSON record above, where `markdown_path` pointed to ND 62's existing file — so the "file exists" guard wouldn't have caught it anyway). But it closes a real silent-skip path going forward.
 
+## Batch: fix-cl-metadata-contamination-2026-05-04 (10 rows) + fix-archive-pairings-post-cl-cleanup-2026-05-04 (4 rows) + manual detach (1 row)
+
+Applied 2026-05-04. Sweep for the same CourtListener-metadata contamination pattern the Feldmann fix uncovered.
+
+`ndcourts_mcp.fix_cl_metadata_contamination` walks every CL JSON metadata file under `~/refs/nd/opin/NW{,2d,3d}/`, flags any whose `citations` list contains 2+ neutral ND cites (a smoking gun for cross-opinion contamination — modern opinions have exactly one neutral cite), and for each affected DB row identifies the row's true cite from its `source_path` (`markdown/<year>/<year>NDN.md` → `<year> ND N`) and drops the other cites as strays.
+
+Sweep found 16 contaminated CL JSONs; 6 were already cleaned up by prior batches (Feldmann, Kitchen/Kleinsmith, Keller, Johnson swap), 10 still dirty:
+
+| oid | source_path's derived cite | Stray dropped | CL JSON |
+|---|---|---|---|
+| 12476 | 1997 ND 132 | 1997 ND 129 | NW2d/566/407.json |
+| 14095 | 2004 ND 168 | 2004 ND 115 | NW2d/686/115.json |
+| 15393 | 2010 ND 57  | 2010 ND 54  | NW2d/780/663.json |
+| 15600 | 2011 ND 48  | 2011 ND 65  | NW2d/795/367.json |
+| 15869 | 2012 ND 138 | 2012 ND 148 | NW2d/818/718.json |
+| 15931 | 2012 ND 198 | 2012 ND 196 | NW2d/821/373.json |
+| 16826 | 2016 ND 241 | 2016 ND 332 | NW2d/888/769.json |
+| 16924 | 2017 ND 116 | 2017 ND 126 | NW2d/894/865.json |
+| 17030 | 2017 ND 241 | 2017 ND 216 | NW2d/901/727.json |
+| 17035 | 2017 ND 220 | 2017 ND 233 | NW2d/902/501.json |
+
+10 changelog rows under batch `fix-cl-metadata-contamination-2026-05-04`.
+
+Then `cite_extract --cited-by-only` rebuilt cited_by from text_citations: 163,475 cross-links re-derived; the cited_by table is now consistent with the corrected citations table.
+
+Then `fix_archive_pairings --apply` (batch `fix-archive-pairings-post-cl-cleanup-2026-05-04`) re-classified archive linkages now that the strays no longer matched: 1 swap + 1 detach + 1 relink-after-swap = 4 changelog rows.
+
+| Action | oid | Description |
+|---|---|---|
+| swap (with relink) | 15393 ↔ 15515 | `archive/2010/20090357.htm` (Disciplinary Board case) moves from 15393 to 15515; `archive/2010/20090276.htm` (titled `State v. M.B., 2010 ND 57, 780 N.W.2d 663`) inserted on 15393. |
+| detach | 15931 | `archive/2012/20120145.htm` (titled `2012 ND 196`) detached from 15931 (which is `2012 ND 198`); no replacement available in archive index. |
+
+One residual: oid 17030 (WSI v. Questar Energy Services). Its wrong archive `archive/2017/20170241.htm` is titled `Disciplinary Board v. Lee, 2017 ND 216, 901 N.W.2d 727` — neutral disagrees with the row's `2017 ND 241` but the parallel `901 N.W.2d 727` matches both rows (CL data also lists this parallel on the Lee opinion's record, which is itself a separate contamination), so `fix_archive_pairings`' title-check accepts the linkage. Manually detached this 1 row; logged under the same batch.
+
+**Pattern note for `fix_archive_pairings`:** the title-check returns "ok" when EITHER the title's neutral cite OR its parallel cite appears in the row's citations. That's too lenient when both opinions in a contamination pair share a parallel cite. Tighten to require the title's neutral cite to be in the row's citations (with the parallel as a secondary check). Captured under TODO §3.
+
+Verification:
+- invariants dashboard: 13 ok / 2 baseline / 0 regressed (unchanged)
+- multi-source diff audit `<0.20` band: 88 → 87
+- All 16 contaminated CL JSONs no longer cross-pollute DB rows.
+
+The CL JSON files themselves are upstream and unfixed, but the DB now ignores their bogus extra cites and the dedup-by-cluster_id behavior in `_ingest_nw_opinions` means future ingests won't re-introduce them.
+
 ## Batch: fix-feldmann-2017-2026-05-04 (8 rows)
 
 Applied 2026-05-04. Final Type Y candidate from the deep triage. The CourtListener metadata at `NW2d/889/399.json` mistakenly lists `2017 ND 255` as a parallel cite of *In the Matter of a Petition to Permit Temporary Provision of Legal Services* (the Dakota Access Pipeline pro hac vice order, 2017 ND 1, filed 2017-01-18). When ingest dutifully attached the bogus cite, the ND-side ingest then matched `2017 ND 255` to `markdown/2017/2017ND255.md` (which is actually the Estate of Feldmann opinion at oid 17060) and linked it as the primary source — replacing the correct `2017ND1.md`. `merge_nd_metadata` then overwrote case_name, date_filed, and author with Feldmann's data.
