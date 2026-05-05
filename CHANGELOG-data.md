@@ -709,6 +709,31 @@ Companion fix to the long-standing §5 bug. `--skip-analysis` mode was treating 
 
 In practice this bug only fired once in this session (against the conflated ND 73 JSON record above, where `markdown_path` pointed to ND 62's existing file — so the "file exists" guard wouldn't have caught it anyway). But it closes a real silent-skip path going forward.
 
+## Batch: fix-kitchen-kleinsmith-2013-2026-05-04 (5 rows)
+
+Applied 2026-05-04. The Kleinsmith Type Y candidate from the deep triage was untangled by reading the actual markdown content. Two reciprocal-discipline opinions filed Feb 12, 2013:
+
+- `markdown/2013/2013ND18.md` is the **Kitchen** opinion (Craig V. Kitchen, suspension with conditions).
+- `markdown/2013/2013ND19.md` is the **Kleinsmith** opinion (Philip M. Kleinsmith, reprimand and probation).
+
+DB state before:
+- `oid 15988`: source_path = `2013ND18.md` (Kitchen text), but `case_name = "Reciprocal Discipline of Kleinsmith"` ✗. Cites: `2013 ND 18`, `826 N.W.2d 620` (own); `2013 ND 19` (stray). Archive: `archive/2013/20130018.htm` (Kitchen — correct).
+- `oid 16488`: source_path = `2013ND19.md` (Kleinsmith text), case_name correct ✓. Cites: `2013 ND 19`, `863 N.W.2d 843` (own); `2013 ND 18` (stray). Archive: `archive/2013/20130018.htm` ✗ (Kitchen's, not Kleinsmith's). Kleinsmith's correct archive `archive/2013/20130019.htm` (4 KB, titled "Reciprocal Discipline of Kleinsmith, 2013 ND 19, 863 N.W.2d 843") existed on disk but was never linked.
+
+Fixes applied via `python -m ndcourts_mcp.fix_kitchen_kleinsmith_2013 --apply`:
+
+| oid | Field | Old | New |
+|---|---|---|---|
+| 15988 | `case_name` | "Reciprocal Discipline of Kleinsmith" | "In re Reciprocal Discipline of Kitchen" |
+| 15988 | `citations.stray` | `'2013 ND 19'` | (removed) |
+| 16488 | `opinion_sources.archive` | row → `archive/2013/20130018.htm` | (detached) |
+| 16488 | `opinion_sources.archive` | (none) | new row → `archive/2013/20130019.htm` |
+| 16488 | `citations.stray` | `'2013 ND 18'` | (removed) |
+
+Post-fix: both rows have correct `case_name`, only their own citations, and correct archive linkages. Diff audit `<0.20` band: 90 → 89.
+
+**Pattern-level lesson:** when DB rows have multiple neutral cites and the case_name doesn't match the source markdown's own header, trust the markdown text (and the source_path) over the case_name field. The case_name was likely set during ingest from a heuristic that pulled the wrong "v." line from a per-curiam opinion's header. Future ingests should validate case_name against the markdown's leading lines.
+
 ## Batch: fix-type-y-archive-pairings-2026-05-04 (6 rows)
 
 Applied 2026-05-04. Surfaced by the deep-triage of the §3 multi-source diff audit (see `triage/archive-83-deep-triage-2026-05-04.md`). Three Type Y archive cross-pollutions where the original `fix_archive_pairings` title-check passed (the archive's neutral cite was on the linked opinion's row) but only because that neutral cite was itself a stray contaminant — the archive HTML was actually for a same-day same-case-name follow-on opinion.
