@@ -1,153 +1,370 @@
 # ndcourts-mcp
 
-MCP server providing access to North Dakota Supreme Court opinions (1889–present). Built on SQLite with FTS5 full-text search, served via FastMCP. Includes a web-based opinion browser with merge/diff tools.
+A Model Context Protocol (MCP) server for North Dakota Supreme Court
+opinions, 1890–present. Built on SQLite with FTS5 full-text search and
+served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
+opinion browser with multi-source diff/merge tools.
 
-## Current Capabilities
+The corpus currently contains **~20,400 opinions** with **113,000+
+citation links** between them, with every correction recorded in an
+auditable, revertible changelog.
 
-### MCP Tools (8 tools)
+This is a working tool, not an authoritative text. See
+[`NOTICE.md`](NOTICE.md) for sources, redistribution scope, and
+attribution; see [`TODO-validation.md`](TODO-validation.md) for the
+current state of data validation.
 
-| Tool | Purpose |
-|------|---------|
-| `lookup_opinion` | Retrieve opinion by any citation (neutral, N.W.2d, N.W.) with optional text |
-| `get_opinion_text` | Read opinion text in paginated chunks |
-| `search_opinions` | Full-text search with date/author filters |
-| `list_opinions_by_date` | Browse opinions by date range |
-| `get_database_stats` | Corpus summary, source breakdown, quality stats, provenance |
-| `justice_info` | Voting record for a case, or aggregate stats for a justice |
-| `search_by_case_type` | Filter by case type (criminal, civil, etc.) |
-| `get_citing_opinions` | Find opinions that cite a given opinion |
+---
 
-### Web Opinion Browser
+## Quick start
 
-Full-featured web UI at `http://localhost:8765` with:
-- Tabulator table with sortable columns (date, author, citations, quality score, cited-by count)
-- Reader pane with opinion text, voting record, citing opinions, and multi-source comparison
-- Meld-style side-by-side diff/merge tool for deduplication and source comparison
-- Quality filter (low/mid/high), duplicate queue, flag system
-- Keyboard navigation (vim-style j/k, Tab for hunks, Space to toggle)
+### The easy way: let Claude do it
 
-### Database
+If you're already a Claude user, the simplest install is to ask Claude to
+do it for you. Paste the prompt below into **Claude Code** (CLI),
+**Claude Desktop** (Mac/Windows), or **Claude on the web** (claude.ai).
+Claude will read this repository's `README.md` and `NOTICE.md`, detect
+your platform, walk you through the steps, and — if running in an
+environment with shell access (Claude Code, or Claude Desktop with
+appropriate MCP servers) — run them for you. After install it will add
+the server to your Claude MCP config and verify it works.
 
-- **20,383 opinions** from 1890–2026
-- **113K+ cited-by links** from citation extraction
-- **Text quality scores** for all opinions (OCR artifacts, HTML contamination, etc.)
-- **716 duplicate candidates** for review (citation-overlap pairs now require text-similarity confirmation)
-- **Full changelog** for auditable, revertible corrections
+> Please help me install the `ndcourts-mcp` server from
+> `https://github.com/jet52/ndcourts-mcp` on my computer. Read the
+> repository's `README.md` and `NOTICE.md` first so you understand what
+> it is and what it redistributes. Then walk me through (or run for me,
+> if you can) the install steps for my platform, download the latest
+> `opinions.db` release asset, smoke-test it, and add the server to my
+> Claude MCP config. Stop and ask me before any step that needs a
+> decision.
 
-### Data Sources
+If you'd rather do it by hand, the manual instructions follow.
 
-| Source | Coverage | Data |
-|--------|----------|------|
-| CourtListener (NW) | ~6,000 opinions, 1890–1997 | Text + JSON metadata |
-| CourtListener (NW2d) | ~12,200 opinions, 1941–present | Text + JSON metadata |
-| ndcourts.gov (ND) | ~2,135 opinions, 1997–present | Markdown text with ¶ markers |
-| ndcourts.gov metadata | ~7,150 opinions, 1997–present | Case type, voting record, justice panel, etc. |
-| Westlaw Quick Check | Vols 1–44 N.D. Reports + 40 individual cases | .doc files with clean text |
-| archive.ndcourts.gov | ~5,300 opinions, 1997–2019 | HTML with ¶ markers |
+### 1. Prerequisites — all platforms
 
-### Data Corrections Applied
+- **Python 3.12 or newer**
+- **git**
+- ~1 GB of free disk space (for the database)
+- An MCP-capable client (e.g. Claude Desktop, Claude Code) — optional, only
+  needed if you want LLM integration
 
-7,100+ corrections across 65+ batches, all logged in the `changelog` table. See [CHANGELOG-data.md](CHANGELOG-data.md) for details.
+### 2. Install the code and database
 
-- Case normalization (ALL CAPS → title case)
-- OCR misread consolidation (Birdzell, Bronson, Bruce, Burke, Christianson, Fisk, etc.)
-- Per curiam detection
-- Full-name → last-name normalization for surrogates
-- Manual review corrections via interactive tool
-- Westlaw Quick Check validation (vols 1–44 + 40 individual cases)
-- Unicode ligature normalization (Æ→Ae, œ→oe) in case names
-- Auto-detected authors from opinion text (257 opinions recovered)
-- Text replacement with clean Westlaw text (36 pre-1997 opinions)
-- Citation-based dedup tightened to require text similarity (eliminated false positives from citation collisions where different cases share a reporter page)
+Pick your platform. The commands install [`uv`](https://docs.astral.sh/uv/),
+clone the repo, download the latest release of the database, and install
+the Python dependencies.
 
-## Setup
+#### Windows (PowerShell)
 
-```bash
-# Create venv and install
-python3 -m venv .venv
-.venv/bin/pip install -e .
+```powershell
+# Install uv (a fast Python package manager) — skip if already installed
+irm https://astral.sh/uv/install.ps1 | iex
 
-# Build the database (see BUILD.md for full instructions)
-.venv/bin/python3 -m ndcourts_mcp.ingest --rebuild
+git clone https://github.com/jet52/ndcourts-mcp.git
+cd ndcourts-mcp
+
+# Download the database release asset (replace v0.1.0 with the latest tag)
+Invoke-WebRequest `
+  -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip" `
+  -OutFile opinions.db.zip
+Expand-Archive opinions.db.zip -DestinationPath .
+Remove-Item opinions.db.zip
+
+uv sync
 ```
 
-### Claude Code Integration
+#### macOS
 
-Add to `~/.mcp.json`:
+```bash
+# Install uv — skip if already installed
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+git clone https://github.com/jet52/ndcourts-mcp.git
+cd ndcourts-mcp
+
+# Download and extract the database release asset
+curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
+unzip opinions.db.zip
+rm opinions.db.zip
+
+uv sync
+```
+
+#### Linux
+
+```bash
+# Install uv — skip if already installed
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+git clone https://github.com/jet52/ndcourts-mcp.git
+cd ndcourts-mcp
+
+# Download and extract
+curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
+unzip opinions.db.zip
+rm opinions.db.zip
+
+uv sync
+```
+
+### 3. Smoke test
+
+Confirm the database is wired correctly:
+
+```bash
+sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"
+# Should print an opinion count above 20,000 (currently around 20,400)
+```
+
+### Updating to a newer database release
+
+When a new database release is published, replace the local copy:
+
+```bash
+# macOS / Linux
+rm opinions.db
+curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
+unzip opinions.db.zip
+rm opinions.db.zip
+```
+
+```powershell
+# Windows PowerShell
+Remove-Item opinions.db
+Invoke-WebRequest `
+  -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip" `
+  -OutFile opinions.db.zip
+Expand-Archive opinions.db.zip -DestinationPath . -Force
+Remove-Item opinions.db.zip
+```
+
+Then `git pull` to pick up any code changes since the release was cut.
+
+### 4. Run
+
+**MCP server (stdio mode, for Claude Desktop / Claude Code):**
+
+```bash
+uv run ndcourts-mcp
+```
+
+**Web browser (FastAPI app on localhost):**
+
+```bash
+uv run ndcourts-web
+# Then open http://localhost:8765 in a browser
+```
+
+For read-only mode (no edits via the web UI):
+
+```bash
+# macOS / Linux
+NDCOURTS_READONLY=1 uv run ndcourts-web
+```
+
+```powershell
+# Windows PowerShell
+$env:NDCOURTS_READONLY=1; uv run ndcourts-web
+```
+
+---
+
+## Connecting to Claude
+
+The server can run under any MCP client. The two most common are Claude
+Code (CLI, all platforms) and Claude Desktop (Mac and Windows only — no
+Linux build is shipped today).
+
+Throughout the snippets below, replace `/absolute/path/to/ndcourts-mcp`
+with the full path to your cloned repo. On Windows you can use forward
+slashes in JSON strings (`C:/Users/you/ndcourts-mcp`) — they work fine and
+avoid double-backslash escaping.
+
+### Claude Code (Windows, macOS, Linux)
+
+One-liner from any directory:
+
+```bash
+claude mcp add ndcourts -- uv --directory /absolute/path/to/ndcourts-mcp run ndcourts-mcp
+```
+
+This stores the server in your user-level Claude Code config and makes it
+available in every project. Restart any active Claude Code session and the
+`ndcourts` server's eight tools will be available.
+
+Alternative: a project-scoped `.mcp.json` in any project where you want
+ndcourts available. Create the file with:
 
 ```json
 {
   "mcpServers": {
     "ndcourts": {
       "type": "stdio",
-      "command": "/path/to/.venv/bin/python",
-      "args": ["-m", "ndcourts_mcp.server"],
-      "cwd": "/path/to/ndcourts-mcp"
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/ndcourts-mcp",
+               "run", "ndcourts-mcp"]
     }
   }
 }
 ```
 
-### Web UI
+### Claude Desktop (macOS)
 
-```bash
-source .venv/bin/activate
-python -m uvicorn ndcourts_mcp.webapp:app --port 8765
-# For read-only mode:
-NDCOURTS_READONLY=1 python -m uvicorn ndcourts_mcp.webapp:app --port 8765
+Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "ndcourts": {
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/ndcourts-mcp",
+               "run", "ndcourts-mcp"]
+    }
+  }
+}
 ```
 
-## CLI Tools
+Then quit and restart Claude Desktop (Cmd-Q, not just close the window).
 
-| Command | Purpose |
-|---------|---------|
-| `python -m ndcourts_mcp.ingest [--rebuild]` | Ingest opinions from ~/refs/nd/opin/ |
-| `python -m ndcourts_mcp.merge_nd_metadata` | Merge ndcourts.gov JSON metadata |
-| `python -m ndcourts_mcp.cleanup apply` | Apply pending corrections |
-| `python -m ndcourts_mcp.cleanup revert <batch>` | Revert a correction batch |
-| `python -m ndcourts_mcp.review` | Interactive author review |
-| `python -m ndcourts_mcp.auto_author [--apply]` | Auto-detect authors from text |
-| `python -m ndcourts_mcp.cite_extract` | Extract citations and build cited_by graph |
-| `python -m ndcourts_mcp.quality_scan [--rescan]` | Score text quality for all opinions |
-| `python -m ndcourts_mcp.dedup_scan` | Detect duplicate opinions |
-| `python -m ndcourts_mcp.audit [--save]` | Check for missing opinions and data gaps |
-| `python -m ndcourts_mcp.quality_report` | Generate .docx of worst-quality opinions |
-| `python -m ndcourts_mcp.ingest_westlaw status` | Show Westlaw download progress |
-| `python -m ndcourts_mcp.ingest_westlaw process <dir> --volume N --apply` | Process Westlaw volume |
-| `python -m ndcourts_mcp.ingest_westlaw export V1 V2` | Export citations for Westlaw lookup |
-| `python -m ndcourts_mcp.merge_westlaw_text --apply` | Replace text with Westlaw copies |
-| `python -m ndcourts_mcp.scrape_archive --all --ingest` | Scrape archive.ndcourts.gov |
+### Claude Desktop (Windows)
 
-## Ongoing Work
+Edit `%APPDATA%\Claude\claude_desktop_config.json`. Same JSON shape, but
+specify the absolute paths to both `uv` and your repo. If `uv` is on your
+PATH (it is by default after the install script), `"command": "uv"` works;
+otherwise use the full path, e.g.
+`"C:/Users/you/.local/bin/uv.exe"`.
 
-### Continue Westlaw Downloads
-Volumes 1–44 of N.D. Reports are processed. Resume with volume 45. Use `ingest_westlaw status` to check progress and `ingest_westlaw export` to generate citation lists for Quick Check.
+```json
+{
+  "mcpServers": {
+    "ndcourts": {
+      "command": "uv",
+      "args": ["--directory", "C:/Users/you/ndcourts-mcp",
+               "run", "ndcourts-mcp"]
+    }
+  }
+}
+```
 
-### Review Duplicate Candidates
-716 candidates found via citation overlap (with text-similarity confirmation), name+date+text similarity, and minhash fingerprinting. Use the "Dup Queue" button in the web UI to review and merge or dismiss.
+Then quit and restart Claude Desktop from the system tray.
 
-### Multi-Source Text Comparison
-5,300+ opinions have archive.ndcourts.gov sources available alongside CourtListener text. Use the "Sources" section in the reader pane to compare and apply corrections. ndcourts.gov text is authoritative for 1997+ opinions — use Westlaw/archive only as reference for corrections, not wholesale replacement.
+### Linux
 
-### Author Review
-~580 opinions with unrecognized authors remain. Run `python -m ndcourts_mcp.review --min-count 2` to work through junk words and OCR noise.
+Claude Desktop is not available on Linux. Use Claude Code (above).
 
-### Rebuild Judges Field
-Pre-1997 judges data from CourtListener is largely unusable. Could infer panels from court composition dates in `justices.py` and parse disqualification lines from opinion text.
+### Verifying the connection
 
-### Court Rules (Future)
-Add ND court rules as a separate data source — either a new DB table or a separate project. Rules are the court's other key output alongside opinions.
+Once connected, try a prompt like:
 
-### Distribution & Update System (Future)
-Ship the ~800 MB `opinions.db` via GitHub Releases with an annual base + monthly SQL patches. Build after data-validation work stabilizes. See [TODO-distribution.md](TODO-distribution.md).
+> Use ndcourts to look up *State v. Boger*, 2021 ND 152.
 
-## Reference Files
+The tool call should return the case metadata and (with `include_text=true`)
+the opinion text. The server exposes eight tools — see the table below.
 
-| File | Purpose |
-|------|---------|
-| `BUILD.md` | Step-by-step database rebuild instructions |
-| `CHANGELOG-data.md` | Log of every correction batch |
-| `MISSING_OPINIONS.md` | Audit report of citation gaps and data anomalies |
-| `TODO-validation.md` | Roadmap for reaching full two-source corpus validation |
-| `TODO-distribution.md` | Roadmap for distributing the DB with monthly updates |
-| `ndcourts_mcp/justices.py` | All 52 elected justices (1889–present) with service dates |
+---
+
+## What's in the database
+
+Counts below are as of 2026-05-13; rerun
+`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total.
+
+| Era         | Opinions | Primary source       | Cross-validation        |
+|-------------|----------|----------------------|-------------------------|
+| 1890–1952   | ~6,460   | CourtListener OCR    | Westlaw bound vols 1–79 |
+| 1953–1995   | ~5,940   | CourtListener N.W.2d | None (single-source)    |
+| 1996–2019   | ~5,980   | ndcourts.gov         | archive.ndcourts.gov    |
+| 2020–present| ~1,560   | ndcourts.gov         | NW2d where available    |
+
+See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
+and isn't redistributed in `text_content`. See
+[`TODO-validation.md`](TODO-validation.md) for known data-quality gaps and
+the current validation roadmap.
+
+---
+
+## MCP tools exposed
+
+| Tool                  | Purpose                                                                         |
+|-----------------------|---------------------------------------------------------------------------------|
+| `lookup_opinion`      | Retrieve an opinion by any citation (neutral, N.W.2d, N.W.)                     |
+| `get_opinion_text`    | Read opinion text in paginated chunks                                           |
+| `search_opinions`     | Full-text search with date/author filters                                       |
+| `list_opinions_by_date` | Browse opinions by date range                                                 |
+| `get_database_stats`  | Corpus summary, source breakdown, quality stats, provenance                     |
+| `justice_info`        | Voting record for a case, or aggregate stats for a justice                      |
+| `search_by_case_type` | Filter by case type (criminal, civil, etc.)                                     |
+| `get_citing_opinions` | Find opinions that cite a given opinion                                         |
+
+---
+
+## Web opinion browser
+
+The FastAPI app at `http://localhost:8765` provides:
+
+- A sortable opinion table (date, author, citations, quality score, cited-by count)
+- A reader pane with opinion text, voting record, citing opinions, and side-by-side multi-source comparison
+- A meld-style diff/merge tool for source comparison and deduplication
+- Quality filters, a duplicate-review queue, and a flag system
+- Keyboard navigation (vim-style `j`/`k`, `Tab` for hunks, `Space` to toggle)
+
+---
+
+## Working on the data
+
+A separate CLI is built into the package for ingesting new opinions,
+running quality scans, building citation graphs, and applying validation
+batches. See [`BUILD.md`](BUILD.md) for the full rebuild flow and
+[`TODO-validation.md`](TODO-validation.md) for the current work-in-progress
+list.
+
+| Command                                                          | Purpose                                          |
+|------------------------------------------------------------------|--------------------------------------------------|
+| `uv run python -m ndcourts_mcp.ingest [--rebuild]`               | Ingest opinions from `~/refs/nd/opin/`           |
+| `uv run python -m ndcourts_mcp.merge_nd_metadata`                | Merge ndcourts.gov JSON metadata                 |
+| `uv run python -m ndcourts_mcp.cleanup apply`                    | Apply pending corrections                        |
+| `uv run python -m ndcourts_mcp.cleanup revert <batch>`           | Revert a correction batch                        |
+| `uv run python -m ndcourts_mcp.cite_extract`                     | Extract citations and build cited-by graph       |
+| `uv run python -m ndcourts_mcp.quality_scan [--rescan]`          | Score text quality for all opinions              |
+| `uv run python -m ndcourts_mcp.dedup_scan`                       | Detect duplicate opinions                        |
+| `uv run python -m ndcourts_mcp.audit [--save]`                   | Audit for missing opinions and data gaps         |
+| `uv run python -m ndcourts_mcp.multisource_diff`                 | Compare opinions with multiple linked sources    |
+| `uv run python -m ndcourts_mcp.invariants`                       | Run integrity invariants over the DB             |
+| `uv run python -m ndcourts_mcp.scrape_archive --all --ingest`    | Scrape `archive.ndcourts.gov`                    |
+
+---
+
+## Sources, redistribution scope, and license
+
+Code: dedicated to the public domain under [CC0 1.0 Universal](LICENSE).
+Use it however you want.
+
+Data: the opinions database redistributes only the court's own published
+work (opinions and court-authored syllabi) plus factual record content
+(parties, dates, attorneys, dispositions, citations). See
+[`NOTICE.md`](NOTICE.md) for full source attribution to
+[CourtListener](https://www.courtlistener.com) (Free Law Project), the
+[North Dakota Court System](https://www.ndcourts.gov), and the rules
+governing how Westlaw bound-volume entries are used for validation
+without redistributing Westlaw editorial content.
+
+---
+
+## Contributing
+
+This corpus is being actively validated toward a goal of two-source
+verification for every opinion. If you want to help — running diff audits,
+reviewing duplicate candidates, contributing parser fixes, or just trying
+the database against your own queries and reporting errors — open an issue
+or PR on the GitHub repository.
+
+## Reference files
+
+| File                                          | Purpose                                              |
+|-----------------------------------------------|------------------------------------------------------|
+| [`BUILD.md`](BUILD.md)                        | Step-by-step database rebuild instructions           |
+| [`CHANGELOG-data.md`](CHANGELOG-data.md)      | Log of every correction batch                        |
+| [`MISSING_OPINIONS.md`](MISSING_OPINIONS.md)  | Audit report of citation gaps and data anomalies     |
+| [`NOTICE.md`](NOTICE.md)                      | Sources, attribution, redistribution scope           |
+| [`TODO-validation.md`](TODO-validation.md)    | Roadmap for full corpus validation                   |
+| [`TODO-distribution.md`](TODO-distribution.md)| Roadmap for DB distribution and monthly updates      |
+| `ndcourts_mcp/justices.py`                    | All 52 elected ND Supreme Court justices since 1889  |
