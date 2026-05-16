@@ -218,98 +218,136 @@ def _jac(conn, a: int, b: int) -> float:
                    shingles(normalize_words(tb)))
 
 
-def _build_pairs(conn) -> tuple[list, list]:
-    """Today's 46 §6 candidates from the receive/clearwins triage:
-    AMBIGUOUS cites with exactly two same-date NW2d rows, minus the
-    16 already resolved this round.
+_MODERN_CUTOFF = "1997-01-01"   # ND adopted the YYYY-ND medium-neutral
+                                # cite in 1997; the post-cutoff set is
+                                # the released corpus -> vetted separately
 
-    keep = the row carrying inbound cited_by edges (the established
-    opinion other cases reference); drop = the cited_by=0 CL re-ingest.
-    Tie on cited_by -> keep the lower cluster_id (original ingest).
-    A pair only merges if text jaccard >= _DUP_FLOOR; otherwise it is
-    two distinct opinions on a shared page -> flagged, never merged.
-    Returns (clean_merges, flagged)."""
-    done = {9208, 9209, 10043, 10044, 9241, 12694}
-    cw = set()
-    cwf = Path("triage/westlaw-queue-clearwins-2026-05-16.tsv")
-    for ln in cwf.read_text().splitlines():
-        if ln.startswith("CLEAR_WIN"):
-            m = re.search(r"oid=(\d+)", ln)
-            if m:
-                cw.add(int(m.group(1)))
 
-    def clean_cite(c):
-        return re.sub(r"\s*\([^)]*\)\s*$", "",
-                      re.sub(r"\s+", " ", c.strip())).strip()
+def _corpus_pairs(conn) -> dict:
+    """Corpus-wide §6 scan. Every citation shared by exactly two
+    same-day opinions is a candidate pair. Classified:
 
-    seen, clean, flagged = set(), [], []
-    rep = Path("triage/westlaw-receive-2026-05-16.tsv").read_text()
-    for line in rep.splitlines():
-        f = line.split("\t")
-        if f[0] != "AMBIGUOUS":
-            continue
-        cc = clean_cite(f[1])
-        if cc in seen:
-            continue
-        seen.add(cc)
+      MERGE          pre-1997 pair, text jaccard >= _DUP_FLOOR -> a CL
+                     double-ingest; (j) carried for the apply gate
+      NEEDS_DECISION jaccard < _DUP_FLOOR -> distinct opinions sharing
+                     a reporter page; never auto-merge
+      DEFER_MODERN   keep.date_filed >= 1997 -> released-corpus set,
+                     deferred by date (robust to cite-format variance:
+                     neutral cites appear as both 'YYYY ND n' and
+                     'YYYY N.D. n')
+      DEFER_MULTI    cite shared by >2 rows -> not a simple pair
+
+    keep = more inbound cited_by (tie -> lower cluster_id). MERGE rows
+    sorted by (date, cite) so --limit batches are stable."""
+    buckets = {"MERGE": [], "NEEDS_DECISION": [], "DEFER_MODERN": [],
+               "DEFER_MULTI": []}
+    rows = conn.execute(
+        "SELECT citation FROM citations GROUP BY citation "
+        "HAVING COUNT(DISTINCT opinion_id) >= 2").fetchall()
+    for (cite,) in rows:
         cs = conn.execute(
-            "SELECT o.id, o.case_name cn, o.cluster_id cl, "
-            "(SELECT COUNT(*) FROM cited_by WHERE cited_opinion_id=o.id) cb "
-            "FROM citations ci JOIN opinions o ON o.id=ci.opinion_id "
-            "WHERE ci.citation=? ORDER BY o.id", (cc,)).fetchall()
-        ids = {r["id"] for r in cs}
-        if ids & (cw | done) or len(cs) != 2:
+            "SELECT o.id, o.case_name cn, o.date_filed df, "
+            "o.cluster_id cl, (SELECT COUNT(*) FROM cited_by "
+            "WHERE cited_opinion_id=o.id) cb FROM opinions o "
+            "WHERE o.id IN (SELECT opinion_id FROM citations "
+            "WHERE citation=?)", (cite,)).fetchall()
+        if len(cs) > 2:
+            buckets["DEFER_MULTI"].append((cite, len(cs)))
             continue
         a, b = cs
-        # keep = more inbound citations; tie -> lower cluster_id
+        if a["df"] != b["df"] or not a["df"]:
+            continue                       # different opinions, skip
         if (a["cb"], -(a["cl"] or 0)) >= (b["cb"], -(b["cl"] or 0)):
             keep, drop = a, b
         else:
             keep, drop = b, a
+        if keep["df"] >= _MODERN_CUTOFF:
+            buckets["DEFER_MODERN"].append(
+                (cite, keep["id"], keep["cn"], drop["id"], drop["cn"]))
+            continue
         j = _jac(conn, keep["id"], drop["id"])
         if j < _DUP_FLOOR:
-            flagged.append((cc, keep["id"], keep["cn"], drop["id"],
-                            drop["cn"],
-                            f"text jaccard {j:.2f} < {_DUP_FLOOR} — "
-                            f"likely DISTINCT opinions on a shared page"))
+            buckets["NEEDS_DECISION"].append(
+                (cite, keep["id"], keep["cn"], drop["id"], drop["cn"],
+                 f"jaccard {j:.2f} < {_DUP_FLOOR} — distinct/shared-page"))
             continue
-        clean.append((cc, keep["id"], keep["cn"], drop["id"], drop["cn"]))
-    return clean, flagged
+        buckets["MERGE"].append(
+            (keep["df"], cite, keep["id"], keep["cn"], drop["id"],
+             drop["cn"], j))
+    buckets["MERGE"].sort(key=lambda t: (t[0], t[1]))
+    return buckets
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="apply at most N merges this run (required "
+                         "with --apply — enforces reviewed batches)")
+    ap.add_argument("--min-jaccard", type=float, default=0.85,
+                    help="only MERGE rows at/above this text-jaccard "
+                         "are apply-eligible (default 0.85; lower "
+                         "tranches want separate review)")
     args = ap.parse_args()
+    if args.apply and not args.limit:
+        raise SystemExit("--apply requires --limit N (never blind-apply "
+                          "the full corpus; review in batches)")
     conn = get_connection(args.db)
-    clean, flagged = _build_pairs(conn)
+    batch = f"section6-dedup-corpus-{date.today().isoformat()}"
+    b = _corpus_pairs(conn)
+    merges = b["MERGE"]
+    applied = elig = 0
     out = ["kind\tcite\tkeep\tdrop\tname_old->canonical\tdetail"]
-    for cc, keep, kn, drop, dn in clean:
+    for _df, cc, keep, kn, drop, dn, j in merges:
         canon = _canonical_name(kn)
-        p = merge_pair(conn, keep, drop, canon, apply=args.apply)
-        out.append(f"MERGE\t{cc}\t{keep}\t{drop}\t{kn!r} -> {canon!r}\t"
-                   f'parties={dn!r}; {p["judges"]}; {p["author"]}')
-    for cc, ai, an, bi, bn, why in flagged:
-        out.append(f"NEEDS_DECISION\t{cc}\t{ai}\t{bi}\t"
-                   f"{an!r} | {bn!r}\t{why}")
-    rpt = Path("triage") / f"{BATCH}.tsv"
+        if j < args.min_jaccard:
+            p = merge_pair(conn, keep, drop, canon, apply=False,
+                           batch=batch)
+            out.append(f"MERGE-HOLD-LOWJAC\t{cc}\t{keep}\t{drop}\t"
+                       f"{kn!r} -> {canon!r}\tj={j:.2f} < "
+                       f'{args.min_jaccard}; drop={dn!r}; {p["judges"]}')
+            continue
+        elig += 1
+        do = args.apply and applied < args.limit
+        p = merge_pair(conn, keep, drop, canon, apply=do, batch=batch)
+        if do:
+            applied += 1
+        tag = "MERGE-APPLIED" if do else "MERGE-PENDING"
+        out.append(f"{tag}\t{cc}\t{keep}\t{drop}\t{kn!r} -> {canon!r}\t"
+                   f'j={j:.2f}; drop={dn!r}; {p["judges"]}; {p["author"]}')
+    for cc, ki, kn, di, dn, why in b["NEEDS_DECISION"]:
+        out.append(f"NEEDS_DECISION\t{cc}\t{ki}\t{di}\t"
+                   f"{kn!r} | {dn!r}\t{why}")
+    for cc, ki, kn, di, dn in b["DEFER_MODERN"]:
+        out.append(f"DEFER_MODERN\t{cc}\t{ki}\t{di}\t"
+                   f"{kn!r} | {dn!r}\t1997+ neutral-cite; separate pass")
+    for cc, n in b["DEFER_MULTI"]:
+        out.append(f"DEFER_MULTI\t{cc}\t\t\t\t{n} rows share this cite")
+    rpt = Path("triage") / f"{batch}.tsv"
     rpt.write_text("\n".join(out), encoding="utf-8")
-    if args.apply:
+    if args.apply and applied:
         log_provenance(
-            conn, operation="section6_dedup",
-            command="python -m ndcourts_mcp.merge_opinions --apply",
-            rows_affected=len(clean),
-            notes=(f"batch {BATCH}; merged {len(clean)} §6 duplicate "
-                   f"pairs (pilot: today's 46-queue clean subset), "
-                   f"{len(flagged)} left NEEDS_DECISION; revert via "
-                   f"snapshot restore (row deletions are not "
-                   f"changelog-revertible)"))
+            conn, operation="section6_dedup_corpus",
+            command=f"python -m ndcourts_mcp.merge_opinions --apply "
+                    f"--limit {args.limit}",
+            rows_affected=applied,
+            notes=(f"batch {batch}; corpus-wide §6 merge, applied "
+                   f"{applied} of {len(merges)} MERGE candidates "
+                   f"(reviewed batch, limit {args.limit}); revert via "
+                   f"snapshot restore (row deletions not changelog-"
+                   f"revertible)"))
         conn.commit()
-    print(f"=== §6 dedup: {'APPLIED' if args.apply else 'DRY RUN'} "
-          f"(batch {BATCH}) ===")
-    print(f"  clean merges     {len(clean)}")
-    print(f"  needs_decision   {len(flagged)}")
+    held = len(merges) - elig
+    print(f"=== §6 corpus dedup: {'APPLIED' if args.apply else 'DRY RUN'} "
+          f"(batch {batch}) ===")
+    print(f"  MERGE total        {len(merges)} "
+          f"(>= {args.min_jaccard}: {elig} eligible"
+          f"{f', {applied} applied' if args.apply else ''}; "
+          f"< {args.min_jaccard}: {held} held-lowjac)")
+    print(f"  needs_decision     {len(b['NEEDS_DECISION'])}")
+    print(f"  defer_modern       {len(b['DEFER_MODERN'])}")
+    print(f"  defer_multi        {len(b['DEFER_MULTI'])}")
     print(f"  report -> {rpt}")
     conn.close()
 
