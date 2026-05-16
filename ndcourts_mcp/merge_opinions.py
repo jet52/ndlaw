@@ -297,10 +297,21 @@ def main() -> None:
     batch = f"section6-dedup-corpus-{date.today().isoformat()}"
     b = _corpus_pairs(conn)
     merges = b["MERGE"]
-    applied = elig = 0
+    applied = elig = stale = 0
     out = ["kind\tcite\tkeep\tdrop\tname_old->canonical\tdetail"]
     for _df, cc, keep, kn, drop, dn, j in merges:
         canon = _canonical_name(kn)
+        # An opinion can sit in two shared-cite pairs; once an earlier
+        # merge in THIS batch deletes it, a later pair is stale. Skip
+        # and converge on re-run (the scan always reflects live rows).
+        if not conn.execute("SELECT 1 FROM opinions WHERE id IN (?,?) "
+                            "GROUP BY 1 HAVING COUNT(*)=2",
+                            (keep, drop)).fetchone():
+            stale += 1
+            out.append(f"SKIPPED_STALE\t{cc}\t{keep}\t{drop}\t"
+                       f"{kn!r}\tone row already merged in this batch — "
+                       f"re-run to converge")
+            continue
         if j < args.min_jaccard:
             p = merge_pair(conn, keep, drop, canon, apply=False,
                            batch=batch)
@@ -345,6 +356,8 @@ def main() -> None:
           f"(>= {args.min_jaccard}: {elig} eligible"
           f"{f', {applied} applied' if args.apply else ''}; "
           f"< {args.min_jaccard}: {held} held-lowjac)")
+    if stale:
+        print(f"  skipped_stale      {stale} (re-run to converge)")
     print(f"  needs_decision     {len(b['NEEDS_DECISION'])}")
     print(f"  defer_modern       {len(b['DEFER_MODERN'])}")
     print(f"  defer_multi        {len(b['DEFER_MULTI'])}")
