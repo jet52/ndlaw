@@ -56,7 +56,7 @@ echo "$SCOPE" | sed '$d' | grep . && true
 echo "  scope clean (0 editorial markers)"
 
 echo "[3/5] git clean"
-[ -z "$(git status --porcelain | grep -v '\.bak')" ] \
+[ -z "$(git status --porcelain | grep -vE '\.bak|opinions\.db\.zip')" ] \
   || { echo "ABORT: git working tree not clean" >&2; exit 1; }
 
 echo "[4/5] zip + sha256"
