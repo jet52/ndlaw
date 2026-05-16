@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `westlaw-queue-clearwins-2026-05-15` (15 rows)
+
+Conservative "clear wins" pass over the 98 `westlaw-receive-2026-05-15` AMBIGUOUS docs. Promotes only where the Westlaw doc's distinctive party surname uniquely identifies exactly one cleaned-cite candidate that is not part of a duplicate pair and clears the 0.20 jaccard floor.
+
+- **Tool**: `python -m ndcourts_mcp.resolve_westlaw_clearwins --apply`
+- **Result**: 5 promoted (Guardianship of Frank `137 N.W.2d 218`→6450; Transportation Div. v. Sandstrom `337 N.W.2d 160`→8950; State Bank v. Patten `357 N.W.2d 239`→9252; Gange `429 N.W.2d 429`→10212; First Nat'l Bank v. Jacobsen `431 N.W.2d 284`→10255), jaccard 0.79–0.91. 93 deferred (0 dup, 0 low-sim, 93 unclear — the classifier is deliberately strict; many human-obvious ones, e.g. Sletten→11968, defer due to a brittle doc-lookup string match, a known limitation to widen later).
+- **Changelog rows**: 15 = 5 × (text_content + source_reporter + source_path), authority-stamped. Each `.doc` archived to `~/refs/nd/opin/N.W.2d/{vol}/{page:04d}-{slug}.doc`.
+- **Process note**: first apply used a placeholder source_path (broke `source_files_on_disk`); snapshot-restored, fixed to call the real `_archive_doc`, re-applied. Invariants: 13 ok, 2 known, 0 regressed.
+- **Safety**: pre-batch snapshot `opinions.db.bak-pre-clearwins-20260515_210455`. Revert: `cleanup revert westlaw-queue-clearwins-2026-05-15` then `align_primary_source --apply`.
+
 ## Batch `westlaw-receive-2026-05-15` (971 rows)
 
 Ingested the manual Westlaw Find & Print returns for the gap-era worklist (batches 1–4 + the non-unique resolution passes; 425 docs). Westlaw bound is the highest authority for the 1953–1996 era.
