@@ -48,7 +48,7 @@ from .receive_westlaw import (
 
 BATCH = f"westlaw-queue-clearwins-{date.today().isoformat()}"
 INCOMING = Path.home() / "refs" / "nd" / "opin" / "westlaw-incoming"
-REPORT = Path("triage") / "westlaw-receive-2026-05-15.tsv"
+DEFAULT_REPORT = Path("triage") / f"westlaw-receive-{date.today().isoformat()}.tsv"
 
 # ALLCAPS tokens that are structural, not party surnames. The Westlaw
 # caption uppercases surnames ("Douglas D. SLETTEN"); these are the
@@ -81,7 +81,7 @@ def _is_dup_member(conn, cand: dict) -> bool:
     return n > 1
 
 
-def run(conn, apply: bool) -> dict:
+def run(conn, apply: bool, report_path: Path = DEFAULT_REPORT) -> dict:
     # cite -> [(doc, parsed)]
     idx: dict[str, list] = {}
     for d in INCOMING.rglob("*.doc"):
@@ -96,7 +96,7 @@ def run(conn, apply: bool) -> dict:
     st = {"ambiguous_in": 0, "clear_win": 0, "defer_dup": 0,
           "defer_unclear": 0, "defer_lowsim": 0}
     report = []
-    for line in REPORT.read_text(encoding="utf-8").splitlines()[1:]:
+    for line in report_path.read_text(encoding="utf-8").splitlines()[1:]:
         f = line.split("\t")
         if f[0] != "AMBIGUOUS":
             continue
@@ -186,10 +186,13 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--report", type=Path, default=DEFAULT_REPORT,
+                    help="receive_westlaw TSV to drain "
+                         "(default: today's batch report)")
     args = ap.parse_args()
     conn = get_connection(args.db)
     try:
-        st, rpt = run(conn, apply=args.apply)
+        st, rpt = run(conn, apply=args.apply, report_path=args.report)
     finally:
         conn.close()
     mode = "APPLIED" if args.apply else "DRY RUN"
