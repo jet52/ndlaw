@@ -184,10 +184,23 @@ def _archive_doc(doc_path: Path, primary_cite: str, case_name: str) -> str:
     return str(dest.relative_to(REFS_ROOT))
 
 
+def _clean_cite(cite: str) -> str:
+    """Strip the trailing Westlaw reporter suffix — '(Mem)', '(Table)',
+    '(Unpublished Disposition)', etc. The memorandum parser carries the
+    literal cite line '516 N.W.2d 278 (Mem)'; the DB stores the bare
+    '516 N.W.2d 278', so an exact match silently fails and the doc
+    duplicates an existing opinion. Normalize before matching, and store
+    the bare form on create so the corpus isn't polluted with variants."""
+    return re.sub(r"\s*\([^)]*\)\s*$", "",
+                  re.sub(r"\s+", " ", cite.strip())).strip()
+
+
 def _candidates(conn, citations: list[str]) -> list[dict]:
     seen, out = set(), []
     for cite in citations:
-        c = re.sub(r"\s+", " ", cite.strip())
+        c = _clean_cite(cite)
+        if not c:
+            continue
         for r in conn.execute(
             "SELECT o.* FROM opinions o JOIN citations ci "
             "ON ci.opinion_id=o.id WHERE ci.citation=?", (c,)
@@ -198,31 +211,58 @@ def _candidates(conn, citations: list[str]) -> list[dict]:
     return out
 
 
-def _resolve(conn, parsed: dict) -> tuple[str, dict | None]:
-    """Return (kind, opinion). kind ∈ match | create | ambiguous."""
+_TEXT_SAME = 0.45   # text-jaccard above this = same opinion despite a
+                    # messy/non-matching parsed caption
+
+
+def _agreement(parsed: dict, cand: dict) -> tuple[float, bool, bool]:
+    """(score, name_ok, strong) for a doc against a candidate opinion.
+
+    A genuine same-opinion match agrees on at least one strong signal —
+    cleaned caption, OR filing date, OR substantial text overlap. A
+    shared-page COMPANION that merely collides on the (cleaned) reporter
+    cite agrees on none. score ranks competing docs for the same row."""
+    wl_key = _caption_key(parsed.get("case_name", ""))
+    name_ok = bool(wl_key and _case_names_match(wl_key, cand["case_name"]))
+    date_ok = bool(parsed.get("date_filed")
+                   and parsed["date_filed"] == cand["date_filed"])
+    wl_text = parsed.get("full_bound_text") or parsed.get("opinion_text") or ""
+    sim = jaccard(shingles(normalize_words(wl_text)),
+                  shingles(normalize_words(cand.get("text_content", ""))))
+    strong = name_ok or date_ok or sim >= _TEXT_SAME
+    score = (2.0 if name_ok else 0.0) + (1.0 if date_ok else 0.0) + sim
+    return score, name_ok, strong
+
+
+def _resolve(conn, parsed: dict) -> tuple[str, dict | None, float]:
+    """(kind, opinion, score). kind ∈ match | create | ambiguous.
+
+    A candidate is accepted only if it AGREES on name/date/text — a lone
+    cite candidate is NOT enough (shared reporter pages put a different
+    opinion at the same cleaned cite; blindly matching dog-piles or
+    duplicates it). Non-agreeing → create (it is a genuine distinct
+    opinion sharing the page)."""
     cites = list(parsed.get("all_citations", []))
     if parsed.get("primary_citation"):
         cites.insert(0, parsed["primary_citation"])
     cands = _candidates(conn, cites)
-    if len(cands) == 1:
-        return "match", cands[0]
     if not cands:
-        return "create", None
-    # Non-unique reporter page: disambiguate by party name + date.
-    # Compare on the cleaned caption key (raw Westlaw caption carries the
-    # full multi-party block + docket tail and never matches the short
-    # DB name).
-    wl_key = _caption_key(parsed.get("case_name", ""))
-    wl_date = parsed.get("date_filed")
-    by_name = [c for c in cands
-               if wl_key and _case_names_match(wl_key, c["case_name"])]
-    if len(by_name) == 1:
-        return "match", by_name[0]
-    pool = by_name or cands
-    by_both = [c for c in pool if wl_date and c["date_filed"] == wl_date]
-    if len(by_both) == 1:
-        return "match", by_both[0]
-    return "ambiguous", None
+        return "create", None, 0.0
+    scored = sorted(
+        ((_agreement(parsed, c), c) for c in cands),
+        key=lambda t: t[0][0], reverse=True)
+    (best_score, _, best_strong), best = scored[0]
+    if not best_strong:
+        # No candidate is plausibly this doc's opinion → it is the
+        # shared-page companion of opinions we already have → create.
+        return "create", None, 0.0
+    strong = [(s, c) for (s, _n, st), c in scored if st]
+    if len(strong) == 1:
+        return "match", best, best_score
+    # >1 candidate plausibly matches — only safe if one clearly wins.
+    if strong[0][0] - strong[1][0] >= 1.0:
+        return "match", best, best_score
+    return "ambiguous", None, 0.0
 
 
 def _promote(conn, oid: int, parsed: dict, archive_path: str,
@@ -322,7 +362,10 @@ def _create(conn, parsed: dict, archive_path: str, apply: bool) -> str:
     cites = list(parsed.get("all_citations", []))
     if parsed.get("primary_citation"):
         cites.insert(0, parsed["primary_citation"])
-    cites = list(dict.fromkeys(c.strip() for c in cites if c.strip()))
+    # Store the bare cite (no '(Mem)'/'(Table)') so the corpus stays
+    # clean and future runs can match these rows.
+    cites = list(dict.fromkeys(
+        cc for cc in (_clean_cite(c) for c in cites) if cc))
     auth = _authority(parsed.get("primary_citation", ""))
     if not apply:
         return f"would create ({court})"
@@ -377,7 +420,7 @@ def run(conn, incoming: Path, apply: bool) -> dict:
     # two independent CREATEs, not one CREATE then a sibling promoting
     # onto it. _resolve only reads, so doing all resolution before any
     # write makes the batch order-independent (== the dry-run truth).
-    decisions = []  # (doc, parsed, kind, op)
+    decisions = []  # [doc, parsed, kind, op, score]
     for doc in _iter_docs(incoming):
         st["docs"] += 1
         try:
@@ -388,11 +431,34 @@ def run(conn, incoming: Path, apply: bool) -> dict:
         if not parsed:
             st["parse_error"] += 1
             continue
-        kind, op = _resolve(conn, parsed)
-        decisions.append((doc, parsed, kind, op))
+        kind, op, score = _resolve(conn, parsed)
+        decisions.append([doc, parsed, kind, op, score])
 
-    # PHASE 2 — apply writes from the frozen classification.
-    for doc, parsed, kind, op in decisions:
+    # RECONCILE — at most one doc may promote a given existing row. When
+    # several docs resolve "match" to the same opinion (two short
+    # formulaic shared-page orders both clearing the cite+agreement bar),
+    # keep the highest-scoring as the match; the rest are distinct
+    # companion opinions → demote to "create" so they get their own row
+    # instead of dog-piling/overwriting one.
+    best_for: dict[int, float] = {}
+    for _d, _p, kind, op, score in decisions:
+        if kind == "match":
+            oid = op["id"]
+            if score > best_for.get(oid, -1.0):
+                best_for[oid] = score
+    claimed: set[int] = set()
+    for dec in decisions:
+        _d, _p, kind, op, score = dec
+        if kind != "match":
+            continue
+        oid = op["id"]
+        if score == best_for[oid] and oid not in claimed:
+            claimed.add(oid)            # this doc wins the row
+        else:
+            dec[2], dec[3] = "create", None   # companion → create
+
+    # PHASE 2 — apply writes from the frozen, reconciled classification.
+    for doc, parsed, kind, op, score in decisions:
         cite = parsed.get("primary_citation", "")
         name = parsed.get("case_name", "?")
         archive_path = _archive_doc(doc, cite, name) if apply else \
