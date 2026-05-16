@@ -2,6 +2,17 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `court-archive-gap-create-2026-05-15` (114 rows)
+
+Created 57 opinions that exist in the court-sourced NW-cite archive but were entirely absent from the corpus (the §2 gap candidates), after triage narrowed 292 raw candidates to the genuinely-addable set.
+
+- **Tool**: `python -m ndcourts_mcp.ingest_nwcite --create-gap --apply`
+- **Triage of the 292**: text-containment identity check (not fuzzy names) found only 4 already present; of the 288 missing, 235 were shared-cite disposition/table pages (not opinions → manual-review queue, `triage/court-archive-shared-cite-pages-2026-05-15.md`), leaving 57 unique-cite genuine opinions.
+- **Scope** (decided 2026-05-15): create all 57 — 12 ND Supreme Court substantive + 6 ND Supreme Court short summary dispositions + **39 ND Court of Appeals** (corpus scope expanded to include the Court of Appeals as a distinct `court` value).
+- **Result**: 57 new opinions (18 `court='North Dakota Supreme Court'`, 39 `court='North Dakota Court of Appeals'`). Each: court-archive primary source, frontmatter built from the court page (date_filed from the page's "Filed" meta — 100% coverage, three independent signals), citations, `validation_status='single_source_accepted'`. Corpus 20,419 → 20,476.
+- **Changelog rows**: 114 = 57 `opinions.insert` + 57 `citation`, authority-stamped.
+- **Safety**: pre-batch snapshot `opinions.db.bak-pre-gap-create-20260515_192344`. NOTE: `cleanup revert` does not auto-undo row creation — reverting this batch requires `DELETE FROM opinions WHERE id IN (…)` for the 57 (or restore the snapshot). Invariants: 13 ok, 2 known, 0 regressed.
+
 ## Batch `court-archive-containment-rescue-2026-05-15` (3,009 rows)
 
 Containment-rule rescue of the 1,018 `manual_outlier` opinions the `court-archive-promote-2026-05-15` ratio gate flagged rather than auto-promoting. Triage showed these were not "court worse" but **CourtListener self-duplicated `text_content`** (the opinion duplicated within the row), with the court-archive text as the single clean canonical copy.

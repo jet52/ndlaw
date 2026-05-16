@@ -47,7 +47,9 @@ from pathlib import Path
 
 from .db import DEFAULT_DB_PATH, get_connection, log_change, log_provenance
 from .multisource_diff import jaccard, normalize_words, shingles
+from .scrape_archive import _normalize_author, _parse_date
 from .scrape_nwcite import COURT_ARCHIVE_DIR
+from .validation_status import _era_tier
 
 BATCH = f"court-archive-promote-{date.today().isoformat()}"
 AUTHORITY = "court-archive (archive.ndcourts.gov NW-cite)"
@@ -497,6 +499,139 @@ def rescue_flagged(conn, apply: bool) -> dict:
     return st
 
 
+GAP_BATCH = f"court-archive-gap-create-{date.today().isoformat()}"
+_META_DESC = re.compile(
+    r'<meta name="Description" content="([^"]*)"', re.IGNORECASE)
+_TITLE = re.compile(r"<title>([^<]+)</title>", re.IGNORECASE)
+_DOCKET = re.compile(
+    r"\b((?:Civil|Criminal)?\s*Nos?\.\s*[\d,]+(?:[A-Z]+)?"
+    r"(?:\s+and\s+[\d,]+)?)", re.IGNORECASE)
+
+
+def _gap_unique_candidates(conn) -> list[dict]:
+    """Unmatched court-archive entries whose N.W. cite is unique among
+    the unmatched set (shared-cite entries are disposition/table pages,
+    not opinions — they go to the manual queue, not creation)."""
+    import collections
+    cands = []
+    for mf in COURT_ARCHIVE_DIR.glob("*/_manifest.json"):
+        for e in json.loads(mf.read_text(encoding="utf-8"))["entries"]:
+            if e.get("status") not in ("fetched", "cached"):
+                continue
+            cites = [e["nw_cite"]] + (
+                [e["neutral_cite"]] if e.get("neutral_cite") else [])
+            ph = ",".join("?" * len(cites))
+            if conn.execute(
+                f"SELECT 1 FROM citations WHERE citation IN ({ph}) LIMIT 1",
+                cites,
+            ).fetchone():
+                continue
+            cands.append(e)
+    by = collections.Counter(e["nw_cite"] for e in cands)
+    return [e for e in cands if by[e["nw_cite"]] == 1]
+
+
+def create_gap_opinions(conn, apply: bool) -> dict:
+    """Create the unique-cite genuine-missing opinions as new rows
+    (scope approved 2026-05-15: Supreme substantive + Supreme short +
+    Court of Appeals as a distinct court). Shared-cite table pages are
+    NOT created here — see queue_shared_cite_pages."""
+    st = {"candidates": 0, "supreme": 0, "court_of_appeals": 0,
+          "skipped_no_text": 0, "skipped_no_date": 0}
+    for e in _gap_unique_candidates(conn):
+        st["candidates"] += 1
+        raw = (REFS_ROOT / e["source_path"]).read_text(
+            encoding="utf-8", errors="replace")
+        body = _court_html_to_text(raw)
+        if not body:
+            st["skipped_no_text"] += 1
+            continue
+        dm = _META_DESC.search(raw)
+        desc = dm.group(1) if dm else ""
+        date_m = re.search(
+            r"Filed\s+([A-Za-z]+\.?\s+\d{1,2},?\s+\d{4})", desc)
+        date_filed = _parse_date(date_m.group(1)) if date_m else None
+        if not date_filed:
+            st["skipped_no_date"] += 1
+            continue
+        is_coa = "COURT OF APPEALS" in body[:120].upper()
+        court = ("North Dakota Court of Appeals" if is_coa
+                 else "North Dakota Supreme Court")
+        tm = _TITLE.search(raw)
+        case_name_full = (tm.group(1).split(",")[0].strip()
+                          if tm else e["case_name"])
+        author_m = re.search(r"Author:\s*([^.]+?)\.", desc)
+        author_raw = author_m.group(1).strip() if author_m else None
+        per_curiam = 1 if (author_raw
+                           and "per curiam" in author_raw.lower()) else 0
+        author = (None if per_curiam else
+                  (_normalize_author(author_raw) if author_raw else None))
+        dk = _DOCKET.search(body[:400])
+        docket = dk.group(1).strip() if dk else None
+        cites = [e["nw_cite"]] + (
+            [e["neutral_cite"]] if e.get("neutral_cite") else [])
+
+        fm = (f'---\ntitle: "{e["case_name"]}"\n'
+              f'case_name_full: "{case_name_full}"\n'
+              f'court: "{court}"\ndate_filed: {date_filed}\n'
+              f'citations:\n' + "".join(f' - "{c}"\n' for c in cites)
+              + (f'docket_number: "{docket}"\n' if docket else "")
+              + "---\n\n")
+        text_content = fm + body
+        st["court_of_appeals" if is_coa else "supreme"] += 1
+        if not apply:
+            continue
+
+        cur = conn.execute(
+            "INSERT INTO opinions (case_name, case_name_full, date_filed, "
+            "court, per_curiam, author, source_reporter, source_path, "
+            "text_content) VALUES (?, ?, ?, ?, ?, ?, 'court-archive', ?, ?)",
+            (e["case_name"], case_name_full, date_filed, court,
+             per_curiam, author, e["source_path"], text_content),
+        )
+        oid = cur.lastrowid
+        log_change(conn, GAP_BATCH, oid, "opinions.insert", None,
+                   f'{court} | {e["nw_cite"]} | {date_filed} | '
+                   f'court-archive {e["source_path"]}', authority=AUTHORITY)
+        for i, c in enumerate(cites):
+            conn.execute(
+                "INSERT INTO citations (opinion_id, citation, is_primary) "
+                "VALUES (?, ?, ?)", (oid, c, 1 if i == 0 else 0))
+            log_change(conn, GAP_BATCH, oid, "citation", None, c,
+                       authority=AUTHORITY)
+        conn.execute(
+            "INSERT INTO opinion_sources (opinion_id, source_reporter, "
+            "source_path, text_length, is_primary, added_at) VALUES "
+            "(?, 'court-archive', ?, ?, 1, "
+            "strftime('%Y-%m-%dT%H:%M:%S','now'))",
+            (oid, e["source_path"], len(text_content)))
+        conn.execute(
+            "INSERT INTO validation_status (opinion_id, era_tier, "
+            "crosscheck_state, authority_source, sources_seen, batch, "
+            "validated_at, note) VALUES (?, ?, 'single_source_accepted', "
+            "?, '[\"court-archive\"]', ?, "
+            "strftime('%Y-%m-%dT%H:%M:%S','now'), ?)",
+            (oid, _era_tier(date_filed), AUTHORITY, GAP_BATCH,
+             "created from court-sourced NW-cite archive; "
+             "single court-authoritative source"))
+
+    if apply:
+        log_provenance(
+            conn, operation="ingest_nwcite-gap-create",
+            command="python -m ndcourts_mcp.ingest_nwcite --create-gap "
+                    "--apply",
+            source_paths=str(COURT_ARCHIVE_DIR),
+            rows_affected=st["supreme"] + st["court_of_appeals"],
+            notes=(f"batch {GAP_BATCH}; created {st['supreme']} Supreme + "
+                   f"{st['court_of_appeals']} Court of Appeals opinions "
+                   f"from unique-cite court-archive pages; revert via "
+                   f"`cleanup revert {GAP_BATCH}` (rows then need manual "
+                   f"DELETE — creations aren't auto-undone by revert)"),
+        )
+        conn.commit()
+    return st
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
@@ -507,6 +642,9 @@ def main() -> None:
                     help="Run the containment-rule rescue over the prior "
                          "batch's manual_outlier flags instead of the "
                          "manifest walk")
+    ap.add_argument("--create-gap", action="store_true",
+                    help="Create the unique-cite genuine-missing opinions "
+                         "(Supreme + Court of Appeals) as new rows")
     args = ap.parse_args()
 
     conn = get_connection(args.db)
@@ -518,6 +656,14 @@ def main() -> None:
                   f"(batch {RESCUE_BATCH}) ===")
             for k, v in st.items():
                 print(f"  {k:<12} {v}")
+            return
+        if args.create_gap:
+            st = create_gap_opinions(conn, apply=args.apply)
+            mode = "APPLIED" if args.apply else "DRY RUN"
+            print(f"=== gap-opinion creation: {mode} "
+                  f"(batch {GAP_BATCH}) ===")
+            for k, v in st.items():
+                print(f"  {k:<18} {v}")
             return
         stats = run(conn, apply=args.apply)
     finally:
