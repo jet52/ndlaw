@@ -203,6 +203,11 @@ _ALL_HEADERS = _SECTION_PRESERVE + _SECTION_DROP + _INLINE_HEADERS
 
 def _is_section_header(line: str, headers: tuple[str, ...]) -> bool:
     s = line.strip().rstrip(".")
+    # Modern Westlaw writes the headnote/citing count in the header,
+    # e.g. "West Headnotes (20)", "West Headnotes (1)". Without this the
+    # West Headnotes DROP never matched on modern-format docs and the
+    # entire editorial headnote block leaked into text_content.
+    s = re.sub(r"\s*\(\d+\)$", "", s)
     return s in headers
 
 

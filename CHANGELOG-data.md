@@ -2,6 +2,17 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `strip-westlaw-headnotes-2026-05-15` (186 rows)
+
+Corrective scope sweep: removed Westlaw editorial (West Headnotes block, "Procedural Posture(s)" lines, Synopsis stub) that leaked into `text_content` during this session's Westlaw ingests — content the redistribution scope (`NOTICE.md`) excludes. Caught by the pre-release scope scan before any public release.
+
+- **Root cause**: `ingest_westlaw._is_section_header` exact-matched section names, but modern Westlaw writes "West Headnotes (20)" with a headnote count, so the `West Headnotes` DROP never fired on modern-format docs → the editorial block + Synopsis stub + Procedural Posture leaked. Fixed forward in `_is_section_header` (strips a trailing `(N)` before the membership test).
+- **Tool**: `python -m ndcourts_mcp.strip_westlaw_headnotes --apply`
+- **Rule**: surgically excise the `West Headnotes …` block (header line through the next court-authored boundary — Syllabus by the Court / Syllabus / Attorneys and Law Firms / Opinion / author / PER CURIAM), drop `Procedural Posture(s):` lines, and re-run the existing tested `strip_synopsis_editorial` for the Synopsis stub. Court-authored Synopsis narrative and the court's "Syllabus by the Court" are preserved (verified on oid 6404: West Headnotes [1]–[20] removed, Syllabus by the Court + Opinion intact).
+- **Result**: 186 rows stripped (all westlaw-sourced), 0 unchanged, 0 flagged-incomplete. Full-corpus re-scan: **West Headnotes 0, Procedural Posture(s) 0, Thomson Reuters 0, KeyCite 0**. Corpus row count unchanged (20,486). 186 changelog rows (1 text_content each), full prior text retained for revert.
+- **Process note**: first apply rolled back on a stale-key f-string error before commit (no DB change); fixed and re-applied clean.
+- **Safety**: pre-batch snapshot `opinions.db.bak-pre-strip-headnotes-20260515_213944`. Revert: `cleanup revert strip-westlaw-headnotes-2026-05-15`. Invariants: 13 ok, 2 known, 0 regressed.
+
 ## Batch `westlaw-queue-clearwins-2026-05-15` (15 rows)
 
 Conservative "clear wins" pass over the 98 `westlaw-receive-2026-05-15` AMBIGUOUS docs. Promotes only where the Westlaw doc's distinctive party surname uniquely identifies exactly one cleaned-cite candidate that is not part of a duplicate pair and clears the 0.20 jaccard floor.
