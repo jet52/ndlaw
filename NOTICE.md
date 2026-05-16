@@ -53,22 +53,30 @@ publishes its data for free public use, and we thank them for it.
 
 [ndcourts.gov](https://www.ndcourts.gov) is the official site of the North
 Dakota Court System. Opinions published there since 1997 are the canonical
-text for that era. `archive.ndcourts.gov` hosts the earlier HTML version of
-those opinions and is used as a second source for cross-checking. The
-project's scraper uses standard polite practices (low rate, identification
-in the User-Agent) and only retrieves publicly-listed materials.
+text for that era. `archive.ndcourts.gov` also hosts an N.W.-citation index
+(`/opinions/cite/`) of the court's own HTML opinions reaching back to the
+mid-1960s; that court-sourced text is the **primary** `text_content` for
+roughly 4,800 opinions in the 1953–1996 range (and a cross-check source for
+1997–2019). A small number of North Dakota Court of Appeals decisions
+reached this way are also included, tagged `court = "North Dakota Court of
+Appeals"`. The project's scraper uses standard polite practices (low rate,
+identification in the User-Agent) and only retrieves publicly-listed
+materials.
 
 ### Westlaw (Thomson Reuters)
 
-Pre-1953 opinions in the bound *North Dakota Reports* series (volumes 1–79,
-1890–1953) were validated against bound-volume entries retrieved manually
-from Westlaw by a user with authorized Westlaw access. The Westlaw `.doc`
-files themselves are not redistributed in this repository. Only the
-public-domain content (court opinion text and court-authored syllabi),
-filtered by the rules above, has been extracted and is included in
+Bound *North Dakota Reports* entries (volumes 1–79, 1890–1953) and
+N.W.2d-era opinions for the 1953–1996 range were retrieved manually from
+Westlaw by a user with authorized Westlaw access — for pre-1953 as the
+primary bound text, and for 1953–1996 to supply or cross-check opinions
+not otherwise court-sourced. The Westlaw `.doc`/`.rtf` files themselves
+are not redistributed in this repository. Only the public-domain content
+(court opinion text and court-authored syllabi), filtered by the rules
+above — Westlaw editorial headnotes, Synopsis stubs, and "Procedural
+Posture" lines removed — has been extracted and is included in
 `opinions.db`. No automated retrieval from Westlaw is performed by any
-code in this repository; the `ingest_westlaw.py` tool only reads `.doc`
-files that the user has placed on disk.
+code in this repository; the `ingest_westlaw.py` and `receive_westlaw.py`
+tools only read files that the user has placed on disk.
 
 ## Citation format
 
@@ -85,8 +93,10 @@ This corpus is offered as a working tool, not as an authoritative or
 official text. The text has been validated against multiple sources and
 every correction is recorded in the `changelog` SQLite table and
 [`CHANGELOG-data.md`](CHANGELOG-data.md), but errors remain and are
-ongoing work. The 1953–1995 era is single-source (CourtListener N.W.2d
-OCR only) and has not been cross-validated against a second source. See
+ongoing work. Most of the 1953–1996 era now carries court-sourced
+(archive.ndcourts.gov) and/or Westlaw bound text; a residual pre-~1965
+slice (roughly 1,200 opinions) remains single-source CourtListener
+N.W.2d OCR pending manual Westlaw acquisition. See
 [`TODO-validation.md`](TODO-validation.md) for the current state of
 validation work.
 

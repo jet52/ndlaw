@@ -1,11 +1,12 @@
 # ndcourts-mcp
 
 A Model Context Protocol (MCP) server for North Dakota Supreme Court
-opinions, 1890–present. Built on SQLite with FTS5 full-text search and
+opinions, 1890–present (plus a small number of North Dakota Court of
+Appeals decisions). Built on SQLite with FTS5 full-text search and
 served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
 opinion browser with multi-source diff/merge tools.
 
-The corpus currently contains **~20,400 opinions** with **113,000+
+The corpus currently contains **~20,500 opinions** with **113,000+
 citation links** between them, with every correction recorded in an
 auditable, revertible changelog.
 
@@ -265,15 +266,21 @@ the opinion text. The server exposes eight tools — see the table below.
 
 ## What's in the database
 
-Counts below are as of 2026-05-13; rerun
-`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total.
+Counts below are as of 2026-05-15; rerun
+`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
+(~20,490, of which 39 are North Dakota Court of Appeals decisions and the
+rest North Dakota Supreme Court).
 
-| Era         | Opinions | Primary source       | Cross-validation        |
-|-------------|----------|----------------------|-------------------------|
-| 1890–1952   | ~6,460   | CourtListener OCR    | Westlaw bound vols 1–79 |
-| 1953–1995   | ~5,940   | CourtListener N.W.2d | None (single-source)    |
-| 1996–2019   | ~5,980   | ndcourts.gov         | archive.ndcourts.gov    |
-| 2020–present| ~1,560   | ndcourts.gov         | NW2d where available    |
+The "primary text source" is the source whose text is stored in
+`text_content`; other sources for the same opinion are recorded in
+`opinion_sources` for cross-checking.
+
+| Era         | Opinions | Primary text source | Notes |
+|-------------|----------|---------------------|-------|
+| 1890–1952   | ~6,640   | Westlaw bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
+| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and Westlaw bound; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | manual Westlaw acquisition of the residual is ongoing (see TODO-validation.md) |
+| 1997–2019   | ~5,980   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
+| 2020–present| ~1,570   | ndcourts.gov | N.W.2d where available |
 
 See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
 and isn't redistributed in `text_content`. See
