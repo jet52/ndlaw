@@ -969,3 +969,34 @@ Hand-adjudicated 19 (caption + date confirmed, decisive text-jaccard separation 
 Not promoted (held for manual / §6): 472 N.W.2d 914 Johnson + 481 N.W.2d 225 Johnson (§6 dup-row pairs 10931/10932, 11075/11076 — blocked on §6 dedup); 109 N.W.2d 249 Healy (lead-vs-rehearing name/date conflict, j non-decisive); 505 N.W.2d 749 Schmidt oid 11479 (LOW_SIM j=0.01, receive-flagged); remaining category-B §6 dup pairs (auto-resolve after §6 + receive re-run). 2 docs were Nebraska (218 Neb. 539/556) and correctly rejected as non-ND; the ND opinion at 356 N.W.2d 890 (oid 9237 *First Federal S&L v. Scherle*) is unaffected — DB cite confirmed correct by the coherent ND pagination run 889/890/893, needs a future name-based re-pull only. Full triage: `triage/westlaw-shared-cite-followups-2026-05-17.md`.
 
 Note: the prior-session `westlaw-*-2026-05-16` batches (handoff state, 488 promoted) are in the in-DB `changelog` table but were not written up here; their detail lives in the `.remember/` handoff and `triage/*-2026-05-16.*`. Auditable via `SELECT ... FROM changelog WHERE batch LIKE '%2026-05-16%'`.
+
+## Batch: section6-handadj-2026-05-17 (31 rows, 14 row deletions)
+
+Applied 2026-05-17. Targeted §6 duplicate-row merges for the clean tranche of the 45 Westlaw-receive-blocked pairs. The corpus-wide engine (`merge_opinions`) drained the auto-mergeable ≥0.85 band in the prior session and won't auto-pick these (both rows carry inbound `cited_by`, so its keep=cb0-re-ingest rule doesn't fire), so these were merged via `merge_pair()` with a hand-resolved keep row.
+
+**Scope:** the 45 §6-blocked oids → 28 pairs → 19 true-dup (j≥0.55) / 9 distinct-page-mate (must NOT merge). Of the 19 true-dups, **14 clean simple pairs applied**; deferred: `57 N.W.2d 242` (3-row cluster), `344 N.W.2d 489` Anderson (same-name, j=0.70 borderline), `521 N.W.2d 643` Hosman (multi-row cluster w/ distinct Ferris). `472 N.W.2d 914` auto-rejected by the exactly-2-rows guard (3 rows: Johnson dup + the already-promoted Rorvig).
+
+**Keep-row policy** (approved): keep = row with more inbound `cited_by`; tie → longer `text_content` (the survivor's text is retained, drop's discarded); tie → lower oid. **Refinement applied:** `merge_pair` keeps the survivor's text, so where exactly one row was `source_reporter='westlaw'` (authoritative bound text) and the other not, keep was flipped to the Westlaw row to avoid discarding bound text — affected 1 pair, `466 N.W.2d 114` (keep flipped to 10803; `cited_by` is preserved either way since `merge_pair` unions both directions). `canonical_name = _canonical_name(keep.case_name)` (conservative — only the safe probate transform; caption cleanup deferred to the tracked §1 case-name pass), except `466 N.W.2d 114` set to `Whitaker v. Century 21` (human-verified from the opinion text — CL truncated to "Whitaker", Westlaw misparsed first name "Walter" as surname; not a regex guess).
+
+| cite | keep | drop (deleted) |
+|---|---|---|
+| 532 N.W.2d 59 | 11924 | 11923 |
+| 385 N.W.2d 102 | 9611 | 9610 |
+| 466 N.W.2d 114 | 10803 (westlaw) | 10804 |
+| 337 N.W.2d 160 | 8950 | 8949 |
+| 549 N.W.2d 196 | 12201 | 12200 |
+| 481 N.W.2d 225 | 11076 | 11075 |
+| 496 N.W.2d 24 | 11317 | 11316 |
+| 528 N.W.2d 369 | 11847 | 11846 |
+| 58 N.W.2d 278 | 12694 | 12693 |
+| 506 N.W.2d 402 | 11486 | 11485 |
+| 549 N.W.2d 671 | 12204 | 12203 |
+| 519 N.W.2d 301 | 11695 | 11694 |
+| 546 N.W.2d 366 | 12165 | 12164 |
+| 517 N.W.2d 631 | 11660 | 11659 |
+
+Changelog: 31 rows (14 `merge.absorbed` audit rows attributed to survivors, 12 `judges` best-of-breed, 4 `author`, 1 `case_name` — the 466 verified caption). Corpus 20256 → **20242**. Verification: `align_primary_source --apply` (10 source_path rewrites + 4 primary-flag flips at merge time, 0 after receive re-run), invariants **13 ok / 2 baseline / 0 regressed**, **0 orphan refs** across citations/opinion_sources/cited_by/text_citations/changelog. `neutral_cite_uniqueness` stayed Δ=0 (correct — these are pre-1997 N.W.2d opinions with no `YYYY ND n` neutral cite; the 258 baseline is post-1997 DEFER_MODERN territory).
+
+**Reversibility: NOT changelog-revertible.** `merge_pair` does `DELETE FROM opinions` for each drop row; recovery is snapshot-only from `opinions.db.bak-pre-s6-handadj-2026-05-17`.
+
+Payoff: a `receive_westlaw` re-run then auto-promoted 7 of the merged survivors to Westlaw bound text (385, 337, 496, 528, 506, 519, 517 N.W.2d cites) — previously permanently blocked by the dup pair. `481 N.W.2d 225` correctly held LOW_SIM (the Johnson doc genuinely doesn't match the survivor text, j≈0.004). 6 merged cites have no doc in the 2026-05-17 incoming and will fill on a future pull.
