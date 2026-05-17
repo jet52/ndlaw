@@ -49,6 +49,9 @@ N.D. Reports stopped at vol 79 (1953). Between 1953 and 1996, CourtListener NW2d
 - [ ] Run Westlaw Quick Check on top-100 low-confidence batches until yield drops below some threshold (e.g., <2 corrections per 50 opinions).
 - [ ] Tag validated opinions so they don't get re-queued.
 
+**Gap-era Westlaw receive pipeline (separate from the picker above).** `westlaw_worklist.py` lists gap-era opinions for manual Westlaw Find&Print; `receive_westlaw.py` ingests the returns; `resolve_westlaw_clearwins.py` (now `--report`-aware, defaults to today's batch) drains the surname-anchored clear-wins from the ambiguous queue. Batch 2026-05-16: 506 docs → 488 promoted to authoritative bound text (442 auto + 12 clear-wins + 6 hand-adjudicated shared-cite stragglers + the 46 §6-merged keeps via targeted explicit-oid promote); 18 residual ambiguous are already-resolved. Detailed pool state + next worklist batch live in the `.remember/` handoff, not here.
+- [ ] Continue the worklist (pool ~400+ still to list; fix the pool-aging gap so listed-but-unreceived rows get re-listed).
+
 ## 3 · 1997–2019 multi-source cross-check
 
 Three sources exist: ndcourts.gov markdown, CourtListener NW2d, archive.ndcourts.gov HTML. All three carry ¶ markers (except CL). Current `opinion_sources` coverage: 1990s 29%, 2000s 90%, 2010s 85%.
@@ -113,8 +116,15 @@ This matters because: (a) we can't text-diff between sources if we never recorde
 
 ## 6 · Duplicate review queue
 
-- [ ] Work through the 713 unreviewed citation-overlap dup candidates via the Dup Queue UI. Post-tightening (citation + text similarity), these are real candidates rather than collisions.
-- [ ] Keep the name+date+text strategy running on new ingests; it stays at 0 unreviewed currently.
+**CL double-ingest dedup (2026-05-16).** Built `ndcourts_mcp/merge_opinions.py` — best-of-breed row merge: keep = the inbound-`cited_by` row, drop = the `cited_by=0` CL re-ingest; jaccard≥0.55 guard so distinct shared-page opinions are never merged; conservative `In Re X's Estate → Estate of X` rename only; 13-table constraint-aware re-point; FTS via triggers; full changelog/provenance; `--apply` requires `--limit` (reviewed batches), `--min-jaccard` apply gate, transitive-stale pairs skip + converge on re-run. **230 duplicate rows eliminated** (46 pilot from the 2026-05-16 Westlaw ambiguous queue + 184 corpus-wide pre-1997 jaccard≥0.85). Each pass: snapshot + `align_primary_source --apply` + invariants 0-regressed + 0-orphan-ref verified. Corpus 20486→20256.
+
+Remaining §6 work (all in `triage/section6-dedup-corpus-2026-05-16.tsv`):
+- [ ] **165 MERGE-HOLD-LOWJAC** — pre-1997 same-cite/same-date pairs at 0.55–0.85 jaccard. Band genuinely mixes true dups with distinct shared-page cases (e.g. `Hawkins v. Sinclair` ≠ `Burger v. Sinclair`); needs per-pair human keep/distinct call. Run `merge_opinions --min-jaccard 0.55` and adjudicate the report rather than blind-apply.
+- [ ] **530 DEFER_MODERN** — post-1997 (date≥1997) released-corpus pairs, deferred for separate vetting (touches the public release + the 258 neutral_cite_uniqueness baseline; treat carefully).
+- [ ] **82 NEEDS_DECISION** (jaccard<0.55, likely distinct/shared-page) + **37 DEFER_MULTI** (>2 rows share one cite — not simple pairs).
+- [ ] **120 post-1997 opinions carry no neutral cite** (period-tolerant check; 7427/7549 do). Mostly summary/disposition-table entries sharing one N.W.2d page (2018–19 spike); confirm none are real opinions missing a `YYYY ND n` cite (matters for dedup completeness — copies that share no cite never collide). Owed: a triage list for review.
+- [ ] Legacy: 667 unreviewed citation-overlap `duplicate_candidates` rows via the Dup Queue UI (overlaps the above; the merge_opinions scan is the more direct lever now).
+- [ ] Keep the name+date+text strategy running on new ingests; stays at 0 unreviewed currently.
 
 ## 7 · Missing source files — small gaps
 

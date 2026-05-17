@@ -951,3 +951,21 @@ Applied 2026-05-04. Surfaced by the new `ndcourts_mcp.invariants` dashboard, whi
 Applied via `python -m ndcourts_mcp.align_primary_source --apply --batch align-source-path-2026-05-04` (3 source_path rewrites, 0 primary-flag flips, the existing `opinion_sources` rows already had the right paths and primary flags). Post-run dashboard: 13 ok, 2 at known baseline (258 §6 dup pairs, 85 §4 short orders), 0 regressions.
 
 The dashboard catching this kind of drift is exactly the regression-detector role it's meant to play. Drop the `source_path_matches_primary` baseline back to 0 in `invariants.py` so any future drift fails loudly.
+
+## Batch: westlaw-receive-2026-05-17 (747 rows) + westlaw-queue-clearwins-2026-05-17 (6 rows) + westlaw-receive-2026-05-17-handadj (57 rows)
+
+Applied 2026-05-17. Gap-era (1953–1996) Westlaw Find&Print returns for worklist batch `2026-05-17` (291 opinions listed via `westlaw_worklist --apply`). 287 `.doc` files received (4 zips of 98/83/91/11 + 2 single docs Fuchs/Karabensh); 285 ND-parseable.
+
+| Pass | Batch | Opinions | Changelog rows |
+|---|---|---|---|
+| Auto-promote + low-sim flag | `westlaw-receive-2026-05-17` | 249 promoted, 1 flagged | 747 |
+| Surname clear-wins | `westlaw-queue-clearwins-2026-05-17` | 2 (337 N.W.2d 160→8950, 496 N.W.2d 24→11317) | 6 |
+| Hand-adjudicated shared-page pairs | `westlaw-receive-2026-05-17-handadj` | 19 (explicit-oid promote) | 57 |
+
+**270 opinions** migrated to authoritative Westlaw bound text (`source_reporter='westlaw'`, primary). Each promote logs `text_content` + `source_reporter` + `source_path` to the `changelog` table; all three batches are revertible via `cleanup revert <batch>`. Pre-batch snapshot `opinions.db.bak-pre-receive-2026-05-17`. `align_primary_source --apply` a no-op (0 rewrites/flips). Invariants: 13 ok / 2 at known baseline / **0 regressed** after each pass. Corpus row count unchanged (20,256 — all promotes, no inserts).
+
+Hand-adjudicated 19 (caption + date confirmed, decisive text-jaccard separation vs the page-mate): 73 N.W.2d 782 Gunsch→14732 / Karabensh→14733; 176 N.W.2d 522 Fuchs→6846 / Giese→6847 (DB rows were tiny CL stubs — low jaccard is the stub being replaced; mapping is docket-decisive, Civ. 8581/8580); 378 N.W.2d 678 White→9519 / Williams→9520; 383 N.W.2d 813 United Bank→9594 / Kautzman→9595; 404 N.W.2d 50 Garcia→9875 / Miller→9878; 456 N.W.2d 772 Britton→10656 / Palda→10657; 469 N.W.2d 801 Ebach→10874 / Schumacher→10873; 519 N.W.2d 311 Voigt→11698 / Nassif→11699; 525 N.W.2d 250 Morehouse→11803 / Kieffer→11804; 472 N.W.2d 914 Rorvig→10933.
+
+Not promoted (held for manual / §6): 472 N.W.2d 914 Johnson + 481 N.W.2d 225 Johnson (§6 dup-row pairs 10931/10932, 11075/11076 — blocked on §6 dedup); 109 N.W.2d 249 Healy (lead-vs-rehearing name/date conflict, j non-decisive); 505 N.W.2d 749 Schmidt oid 11479 (LOW_SIM j=0.01, receive-flagged); remaining category-B §6 dup pairs (auto-resolve after §6 + receive re-run). 2 docs were Nebraska (218 Neb. 539/556) and correctly rejected as non-ND; the ND opinion at 356 N.W.2d 890 (oid 9237 *First Federal S&L v. Scherle*) is unaffected — DB cite confirmed correct by the coherent ND pagination run 889/890/893, needs a future name-based re-pull only. Full triage: `triage/westlaw-shared-cite-followups-2026-05-17.md`.
+
+Note: the prior-session `westlaw-*-2026-05-16` batches (handoff state, 488 promoted) are in the in-DB `changelog` table but were not written up here; their detail lives in the `.remember/` handoff and `triage/*-2026-05-16.*`. Auditable via `SELECT ... FROM changelog WHERE batch LIKE '%2026-05-16%'`.
