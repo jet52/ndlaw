@@ -89,10 +89,25 @@ resolved three ways:
   9240 *Calavera v. Vix* (9241 *Bauer* done); `536 N.W.2d 354`
   11968 *Sletten* + 11969 *Moosbrugger* (distinct disciplinary).
 
-Still open (tracked):
-- **481 N.W.2d 225** *Disc. Bd. v. Johnson* 11076 — merged structurally in
-  the clean-14 pass but the Westlaw doc held LOW_SIM (j≈0.004 vs survivor
-  text); doc may be a different Johnson order. Manual.
+- **481 N.W.2d 225** *Disc. Bd. v. Johnson* 11076 — RESOLVED 2026-05-17
+  (batch `s6-481-johnson-resolve-2026-05-17`). Not a data error: 11076
+  already has the complete clean disbarment order; the Westlaw doc is the
+  same opinion (docket 920029, date, signatures verbatim) but `_parse`
+  yields only the editorial Synopsis for the ORDER-format → spurious
+  LOW_SIM. Cross-source confirmed; flag cleared, crosscheck_state→
+  corrected, no text swap (CL order is complete; doc synopsis stripped
+  per policy anyway).
+
+§6-deferred queue is now **empty**. Open follow-up:
+- **Parser gap (corpus-wide):** disciplinary "ORDER OF DISBARMENT/
+  SUSPENSION" docs (no Opinion/Justice-author header) → `_parse` returns
+  `opinion_text=''` + Synopsis-only `full_bound_text`, causing spurious
+  LOW_SIM on receive. Hit 2 docs in the 2026-05-17 incoming: 37 Johnson
+  (resolved) and **44 Schmidt = `505 N.W.2d 749` oid 11479** (the other
+  batch LOW_SIM — almost certainly the same situation; verify the CL
+  order is complete then resolve identically). Root-cause fix: add an
+  order-format body extractor to the Westlaw parser (body after
+  headnotes/synopsis, ending at justice signatures).
 
 ## How to resume
 
