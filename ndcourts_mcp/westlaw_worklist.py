@@ -47,15 +47,28 @@ DEFAULT_LIMIT = 500          # opinions per day (manual Westlaw cap)
 DEFAULT_PER_SECTION = 100    # citations per Westlaw batch
 WORKLIST_DIR = Path("worklists")
 
-# An opinion still needs a Westlaw pull when it has NOT been successfully
-# received AND it is not one half of a §6 duplicate-row pair (same N.W.
-# cite + same date_filed as another opinion — one Find&Print doc matches
-# both rows, so re-listing wastes a pull until §6 collapses the pair).
+# An unreceived listed row is "in flight" for this many days (the manual
+# Westlaw download/receive cycle) before it ages back into the pool.
+# Without this gate the pool re-lists every recently-listed row on every
+# --apply (a re-list storm); with it, rows are surfaced again only once
+# they are genuinely stale.
+RELIST_AFTER_DAYS = 7
+
+# An opinion still needs a Westlaw pull when it has NOT been received AND
+# it is not currently in flight (listed within RELIST_AFTER_DAYS, not yet
+# back) AND it is not one half of a §6 duplicate-row pair (same N.W. cite
+# + same date_filed as another opinion — one Find&Print doc matches both
+# rows, so re-listing wastes a pull until §6 collapses the pair).
 # Replaces the old blanket `id NOT IN westlaw_requests`, which excluded
 # every listed opinion forever regardless of whether it ever came back.
-_OUTSTANDING_PREDICATE = """
+# RELIST_AFTER_DAYS is an int constant we control — safe to inline.
+_OUTSTANDING_PREDICATE = f"""
       AND o.id NOT IN (SELECT opinion_id FROM westlaw_requests
                         WHERE received_at IS NOT NULL)
+      AND o.id NOT IN (SELECT opinion_id FROM westlaw_requests
+                        WHERE received_at IS NULL
+                          AND listed_at >=
+                              datetime('now','-{RELIST_AFTER_DAYS} days'))
       AND NOT EXISTS (
             SELECT 1 FROM citations c2
               JOIN citations c3 ON c3.citation = c2.citation
