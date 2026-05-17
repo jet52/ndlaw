@@ -72,13 +72,24 @@ page. Hosman pair is the safer of the two.
 Backes DUI-license companion cases. Both internal pairs sub-0.55 — same
 read-before-merge caveat as 489 N.W.2d 885. End with 2 distinct survivors.
 
-## Related §6-blocked remainder (for audit completeness — not in scope here)
+## "9 distinct page-mates" — RESOLVED 2026-05-17 (batch section6-handadj-pagemates-2026-05-17 + westlaw-receive-2026-05-17-pagemates)
 
-From the same 45 Westlaw-blocked set, also still open (tracked elsewhere):
-- **9 distinct page-mates** (j<0.55, genuinely separate opinions sharing a
-  N.W. page — e.g. `Calavera v. Vix`≠`Bauer v. Bauer`, `Moosbrugger`≠
-  `Sletten`, `Hosman`≠`Ferris`). Must NOT merge; route each to its own
-  Westlaw pull (category-A), not §6.
+The "9" was stale/misclassified. Reading the texts: 6 cites already
+resolved by the earlier category-A pass (both page-mates have bound
+text); 2 dissolved by the trio/cluster merges. Genuine remainder
+resolved three ways:
+- **Misclassified true-dups → merged** (CL double-ingest, date drift):
+  `109 N.W.2d 249` 6148→6147 (kept correct decision date 1960-11-16),
+  `263 N.W.2d 114` 7819→7818 (kept 1978-02-16). Both then auto-promoted
+  to Westlaw bound text. Corpus 20233→20231.
+- **Genuine distinct, docs in hand → explicit-promoted**:
+  `489 N.W.2d 886` Woessner→11204, Putney→11205 (both now westlaw).
+- **Genuine distinct, no doc → left correctly queued** (not blocked,
+  awaiting own Westlaw pull via pool-aging re-list): `356 N.W.2d 897`
+  9240 *Calavera v. Vix* (9241 *Bauer* done); `536 N.W.2d 354`
+  11968 *Sletten* + 11969 *Moosbrugger* (distinct disciplinary).
+
+Still open (tracked):
 - **481 N.W.2d 225** *Disc. Bd. v. Johnson* 11076 — merged structurally in
   the clean-14 pass but the Westlaw doc held LOW_SIM (j≈0.004 vs survivor
   text); doc may be a different Johnson order. Manual.
