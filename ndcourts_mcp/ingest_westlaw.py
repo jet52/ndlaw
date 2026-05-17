@@ -201,6 +201,17 @@ _INLINE_HEADERS = ("Opinion", "On Petition for Rehearing", "On Reargument",
 _ALL_HEADERS = _SECTION_PRESERVE + _SECTION_DROP + _INLINE_HEADERS
 
 
+# Disciplinary / per-curiam ORDER docs (disbarment, suspension, discipline,
+# reprimand) have no "Opinion" header or Justice-author line — the court's
+# published text begins at an "ORDER OF …" / "ORDER FOR …" line (optionally
+# star-paginated, e.g. "*226 ORDER OF DISBARMENT"). Without recognizing this
+# as a body boundary, the West Headnotes DROP-skip in _extract_full_bound_text
+# runs past it to All Citations and swallows the entire order body, leaving
+# only the editorial Synopsis. Tight by design: requires "ORDER" + whitespace
+# + OF/FOR, so prose ("In order to…") and "ORDERED," do not match.
+_ORDER_BODY_RE = re.compile(r"^\*?\d*\s*ORDER\s+(?:OF|FOR)\b")
+
+
 def _is_section_header(line: str, headers: tuple[str, ...]) -> bool:
     s = line.strip().rstrip(".")
     # Modern Westlaw writes the headnote/citing count in the header,
@@ -243,9 +254,14 @@ def _extract_full_bound_text(lines: list[str], all_cites_idx: int) -> str:
     while i < all_cites_idx:
         line = lines[i]
         if _is_section_header(line, _SECTION_DROP):
-            # Skip until the next major header
+            # Skip until the next major header OR the start of a court ORDER
+            # body (disciplinary/per-curiam orders have no Opinion/author
+            # header, so without the _ORDER_BODY_RE stop the skip would
+            # consume the entire order through to All Citations).
             j = i + 1
-            while j < all_cites_idx and not _is_section_header(lines[j], _ALL_HEADERS):
+            while (j < all_cites_idx
+                   and not _is_section_header(lines[j], _ALL_HEADERS)
+                   and not _ORDER_BODY_RE.match(lines[j].strip())):
                 j += 1
             i = j
             continue

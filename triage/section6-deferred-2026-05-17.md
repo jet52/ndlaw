@@ -98,16 +98,16 @@ resolved three ways:
   corrected, no text swap (CL order is complete; doc synopsis stripped
   per policy anyway).
 
-§6-deferred queue is now **empty**. Open follow-up:
-- **Parser gap (corpus-wide):** disciplinary "ORDER OF DISBARMENT/
-  SUSPENSION" docs (no Opinion/Justice-author header) → `_parse` returns
-  `opinion_text=''` + Synopsis-only `full_bound_text`, causing spurious
-  LOW_SIM on receive. Hit 2 docs in the 2026-05-17 incoming: 37 Johnson
-  (resolved) and **44 Schmidt = `505 N.W.2d 749` oid 11479** (the other
-  batch LOW_SIM — almost certainly the same situation; verify the CL
-  order is complete then resolve identically). Root-cause fix: add an
-  order-format body extractor to the Westlaw parser (body after
-  headnotes/synopsis, ending at justice signatures).
+§6-deferred queue is **empty**.
+
+Parser gap follow-up — **RESOLVED 2026-05-17**: root-caused in
+`_extract_full_bound_text` (West Headnotes DROP-skip consumed the ORDER
+body for lack of an Opinion/author header). Fixed with `_ORDER_BODY_RE`
++ an extra skip-stop. Verified local (283/285 incoming byte-identical;
+0/400 corpus-sample affected). `receive` low_sim 2→0; Johnson 11076
+upgraded to real bound text, Schmidt 505 N.W.2d 749 / 11479 promoted.
+Future disciplinary-order Find&Print returns now promote normally. See
+CHANGELOG-data.md.
 
 ## How to resume
 
