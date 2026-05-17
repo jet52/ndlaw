@@ -24,10 +24,24 @@ text via receive re-run. Corpus 20242→20239. See CHANGELOG-data.md.
 | 489 N.W.2d 885 *Dibble v. Backes* | 11201 | 11200 | 0.54 | merged — true dup (Levine, Civ. 920066) |
 | 539 N.W.2d 869 *City of Dickinson v. Powell* | 12028 | 12027 | 0.39 | merged — true dup (consolidated 7-def. double-jeopardy; the "lean distinct" call was wrong — jaccard misled by the long multi-party caption) |
 
-## Multi-row clusters — >2 rows share the cite
+## Multi-row clusters — RESOLVED 2026-05-17 (batch section6-handadj-clusters-2026-05-17)
 
-Pairwise keep policy can't resolve these mechanically; each needs a
-cluster plan (which rows collapse, which survive as distinct page-mates).
+All texts read → every internal pair a clean true-dup; cross-case pairs
+genuine distinct page-mates (kept). 6 deletions, corpus 20239→20233,
+invariants 0 regressed, 0 orphan refs. See CHANGELOG-data.md.
+
+- **57 N.W.2d 242** 3→1: keep 12544 (westlaw, Syllabus by the Court);
+  merged 12545, 12546. One probate opinion captioned two ways.
+- **521 N.W.2d 643** 4→2: keep 11740 *Hosman* + 11741 *Ferris* (distinct
+  Bulman-tort cases sharing page); merged 11738→11740, 11739→11741.
+- **489 N.W.2d 886** 4→2: keep 11204 *Woessner* + 11205 *Putney*
+  (distinct Backes DUI cases sharing page); merged 11202→11204,
+  11203→11205.
+
+Payoff: 12544, 11740, 11741 auto-promoted to Westlaw bound text;
+11204/11205 de-duped, await a future doc pull.
+
+Original plan (kept for reference):
 
 ### 57 N.W.2d 242 — 3-row true-dup cluster (1953-01-23)
 - 12544 *United States v. State* — **westlaw** cb1  ← keep (authoritative bound text)

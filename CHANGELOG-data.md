@@ -1016,3 +1016,17 @@ Note: `539 N.W.2d 869` had been *leaned "distinct"* in the deferral doc on the j
 Keep policy: all three pairs are cb1/cb1 ties with neither row `source_reporter='westlaw'` → tie-break on longer `text_content` (keep the fuller row that carries the attorney block). `canonical_name = _canonical_name(keep)` — all three already clean party captions, unchanged. Changelog: 7 rows (3 `merge.absorbed`, 3 `judges`, 1 `author`). Corpus 20242 → **20239**.
 
 Verification: `align_primary_source --apply` (3 source_path rewrites, 0 after receive re-run), invariants **13 ok / 2 baseline / 0 regressed**, **0 orphan refs**. **NOT changelog-revertible** — snapshot `opinions.db.bak-pre-s6-trio-2026-05-17` is the only recovery path. Payoff: the `receive_westlaw` re-run auto-promoted **all 3 survivors** (9059, 11201, 12028) to Westlaw bound text — the trio's `§6`-blocked status is fully cleared.
+
+## Batch: section6-handadj-clusters-2026-05-17 (11 rows, 6 row deletions)
+
+Applied 2026-05-17. The 3 deferred multi-row clusters (`triage/section6-deferred-2026-05-17.md`). All texts read in full; every internal pair is a clean true-dup (same docket/author/disposition, identical judicial text; low jaccard = attorney-header-block artifact, same pattern as the trio). The cross-case pairs are genuine distinct page-mates and were NOT merged — they survive as separate rows sharing the N.W. page.
+
+| cite | resolution | keep(s) | dropped (deleted) |
+|---|---|---|---|
+| 57 N.W.2d 242 | 3→1 true-dup cluster (one probate opinion captioned both *United States v. State* and *In re Heiden's Estate*; same File No. 7343, identical per curiam "appeal dismissed") | **12544** (westlaw, carries "Syllabus by the Court" — authoritative bound entry) | 12545, 12546 |
+| 521 N.W.2d 643 | 4→2: two distinct Bulman-tort cases sharing the page, each duplicated | **11740** Hosman (Civ. 940054), **11741** Ferris (Civ. 940022) | 11738, 11739 |
+| 489 N.W.2d 886 | 4→2: two distinct Backes DUI-license cases sharing the page, each duplicated | **11204** Woessner (Civ. 920071, VandeWalle), **11205** Putney (Civ. 920067, Meschke) | 11202, 11203 |
+
+Keep policy: `57 N.W.2d 242` applied the westlaw-row refinement (12544 is the only `source_reporter='westlaw'` row and the only one with the full bound entry incl. Syllabus by the Court). The other four merges are cb1/cb1 ties with neither row westlaw → tie-break longer `text_content` (keep the fuller WL-derived row with the attorney block). `canonical_name = _canonical_name(keep)` — all unchanged (`United States v. State` not an "In Re X's Estate" form, so no probate transform; authoritative re-caption of 57 N.W.2d 242 deferred to the §1 case-name pass). Changelog: 11 rows (6 `merge.absorbed`, 4 `judges`, 1 `author`). Corpus 20239 → **20233**.
+
+Verification: `align_primary_source --apply` (4 source_path rewrites + 1 primary-flag flip at merge time, 0 after receive re-run), invariants **13 ok / 2 baseline / 0 regressed**, **0 orphan refs**. **NOT changelog-revertible** — snapshot `opinions.db.bak-pre-s6-clusters-2026-05-17` is the only recovery path. Payoff: the `receive_westlaw` re-run auto-promoted `12544`, `11740` (Hosman) and `11741` (Ferris) to Westlaw bound text; `11204` (Woessner) / `11205` (Putney) de-duped correctly but have no doc in the 2026-05-17 incoming — they fill on a future pull. All 3 clusters' `§6`-blocked status cleared.
