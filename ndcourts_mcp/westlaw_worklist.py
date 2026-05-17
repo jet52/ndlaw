@@ -47,6 +47,25 @@ DEFAULT_LIMIT = 500          # opinions per day (manual Westlaw cap)
 DEFAULT_PER_SECTION = 100    # citations per Westlaw batch
 WORKLIST_DIR = Path("worklists")
 
+# An opinion still needs a Westlaw pull when it has NOT been successfully
+# received AND it is not one half of a §6 duplicate-row pair (same N.W.
+# cite + same date_filed as another opinion — one Find&Print doc matches
+# both rows, so re-listing wastes a pull until §6 collapses the pair).
+# Replaces the old blanket `id NOT IN westlaw_requests`, which excluded
+# every listed opinion forever regardless of whether it ever came back.
+_OUTSTANDING_PREDICATE = """
+      AND o.id NOT IN (SELECT opinion_id FROM westlaw_requests
+                        WHERE received_at IS NOT NULL)
+      AND NOT EXISTS (
+            SELECT 1 FROM citations c2
+              JOIN citations c3 ON c3.citation = c2.citation
+                               AND c3.opinion_id <> c2.opinion_id
+              JOIN opinions o3  ON o3.id = c3.opinion_id
+                               AND o3.date_filed = o.date_filed
+             WHERE c2.opinion_id = o.id
+               AND c2.citation LIKE '% N.W.%')
+"""
+
 POOL_SQL = """
     SELECT o.id, o.case_name, o.date_filed, v.crosscheck_state,
            (o.author IS NULL OR TRIM(o.author) = '') AS missing_author,
@@ -59,7 +78,7 @@ POOL_SQL = """
     JOIN opinions o ON o.id = v.opinion_id
     WHERE v.era_tier = 'gap_1953_1996'
       AND v.crosscheck_state IN ('unvalidated', 'flagged')
-      AND o.id NOT IN (SELECT opinion_id FROM westlaw_requests)
+""" + _OUTSTANDING_PREDICATE + """
       AND EXISTS (SELECT 1 FROM citations c
                    WHERE c.opinion_id = o.id AND c.citation LIKE '% N.W.%')
     ORDER BY
@@ -82,6 +101,26 @@ def _ensure_table(conn) -> None:
             received_path TEXT
         )
     """)
+
+
+def _reconcile_received(conn) -> int:
+    """Backfill received_at for listed rows whose opinion now carries
+    Westlaw bound text (filled via a shared-cite page-mate or hand-
+    adjudication under a different oid than the one listed). Without
+    this they look 'unreceived' forever and would be wrongly re-listed.
+    Conservative: only touches rows where the opinion is already
+    westlaw-primary, i.e. already validated. Idempotent."""
+    cur = conn.execute("""
+        UPDATE westlaw_requests
+           SET received_at = strftime('%Y-%m-%dT%H:%M:%S','now'),
+               received_path = COALESCE(received_path,
+                 (SELECT o.source_path FROM opinions o
+                   WHERE o.id = westlaw_requests.opinion_id))
+         WHERE received_at IS NULL
+           AND opinion_id IN (SELECT id FROM opinions
+                               WHERE source_reporter = 'westlaw')
+    """)
+    return cur.rowcount
 
 
 def _pool(conn, limit: int) -> list:
@@ -119,6 +158,8 @@ def _write_docx(rows: list, out_path: Path, per_section: int,
 
 def status(conn) -> None:
     _ensure_table(conn)
+    reconciled = _reconcile_received(conn)
+    conn.commit()
     pool_total = conn.execute(
         "SELECT COUNT(*) FROM validation_status v JOIN opinions o "
         "ON o.id=v.opinion_id WHERE v.era_tier='gap_1953_1996' "
@@ -130,18 +171,31 @@ def status(conn) -> None:
     received = conn.execute(
         "SELECT COUNT(*) FROM westlaw_requests WHERE received_at IS NOT NULL"
     ).fetchone()[0]
+    # §6 dup-pair-blocked: listed, unreceived, not westlaw — held until §6.
+    dup_blocked = conn.execute(
+        "SELECT COUNT(*) FROM westlaw_requests w JOIN opinions o "
+        "ON o.id=w.opinion_id WHERE w.received_at IS NULL "
+        "AND o.source_reporter<>'westlaw' AND EXISTS ("
+        "SELECT 1 FROM citations c2 JOIN citations c3 "
+        "ON c3.citation=c2.citation AND c3.opinion_id<>c2.opinion_id "
+        "JOIN opinions o3 ON o3.id=c3.opinion_id "
+        "AND o3.date_filed=o.date_filed "
+        "WHERE c2.opinion_id=o.id AND c2.citation LIKE '% N.W.%')"
+    ).fetchone()[0]
     remaining = conn.execute(
         "SELECT COUNT(*) FROM validation_status v JOIN opinions o "
         "ON o.id=v.opinion_id WHERE v.era_tier='gap_1953_1996' "
         "AND v.crosscheck_state IN ('unvalidated','flagged') "
-        "AND o.id NOT IN (SELECT opinion_id FROM westlaw_requests) "
-        "AND EXISTS (SELECT 1 FROM citations c WHERE c.opinion_id=o.id "
+        + _OUTSTANDING_PREDICATE +
+        " AND EXISTS (SELECT 1 FROM citations c WHERE c.opinion_id=o.id "
         "AND c.citation LIKE '% N.W.%')"
     ).fetchone()[0]
     print("=== Westlaw worklist status ===")
     print(f"  gap-era pool (needs Westlaw):  {pool_total}")
     print(f"  listed on prior worklists:     {listed}")
-    print(f"  received back:                 {received}")
+    print(f"  received back:                 {received}"
+          f"  (+{reconciled} reconciled this run)")
+    print(f"  §6 dup-pair blocked (held):    {dup_blocked}")
     print(f"  remaining to list:             {remaining}")
 
 
@@ -214,6 +268,10 @@ def main() -> None:
                   f"<= {args.per_section} -> {p}")
             return
         _ensure_table(conn)
+        reconciled = _reconcile_received(conn)
+        if reconciled:
+            print(f"Reconciled {reconciled} listed row(s) now westlaw-primary "
+                  f"(filled via page-mate/hand-adj) -> marked received.")
         rows = _pool(conn, args.limit)
         if not rows:
             print("Pool empty — every gap-era opinion is listed or drained.")
@@ -235,7 +293,11 @@ def main() -> None:
         _write_docx(rows, out, args.per_section, today)
         conn.executemany(
             "INSERT INTO westlaw_requests (opinion_id, nw_cite, doc_batch) "
-            "VALUES (?, ?, ?)",
+            "VALUES (?, ?, ?) "
+            "ON CONFLICT(opinion_id) DO UPDATE SET "
+            "  doc_batch=excluded.doc_batch, nw_cite=excluded.nw_cite, "
+            "  listed_at=strftime('%Y-%m-%dT%H:%M:%S','now'), "
+            "  received_at=NULL, received_path=NULL",
             [(r["id"], r["nw_cite"], today) for r in rows],
         )
         log_provenance(
