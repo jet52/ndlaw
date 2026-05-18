@@ -6,7 +6,7 @@ Appeals decisions). Built on SQLite with FTS5 full-text search and
 served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
 opinion browser with multi-source diff/merge tools.
 
-The corpus currently contains **~20,500 opinions** with **113,000+
+The corpus currently contains **~20,200 opinions** with **111,000+
 citation links** between them, with every correction recorded in an
 auditable, revertible changelog.
 
@@ -114,7 +114,7 @@ Confirm the database is wired correctly:
 
 ```bash
 sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"
-# Should print an opinion count above 20,000 (currently around 20,400)
+# Should print an opinion count above 20,000 (currently around 20,200)
 ```
 
 ### Updating to a newer database release
@@ -266,9 +266,9 @@ the opinion text. The server exposes eight tools — see the table below.
 
 ## What's in the database
 
-Counts below are as of 2026-05-15; rerun
+Counts below are as of 2026-05-18; rerun
 `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
-(~20,490, of which 39 are North Dakota Court of Appeals decisions and the
+(~20,230, of which 39 are North Dakota Court of Appeals decisions and the
 rest North Dakota Supreme Court).
 
 The "primary text source" is the source whose text is stored in

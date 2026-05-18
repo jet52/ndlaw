@@ -4,8 +4,8 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 
-**Highest-yield next steps (2026-05-17 — prior 2026-05-13 list is exhausted: Type Y sweep done/negative, citation contracts applied, `align_primary_source` already a LEFT JOIN):**
-1. **Close the 666-opinion archive.ndcourts.gov coverage gap** (§3) — rerun `scrape_archive --all --ingest` against opinions missing an `archive` row. Biggest single mechanical lever on §9's "fully validated" (≥2-source) metric for 1997–2019; low-risk, no human adjudication. Depends on archive.ndcourts.gov reachability; no pre-1997 benefit.
+**Highest-yield next steps (2026-05-18 — exhausted/superseded: Type Y sweep done-negative, citation contracts applied, `align_primary_source` already LEFT JOIN, archive.ndcourts.gov re-scrape REJECTED (PDF is authoritative, markdown is derived from it — re-scrape adds no independent source; PDF-era second-source policy now in §9, 31/41 mandatory-OCR opinions Westlaw-sourced 2026-05-18):**
+1. **Finish the PDF-era residue** (§9/§3) — neutral-cite-keyed pass over the 10 `westlaw-receive-2026-05-18` non-promoted (8 ambiguous N.W.2d-non-unique 2018–19, 1 low-sim *Neset* 1998 ND 206, 1 skipped memo); small, closes the mandatory-Westlaw worklist.
 2. **Detect Type Y at ingest time** (§1) — reuse `sweep_type_y._classify`; durable root-cause closure so the gap can't reopen.
 3. **§6 165 MERGE-HOLD-LOWJAC** adjudication (§6) — high corpus-correctness yield; labor-intensive per-pair human read.
 4. **Case-name sweep vols 1–79** (§1) — several hundred deferred diffs; high authoritative-text value but needs a review tool + sustained human-in-loop.
@@ -21,8 +21,8 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 | 1938–1946 | 453 | CourtListener NW/NW2d (OCR) | Westlaw vols 69–74 applied | ✓ Complete (metadata) |
 | 1946–1953 | 343 | CourtListener NW2d (OCR) | Westlaw vols 75–79 applied | ✓ Complete (metadata) |
 | 1953–1996 | ~8,476 | CourtListener NW2d (OCR) | None — N.D. Reports series ended | ⚠ Targeted only |
-| 1997–2019 | 5,978 | ndcourts.gov | archive.ndcourts.gov: 5,312 (89%) | ⏳ 666 archive-gap remaining (source-attachment fixed 2026-04-18) |
-| 2020–present | 1,542 | ndcourts.gov | NW2d linked where available | ✓ Source-attachment fixed 2026-04-18 |
+| 1997–2019 | 5,978 | ndcourts.gov (court PDF → analyzer markdown) | NW2d where it exists; Westlaw for OCR-required | ⏳ PDF-era policy ratified 2026-05-18 (§9): born-digital single-source OK; scanned/OCR-required need Westlaw — 31/41 done |
+| 2020–present | 1,542 | ndcourts.gov (court PDF → analyzer markdown) | NW2d/Westlaw where available | ✓ Same PDF-era policy applies (§9) |
 
 Totals below are "outstanding units of review work," not opinions.
 
@@ -57,7 +57,7 @@ N.D. Reports stopped at vol 79 (1953). Between 1953 and 1996, CourtListener NW2d
 
 Three sources exist: ndcourts.gov markdown, CourtListener NW2d, archive.ndcourts.gov HTML. All three carry ¶ markers (except CL). Current `opinion_sources` coverage: 1990s 29%, 2000s 90%, 2010s 85%.
 
-- [ ] Close the 666-opinion gap in archive.ndcourts.gov coverage for 1997–2019. Rerun `scrape_archive --all --ingest` against the list of opinions currently missing an `archive` row in `opinion_sources`.
+- [x] **Close the 1997–2019 second-source gap — SUPERSEDED/REFRAMED 2026-05-18.** Re-scraping archive.ndcourts.gov was rejected: the court PDF is authoritative and the ndcourts.gov markdown is the analyzer's extraction *of that same PDF* (one chain — archive HTML is a redundant re-publication of the same court text, not an independent witness). The real gap is the PDF-era second-source policy, ratified in §9: born-digital embedded-text PDFs are acceptable as single court-derived authoritative; only scanned/OCR-required PDFs (structural detector: ~1 full-page raster/page) mandate a Westlaw copy. Scope 7,424 PDF-era ND → 7,187 born-digital, 41 scanned-without-2nd-source → 31 ingested (`westlaw-receive-2026-05-18`), 10 residue + Lukenbill resolved. Remaining: the §9 residue pass (now highest-yield #1).
 - [x] Multi-source diff audit: for opinions with 2+ sources, flag pairs where text differs by >N%. **Done 2026-05-04** via `python -m ndcourts_mcp.multisource_diff` (4-word shingle Jaccard, 18 sec on 12,139 multi-source opinions / 16,597 pairs). Report at `triage/multisource-diff-2026-05-04.md`. Distribution: 5,406 near-identical (≥0.95), 4,033 minor-differences (0.85–0.95, mostly OCR), 5,644 moderate (0.70–0.85, mostly westlaw+NW OCR-era noise), 1,177 substantial (0.50–0.70), 225 major (0.20–0.50), and **111 almost-certainly-bug (<0.20)**. Surfaced the major remaining work below.
 
 - [x] **Re-link wrong-paired archive sources** surfaced by the diff audit. **Done 2026-05-04** via `ndcourts_mcp.fix_archive_pairings`. The script indexes every archive HTML's `<title>` (5,345 files, 9,583 unique cites in titles), then walks every `opinion_sources WHERE reporter='archive'` row and compares the file's title-cite against the linked opinion's citations. Found 34 wrong linkages (out of 5,600 archive rows): 4 moves, 3 swaps (with relinks), 27 detaches. Applied as batch `fix-archive-pairings-2026-05-04` (37 changelog rows). Diff-audit <0.20 archive pairs dropped 111 → 93. Report: `triage/fix-archive-pairings-2026-05-04.md`.
