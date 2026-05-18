@@ -136,12 +136,20 @@ def merge_pair(conn, keep: int, drop: int, canonical_name: str,
         return plan
 
     # --- re-point every opinion-referencing table ---
-    for tbl, col in (("citations", "opinion_id"),
-                     ("opinion_sources", "opinion_id"),
-                     ("changelog", "opinion_id")):
-        _dedup_simple(conn, tbl, col, keep, drop)
+    # citations / opinion_sources must DEDUP on re-point: duplicate
+    # opinions share the same cites and source paths, so a blind
+    # opinion_id UPDATE leaves duplicate (opinion_id, citation) /
+    # (opinion_id, source_path) rows on the survivor. _fix_single_primary
+    # (below) only fixes is_primary, not the dup rows themselves.
+    _repoint_unique(conn, "citations", "opinion_id", keep, drop,
+                    ["opinion_id", "citation"])
+    _repoint_unique(conn, "opinion_sources", "opinion_id", keep, drop,
+                    ["opinion_id", "source_path"])
     _repoint_unique(conn, "text_citations", "opinion_id", keep, drop,
                     ["opinion_id", "normalized"])
+    # changelog is an append-only audit log: many rows per opinion are
+    # expected and correct, so re-attribute without dedup.
+    _dedup_simple(conn, "changelog", "opinion_id", keep, drop)
     # cited_by: both directions, drop self-cites, respect the unique pair
     conn.execute("DELETE FROM cited_by WHERE cited_opinion_id=? "
                  "AND citing_opinion_id=?", (drop, keep))

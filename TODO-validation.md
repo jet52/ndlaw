@@ -147,6 +147,13 @@ Cases where the opinion record claims a source but the underlying file is absent
 - [ ] 17 opinions with `overall_score < 0.5`. Review in the low-quality queue; most will be OCR-garbled early-1900s opinions that Westlaw vols 45–79 will fix.
 - [ ] 90 opinions with no author and not per_curiam. Run `python -m ndcourts_mcp.review` and `auto_author` to recover what's recoverable.
 - [ ] Rebuild pre-1997 judges field (panel membership) from `justices.py` service dates plus disqualification lines in opinion text. Currently unusable from CourtListener metadata.
+- [ ] **A.L.R./L.R.A. citation mis-classification + the `is_primary` contract** (surfaced 2026-05-17). (a) 373 `citations` rows for A.L.R./L.R.A. annotation-reprint locators are mis-typed `reporter='NW'` — A.L.R. is not the North Western Reporter; it's a secondary annotated-reprint series, not a precedential reporter cite. (b) **817 opinions carry >1 `is_primary=1` citation row** — the `is_primary` contract is undocumented and violated corpus-wide (A.L.R. rows wrongly flagged primary is one cause; not the only one). Needs: a *documented* `is_primary` contract first (one primary cite per opinion? official-reporter-preferred?), a reporter-type taxonomy that distinguishes precedential reporters from secondary/annotation series, then a corpus correction pass. Capture the settled contract in the future `SCHEMA.md` (the §-below schema-doc task). Do NOT blind-fix without the contract.
+- [x] **7 flagged cite-collisions — RESOLVED 2026-05-17** (per-item Word review): 4 distinct-shared-N.W.-page cite fixes (`fix-cite-discrepancy-flagged-2026-05-17`: #1/#2/#3/#5), 1 pairing scramble (`fix-middlewest-pairings-2026-05-17`: #4 Olson/Nelson@250), 2 §6 dups (`section6-flagged-collisions-2026-05-17`: #6 Ligaarden, #7 Ellis v. Fiske). All 37 Type-Y-sweep cite bugs now closed. See CHANGELOG-data.md.
+- [x] **`merge_pair` dup-row defect — FIXED 2026-05-17.** Root cause (`_dedup_simple` blind `UPDATE` left duplicate `(opinion_id,citation)`/`(opinion_id,source_path)` rows on every §6 survivor, pre-existing corpus-wide). Code fixed (`_repoint_unique`), 256 opinions / 292 citation + 16 source dup-rows cleaned (`fix-dup-citation-rows-2026-05-17`, changelog-revertible), 2 new invariants added (`citation_row_unique_per_opinion`, `source_row_unique_per_opinion`, both keyed per-opinion so cross-opinion shared cites are preserved). Dashboard 15 ok / 0 regressed.
+
+## 11 · SCHEMA.md data dictionary (planned)
+
+No per-field documentation exists today (only the `changelog` table has inline comments; `db.py` schema is partially stale vs the live DB). Nearly every non-trivial snag this session traced to an undocumented field contract (`is_primary`, `reporter` valid values, `source_path` absolute-vs-refs-relative resolution, `crosscheck_state`/`era_tier` enums, cross-opinion citation-uniqueness semantics). Write `SCHEMA.md`: per table/column — purpose, type, valid range/enum, nullability, FK relationships, and the invariants/contracts that hold (incl. the shared-page citation model, the `source_path` resolution rule, the `is_primary` contract once defined, the §10 synthetic-neutral-cite identifier). Reconcile `db.py` `create_schema` to the live schema so there is one source of truth. Sequence: do it *after* the in-flight data-correctness items (A.L.R./`is_primary` contract) so it documents settled, not buggy, contracts.
 
 ## 9 · Definition of "fully validated"
 
@@ -157,3 +164,17 @@ An opinion is considered validated when:
 - Parallel citations are populated from metadata, not just the ingest source.
 
 Progress metric to track: `% of opinions meeting all four criteria`, by decade, in `get_database_stats`.
+
+## 10 · Planned enhancement — synthetic medium-neutral cite as universal unique ID
+
+**Goal.** Extend the post-1997 medium-neutral citation format (`YYYY ND N` — e.g. `1997 ND 201`, `2020 ND 30`) **backward to every opinion**, including pre-1997, and use it as the corpus's stable unique identifier.
+
+**Rationale.** Pre-1997 opinions were not published with the `YYYY ND N` neutral format, and the reporter-page cite is *not* a unique key in that era — the old per-curiam clusters print multiple distinct short opinions on one shared N.D./N.W. page (e.g. *Sykes v. Allen* and *Montgomery v. Tucker* both at `12 N.D. 504, 96 N.W. 1134`; see the #1–#5 flagged-collision work). A back-assigned `YYYY ND N` gives each opinion — including each member of a shared-page cluster — a single unambiguous identifier, and lets `neutral_cite_uniqueness` extend corpus-wide instead of only 1997+.
+
+**Design sketch (not final):**
+- Assign `YYYY ND N` where `YYYY` = filing year and `N` = sequence within that year, ordered by `date_filed`, then N.D. page, then **on-page order for shared-page clusters**.
+- **Shared-page disambiguation:** each distinct opinion on a multi-opinion bound page gets its own sequence number — that is the mechanism that finally makes shared-page opinions individually addressable (resolves the lookup-ambiguity limitation noted in the shared-page model discussion).
+- **Provenance is mandatory.** Back-assigned cites are *synthetic/editorial*, not how the case was published. They MUST be stored and surfaced as distinctly synthetic (separate reporter type / flag), never presented as an original citation. Misrepresenting a 1903 opinion as natively `1903 ND 47` would violate the accuracy/fair-notice bar that drives the authoritative-text goal — a court adopting the corpus must be able to tell native neutral cites (1997+) from back-assigned ones.
+- **Human review required:** bound-volume pages carrying multiple opinions must be human-reviewed to fix the correct on-page publication order before sequence numbers are assigned (order must reflect true publication order, not ingest order).
+
+**Open design questions:** storage (dedicated `neutral_cite` column on `opinions` vs a flagged `citations` row of a new reporter type); interaction with the existing 258-pair `neutral_cite_uniqueness` baseline once scope extends pre-1997; renumbering policy if an opinion is later inserted/removed (stability vs density); how synthetic cites appear in `lookup_opinion`/`cited_by` resolution. To be specified before implementation; capture the settled contract in the future `SCHEMA.md`.

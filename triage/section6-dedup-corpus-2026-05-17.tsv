@@ -146,24 +146,8 @@ MERGE-HOLD-LOWJAC	75 N.D. 118	7647	7646	'Re Glavkee' -> 'Re Glavkee'	j=0.76 < 0.
 MERGE-HOLD-LOWJAC	33 N.W.2d 615	8815	8814	'Re Hvidsten' -> 'Re Hvidsten'	j=0.77 < 0.85; drop='Hvidsten v. Northern Pacific Railway Co.'; 'BURKE, J.' -> 'Burke, Christianson, Grimson, McFarland, Nuessle'
 MERGE-HOLD-LOWJAC	76 N.D. 111	8815	8814	'Re Hvidsten' -> 'Re Hvidsten'	j=0.77 < 0.85; drop='Hvidsten v. Northern Pacific Railway Co.'; 'BURKE, J.' -> 'Burke, Christianson, Grimson, McFarland, Nuessle'
 MERGE-HOLD-LOWJAC	55 N.W.2d 576	12213	12212	'Barrett v. BOARD OF TRUSTEES, ETC.' -> 'Barrett v. BOARD OF TRUSTEES, ETC.'	j=0.83 < 0.85; drop="Barrett v. Board of Trustees of Teachers' Insurance"; 'Wigen' -> 'Burke, Christianson, Crimson, Hon, Morris, Sathre, Sixth, Stead, Wigen'
-MERGE-HOLD-LOWJAC	79 N.D. 395	12545	12544	'United States v. State' -> 'United States v. State'	j=0.82 < 0.85; drop='United States v. State'; '' -> 'Burke, Christianson, Grimson, Morris, Sathre'
-MERGE-HOLD-LOWJAC	58 N.W.2d 278	12694	12693	'Littlejohn v. County Judge, Pembina County' -> 'Littlejohn v. County Judge, Pembina County'	j=0.85 < 0.85; drop='Littlejohn v. County Judge'; 'Morris, Burke, Sathre, Christianson, Grimson, Crimson' -> 'Morris, Burke, Sathre, Christianson, Grimson, Crimson'
 MERGE-HOLD-LOWJAC	176 N.W.2d 522	6847	6846	'Giese v. Engelhardt' -> 'Giese v. Engelhardt'	j=0.74 < 0.85; drop='Fuchs v. Engelhardt'; 'Erick, Gefreh, Himself, Knudson, Paulson, Stad, Stead, Strutz, Teigen, Third' -> 'Erick, Gefreh, Himself, Knudson, Paulson, Stad, Stead, Strutz, Teigen, Third'
-MERGE-HOLD-LOWJAC	337 N.W.2d 160	8950	8949	'TRANSPORTATION DIV. OF FARGO CHAMBER OF COM. v. Sandstrom' -> 'TRANSPORTATION DIV. OF FARGO CHAMBER OF COM. v. Sandstrom'	j=0.84 < 0.85; drop='Transportation Division of the Fargo Chamber of Commerce v. Sandstrom'; 'Pederson' -> 'Burdick, Erickstad, Paul, Pederson, Place, Sand, Son, Walle'
-MERGE-HOLD-LOWJAC	344 N.W.2d 489	9059	9058	'Anderson v. State' -> 'Anderson v. State'	j=0.64 < 0.85; drop='Anderson v. State'; 'Per Curiam' -> 'Erickstad, Gierke, Pederson, Sand, Walle'
-MERGE-HOLD-LOWJAC	385 N.W.2d 102	9611	9610	'In Interest of Cme' -> 'In Interest of Cme'	j=0.85 < 0.85; drop='C.H. v. M.E.'; 'Gierke' -> 'Erickstad, Gierke, Levine, Meschke, Walle'
 MERGE-HOLD-LOWJAC	418 N.W.2d 789	10044	10043	'Matter of Montgomery' -> 'Matter of Montgomery'	j=0.60 < 0.85; drop='In re Teevens'; 'Erickstad, Vande Walle, Gierke, III, Meschke, Levine' -> 'Erickstad, Vande Walle, Gierke, III, Meschke, Levine'
-MERGE-HOLD-LOWJAC	466 N.W.2d 114	10804	10803	'Whitaker v. CENTURY' -> 'Whitaker v. CENTURY'	j=0.83 < 0.85; drop='Walter v. Century 21'; 'Vande Walle' -> 'Erickstad, Gierke, Levine, Meschke, Pederson, Place, Walle'
-MERGE-HOLD-LOWJAC	481 N.W.2d 225	11076	11075	'Disciplinary Action Against Johnson' -> 'Disciplinary Action Against Johnson'	j=0.81 < 0.85; drop='Disciplinary Board of the Supreme Court of the State of North Dakota v. Johnson'; '' -> 'Erickstad, Levine, Meschke, Vandewalle'
-MERGE-HOLD-LOWJAC	496 N.W.2d 24	11317	11316	"Lang v. BURLEIGH COUNTY SHERIFF'S DEPT." -> "Lang v. BURLEIGH COUNTY SHERIFF'S DEPT."	j=0.83 < 0.85; drop="Lang v. Burleigh County Sheriff's Department"; 'Vande Walle' -> 'Erickstad, Johnson, Levine, Members, Meschke, Neumann, Sandstrom, Walle, When, Who'
-MERGE-HOLD-LOWJAC	506 N.W.2d 402	11486	11485	'In Interest of AG' -> 'In Interest of AG'	j=0.79 < 0.85; drop='Braaten v. R.G.'; 'Levine' -> 'Levine, Meschke, Neumann, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	517 N.W.2d 631	11660	11659	'Matter of Estate of Voeller' -> 'Matter of Estate of Voeller'	j=0.59 < 0.85; drop='Hoffart v. Voeller'; 'Per Curiam' -> 'Levine, Meschke, Neumann, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	519 N.W.2d 301	11695	11694	'In Interest of Ts' -> 'In Interest of Ts'	j=0.70 < 0.85; drop='Stave v. T.S.'; 'Neumann' -> 'Levine, Meschke, Neumann, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	528 N.W.2d 369	11847	11846	'Matter of Estate of Duemeland' -> 'Matter of Estate of Duemeland'	j=0.84 < 0.85; drop='Norback v. Duemeland'; 'Neumann' -> 'Levine, Meschke, Neumann, Place, Rustad, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	532 N.W.2d 59	11924	11923	'Conkins v. Steffan' -> 'Conkins v. Steffan'	j=0.81 < 0.85; drop='Conkins v. Steffan'; 'Per Curiam' -> 'Levine, Meschke, Neumann, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	546 N.W.2d 366	12165	12164	'City of Bismarck v. Stuart' -> 'City of Bismarck v. Stuart'	j=0.66 < 0.85; drop='City of Bismarck v. Stuart'; 'Per Curiam' -> 'Maring, Meschke, Neumann, Sandstrom, Walle'
-MERGE-HOLD-LOWJAC	549 N.W.2d 196	12201	12200	'Disciplinary Action Against Madlom' -> 'Disciplinary Action Against Madlom'	j=0.85 < 0.85; drop='Disciplinary Board of the Supreme Court of the State of North Dakota v. Madlom'; '' -> 'Gerald, Maring, Meschke, Neumann, Sandstrom, Vandewalle'
-MERGE-HOLD-LOWJAC	549 N.W.2d 671	12204	12203	'Disciplinary Action Against Orvick' -> 'Disciplinary Action Against Orvick'	j=0.74 < 0.85; drop='Disciplinary Board of the Supreme Court of the State of North Dakota v. Orvik'; '' -> 'Gerald, Himself, Mating, Meschke, Neumann, Sandstrom, Vandewalle'
 NEEDS_DECISION	10 N.D. 400	5849	5834	'Willard v. Monarch Elevator Co.' | 'White v. Lauder'	jaccard 0.01 < 0.55 — distinct/shared-page
 NEEDS_DECISION	107 N.W. 365	200	201	'Mathie v. Lemery' | 'Connolly v. Luros'	jaccard 0.01 < 0.55 — distinct/shared-page
 NEEDS_DECISION	107 N.W. 43	204	203	'Olson v. County of Sargent' | 'Edwards v. Eagles'	jaccard 0.01 < 0.55 — distinct/shared-page
@@ -217,11 +201,11 @@ NEEDS_DECISION	456 N.W.2d 772	10657	10656	'Disciplinary Board of the Supreme Cou
 NEEDS_DECISION	469 N.W.2d 801	10874	10873	'Ebach v. Ralston' | 'Schumacher v. Schumacher'	jaccard 0.01 < 0.55 — distinct/shared-page
 NEEDS_DECISION	47 N.D. 266	2473	20388	'Altenbrun v. First National Bank' | 'Altenbrun v. First National Bank (concurring opinion)'	jaccard 0.05 < 0.55 — distinct/shared-page
 NEEDS_DECISION	473 N.W.2d 134	10934	20481	'In re District Judge Vacancy in the Chamber at Linton South Central Judicial District' | 'In the Matter of a DISTRICT JUDGE VACANCY in the CHAMBER at WILLISTON in the NORTHWEST JUDICIAL DISTRICT.'	jaccard 0.52 < 0.55 — distinct/shared-page
-NEEDS_DECISION	489 N.W.2d 885	11201	11200	'Dibble v. Backes' | 'Dibble v. Backes'	jaccard 0.49 < 0.55 — distinct/shared-page
+NEEDS_DECISION	489 N.W.2d 886	11205	11204	'Putney v. Backes' | 'Woessner v. Backes'	jaccard 0.28 < 0.55 — distinct/shared-page
 NEEDS_DECISION	50 N.D. 25	2863	20390	'Lincoln Addition Improvement Co. v. Lenhart' | 'Lincoln Addition Improvement Co. v. Lenhart (per curiam (joint with Baker v. Lenhart))'	jaccard 0.28 < 0.55 — distinct/shared-page
+NEEDS_DECISION	521 N.W.2d 643	11741	11740	'Ferris v. North Dakota Centennial Commission' | 'Hosman v. North Dakota State University'	jaccard 0.25 < 0.55 — distinct/shared-page
 NEEDS_DECISION	525 N.W.2d 250	11804	11803	'Kieffer v. Huebner' | 'Morehouse v. Morehouse'	jaccard 0.09 < 0.55 — distinct/shared-page
 NEEDS_DECISION	536 N.W.2d 354	11969	11968	'In re Disciplinary Action Against Moosbrugger' | 'In re Disciplinary Action Against Sletten'	jaccard 0.15 < 0.55 — distinct/shared-page
-NEEDS_DECISION	539 N.W.2d 869	12028	12027	'City of Dickinson v. Powell' | 'City of Dickinson v. Powell'	jaccard 0.39 < 0.55 — distinct/shared-page
 NEEDS_DECISION	55 U.S.L.W. 2667	9867	9868	'Federal Land Bank of St. Paul v. Lillehaugen' | 'Hanson v. Hanson'	jaccard 0.01 < 0.55 — distinct/shared-page
 NEEDS_DECISION	58 N.W. 339	5275	5274	'Globe Investment Co. v. Boyum' | 'Kellogg, Johnson & Co. v. Gilman'	jaccard 0.04 < 0.55 — distinct/shared-page
 NEEDS_DECISION	61 N.D. 179	4185	4184	'First State Bank v. Bond' | 'First State Bank of Granville v. Bond'	jaccard 0.39 < 0.55 — distinct/shared-page
@@ -796,10 +780,7 @@ DEFER_MULTI	280 N.W. 204				4 rows share this cite
 DEFER_MULTI	396 N.W.2d 729				3 rows share this cite
 DEFER_MULTI	4 N.W.2d 224				4 rows share this cite
 DEFER_MULTI	472 N.W.2d 914				3 rows share this cite
-DEFER_MULTI	489 N.W.2d 886				4 rows share this cite
 DEFER_MULTI	51 N.W. 787				3 rows share this cite
-DEFER_MULTI	521 N.W.2d 643				4 rows share this cite
-DEFER_MULTI	57 N.W.2d 242				3 rows share this cite
 DEFER_MULTI	612 N.W.2d 278				3 rows share this cite
 DEFER_MULTI	638 N.W.2d 45				3 rows share this cite
 DEFER_MULTI	64 N.D. 367				3 rows share this cite

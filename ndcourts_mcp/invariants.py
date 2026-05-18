@@ -215,6 +215,27 @@ def _citations_non_empty(conn, refs):
     ).fetchall()
 
 
+@_check("citation_row_unique_per_opinion",
+        "no opinion carries the same citation in more than one row "
+        "(distinct opinions MAY share a cite — key is (opinion_id, "
+        "citation); guards the merge_pair re-point dedup)")
+def _citation_row_unique_per_opinion(conn, refs):
+    return conn.execute(
+        "SELECT opinion_id, citation, COUNT(*) AS n FROM citations "
+        "GROUP BY opinion_id, citation HAVING COUNT(*) > 1 ORDER BY n DESC"
+    ).fetchall()
+
+
+@_check("source_row_unique_per_opinion",
+        "no opinion carries the same source_path in more than one "
+        "opinion_sources row (key is (opinion_id, source_path))")
+def _source_row_unique_per_opinion(conn, refs):
+    return conn.execute(
+        "SELECT opinion_id, source_path, COUNT(*) AS n FROM opinion_sources "
+        "GROUP BY opinion_id, source_path HAVING COUNT(*) > 1 ORDER BY n DESC"
+    ).fetchall()
+
+
 # ---- date sanity ------------------------------------------------------------
 
 @_check("date_filed_not_future",
