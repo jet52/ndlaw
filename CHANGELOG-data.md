@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `section6-lowjac-mid-merge-2026-05-18` (10) + `section6-lowjac-supp-merge-2026-05-18` (15)
+
+Per-pair adjudication of the 28 MID_NEEDS_READ pairs (name-sim 0.80–0.95) from the §6 0.55–0.85 band, after the SAFE-25 batch below.
+
+- **MID REC_MERGE — 10 merged** (`section6-lowjac-mid-merge-2026-05-18`): same parties, pure name-format/abbreviation variants (`Comp.`=`Compensation`, `…of St. Paul`, `, Inc.`, `Ins. Co.`=`Insurance`, relator truncation), author-compatible → true double-ingest. Corpus −10.
+- **MID KEEP_DISTINCT_SUPP — 15: doctrine default OVERTURNED by text read.** These had identical caption + same cite + same date but *different author*, which the supplemental-publication doctrine flags as likely lead-vs-rehearing (recommend keep). User directed a per-pair text read; **all 15 proved to be the SAME opinion double-ingested** — a CL/ndcourts markdown copy (`# header / ## Opinion`, no Syllabus) plus a Westlaw bound copy (`Syllabus by the Court` + attorneys block); identical dispositions/concurring justices; the "different author" was a metadata mis-parse and the 0.60–0.85 jaccard was the Syllabus-present-vs-absent + pre-1953 OCR-drift artifact (the documented westlaw+NW band phenomenon), not distinct opinions. **15 merged** (`section6-lowjac-supp-merge-2026-05-18`), keep = the Westlaw-bound row (preserves the court's "Syllabus by the Court"); `cited_by` re-pointed. Corpus −15. *Lesson: in the pre-1953 §6 band, same-name/same-cite/different-author is frequently a CL+Westlaw double-ingest, not a separate authored opinion — text-read before trusting the diff-author heuristic.*
+- **3 MID REC_DISTINCT** (Middlewest Grain family Nelson/Olson/Livingston; `Johnson` vs `Colgrove` v. National Union Fire) — different plaintiffs sharing a page; confirmed distinct, NOT merged.
+- merge_pair re-point briefly regressed `source_reporter/path_matches_primary` (15, expected for swapped-keep rows); cleared by the standard `align_primary_source --apply` (15 primary-flag flips). Final invariants 18 ok / 2 known / 0 regressed; orphans OK.
+- **Safety**: snapshots `opinions.db.bak-pre-section6-mid-2026-05-18` (pre the 10) and `opinions.db.bak-pre-section6-supp-2026-05-18` (pre the 15); provenance `section6_dedup_lowjac_mid` / `_supp`. Row deletes are snapshot-only revert.
+
 ## Batch `section6-lowjac-safedup-2026-05-18` (25 opinion-pairs)
 
 Adjudicated subset of the 146 §6 MERGE-HOLD-LOWJAC band (pre-1997 same-cite/same-date pairs at 0.55–0.85 jaccard, which deliberately mixes true double-ingests with distinct shared-page opinions). Stratified by case-name identity (the real discriminator — *not* jaccard, which overlaps): SAFE_TRUEDUP = normalized name-sim ≥0.95 + non-contradictory author + same cite + same date.
