@@ -27,10 +27,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
+from . import typey
 from .db import DEFAULT_DB_PATH, get_connection
-from .ingest_nwcite import _split_frontmatter
 from .ingest_westlaw import _parse_westlaw_doc
-from .multisource_diff import jaccard, normalize_words, shingles
 
 
 def _doc_to_text_hard(path: Path, timeout: int = 25) -> str:
@@ -61,54 +60,12 @@ def _doc_to_text_hard(path: Path, timeout: int = 25) -> str:
 
 REFS_ROOT = Path.home() / "refs" / "nd" / "opin"
 
-_NW = re.compile(r"\b(\d+)\s+N\.\s?W\.(?:\s?2d)?\s+(\d+)\b")
-_ND = re.compile(r"\b(\d+)\s+N\.\s?D\.\s+(\d+)\b")
-
 
 def _resolve(sp: str) -> Path:
     """opinion_sources.source_path is a mix of absolute (bound-volume
     ingest) and refs-relative (receive_westlaw _archive_doc) paths.
     Resolve relative ones against REFS_ROOT — same rule invariants uses."""
     return Path(sp) if os.path.isabs(sp) else REFS_ROOT / sp
-
-# Above this body-jaccard the .doc and the DB row are the SAME opinion,
-# so an N.W.-cite mismatch is a citation-accuracy bug (OCR/metadata wrong
-# digit), NOT a separate Type Y publication. Below it, a shared N.D. cite
-# + distinct text is a genuine supplemental-publication candidate.
-_SAME_OPINION_J = 0.55
-
-
-def _nw_keys(text: str) -> set[tuple[str, str, str]]:
-    """All N.W./N.W.2d cites in a string, normalized to (vol, series, page)."""
-    out = set()
-    for m in _NW.finditer(text or ""):
-        series = "2d" if "2d" in m.group(0).replace(" ", "") else "1"
-        out.add((m.group(1), series, m.group(2)))
-    return out
-
-
-def _doc_nw_keys(parsed: dict) -> set[tuple[str, str, str]]:
-    cites = list(parsed.get("all_citations") or [])
-    if parsed.get("primary_citation"):
-        cites.append(parsed["primary_citation"])
-    keys: set[tuple[str, str, str]] = set()
-    for c in cites:
-        keys |= _nw_keys(c)
-    return keys
-
-
-def _nd_keys(text: str) -> set[tuple[str, str]]:
-    return {(m.group(1), m.group(2)) for m in _ND.finditer(text or "")}
-
-
-def _doc_nd_keys(parsed: dict) -> set[tuple[str, str]]:
-    cites = list(parsed.get("all_citations") or [])
-    if parsed.get("primary_citation"):
-        cites.append(parsed["primary_citation"])
-    out: set[tuple[str, str]] = set()
-    for c in cites:
-        out |= _nd_keys(c)
-    return out
 
 
 _HDR = ("kind\toid\tdate_filed\tcase_name\tjac\tnd_shared\t"
@@ -124,7 +81,10 @@ def _row_tsv(r: dict) -> str:
         r["source_path"])) + "\n"
 
 
-def _classify(r, db_nw) -> dict:
+def _classify(r) -> dict:
+    """Sweep wrapper around the shared `typey.classify` discriminator.
+    Handles the file-I/O framing (MISSING_DOC / PARSE_ERROR) the sweep
+    needs and maps the pure result onto the byte-identical TSV row."""
     doc = _resolve(r["source_path"])
     if not doc.exists():
         return dict(r, kind="MISSING_DOC", doc_nw="", db_nw="", jac="", nd="")
@@ -133,29 +93,18 @@ def _classify(r, db_nw) -> dict:
     except Exception as e:  # noqa: BLE001 — incl. TimeoutExpired (hard-killed)
         return dict(r, kind="PARSE_ERROR", doc_nw=type(e).__name__,
                     db_nw=str(e)[:50], jac="", nd="")
-    doc_nw = _doc_nw_keys(parsed)
-    if not doc_nw:
-        return dict(r, kind="DOC_NO_NW", doc_nw="", db_nw="", jac="", nd="")
-    if not db_nw:
-        return dict(r, kind="DB_NO_NW", doc_nw=_fmt(doc_nw), db_nw="",
-                    jac="", nd="")
-    if not doc_nw.isdisjoint(db_nw):
+    res = typey.classify(parsed, r["cites"] or "", r["text_content"] or "")
+    if res.kind == typey.MATCH:
         return {}  # .doc N.W. cite matches the DB row — normal pairing
-    # N.W. cites disjoint: separate publication (Type Y) vs same-opinion
-    # citation-accuracy bug — decided by body text + shared N.D. cite.
-    db_body = _split_frontmatter(r["text_content"] or "")[1]
-    doc_body = parsed.get("full_bound_text") or parsed.get("opinion_text") or ""
-    j = jaccard(shingles(normalize_words(doc_body)),
-                shingles(normalize_words(db_body)))
-    nd_shared = bool(_doc_nd_keys(parsed) & _nd_keys(r["cites"] or ""))
-    if j >= _SAME_OPINION_J:
-        kind = "CITE_DISCREPANCY"        # same opinion, wrong N.W. digit
-    elif nd_shared:
-        kind = "TYPE_Y"                  # distinct text, shared N.D. page
-    else:
-        kind = "TYPE_Y_NO_NDSHARE"       # distinct text, N.D. cite differs
-    return dict(r, kind=kind, doc_nw=_fmt(doc_nw), db_nw=_fmt(db_nw),
-                jac=f"{j:.2f}", nd="Y" if nd_shared else "n")
+    if res.kind == typey.DOC_NO_NW:
+        return dict(r, kind="DOC_NO_NW", doc_nw="", db_nw="", jac="", nd="")
+    if res.kind == typey.DB_NO_NW:
+        return dict(r, kind="DB_NO_NW", doc_nw=typey.fmt_nw(res.doc_nw),
+                    db_nw="", jac="", nd="")
+    return dict(r, kind=res.kind,
+                doc_nw=typey.fmt_nw(res.doc_nw),
+                db_nw=typey.fmt_nw(res.db_nw),
+                jac=f"{res.jac:.2f}", nd="Y" if res.nd_shared else "n")
 
 
 def sweep(conn, limit: int | None, out_path: Path,
@@ -199,8 +148,7 @@ def sweep(conn, limit: int | None, out_path: Path,
                        f"(oid {r['id']}, {r['date_filed']})")
                 progress.write_text(msg)
                 print("  .. " + msg, file=sys.stderr, flush=True)
-            db_nw = _nw_keys(r["cites"] or "")
-            res = _classify(dict(r), db_nw)
+            res = _classify(dict(r))
             if res:
                 f.write(_row_tsv(res))
                 f.flush()
@@ -210,11 +158,6 @@ def sweep(conn, limit: int | None, out_path: Path,
     return dict(tally)
 
 
-def _fmt(keys: set[tuple[str, str, str]]) -> str:
-    return ";".join(
-        f"{v} N.W.{'2d' if s == '2d' else ''} {p}"
-        for v, s, p in sorted(keys, key=lambda k: (int(k[0]), int(k[2])))
-    )
 
 
 def main() -> None:

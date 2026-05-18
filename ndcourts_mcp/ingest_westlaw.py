@@ -17,6 +17,7 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+from . import typey
 from .db import DEFAULT_DB_PATH, get_connection
 
 MONTH_MAP = {
@@ -490,8 +491,10 @@ def process_batch(
 
     conn = get_connection(db_path)
 
-    stats = {"matched": 0, "not_found": 0, "diffs": 0, "corrections": 0, "errors": 0}
+    stats = {"matched": 0, "not_found": 0, "diffs": 0, "corrections": 0,
+             "errors": 0, "type_y": 0}
     not_found_log: list[str] = []
+    type_y_log: list[str] = []
 
     for doc_path in doc_files:
         print(f"\n{BOLD}{doc_path.name}{RESET}")
@@ -525,6 +528,38 @@ def process_batch(
             cite = parsed.get("primary_citation", "?")
             name = parsed.get("case_name", "?")
             not_found_log.append(f"{cite}\t{name}\t{doc_path.name}")
+            continue
+
+        # Type-Y guard (Option A). _find_db_opinion matches on ANY shared
+        # cite, so a supplemental publication that shares the
+        # `<vol> N.D. <page>` starting page but carries its own distinct
+        # N.W. cite + text would be silently mis-paired onto the main
+        # opinion (Westlaw source attached to the wrong row, cross-opinion
+        # metadata "corrections" applied). The shared discriminator
+        # (`typey.classify`) separates that (TYPE_Y: distinct text) from a
+        # mere citation-accuracy bug (CITE_DISCREPANCY: same opinion, high
+        # body overlap — left to pair as before). On a true Type Y: do NOT
+        # pair; queue it for the supplemental-publications creation path
+        # (`insert_supplemental_opinions`), which builds the new row with
+        # full machinery. Everything else proceeds exactly as before.
+        db_cites = (conn.execute(
+            "SELECT GROUP_CONCAT(citation, ' | ') FROM citations "
+            "WHERE opinion_id = ?", (db_opinion["id"],)
+        ).fetchone()[0] or "")
+        ty = typey.classify(parsed, db_cites,
+                            db_opinion.get("text_content") or "")
+        if ty.is_type_y:
+            print(f"  {YELLOW}TYPE-Y: distinct publication sharing the "
+                  f"N.D. page of opinion {db_opinion['id']} — doc N.W. "
+                  f"{typey.fmt_nw(ty.doc_nw)} vs DB "
+                  f"{typey.fmt_nw(ty.db_nw)} (jac={ty.jac:.2f}); NOT "
+                  f"paired, queued for supplemental insert{RESET}")
+            stats["type_y"] += 1
+            type_y_log.append(
+                f"{parsed.get('primary_citation', '?')}\t"
+                f"{parsed.get('case_name', '?')}\t{doc_path.name}\t"
+                f"shares_ND_page_of_oid={db_opinion['id']}\t"
+                f"jaccard={ty.jac:.2f}\tkind={ty.kind}")
             continue
 
         stats["matched"] += 1
@@ -611,6 +646,8 @@ def process_batch(
         print(f"  Corrections applied: {stats['corrections']}")
     print(f"  Errors: {stats['errors']}")
 
+    print(f"  Type-Y diverted: {stats['type_y']}")
+
     # Log unmatched opinions for investigation
     if not_found_log:
         log_path = batch_dir / "unmatched.txt"
@@ -618,6 +655,19 @@ def process_batch(
             for entry in not_found_log:
                 f.write(f"{entry}\n")
         print(f"  Unmatched log: {log_path}")
+
+    # Type-Y queue: distinct supplemental publications that must NOT be
+    # paired — feed to insert_supplemental_opinions, do not re-ingest here.
+    if type_y_log:
+        ty_path = batch_dir / "type_y_queue.txt"
+        with open(ty_path, "w") as f:
+            f.write("primary_cite\tcase_name\tdoc\tshares_ND_page_of\t"
+                    "jaccard\tkind\n")
+            for entry in type_y_log:
+                f.write(f"{entry}\n")
+        print(f"  {YELLOW}Type-Y queue: {ty_path} "
+              f"({len(type_y_log)} — create via "
+              f"insert_supplemental_opinions, NOT re-ingest){RESET}")
 
     # Record progress and archive files if volume specified
     if volume is not None and apply:
