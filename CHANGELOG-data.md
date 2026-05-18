@@ -2,6 +2,21 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-casenames-vol1-5-misattrib-2026-05-18` (6 rows) + `review_casenames` tool hardening
+
+First systematic case-name sweep session (vols 1–5, restarted at vol 1, via `review_casenames` TUI): 13 case-name corrections applied (`westlaw-nd-vol{1,2,3,4}-casenames`) + 120 keep-DB decisions recorded (`triage/casenames-state.json`). **Post-review audit found 6 of the 13 applied changes were wrong** and reverted them to each opinion's correct value (verified against the opinion's own `text_content` title):
+
+- **oid5152** `Sanford v. Bell` → `Sanford v. Duluth & Dakota Elevator Co.` (mis-paired .doc)
+- **oid5182** `Carson v. Gillitt` → `Pirie v. Gillitt` (mis-paired .doc)
+- **oid5192** `Northern Pac. R. Co. v. Tressler, County Treasurer` → `Cleary v. County of Eddy` (shared-page: cite shared with oid5197, the real NP RR v. Tressler)
+- **oid5274** `Globe Inv. Co. v. Boyum` → `Kellogg, Johnson & Co. v. Gilman` (shared-page `3 N.D. 538`, the §6-confirmed-distinct pair with oid5275)
+- **oid5203** `State v. Hasledahl.*` → `State v. Hazledahl` (leaked footnote-star artifact)
+- **oid5291** `…Fargo Gas & Electric Co` → `…Co.` (normalization wrongly stripped an abbreviation period)
+
+The 7 legitimate cleanups remain applied (5126 Slattery, 5212 *State ex rel. Northern Pac. R. Co.*, 5242 Coler, 5255 Heger, 5266 Power v. Larabee, 5286 Paulson, 5306 Dows). Revert batch is changelog-revertible; no row deletions, no snapshot needed.
+
+**Root cause + tool fix (`ndcourts_mcp/review_casenames.py`, committed).** `_find_db_opinion` binds a Westlaw `.doc` to a DB opinion by *shared citation alone*; pre-1953 shared-page clusters make it return an arbitrary co-located opinion, so the parsed caption could belong to a sibling — and the per-pair TUI gave the reviewer no signal. Fixes: (1) **pairing guard** — before surfacing a rename, verify the `.doc` caption describes the same case as the opinion's own `text_content` title via a new `_same_case` (reuses `_case_names_match`, then an OCR-tolerant edit-distance≤1 principal-token match on *both* the plaintiff and defendant side, so spelling variants like `Powers`/`Power`, `Spalding`/`Spaulding`, `De Groat`/`DeGroat` are still offered while a true party swap is blocked); mismatches divert to `triage/casenames-mispaired-2026-05-18.tsv` and are never offered. (2) **normalization** — `_strip_decorative_period` keeps abbreviation periods (`Co.`), added `_TRAIL_STAR` strips footnote-star artifacts. Re-scoped vols 1–5: the 6 errors now auto-divert (4 true mispairings flagged, incl. 5380 *Pancoast*/text-says-*Kent*; the rest resolve to case-only `equiv`); validated 15/15 on a unit harness incl. negative guards.
+
 ## Batches `section6-needsdecision-2026-05-18` (16) + `section6-defermulti-2026-05-18` (5)
 
 Adjudication of the §6 long-tail bands left after MERGE-HOLD-LOWJAC: **NEEDS_DECISION** (82 cite-rows → 70 unique opinion-pairs, jaccard <0.55, scan-labelled "distinct/shared-page") and **DEFER_MULTI** (37 cites where >2 rows share one cite). Worklists `triage/section6-needsdecision-worklist-2026-05-18.tsv` + `triage/section6-defermulti-worklist-2026-05-18.tsv`.

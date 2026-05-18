@@ -20,10 +20,29 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .db import DEFAULT_DB_PATH, get_connection
-from .ingest_westlaw import _doc_to_text, _find_db_opinion, _parse_westlaw_doc
+from .ingest_westlaw import (
+    _case_names_match,
+    _doc_to_text,
+    _find_db_opinion,
+    _parse_westlaw_doc,
+)
 
 REFS_BASE = Path.home() / "refs/nd/opin"
 STATE_FILE = Path("triage/casenames-state.json")
+
+# Tokens whose trailing period is part of an abbreviation, not decoration —
+# never strip it (else "Co." -> "Co", an authoritative-text regression).
+_ABBREV_KEEP = {
+    "co", "cos", "inc", "corp", "ry", "rr", "bros", "assn", "mfg", "mut",
+    "ins", "nat", "natl", "ltd", "lp", "llp", "llc", "jr", "sr", "dept",
+    "dist", "tp", "twp", "commrs", "no", "ass'n", "comm'rs", "ed",
+}
+
+# A Westlaw caption that, after the matched .doc is paired by *shared
+# citation*, describes a DIFFERENT case than the opinion's own text.
+# Pre-1953 shared-page clusters make _find_db_opinion return an arbitrary
+# co-located opinion, so the parsed caption may belong to a sibling.
+MISPAIRED_REPORT = Path("triage/casenames-mispaired-2026-05-18.tsv")
 
 # Patterns to strip from Westlaw case names for normalization
 _DOCKET_SUFFIX = re.compile(
@@ -31,9 +50,24 @@ _DOCKET_SUFFIX = re.compile(
     re.IGNORECASE,
 )
 _TRAIL_FOOTNOTE = re.compile(r"\.\d+\s*$")  # "RANSOM COUNTY.1"
+_TRAIL_STAR = re.compile(r"[\s.]*\*+\s*$")   # "Hasledahl.*" footnote star
 _TRAIL_PIPE = re.compile(r"\s*\|\s*$")
-_TRAIL_PERIOD = re.compile(r"\s*\.\s*$")
 _ET_AL = re.compile(r",?\s+et\s+al\.?", re.IGNORECASE)
+
+
+def _strip_decorative_period(s: str) -> str:
+    """Strip a trailing period only when it is decoration, not an
+    abbreviation. `_TRAIL_PERIOD`'s old blanket strip turned
+    'Fargo Gas & Electric Co.' into '...Co' — an authoritative-text
+    regression. Keep the period on known abbreviations and single
+    capital initials ('J.')."""
+    s = s.rstrip()
+    if not s.endswith("."):
+        return s
+    last = s.rsplit(" ", 1)[-1].rstrip(".").lower()
+    if last in _ABBREV_KEEP or re.fullmatch(r"[a-z]", last):
+        return s
+    return s[:-1].rstrip()
 _TRAIL_ROLE = re.compile(
     r",\s*(?:District\s+Judge|State\s+Auditor|Attorney\s+General"
     r"|Secretary\s+of\s+State|Governor|Mayor|County\s+Auditor"
@@ -50,10 +84,11 @@ def normalize_westlaw_name(name: str) -> str:
     for _ in range(5):
         prev = s
         s = _DOCKET_SUFFIX.sub("", s)
+        s = _TRAIL_STAR.sub("", s)
         s = _TRAIL_FOOTNOTE.sub("", s)
         s = _TRAIL_PIPE.sub("", s)
         s = _TRAIL_ROLE.sub("", s)
-        s = _TRAIL_PERIOD.sub("", s)
+        s = _strip_decorative_period(s)
         if s == prev:
             break
     s = _ET_AL.sub("", s)
@@ -111,8 +146,95 @@ def parse_volumes(spec: str) -> list[int]:
     return sorted(out)
 
 
-def extract_diffs(conn: sqlite3.Connection, volume: int, kept_db: set[int]) -> list[dict]:
-    """Re-derive case-name diffs for one N.D. volume from archived .docs."""
+_FM_TITLE = re.compile(r'^title:\s*"(.*?)"', re.MULTILINE)
+_FM_TITLE_FULL = re.compile(r'^title_full:\s*"(.*?)"', re.MULTILINE)
+_MD_HEADING = re.compile(r"^#+\s+(.+?)\s*$", re.MULTILINE)
+
+
+_PARTY_STOP = {
+    "v", "et", "al", "ux", "vir", "co", "cos", "company", "companies",
+    "corp", "corporation", "inc", "incorporated", "the", "of", "and",
+    "a", "an", "jr", "sr", "ii", "iii", "in", "re", "ex", "rel",
+    "matter", "estate", "application", "for", "writ", "no",
+}
+
+
+def _lev1(a: str, b: str) -> bool:
+    """True if edit distance(a, b) <= 1 — OCR slip tolerance for a
+    single surname token (Powers/Power, Spalding/Spaulding,
+    McMillan/McMillen). Exact for tokens shorter than 4 chars."""
+    if a == b:
+        return True
+    if min(len(a), len(b)) < 4 or abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) == len(b):
+        return sum(x != y for x, y in zip(a, b)) == 1
+    lo, hi = (a, b) if len(a) < len(b) else (b, a)
+    for i in range(len(hi)):
+        if lo == hi[:i] + hi[i + 1:]:
+            return True
+    return False
+
+
+def _party_tokens(side: str) -> list[str]:
+    toks = [t for t in side.split() if len(t) > 1 and t not in _PARTY_STOP]
+    return toks or side.split()
+
+
+def _side_match(a: str, b: str) -> bool:
+    ta, tb = _party_tokens(a), _party_tokens(b)
+    if any(_lev1(x, y) for x in ta for y in tb):
+        return True
+    # spacing variant of one surname: "de groat" vs "degroat"
+    ca, cb = "".join(ta), "".join(tb)
+    return bool(ca) and bool(cb) and _lev1(ca, cb)
+
+
+def _same_case(doc_caption: str, op_title: str) -> bool:
+    """Does the parsed .doc caption describe the SAME case as the
+    opinion's own text title? `_case_names_match` first (handles
+    truncation/abbrev); else require an OCR-tolerant token match on
+    BOTH the plaintiff and defendant side — that admits spelling
+    variants of the same parties while still blocking a true party
+    swap (a different plaintiff OR defendant => different case =>
+    shared-page mispairing)."""
+    if _case_names_match(doc_caption, op_title):
+        return True
+    from .ingest_westlaw import _normalize_case_name
+    a = _normalize_case_name(doc_caption).split(" v ")
+    b = _normalize_case_name(op_title).split(" v ")
+    if len(a) != 2 or len(b) != 2:
+        return False
+    return _side_match(a[0], b[0]) and _side_match(a[1], b[1])
+
+
+def _opinion_text_title(text_content: str | None) -> str:
+    """The opinion's OWN caption, taken from its text_content — the
+    ground truth for *which case this row is* (independent of the
+    `case_name` metadata field we may be correcting). Frontmatter
+    `title:` first, then `title_full:`, then the first markdown
+    heading."""
+    t = text_content or ""
+    for rx in (_FM_TITLE, _FM_TITLE_FULL, _MD_HEADING):
+        m = rx.search(t[:1200])
+        if m and m.group(1).strip():
+            return m.group(1).strip()
+    return ""
+
+
+def extract_diffs(
+    conn: sqlite3.Connection, volume: int, kept_db: set[int],
+    mispaired: list[dict] | None = None,
+) -> list[dict]:
+    """Re-derive case-name diffs for one N.D. volume from archived .docs.
+
+    Guard: a .doc is bound to a DB opinion by *shared citation*
+    (`_find_db_opinion`). On pre-1953 shared-page clusters that returns
+    an arbitrary co-located opinion, so the parsed caption may belong to
+    a sibling. Before surfacing a rename we verify the .doc actually
+    describes THIS opinion by matching its caption against the opinion's
+    own text_content title; mismatches are diverted to `mispaired`
+    (never offered to the reviewer — that was the vol-1-5 defect)."""
     vol_dir = REFS_BASE / "N.D." / str(volume)
     if not vol_dir.is_dir():
         return []
@@ -136,6 +258,20 @@ def extract_diffs(conn: sqlite3.Connection, volume: int, kept_db: set[int]) -> l
         db_name = (op["case_name"] or "").strip()
         wl_raw = (parsed.get("case_name") or "").strip()
         if not db_name or not wl_raw or db_name == wl_raw:
+            continue
+        # Pairing verification — .doc must describe THIS opinion.
+        op_title = _opinion_text_title(op.get("text_content"))
+        if op_title and not _same_case(wl_raw, op_title):
+            if mispaired is not None:
+                mispaired.append({
+                    "volume": volume,
+                    "opinion_id": op["id"],
+                    "primary_citation": parsed.get("primary_citation"),
+                    "doc_path": str(f),
+                    "db_name": db_name,
+                    "opinion_text_title": op_title,
+                    "wl_doc_caption": wl_raw,
+                })
             continue
         wl_norm = normalize_westlaw_name(wl_raw)
         wl_titled = _smart_titlecase(wl_norm)
@@ -250,20 +386,33 @@ def run(volumes: list[int], db_path: Path, summary_only: bool) -> None:
     kept_db = {int(k) for k in state.get("kept_db", {}).keys()}
 
     per_volume = {}
+    mispaired: list[dict] = []
     for vol in volumes:
-        diffs = extract_diffs(conn, vol, kept_db)
+        diffs = extract_diffs(conn, vol, kept_db, mispaired)
         per_volume[vol] = diffs
 
     print("\nVolume summary:")
-    print(f"  {'vol':>4}  {'raw':>5}  {'equiv':>6}  {'review':>7}")
+    print(f"  {'vol':>4}  {'raw':>5}  {'equiv':>6}  {'mispair':>7}  {'review':>7}")
     total_review = 0
     for vol in volumes:
         diffs = per_volume[vol]
         eq = sum(1 for d in diffs if d["equivalent"])
         ambig = len(diffs) - eq
+        mp = sum(1 for m in mispaired if m["volume"] == vol)
         total_review += ambig
-        print(f"  {vol:>4}  {len(diffs):>5}  {eq:>6}  {ambig:>7}")
+        print(f"  {vol:>4}  {len(diffs):>5}  {eq:>6}  {mp:>7}  {ambig:>7}")
     print(f"  Total ambiguous to review: {total_review}")
+
+    if mispaired:
+        MISPAIRED_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        cols = ["volume", "opinion_id", "primary_citation", "db_name",
+                "opinion_text_title", "wl_doc_caption", "doc_path"]
+        with MISPAIRED_REPORT.open("w") as fh:
+            fh.write("\t".join(cols) + "\n")
+            for m in sorted(mispaired, key=lambda x: (x["volume"], x["opinion_id"])):
+                fh.write("\t".join(str(m.get(c, "")) for c in cols) + "\n")
+        print(f"  {len(mispaired)} shared-page/mispaired .docs diverted "
+              f"(NOT offered) -> {MISPAIRED_REPORT}")
 
     if summary_only or total_review == 0:
         return
