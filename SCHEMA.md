@@ -21,6 +21,22 @@ confused. They are **independent axes** and must never be conflated in code:
 A change to `citations.reporter` must not touch `source_reporter` logic
 (e.g. `ingest.py:229-233`, `backfill_sources.py:139` are `source_reporter`).
 
+### `opinion_sources.source_reporter` provenance values
+
+Text-bearing sources (one is `is_primary=1`, its text is in
+`opinions.text_content`): `westlaw`, `ND`, `NW2d`, `NW`, `archive`,
+`court-archive`.
+
+Non-text validation sources — convention added 2026-05-18:
+
+| value | meaning | rules |
+|---|---|---|
+| `NW-image` | a **scanned page image** of the bound N.W. Reporter for the opinion's `<vol> N.W. <page>` (path `NW/<vol>/<page>.pdf`, image-only PDF, no extractable text) | **never `is_primary`** (`text_length=0`; carries no text — does not feed `text_content` or the multi-source text-diff); counts as an *independent human-verifiable witness* toward the §9 two-source/authoritative-text bar. The underlying scans are Westlaw-delivered: the PDFs live only in `~/refs` and are **excluded from the public release** (the DB row is a refs-relative path reference; the bytes never enter the repo or `opinions.db`). |
+
+`*-image` rows are inert w.r.t. the `primary_source_unique` /
+`source_reporter_matches_primary` / `source_path_matches_primary`
+invariants because those join only `is_primary=1` rows.
+
 ## Contract 1 — `citations.reporter` taxonomy (ratified 2026-05-17)
 
 Closed enumeration. Each citation row's `reporter` is exactly one of:

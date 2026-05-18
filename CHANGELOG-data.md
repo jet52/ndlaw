@@ -2,6 +2,17 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `fix-casenames-vol1-5-bound-2026-05-18` (3) + `nw-bound-image-source-2026-05-18` (5)
+
+Resolution of the 5 vol-1–5 case-name items the hardened tool diverted, using **scanned bound N.W. Reporter page images** pulled from Westlaw (image-only PDFs — an independent third witness, distinct from both the CourtListener OCR and the Westlaw `.doc` editorial text). Filed at `~/refs/nd/opin/NW/<vol>/<page>.pdf` (co-located with the existing CL `<page>.md`/`.json`).
+
+Bound-reporter caption is authoritative. Findings:
+- **oid5380 `State v. Pancoast`** (5 N.D. 516 / 67 N.W. 1052) — ✓ already correct. The reporter caption is *STATE v. PANCOAST*; defendant William W. Pancoast was charged under the alias *Myron R. Kent* and the court **expressly** states it will use "Kent" in the opinion body — which is exactly why `text_content` reads "Kent" while `case_name`/`.doc` say "Pancoast". Not a shared-page tangle, not a mispairing; single opinion. No change.
+- **oid5242 `Coler v. Dwight School Tp. of Richland County`** (3 N.D. 249 / 55 N.W. 587) — ✓ bound-validated (the prior pass's value matches the reporter caption).
+- **`fix-casenames-vol1-5-bound-2026-05-18` (3 case_name corrections to the bound-authoritative caption)**: oid5152 `Sanford v. Duluth & Dakota Elevator Co.` → **`Sanford v. Bell`** (reporter: *SANFORD v. BELL et al.*; CL had titled it by a co-defendant); oid5182 `Pirie v. Gillitt` → **`Carson v. Gillitt`** (reporter: *CARSON et al. v. GILLITT et al.*; CL titled by a co-plaintiff); oid5203 `State v. Hazledahl` → **`State v. Hasledahl`** (reporter: *STATE v. HASLEDAHL*; CL `z`/`s` OCR error — the Westlaw `.doc` was right). Changelog-revertible; no row deletions. **Doctrine note:** the items the `_same_case` guard diverts are not necessarily mispairings/missing opinions — frequently CL simply titled a single opinion by a co-party or OCR-corrupted a surname; the bound reporter is the tiebreaker and here vindicated the Westlaw `.doc` over both CL and the earlier conservative reverts.
+- **`nw-bound-image-source-2026-05-18` (5 rows)**: each PDF registered as a non-primary `NW-image` `opinion_sources` row (`source_path=NW/<vol>/<page>.pdf`, `text_length=0`, `is_primary=0`) — an independent human-verifiable witness toward the §9 two-source bar. New convention documented in `SCHEMA.md` (`opinion_sources.source_reporter` provenance values). **Redistribution:** Westlaw-delivered scans — PDFs stay in `~/refs`, excluded from the public release; the DB row is only a refs-relative path reference (bytes never enter the repo/`opinions.db`).
+- Invariants **18 ok / 2 known / 0 regressed** (`NW-image` rows are inert w.r.t. the primary-source invariants — they join only `is_primary=1`).
+
 ## Batch `fix-casenames-vol1-5-misattrib-2026-05-18` (6 rows) + `review_casenames` tool hardening
 
 First systematic case-name sweep session (vols 1–5, restarted at vol 1, via `review_casenames` TUI): 13 case-name corrections applied (`westlaw-nd-vol{1,2,3,4}-casenames`) + 120 keep-DB decisions recorded (`triage/casenames-state.json`). **Post-review audit found 6 of the 13 applied changes were wrong** and reverted them to each opinion's correct value (verified against the opinion's own `text_content` title):
