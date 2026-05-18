@@ -2,6 +2,15 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `section6-lowjac-safedup-2026-05-18` (25 opinion-pairs)
+
+Adjudicated subset of the 146 §6 MERGE-HOLD-LOWJAC band (pre-1997 same-cite/same-date pairs at 0.55–0.85 jaccard, which deliberately mixes true double-ingests with distinct shared-page opinions). Stratified by case-name identity (the real discriminator — *not* jaccard, which overlaps): SAFE_TRUEDUP = normalized name-sim ≥0.95 + non-contradictory author + same cite + same date.
+
+- **49 SAFE rows → 25 distinct opinion-pairs** (cite double-views — N.W. + N.D. — collapse), no transitive overlap. Explicit per-pair `merge_pair()` (NOT a lowered-`--min-jaccard` batch-apply, which would have destroyed the 44 distinct shared-page pairs in the band). Keep = more inbound `cited_by`, tie → lower cluster_id; canonical name via the conservative probate-only `_canonical_name`.
+- **Result**: corpus 20,229 → **20,204** (−25). Invariants 18 ok / 2 known / 0 regressed; all 4 orphan checks OK (merge_pair 13-table re-point + FTS triggers).
+- **Adjudication artifacts** (committed): `triage/section6-lowjac-adjudication-2026-05-18.tsv` (all 146 bucketed SAFE/MID/DISTINCT) and `triage/section6-lowjac-MID-recommendations-2026-05-18.tsv` (per-pair reasoned recs for the 28 MID pairs — awaiting user batch approval, NOT applied). The 44 DISTINCT_SHAREDPAGE pairs are correctly left unmerged.
+- **Safety**: snapshot `opinions.db.bak-pre-section6-lowjac-2026-05-18`. Row deletions are snapshot-only revert (not changelog-replayable); provenance logged (`section6_dedup_lowjac_safe`).
+
 ## Batch `westlaw-pdfocr-residue-2026-05-18` (30 rows)
 
 Closes the 10 non-promoted residue from `westlaw-receive-2026-05-18`, resolving each by its **unique neutral cite** (the N.W.2d primary cite was non-unique — shared 2018–19 disposition pages — and the parser extracted no `date_filed` from these PDF-era docs, which is why automated name+date resolution went AMBIGUOUS).

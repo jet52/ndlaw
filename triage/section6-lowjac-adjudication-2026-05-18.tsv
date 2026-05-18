@@ -1,0 +1,147 @@
+bucket	cite	keep	drop	j	nm	keep_name	drop_name	keep_author	drop_author	keep_cb	drop_cb
+SAFE_TRUEDUP	226 N.W. 534	3881	3880	0.85	1.00	'State v. Fichtner'	'State v. Fichtner'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	58 N.D. 400	3881	3880	0.85	1.00	'State v. Fichtner'	'State v. Fichtner'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	231 N.W. 550	4021	4020	0.85	1.00	'Danielson v. Pritz'	'Danielson v. Pritz'	'Birdzell'	'Birdzell'	0	0
+SAFE_TRUEDUP	59 N.D. 548	4021	4020	0.85	1.00	'Danielson v. Pritz'	'Danielson v. Pritz'	'Birdzell'	'Birdzell'	0	0
+MID_NEEDS_READ	247 N.W. 607	4384	4383	0.85	1.00	'Blackstead v. Kent'	'Blackstead v. Kent'	'Christianson'	'Birdzell'	2	0
+MID_NEEDS_READ	63 N.D. 246	4384	4383	0.85	1.00	'Blackstead v. Kent'	'Blackstead v. Kent'	'Christianson'	'Birdzell'	2	0
+MID_NEEDS_READ	249 N.W. 724	4430	4429	0.85	1.00	'Derek v. Elder'	'Derek v. Elder'	'Christianson'	'Birdzell'	0	0
+MID_NEEDS_READ	63 N.D. 635	4430	4429	0.85	1.00	'Derek v. Elder'	'Derek v. Elder'	'Christianson'	'Birdzell'	0	0
+MID_NEEDS_READ	277 N.W. 1	4800	4799	0.85	1.00	'State v. Thompson'	'State v. Thompson'	'Morris'	'Burr'	6	0
+MID_NEEDS_READ	68 N.D. 98	4800	4799	0.85	1.00	'State v. Thompson'	'State v. Thompson'	'Morris'	'Burr'	6	0
+SAFE_TRUEDUP	226 N.W. 586	3886	3885	0.84	1.00	'State Ex Rel. Woods v. Hughes Oil Co.'	'State ex rel. Woods v. Hughes Oil Co.'	'Christianson'	'Christianson'	4	0
+SAFE_TRUEDUP	58 N.D. 581	3886	3885	0.84	1.00	'State Ex Rel. Woods v. Hughes Oil Co.'	'State ex rel. Woods v. Hughes Oil Co.'	'Christianson'	'Christianson'	4	0
+SAFE_TRUEDUP	229 N.W. 923	3989	3988	0.84	1.00	"Odland v. O'Keeffe Implement Co."	"Odland v. O'Keeffe Implement Co."	'Nuessle'	'Nuessle'	0	0
+SAFE_TRUEDUP	59 N.D. 335	3989	3988	0.84	1.00	"Odland v. O'Keeffe Implement Co."	"Odland v. O'Keeffe Implement Co."	'Nuessle'	'Nuessle'	0	0
+SAFE_TRUEDUP	206 N.W. 218	3228	3227	0.83	1.00	'Nelson v. Walrod'	'Nelson v. Walrod'	''	'Johnson'	2	0
+SAFE_TRUEDUP	53 N.D. 409	3228	3227	0.83	1.00	'Nelson v. Walrod'	'Nelson v. Walrod'	''	'Johnson'	2	0
+SAFE_TRUEDUP	212 N.W. 848	3473	3472	0.83	1.00	'State Bank v. Newell'	'State Bank v. Newell'	'Burke'	'Burke'	1	0
+SAFE_TRUEDUP	55 N.D. 184	3473	3472	0.83	1.00	'State Bank v. Newell'	'State Bank v. Newell'	'Burke'	'Burke'	1	0
+SAFE_TRUEDUP	220 N.W. 647	3725	3724	0.83	1.00	'Hazlett v. Mathieu'	'Hazlett v. Mathieu'	'Christianson'	'Christianson'	3	0
+SAFE_TRUEDUP	57 N.D. 57	3725	3724	0.83	1.00	'Hazlett v. Mathieu'	'Hazlett v. Mathieu'	'Christianson'	'Christianson'	3	0
+SAFE_TRUEDUP	228 N.W. 413	3948	3947	0.83	1.00	'State v. Shoars'	'State v. Shoars'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	59 N.D. 67	3948	3947	0.83	1.00	'State v. Shoars'	'State v. Shoars'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	230 N.W. 288	3998	3997	0.82	1.00	'Klinefelter v. Anderson'	'Klinefelter v. Anderson'	'Burr'	'Burr'	2	0
+SAFE_TRUEDUP	59 N.D. 417	3998	3997	0.82	1.00	'Klinefelter v. Anderson'	'Klinefelter v. Anderson'	'Burr'	'Burr'	2	0
+SAFE_TRUEDUP	237 N.W. 648	4173	4172	0.82	1.00	'First Security Bank v. Bagley Elevator Co.'	'First Security Bank v. Bagley Elevator Co.'	'Burr'	'Burr'	0	0
+SAFE_TRUEDUP	61 N.D. 140	4173	4172	0.82	1.00	'First Security Bank v. Bagley Elevator Co.'	'First Security Bank v. Bagley Elevator Co.'	'Burr'	'Burr'	0	0
+MID_NEEDS_READ	284 N.W. 853	4900	4899	0.82	1.00	'Magnuson v. Breher'	'Magnuson v. Breher'	'Nuessle'	'Burr'	6	0
+MID_NEEDS_READ	69 N.D. 197	4900	4899	0.82	1.00	'Magnuson v. Breher'	'Magnuson v. Breher'	'Nuessle'	'Burr'	6	0
+SAFE_TRUEDUP	140 N.W. 718	1031	1030	0.81	1.00	'Jackson v. City of Grand Forks'	'Jackson v. City of Grand Forks'	'Bruce'	'Bruce'	4	0
+SAFE_TRUEDUP	24 N.D. 601	1031	1030	0.81	1.00	'Jackson v. City of Grand Forks'	'Jackson v. City of Grand Forks'	'Bruce'	'Bruce'	4	0
+SAFE_TRUEDUP	206 N.W. 781	3247	3246	0.81	1.00	'Frazier v. Schultz'	'Frazier v. Schultz'	'Birdzell'	'Birdzell'	0	0
+SAFE_TRUEDUP	53 N.D. 464	3247	3246	0.81	1.00	'Frazier v. Schultz'	'Frazier v. Schultz'	'Birdzell'	'Birdzell'	0	0
+SAFE_TRUEDUP	207 N.W. 144	3259	3258	0.81	1.00	'Hanson v. Blum'	'Hanson v. Blum'	'Nuessle'	'Nuessle'	3	0
+SAFE_TRUEDUP	53 N.D. 526	3259	3258	0.81	1.00	'Hanson v. Blum'	'Hanson v. Blum'	'Nuessle'	'Nuessle'	3	0
+SAFE_TRUEDUP	208 N.W. 765	3314	3313	0.81	1.00	'Blievernicht v. Landeene'	'Blievernicht v. Landeene'	'Birdzell'	'Birdzell'	0	0
+SAFE_TRUEDUP	54 N.D. 58	3314	3313	0.81	1.00	'Blievernicht v. Landeene'	'Blievernicht v. Landeene'	'Birdzell'	'Birdzell'	0	0
+SAFE_TRUEDUP	228 N.W. 214	3939	3938	0.81	1.00	'Baird v. Kottke'	'Baird v. Kottke'	'Burke'	'Burke'	1	0
+SAFE_TRUEDUP	58 N.D. 846	3939	3938	0.81	1.00	'Baird v. Kottke'	'Baird v. Kottke'	'Burke'	'Burke'	1	0
+SAFE_TRUEDUP	232 N.W. 6	4059	4054	0.81	1.00	'Morton v. Stensby'	'Morton v. Stensby'	'Burke'	'Burke'	2	0
+SAFE_TRUEDUP	59 N.D. 784	4059	4054	0.81	1.00	'Morton v. Stensby'	'Morton v. Stensby'	'Burke'	'Burke'	2	0
+SAFE_TRUEDUP	227 N.W. 59	3931	3930	0.80	1.00	'Timm v. Arvidson'	'Timm v. Arvidson'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	58 N.D. 634	3931	3930	0.80	1.00	'Timm v. Arvidson'	'Timm v. Arvidson'	'Burke'	'Burke'	0	0
+MID_NEEDS_READ	247 N.W. 558	4381	4380	0.80	1.00	'Cretors v. Troyer'	'Cretors v. Troyer'	'Nuessle'	'Birdzell'	3	0
+MID_NEEDS_READ	63 N.D. 231	4381	4380	0.80	1.00	'Cretors v. Troyer'	'Cretors v. Troyer'	'Nuessle'	'Birdzell'	3	0
+MID_NEEDS_READ	250 N.W. 373	4458	4457	0.80	1.00	'Kramer v. K.O. Lee Son Co.'	'Kramer v. K. O. Lee & Son Co.'	'Christianson'	'Birdzell'	1	0
+MID_NEEDS_READ	64 N.D. 84	4458	4457	0.80	1.00	'Kramer v. K.O. Lee Son Co.'	'Kramer v. K. O. Lee & Son Co.'	'Christianson'	'Birdzell'	1	0
+MID_NEEDS_READ	281 N.W. 87	4865	4864	0.80	1.00	'Funderburg v. Young'	'Funderburg v. Young'	'Morris'	'Burr'	5	0
+MID_NEEDS_READ	68 N.D. 481	4865	4864	0.80	1.00	'Funderburg v. Young'	'Funderburg v. Young'	'Morris'	'Burr'	5	0
+MID_NEEDS_READ	291 N.W. 693	4965	4964	0.79	1.00	'McKee v. Buck'	'McKee v. Buck'	'Burr'	'Burke'	0	0
+MID_NEEDS_READ	70 N.D. 66	4965	4964	0.79	1.00	'McKee v. Buck'	'McKee v. Buck'	'Burr'	'Burke'	0	0
+SAFE_TRUEDUP	237 N.W. 208	4166	4165	0.77	1.00	'Ulness v. Dunnell'	'Ulness v. Dunnell'	'Christianson'	'Christianson'	0	0
+SAFE_TRUEDUP	61 N.D. 95	4166	4165	0.77	1.00	'Ulness v. Dunnell'	'Ulness v. Dunnell'	'Christianson'	'Christianson'	0	0
+SAFE_TRUEDUP	248 N.W. 676	4406	4405	0.77	1.00	'Hamilton v. Charlebois'	'Hamilton v. Charlebois'	'Birdzell'	'Birdzell'	2	0
+SAFE_TRUEDUP	63 N.D. 504	4406	4405	0.77	1.00	'Hamilton v. Charlebois'	'Hamilton v. Charlebois'	'Birdzell'	'Birdzell'	2	0
+SAFE_TRUEDUP	228 N.W. 420	3952	3951	0.75	1.00	'Kelm v. Loiland'	'Kelm v. Loiland'	'Burke'	'Burke'	2	0
+SAFE_TRUEDUP	59 N.D. 18	3952	3951	0.75	1.00	'Kelm v. Loiland'	'Kelm v. Loiland'	'Burke'	'Burke'	2	0
+SAFE_TRUEDUP	204 N.W. 669	3158	3157	0.74	1.00	'Anderson v. Hanson'	'Anderson v. Hanson'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	52 N.D. 746	3158	3157	0.74	1.00	'Anderson v. Hanson'	'Anderson v. Hanson'	'Burke'	'Burke'	0	0
+SAFE_TRUEDUP	208 N.W. 380	3301	3300	0.73	1.00	'Mountrail County v. Farmers State Bank'	'Mountrail County v. Farmers State Bank'	'Burke'	'Burke'	1	0
+SAFE_TRUEDUP	53 N.D. 789	3301	3300	0.73	1.00	'Mountrail County v. Farmers State Bank'	'Mountrail County v. Farmers State Bank'	'Burke'	'Burke'	1	0
+MID_NEEDS_READ	208 N.W. 101	3286	3285	0.71	1.00	'State v. Stoelting'	'State v. Stoelting'	'Jansonius'	'Birdzell'	0	0
+MID_NEEDS_READ	53 N.D. 736	3286	3285	0.71	1.00	'State v. Stoelting'	'State v. Stoelting'	'Jansonius'	'Birdzell'	0	0
+MID_NEEDS_READ	268 N.W. 679	4707	4706	0.67	1.00	'McGuigan v. Heuer'	'McGuigan v. Heuer'	'Burr'	'Burke'	7	0
+MID_NEEDS_READ	66 N.D. 710	4707	4706	0.67	1.00	'McGuigan v. Heuer'	'McGuigan v. Heuer'	'Burr'	'Burke'	7	0
+SAFE_TRUEDUP	281 N.W. 86	4863	4862	0.64	1.00	'Stray v. Baker'	'Stray v. Baker'	''	'Burr'	0	0
+SAFE_TRUEDUP	68 N.D. 505	4863	4862	0.64	1.00	'Stray v. Baker'	'Stray v. Baker'	''	'Burr'	0	0
+SAFE_TRUEDUP	64 N.D. 701	4553	4552	0.59	1.00	'Stitzel v. Byrne'	'Stitzel v. Byrne'	''	''	0	0
+MID_NEEDS_READ	257 N.W. 639	4577	4576	0.58	1.00	'Huffman v. Brotherhood of R. Trainmen'	'Huffman v. Brotherhood of R. Trainmen'	'Moellring'	'Burke'	2	0
+MID_NEEDS_READ	65 N.D. 253	4577	4576	0.58	1.00	'Huffman v. Brotherhood of R. Trainmen'	'Huffman v. Brotherhood of R. Trainmen'	'Moellring'	'Burke'	2	0
+SAFE_TRUEDUP	231 N.W. 888	4038	4037	0.80	0.97	'Perry v. Erldelt'	'Perry v. Erdelt'	'Nuessle'	'Nuessle'	2	0
+SAFE_TRUEDUP	59 N.D. 741	4038	4037	0.80	0.97	'Perry v. Erldelt'	'Perry v. Erdelt'	'Nuessle'	'Nuessle'	2	0
+MID_NEEDS_READ	44 N.D. 250	2169	2167	0.75	0.95	'Nelson v. Middlewest Grain Co.'	'Olson v. Middlewest Grain Co.'	''	''	0	0
+MID_NEEDS_READ	208 N.W. 158	3295	3294	0.79	0.94	'Vincent v. Reynolds Farmers Elev. Co.'	'Vincent v. Reynolds Farmers Elevator Co.'	'Johnson'	'Johnson'	1	0
+MID_NEEDS_READ	53 N.D. 749	3295	3294	0.79	0.94	'Vincent v. Reynolds Farmers Elev. Co.'	'Vincent v. Reynolds Farmers Elevator Co.'	'Johnson'	'Johnson'	1	0
+MID_NEEDS_READ	208 N.W. 949	3330	3329	0.83	0.93	'Thompson Yards v. Kingsley'	'Thompson Yards, Inc. v. Kingsley'	'Birdzell'	'Birdzell'	1	0
+MID_NEEDS_READ	54 N.D. 49	3330	3329	0.83	0.93	'Thompson Yards v. Kingsley'	'Thompson Yards, Inc. v. Kingsley'	'Birdzell'	'Birdzell'	1	0
+MID_NEEDS_READ	246 N.W. 279	4360	4359	0.83	0.93	'Baird v. Kensal Light P. Co.'	'Baird v. Kensal Light & Power Co.'	'Burke'	'Burke'	7	0
+MID_NEEDS_READ	63 N.D. 88	4360	4359	0.83	0.93	'Baird v. Kensal Light P. Co.'	'Baird v. Kensal Light & Power Co.'	'Burke'	'Burke'	7	0
+MID_NEEDS_READ	207 N.W. 551	3279	3278	0.80	0.92	"Crandall v. North Dakota Workmen's Comp. Bureau"	"Crandall v. North Dakota Workmen's Compensation Bureau"	'Christianson'	'Christianson'	6	0
+MID_NEEDS_READ	53 N.D. 636	3279	3278	0.80	0.92	"Crandall v. North Dakota Workmen's Comp. Bureau"	"Crandall v. North Dakota Workmen's Compensation Bureau"	'Christianson'	'Christianson'	6	0
+MID_NEEDS_READ	295 N.W. 84	5012	5011	0.82	0.91	'First Nat. Bank v. Paulson'	'First National Bank v. Paulson'	'Christianson'	'Burke'	0	0
+MID_NEEDS_READ	70 N.D. 383	5012	5011	0.82	0.91	'First Nat. Bank v. Paulson'	'First National Bank v. Paulson'	'Christianson'	'Burke'	0	0
+MID_NEEDS_READ	204 N.W. 663	3155	3154	0.82	0.90	'Wilson Co. v. Knowles'	'A. M. Wilson Co. v. Knowles'	''	'Christianson'	0	0
+MID_NEEDS_READ	52 N.D. 886	3155	3154	0.82	0.90	'Wilson Co. v. Knowles'	'A. M. Wilson Co. v. Knowles'	''	'Christianson'	0	0
+MID_NEEDS_READ	173 N.W. 474	2168	2167	0.67	0.88	'Livingston v. Middlewest Grain Co.'	'Olson v. Middlewest Grain Co.'	'Grace'	''	0	0
+MID_NEEDS_READ	196 N.W. 553	2904	2903	0.73	0.86	'Johnson v. National Union Fire Insurance'	'Colgrove v. National Union Fire Insurance'	'Nuessle'	'Nuessle'	2	1
+MID_NEEDS_READ	232 N.W. 10	4043	4042	0.84	0.86	'Colwell v. Union Central L. Ins. Co.'	'Colwell v. Union Central Life Insurance'	'Christianson'	'Christianson'	4	0
+MID_NEEDS_READ	59 N.D. 768	4043	4042	0.84	0.86	'Colwell v. Union Central L. Ins. Co.'	'Colwell v. Union Central Life Insurance'	'Christianson'	'Christianson'	4	0
+MID_NEEDS_READ	250 N.W. 529	4460	4459	0.78	0.84	'Equity Elevator T. Co. v. Farmers M. Bank'	'Equity Elevator & Trading Co. v. Farmers & Merchants Bank'	'Burr'	'Birdzell'	0	0
+MID_NEEDS_READ	64 N.D. 95	4460	4459	0.78	0.84	'Equity Elevator T. Co. v. Farmers M. Bank'	'Equity Elevator & Trading Co. v. Farmers & Merchants Bank'	'Burr'	'Birdzell'	0	0
+MID_NEEDS_READ	226 N.W. 498	3869	3868	0.83	0.84	'Pipan v. Aetna Ins. Co.'	'Pipan v. Aetna Insurance'	'Swenson'	'Swenson'	0	0
+MID_NEEDS_READ	58 N.D. 435	3869	3868	0.83	0.84	'Pipan v. Aetna Ins. Co.'	'Pipan v. Aetna Insurance'	'Swenson'	'Swenson'	0	0
+MID_NEEDS_READ	229 N.W. 105	3971	3970	0.84	0.83	'State Ex Rel. v. Davis'	'State ex rel. Kaufman v. Davis'	'Christianson'	'Christianson'	8	0
+MID_NEEDS_READ	59 N.D. 191	3971	3970	0.84	0.83	'State Ex Rel. v. Davis'	'State ex rel. Kaufman v. Davis'	'Christianson'	'Christianson'	8	0
+MID_NEEDS_READ	208 N.W. 82	3317	3316	0.83	0.83	'Williston v. Ludowese'	'City of Williston v. Ludowese'	'Pugh'	'Birdzell'	2	0
+MID_NEEDS_READ	53 N.D. 797	3317	3316	0.83	0.83	'Williston v. Ludowese'	'City of Williston v. Ludowese'	'Pugh'	'Birdzell'	2	0
+MID_NEEDS_READ	231 N.W. 892	4040	4039	0.79	0.83	'Federal Land Bank v. Steele'	'Federal Land Bank of St. Paul v. Steele'	'Burke'	'Burke'	0	0
+MID_NEEDS_READ	59 N.D. 723	4040	4039	0.79	0.83	'Federal Land Bank v. Steele'	'Federal Land Bank of St. Paul v. Steele'	'Burke'	'Burke'	0	0
+MID_NEEDS_READ	231 N.W. 859	4032	4031	0.84	0.81	'First State Bank v. Farmers Co-Op. Elevator Co.'	'First State Bank of New Salem v. Farmers Co-operative Elevator Co.'	'Nuessle'	'Nuessle'	1	0
+MID_NEEDS_READ	59 N.D. 699	4032	4031	0.84	0.81	'First State Bank v. Farmers Co-Op. Elevator Co.'	'First State Bank of New Salem v. Farmers Co-operative Elevator Co.'	'Nuessle'	'Nuessle'	1	0
+MID_NEEDS_READ	247 N.W. 401	4376	4375	0.79	0.80	'Re Salhus'	'In re Salhus'	'Burke'	'Birdzell'	2	0
+MID_NEEDS_READ	63 N.D. 238	4376	4375	0.79	0.80	'Re Salhus'	'In re Salhus'	'Burke'	'Birdzell'	2	0
+DISTINCT_SHAREDPAGE	176 N.W.2d 522	6847	6846	0.74	0.78	'Giese v. Engelhardt'	'Fuchs v. Engelhardt'	'Teigen'	'Teigen'	0	0
+DISTINCT_SHAREDPAGE	55 N.W.2d 576	12213	12212	0.83	0.75	'Barrett v. BOARD OF TRUSTEES, ETC.'	"Barrett v. Board of Trustees of Teachers' Insurance"	'Wigen'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	237 N.W. 835	4206	4205	0.83	0.70	'McHugh v. Haley'	'Harry E. McHugh, Inc. v. Haley'	'Birdzell'	'Birdzell'	6	0
+DISTINCT_SHAREDPAGE	61 N.D. 359	4206	4205	0.83	0.70	'McHugh v. Haley'	'Harry E. McHugh, Inc. v. Haley'	'Birdzell'	'Birdzell'	6	0
+DISTINCT_SHAREDPAGE	140 N.W. 246	1018	1017	0.76	0.63	'Hawkins v. Sinclair'	'Burger v. Sinclair'	''	''	0	0
+DISTINCT_SHAREDPAGE	249 N.W. 913	4449	4448	0.78	0.53	"Re Teiten's Estate"	'Teiten v. Van Sickle'	'Burke'	'Birdzell'	2	0
+DISTINCT_SHAREDPAGE	63 N.D. 729	4449	4448	0.78	0.53	"Re Teiten's Estate"	'Teiten v. Van Sickle'	'Burke'	'Birdzell'	2	0
+DISTINCT_SHAREDPAGE	4 N.W.2d 194	9806	9805	0.84	0.45	'Re Peschel'	'In re the Appeal of Peschel'	'Morris'	'Burke'	5	0
+DISTINCT_SHAREDPAGE	72 N.D. 14	9806	9805	0.84	0.45	'Re Peschel'	'In re the Appeal of Peschel'	'Morris'	'Burke'	5	0
+DISTINCT_SHAREDPAGE	24 N.W.2d 54	7521	7520	0.81	0.43	'In Re Bratcher'	'Eberlein v. Eberly'	'Burr'	'Burke'	6	0
+DISTINCT_SHAREDPAGE	74 N.D. 12	7521	7520	0.81	0.43	'In Re Bratcher'	'Eberlein v. Eberly'	'Burr'	'Burke'	6	0
+DISTINCT_SHAREDPAGE	242 N.W. 912	4287	4286	0.64	0.41	'Re Stricker'	'State ex rel. Stricker v. Andrews'	'Burr'	'Burr'	0	0
+DISTINCT_SHAREDPAGE	62 N.D. 215	4287	4286	0.64	0.41	'Re Stricker'	'State ex rel. Stricker v. Andrews'	'Burr'	'Burr'	0	0
+DISTINCT_SHAREDPAGE	207 N.W. 442	3270	3269	0.84	0.41	'Re Shortridge'	'Board of Medical Examiners v. Shortridge'	'Johnson'	'Johnson'	0	0
+DISTINCT_SHAREDPAGE	53 N.D. 614	3270	3269	0.84	0.41	'Re Shortridge'	'Board of Medical Examiners v. Shortridge'	'Johnson'	'Johnson'	0	0
+DISTINCT_SHAREDPAGE	52 N.D. 518	3132	3130	0.82	0.38	'Re Solberg'	'State ex rel. Solberg v. Spicher'	'Johnson'	'Birdzell'	6	0
+DISTINCT_SHAREDPAGE	296 N.W. 918	5031	5030	0.76	0.38	'In Re Knauss'	'State ex rel. Knauss v. Kohler'	'Morris'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	70 N.D. 646	5031	5030	0.76	0.38	'In Re Knauss'	'State ex rel. Knauss v. Kohler'	'Morris'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	215 N.W. 913	3589	3588	0.80	0.37	'Re Campell'	'In re the Guardianship of Campbell'	'Pugh'	'Pugh'	2	0
+DISTINCT_SHAREDPAGE	56 N.D. 60	3589	3588	0.80	0.37	'Re Campell'	'In re the Guardianship of Campbell'	'Pugh'	'Pugh'	2	0
+DISTINCT_SHAREDPAGE	33 N.W.2d 615	8815	8814	0.77	0.35	'Re Hvidsten'	'Hvidsten v. Northern Pacific Railway Co.'	'Burke'	'Burke'	7	0
+DISTINCT_SHAREDPAGE	76 N.D. 111	8815	8814	0.77	0.35	'Re Hvidsten'	'Hvidsten v. Northern Pacific Railway Co.'	'Burke'	'Burke'	7	0
+DISTINCT_SHAREDPAGE	297 N.W. 132	5039	5038	0.82	0.33	'In Re Perry'	'State ex rel. Perry v. Garecht'	'Morris'	'Burke'	2	0
+DISTINCT_SHAREDPAGE	70 N.D. 599	5039	5038	0.82	0.33	'In Re Perry'	'State ex rel. Perry v. Garecht'	'Morris'	'Burke'	2	0
+DISTINCT_SHAREDPAGE	199 N.W. 760	2995	2994	0.78	0.33	'Re Schenum'	'Cullen v. Sullivan'	'Christianson'	'Christianson'	0	0
+DISTINCT_SHAREDPAGE	51 N.D. 384	2995	2994	0.78	0.33	'Re Schenum'	'Cullen v. Sullivan'	'Christianson'	'Christianson'	0	0
+DISTINCT_SHAREDPAGE	219 N.W. 332	3686	3685	0.74	0.31	'Re Brilz'	'In re the Application of Brilz'	'Burr'	'Burr'	0	0
+DISTINCT_SHAREDPAGE	56 N.D. 783	3686	3685	0.74	0.31	'Re Brilz'	'In re the Application of Brilz'	'Burr'	'Burr'	0	0
+DISTINCT_SHAREDPAGE	53 N.D. 389	3235	3233	0.57	0.31	'Re Pfann'	'State ex rel. Pfann v. Kunkel'	'Johnson'	'Johnson'	1	0
+DISTINCT_SHAREDPAGE	241 N.W. 789	4272	4271	0.65	0.27	'Re Rusch'	'Rusch v. Northern & Dakota Trust Co.'	''	'Birdzell'	6	0
+DISTINCT_SHAREDPAGE	62 N.D. 138	4272	4271	0.65	0.27	'Re Rusch'	'Rusch v. Northern & Dakota Trust Co.'	''	'Birdzell'	6	0
+DISTINCT_SHAREDPAGE	25 N.W.2d 925	7647	7646	0.76	0.25	'Re Glavkee'	'Nelson v. Chadwick'	''	'Burke'	11	0
+DISTINCT_SHAREDPAGE	75 N.D. 118	7647	7646	0.76	0.25	'Re Glavkee'	'Nelson v. Chadwick'	''	'Burke'	11	0
+DISTINCT_SHAREDPAGE	235 N.W. 343	4111	4110	0.79	0.24	'Re Garrity'	'In re Certain Proceedings for the Disbarment of Garrity'	'Burke'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	60 N.D. 454	4111	4110	0.79	0.24	'Re Garrity'	'In re Certain Proceedings for the Disbarment of Garrity'	'Burke'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	21 N.W.2d 351	7180	7179	0.66	0.22	'In Re Adams'	'Northern Pacific Railway Co. v. McDonald'	'Burr'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	74 N.D. 242	7180	7179	0.66	0.22	'In Re Adams'	'Northern Pacific Railway Co. v. McDonald'	'Burr'	'Burke'	0	0
+DISTINCT_SHAREDPAGE	21 N.W.2d 341	7178	7177	0.85	0.21	'In Re Hanson'	'Northern Pacific Railway Co v. McDonald'	'Burr'	'Burke'	6	0
+DISTINCT_SHAREDPAGE	74 N.D. 224	7178	7177	0.85	0.21	'In Re Hanson'	'Northern Pacific Railway Co v. McDonald'	'Burr'	'Burke'	6	0
+DISTINCT_SHAREDPAGE	284 N.W. 357	4895	4894	0.82	0.20	'Re White'	'State v. Jackson'	'Morris'	'Burke'	3	0
+DISTINCT_SHAREDPAGE	69 N.D. 61	4895	4894	0.82	0.20	'Re White'	'State v. Jackson'	'Morris'	'Burke'	3	0
+DISTINCT_SHAREDPAGE	418 N.W.2d 789	10044	10043	0.60	0.20	'Matter of Montgomery'	'In re Teevens'	'Erickstad'	'Erickstad'	4	0
+DISTINCT_SHAREDPAGE	4 N.W.2d 585	9817	9816	0.73	0.16	'In Re Lamb'	'Lamb v. State Tax Commissioner of the State'	'Christianson'	'Burke'	1	0
+DISTINCT_SHAREDPAGE	72 N.D. 42	9817	9816	0.73	0.16	'In Re Lamb'	'Lamb v. State Tax Commissioner of the State'	'Christianson'	'Burke'	1	0
