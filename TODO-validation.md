@@ -1,14 +1,14 @@
 # TODO — Path to a Fully Validated Corpus
 
-Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-05-13.
+Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-05-17.
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 
-**Highest-yield next steps (2026-05-13):**
-1. **Type Y supplemental-publications sweep** (§1) — already-paired .docs only, no new downloads. Each hit produces a new opinion row and likely shrinks the 937 pre-1953 single-source residual.
-2. **Type Y detection at ingest time** (§1) — close the root-cause path so future Westlaw ingests can't reopen the gap.
-3. **Tighten `fix_archive_pairings._title_cite_matches_opinion`** (§3) — require neutral-cite agreement; parallel-only matching was too lenient on the 2026-05-04 round.
-4. **Fix `align_primary_source`'s INNER-JOIN bug** (§3) — silently skips opinions with no primary row at all; switch to LEFT JOIN.
+**Highest-yield next steps (2026-05-17 — prior 2026-05-13 list is exhausted: Type Y sweep done/negative, citation contracts applied, `align_primary_source` already a LEFT JOIN):**
+1. **Close the 666-opinion archive.ndcourts.gov coverage gap** (§3) — rerun `scrape_archive --all --ingest` against opinions missing an `archive` row. Biggest single mechanical lever on §9's "fully validated" (≥2-source) metric for 1997–2019; low-risk, no human adjudication. Depends on archive.ndcourts.gov reachability; no pre-1997 benefit.
+2. **Detect Type Y at ingest time** (§1) — reuse `sweep_type_y._classify`; durable root-cause closure so the gap can't reopen.
+3. **§6 165 MERGE-HOLD-LOWJAC** adjudication (§6) — high corpus-correctness yield; labor-intensive per-pair human read.
+4. **Case-name sweep vols 1–79** (§1) — several hundred deferred diffs; high authoritative-text value but needs a review tool + sustained human-in-loop.
 5. **Diagnose scraper docket-collision regression** (§5) — ND 62/73 Romanyshyn; recent regression likely tied to WIP `--skip-analysis` plumbing in `~/code/scraper/scraper/opinion_processor.py`.
 6. **1953–1995 single-source batch picker** (§2) — rebuild without quality_score (uninformative for that era); use metadata anomalies + cited-by counts + per-decade random sampling instead.
 
@@ -81,7 +81,7 @@ Three sources exist: ndcourts.gov markdown, CourtListener NW2d, archive.ndcourts
 
 - [ ] **Detach the corrupted CL markdown** at `NW/271/771.md` (oid 4746 *King v. Stark County*). The file is HTML/CSS junk from a failed CL scrape; the linkage adds noise without value. The Westlaw .doc is correctly paired. Either drop the NW row or leave it as a known-bad data marker.
 
-- [ ] **Fix the bug in `align_primary_source`.** Its driving query at `align_primary_source.py:31-35` is an INNER JOIN on `opinion_sources s ON s.opinion_id = o.id AND s.is_primary = 1`. When all `opinion_sources` rows for an opinion have `is_primary = 0` (e.g., after a deletes-then-inserts swap), the opinion doesn't match and the script silently skips it. Surfaced 2026-05-04 by the round-2 westlaw-pairings batch — required a manual is_primary correction to clear the resulting 4 invariant violations. Switch to a LEFT JOIN (or a separate scan for "no primary at all") and emit a clear log line for those rows.
+- [x] **Fix the bug in `align_primary_source`** — already resolved (confirmed stale 2026-05-17). `align_primary_source.py:35-43` is now a `LEFT JOIN opinion_sources s ON … AND s.is_primary = 1` with `WHERE s.id IS NULL OR …`, the docstring/comment explicitly document the no-primary case, and `align()` emits a `[no-primary, UNRESOLVED]` log line plus `no_primary_resolved`/`no_primary_unresolved` stats — exactly the requested fix. No code change needed; item closed.
 
 - [x] **Triage the 919 westlaw+NW pairs in 0.50–0.70** for genuinely-different vs. OCR-noise. **Done 2026-05-13** via 50-pair stratified sample (`triage/westlaw-nw-band-0.50-0.70-sample50-2026-05-13.csv`, script `triage/triage_50.py`). Distribution: **50/50 OCR_NOISE, 0 wrong-pairings, 0 truncations, 0 contamination**. Single consistent failure mode across the sample: Westlaw .doc carries the full bound entry (Syllabus by the Court + statement of facts + opinion), CL NW markdown skips both and starts at the judge's opinion proper, then NW1 OCR drift ("tbe"/"the", star pagination) makes the 4-word shingle Jaccard collapse. No corpus-improvement value from chasing this band. **Action: tighten the diff-audit's per-source-pair threshold for westlaw+NW pre-1953 to <0.40 to drop these 919 noise rows from future reports.**
 
