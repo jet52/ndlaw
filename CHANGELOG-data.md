@@ -2,6 +2,15 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `westlaw-pdfocr-residue-2026-05-18` (30 rows)
+
+Closes the 10 non-promoted residue from `westlaw-receive-2026-05-18`, resolving each by its **unique neutral cite** (the N.W.2d primary cite was non-unique — shared 2018–19 disposition pages — and the parser extracted no `date_filed` from these PDF-era docs, which is why automated name+date resolution went AMBIGUOUS).
+
+- **Group A — 8 explicit-oid promotions** (Gardner 2019 ND 122/19351, Lee 2019 ND 142/19357, Hollis 2019 ND 163/19362, T.A.G. 2019 ND 167/19363, Wills 2019 ND 176/19367, Facio 2019 ND 199/19370, TigerSwan 2019 ND 219/19375, Holter 2020 ND 202/19516): neutral cite → exactly one oid, then the tested `receive_westlaw._promote` (jaccard 0.82–0.91 vs prior OCR text — same opinion, clean Westlaw bound text now primary).
+- **Group B — 2 hand-verified manual promotions** (Neset 1998 ND 206/12782, Richardson 2020 ND 246/19532): `_parse_westlaw_doc` extracted no body (ORDER-of-Reinstatement format; minimal per-curiam N.D.R.App.P. 35.1 memo). Both read in full and confirmed genuine complete opinions; oid certain via unique neutral cite. Promoted with the Westlaw footer (`All Citations`/`End of Document`/© Thomson Reuters) stripped per redistribution scope. The `_promote` jaccard gate was deliberately bypassed (it guards *automated* shared-page mis-resolution — moot for a hand-verified explicit-oid promote); prior jaccard recorded in the changelog authority note (Neset 0.017 — DB text was unusable garbled scanned-OCR; Richardson 0.425).
+- **Result**: all **41/41** mandatory-OCR worklist opinions now carry a Westlaw source and ≥2 sources. 30 changelog rows (10 × text_content+source_reporter+source_path), authority-stamped. Docs archived to the correct reporter trees (`N.W.2d/<vol>/`, `N.W.3d/<vol>/`).
+- **Safety**: snapshot `opinions.db.bak-pre-pdfocr-residue-2026-05-18`. Revert: `cleanup revert westlaw-pdfocr-residue-2026-05-18` then `align_primary_source --apply`. Invariants 18 ok / 2 known / 0 regressed.
+
 ## Batch `westlaw-receive-2026-05-18` (93 rows)
 
 PDF-era second-source closure. Under the ratified PDF-era policy (TODO §9), opinions whose court PDF is a page-image scan (text required OCR) and that lack an independent second source must get a Westlaw copy. The detector (`triage/classify_pdf_extraction.py`, structural: ~1 full-page raster per page = scanned) flagged 41 such opinions (`triage/westlaw-pdf-ocr-worklist-2026-05-18.md`); user pulled them via Westlaw Find&Print.
