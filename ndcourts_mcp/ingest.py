@@ -144,24 +144,47 @@ def _normalize_citation(citation: str) -> str:
     return re.sub(r"\s+", " ", citation.strip())
 
 
-def ingest_reporter_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path, stats: dict):
+def _maybe_commit(conn, processed: int, commit_every: int) -> None:
+    """Memory-bounded ingest: with one transaction per reporter, ~12k large
+    text_content rows + their FTS5 trigger writes accumulate uncommitted in
+    the WAL for the whole pass and can OOM the process (exit 137) under
+    memory pressure — this is what the unattended weekly launchd job hits.
+    Committing every `commit_every` records and truncating the WAL bounds
+    in-flight memory. commit_every=0 restores the legacy single
+    transaction. Re-running ingest converges (cluster_id/citation dedup +
+    idempotent _record_source), so the loss of whole-pass atomicity is
+    safe for this additive pipeline."""
+    if commit_every and processed and processed % commit_every == 0:
+        conn.commit()
+        conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+
+
+def ingest_reporter_opinions(conn, reporter: str, reporter_dir: Path,
+                             refs_dir: Path, stats: dict,
+                             commit_every: int = 500,
+                             since_year: int | None = None):
     """Ingest all opinions from a reporter directory."""
     if not reporter_dir.is_dir():
         print(f"  {reporter}: directory not found, skipping")
         return
 
     if reporter in ("NW", "NW2d"):
-        _ingest_nw_opinions(conn, reporter, reporter_dir, refs_dir, stats)
+        _ingest_nw_opinions(conn, reporter, reporter_dir, refs_dir, stats,
+                            commit_every)
     elif reporter == "ND":
-        _ingest_nd_opinions(conn, reporter, reporter_dir, refs_dir, stats)
+        _ingest_nd_opinions(conn, reporter, reporter_dir, refs_dir, stats,
+                            commit_every, since_year)
 
 
-def _ingest_nw_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path, stats: dict):
+def _ingest_nw_opinions(conn, reporter: str, reporter_dir: Path,
+                        refs_dir: Path, stats: dict,
+                        commit_every: int = 500):
     """Ingest NW/NW2d opinions that have JSON metadata."""
     json_files = sorted(reporter_dir.rglob("*.json"))
     print(f"  {reporter}: found {len(json_files)} metadata files")
 
-    for json_path in json_files:
+    for _i, json_path in enumerate(json_files, 1):
+        _maybe_commit(conn, _i - 1, commit_every)
         meta = _parse_json_metadata(json_path)
         if not meta:
             stats["errors"] += 1
@@ -237,14 +260,31 @@ def _ingest_nw_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path,
     conn.commit()
 
 
-def _ingest_nd_opinions(conn, reporter: str, reporter_dir: Path, refs_dir: Path, stats: dict):
-    """Ingest ND neutral-cite opinions, deduplicating against existing records."""
+def _ingest_nd_opinions(conn, reporter: str, reporter_dir: Path,
+                        refs_dir: Path, stats: dict,
+                        commit_every: int = 500,
+                        since_year: int | None = None):
+    """Ingest ND neutral-cite opinions, deduplicating against existing records.
+
+    `since_year` (incremental mode) skips files whose `YYYYNDn.md` filename
+    year is older than the given year — applied from the filename BEFORE any
+    file read, so old years cost nothing. This is what makes the weekly
+    pipeline both cheap and safe: it never re-scans the historical trees
+    where §6-merged-away duplicates' source files still live, so a full
+    re-ingest can't resurrect them (their citation was re-pointed to the
+    keep row, so a re-scan would otherwise re-insert the orphaned file)."""
     md_files = sorted(reporter_dir.rglob("*.md"))
     # Exclude .bak directories
     md_files = [f for f in md_files if ".bak" not in str(f)]
-    print(f"  {reporter}: found {len(md_files)} opinion files")
+    print(f"  {reporter}: found {len(md_files)} opinion files"
+          + (f" (incremental: year >= {since_year})" if since_year else ""))
 
-    for md_path in md_files:
+    for _i, md_path in enumerate(md_files, 1):
+        _maybe_commit(conn, _i - 1, commit_every)
+        if since_year is not None:
+            ym = re.match(r"(\d{4})ND", md_path.stem)
+            if not ym or int(ym.group(1)) < since_year:
+                continue
         text = md_path.read_text(encoding="utf-8")
         if not text.strip():
             stats["no_text"] += 1
@@ -449,6 +489,22 @@ def main():
     parser.add_argument(
         "--rebuild", action="store_true", help="Drop and rebuild the database"
     )
+    parser.add_argument(
+        "--commit-every", type=int, default=500,
+        help="Memory-bounded mode: commit + truncate the WAL every N "
+             "processed records (default 500; 0 = single transaction per "
+             "reporter, the legacy unbounded behavior that can OOM)",
+    )
+    parser.add_argument(
+        "--incremental", action="store_true",
+        help="Only ingest new ND opinions from the current era forward "
+             "(ND markdown, year >= the DB's latest opinion year; NW/NW2d "
+             "historical trees skipped). This is the safe weekly mode: it "
+             "cannot resurrect §6-merged-away duplicates (whose orphaned "
+             "source files live in the skipped historical trees) and is "
+             "inherently memory-light. Use the default full mode only for "
+             "a deliberate full rebuild.",
+    )
     args = parser.parse_args()
 
     refs_dir = args.refs
@@ -458,14 +514,36 @@ def main():
         print(f"Removed existing {args.db}")
 
     conn = get_connection(args.db)
+    # Bound SQLite's page cache (~20 MB) for this bulk-ingest connection so
+    # a large run can't balloon cache memory on top of the WAL.
+    conn.execute("PRAGMA cache_size=-20000")
     create_schema(conn)
 
     stats = {"ingested": 0, "deduped": 0, "no_text": 0, "errors": 0}
 
+    reporters = REPORTERS
+    since_year = None
+    if args.incremental:
+        latest = conn.execute(
+            "SELECT MAX(date_filed) FROM opinions"
+        ).fetchone()[0]
+        if latest and len(latest) >= 4 and latest[:4].isdigit():
+            since_year = int(latest[:4])
+            # Weekly ndcourts.gov scrape only adds ND markdown; NW/NW2d are
+            # historical CourtListener bulk that never changes weekly and is
+            # exactly where merged-away dup source files live — skip it.
+            reporters = ["ND"]
+            print(f"Incremental: ND only, year >= {since_year} "
+                  f"(latest DB opinion {latest})")
+        else:
+            print("Incremental requested but DB has no dated opinions — "
+                  "falling back to full ingest")
+
     print(f"Ingesting from {refs_dir} into {args.db}")
-    for reporter in REPORTERS:
+    for reporter in reporters:
         reporter_dir = refs_dir / REPORTER_DIRS[reporter]
-        ingest_reporter_opinions(conn, reporter, reporter_dir, refs_dir, stats)
+        ingest_reporter_opinions(conn, reporter, reporter_dir, refs_dir, stats,
+                                 args.commit_every, since_year)
         print(
             f"    Running totals: {stats['ingested']} ingested, "
             f"{stats['deduped']} deduped, {stats['no_text']} no text, "
