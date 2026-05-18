@@ -268,7 +268,7 @@ the opinion text. The server exposes eight tools — see the table below.
 
 Counts below are as of 2026-05-18; rerun
 `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
-(~20,180, of which 39 are North Dakota Court of Appeals decisions and the
+(~20,160, of which 39 are North Dakota Court of Appeals decisions and the
 rest North Dakota Supreme Court).
 
 The "primary text source" is the source whose text is stored in
