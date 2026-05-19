@@ -2,6 +2,30 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `fix-casenames-vol6-10-bound-2026-05-19` (7) + `nw-bound-image-source-2026-05-19` (18) + `fix-mispaired-nwimage-5758-2026-05-19` (1)
+
+Bound N.W. Reporter resolution for the 21 vol-6–10 mispaired items (the diverted output of the hardened `review_casenames` guard). Westlaw delivered 18 of 21 (3 non-unique cites — 73 N.W. 1102 *O'Grady*, 84 N.W. 1117 *Emmons County* cluster, 87 N.W. 1135 *White v. Lauder* — still pending after document selection). All 18 filed at `~/refs/nd/opin/NW/<vol>/<page>.pdf` and registered as non-primary `NW-image` `opinion_sources` rows.
+
+**7 case_name corrections to the authoritative bound-reporter caption** (`fix-casenames-vol6-10-bound-2026-05-19`):
+
+| oid | cite | old (CL) | new (bound) | reason |
+|---|---|---|---|---|
+| 5487 | 73 N.W. 203 | *Red River Lumber Co. v. Children of Israel* | *Red River Lumber Co. v. Friel* | CL titled by co-defendant Congregation; body confirms Friel |
+| 5490 | 73 N.W. 430 | *Gull River Lumber Co. v. Lee* | *Gull River Lumber Co. v. Brock* | CL titled by co-defendant Lee (county treasurer); body confirms Brock is mortgagor |
+| 5542 | 75 N.W. 904 | *Tribune Printing & Binding Co. v. Barnes* | *Knight v. Barnes* | CL titled by plaintiff *company*; bound uses individual plaintiffs Knight et al. |
+| 5575 | 77 N.W. 1000 | *Warnken & Co. v. Langdon Mercantile Co.* | *Warnken v. Chisholm* | CL titled by partnership names; bound uses individual surnames |
+| 5430 | 69 N.W. 692 | *State ex rel. Brooks Bros. v. O'Connor* | *State ex rel. Brooks Bros. v. O'Conner* | CL OCR: defendant M. J. O'Conner (sheriff), CL stored "Connor"; bound consistently "Conner" |
+| 5675 | 81 N.W. 31 | *Richardson v. Campbell* | *Campbell v. Richardson* | parties transposed — DB used trial-court order; bound uses appellate caption (Campbell appellant) |
+| 5762 | 84 N.W. 359 | *Olson v. O'Connor* | *Olson v. O'Conner* | same M. J. O'Conner sheriff spelling fix as 5430 |
+
+**10 bound-validated unchanged**: 5406 *Elton v. O'Connor* (different individual; bound also "Connor"), 5421 *Elstad v. Northwestern Elevator Co*, 5465/5545 *Scottish American Mortgage Co. v. Reeve* (style only — bound abbreviates "Mortg." / hyphenates), 5548 *O'Leary v. Brooks Elevator Co.*, 5555 *Tetrault v. O'Connor*, 5606 *Lane v. O'Toole*, 5627 *O'Toole v. Omlie*, 5640 *Red River Valley National Bank v. North Star Boot & Shoe Co.*, 5719 *St. Anthony & Dakota Elevator Co. v. Soucie*.
+
+**Surprise finding — corpus gap discovered** (`fix-mispaired-nwimage-5758-2026-05-19`): the bound page `NW/84/350.pdf` *does not* belong to oid5758 *Henniges v. Paschke* despite CL's cite assignment. p.350 left column ends *Paschke*; right column begins **`HENNIGES et al. v. JOHNSON et al.`** (Walsh county; decided same day 1900-11-20) — a **separate ND Supreme Court opinion missing from our corpus**. oid5758's case_name is correctly *Henniges v. Paschke* (body confirms — Fred Henniges v. John Paschke, mortgage dispute); CL gave it the wrong N.W. start-page cite. Removed the wrongly-attributed `NW-image` source row from oid5758; the PDF remains in the NW tree as a placeholder for the future *Henniges v. Johnson* ingest. Tracked in TODO §1.
+
+**Cross-cutting OCR pattern surfaced:** M. J. O'Conner (sheriff named in multiple late-1890s cases) is consistently "Conner" in the bound reporter but "Connor" across the CL-derived text and metadata — likely a systematic CL OCR error. 2 fixed here (5430, 5762); a corpus-wide audit for the same person/spelling pattern would be worthwhile (logged in TODO §1).
+
+**Result**: 18 NW-image rows + 7 case_name updates − 1 mis-attributed row removal. Invariants **18 ok / 2 known / 0 regressed**. All changes changelog-revertible (no row deletions, no snapshot needed).
+
 ## Batches `fix-casenames-vol1-5-bound-2026-05-18` (3) + `nw-bound-image-source-2026-05-18` (5)
 
 Resolution of the 5 vol-1–5 case-name items the hardened tool diverted, using **scanned bound N.W. Reporter page images** pulled from Westlaw (image-only PDFs — an independent third witness, distinct from both the CourtListener OCR and the Westlaw `.doc` editorial text). Filed at `~/refs/nd/opin/NW/<vol>/<page>.pdf` (co-located with the existing CL `<page>.md`/`.json`).
