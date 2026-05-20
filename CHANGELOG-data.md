@@ -20,6 +20,37 @@ The .docs were simply never registered in `opinion_sources` for their correct pa
 
 Note: 3 of these .docs carry richer bound captions than the DB row — applied as `fix-casenames-vol16-79-orphan-enrich-2026-05-20` (see below).
 
+## Batch `fix-casenames-vol16-79-ambig-2026-05-20` (2 source rows + 2 new opinions)
+
+Closeout of the 6 AMBIG entries from this morning's vol-16-79 mispaired adjudication. Investigation (`triage/investigate_ambig_2026-05-20.py`) decomposed them into three buckets:
+
+**Bucket 1 — Already-paired-by-name (2):** the `.doc` corresponds to an opinion that exists in the DB under the same name (the cite-shared sibling of the cite-matched row), just without the Westlaw `.doc` registered. Added as non-primary `westlaw` `opinion_sources` rows (same pattern as today's earlier orphan closeout):
+- `0059-Kerr-v-Herred.doc` → oid 278 *Kerr v. Herred* (1907-02-23) — exact name match
+- `0059-Kerr-v-Swanson.doc` → oid 276 *Kerr v. Swanson* (1907-02-20) — exact name match
+
+Low AMBIG jaccards (0.27–0.31) are an artifact of these being very short per-curiam memos ("Following Kerr v. Anderson…"), not actual divergence.
+
+**Bucket 2 — Classifier already-paired (2):** the `.doc` IS already correctly attached as the primary westlaw source for a different OID; the mispaired flag was a cite-only matching artifact (the cite-matched row was a sibling on the same shared page). No DB change:
+- `0458-Bussey-v-Boynton.doc` → already primary source of oid 1189 *Bussey v. Boynton* (sibling: oid 1186 *Hackney v. Lynn* at 27 N.D. 458)
+- `0250-Nelson-v-Middlewest-Grain-Co.doc` → already primary source of oid 2169 *Nelson v. Middlewest Grain Co.* (sibling: oid 2167 *Olson* at 44 N.D. 250)
+
+**Bucket 3 — Corpus gaps (2 new opinions):** the `.doc` represents a real missing opinion. Pattern matches `emmons-county-vol9-ingest-2026-05-19` — sibling memorandum decisions on the same docket page that CL never captured because there was no matching cluster.
+
+| new oid | case_name | N.D. cite | N.W. cite | date | controlled by |
+|---:|---|---|---|---|---|
+| 20498 | State ex rel. McCue v. Great Northern Railway Co. | 19 N.D. 57 | 120 N.W. 874 | 1909-04-16 | *State ex rel. McCue v. N. P. Ry. Co.* (this day decided), 120 N. W. 869 |
+| 20499 | Lammadee v. Middlewest Grain Co. | 44 N.D. 247 | 173 N.W. 475 | 1919-06-21 | *Kluver v. Middlewest Grain Co.*, 173 N.W. 468 |
+
+Evidence:
+- **McCue v. Great Northern**: the parallel 1908-04-22 *State ex rel. McCue* cluster has 3 sibling opinions in DB (Great Northern @ 17 N.D. 370, MStP&SSM @ 301, Northern Pacific @ 223). The 1909-04-16 cluster previously had only 2 in DB (oid 498 NP, oid 499 MStP&SSM). The `.doc` at `N.D./19/0057-State-ex-rel-McCue-v-Great-Northern-R-Co.doc` is the missing third (a per curiam following the day's NP decision).
+- **Lammadee**: the two `.doc`s at `N.D./44/0247` (`0247-Nelson-v-Middlewest-Grain-Co.doc` and `0247-Lammadee-v-Middlewest-Grain-Co.doc`) are byte-identical except for the plaintiff name (NELSON ↔ LAMMADEE). Same memorandum, distinct sibling opinions. DB had only oid 2171 *Nelson v. Middlewest Grain Co.* @ 247.
+
+Method (matches Emmons): parse each `.doc` via `_parse_westlaw_doc`; INSERT `opinions` row (per_curiam=1, source_reporter=`westlaw`, source_path = refs-relative `N.D./<vol>/<file>.doc`, text_content = YAML frontmatter + body up to "All Citations"); INSERT N.D. citation (primary) + N.W. citation (secondary); INSERT westlaw `opinion_sources` row (is_primary=1); changelog audit. Corpus 20,168 → **20,170**.
+
+Tool refinement logged: the AMBIG branch in `triage/adjudicate_mispaired_2026-05-20.py` should also (a) consult `opinion_sources` for the .doc (catches Bucket 2 = Bussey/Nelson@250), and (b) fuzzy-match parsed `.doc` case_name vs DB case_name (catches Bucket 1 = Kerr siblings). Same refinement as the ORPHAN classifier needs.
+
+Invariants **18 ok / 2 known / 0 regressed**. Reversal: `DELETE FROM opinions WHERE id IN (20498, 20499)` + cascade (no automatic helper for `opinion.insert`); the 2 source rows are removable by changelog audit IDs.
+
 ## Batch `fix-casenames-vol16-79-orphan-enrich-2026-05-20` (3)
 
 Case-name enrichments for the 3 ORPHAN-pairing opinions whose bound `.doc` captions add a role or locality qualifier the DB was missing. Pattern matches earlier accepted enrichments (`Barry v. Truax, District Court Clerk` and `State Bank of Maxbass` / `State Bank of Menagha` from vol 11–15 and vol 16–79 SAME).
