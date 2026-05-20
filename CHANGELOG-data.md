@@ -2,6 +2,37 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `emmons-county-vol9-ingest-2026-05-19` (9 new opinions)
+
+Corpus growth — 9 Emmons County tax-foreclosure memorandum decisions ingested from N.D./9/ Westlaw `.doc`s that were on disk since the original vol-79 Quick Check but never made it into the DB (no matching CL row to pair against). Discovery surfaced by reading the bound `NW/84/1117.pdf` page image (TODO §1 today). New opinions (all 1900-11-13, per curiam, controlled by *Emmons Co. v. Thompson* 84 N.W. 385):
+
+| oid | case_name | N.D. cite | N.W. cite |
+|---:|---|---|---|
+| 20489 | Emmons County v. Cranmer | 9 N.D. 608 | 84 N.W. 1117 |
+| 20490 | Emmons County v. Baker | 9 N.D. 609 | 84 N.W. 1117 |
+| 20491 | Emmons County v. Davidson | 9 N.D. 609 | 84 N.W. 1117 |
+| 20492 | Emmons County v. Cranmer | 9 N.D. 610 | 84 N.W. 1117 |
+| 20493 | Emmons County v. Ganger | 9 N.D. 610 | 84 N.W. 1117 |
+| 20494 | Emmons County v. McKenzie | 9 N.D. 611 | 84 N.W. 1118 |
+| 20495 | Emmons County v. McKenzie | 9 N.D. 612 | 84 N.W. 1118 |
+| 20496 | Emmons County v. McLean | 9 N.D. 612 | 84 N.W. 1118 |
+| 20497 | Emmons County v. Mellon | 9 N.D. 613 | 84 N.W. 1118 |
+
+Method: parse each `.doc` via `_parse_westlaw_doc`; INSERT `opinions` row (court=`North Dakota Supreme Court`, per_curiam=1, source_reporter=`westlaw`, source_path refs-relative `N.D./9/<file>.doc`, text_content = full bound text with YAML frontmatter); INSERT N.D. citation (primary) + N.W. citation (secondary, taxonomy `NW`); INSERT westlaw `opinion_sources` row (is_primary=1); changelog audit. Same-defendant surname appearing at multiple N.D. pages (Cranmer 608+610, Davidson 608+609, McKenzie 611+612) reflects separate tax-foreclosure actions on different properties. Corpus 20,159 → **20,168**.
+
+**Related cite-cleanup follow-up surfaced:** the existing rows oids 5751 Lilly@611, 5750 Mellon@612, 5749 Robinson@613, 5748 Thistlewaite@614, 5747 Wilson@615 all carry N.W. cite `84 N.W. 1117`, but the bound `.docs` for pages ≥611 use `84 N.W. 1118 (Mem)`. CL gave them the cluster's starting N.W. page; the bound pagination puts pages 611+ on N.W. 1118. Logged in TODO §1; low-priority data-quality fix.
+
+Invariants **18 ok / 2 known / 0 regressed**. Reversal would be `DELETE FROM opinions WHERE id IN (20489..20497)` + cascade — recorded in changelog under `emmons-county-vol9-ingest-2026-05-19` but no automatic revert helper for `opinion.insert` field type.
+
+## O'Conner/O'Connor corpus-wide audit (2026-05-19)
+
+Audit prompted by yesterday's two O'Conner spelling fixes (oids 5430, 5762). Query: all `case_name LIKE '%O''Connor%'` opinions, 1893–1905. Result: **5 surviving rows**, of which:
+- **oid5406 *Elton v. O'Connor*** (68 N.W. 84, 1896-05) — bound says CONNOR, DB CONNOR ✓ matches
+- **oid5555 *Tetrault v. O'Connor*** (76 N.W. 225, 1898) — bound says CONNOR ✓; *different individual* (A. M. O'Connor, not M. J.)
+- **oid5396 *Selliger v. O'Connor*** (67 N.W. 824, 1896-06) — *candidate* (body says "M. J. O'Connor"; bound not yet pulled); 67 N.W. is adjacent to 68 N.W. (Elton CONNOR), so likely OK as-is, but unconfirmed
+
+**Refined hypothesis (correcting yesterday's CHANGELOG):** the original characterization "CL OCR systematically misread Conner as Connor for sheriff M. J. O'Conner" is too strong. The bound *N.W. Reporter itself uses different spellings* across volumes for what appears to be the same individual (vol 68 N.W. → CONNOR; vol 69 N.W. + vol 84 N.W. → CONNER). CL happens to match each bound's chosen spelling. There is no systematic OCR error — the variance is in the printed reporter. No further fixes warranted unless oid5396's bound pull reveals CONNER. Pull `67 N.W. 824` only if/when convenient.
+
 ## Batches `nw-bound-image-source-2026-05-19b` (10) + `fix-henniges-johnson-5758-2026-05-19` (4)
 
 Closeout of the 3 non-unique vol-6–10 bound-page pulls + the *Henniges v. Johnson* correction (re-interpreting yesterday's "missing opinion" finding).
