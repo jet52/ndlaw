@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-casenames-vol16-79-orphans-2026-05-20` (7 opinion_sources rows)
+
+Investigation of the 7 ORPHAN_SIBLING entries from the same-day adjudication: NOT corpus gaps. Every one of the .docs corresponds to an opinion already in the DB under a different OID (the cite-shared sibling of the cite-matched row the mispaired-TSV listed). Jaccard `.doc` body vs. the correct OID's `text_content` is 0.85–0.92 for all 7.
+
+The .docs were simply never registered in `opinion_sources` for their correct paired opinion — same micro-fix pattern as `fix-cairncross-source-2026-05-19` (vol 11–15 batch). All 7 correct opinions already carry an `NW` primary source (CL text); the Westlaw `.doc` is added as non-primary (`is_primary=0`), promotion deferred to a future `merge_westlaw_text` pass.
+
+| .doc | correct oid | DB case_name |
+|---|---:|---|
+| `N.D./20/0372-Fitzmaurice-v-Willis.doc` | 680 | Fitzmaurice v. Willis |
+| `N.D./20/0412-Stoltze-v-Hurd.doc` | 692 | Stoltze v. Hurd |
+| `N.D./21/0348-Heard-v-Holbrook.doc` | 767 | Heard v. Holbrook |
+| `N.D./23/0352-Bismarck-Water-Supply-Co-v-City-of-Bismarck.doc` | 937 | Bismarck Water Supply Co. v. City of Bismarck |
+| `N.D./24/0395-McCarty-v-Kepreta.doc` | 1007 | McCarty v. Kepreta |
+| `N.D./32/0373-Sundahl-v-First-State-Bank-of-Edmunds.doc` | 1487 | Sundahl v. First State Bank |
+| `N.D./34/0601-Mercer-County-State-Bank-of-Manhaven-v-Hayes.doc` | 1641 | Mercer County State Bank v. Hayes |
+
+Note: 3 of these .docs carry richer bound captions than the DB row (`Fitzmaurice v. Willis, County Com'rs`; `Sundahl v. First State Bank of Edmunds`; `Mercer County State Bank of Manhaven v. Hayes`). Case-name enrichment **deferred** at user direction; conservative source-rows-only path matches the Cairncross precedent.
+
+Tool note: the ORPHAN_SIBLING classifier in `triage/adjudicate_mispaired_2026-05-20.py` checked whether the `.doc`'s source_path was attached to *any* opinion. A stronger check would also fuzzy-match the parsed `.doc` case_name against `opinions.case_name` (or look up its primary cite) — that would have surfaced these 7 as `ALREADY_PAIRED_BY_NAME` rather than `ORPHAN_SIBLING`. Logged as a tool refinement.
+
+Invariants **18 ok / 2 known / 0 regressed**. Changelog-revertible (the 7 `opinion_sources.add` field entries can be removed by ID).
+
 ## Batch `fix-casenames-vol16-79-bound-2026-05-20` (58)
 
 Vol-16–79 mispaired closeout in a single batch, methodology continued from `fix-casenames-vol11-15-bound-2026-05-19`: parse each archived Westlaw `.doc` in `~/refs/nd/opin/N.D./<vol>/`, compute jaccard(`.doc` body tokens, DB row `text_content` tokens), classify each of the 107 mispaired entries surfaced by the hardened `review_casenames` guard. No Westlaw page-image pulls needed.
