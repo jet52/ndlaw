@@ -2,6 +2,34 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-casenames-vol16-79-bound-2026-05-20` (58)
+
+Vol-16–79 mispaired closeout in a single batch, methodology continued from `fix-casenames-vol11-15-bound-2026-05-19`: parse each archived Westlaw `.doc` in `~/refs/nd/opin/N.D./<vol>/`, compute jaccard(`.doc` body tokens, DB row `text_content` tokens), classify each of the 107 mispaired entries surfaced by the hardened `review_casenames` guard. No Westlaw page-image pulls needed.
+
+Analyzer at `triage/adjudicate_mispaired_2026-05-20.py`; verdict TSV at `triage/casenames-mispaired-adjudication-2026-05-20.tsv`; applier at `triage/apply_mispaired_2026-05-20.py`. Thresholds: SAME ≥ 0.55, DIFF < 0.20, AMBIG otherwise.
+
+**Verdict breakdown (107):**
+- **59 SAME** → 58 applied (oid 1354 *Minneapolis Ry. Co.* skipped at user direction — consolidated-case caption rewrite warrants human review); 1 deferred
+- **24 FALSE_POSITIVE_NORM** — DB already matches bound after Unicode normalization (curly `'` → `'`, Æ → ae). No DB change. Drives nearly all of the O'Connor/O'Brien/O'Toole/O'Hare/O'Sullivan/O'Dell/O'Rourke entries the guard flagged.
+- **10 ALREADY_PAIRED** — `.doc` is correctly attached to a *different* opinion via `opinion_sources` (the cite-shared sibling case); guard's cite-only matching surfaced the wrong pair but the actual ingest got it right. No DB change.
+- **7 ORPHAN_SIBLING** — `.doc` body diverges from this row AND `.doc` isn't paired with any opinion (potential corpus gaps; see TODO §1).
+- **6 AMBIG** (jaccard 0.35–0.50) — defer to manual review. Includes oid 274 *Kerr v. Sunstrum* x2 (sibling docs `Kerr v. Herred`, `Kerr v. Swanson` at 16 N.D. 59).
+- **1 SAME_NEEDS_HUMAN** — oid 4622 *Casselton Reporter v. The Fargo Forum*: Westlaw caption itself is truncated (`... v.` with no defendant). DB version is more complete; left as-is.
+
+**Tooling additions beyond vol 11–15:**
+- `deep_strip()` adds trailing-date (`June 19. 1907`) and bare-docket (`Cr.` after the number was already stripped) cleanup
+- `smart_titlecase()` handles `McKEE'S` / `McINTYRE'S` mixed-case Mc-prefix words and `'S` → `'s` possessive
+- Truncated-source guard bumps any proposal whose source caption ends with dangling `v.` to SAME_NEEDS_HUMAN
+
+**Representative fixes (58):** wrong defendant captioned (oid 286 *Smith v. Show* → *Smith v. Bradley*; oid 651 *Borden v. McNamara* → *Borden v. Graves*); missing party detail (oid 1528 *State Bank v. Hurley* → *State Bank of Maxbass v. Hurley Farmers' Elevator Co. (Whitmore, Intervener). Same v. John D. Gruber Co. (Whitmore, Intervener)*); misspelled surnames (oid 504 *Chanlder* → *Chandler*; oid 2616 *Kenneggy* → *Kennelly*; oid 4047 *Bryne* → *Byrne*; oid 8659 *Schillerstrom* → *Schillerstorm*); format standardization (Manufacturing → Mfg.; *County of X* → *X County*; Pacific → Pac.); consolidated-case captions reunited (*Same v. ...* sub-cases preserved per bound).
+
+**Outstanding work surfaced (not in this batch):**
+- **7 ORPHAN_SIBLINGs** — investigate as potential corpus gaps: vol 20/oid 672 (FITZMAURICE v. WILLIS @ 20 N.D. 372), vol 20/683 (STOLTZE v. HURD @ 412), vol 21/765 (HEARD v. HOLBROOK @ 348), vol 23/929 (BISMARCK WATER SUPPLY v. CITY OF BISMARCK @ 352), vol 24/978 (McCARTY v. KEPRETA @ 395), vol 32/1486 (SUNDAHL v. FIRST STATE BANK @ 373), vol 34/1640 (MERCER COUNTY STATE BANK v. HAYES @ 601).
+- **6 AMBIGs** and **oid 1354** and **oid 4622** — manual review queue.
+- **2053 ambiguous case-name diffs (non-mispaired)** across vols 16–79 — still pending interactive TUI run via `review_casenames`.
+
+Invariants **18 ok / 2 known / 0 regressed**. All 58 changes changelog-revertible.
+
 ## Batch `nw-bound-image-source-section10-spotcheck-2026-05-19` (11 NW-image rows) + §10 design + spot-check
 
 Section 10 (back-assignment of synthetic medium-neutral `YYYY ND nnn` cites for pre-1997 opinions) — design ratified, ordering theory spot-checked **4/4**.
