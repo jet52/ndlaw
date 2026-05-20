@@ -2,6 +2,34 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `nw-bound-image-source-section10-spotcheck-2026-05-19` (11 NW-image rows) + §10 design + spot-check
+
+Section 10 (back-assignment of synthetic medium-neutral `YYYY ND nnn` cites for pre-1997 opinions) — design ratified, ordering theory spot-checked **4/4**.
+
+**Design ratified** (to be applied in a separate implementation batch):
+- Storage: extend `citations.reporter` taxonomy with `ND-neutral-synthetic`; one row per back-assigned opinion; `is_primary=0` always.
+- Format: `YYYY ND nnn` where `YYYY` = `date_filed`'s year, `nnn` = 1-based sequence within year.
+- Ordering key: `(date_filed, ND-starting-page, NW-starting-page, on-page-order)`.
+- Visual marker: render as `[YYYY ND nnn]` (bracketed) in MCP / `lookup_opinion` output to distinguish from native cites.
+- Scope: all pre-1997 opinions (`date_filed < '1997-01-01'`, ~14,000 opinions).
+- Invariants (planned): `synthetic_format`, `synthetic_uniqueness_per_year`, `synthetic_only_pre_1997`, `synthetic_never_primary`.
+- The 258 post-1997 `neutral_cite_uniqueness` baseline is **not** in §10 scope (that's §6 dup-pair cleanup).
+
+**Spot-check** (`nw-bound-image-source-section10-spotcheck-2026-05-19`, 11 NW-image rows): 4 of 5 spot-check bound pages delivered (the 5th — `96 N.W. 1134` for the Sykes/Montgomery same-NW/diff-date category — Westlaw returned the Minn *In re Zeugner* case instead; the user's selection went to the wrong disambiguation entry). Of the 4 delivered, all confirm the `(N.D.-page, N.W.-page, date)` ordering heuristic:
+
+| Cluster | Predicted | Bound printed | Verdict |
+|---|---|---|---|
+| 10 N.D. 400 (Willard, White) | Willard (87 N.W. 996) → White (1135) | ✓ matches | same-date/diff-NW holds |
+| 14 N.D. 557 (Poull, Murphy) | Poull (105 N.W. 717) → Murphy (734) | ✓ matches | N.W.-page-within-vol holds |
+| 100 N.W. 1084 (Hanson, Lough, Marshall-Wells) | by N.D. page 361→387→396 | ✓ matches | diff-both holds (N.D.-page primary) |
+| 111 N.W. 614 (Anderson + Sunstrum/Swanson/Herred) | Anderson (16 N.D. 36) → Sunstrum (16 N.D. 59) | ✓ matches | N.D.-page primary, N.W.-page secondary |
+
+**Outstanding residual risk**: the "same-NW/diff-date" category (only 3 clusters in the 1B set — `12 N.D. 504`, `68 N.D. 310`, `78 N.D. 10`) is untested by direct bound-page evidence. Can be re-pulled with corrected disambiguation if anomalies surface during §10 assignment.
+
+**Bonus finding** (from 87 N.W. 996 read): oid5834 *White v. Lauder* (1901-10-25) is confirmed a CL date-drift dup of oid5833 (1901-11-21, bound-validated date). Already logged as a §6 cleanup item.
+
+§10 implementation deferred to a later session per user direction.
+
 ## Batch `fix-emmons-nw-cite-2026-05-19` (4 cite updates)
 
 Cleanup of the N.W. cites for the 5747–5751 Emmons County rows surfaced by the bound `.docs` during the 2026-05-19 vol-9 ingest. CL had assigned `84 N.W. 1117` to all 8 Emmons County 1117-cluster rows uniformly, but the bound .docs split the cluster across N.W. pages:

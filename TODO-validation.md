@@ -201,3 +201,19 @@ Progress metric to track: `% of opinions meeting all four criteria`, by decade, 
 - **Human review required:** bound-volume pages carrying multiple opinions must be human-reviewed to fix the correct on-page publication order before sequence numbers are assigned (order must reflect true publication order, not ingest order).
 
 **Open design questions:** storage (dedicated `neutral_cite` column on `opinions` vs a flagged `citations` row of a new reporter type); interaction with the existing 258-pair `neutral_cite_uniqueness` baseline once scope extends pre-1997; renumbering policy if an opinion is later inserted/removed (stability vs density); how synthetic cites appear in `lookup_opinion`/`cited_by` resolution. To be specified before implementation; capture the settled contract in the future `SCHEMA.md`.
+
+**Design RATIFIED 2026-05-19.** Settled in CHANGELOG-data.md `nw-bound-image-source-section10-spotcheck-2026-05-19`:
+- Storage: `citations` row with new taxonomy value `ND-neutral-synthetic` (extends Contract 1 enum); `is_primary=0` always.
+- Format: `YYYY ND nnn`; ordering key `(date_filed, ND-starting-page, NW-starting-page, on-page-order)`.
+- Visual marker: bracketed `[YYYY ND nnn]` in MCP / `lookup_opinion` output to distinguish from native cites.
+- Scope: all pre-1997 (`date_filed < '1997-01-01'`, ~14,000 opinions); the 258 post-1997 neutral_cite_uniqueness baseline is §6 not §10.
+- New invariants: `synthetic_format`, `synthetic_uniqueness_per_year`, `synthetic_only_pre_1997`, `synthetic_never_primary`.
+
+**Spot-check verdict 2026-05-19**: the `(N.D.-page, N.W.-page, date)` ordering heuristic confirmed on 4 of 5 bound-page samples (10 N.D. 400, 14 N.D. 557, 100 N.W. 1084 3-cluster, 111 N.W. 614 4-cluster — all match printed order). The 5th sample (`96 N.W. 1134` Sykes/Montgomery same-NW/diff-date) failed delivery (user got Minn case from disambiguation). Residual untested category = "same-NW / diff-date" (3 clusters in 1B set: 12 N.D. 504, 68 N.D. 310, 78 N.D. 10) — low risk, can spot-check later if anomalies surface during assignment.
+
+**Phased implementation plan** (deferred to a later session):
+- Phase 1A: chronologic assignment for the ~6,200+ opinions on a unique N.D. page (no ambiguity).
+- Phase 1B: 32 digitally orderable shared clusters using `(nw_page, date)` (theory confirmed).
+- Phase 1C: 5 Emmons clusters using bound pages already on disk (NW/84/1117.pdf + 1118.pdf).
+- Phase 1D: 3 supplemental/follow-on pairs using by-design ordering (lead first).
+- Phase 2: ~20 truly-tied clusters needing a second Westlaw bound-page pull (cites listed at need; see `triage/casenames-mispaired-...` workflow).
