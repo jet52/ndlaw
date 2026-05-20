@@ -2,6 +2,39 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-casenames-vol11-15-bound-2026-05-19` (14) + `fix-cairncross-source-2026-05-19` (1)
+
+Vol-11–15 mispaired closeout — **resolved entirely digitally**, no Westlaw page-image pull needed. The Westlaw `.docs` in `~/refs/nd/opin/N.D./<vol>/` are the bound N.D. Reports text; jaccard-comparing each `.doc` body to the cite-matched DB row's `text_content` cleanly classifies the 20 mispaired entries: 17 SAME (jac ≥ 0.55), 3 DIFF (jac < 0.20), 0 ambiguous.
+
+**14 case_name corrections to the bound caption** (`fix-casenames-vol11-15-bound-2026-05-19`):
+
+| oid | bound (corrected) | was (CL) |
+|---:|---|---|
+| 5927 | Anderson v. Cass County Drain Com'rs | Hagman v. Cass County Drain Com'rs |
+| 5988 | Hertzler v. Cass County | Hertzler v. Freeman |
+| 6012 | State ex rel. Styles v. Baeverstad | State v. Beaverstall |
+| 6013 | Persons v. Persons | Persons v. Smith |
+| 6022 | Hunter v. McDevitt | Hunter v. Coe |
+| 36 | Davis v. Dinnie | Davis v. Jacobson |
+| 54 | Fox v. Jones | Fox v. Walley |
+| 6049 | Barry v. Truax, District Court Clerk | Barry v. Traux |
+| 78 | Avery Mfg. Co. v. Smith | Avery Manufacturing Co. v. Crumb |
+| 94 | Hulet v. Gates | Hulet v. Northern Pacific Railway Co. |
+| 158 | Hart v. Evanson | Hart v. Hanson |
+| 157 | Brown v. Hodgson | Brown v. Newman |
+| 161 | McCormick Harvesting Mach. Co. v. Citizens' Bank of Drayton | McCormick Harvester Machine Co. v. Caldwell |
+| 235 | Skjelbred v. Southard | Skjelbred v. Shafer |
+
+Pattern: CL captioned by a co-party (plaintiff or defendant), a wrong defendant, or a misspelled surname — same opinion (jaccard 0.78–0.99). Two iterations needed: title-casing escaped on the `McDEVITT`/`McCORMICK`/`MacH.` cases (`Mc`/`Mac` regex only handled lowercase-following-Mc), fixed in a follow-up update under the same batch.
+
+**3 false-positives in the SAME bucket (no DB change)**: oids 83 *State v. O'Malley*, 121 *O'Keefe v. Leistikow*, 252 *Higbee v. Daeley* — the guard diverted only because the bound `.doc` rendered the apostrophe as a curly quote (`’`) or the Æ ligature, which didn't normalize-equal under `_same_case`. DB already matches the bound (after curly→straight and Æ→ae normalization). Logged as a normalize-improvement candidate for the tool.
+
+**3 DIFF cases — all false-positives too** (different kind): oids 5982/Montgomery, 6/Lough, 146/State v. Poull. The `.docs` parsed by `extract_diffs` describe *siblings* (Sykes v. Allen, Cairncross v. Omlie, Murphy v. District Court — all in DB) that share the cite. But the *actual* `opinion_sources` table already pairs each opinion with its own correct `.doc` — the ingest got the pairing right; the review tool's cite-only `_find_db_opinion` returned an arbitrary sibling and the per-pair view showed the wrong sibling's caption. Listed for tool refinement: the guard should consult the existing opinion_sources pairings, not just the cite-matched row, when classifying a `.doc`.
+
+**1 micro-fix surfaced** (`fix-cairncross-source-2026-05-19`): oid45 *Cairncross v. Omlie* (13 N.D. 387) had its Westlaw `.doc` on disk but was missing a `westlaw` `opinion_sources` row — registered as non-primary (promote-to-primary deferred to a future `merge_westlaw_text` pass). All other DIFF/SAME oids in this batch were already correctly sourced.
+
+Invariants **18 ok / 2 known / 0 regressed**. All changelog-revertible. Methodology lesson: digital adjudication via `.doc`-body jaccard is far cheaper and produces the same answers as the page-image pulls used for vols 1–10; the bound page images add visual confidence but rarely change the verdict. Use page-image pulls only for genuinely ambiguous cases going forward.
+
 ## Batch `emmons-county-vol9-ingest-2026-05-19` (9 new opinions)
 
 Corpus growth — 9 Emmons County tax-foreclosure memorandum decisions ingested from N.D./9/ Westlaw `.doc`s that were on disk since the original vol-79 Quick Check but never made it into the DB (no matching CL row to pair against). Discovery surfaced by reading the bound `NW/84/1117.pdf` page image (TODO §1 today). New opinions (all 1900-11-13, per curiam, controlled by *Emmons Co. v. Thompson* 84 N.W. 385):
