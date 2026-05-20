@@ -20,6 +20,44 @@ The .docs were simply never registered in `opinion_sources` for their correct pa
 
 Note: 3 of these .docs carry richer bound captions than the DB row — applied as `fix-casenames-vol16-79-orphan-enrich-2026-05-20` (see below).
 
+## Batch `fix-casenames-vol16-79-autorev-2026-05-20` (47 case_names + 694 state.json keep_db)
+
+Auto-classification + bulk closeout of the 2,054-item ambiguous case-name diff queue for vols 16–79 (the `review_casenames` TUI's deferred work since 2026-05-13). This is the queue separate from this morning's 107 mispaired entries — these are diffs where the `.doc` is *correctly* paired with the cite-matched row, but its caption differs from the DB's case_name in some non-equivalent way (abbreviation, party detail, OCR, etc.).
+
+Pipeline:
+1. `triage/extract_ambig_review_2026-05-20.py` re-runs `review_casenames.extract_diffs` across vols 16–79 and dumps 2,054 non-equivalent, non-mispaired diffs to `triage/casenames-ambig-review-2026-05-20.tsv`.
+2. `triage/classify_ambig_review_2026-05-20.py` buckets each row using token-set + ordered-abbreviation alignment + targeted regex detection (locality, role, parenthetical, OCR-1, encoding, multicase, garbage).
+3. `triage/apply_ambig_review_2026-05-20.py` applies the high-confidence buckets.
+
+**Verdict breakdown (2,054):**
+
+| verdict | count | action |
+|---|---:|---|
+| KEEP_DB_PURE_ABBREV | 609 | state.json keep_db (no DB change) |
+| KEEP_DB_HAS_REL | 86 | state.json keep_db (no DB change) |
+| ACCEPT_WL_OCR_FIX | 43 | UPDATE case_name |
+| ACCEPT_WL_ENCODING_FIX | 4 | UPDATE case_name |
+| ACCEPT_WL_ADDS_DETAIL | 927 | **deferred to TUI** (~25% false-positive rate: long pleading captions, "In re Estate" reframing, missed multicase) |
+| DEFER_AMBIG | 372 | deferred to TUI |
+| DEFER_MULTICASE | 12 | deferred to TUI |
+| DEFER_WL_GARBAGE | 1 | deferred to TUI |
+
+**47 case_name UPDATEs applied** (43 OCR + 4 encoding):
+
+OCR fixes (DB had a 1-edit garble in a single surname token; bound Westlaw is authoritative): `Byxne→Byrne` (×7 — Burchard, Reichert, Manning, Thompson, Gunderson, Preckel, Reichert), `McIntyxe→McIntyre` (×2 Bowman County), `Statea→State` (oid 3031), `Elevatop→Elevator` (oid 3024), `Standaed→Standard` (oid 823), `OTTEM→Otten` (oid 10361), `Ranson→Ransom` (oid 2832), `Danger→Langer` (oid 2600), `Hazlet→Hazlett`, `Hilleboe→Hilliboe`, `Thompkins→Tompkins`, `Erldelt→Erdelt`, `Ankenbaurer→Ankenbauer`, etc. Plus surname-variant judgment calls where the bound printed one spelling (`Larson→Larsen`, `Chamberlain→Chamberlin`, `McMillan→McMillen`, `Nielson→Nielsen`).
+
+Encoding fixes: 4 entries with `&198tna` (HTML-entity garbage for `Æ`) → `Ætna`. The `&198` is hex `0xC6` = Æ — clear ingest-time encoding bug.
+
+**694 KEEP_DB state.json entries** (the TUI now skips these on next interactive run): pure-abbreviation diffs like `Manufacturing Co.→Mfg. Co.`, `Northern Pacific Railway Co.→Northern Pac. Ry. Co.`, `Minneapolis, St. Paul, & Sault Ste. Marie Railway Co.→Minneapolis, St. P. & S. S. M. Ry. Co.`, `Township→Tp.`, `Workmen's→Workmen's` (curly vs straight). DB retains the more readable expanded form (matches vol 1–5 user preference: 90% keep-DB rate on this class of diff).
+
+**1,312 entries remain for TUI review** — primarily the ACCEPT_WL_ADDS_DETAIL bucket. Classifier surfaced these as candidates for accepting Westlaw's added party detail (locality, role, parenthetical), but ~25% are edge cases that need human judgment: oid 3149 *Wishek v. Hildenbrand* (66-word pleading caption); oid 4046 *Backman v. Larson* → "Larson's Estate" (framing change, not detail-add); oid 3818 *Klingensmith v. Siegal* + "Heffner v. Same" (missed multicase). The TUI run will close these out with human review.
+
+Invariants **18 ok / 2 known / 0 regressed**.
+
+Tool notes:
+- `review_casenames._smart_titlecase` has bugs surfaced here too: `'S` possessive → `'S` (not `'s`); `'Rs` abbreviation → `'Rs` (should be `'rs`); mixed-case `McKEE'S` not detected. The apply script uses a corrected `smart_titlecase` that handles these (Mc/Mac mixed-case + all-caps, `'S`/`'Rs`/`'R` casing).
+- `extract_diffs` is slow (~3 minutes for vols 16–79) — re-parses every .doc on every run. Cache candidate if we expect to re-run.
+
 ## Batch `fix-casenames-vol16-79-deferred-2026-05-20` (2)
 
 Closeout of the 2 case_name corrections deferred from this morning's vol-16-79 SAME bucket. Both bound `.doc` bodies pulled and verified; corrections applied:
