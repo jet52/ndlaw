@@ -20,6 +20,21 @@ The .docs were simply never registered in `opinion_sources` for their correct pa
 
 Note: 3 of these .docs carry richer bound captions than the DB row — applied as `fix-casenames-vol16-79-orphan-enrich-2026-05-20` (see below).
 
+## Batch `fix-casenames-vol16-79-deferred-2026-05-20` (2)
+
+Closeout of the 2 case_name corrections deferred from this morning's vol-16-79 SAME bucket. Both bound `.doc` bodies pulled and verified; corrections applied:
+
+| oid | bound (corrected) | was |
+|---:|---|---|
+| 1354 | Minneapolis, St. P. & S. S. M. R. Co. v. State Board of Ry. Com'rs | In re Appeal of Minneapolis, St. Paul, & Sault Ste. Marie Railroad |
+| 4622 | Casselton Reporter v. The Fargo Forum. State ex rel. Casselton Reporter v. Doherty, County Auditor | Casselton Reporter Ex Rel. Potter v. Alleged Newspaper Called "The Fargo Forum" |
+
+**oid 1354**: the bound N.W. Reporter caption (`MINNEAPOLIS, ST. P. & S. S. M. R. CO. v. STATE BOARD OF RY. COM'RS.`) uses the standard `v.` adversary form; CL's `In re Appeal of...` was the docket-style framing of the same case. Synopsis section confirms: "appeal of the Minneapolis, St. Paul & Sault Ste. Marie Railroad Company … from an order of the State Board of Railway Commissioners". Adopted bound form; possessive `Com'rs` (lowercase `r`) is the bound spelling — separately, `smart_titlecase` in `triage/adjudicate_mispaired_2026-05-20.py` has a bug rendering it as `Com'Rs` (regex only handles `'S`-possessive, not `'Rs`-abbreviation). Logged as tool refinement.
+
+**oid 4622**: the `.doc` caption was *not* truncated — the `_parse_westlaw_doc` parser only caught the first 4 lines (`CASSELTON REPORTER et al. v. THE FARGO FORUM et al. STATE ex rel. CASSELTON REPORTER et al. v.`), missing the second case's defendant (`DOHERTY, County Auditor, et al.`). Reading the full `.doc` body resolved this: two consolidated cases (election contest + mandamus to compel issuance of certificate of election), per Morris, J. Adopted bound multi-case form matching this morning's *Burleigh County / Same / International Harvester* precedent. `The Fargo Forum` keeps capitalized `The` because the newspaper's name (and whether `The Fargo Forum` was a valid candidate distinct from `The Fargo Forum and Daily Republican`) is the substantive dispute. Tool refinement logged: `_parse_westlaw_doc` should follow through to subsequent `v.` markers for consolidated captions.
+
+Invariants **18 ok / 2 known / 0 regressed**. Revertible.
+
 ## Batch `fix-casenames-vol16-79-ambig-2026-05-20` (2 source rows + 2 new opinions)
 
 Closeout of the 6 AMBIG entries from this morning's vol-16-79 mispaired adjudication. Investigation (`triage/investigate_ambig_2026-05-20.py`) decomposed them into three buckets:
