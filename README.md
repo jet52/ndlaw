@@ -301,6 +301,10 @@ the current validation roadmap.
 | `justice_info`        | Voting record for a case, or aggregate stats for a justice                      |
 | `search_by_case_type` | Filter by case type (criminal, civil, etc.)                                     |
 | `get_citing_opinions` | Find opinions that cite a given opinion                                         |
+| `verify_citation`     | Confirm a cite/case name and return its canonical form + Redbook-ordered cites; flags name drift |
+| `get_parallel_citations` | Return a case's full parallel-cite set (synthetic IDs bracketed separately)  |
+| `verify_quotation`    | Confirm a quoted passage is verbatim (typography-tolerant) and return the pinpoint ¶ |
+| `get_pinpoint`        | Resolve a paragraph number to its text, or a quote to the ¶ it lives in          |
 
 ---
 

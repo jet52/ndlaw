@@ -4,6 +4,7 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
+from . import proofread
 from .db import DEFAULT_DB_PATH, get_connection
 
 mcp = FastMCP(
@@ -48,6 +49,88 @@ def _get_citations(conn, opinion_id: int) -> list[str]:
         (opinion_id,),
     ).fetchall()
     return [r["citation"] for r in rows]
+
+
+def _citation_rows(conn, opinion_id: int) -> list[dict]:
+    rows = conn.execute(
+        "SELECT citation, reporter, is_primary FROM citations WHERE opinion_id = ?",
+        (opinion_id,),
+    ).fetchall()
+    return [{"citation": r["citation"], "reporter": r["reporter"],
+             "is_primary": r["is_primary"]} for r in rows]
+
+
+def _resolve_opinion(conn, query: str):
+    """Resolve a query to a single opinion row.
+
+    Tries a citation match first (the query may embed a cite); falls back to
+    case-name match. Returns (row, matched_by, candidates) where matched_by is
+    'citation' | 'case_name' | None, and candidates is a list of summary dicts
+    when a case-name query is ambiguous (row is None in that case)."""
+    cite = proofread.extract_cite(query)
+    if cite:
+        row = conn.execute(
+            """SELECT o.* FROM opinions o
+               JOIN citations c ON c.opinion_id = o.id
+               WHERE c.citation = ?""",
+            (cite,),
+        ).fetchone()
+        if row:
+            return row, "citation", []
+
+    name = query.strip()
+    exact = conn.execute(
+        "SELECT * FROM opinions WHERE lower(case_name) = lower(?) ORDER BY date_filed",
+        (name,),
+    ).fetchall()
+    if len(exact) == 1:
+        return exact[0], "case_name", []
+    if len(exact) > 1:
+        return None, None, [_name_candidate(conn, r) for r in exact[:10]]
+
+    like = conn.execute(
+        "SELECT * FROM opinions WHERE case_name LIKE ? ORDER BY date_filed LIMIT 11",
+        (f"%{name}%",),
+    ).fetchall()
+    if len(like) == 1:
+        return like[0], "case_name", []
+    if len(like) > 1:
+        return None, None, [_name_candidate(conn, r) for r in like[:10]]
+
+    return None, None, []
+
+
+def _name_candidate(conn, row) -> dict:
+    ordered, synthetic = proofread.order_citations(_citation_rows(conn, row["id"]))
+    return {
+        "id": row["id"],
+        "case_name": row["case_name"],
+        "date_filed": row["date_filed"],
+        "citations": [r["citation"] for r in ordered] + synthetic,
+    }
+
+
+def _cite_payload(conn, row) -> dict:
+    """Canonical-citation block shared by verify_citation / get_parallel_citations."""
+    rows = _citation_rows(conn, row["id"])
+    ordered, synthetic = proofread.order_citations(rows)
+    return {
+        "canonical_case_name": row["case_name"],
+        "case_name_full": row["case_name_full"],
+        "date_filed": row["date_filed"],
+        "author": row["author"],
+        "per_curiam": bool(row["per_curiam"]),
+        "court": row["court"],
+        "docket_number": row["docket_number"],
+        "cites_redbook": [
+            {"cite": r["citation"], "reporter": r["reporter"],
+             "is_primary": bool(r["is_primary"])}
+            for r in ordered
+        ],
+        "synthetic_cites": synthetic,
+        "formatted": proofread.format_redbook(row["case_name"], ordered, row["date_filed"]),
+        "absolute_url": row["absolute_url"],
+    }
 
 
 @mcp.tool()
@@ -523,6 +606,199 @@ def get_citing_opinions(citation: str, limit: int = 20) -> list[dict]:
             results.append(result)
 
         return results
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def verify_citation(query: str, expected_case_name: str | None = None) -> dict:
+    """Verify a citation or case name and return its canonical form.
+
+    Confirms the case exists and returns the exact case name, filing date,
+    authoring justice, and the full parallel-cite set in Redbook order, plus a
+    ready-to-paste formatted citation. Catches wrong volume/page, wrong year,
+    and name drift. If expected_case_name is supplied alongside a citation, the
+    name as-written is compared to the canonical name and any drift is flagged.
+
+    Args:
+        query: A citation ("2024 ND 156", "585 N.W.2d 129") or a case name.
+        expected_case_name: Optional — the case name as it appears in the draft,
+            to check against the canonical name for drift.
+    """
+    conn = get_connection(DB_PATH)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, query)
+        if row is None:
+            result = {"found": False, "query": query}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {query}"
+            return result
+
+        result = {"found": True, "matched_by": matched_by}
+        result.update(_cite_payload(conn, row))
+
+        if expected_case_name:
+            result["expected_case_name"] = expected_case_name
+            result["name_matches"] = proofread.names_match(
+                expected_case_name, row["case_name"]
+            )
+            result["name_similarity"] = proofread.name_similarity(
+                expected_case_name, row["case_name"]
+            )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_parallel_citations(citation: str) -> dict:
+    """Return the complete parallel-cite set for a case, in Redbook order.
+
+    Feed any one citation (or a case name) and get every known parallel cite so
+    a draft's missing neutral or N.W. parallel can be auto-filled. Synthetic
+    back-assigned [YYYY ND nnn] identifiers for pre-1997 opinions are returned
+    separately and never folded into the formatted citation.
+
+    Args:
+        citation: Any citation ("44 N.W. 301", "1 N.D. 1") or a case name.
+    """
+    conn = get_connection(DB_PATH)
+    try:
+        row, _matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+        result = {"found": True}
+        result.update(_cite_payload(conn, row))
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def verify_quotation(citation: str, quote: str) -> dict:
+    """Confirm a quoted passage appears verbatim in a case, with pinpoint ¶.
+
+    Locates the quote in the opinion text. Differences in whitespace, curly vs.
+    straight quotes, and dash style are treated as still-verbatim; dropped,
+    changed, or inserted words are flagged with a word-level diff and the
+    closest actual text. Returns the pinpoint paragraph (¶) when the opinion
+    carries paragraph markers (generally 1997+ opinions).
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+        quote: The quoted passage attributed to the case.
+    """
+    conn = get_connection(DB_PATH)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found_opinion": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        located = proofread.locate_quote(row["text_content"], quote)
+        result = {
+            "found_opinion": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": proofread.primary_cite(_citation_rows(conn, row["id"])),
+        }
+        result.update(located)
+        if located.get("paragraph") is None and "paragraph" in located:
+            result["paragraph_note"] = (
+                "No paragraph markers in this opinion (typical of pre-1997 "
+                "text); pinpoint by ¶ is unavailable."
+            )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_pinpoint(
+    citation: str,
+    paragraph: int | None = None,
+    quote: str | None = None,
+) -> dict:
+    """Resolve a pinpoint: paragraph number → its text, or quote → its ¶.
+
+    Provide exactly one of `paragraph` or `quote`. With `paragraph`, returns
+    that ¶'s text and a pinpoint cite. With `quote`, locates the passage and
+    returns the ¶ it lives in (with verbatim status). Paragraph pinpoints
+    require ¶ markers, present on most 1997+ opinions but not pre-1997 text.
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+        paragraph: Paragraph number to retrieve (e.g. 5 for ¶ 5).
+        quote: A quoted passage whose paragraph should be located.
+    """
+    if (paragraph is None) == (quote is None):
+        return {"error": "Provide exactly one of `paragraph` or `quote`."}
+
+    conn = get_connection(DB_PATH)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found_opinion": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        text = row["text_content"]
+        primary = proofread.primary_cite(_citation_rows(conn, row["id"]))
+        base = {
+            "found_opinion": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": primary,
+        }
+
+        if paragraph is not None:
+            extracted = proofread.extract_paragraph(text, paragraph)
+            if extracted is None:
+                if not proofread.paragraph_markers(text):
+                    base["error"] = (
+                        "No paragraph markers in this opinion (typical of "
+                        "pre-1997 text); cannot pinpoint by ¶."
+                    )
+                else:
+                    base["error"] = f"Paragraph ¶{paragraph} not found."
+                return base
+            para_text, truncated = extracted
+            base.update({
+                "paragraph": paragraph,
+                "pinpoint": f"{primary}, ¶ {paragraph}" if primary else None,
+                "text": para_text,
+                "truncated": truncated,
+            })
+            return base
+
+        located = proofread.locate_quote(text, quote)
+        base.update(located)
+        para = located.get("paragraph")
+        if para is not None and primary:
+            base["pinpoint"] = f"{primary}, ¶ {para}"
+        if para is not None:
+            extracted = proofread.extract_paragraph(text, para)
+            if extracted is not None:
+                base["paragraph_text"], base["paragraph_truncated"] = extracted
+        return base
     finally:
         conn.close()
 
