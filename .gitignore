@@ -8,7 +8,7 @@ __pycache__/
 *.db-shm
 *.db-wal
 .claude/
-ndcourts_mcp.egg-info/
+*.egg-info/
 node_modules/
 package-lock.json
 input-data/
@@ -26,6 +26,8 @@ opinions.db.zip.sha256
 .nvim/
 
 # Python tooling caches
+*.pyo
+.python-version
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
