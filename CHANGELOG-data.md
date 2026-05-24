@@ -2,6 +2,12 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `section6-rex-twins-2026-05-24` (18 merges)
+
+The §10 shared-page analysis surfaced 18 `X v. Y` + `Re X`/`In the Matter of …` twin pairs, each sharing the same N.D. page, N.W. page, AND docket number — one Westlaw-bound row captioned by the parties, one CL re-ingest captioned by the estate/matter. **Text-read 2026-05-24 confirmed all 18 are one opinion double-ingested** (the `Re X` full caption names the same parties + same docket as the `X v. Y` row — e.g. `Re Schenum` = "Estate of James Schenum, **D.C. Cullen v. Ida Sullivan**"; `In re Hanson` = "Application of Hanson… **Northern Pacific Ry v. McDonald**"). These are NOT like the Emmons per curiams (different defendants / separate suits) — same case. Tool: `triage/merge_rex_twins_2026-05-24.py`.
+
+Kept the Westlaw-bound `X v. Y` row, dropped the CL twin (via `merge_pair`): 2994 Cullen/Sullivan, 3269 Bd. Medical Examiners/Shortridge, 3588 Campbell, 3685 Brilz, 4110 Garrity, 4205 McHugh, 4271 Rusch, 4286 Stricker, 4448 Teiten, 4894 State v. Jackson (re White), 5030 Knauss, 5038 Perry, 7177 NP Ry/McDonald (re Hanson), 7520 Eberlein (re Bratcher), 7646 Nelson v. Chadwick (re Glavkee), 8814 Hvidsten, 9805 Peschel, 9816 Lamb. `align_primary_source --apply` (18 flips). Corpus **20,172 → 20,154**. Snapshot `opinions.db.bak-pre-rex-twins-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
 ## Batch `ingest-emmons-additions-2026-05-24` (3 new opinions; 1 case_name; 3 cite fixes)
 
 Reading the bound N.D. Reports vol. 9 scan (for §10 on-page ordering) revealed the Emmons County tax-foreclosure block (9 N.D. 608–615) carries **20** per-curiam memoranda but our DB/`.doc`s had only 17 — the N.W.-reporter cite-based Westlaw pulls returned one opinion per surname per page, missing the 2nd McKenzie (611), 2nd Mellon (613), and 2nd Thistlewaite (614). User confirmed these are separate per curiams (distinct per-parcel suits, identical disposition text). Tool: `triage/ingest_emmons_additions_2026-05-24.py`.
