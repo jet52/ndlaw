@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `section10-resequence-2026-05-24` (23 synthetic cites renumbered)
+
+Resequenced the 1900 synthetic `YYYY ND nnn` cites after the `fix-bound-discrepancies` date corrections moved two opinions. Tool: **`triage/section10_resequence_2026-05-24.py`** — the new **canonical §10 ordering tool**: recomputes the whole pre-1997 sequence from current DB state (default sort `date_filed, ND-page, NW-page, oid`) + the verified on-page orders in `KNOWN_ORDER`, then applies only the cites that changed. Re-run it after any future pre-1997 data correction. It folds in (supersedes) the one-shot `fix_section10_cluster_order` / `fix_section10_ndverify` scripts.
+
+Correcting *Emmons County v. Wilson* (5747) to 1900-11-13 moved it from `1900 ND 106` to `1900 ND 85` (joining the Nov-13 Emmons block, after Thistlewaite@614=84); correcting *Douglas v. Glazier* (5774) to 1900-11-24 moved it from `107` to `96`. The 21 opinions filed between those points shifted +1/+2; everything outside the 85–107 span (incl. `1900 ND 108` Boyd and all other years) is unchanged. **23 changelog rows** (`field='citation_synthetic_order'`). Invariants **22 ok / 2 known / 0 regressed**; `neutral_cite_uniqueness` 258; count still 12,604. Verified anchors unchanged: 3 N.D. 538 (Globe 6/Kellogg 7), Emmons 66–84, 44 N.D. 250 (Nelson 127/Olson 128).
+
+## Batch `fix-bound-discrepancies-2026-05-24` (2 date_filed + 1 N.W. cite)
+
+Applied the two data-quality flags surfaced during §10 bound-volume verification (authoritative source = the bound N.D. Reports scans). Tool: `triage/fix_bound_discrepancies_2026-05-24.py`.
+- **9 N.D. 615 date_filed** (bound vol 9 p.615): *Emmons County v. Wilson* (5747) 1900-12-08 → **1900-11-13** (it is the Nov-13 Emmons block's tail, filed with the rest, not Dec 8); *Douglas v. Glazier* (5774) 1900-12-08 → **1900-11-24**. The DB had lumped both at 12-08.
+- **44 N.D. 250 N.W. cite** (bound vol 44 p.250): *Nelson v. Middlewest Grain Co.* (2169) 173 N.W. 474 → **173 N.W. 475**. (2169 had been mis-set to 474 by `ingest-emmons-additions-2026-05-24`; the 472/473/474 run belongs to the page-247 companions, and the bound vol 44 p.250 prints Nelson at 475, Olson at 474.)
+
+Snapshot `opinions.db.bak-pre-resequence-2026-05-24` (taken before both batches). 3 changelog rows. Invariants **22 ok / 2 known / 0 regressed**. The date changes trigger the `section10-resequence` batch above.
+
 ## Batch `fix-section10-cluster-order-ndverify-2026-05-24` (4 synthetic cites reordered)
 
 Verified the on-page publication order for every §10 shared-page cluster that falls in an **on-disk bound N.D. Reports volume** (vols 9, 19, 20, 34, 44), reading each bound scan against the provisional oid-order. Offsets calibrated via running header: vol 9 +110, vol 19 +18, vol 20 **+22** (initial +34 was a low-res misread), vol 34 **+26**, vol 44 +17. Tool: `triage/fix_section10_ndverify_order_2026-05-24.py` (revertible).
