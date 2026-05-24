@@ -2,6 +2,22 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `ingest-emmons-additions-2026-05-24` (3 new opinions; 1 case_name; 3 cite fixes)
+
+Reading the bound N.D. Reports vol. 9 scan (for §10 on-page ordering) revealed the Emmons County tax-foreclosure block (9 N.D. 608–615) carries **20** per-curiam memoranda but our DB/`.doc`s had only 17 — the N.W.-reporter cite-based Westlaw pulls returned one opinion per surname per page, missing the 2nd McKenzie (611), 2nd Mellon (613), and 2nd Thistlewaite (614). User confirmed these are separate per curiams (distinct per-parcel suits, identical disposition text). Tool: `triage/ingest_emmons_additions_2026-05-24.py`.
+
+- **3 new opinions** (oids 20500 McKenzie@611, 20501 Mellon@613, 20502 Thistlewaite@614): per_curiam, 1900-11-13, ND-primary `9 N.D. <p>` + `84 N.W. 1118`, text transcribed from the bound volume. **Source convention (new):** `source_reporter='ND-image'`, `source_path='N.D./9/_bound-volume.pdf'` (the filed bound-volume scan). Each carries a `notes` **DO-NOT-MERGE** flag — they share caption + cites + identical text with their siblings (only the separate suit/parcel distinguishes them), so a future jaccard dedup must not collapse them. Corpus 20,169 → **20,172**.
+- **McLain spelling** (oid 20496): `Emmons County v. McLean` → `…v. McLain` (bound volume: "Calvin B. McLain").
+- **Middlewest Grain N.W. parallel cites** (read from bound vol. 44): 2171 Nelson → `173 N.W. 472`, 20499 Lammadee → `173 N.W. 473`, 2169 Nelson → `173 N.W. 474` (DB had lumped all three at 475; the N.W. reporter ordered the companions non-monotonically vs the N.D. Reports).
+
+**On-page order resolved** (for §10) from vols 3/9/44: 3 N.D. 538 Globe→Kellogg (N.D.=N.W.); 44 N.D. 247 Nelson→Lammadee (no gap — full block present 246–250); 9 N.D. 608–615 Emmons full order recorded. **Bound-volume scans filed** at `~/refs/nd/opin/N.D./<vol>/_bound-volume.pdf` (vols 3, 9, 44) — co-located with each volume's per-opinion `.doc`s for findability. *(Open: Benness oid 2172 dated 1919-06-21 in DB but "June 27, 1919" in the bound volume — low-priority date check.)* DB snapshot `opinions.db.bak-pre-emmons-additions-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
+## Batch `fix-61nd179-dup-2026-05-24` (1 merge)
+
+§10 shared-page image triage surfaced a duplicate at 61 N.D. 179 / 237 N.W. 709. Read the Westlaw N.W. Reporter page image (`~/refs/nd/opin/NW/237/709.pdf`): there is only ONE *First State Bank of Granville v. Bond* opinion there (No. 5959, Burke J., a one-paragraph companion to the lead *First State Bank of Granville v. Cox* at 237 N.W. 708). Our DB carried it twice — oid 4184 (`First State Bank of Granville v. Bond`, Westlaw bound source) and oid 4185 (`First State Bank v. Bond`, CL NW-only). Same docket (`File No. 5959`), same date, same cites; the 0.40 text jaccard was just OCR noise on a short memo.
+
+Merged 4185 → **4184** (keep the Westlaw-bound row + fuller caption) via `merge_pair`; `align_primary_source --apply` (1 flip). Corpus **20,170 → 20,169**. Snapshot `opinions.db.bak-pre-61nd179-dup-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
 ## Batch `fix-casenames-latin-caps-followup-2026-05-24` (23 case_names)
 
 Resolved the held edge cases from the Latin-caps normalization, per user decisions. Tool: `triage/normalize_latin_caps_followup_2026-05-24.py`.
