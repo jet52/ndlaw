@@ -2,6 +2,17 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-date-bound-volume-2026-05-24` (2) + `section10-resequence-2026-05-24e` (3) — vols 10/27/41/47 cluster verification
+
+Verified the §10 shared-page clusters in the four newly-filed bound volumes (10, 27, 41, 47) by reading each N.D. page at 300 dpi. (A background agent was attempted but its sandbox denied Bash + Read — it couldn't render/read the scans — so this was done in the main session. Offsets: vol 10 +64, vol 27 +42, vol 41 +32, vol 47 +22.)
+
+- **27 N.D. 458** — Hackney v. Lynn → Bussey v. Boynton (both filed 1914-04-13). Matches provisional (58, 59). No change.
+- **41 N.D. 473** — Druey v. Baldwin (lead) + Robinson, J. separate opinion (a Mem at 182 N.W. 700). Lead before separate by design; provisional correct (13, 14). No change.
+- **47 N.D. 266** — Altenbrun (lead) + concurrence (one caption, "181 N.W. 590, 908"). Lead before concurrence; order correct. **Date fix:** bound shows "Opinion filed January 28, 1921"; DB had 1921-01-24 → corrected **2473 & 20388 → 1921-01-28** (`fix-date-bound-volume-2026-05-24`, court date governs, 4d). Resequence `section10-resequence-2026-05-24e` (3 cites; Altenbrun now 1921 ND 17/18, lead first).
+- **10 N.D. 400 — FLAGGED, not changed.** Not a real same-date cluster: *White v. Lauder* (oid 5834) has DB date 1901-10-25 but the bound page reads "Opinion filed Nov. 21, 1901", and it is entangled with **oid 5833** (also *White v. Lauder*, 1901-11-21, **10 N.D. 445**, same N.W. 1135) — 5834's NW-image source is actually at 87 N.W. **996**, not 1135. A cite/page knot among the related White v. Lauder / Ginn mandamus matters (87 N.W. 996–1135); needs both bound pages (400 + 445) + the N.W. pages read to determine whether there are one or two opinions and their correct cites/dates. **Do not date-fix 5834 in isolation.**
+
+Invariants **22 ok / 2 known / 0 regressed**; all 4 synthetic invariants OK; 0 synthetic dup strings. (`neutral_cite_uniqueness` reads 247 not 258 — a concurrent native-1997 dedup in the shared `opinions.db` from the parallel casename session, unrelated to this batch.)
+
 ## Batch `fix-date-court-filed-2026-05-24` (108) + `fix-date-holds-investigated-2026-05-24` (2) — court filing date governs
 
 **Policy (ratified 2026-05-24):** where CL's `date_filed` disagrees with the court's filing date — the court-archive "Filed" line (archive.ndcourts.gov) or the bound N.D. Reports/`.doc` date — the **court's date governs**. Resolver: `triage/resolve_date_discrepancies_2026-05-24.py`. Snapshot `opinions.db.bak-pre-datefix-2026-05-24`.
