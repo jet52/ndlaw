@@ -2,6 +2,63 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## State-only: 104 EQUIV → keep_db (2026-05-24)
+
+TUI-queue hygiene (no DB change): the 104 EQUIV rows from the Phase-2 adjudication (DB and Westlaw captions party-identical after normalizing punctuation/abbreviation/apostrophe/ligature) marked `kept_db` in `triage/casenames-state.json` (verdict `KEEP_DB_EQUIV`) so they no longer surface in the per-volume TUI. Includes 25 `County of X` rows where the user chose 2026-05-24 to **keep** the DB form rather than adopt West's `X County` (the West-form preference is situational, not a blanket rule). Tool: `triage/keep_equiv_2026-05-24.py`. No case_name changed; reversible via git.
+
+## Batch `fix-casenames-other-mined-2026-05-24` (28 renames)
+
+Mined the clean capacity/jurisdiction adds out of the 178 OTHER residue (`triage/mine_other_2026-05-24.py` → `triage/other-mined-2026-05-24.tsv`). The OTHER rows are all ADDITION-kind (Westlaw only adds tokens), so this buckets *what* is added; curly-apostrophe folding + a `<County> County Court/Com'rs` jurisdiction pattern were needed to catch the real shapes.
+
+Applied 28 (27 capacity + 1 jurisdiction), all consistent with the ratified ROLE_APPOSITIVE policy: official-capacity appositives (`Birdzell, Tax Commission`; `Olsness, State Ins. Com'r`; `Wallace`/`Thoresen, State Tax Com'r` across companion cases; `Lamb, State Highway Com'r`) and one jurisdiction (`Squire v. County Court` → `v. Ward County Court`). Note oid 2612 `State v. McCray` → `State ex rel. Herigstad, State's Atty., v. McCray` adds a named relator (purely additive from the bound caption; user-approved).
+
+Remaining 150 OTHER + 32 MULTICASE_MISSED not cleanly mineable → TUI. DB snapshot `opinions.db.bak-pre-other-mined-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
+## Batch `fix-casenames-addition-2026-05-24` (12 renames; 26 keep_db)
+
+Sub-classified the 248 ADDITION rows (Westlaw adds detail the DB lacks) from the Phase-2 adjudication into the established ADDS_DETAIL buckets (`triage/subclassify_addition_2026-05-24.py` → `triage/addition-subclassified-2026-05-24.tsv`); applied the clean 38 (`triage/apply_addition_2026-05-24.py`):
+- **12 renames** — LOCALITY_OF (9) + ROLE_APPOSITIVE (3), the buckets ratified 2026-05-20: capacity adds (`Olsness, State Com'r of Insurance`; `Payne, Director General`; `Harding, Board of Railroad Com'rs`) and locality/entity expansions (`First State Bank of Ray`; `Farmers' & Merchants' Bank of Sheyenne`; `Union Central Life Ins. Co. of Cincinnati, Ohio`).
+- **26 keep_db** (verdict `KEEP_DB_ADDITION_NOISE`) — DOCKET_METADATA (17) + LONG_PLEADING (9): Westlaw adds only dates/pipes/docket nos. (`…Oct. 20. 1920. |`, `(two cases). Nos. 7279, 7280`) or a full complaint party-recitation; the DB short caption is the correct case name.
+
+Deferred to TUI / further mining: 178 OTHER (mixed capacity/jurisdiction adds + ambiguity) and 32 MULTICASE_MISSED (`In re X's Estate.` reframes — judgment calls). DB snapshot `opinions.db.bak-pre-addition-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
+## Batch `fix-casenames-adjudicate-2026-05-24` (18 renames; 12 keep_db)
+
+Phase 2: a `.doc`-body-grounded adjudicator for the substantive residue (spelling-direction and party-identity calls string rules can't decide). For each row it reads the Westlaw `.doc` **body** — the clean, professionally-edited, non-OCR source — and counts how each candidate surname is actually spelled there; the `.doc` body is the authority, with CL `text_content` as corroboration. Tool: `triage/adjudicate_residue_2026-05-24.py`; full per-row evidence in `triage/residue-adjudication-2026-05-24.tsv`.
+
+Guards (all added after auditing the HIGH bucket caught real errors): pairing jaccard ≥ 0.45 (low → possible shared-page sibling → defer); ligature fold (`æ↔ae`, so `Aetna`≠`Ætna`-rename); curly-apostrophe + docket-number token stripping; **single-substitution gate** (only one DB surname may change — multi-token restructures defer, which correctly caught a bad `Minot Special School District Number One`→`…Dist` truncation and a multi-matter caption). Confidence: `.doc` body majority ≥2 and ≥2× the loser, CL not contradicting → HIGH; only HIGH auto-applies.
+
+Applied 30 HIGH (audited clean):
+- **18 renames** — body-proven OCR/typo/misattribution fixes. Examples: oid 1522 `Fango`→`Fargo` (body Fargo 9×/Fango 0×); 289 `ex rel. Madderson`→`Frish` (Frish 4×/0×); 1847 `Larger`→`Langer, Atty. Gen.`; 4734 `Jordan`→`Jordon`; spacing `La Moure`/`La Flame`/`La Bree`; `Inter-State`, `Investors'`; abbreviation expansions (`Elev.`→`Elevator`, `P.`→`Power`, `Mach.`→`Machine`); 7401 `State`→`North Dakota Workmen's Compensation Bureau`.
+- **12 keep_db** (verdict `KEEP_DB_BODY_SPELLING`) — body confirms the DB spelling; no rename.
+
+Deferred (not auto-applied): 248 ADDITION (separate accept-detail sub-classification), 104 EQUIV (normalize-equivalent keeps), ~20 MED spelling/swap (human-audit pile), ~50 multi-token/complex/low-pairing (TUI). DB snapshot `opinions.db.bak-pre-adjudicate-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
+## Batch `fix-casenames-residue-patterns-2026-05-24` (17 renames; 5 keep_db)
+
+Phase 1 of automating the 505-item pending case-name residue: three high-precision patterns mined from the user's TUI decisions, each applied only under a strict gate where `norm(DB)` is a clean subset of `norm(Westlaw)` — i.e. Westlaw only *adds* material and never changes a party surname. Surname spelling-direction calls were deliberately routed to the Phase-2 `.doc`-body adjudicator instead. Tool: `triage/sweep_residue_patterns_2026-05-24.py`.
+
+- **ANNOT_KEEP (5, no rename → `kept_db`):** Westlaw = DB + a reporter annotation only (`(two/three cases)`), so the DB caption is already correct. Marked `kept_db` (verdict `KEEP_DB_ANNOTATION`): oids 1195, 1244, 1359, 1927, 4487.
+- **CAPACITY (8 renames):** Westlaw adds a party's official-capacity appositive; docket tails (`Cr. 176`, `Nos. 4967-4971`) stripped. E.g. 993 `…v. Mitchell` → `…v. Mitchell, Treas.`; 3965 `…v. Peterson` → `…, Building Inspector`; 5038/5030/5043/6057 `…, Sheriff`/`, Warden`.
+- **SUFFIX (9 renames):** Westlaw adds a corporate suffix — `Co., Limited` (Harvey Mercantile, oids 996/1870/2394) and `Co., Inc.` (Advance-Rumely Thresher, oids 4218/4252/4224/4233/4268; Dennstedt Land 1947).
+
+Excluded: `In re …'s Estate.` multi-matter prefixes (e.g. oid 9819) deferred to Phase 2/TUI. DB snapshot `opinions.db.bak-pre-residue-patterns-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**. (Revert renames via `cleanup revert`; the 5 `kept_db` additions are removable from `triage/casenames-state.json`.)
+
+## Batch `fix-casenames-jurisdiction-2026-05-24` (25 case_names; 6 keep_db reversals)
+
+Policy decision (user-ratified 2026-05-24): for governmental respondents where the Westlaw caption adds a geographic jurisdiction the DB omits — courts (`v. District Court of/for/in and for <County> County`) and bodies (`Board of Com'rs of Dunn County`, `Board of Education of City of Fargo`, `Park District of City of Enderlin`) — the **full West caption is authoritative**. The bare DB form (`v. District Court`) is a truncation that fails to identify which court/body is the party. Reporter annotations (`(N cases)`, `Cr./Civ. NNN`, judicial-district tails) are stripped as non-name material.
+
+Surfaced by a dry-run of the proposed "county-jurisdiction sweep" (`triage/sweep_jurisdiction_2026-05-24.py`). The dry-run revealed the `fix-casenames-vol16-79-detail-2026-05-20` batch had already *applied* ~30 such adds via its ROLE_APPOSITIVE/LOCALITY_OF buckets, while the user's TUI had *rejected* the identical shape on a handful of rows — an internal inconsistency. Resolving toward the West caption (rather than stripping) is corroborated by the user's own contemporaneous TUI edits doing the same by hand (oid 952 `Paulson v. County` → `v. Ward County`; oid 404 adding `ex rel. … Mayor`).
+
+Dispositions:
+- **REVERSE_KEPT (6):** reversed prior TUI `keep_db` and applied the West caption (oids 277 *Vallelly v. Board of Park Com'rs of Park District of City of Grand Forks*, 353/354 *Zinn v. District Court in and for Morton County* / *for Barnes County*, 377 *Ladd*, 726 *Baker v. City Council of City of La Moure*, 951 *Pederson v. Board of Com'rs of Billings County*). Removed from `triage/casenames-state.json` `kept_db`.
+- **APPLY_PENDING (16):** applied the West caption to still-pending ambiguous-queue rows (district courts + boards of education/commissioners).
+- **STRIP_APPLIED (3):** stripped reporter annotations from already-applied rows — oid 11543 `(five cases)`, 1080 `in Tenth Judicial Dist.`, 10065 `, Fifth Judicial Dist.`
+
+**Excluded** (correctly applied earlier, left untouched): Group 3 person + official-capacity appositives (`Scofield, Sheriff of Ward County`); Group 4 entity proper names (`Farmers' Bank of Mercer County`). **Relator-loss guard:** oids 2063 (`Rhea ex rel. Rhea`) and 2527 (`Hufford ex rel. Property Holders & Taxpayers`) excluded — the West caption drops a substantive `ex rel.` relator; their `KEEP_DB_HAS_REL` stands. **Deferred to TUI (3):** genuine multi-case/garbage captions — 4716 (`… BUTTZ v. ROBINSON`), 10068 (`Petition of Village Board of Wheatland …`), 11544 (paragraph-form caption).
+
+DB snapshot `opinions.db.bak-pre-jurisdiction-2026-05-24`. Invariants **18 ok / 2 known / 0 regressed**.
+
 ## Batch `fix-casenames-vol16-79-orphans-2026-05-20` (7 opinion_sources rows)
 
 Investigation of the 7 ORPHAN_SIBLING entries from the same-day adjudication: NOT corpus gaps. Every one of the .docs corresponds to an opinion already in the DB under a different OID (the cite-shared sibling of the cite-matched row the mispaired-TSV listed). Jaccard `.doc` body vs. the correct OID's `text_content` is 0.85–0.92 for all 7.

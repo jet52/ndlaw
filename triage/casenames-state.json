@@ -8,6 +8,12 @@
       "volume": 24,
       "wl_raw": "STATE ex rel. DAKOTA TRUST CO. v. STUTSMAN et al."
     },
+    "10065": {
+      "db_name": "Simpson v. District Court of Ward County",
+      "ts": "2026-05-24T14:04:45+00:00",
+      "volume": 77,
+      "wl_raw": "SIMPSON v. DISTRICT COURT OF WARD COUNTY, FIFTH JUDICIAL DIST. et al. No. 7179. |"
+    },
     "10066": {
       "db_name": "Ferderer v. Northern Pacific Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -15,6 +21,18 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 77,
       "wl_raw": "FERDERER v. NORTHERN PAC. RY. CO. No. 7102. |"
+    },
+    "10067": {
+      "db_name": "State v. Keller",
+      "ts": "2026-05-24T14:04:42+00:00",
+      "volume": 77,
+      "wl_raw": "STATE v. KELLER. STATE v. GLASER."
+    },
+    "10073": {
+      "db_name": "Feist v. North Dakota Workmen's Compensation Bureau",
+      "ts": "2026-05-24T14:04:47+00:00",
+      "volume": 77,
+      "wl_raw": "FEIST v. NORTH DAKOTA WORKMEN\u2019S COMPENSATION BUREAU (two cases). Nos. 7196, 7197. |"
     },
     "1009": {
       "db_name": "Getchell v. Great Northern Railway Co.",
@@ -40,6 +58,12 @@
       "volume": 24,
       "wl_raw": "WELCH v. FARGO & M. ST. RY. CO."
     },
+    "10357": {
+      "db_name": "LaDuke v. E. W. Wylie Co.",
+      "ts": "2026-05-24T14:04:55+00:00",
+      "volume": 77,
+      "wl_raw": "LA DUKE v. E. W. WYLIE CO. et al. No. 7211. |"
+    },
     "10365": {
       "db_name": "Shuck Ex Rel. Shuck v. Shuck",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -47,6 +71,18 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 77,
       "wl_raw": "SHUCK v. SHUCK et al. No. 7206. |"
+    },
+    "10367": {
+      "db_name": "State v. Graber",
+      "ts": "2026-05-24T14:04:56+00:00",
+      "volume": 77,
+      "wl_raw": "STATE v. GRABER et al. Cr. No. 229. |"
+    },
+    "10368": {
+      "db_name": "Kulish v. Skachenko",
+      "ts": "2026-05-24T14:04:53+00:00",
+      "volume": 77,
+      "wl_raw": "Jack KULISH, Plaintiff and Respondent, v. Fred SKACHENKO, Defendant and Appellant. No. 7141. |"
     },
     "1040": {
       "db_name": "Taute v. J. I. Case Threshing Machine Co.",
@@ -63,6 +99,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 25,
       "wl_raw": "SNEVE et ux. v. SCHWARTZ et ux."
+    },
+    "10525": {
+      "db_name": "Northern Pacific Railway Co. v. Warner",
+      "ts": "2026-05-24T14:05:07+00:00",
+      "volume": 77,
+      "wl_raw": "NORTHERN PAC. RY. CO. v. WARNER, Attorney General, et al. No. 7227. |"
     },
     "10532": {
       "db_name": "Great Northern Railway Co. v. McDonnell",
@@ -104,6 +146,18 @@
       "volume": 25,
       "wl_raw": "ROBER v. NORTHERN PAC. RY. CO."
     },
+    "10876": {
+      "db_name": "Stark v. Heart River Irrigation District",
+      "ts": "2026-05-24T14:05:09+00:00",
+      "volume": 77,
+      "wl_raw": "In re HEART RIVER IRR. DIST. STARK et al. v. HEART RIVER IRR. DIST. No. 7242. |"
+    },
+    "10884": {
+      "db_name": "Northwestern Improvement Co. v. County of Morton",
+      "ts": "2026-05-24T14:05:44+00:00",
+      "volume": 78,
+      "wl_raw": "NORTHWESTERN IMP. CO. v. MORTON COUNTY. No. 7188. |"
+    },
     "1090": {
       "db_name": "Voves v. Great Northern Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -136,6 +190,30 @@
       "volume": 26,
       "wl_raw": "MERCHANTS\u2019 STATE BANK OF VELVA v. KERSHTIEN."
     },
+    "11050": {
+      "db_name": "Application of Ditsworth",
+      "ts": "2026-05-24T14:05:35+00:00",
+      "volume": 78,
+      "wl_raw": "Application of DITSWORTH. SWARTWOUT et al. v. DITSWORTH. No. 7199. |"
+    },
+    "11052": {
+      "db_name": "Application of Hvidsten",
+      "ts": "2026-05-24T14:05:46+00:00",
+      "volume": 78,
+      "wl_raw": "Application of HVIDSTEN. NORTHERN PACIFIC RY. CO. v. CART et al. No. 7238. |"
+    },
+    "11053": {
+      "db_name": "Minnkota Power Cooperative, Inc. v. Kyser",
+      "ts": "2026-05-24T14:05:49+00:00",
+      "volume": 78,
+      "wl_raw": "MINNKOTA POWER CO-OP. Inc. v. KYSER. No. 7185. |"
+    },
+    "11056": {
+      "db_name": "Sjoberg v. State Automobile Insurance",
+      "ts": "2026-05-24T14:05:51+00:00",
+      "volume": 78,
+      "wl_raw": "SJOBERG v. STATE AUTO. INS. ASS\u2019N OF DES MOINES, IOWA. No. 7207. |"
+    },
     "11062": {
       "db_name": "Umphrey Ex Rel. Umphrey v. Deery",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -160,6 +238,18 @@
       "volume": 26,
       "wl_raw": "LINCOLN v. GREAT NORTHERN RY. CO."
     },
+    "11207": {
+      "db_name": "Stark v. Heart River Irrigation District",
+      "ts": "2026-05-24T14:05:54+00:00",
+      "volume": 78,
+      "wl_raw": "In re HEART RIVER IRR. DIST. STARK et al. v. HEART RIVER IRR. DIST. No. 7242. |"
+    },
+    "11210": {
+      "db_name": "Espeland v. Police Magistrate's Court of City of Grand Forks",
+      "ts": "2026-05-24T14:05:57+00:00",
+      "volume": 78,
+      "wl_raw": "ESPELAND v. POLICE MAGISTRATE\u2019S COURT OF CITY OF GRAND FORKS et al. No. 7267. |"
+    },
     "11211": {
       "db_name": "State v. Oliver",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -175,6 +265,12 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 78,
       "wl_raw": "SCHMUTZLER v. WORKMEN\u2019S COMPENSATION BUREAU. No. 7218. |"
+    },
+    "11216": {
+      "db_name": "State v. Simpson",
+      "ts": "2026-05-24T14:05:59+00:00",
+      "volume": 78,
+      "wl_raw": "STATE v. SIMPSON. Cr. No. 237. |"
     },
     "11218": {
       "db_name": "Olson v. Kem Temple Ancient Arabic Order of the Mystic Shrine",
@@ -224,6 +320,12 @@
       "volume": 26,
       "wl_raw": "WATERMAN v. MINNEAPOLIS, ST. P. & S. S. M. RY. CO."
     },
+    "11398": {
+      "db_name": "State v. Lee",
+      "ts": "2026-05-24T14:06:00+00:00",
+      "volume": 78,
+      "wl_raw": "STATE v. LEE. Cr. No. 240. |"
+    },
     "11408": {
       "db_name": "State v. Simpson",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -231,6 +333,30 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 78,
       "wl_raw": "STATE v. SIMPSON. Cr. 241. |"
+    },
+    "11543": {
+      "db_name": "State ex rel. Christianson v. District Court of Cass County",
+      "ts": "2026-05-24T14:06:07+00:00",
+      "volume": 78,
+      "wl_raw": "STATE ex rel. CHRISTIANSON et al. v. DISTRICT COURT OF CASS COUNTY et al. (five cases). No. 7291. |"
+    },
+    "11544": {
+      "db_name": "State ex rel. Christianson v. District Court",
+      "ts": "2026-05-24T14:06:19+00:00",
+      "volume": 78,
+      "wl_raw": "STATE of North Dakota ex rel. E. T. CHRISTIANSON, as Attorney General of the State of North Dakota, and as a member of the State Committee for the Reorganization of School Districts, and Arthur Gylten, Stanley D. Jacobson, Marvin Kloster, David Palmer and Howard Johnson, as members of the Board of Education of the Reorganized Sharon Special School District #4 of Steele County, North Dakota, petitioners v. The DISTRICT COURT OF STEELE COUNTY, North Dakota, First Judicial District and Honorable Albert Lundberg, as Presiding Judge thereof, sitting at the special request of Honorable O. B. Burtness, Judge of said court, respondents. No. 7290. |"
+    },
+    "11546": {
+      "db_name": "Common School District No. 126 v. City of Fargo",
+      "ts": "2026-05-24T14:06:23+00:00",
+      "volume": 78,
+      "wl_raw": "COMMON SCHOOL DIST. NO. 126 OF CASS COUNTY et al. v. CITY OF FARGO et al. No. 7272. |"
+    },
+    "11551": {
+      "db_name": "Mann v. Policyholders' National Life Insurance",
+      "ts": "2026-05-24T14:06:24+00:00",
+      "volume": 78,
+      "wl_raw": "MANN v. POLICYHOLDERS\u2019 NAT. LIFE INS. CO. No. 7246. |"
     },
     "1169": {
       "db_name": "Farmers' Mercantile Co. v. Northern Pacific Railway Co.",
@@ -271,6 +397,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 27,
       "wl_raw": "NORTHERN IMMIGRATION ASS\u2019N v. ALGER."
+    },
+    "11882": {
+      "db_name": "Jordon v. Western States Life Insurance",
+      "ts": "2026-05-24T14:06:28+00:00",
+      "volume": 78,
+      "wl_raw": "JORDON v. WESTERN STATES LIFE INS. CO. No. 7205. |"
     },
     "11883": {
       "db_name": "Cary v. Kautzman",
@@ -1936,12 +2068,6 @@
       "volume": 49,
       "wl_raw": "ROQUETTE v. FARMERS\u2019 INS. CO."
     },
-    "277": {
-      "db_name": "Vallelly v. Board of Park Commissioners",
-      "ts": "2026-05-20T14:28:36+00:00",
-      "volume": 16,
-      "wl_raw": "VALLELLY et al. v. BOARD OF PARK COM\u2019RS OF PARK DISTRICT OF CITY OF GRAND FORKS et al."
-    },
     "2774": {
       "db_name": "Grandin Investment Co. v. Hartung",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -2822,12 +2948,6 @@
       "volume": 55,
       "wl_raw": "CROONQUIST v. WALKER et ux. No. 5309. |"
     },
-    "353": {
-      "db_name": "Zinn v. District Court",
-      "ts": "2026-05-20T14:35:32+00:00",
-      "volume": 17,
-      "wl_raw": "ZINN v. DISTRICT COURT IN AND FOR MORTON COUNTY et al."
-    },
     "3531": {
       "db_name": "Thompson Realty Co. v. Mowbray",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -2835,12 +2955,6 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 55,
       "wl_raw": "THOMPSON REALTY CO. v. MOWBRAY et ux. No. 5341. |"
-    },
-    "354": {
-      "db_name": "Zinn v. District Court",
-      "ts": "2026-05-20T14:35:30+00:00",
-      "volume": 17,
-      "wl_raw": "ZINN v. DISTRICT COURT FOR BARNES COUNTY et al."
     },
     "3542": {
       "db_name": "Rattie v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",
@@ -3119,12 +3233,6 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 57,
       "wl_raw": "NORTHWEST ENGINEERING CO. v. GJELLEFALD-CHAPMAN CONST. CO. No. 5609. |"
-    },
-    "377": {
-      "db_name": "State ex rel. Ladd v. District Court",
-      "ts": "2026-05-20T14:36:02+00:00",
-      "volume": 17,
-      "wl_raw": "STATE ex rel. LADD v. DISTRICT COURT IN AND FOR CASS COUNTY et al."
     },
     "3773": {
       "db_name": "Light v. North Dakota Workmen's Compensation Bureau",
@@ -3812,6 +3920,12 @@
       "volume": 63,
       "wl_raw": "STATE v. MARCOVITZ. Cr. 99. |"
     },
+    "440": {
+      "db_name": "McCarthy Bros. v. McLean County Farmers Elevator Co.",
+      "ts": "2026-05-24T13:36:02+00:00",
+      "volume": 18,
+      "wl_raw": "McCARTHY BROS. CO. v. McLEAN COUNTY FARMERS\u2019 ELEVATOR CO. et al."
+    },
     "4403": {
       "db_name": "Godfrey v. North Dakota Farmers Mutual Tornado & Cyclone Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -3843,6 +3957,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 63,
       "wl_raw": "REUTER v. DICKINSON BUILDING & LOAN ASS\u2019N. No. 6168. |"
+    },
+    "444": {
+      "db_name": "Pfeifer v. Hatton",
+      "ts": "2026-05-24T13:35:56+00:00",
+      "volume": 18,
+      "wl_raw": "PFEIFER v. HATTON, Constable."
     },
     "4446": {
       "db_name": "Waite v. Stockgrowers' Credit Corp.",
@@ -4050,6 +4170,30 @@
       "volume": 65,
       "wl_raw": "STATE v. ANDERSON. Cr. 123. |"
     },
+    "4628": {
+      "db_name": "Bowman County v. Board of County Com'rs of Bowman County",
+      "ts": "2026-05-24T14:01:42+00:00",
+      "volume": 66,
+      "wl_raw": "BOWMAN COUNTY v. BOARD OF COUNTY COM\u2019RS OF BOWMAN COUNTY et al. No. 6331. |"
+    },
+    "4629": {
+      "db_name": "Security Trust Co. of Fargo v. New Rainbow Cafe",
+      "ts": "2026-05-24T14:01:32+00:00",
+      "volume": 66,
+      "wl_raw": "SECURITY TRUST CO. OF FARGO v. NEW RAINBOW CAF\u00c9 et al. No. 6339. |"
+    },
+    "463": {
+      "db_name": "State ex rel. McCue, Atty. Gen., v. Lewis, Auditor",
+      "ts": "2026-05-24T13:35:51+00:00",
+      "volume": 18,
+      "wl_raw": "STATE ex rel. McCUE. Atty. Gen., v. LEWIS, Auditor."
+    },
+    "4630": {
+      "db_name": "Equitable Life Assurance Society v. Boisvert",
+      "ts": "2026-05-24T14:01:38+00:00",
+      "volume": 66,
+      "wl_raw": "EQUITABLE LIFE ASSUR. SOC. OF UNITED STATES v. BOISVERT et al. No. 6302. |"
+    },
     "4633": {
       "db_name": "Lemke v. Merchants National Bank & Trust Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -4074,6 +4218,12 @@
       "volume": 66,
       "wl_raw": "STATE v. MUZZY. Cr. 125. |"
     },
+    "4638": {
+      "db_name": "Aubol v. Engeseth",
+      "ts": "2026-05-24T14:01:47+00:00",
+      "volume": 66,
+      "wl_raw": "AUBOL et al. v. ENGESETH, Assessor, et al. No. 6359. |"
+    },
     "4640": {
       "db_name": "Fargo Building & Loan Ass'n v. Rice",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -4082,6 +4232,12 @@
       "volume": 66,
       "wl_raw": "FARGO BUILDING & LOAN ASS\u2019N v. RICE et al. No. 6336. |"
     },
+    "4642": {
+      "db_name": "Denault v. Hoerr",
+      "ts": "2026-05-24T14:01:49+00:00",
+      "volume": 66,
+      "wl_raw": "DE NAULT v. HOERR et al. No. 6227. |"
+    },
     "4643": {
       "db_name": "Agricultural Bond & Credit Corp. v. Courtenay Farmers Co-Operative Ass'n",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -4089,6 +4245,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 66,
       "wl_raw": "AGRICULTURAL BOND & CREDIT CORPORATION v. COURTENAY FARMERS CO-OP. ASS\u2019N et al. No. 6344. |"
+    },
+    "4651": {
+      "db_name": "Jones v. Golden",
+      "ts": "2026-05-24T14:01:56+00:00",
+      "volume": 66,
+      "wl_raw": "In re GUARDIANSHIP OF JONES et al. JONES v. GOLDEN. No. 6373. |"
     },
     "4652": {
       "db_name": "Osage Farmers National Bank v. Van Hook Special School District No. 8",
@@ -4130,6 +4292,24 @@
       "volume": 66,
       "wl_raw": "LARSON v. RUSTAD et ux. No. 6315. |"
     },
+    "4659": {
+      "db_name": "State v. Russell",
+      "ts": "2026-05-24T14:02:08+00:00",
+      "volume": 66,
+      "wl_raw": "STATE v. RUSSELL et al. Cr. No. 127. |"
+    },
+    "466": {
+      "db_name": "J. P. Lamb & Co. v. Merchants National Mutual Fire Insurance",
+      "ts": "2026-05-24T13:36:07+00:00",
+      "volume": 18,
+      "wl_raw": "J. P. LAMB & CO. v. MERCHANTS\u2019 NAT. MUT. FIRE INS. CO."
+    },
+    "4662": {
+      "db_name": "Mullaney v. Equitable Life Assurance Society",
+      "ts": "2026-05-24T14:01:57+00:00",
+      "volume": 66,
+      "wl_raw": "MULLANEY v. EQUITABLE LIFE ASSUR. SOC. OF THE UNITED STATES. No. 6395. |"
+    },
     "4664": {
       "db_name": "Lowe v. North Dakota Workmen's Compensation Bureau",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -4137,6 +4317,18 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 66,
       "wl_raw": "LOWE v. NORTH DAKOTA WORKMEN\u2019S COMPENSATION BUREAU. No. 6390. |"
+    },
+    "4665": {
+      "db_name": "Figenskau v. McCoy",
+      "ts": "2026-05-24T14:02:11+00:00",
+      "volume": 66,
+      "wl_raw": "FIGENSKAU v. McCOY, State Motor Vehicle Registrar, et al. No. 6386. |"
+    },
+    "4667": {
+      "db_name": "State ex rel. Sathre, Atty. Gen., v. Hopton, Com'r of Insurance",
+      "ts": "2026-05-24T14:02:25+00:00",
+      "volume": 66,
+      "wl_raw": "STATE ex rel. SATHRE, Atty. Gen., v. HOPTON, Com\u2019r of Insurance, et al. No. 6351. |"
     },
     "4668": {
       "db_name": "Agricultural Credit Corp. v. Land Investment Co.",
@@ -4162,6 +4354,30 @@
       "volume": 66,
       "wl_raw": "OLSTAD v. STOCKGROWERS CREDIT CORPORATION et al. No. 6376. |"
     },
+    "4675": {
+      "db_name": "Acme Commission Co. v. Mandan Creamery & Produce Co.",
+      "ts": "2026-05-24T14:02:42+00:00",
+      "volume": 66,
+      "wl_raw": "ACME COMMISSION CO., Inc., v. MANDAN CREAMERY & PRODUCE CO. No. 6394. |"
+    },
+    "4679": {
+      "db_name": "King v. County of Stark",
+      "ts": "2026-05-24T14:02:44+00:00",
+      "volume": 66,
+      "wl_raw": "KING v. STARK COUNTY et al. No. 6396. |"
+    },
+    "4684": {
+      "db_name": "State v. Anderson",
+      "ts": "2026-05-24T14:02:46+00:00",
+      "volume": 66,
+      "wl_raw": "STATE v. ANDERSON et al. Cr. No. 130. |"
+    },
+    "4688": {
+      "db_name": "State Ex Rel. Board of Railroad Commissioners v. Burt State Bank",
+      "ts": "2026-05-24T14:02:49+00:00",
+      "volume": 66,
+      "wl_raw": "STATE ex rel. BOARD OF RAILROAD COM\u2019RS v. BURT STATE BANK. No. 6412. |"
+    },
     "469": {
       "db_name": "Engholm v. Ekrem",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -4177,6 +4393,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 66,
       "wl_raw": "STATE v. NEDTVEDT. Cr. 131. |"
+    },
+    "4700": {
+      "db_name": "State v. Kirsch",
+      "ts": "2026-05-24T14:02:53+00:00",
+      "volume": 66,
+      "wl_raw": "STATE v. KIRSCH. Cr. No. 133. |"
     },
     "4703": {
       "db_name": "State v. Noel",
@@ -4209,6 +4431,18 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 66,
       "wl_raw": "THOMPSON v. NORTH DAKOTA WORKMEN\u2019S COMPENSATION BUREAU. No. 6427. |"
+    },
+    "4713": {
+      "db_name": "State v. Michelski",
+      "ts": "2026-05-24T14:04:09+00:00",
+      "volume": 66,
+      "wl_raw": "STATE v. MICHELSKI. Cr. No. 129. |"
+    },
+    "4716": {
+      "db_name": "Al G. Barnes Amusement Co. v. District Court",
+      "ts": "2026-05-24T14:04:06+00:00",
+      "volume": 66,
+      "wl_raw": "AL G. BARNES AMUSEMENT CO. v. DISTRICT COURT IN AND FOR RAMSEY COUNTY, SECOND DISTRICT. BUTTZ v. ROBINSON et al."
     },
     "4720": {
       "db_name": "First National Bank & Trust Co. v. Stonehouse",
@@ -4249,6 +4483,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 67,
       "wl_raw": "FEDERAL FARM MORTGAGE CORPORATION v. FALK et al. No. 6426. |"
+    },
+    "4745": {
+      "db_name": "State v. Houge",
+      "ts": "2026-05-24T14:02:04+00:00",
+      "volume": 66,
+      "wl_raw": "STATE v. HOUGE. Cr. No. 138. |"
     },
     "4751": {
       "db_name": "Janneck v. Workmen's Compensation Bureau",
@@ -4641,6 +4881,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 70,
       "wl_raw": "UNEMPLOYMENT COMPENSATION DIVISION OF WORKMEN\u2019S COMPENSATION BUREAU v. PEOPLE\u2019S OPINION PRINTING CO. No. 6700. |"
+    },
+    "501": {
+      "db_name": "State ex rel. State Farmers Mutual Hail Insurance v. Cooper",
+      "ts": "2026-05-24T13:36:15+00:00",
+      "volume": 18,
+      "wl_raw": "STATE ex rel. STATE FARMERS\u2019 MUT. HAIL INS. CO. v. COOPER, Insurance Com\u2019r."
     },
     "5014": {
       "db_name": "Unemployment Compensation Division of the Workmen's Compensation Bureau v. Valker's Greenhouses, Inc.",
@@ -5506,6 +5752,12 @@
       "volume": 18,
       "wl_raw": "UMSTED v. COLGATE FARMERS\u2019 ELEVATOR CO."
     },
+    "542": {
+      "db_name": "Taylor-Baldwin Co. v. Northwestern Fire & Marine Insurance",
+      "ts": "2026-05-24T13:36:10+00:00",
+      "volume": 18,
+      "wl_raw": "TAYLOR-BALDWIN CO. v. NORTHWESTERN FIRE & MARINE INS. CO."
+    },
     "547": {
       "db_name": "Hope v. Great Northern Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5529,6 +5781,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 18,
       "wl_raw": "ENDERLIN INV. CO. v. NORDHAGEN et al."
+    },
+    "572": {
+      "db_name": "Reed v. Heglie, Tri-County Drain Com'rs",
+      "ts": "2026-05-24T13:37:44+00:00",
+      "volume": 19,
+      "wl_raw": "REED v. HEGLIE et al., Tri-County Drain Com\u2019rs."
     },
     "575": {
       "db_name": "State v. American Bottling Ass'n",
@@ -5561,6 +5819,12 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 20,
       "wl_raw": "STUBBS v. HOERR."
+    },
+    "603": {
+      "db_name": "County of Burleigh v. County of Kidder",
+      "ts": "2026-05-24T13:38:07+00:00",
+      "volume": 20,
+      "wl_raw": "BURLEIGH COUNTY v. KIDDER COUNTY."
     },
     "6052": {
       "db_name": "Beehler v. Schantz",
@@ -5618,6 +5882,12 @@
       "volume": 19,
       "wl_raw": "DOWNEY v. NORTHERN PAC. RY. CO."
     },
+    "611": {
+      "db_name": "DeLaney v. Western Stock Co.",
+      "ts": "2026-05-24T13:37:06+00:00",
+      "volume": 19,
+      "wl_raw": "DE LANEY et al. v. WESTERN STOCK CO."
+    },
     "6156": {
       "db_name": "Jacobson v. Mutual Benefit Health & Accident Ass'n",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5658,6 +5928,12 @@
       "volume": 73,
       "wl_raw": "FAIRMONT CREAMERY CO. OF DEVILS LAKE v. MURPHY, State Dairy Com\u2019r. No. 6904. |"
     },
+    "626": {
+      "db_name": "St. Anthony & Dakota Elevator Co. v. Dawson",
+      "ts": "2026-05-24T13:37:59+00:00",
+      "volume": 20,
+      "wl_raw": "ST. ANTHONY & DAKOTA ELEVATOR CO. v. DAWSON & BYFIELD."
+    },
     "627": {
       "db_name": "Northern Pacific Railway Co. v. Aas",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5673,6 +5949,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 20,
       "wl_raw": "COLEAN MFG. CO. v. FECKLER et al."
+    },
+    "629": {
+      "db_name": "Citizens' Nat. Bank of Sisseton, S. D., v. Branden",
+      "ts": "2026-05-24T13:36:53+00:00",
+      "volume": 19,
+      "wl_raw": "CITIZENS\u2019 NAT. BANK OF SISSETON, S. D., v. BRANDEN."
     },
     "636": {
       "db_name": "Northern Pacific Railway Co. v. Barlow",
@@ -5786,6 +6068,12 @@
       "volume": 20,
       "wl_raw": "SCHOOL DIST. NO. 94 v. KING et al."
     },
+    "664": {
+      "db_name": "Emerado Farmers Elevator Co. v. Farmers Bank",
+      "ts": "2026-05-24T13:38:11+00:00",
+      "volume": 20,
+      "wl_raw": "EMERADO FARMERS\u2019 ELEVATOR CO. v. FARMERS\u2019 BANK OF EMERADO."
+    },
     "666": {
       "db_name": "Aneta Mercantile Co. v. Groseth",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5801,6 +6089,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 73,
       "wl_raw": "STATE v. JOHNSON. Cr. 194. |"
+    },
+    "678": {
+      "db_name": "Leisen v. St. Paul Fire & Marine Insurance",
+      "ts": "2026-05-24T13:38:13+00:00",
+      "volume": 20,
+      "wl_raw": "LEISEN v. ST. PAUL FIRE & MARINE INS. CO."
     },
     "681": {
       "db_name": "Sternberg, Weil, & Co. v. James A. Larson & Co.",
@@ -5818,6 +6112,12 @@
       "volume": 20,
       "wl_raw": "HOLLINSHEAD v. MINNEAPOLIS, ST. P. & S. S. M. RY. CO."
     },
+    "684": {
+      "db_name": "Messenger v. Valley City Street",
+      "ts": "2026-05-24T13:39:41+00:00",
+      "volume": 21,
+      "wl_raw": "MESSENGER v. VALLEY CITY STREET & INTERURBAN RY. CO."
+    },
     "688": {
       "db_name": "Murray ex rel. Bull v. Lamson",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5825,6 +6125,12 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 21,
       "wl_raw": "MURRAY v. LAMSON."
+    },
+    "695": {
+      "db_name": "Spicer v. Northern Pacific Railway Co.",
+      "ts": "2026-05-24T13:39:38+00:00",
+      "volume": 21,
+      "wl_raw": "SPICER & DAVIS v. NORTHERN PAC. RY. CO."
     },
     "6981": {
       "db_name": "Horab Ex Rel. Horab v. Williams County",
@@ -5906,6 +6212,12 @@
       "volume": 21,
       "wl_raw": "TAUGHER v. NORTHERN PAC. RY. CO. et al."
     },
+    "731": {
+      "db_name": "Freeman v. Trimble, Drain Com'rs",
+      "ts": "2026-05-24T13:39:08+00:00",
+      "volume": 21,
+      "wl_raw": "FREEMAN et al. v. TRIMBLE et al., Drain Com\u2019rs."
+    },
     "7312": {
       "db_name": "Lakeville Township v. Northwestern Trust Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5986,6 +6298,18 @@
       "volume": 74,
       "wl_raw": "KILGORE v. FARMERS UNION OIL CO. OF EPPING. No. 6976. |"
     },
+    "753": {
+      "db_name": "Heskin, County Board of Drain Com'rs, v. Herbrandson",
+      "ts": "2026-05-24T13:39:48+00:00",
+      "volume": 21,
+      "wl_raw": "HESKIN et al., County Board of Drain Com\u2019rs, v. HERBRANDSON et al."
+    },
+    "762": {
+      "db_name": "Schafer v. District Court of First Judicial District",
+      "ts": "2026-05-24T13:39:59+00:00",
+      "volume": 21,
+      "wl_raw": "SCHAFER v. DISTRICT COURT OF NELSON COUNTY et al."
+    },
     "7641": {
       "db_name": "Mazakahomni v. State",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -5993,6 +6317,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 75,
       "wl_raw": "MAZAKAHOMNI v. STATE. Cr. 205. |"
+    },
+    "774": {
+      "db_name": "Citizens' Nat. Bank of Jamestown v. OSBORNE-McMILLAN Elevator Co.",
+      "ts": "2026-05-24T13:39:56+00:00",
+      "volume": 21,
+      "wl_raw": "CITIZENS\u2019 NAT. BANK OF JAMESTOWN v. OSBORNE-McMILLAN ELEVATOR CO."
     },
     "775": {
       "db_name": "J. I. Case Threshing Machine Co. v. Erickson",
@@ -6009,6 +6339,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 75,
       "wl_raw": "FERDERER v. NORTHERN PACIFIC RY. CO. No. 7009. |"
+    },
+    "789": {
+      "db_name": "Citizens' Bank of Drayton v. Schultz",
+      "ts": "2026-05-24T13:40:02+00:00",
+      "volume": 21,
+      "wl_raw": "CITIZENS\u2019 BANK OF DRAYTON v. SCHULTZ."
     },
     "7902": {
       "db_name": "Krueger v. North American Creameries Inc.",
@@ -6050,6 +6386,12 @@
       "volume": 22,
       "wl_raw": "STATE, ex rel. TEMPLE et al. v. BARNES, Sheriff."
     },
+    "799": {
+      "db_name": "Boos v. Aetna Insurance",
+      "ts": "2026-05-24T13:40:48+00:00",
+      "volume": 22,
+      "wl_raw": "BOOS v. \u00c6TNA INS. CO."
+    },
     "802": {
       "db_name": "Gebus v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -6081,6 +6423,12 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 75,
       "wl_raw": "Mary MOREHOUSE, for the Use and Benefit of R. J. Sailer, Plaintiff and Appellant, v. Erling PAULSON and Dunn County, N. D., a Municipal Corporation, Defendants and Appellees. No. 7054. |"
+    },
+    "810": {
+      "db_name": "State ex rel. Hagen v. Anderson",
+      "ts": "2026-05-24T13:40:50+00:00",
+      "volume": 22,
+      "wl_raw": "STATE ex rel. HAGEN v. ANDERSON. County Auditor."
     },
     "824": {
       "db_name": "Clair v. Northern Pacific Railway Co.",
@@ -6170,6 +6518,18 @@
       "volume": 22,
       "wl_raw": "MURPHY et al. v. MISSOURI & K. LAND & LOAN CO. et al."
     },
+    "858": {
+      "db_name": "Bauer v. Union Central Life Insurance",
+      "ts": "2026-05-24T13:40:52+00:00",
+      "volume": 22,
+      "wl_raw": "BAUER v. UNION CENTRAL LIFE INS. CO."
+    },
+    "862": {
+      "db_name": "Investors' Syndicate v. Letts (Beyer, Intervener.)",
+      "ts": "2026-05-24T13:40:56+00:00",
+      "volume": 22,
+      "wl_raw": "INVESTORS\u2019 SYNDICATE v. LETTS et al. (BEYER, Intervener.)"
+    },
     "8661": {
       "db_name": "Persellin v. State Automobile Insurance Ass'n",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -6194,6 +6554,12 @@
       "volume": 22,
       "wl_raw": "McCAFFERY v. NORTHERN PAC. RY. CO."
     },
+    "879": {
+      "db_name": "Davidson v. Unknown Heirs of Peterson",
+      "ts": "2026-05-24T13:41:01+00:00",
+      "volume": 22,
+      "wl_raw": "In re PETERSON\u2019S ESTATE. DAVIDSON v. UNKNOWN HEIRS OF PETERSON et al."
+    },
     "8814": {
       "db_name": "Hvidsten v. Northern Pacific Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -6209,6 +6575,36 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 75,
       "wl_raw": "SCHNOOR v. MEINECKE et al. (STATE, Intervener). No. 7098. |"
+    },
+    "884": {
+      "db_name": "Citizens' State Bank of Lankin v. Garceau",
+      "ts": "2026-05-24T13:41:04+00:00",
+      "volume": 22,
+      "wl_raw": "CITIZENS\u2019 STATE BANK OF LANKIN v. GARCEAU."
+    },
+    "887": {
+      "db_name": "State ex rel. Smith v. Finlayson",
+      "ts": "2026-05-24T13:42:19+00:00",
+      "volume": 23,
+      "wl_raw": "STATE ex rel. SMITH, State\u2019s Atty., v. FINLAYSON."
+    },
+    "894": {
+      "db_name": "Galehouse v. Minneapolis, St. Paul, & S. S. M. R. Co.",
+      "ts": "2026-05-24T13:41:36+00:00",
+      "volume": 22,
+      "wl_raw": "GALEHOUSE v. MINNEAPOLIS, ST. P. & S. S. M. RY. CO."
+    },
+    "895": {
+      "db_name": "State ex rel. Miller, Atty. Gen., v. People's State Bank",
+      "ts": "2026-05-24T13:41:06+00:00",
+      "volume": 22,
+      "wl_raw": "STATE ex rel. MILLER, Atty. Gen., v. PEOPLE\u2019S STATE BANK."
+    },
+    "896": {
+      "db_name": "State ex rel. Poole v. Peake",
+      "ts": "2026-05-24T13:40:58+00:00",
+      "volume": 22,
+      "wl_raw": "STATE ex rel. POOLE v. PEAKE, Adj. Gen."
     },
     "9003": {
       "db_name": "State Ex Rel. Johnson v. Thomson",
@@ -6242,6 +6638,18 @@
       "volume": 76,
       "wl_raw": "PAYNE v. BOARD OF TRUSTEES OF THE TEACHERS\u2019 INS. & RETIREMENT FUND et al. No. 7095. |"
     },
+    "928": {
+      "db_name": "Stotlar v. German Alliance Insurance",
+      "ts": "2026-05-24T13:42:22+00:00",
+      "volume": 23,
+      "wl_raw": "STOTLAR et al. v. GERMAN ALLIANCE INS. CO."
+    },
+    "929": {
+      "db_name": "Stotlar v. Citizens' Insurance",
+      "ts": "2026-05-24T13:42:26+00:00",
+      "volume": 23,
+      "wl_raw": "STOTLAR et al. v. CITIZENS\u2019 INS. CO. OF MO."
+    },
     "930": {
       "db_name": "Schumacher v. Great Northern Railway Co.",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -6257,6 +6665,12 @@
       "verdict": "KEEP_DB_PURE_ABBREV",
       "volume": 23,
       "wl_raw": "LATHROP v. FARGO-MOORHEAD ST. RY. CO."
+    },
+    "954": {
+      "db_name": "Ugland v. Farmers' & Merchants' State Bank of Knox",
+      "ts": "2026-05-24T13:42:28+00:00",
+      "volume": 23,
+      "wl_raw": "UGLAND v. FARMERS\u2019 & MERCHANTS\u2019 STATE BANK OF KNOX et al."
     },
     "9547": {
       "db_name": "National Farmers Union Life Ass'n v. Krueger",
@@ -6281,6 +6695,12 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 23,
       "wl_raw": "FARLEY v. LAWTON SCHOOL DIST. NO. 41."
+    },
+    "966": {
+      "db_name": "Goetz et ux. v. Merchants' Bank of Rugby",
+      "ts": "2026-05-24T13:42:43+00:00",
+      "volume": 23,
+      "wl_raw": "GOETZ et ux. v. MERCHANTS\u2019 BANK OF RUGBY."
     },
     "9680": {
       "db_name": "Loy Ex Rel. Union Securities Co. v. Kessler",
@@ -6330,6 +6750,12 @@
       "volume": 72,
       "wl_raw": "DESAUTEL v. NORTH DAKOTA WORKMEN\u2019S COMPENSATION BUREAU. No. 6832. |"
     },
+    "9827": {
+      "db_name": "Harris v. Erickson",
+      "ts": "2026-05-24T14:04:39+00:00",
+      "volume": 77,
+      "wl_raw": "In re RANDALLS\u2019 ESTATE. HARRIS v. ERICKSON et al. No. 7160. |"
+    },
     "9830": {
       "db_name": "Schnoor Ex Rel. Schnoor v. Meinecke",
       "source": "fix-casenames-vol16-79-autorev-2026-05-20",
@@ -6337,6 +6763,1035 @@
       "verdict": "KEEP_DB_HAS_REL",
       "volume": 77,
       "wl_raw": "SCHNOOR v. MEINECKE et al. (STATE, Intervenor). No. 7137. |"
+    },
+    "1195": {
+      "db_name": "Johnson v. Rutherford",
+      "source": "fix-casenames-residue-patterns-2026-05-24",
+      "verdict": "KEEP_DB_ANNOTATION",
+      "volume": 28,
+      "wl_raw": "JOHNSON v. RUTHERFORD (two cases)"
+    },
+    "1244": {
+      "db_name": "Grebe v. Swords",
+      "source": "fix-casenames-residue-patterns-2026-05-24",
+      "verdict": "KEEP_DB_ANNOTATION",
+      "volume": 28,
+      "wl_raw": "GREBE v. SWORDS (two cases)"
+    },
+    "1359": {
+      "db_name": "Marquart v. Schaffner",
+      "source": "fix-casenames-residue-patterns-2026-05-24",
+      "verdict": "KEEP_DB_ANNOTATION",
+      "volume": 30,
+      "wl_raw": "MARQUART v. SCHAFFNER (two cases)"
+    },
+    "1927": {
+      "db_name": "McCarty v. Goodsman",
+      "source": "fix-casenames-residue-patterns-2026-05-24",
+      "verdict": "KEEP_DB_ANNOTATION",
+      "volume": 39,
+      "wl_raw": "McCARTY v. GOODSMAN (two cases)"
+    },
+    "4487": {
+      "db_name": "Farmers Educational & Co-Operative Union Elevator Co. v. Irons",
+      "source": "fix-casenames-residue-patterns-2026-05-24",
+      "verdict": "KEEP_DB_ANNOTATION",
+      "volume": 64,
+      "wl_raw": "FARMERS\u2019 EDUCATIONAL & CO-OPERATIVE UNION ELEVATOR CO. v. IRONS (three cases)"
+    },
+    "1770": {
+      "db_name": "Faxon v. Civil Township of Lallie",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 36,
+      "wl_raw": "FAXON v. LALLIE CIVIL TP."
+    },
+    "1829": {
+      "db_name": "Great Northern Railway Co. v. County of Grand Forks",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 38,
+      "wl_raw": "GREAT NORTHERN RY. CO. et al. v. GRAND FORKS COUNTY et al."
+    },
+    "2264": {
+      "db_name": "Union National Bank of Minot v. Western Building Co.",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 44,
+      "wl_raw": "UNION NAT. BANK OF MINOT v. WESTERN BLDG. CO. et al."
+    },
+    "2336": {
+      "db_name": "Honstain Bros. v. Linden Investment Co.",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 45,
+      "wl_raw": "HONSTAIN BROS. CO. v. LINDEN INV. CO. et al."
+    },
+    "3823": {
+      "db_name": "Brown v. Inter-State Business Men's Accident Ass'n",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 57,
+      "wl_raw": "BROWN v. INTER-STATE BUSINESS MEN\u2019S ACC. ASS\u2019N OF DES MOINES, IOWA. No. 5645. |"
+    },
+    "3941": {
+      "db_name": "Olson v. Union Central Life Insurance",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 58,
+      "wl_raw": "OLSON et al. v. UNION CENT. LIFE INS. CO. et al. No. 5439. |"
+    },
+    "4015": {
+      "db_name": "Citizens Bank of Hutchinson v. Township of Crane Creek",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 59,
+      "wl_raw": "CITIZENS\u2019 BANK OF HUTCHINSON, MINN., v. CRANE CREEK TP. No. 5773. |"
+    },
+    "4103": {
+      "db_name": "Schilling v. Carl Township",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 60,
+      "wl_raw": "SCHILLING v. CARL TP., GRANT COUNTY. No. 5807. |"
+    },
+    "4117": {
+      "db_name": "Denmark Township v. Ukkelberg",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 60,
+      "wl_raw": "DENMARK TP., WARD COUNTY v. UKKELBERG et al. No. 5859. |"
+    },
+    "4600": {
+      "db_name": "Northern Pacific Railway Co. v. Northern Reo Co.",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 65,
+      "wl_raw": "NORTHERN PAC. RY. CO. v. NORTHERN REO CO. et al. Nos. 6245, 6263. |"
+    },
+    "6618": {
+      "db_name": "Consolidated Freightways, Inc. v. Lamb Ex Rel. State",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 73,
+      "wl_raw": "CONSOLIDATED FREIGHTWAYS, Inc., v. LAMB, Highway Commissioner, et al. No. 6928. |"
+    },
+    "12041": {
+      "db_name": "Emery v. Midwest Motor Express Inc.",
+      "source": "fix-casenames-adjudicate-2026-05-24",
+      "verdict": "KEEP_DB_BODY_SPELLING",
+      "volume": 79,
+      "wl_raw": "EMERY v. MIDWEST MOTOR EXP., Inc. (two cases). No. 7237. |"
+    },
+    "2439": {
+      "db_name": "Christenson v. Grandy",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 46,
+      "wl_raw": "CHRISTENSON v. GRANDY Oct. 20. 1920. | Rehearing Denied Nov. 9, 1920"
+    },
+    "2908": {
+      "db_name": "Anderson v. City of Jamestown",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 50,
+      "wl_raw": "ANDERSON v. CITY OF JAMESTOWN. Filed Dec. 29, 1923. | Rehearing Denied Jan. 22, 1924"
+    },
+    "3085": {
+      "db_name": "Olsness v. Baird",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 52,
+      "wl_raw": "S. A. OLSNESS, as Commissioner of Insurance of the State of North Dakota, acting for and in behalf of the State Bonding Fund of the State of North Dakota, Plaintiff and appellant, v. L. R. BAIRD, as Receiver of the First State Bank of Amidon, North Dakota, and J. S. Douglas, Defendants and Respondents"
+    },
+    "3096": {
+      "db_name": "State v. First State Bank of Jud",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 52,
+      "wl_raw": "STATE of North Dakota, for Itself and on Behalf of All Creditors of the Defendant Banks, Plaintiff-Respondent, v. FIRST STATE BANK OF JUD, Defendants-Appellants"
+    },
+    "3149": {
+      "db_name": "Wishek v. Hildenbrand",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 52,
+      "wl_raw": "J. H. WISHEK, Plaintiff-Respondent, v. William HILDENBRAND, Mayor, and Christ Spitzer, Christ Schock, C. J. Eisenbeisz, Reinhold Schaber, John Schmidt, L. Walker, as Members of the City Council of the City of Ashley, McIntosh County, N. D., and the City of Ashley, McIntosh County, N. D., a Municipal Corporation, Defendants-Appellants"
+    },
+    "3309": {
+      "db_name": "State v. Cook",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 53,
+      "wl_raw": "STATE v. COOK. No. 4893.a1"
+    },
+    "3340": {
+      "db_name": "Baird v. National Surety Co.",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 54,
+      "wl_raw": "BAIRD v. NATIONAL SURETY CO. OF NEW YORK (two cases). Nos. 4916, 4917"
+    },
+    "3414": {
+      "db_name": "Storing v. Stutsman",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 54,
+      "wl_raw": "STORING v. STUTSMAN (two cases). Nos. 5146, 5147"
+    },
+    "3454": {
+      "db_name": "Pfaffengut v. Export Insurance",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 55,
+      "wl_raw": "PFAFFENGUT v. EXPORT INS. CO. OF NEW YORK (two cases). Nos. 5228, 5229"
+    },
+    "3544": {
+      "db_name": "Ward County v. Baird",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 55,
+      "wl_raw": "WARD COUNTY v. BAIRD (two cases). Nos. 5330, 5331"
+    },
+    "3557": {
+      "db_name": "Mayer v. Central Light & Power Co.",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 55,
+      "wl_raw": "MAYER v. CENTRAL LIGHT & POWER CO. (two cases). Nos. 5306, 5307"
+    },
+    "3710": {
+      "db_name": "Northern Pacific Railway Co. v. State",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 57,
+      "wl_raw": "NORTHERN PACIFIC RAILWAY COMPANY, a Corporation, Plaintiff and Appellant, v. STATE of North Dakota, C. A. Fisher, as Treasurer of the State of North Dakota, and John Steen, as Auditor of the State of North Dakota, Defendants and Respondents"
+    },
+    "3712": {
+      "db_name": "Stangler v. Kanan",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 57,
+      "wl_raw": "STANGLER v. KANAN Nos. 5491, 5492"
+    },
+    "3796": {
+      "db_name": "State Ex Rel. Morris v. McFarland",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 57,
+      "wl_raw": "STATE ex rel. MORRIS, Atty. Gen., v. McFARLAND No. 5640. | Filed March 2, 1929"
+    },
+    "3969": {
+      "db_name": "State v. Flath",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 59,
+      "wl_raw": "STATE v. FLATH. Cr. 52-54"
+    },
+    "4080": {
+      "db_name": "Wagner v. Haberman",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 60,
+      "wl_raw": "WAGNER v. HABERMAN Nos. 5815, 5816"
+    },
+    "4417": {
+      "db_name": "Bingenheimer Mercantile Co. v. Horning",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 63,
+      "wl_raw": "BINGENHEIMER MERCANTILE CO. v. HORNING (two cases). Nos. 6116, 6117"
+    },
+    "4593": {
+      "db_name": "Wasson v. Brotherhood of Railroad Trainmen",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 65,
+      "wl_raw": "Howard WASSON, Plaintiff and Respondent, v. BROTHERHOOD OF RAILROAD TRAINMEN, Defendant and Appellant"
+    },
+    "8306": {
+      "db_name": "Donaldson v. City of Bismarck",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 71,
+      "wl_raw": "DONALDSON v. CITY OF BISMARCK. Nos. 6718, 6719"
+    },
+    "9811": {
+      "db_name": "McArthur v. Cass County",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 72,
+      "wl_raw": "Peter McARTHUR, Plaintiff and Respondent, v. CASS COUNTY, North Dakota, a public corporation, Defendant and Appellant"
+    },
+    "9810": {
+      "db_name": "Arnold v. Cass County",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 72,
+      "wl_raw": "Harold D. ARNOLD, Plaintiff and Respondent, v. CASS COUNTY, North Dakota, a public corporation, Defendant and Appellant"
+    },
+    "11391": {
+      "db_name": "Ward County v. Pringle",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 72,
+      "wl_raw": "WARD COUNTY, a Municipal Corporation and Political Subdivision of the State of North Dakota, Plaintiff and Respondent, v. Alex D. PRINGLE, Fred M. Brey, E. A. Donnelly, H. J. Yuly, Bertel Jacobsen, and State Bonding Fund, Defendants and Appellants"
+    },
+    "12993": {
+      "db_name": "Lyche v. Steele County",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 72,
+      "wl_raw": "LYCHE v. STEELE COUNTY No. 6859-A"
+    },
+    "6495": {
+      "db_name": "Siewert v. Norgart",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 73,
+      "wl_raw": "SIEWERT v. NORGART. No. 6912\u2013A"
+    },
+    "9676": {
+      "db_name": "Ahoe v. Massill",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 76,
+      "wl_raw": "Jacob AHOE and Ray Stinson, Copartners, Plaintiffs and Appellants, v. Ernest MASSILL, Defendant and Respondent"
+    },
+    "12033": {
+      "db_name": "Loveland v. Nieters",
+      "source": "fix-casenames-addition-2026-05-24",
+      "verdict": "KEEP_DB_ADDITION_NOISE",
+      "volume": 79,
+      "wl_raw": "LOVELAND v. NIETERS (two cases). Nos. 7279, 7280"
+    },
+    "1252": {
+      "db_name": "Feil v. Northwest German Farmers Mutual Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 28,
+      "wl_raw": "FEIL v. NORTHWEST GERMAN FARMERS\u2019 MUT. INS. CO."
+    },
+    "1323": {
+      "db_name": "French v. State Farmers' Mutual Hail Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 29,
+      "wl_raw": "FRENCH v. STATE FARMERS\u2019 MUT. HAIL INS. CO."
+    },
+    "1313": {
+      "db_name": "Van Woert v. New York Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 30,
+      "wl_raw": "VAN WOERT v. NEW YORK LIFE INS. CO."
+    },
+    "1389": {
+      "db_name": "Schmidt v. Johnstone",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 31,
+      "wl_raw": "SCHMIDT et al. v. JOHNSTONE.d1"
+    },
+    "1508": {
+      "db_name": "Ennis v. Retail Merchants Ass'n Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 33,
+      "wl_raw": "ENNIS v. RETAIL MERCHANTS\u2019 ASS\u2019N MUT. FIRE INS. CO."
+    },
+    "1573": {
+      "db_name": "Chaffee Bros. v. Powers Elevator Co.",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 33,
+      "wl_raw": "CHAFFEE BROS. CO. v. POWERS ELEVATOR CO."
+    },
+    "1622": {
+      "db_name": "Griffith v. Frankfort General Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 34,
+      "wl_raw": "GRIFFITH v. FRANKFORT GENERAL INS. CO."
+    },
+    "1597": {
+      "db_name": "Minnesota Mutual Life Insurance v. Tagus State Bank",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 34,
+      "wl_raw": "MINNESOTA MUT. LIFE INS. CO. v. TAGUS STATE BANK."
+    },
+    "1658": {
+      "db_name": "Michigan Idaho Lumber Co. v. Northern Fire & Marine Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 35,
+      "wl_raw": "MICHIGAN IDAHO LUMBER CO. v. NORTHERN FIRE & MARINE INS. CO."
+    },
+    "1685": {
+      "db_name": "Porter v. Northern Fire & Marine Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 36,
+      "wl_raw": "PORTER et al. v. NORTHERN FIRE & MARINE INS. CO."
+    },
+    "1866": {
+      "db_name": "Beauchamp v. Northwestern Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 38,
+      "wl_raw": "BEAUCHAMP v. NORTHWESTERN MUT. FIRE INS. CO."
+    },
+    "1933": {
+      "db_name": "Shellburg v. Wilton Bank",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 39,
+      "wl_raw": "SHELLBURG v. WILTON BANK OF WILTON et al."
+    },
+    "1974": {
+      "db_name": "Advance-Rumely Thresher Co. v. Geyer",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 40,
+      "wl_raw": "ADVANCE-RUMELY THRESHER CO., Inc., v. GEYER et al."
+    },
+    "1966": {
+      "db_name": "Mathias v. State Farmers' Mutual Hail Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 40,
+      "wl_raw": "MATHIAS v. STATE FARMERS\u2019 MUT. HAIL INS. CO."
+    },
+    "2028": {
+      "db_name": "Chaffee Bros. v. Powers Elevator Co.",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 41,
+      "wl_raw": "CHAFFEE BROS. CO. v. POWERS ELEVATOR CO."
+    },
+    "2059": {
+      "db_name": "National Union Fire Insurance v. Martin",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 41,
+      "wl_raw": "NATIONAL UNION FIRE INS. CO. v. MARTIN."
+    },
+    "2330": {
+      "db_name": "Blair v. Maxbass Security Bank",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 44,
+      "wl_raw": "BLAIR et al. v. MAXBASS SECURITY BANK OF MAXBASS."
+    },
+    "2348": {
+      "db_name": "Fekjar v. Iowa State Live Stock Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 44,
+      "wl_raw": "FEKJAR v. IOWA STATE LIVE STOCK INS. CO."
+    },
+    "2393": {
+      "db_name": "Horswill v. North Dakota Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 45,
+      "wl_raw": "HORSWILL v. NORTH DAKOTA MUT. FIRE INS. CO. OF NORTH DAKOTA."
+    },
+    "2399": {
+      "db_name": "Wehsner v. Kansas City Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 45,
+      "wl_raw": "WEHSNER v. KANSAS CITY LIFE INS. CO."
+    },
+    "2445": {
+      "db_name": "Gorder v. Lincoln National Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 46,
+      "wl_raw": "GORDER v. LINCOLN NAT. LIFE INS. CO."
+    },
+    "2410": {
+      "db_name": "Wanberg v. National Union Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 46,
+      "wl_raw": "WANBERG v. NATIONAL UNION FIRE INS. CO."
+    },
+    "2447": {
+      "db_name": "Carroll v. New York Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 46,
+      "wl_raw": "CARROLL v. NEW YORK LIFE INS. CO."
+    },
+    "2510": {
+      "db_name": "Klimpel v. Hayko",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 47,
+      "wl_raw": "KLIMPEL v. HAYKO.a1"
+    },
+    "2522": {
+      "db_name": "Napoleon Farmers' Elevator Co. v. Dunahey",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 47,
+      "wl_raw": "NAPOLEON FARMERS\u2019 ELEVATOR CO. OF NAPOLEON v. DUNAHEY et al."
+    },
+    "2528": {
+      "db_name": "Plotner v. Northwestern National Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 48,
+      "wl_raw": "PLOTNER v. NORTHWESTERN NAT. LIFE INS. CO."
+    },
+    "2625": {
+      "db_name": "Fleckenstein v. Provident Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 48,
+      "wl_raw": "FLECKENSTEIN v. PROVIDENT INS. CO."
+    },
+    "2596": {
+      "db_name": "Parmeter v. Williamsburgh City Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 48,
+      "wl_raw": "PARMETER v. WILLIAMSBURGH CITY FIRE INS. CO."
+    },
+    "2656": {
+      "db_name": "American Loan & Investment Co. v. Borass",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 48,
+      "wl_raw": "AMERICAN LOAN & INVESTMENT CO. v. BORASS et al. (BJERKEN, Garnishee) (two cases)."
+    },
+    "2677": {
+      "db_name": "Reinke v. Northwestern Fire & Marine Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 48,
+      "wl_raw": "REINKE et al. v. NORTHWESTERN FIRE & MARINE INS. CO. et al."
+    },
+    "2722": {
+      "db_name": "Bowen v. Montana Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "BOWEN v. MONTANA LIFE INS. CO."
+    },
+    "2744": {
+      "db_name": "McDowell v. Fireman's Fund Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "McDOWELL v. FIREMAN\u2019S FUND INS. CO."
+    },
+    "2743": {
+      "db_name": "Rohlik v. Farmers Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "ROHLIK v. FARMERS\u2019 INS. CO."
+    },
+    "2812": {
+      "db_name": "Kroksather v. Western Union Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "KROKSATHER v. WESTERN UNION LIFE INS. CO."
+    },
+    "2810": {
+      "db_name": "Carroll v. New York Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "CARROLL v. NEW YORK LIFE INS. CO."
+    },
+    "2835": {
+      "db_name": "Coughlin v. Aetna Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "COUGHLIN v. \u00c6TNA LIFE INS. CO."
+    },
+    "3039": {
+      "db_name": "Roether v. National Union Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 51,
+      "wl_raw": "ROETHER v. NATIONAL UNION FIRE INS. CO."
+    },
+    "3061": {
+      "db_name": "Anderson v. Northwestern Fire & Marine Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 51,
+      "wl_raw": "ANDERSON v. NORTHWESTERN FIRE & MARINE INS. CO."
+    },
+    "3155": {
+      "db_name": "Wilson Co. v. Knowles",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 52,
+      "wl_raw": "A. M. WILSON CO. v. KNOWLES. No. 4840. |"
+    },
+    "3209": {
+      "db_name": "Diehl v. Grant Farmers Mutual Fire & Lightning Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "DIEHL v. GRANT FARMERS\u2019 MUT. FIRE & LIGHTNING INS. CO."
+    },
+    "3234": {
+      "db_name": "Sperry v. North River Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "SPERRY v. NORTH RIVER INS. CO. No. 4985. |"
+    },
+    "3231": {
+      "db_name": "Michelsen v. North American National Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "MICHELSEN v. NORTH AMERICAN NAT. INS. CO. et al. No. 4960. |"
+    },
+    "3288": {
+      "db_name": "Booher v. Adams County Farmers Mutual Fire & Lightning Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "BOOHER v. ADAMS COUNTY FARMERS\u2019 MUT. FIRE & LIGHTNING INS. CO. No. 5076. |"
+    },
+    "3388": {
+      "db_name": "Lyness v. Kuske Realty Co.",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 54,
+      "wl_raw": "LYNESS v. L. J. KUSKE REALTY CO., et al. No. 4972. |"
+    },
+    "3593": {
+      "db_name": "Wenstrom v. Aetna Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 55,
+      "wl_raw": "WENSTROM v. AETNA LIFE INS. CO. No. 5301. |"
+    },
+    "3546": {
+      "db_name": "McPeck v. Travelers Equitable Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 55,
+      "wl_raw": "McPECK v. TRAVELERS\u2019 EQUITABLE INS. CO. No. 5296. |"
+    },
+    "3591": {
+      "db_name": "Hoover v. Northern States Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 56,
+      "wl_raw": "HOOVER v. NORTHERN STATES LIFE INS. CO. et al. No. 5379. |"
+    },
+    "3627": {
+      "db_name": "Bach v. North Dakota Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 56,
+      "wl_raw": "BACH v. NORTH DAKOTA MUTUAL FIRE INS. CO. OF NORTH DAKOTA. No. 5363. |"
+    },
+    "3765": {
+      "db_name": "Anderson v. United States Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 57,
+      "wl_raw": "ANDERSON et al. v. UNITED STATES FIRE INS. CO. No. 5540. |"
+    },
+    "3831": {
+      "db_name": "Olson v. Union Central Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 58,
+      "wl_raw": "OLSON et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5439. |"
+    },
+    "3841": {
+      "db_name": "Lindblom v. Union Central Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 58,
+      "wl_raw": "LINDBLOM et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5440. |"
+    },
+    "4064": {
+      "db_name": "Midland National Life Insurance v. Mosher",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 60,
+      "wl_raw": "MIDLAND NAT. LIFE INS. CO. v. MOSHER et al. No. 5747. |"
+    },
+    "4095": {
+      "db_name": "Johnson v. Federal Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 60,
+      "wl_raw": "JOHNSON et al. v. FEDERAL LIFE INS. CO. No. 5825. |"
+    },
+    "4131": {
+      "db_name": "Olson v. Union Central Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 60,
+      "wl_raw": "OLSON et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5857. |"
+    },
+    "4219": {
+      "db_name": "Union Central Life Insurance v. Alford",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 61,
+      "wl_raw": "UNION CENTRAL LIFE INS. CO. v. ALFORD. No. 5957. |"
+    },
+    "4231": {
+      "db_name": "Lincoln National Life Insurance v. Sampson",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 61,
+      "wl_raw": "LINCOLN NAT. LIFE INS. CO. v. SAMPSON. No. 5967. |"
+    },
+    "4238": {
+      "db_name": "Hollerman Mfg. Co. v. Standard Accident Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 61,
+      "wl_raw": "HOLLERMAN MFG. CO., Inc., v. STANDARD ACCIDENT INS. CO. No. 5973. |"
+    },
+    "4251": {
+      "db_name": "Allgood v. National Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 61,
+      "wl_raw": "ALLGOOD v. NATIONAL LIFE INS. CO. No. 6000. |"
+    },
+    "4269": {
+      "db_name": "Griffin v. Implement Dealers Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 62,
+      "wl_raw": "GRIFFIN v. IMPLEMENT DEALERS\u2019 MUT. FIRE INS. CO. No. 5956. |"
+    },
+    "4278": {
+      "db_name": "Implement Dealers Mutual Fire Insurance v. Myron",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 62,
+      "wl_raw": "IMPLEMENT DEALERS\u2019 MUT. FIRE INS. CO. v. MYRON et al. No. 6012. |"
+    },
+    "4342": {
+      "db_name": "Kreifels v. State Farm Mutual Automobile Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 62,
+      "wl_raw": "KREIFELS v. STATE FARM MUT. AUTOMOBILE INS. CO. No. 6092. |"
+    },
+    "4395": {
+      "db_name": "Dahl v. North Dakota Workmen's Compensation Bureau",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 63,
+      "wl_raw": "DAHL v. WORKMEN\u2019S COMPENSATION BUREAU OF NORTH DAKOTA. No. 6078. |"
+    },
+    "4468": {
+      "db_name": "Ruble v. Grafton National Bank",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 64,
+      "wl_raw": "RUBLE v. GRAFTON NAT. BANK OF GRAFTON. No. 6204. |"
+    },
+    "4467": {
+      "db_name": "Griffin v. Implement Dealers Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 64,
+      "wl_raw": "GRIFFIN v. IMPLEMENT DEALERS\u2019 MUT. FIRE INS. CO. No. 6160. |"
+    },
+    "4477": {
+      "db_name": "Baird v. Forbes State Bank",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 64,
+      "wl_raw": "BAIRD v. FORBES STATE BANK OF FORBES et al. No. 6231. |"
+    },
+    "4509": {
+      "db_name": "Paul v. St. Paul Fire & Marine Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 64,
+      "wl_raw": "PAUL v. ST. PAUL FIRE & MARINE INS. CO. et al. No. 6223. |"
+    },
+    "4616": {
+      "db_name": "Thomas v. New York Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 65,
+      "wl_raw": "THOMAS v. NEW YORK LIFE INS. CO. No. 6304. |"
+    },
+    "4777": {
+      "db_name": "Rott v. Provident Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 67,
+      "wl_raw": "ROTT v. PROVIDENT LIFE INS. CO. No. 6455. |"
+    },
+    "4913": {
+      "db_name": "Rott v. Provident Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 69,
+      "wl_raw": "ROTT v. PROVIDENT LIFE INS. CO. No. 6570. |"
+    },
+    "4985": {
+      "db_name": "Jewel Tea Co. v. State Tax Commissioner",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 70,
+      "wl_raw": "JEWEL TEA CO., Inc., v. STATE TAX COMMISSIONER. No. 6666. |"
+    },
+    "5049": {
+      "db_name": "Rott v. Provident Life Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 70,
+      "wl_raw": "ROTT v. PROVIDENT LIFE INS. CO. No. 6696. |"
+    },
+    "6055": {
+      "db_name": "State v. Hartford Steam Boiler Inspection & Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 71,
+      "wl_raw": "STATE v. HARTFORD STEAM BOILER INSPECTION & INSURANCE CO. No. 6701. |"
+    },
+    "17001": {
+      "db_name": "Groff v. State",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 72,
+      "wl_raw": "GROFF v. STATE (WORKMEN\u2019S COMPENSATION BUREAU). No. 6880. |"
+    },
+    "6255": {
+      "db_name": "New York Life Insurance v. Fleck",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 73,
+      "wl_raw": "NEW YORK LIFE INS. CO. v. FLECK et al. No. 6910. |"
+    },
+    "6257": {
+      "db_name": "La Plante v. Implement Dealers Mutual Fire Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 73,
+      "wl_raw": "LA PLANTE v. IMPLEMENT DEALERS MUT. FIRE INS. CO. et al. No. 6914. |"
+    },
+    "6799": {
+      "db_name": "Lincoln National Life Insurance v. Kelly",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 73,
+      "wl_raw": "LINCOLN NAT. LIFE INS. CO. v. KELLY. No. 6956. |"
+    },
+    "9405": {
+      "db_name": "Tooz v. Tooz",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 76,
+      "wl_raw": "In re TOOZ\u2019 ESTATE. TOOZ v. TOOZ et al. No. 7111. |"
+    },
+    "12039": {
+      "db_name": "Dakota National Insurance v. Commissioner of Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 79,
+      "wl_raw": "DAKOTA NAT. INS. CO. v. COMMISSIONER OF INSURANCE. No. 7210. |"
+    },
+    "12549": {
+      "db_name": "Kemmer v. Sunshine Mutual Insurance",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 79,
+      "wl_raw": "KEMMER v. SUNSHINE MUT. INS. CO. No. 7351. |"
+    },
+    "1228": {
+      "db_name": "Diocese of Fargo v. County of Cass",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 28,
+      "wl_raw": "DIOCESE OF FARGO v. CASS COUNTY."
+    },
+    "1253": {
+      "db_name": "County of Foster v. Morris",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 29,
+      "wl_raw": "FOSTER COUNTY v. MORRIS et al."
+    },
+    "1291": {
+      "db_name": "County of Sargent v. Sweetman",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 29,
+      "wl_raw": "SARGENT COUNTY v. SWEETMAN."
+    },
+    "1292": {
+      "db_name": "County of Sargent v. Cooper",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 29,
+      "wl_raw": "SARGENT COUNTY v. COOPER."
+    },
+    "1532": {
+      "db_name": "County of Stark v. Mischel",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 33,
+      "wl_raw": "STARK COUNTY v. MISCHEL et al."
+    },
+    "1683": {
+      "db_name": "Bismarck Water Supply Co. v. County of Burleigh",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 36,
+      "wl_raw": "BISMARCK WATER SUPPLY CO. v. BURLEIGH COUNTY."
+    },
+    "1863": {
+      "db_name": "Martin v. County of Burleigh",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 38,
+      "wl_raw": "MARTIN v. BURLEIGH COUNTY et al."
+    },
+    "1976": {
+      "db_name": "County of Morton v. Forester",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 40,
+      "wl_raw": "MORTON COUNTY v. FORESTER."
+    },
+    "2030": {
+      "db_name": "Bugbee v. County of Steele",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 41,
+      "wl_raw": "BUGBEE et al. v. STEELE COUNTY et al."
+    },
+    "2050": {
+      "db_name": "County of Grand Forks v. Cream of Wheat Co.",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 41,
+      "wl_raw": "GRAND FORKS COUNTY v. CREAM OF WHEAT CO."
+    },
+    "2194": {
+      "db_name": "County of Stark v. Mischel",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 42,
+      "wl_raw": "STARK COUNTY v. MISCHEL et al."
+    },
+    "2758": {
+      "db_name": "County of Burke v. Gerding",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 49,
+      "wl_raw": "BURKE COUNTY v. GERDING et al."
+    },
+    "2926": {
+      "db_name": "Stene v. County of Divide",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 50,
+      "wl_raw": "STENE v. DIVIDE COUNTY."
+    },
+    "3067": {
+      "db_name": "County of Divide v. Citizens State Bank of Ambrose",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 52,
+      "wl_raw": "DIVIDE COUNTY v. CITIZENS\u2019 STATE BANK OF AMBROSE."
+    },
+    "3151": {
+      "db_name": "Davis v. County of McLean",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 52,
+      "wl_raw": "DAVIS v. McLEAN COUNTY. No. 4737. |"
+    },
+    "3284": {
+      "db_name": "Hughes Electric Co. v. County of Burleigh",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "HUGHES ELECTRIC CO. v. BURLEIGH COUNTY. No. 5004. |"
+    },
+    "3289": {
+      "db_name": "County of Morton v. Hughes Electric Co.",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 53,
+      "wl_raw": "MORTON COUNTY v. HUGHES ELECTRIC CO. No. 5025. |"
+    },
+    "3445": {
+      "db_name": "County of Divide v. Baird",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 55,
+      "wl_raw": "DIVIDE COUNTY v. BAIRD et al. No. 5063. |"
+    },
+    "3794": {
+      "db_name": "Cary v. County of Morton",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 57,
+      "wl_raw": "CARY v. MORTON COUNTY et al. No. 5607. |"
+    },
+    "3942": {
+      "db_name": "Baird v. County of Divide",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 58,
+      "wl_raw": "BAIRD v. DIVIDE COUNTY. No. 5672. |"
+    },
+    "4105": {
+      "db_name": "Drew v. County of Bowman",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 60,
+      "wl_raw": "DREW v. BOWMAN COUNTY et al. No. 5846. |"
+    },
+    "4608": {
+      "db_name": "Griggs County v. County of Cass",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 65,
+      "wl_raw": "GRIGGS COUNTY v. CASS COUNTY. No. 6290. |"
+    },
+    "4933": {
+      "db_name": "County of Hettinger v. Trousdale",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 69,
+      "wl_raw": "HETTINGER COUNTY v. TROUSDALE et al. No. 6605. |"
+    },
+    "11389": {
+      "db_name": "County of Hettinger v. Trousdale",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 72,
+      "wl_raw": "HETTINGER COUNTY v. TROUSDALE No. 6605. |"
+    },
+    "9299": {
+      "db_name": "Northwestern Sheet & Iron Works v. County of Sioux",
+      "source": "keep-equiv-2026-05-24",
+      "verdict": "KEEP_DB_EQUIV",
+      "volume": 76,
+      "wl_raw": "NORTHWESTERN SHEET & IRON WORKS v. SIOUX COUNTY. No. 7125. |"
     }
   },
   "schema_version": 1

@@ -1,0 +1,484 @@
+oid	vol	kind	decision	conf	pair	db	wl	proposed	evid
+289	16	SWAP	USE_WL	HIGH	0.95	State ex rel. Madderson v. Nohle	STATE ex rel. FRISH v. NOHLE et al.	State ex rel. Frish v. Nohle	madderson[doc0/cl2] vs frish[doc4/cl2]
+1037	24	ADDITION	USE_WL	MED	0.72	Squire v. County Court	SQUIRE v. WARD COUNTY COURT.	Squire v. Ward County Court	
+1042	25	SWAP*MULTI	DEFER	LOW	0.98	Morris v. Minneapolis, St. Paul, & Sault Ste. Marie R. Co.	MORRIS v. MINNEAPOLIS, ST. P. & S. S. M. RY. CO.		sault[doc1/cl2] vs south[doc0/cl0] ; sault[doc1/cl2] vs ry[doc8/cl7] ; sainte[doc0/cl0] vs south[doc0/cl0] ; sainte[doc0/cl0] vs ry[doc8/cl7] ; marie[doc1/cl2] vs south[doc0/cl0] ; marie[doc1/cl2] vs ry[doc8/cl7]
+1071	25	ADDITION	USE_WL	MED	0.99	State ex rel. Birdzell v. Jorgenson	STATE ex rel. BIRDZELL et al., Tax Commission, v. JORGENSON, State Auditor.	State ex rel. Birdzell, Tax Commission, v. Jorgenson	
+1092	26	ADDITION	USE_WL	MED	0.98	State ex rel. Braatelien v. Drakeley	STATE ex rel. BRAATELIEN, State’s Atty., v. DRAKELEY et al., County Com’rs.	State ex rel. Braatelien, State's Atty., v. Drakeley, County Com'rs	
+1143	26	SWAP	USE_WL	HIGH	0.89	City of Lamoure v. Lasell	CITY OF LA MOURE et al. v. LASELL et al.	City of La Moure v. Lasell	lamoure[doc0/cl2] vs la[doc28/cl25] ; lamoure[doc0/cl2] vs moure[doc28/cl25]
+1151	27	SPELLING	USE_WL	HIGH	0.96	Gile v. Interstate Motor Car Co.	GILE v. INTER-STATE MOTOR CAR CO.	Gile v. Inter-State Motor Car Co.	interstate[doc0/cl2] vs inter-state[doc20/cl17]
+1144	27	SWAP	USE_WL	HIGH	0.96	Malin v. County of Lamoure	MALIN et al. v. LA MOURE COUNTY (STATE TAX COMMISSION, Intervener).	Malin v. La Moure County (State Tax Commission, Intervener)	lamoure[doc0/cl2] vs la[doc6/cl3] ; lamoure[doc0/cl2] vs moure[doc6/cl3]
+1173	27	ADDITION	USE_WL	MED	0.97	Henderson v. Gray	In re GRAY’S ESTATE. HENDERSON et al. v. GRAY et al.	In re Gray's Estate. Henderson v. Gray	
+1228	28	EQUIV	DEFER		0.95	Diocese of Fargo v. County of Cass	DIOCESE OF FARGO v. CASS COUNTY.		
+1252	28	EQUIV	DEFER		0.86	Feil v. Northwest German Farmers Mutual Insurance	FEIL v. NORTHWEST GERMAN FARMERS’ MUT. INS. CO.		
+1253	29	EQUIV	DEFER		0.95	County of Foster v. Morris	FOSTER COUNTY v. MORRIS et al.		
+1286	29	SWAP	USE_WL	MED	0.90	Bartels Northern Oil Co. v. Jackman	BARTLES NORTHERN OIL CO. v. JACKMAN, State Inspector of Oils.	Bartles Northern Oil Co. v. Jackman, State Inspector of Oils	bartels[doc1/cl3] vs bartles[doc2/cl0] ; bartels[doc1/cl3] vs state[doc79/cl71] ; bartels[doc1/cl3] vs inspector[doc24/cl21] ; bartels[doc1/cl3] vs oils[doc24/cl23]
+1291	29	EQUIV	DEFER		0.80	County of Sargent v. Sweetman	SARGENT COUNTY v. SWEETMAN.		
+1292	29	EQUIV	DEFER		0.89	County of Sargent v. Cooper	SARGENT COUNTY v. COOPER.		
+1323	29	EQUIV	DEFER		0.98	French v. State Farmers' Mutual Hail Insurance	FRENCH v. STATE FARMERS’ MUT. HAIL INS. CO.		
+1313	30	EQUIV	DEFER		0.94	Van Woert v. New York Life Insurance	VAN WOERT v. NEW YORK LIFE INS. CO.		
+1333	30	SWAP*MULTI	DEFER	HIGH	0.96	Ellison v. City of La Moure	ELLISON v. CITY OF LAMOURE et al.		la[doc7/cl8] vs lamoure[doc1/cl0] ; moure[doc7/cl8] vs lamoure[doc1/cl0]
+1368	30	ADDITION	USE_WL	MED	0.95	Dahlund v. Lorentzen	DAHLUND v. LORENTZEN et al. December Term, 1914.	Dahlund v. Lorentzen December Term, 1914	
+1375	30	SWAP	USE_WL	HIGH	0.88	State v. LaFlame	STATE v. LA FLAME.	State v. La Flame	laflame[doc0/cl2] vs la[doc5/cl3] ; laflame[doc0/cl2] vs flame[doc5/cl3]
+1372	30	ADDITION	USE_WL	MED	0.92	State ex rel. Ahern v. Anders	STATE ex rel. AHERN v. ANDERS et al., County Com’rs.	State ex rel. Ahern v. Anders, County Com'rs	
+1389	31	EQUIV	DEFER		0.96	Schmidt v. Johnstone	SCHMIDT et al. v. JOHNSTONE.d1		
+1391	31	ADDITION	USE_WL	MED	0.82	Merchants State Bank v. County of McHenry	MERCHANTS’ STATE BANK OF VELVA v. McHENRY COUNTY et al.	Merchants' State Bank of Velva v. McHenry County	
+1440	31	ADDITION	USE_WL	MED	0.88	State ex rel. Packard v. Jorgenson	STATE ex rel. PACKARD, State Tax Com’r, v. JORGENSON, State Auditor.	State ex rel. Packard, State Tax Com'r, v. Jorgenson	
+1479	32	ADDITION	USE_WL	MED	0.93	Johnson v. Kelly	JOHNSON v. KELLY. September Term, 1915.	Johnson v. Kelly. September Term, 1915	
+1458	32	DB_DROP	DEFER		0.97	Felton v. Midland Continental Railroad	FELTON v. MIDLAND CONTINENTAL R. R.		
+1518	32	ADDITION	USE_WL	MED	0.98	Anderson v. International School District No. 5	ANDERSON v. INTERNATIONAL SCHOOL DIST. NO. 5, PORTAL TP., BURKE COUNTY, et al.	Anderson v. International School Dist, Portal Tp., Burke County	
+1518	32	ADDITION	USE_WL	MED	0.98	Anderson v. International School District No. 5	ANDERSON v. INTERNATIONAL SCHOOL DIST. NO. 5, PORTAL TP., BURKE COUNTY, et al.	Anderson v. International School Dist, Portal Tp., Burke County	
+1502	32	ADDITION	USE_WL	MED	0.97	Murray Bros. v. Buttles	MURRAY BROS. & WARD LAND CO. v. BUTTLES et al.	Murray Bros. & Ward Land Co. v. Buttles	
+1508	33	EQUIV	DEFER		0.84	Ennis v. Retail Merchants Ass'n Mutual Fire Insurance	ENNIS v. RETAIL MERCHANTS’ ASS’N MUT. FIRE INS. CO.		
+1522	33	SWAP	USE_WL	HIGH	0.96	City of Fango v. Gearey	CITY OF FARGO v. GEAREY et al., Park Com’rs.	City of Fargo v. Gearey, Park Com'rs	fango[doc0/cl2] vs fargo[doc9/cl7]
+1520	33	ADDITION	USE_WL	MED	0.97	Barkley v. Quick	BARKLEY v. QUICK et al. December, 1915.	Barkley v. Quick December, 1915	
+1544	33	DB_DROP	DEFER		0.92	School District Number 94 v. Special School District Number 33	SCHOOL DIST. NO. 94 v. SPECIAL SCHOOL DIST. NO. 33.		
+1547	33	COMPLEX	DEFER		0.91	Pathman v. Williams	PATHMAN v. WILLIAMS. SAME v. WILLIAMS et al.		
+1532	33	EQUIV	DEFER		0.97	County of Stark v. Mischel	STARK COUNTY v. MISCHEL et al.		
+1573	33	EQUIV	DEFER		0.94	Chaffee Bros. v. Powers Elevator Co.	CHAFFEE BROS. CO. v. POWERS ELEVATOR CO.		
+1632	34	SWAP	DEFER	LOW	0.97	State ex rel. Marshall v. Blaisdell	STATE ex rel. MILLER, Atty. Gen., et al. v. BLAISDELL, State Secretary.		marshall[doc1/cl3] vs miller[doc2/cl1] ; marshall[doc1/cl3] vs atty[doc1/cl0] ; marshall[doc1/cl3] vs gen[doc1/cl0] ; marshall[doc1/cl3] vs state[doc24/cl24] ; marshall[doc1/cl3] vs secretary[doc6/cl5]
+1616	34	ADDITION	USE_WL	MED	0.97	Kretchmer v. School Board of District No. 12	KRETCHMER et al. v. SCHOOL BOARD OF DIST. NO. 12, BARNES COUNTY, et al.	Kretchmer v. School Board of Dist, Barnes County	
+1616	34	ADDITION	USE_WL	MED	0.97	Kretchmer v. School Board of District No. 12	KRETCHMER et al. v. SCHOOL BOARD OF DIST. NO. 12, BARNES COUNTY, et al.	Kretchmer v. School Board of Dist, Barnes County	
+1620	34	DB_DROP	DEFER		0.96	Hein v. Great Northern Railroad	HEIN v. GREAT NORTHERN R. CO.		
+1631	34	ADDITION	USE_WL	MED	0.96	State ex rel. Wallace v. Jorgenson	STATE ex rel. WALLACE et al., State Tax Commission, v. JORGENSON, State Auditor.	State ex rel. Wallace, State Tax Commission, v. Jorgenson	
+1622	34	EQUIV	DEFER		0.96	Griffith v. Frankfort General Insurance	GRIFFITH v. FRANKFORT GENERAL INS. CO.		
+1597	34	EQUIV	DEFER		0.96	Minnesota Mutual Life Insurance v. Tagus State Bank	MINNESOTA MUT. LIFE INS. CO. v. TAGUS STATE BANK.		
+1658	35	EQUIV	DEFER		0.93	Michigan Idaho Lumber Co. v. Northern Fire & Marine Insurance	MICHIGAN IDAHO LUMBER CO. v. NORTHERN FIRE & MARINE INS. CO.		
+1698	36	ADDITION	USE_WL	MED	0.94	Kenmare School District No. 28 v. Cole	KENMARE SCHOOL DIST. NO. 28, WARD COUNTY v. COLE et al.	Kenmare School Dist, Ward County v. Cole	
+1683	36	EQUIV	DEFER		0.95	Bismarck Water Supply Co. v. County of Burleigh	BISMARCK WATER SUPPLY CO. v. BURLEIGH COUNTY.		
+1685	36	EQUIV	DEFER		0.98	Porter v. Northern Fire & Marine Insurance	PORTER et al. v. NORTHERN FIRE & MARINE INS. CO.		
+1749	36	SWAP	DEFER	LOW	0.89	Horton v. Wright, Barrett, & Stillwell Co.	HORTON v. WRIGHT, BARRETT & STILL WELL CO.		stillwell[doc2/cl3] vs still[doc2/cl1] ; stillwell[doc2/cl3] vs well[doc5/cl4]
+1770	36	SWAP	KEEP_DB	HIGH	0.96	Faxon v. Civil Township of Lallie	FAXON v. LALLIE CIVIL TP.	Faxon v. Civil Township of Lallie	township[doc11/cl12] vs tp[doc1/cl0]
+1777	37	ADDITION	USE_WL	MED	0.95	Ruddick v. Buchanan	RUDDICK v. BUCHANAN et al. June 9. 1917.	Ruddick v. Buchanan June 9. 1917	
+1754	37	ADDITION	USE_WL	MED	0.96	State ex rel. McCurdy v. Bennett	STATE ex rel. McCURDY, State’s Atty., v. BENNETT et al.	State ex rel. McCurdy, State's Atty., v. Bennett	
+1795	37	SWAP	USE_WL	MED	0.80	Winston, Harper, Fisher Co. v. Price	WINSTON, HARPHER, FISHER CO. v. PRICE, Sheriff of Kidder County.	Winston, Harpher, Fisher Co. v. Price, Sheriff of Kidder County	harper[doc0/cl2] vs harpher[doc2/cl0]
+1829	38	SWAP	KEEP_DB	HIGH	0.93	Great Northern Railway Co. v. County of Grand Forks	GREAT NORTHERN RY. CO. et al. v. GRAND FORKS COUNTY et al.	Great Northern Railway Co. v. County of Grand Forks	railway[doc5/cl6] vs ry[doc1/cl0]
+1825	38	ADDITION	USE_WL	MED	0.99	Black v. North Dakota State Fair Ass'n	BLACK v. NORTH DAKOTA STATE FAIR ASS’N FOR GRAND FORKS.	Black v. North Dakota State Fair Ass'n for Grand Forks	
+1825	38	ADDITION	USE_WL	MED	0.99	Black v. North Dakota State Fair Ass'n	BLACK v. NORTH DAKOTA STATE FAIR ASS’N FOR GRAND FORKS.	Black v. North Dakota State Fair Ass'n for Grand Forks	
+1847	38	SWAP	USE_WL	HIGH	0.97	State ex rel. Larger v. Scow	STATE ex rel. LANGER, Atty. Gen., v. SCOW et al.	State ex rel. Langer, Atty. Gen., v. Scow	larger[doc0/cl2] vs langer[doc4/cl2]
+1863	38	EQUIV	DEFER		0.86	Martin v. County of Burleigh	MARTIN v. BURLEIGH COUNTY et al.		
+1865	38	ADDITION	USE_WL	MED	0.98	Beauchamp v. Retail Merchants Ass'n	BEAUCHAMP v. RETAIL MERCHANTS’ ASS’N MUT. FIRE INS. CO.	Beauchamp v. Retail Merchants' Ass'n Mut. Fire Ins. Co.	
+1866	38	EQUIV	DEFER		0.54	Beauchamp v. Northwestern Mutual Fire Insurance	BEAUCHAMP v. NORTHWESTERN MUT. FIRE INS. CO.		
+1883	38	ADDITION	USE_WL	MED	0.91	International Harvester Co. of America v. State Bank	INTERNATIONAL HARVESTER CO. OF AMERICA v. STATE BANK OF UPHAM.	International Harvester Co. of America v. State Bank of Upham	
+1902	39	SWAP	DEFER	MED	0.99	Reichert v. Northern Pacific Railway Co.	REICHERT et al. v. NORTHERN PAC. RY. CO. September 25, 1917. | On Rehearing, March 1, 1918.		railway[doc29/cl30] vs ry[doc30/cl29] ; railway[doc29/cl30] vs september[doc1/cl0] ; railway[doc29/cl30] vs on[doc112/cl111] ; railway[doc29/cl30] vs rehearing[doc3/cl2] ; railway[doc29/cl30] vs march[doc1/cl0]
+1909	39	SWAP*MULTI	DEFER	LOW	0.98	McCue v. Equity Co-Operative Publishing Co.	McCUE v. EQUITY CO-OP. PUB. CO. OF FARGO et al.		co-operative[doc3/cl4] vs co-op[doc1/cl0] ; co-operative[doc3/cl4] vs pub[doc3/cl2] ; co-operative[doc3/cl4] vs fargo[doc5/cl4] ; publishing[doc5/cl6] vs co-op[doc1/cl0] ; publishing[doc5/cl6] vs pub[doc3/cl2] ; publishing[doc5/cl6] vs fargo[doc5/cl4]
+1897	39	ADDITION	USE_WL	MED	0.96	Kahoutek v. Kahoutek	In re KAHOUTEK’S ESTATE. KAHOUTEK v. KAHOUTEK et al.	In re Kahoutek's Estate. Kahoutek v. Kahoutek	
+1933	39	EQUIV	DEFER		0.94	Shellburg v. Wilton Bank	SHELLBURG v. WILTON BANK OF WILTON et al.		
+1974	40	EQUIV	DEFER		0.98	Advance-Rumely Thresher Co. v. Geyer	ADVANCE-RUMELY THRESHER CO., Inc., v. GEYER et al.		
+1966	40	EQUIV	DEFER		0.98	Mathias v. State Farmers' Mutual Hail Insurance	MATHIAS v. STATE FARMERS’ MUT. HAIL INS. CO.		
+1976	40	EQUIV	DEFER		0.96	County of Morton v. Forester	MORTON COUNTY v. FORESTER.		
+1981	40	ADDITION	USE_WL	MED	0.99	State ex rel. City of Fargo v. Wetz	STATE ex rel. CITY OF FARGO v. WETZ, City Assessor, et al.	State ex rel. City of Fargo v. Wetz, City Assessor	
+1980	40	ADDITION	USE_WL	MED	0.99	Cofman v. Ousterhous	COFMAN v. OUSTERHOUS, State Dairy Com’r, et al.	Cofman v. Ousterhous, State Dairy Com'r	
+1991	40	COMPLEX	DEFER		0.92	Kennedy v. City of Fargo	KENNEDY et al. v. CITY OF FARGO et al. CITY OF FARGO v. KENNEDY et al.		
+1986	40	SWAP	DEFER	MED	0.95	Kleppe v. Odin Township	KLEPPE v. ODIN TP., McHENRY COUNTY, et al.		township[doc15/cl16] vs tp[doc1/cl0] ; township[doc15/cl16] vs mchenry[doc14/cl12] ; township[doc15/cl16] vs county[doc35/cl33]
+2028	41	EQUIV	DEFER		0.93	Chaffee Bros. v. Powers Elevator Co.	CHAFFEE BROS. CO. v. POWERS ELEVATOR CO.		
+2030	41	EQUIV	DEFER		0.96	Bugbee v. County of Steele	BUGBEE et al. v. STEELE COUNTY et al.		
+2033	41	ADDITION	USE_WL	MED	0.92	County of Stutsman v. Wright	STUTSMAN COUNTY v. WRIGHT, Sheriff.	Stutsman County v. Wright	
+2050	41	EQUIV	DEFER		0.97	County of Grand Forks v. Cream of Wheat Co.	GRAND FORKS COUNTY v. CREAM OF WHEAT CO.		
+2038	41	ADDITION	USE_WL	MED	0.96	Park, Grant, & Morris v. Nordale	PARK, GRANT & MORRIS v. NORDALE GEORGE PIRIE CO., Garnishee.	Park, Grant & Morris v. Nordale George Pirie Co., Garnishee	
+2059	41	EQUIV	DEFER		0.82	National Union Fire Insurance v. Martin	NATIONAL UNION FIRE INS. CO. v. MARTIN.		
+2092	41	ADDITION	USE_WL	MED	0.98	Wallace v. Hughes Electric Co.	WALLACE et al., State Tax Commission, v. HUGHES ELECTRIC CO. et al.	Wallace, State Tax Commission, v. Hughes Electric Co.	
+2081	41	SWAP	DEFER	MED	0.96	Aandahl v. Great Northern Railway Co.	AANDAHL et al., Board of Railroad Com’rs, v. GREAT NORTHERN RY. CO.		railway[doc11/cl12] vs board[doc12/cl11] ; railway[doc11/cl12] vs railroad[doc32/cl31] ; railway[doc11/cl12] vs com[doc1/cl0] ; railway[doc11/cl12] vs rs[doc1/cl0] ; railway[doc11/cl12] vs ry[doc14/cl13]
+2129	42	COMPLEX	DEFER		0.86	Weber v. Bader	WEBER et al. v. BADER. SAME v. KLAUDT.		
+2194	42	EQUIV	DEFER		0.98	County of Stark v. Mischel	STARK COUNTY v. MISCHEL et al.		
+2174	42	ADDITION	USE_WL	MED	0.91	Merchants National Bank v. City of Devils Lake	MERCHANTS’ NAT. BANK OF FARGO v. CITY OF DEVILS LAKE.	Merchants' Nat. Bank of Fargo v. City of Devils Lake	
+2177	42	DB_DROP	DEFER		0.89	Ingmundson v. Midland Continental Railroad	INGMUNDSON v. MIDLAND CONTINENTAL R. R.		
+2186	42	ADDITION	USE_WL	MED	0.79	Beyer v. North American Coal Co.	BEYER v. NORTH AMERICAN COAL & MINING CO. et al.	Beyer v. North American Coal & Mining Co.	
+2158	43	SPELLING*MULTI	DEFER	MED	0.89	Hougo v. Huso	HOUGE v. HUSE.		hougo[doc0/cl2] vs houge[doc6/cl4] ; huso[doc0/cl2] vs huse[doc2/cl0]
+2147	43	SWAP	USE_WL	MED	0.96	V.D. Foote v. L.C. Smith Brothers Typewriter Co.	FOOTE v. L. C. SMITH & BROS. TYPEWRITER CO.	Foote v. L. C. Smith & Bros. Typewriter Co.	brothers[doc0/cl2] vs bros[doc2/cl0]
+2220	43	ADDITION	USE_WL	MED	0.85	Bartelson v. International School District No. 5	BARTELSON v. INTERNATIONAL SCHOOL DIST. NO. 5, PORTAL TP.	Bartelson v. International School Dist, Portal Tp.	
+2234	43	ADDITION	USE_WL	MED	0.98	Des Moines Mutual Hail & Cyclone Insurance v. Steen	DES MOINES MUT. HAIL & CYCLONE INS. ASS’N v. STEEN et al.	Des Moines Mut. Hail & Cyclone Ins. Ass'n v. Steen	
+2246	43	SWAP*MULTI	DEFER	LOW	0.90	Moran v. Grand Lodge of the Ancient Order of United Workmen	MORAN v. GRAND LODGE, A. O. U. W., OF NORTH DAKOTA.		ancient[doc1/cl2] vs west[doc0/cl0] ; ancient[doc1/cl2] vs north[doc3/cl2] ; ancient[doc1/cl2] vs dakota[doc3/cl2] ; order[doc3/cl4] vs west[doc0/cl0] ; order[doc3/cl4] vs north[doc3/cl2] ; order[doc3/cl4] vs dakota[doc3/cl2] ; united[doc1/cl2] vs west[doc0/cl0] ; united[doc1/cl2] vs north[doc3/cl2] ; united[doc1/cl2] vs dakota[doc3/cl2] ; workmen[doc1/cl2] vs west[doc0/cl0] ; workmen[doc1/cl2] vs north[doc3/cl2] ; workmen[doc1/cl2] vs dakota[doc3/cl2]
+2279	43	COMPLEX	DEFER		0.96	Priewe v. Priewe	PRIEWE v. PRIEWE. PRIEWE et al. v. MERGNER.		
+2330	44	EQUIV	DEFER		0.96	Blair v. Maxbass Security Bank	BLAIR et al. v. MAXBASS SECURITY BANK OF MAXBASS.		
+2264	44	SWAP	KEEP_DB	HIGH	0.94	Union National Bank of Minot v. Western Building Co.	UNION NAT. BANK OF MINOT v. WESTERN BLDG. CO. et al.	Union National Bank of Minot v. Western Building Co.	building[doc20/cl21] vs bldg[doc1/cl0]
+2281	44	ADDITION	USE_WL	MED	0.94	Palmer v. Donovan	PALMER v. DONOVAN, Constable.	Palmer v. Donovan, Constable	
+2348	44	EQUIV	DEFER		0.93	Fekjar v. Iowa State Live Stock Insurance	FEKJAR v. IOWA STATE LIVE STOCK INS. CO.		
+2300	44	ADDITION	USE_WL	MED	0.89	Gussner v. Miller	GUSSNER v. R. MILLER & H. SHUPER.	Gussner v. R. Miller & H. Shuper	
+2333	45	ADDITION	USE_WL	MED	0.91	Farwell, Ozmun, Kirk, & Co v. Wallace	FARWELL, OZMUN, KIRK & CO. et al. v. WALLACE, State Tax Com’r, et al.	Farwell, Ozmun, Kirk & Co. v. Wallace, State Tax Com'r	
+2334	45	ADDITION	USE_WL	MED	0.68	State ex rel. Farwell, Ozmun, Kirk, & Co. v. Wallace	STATE ex rel. FARWELL, OZMUN, KIRK & CO. et al. v. WALLACE, State Tax Com’r, et al.	State ex rel. Farwell, Ozmun, Kirk & Co. v. Wallace, State Tax Com'r	
+2345	45	ADDITION	USE_WL	MED	0.99	Capital Trust & Savings Bank v. Wallace	CAPITAL TRUST & SAVINGS BANK et al. v. WALLACE, State Tax Com’r, et al.	Capital Trust & Savings Bank v. Wallace, State Tax Com'r	
+2346	45	ADDITION	USE_WL	MED	0.72	State ex rel. Capital Trust & Savings Bank v. Wallace	STATE ex rel. CAPITAL TRUST & SAVINGS BANK et al. v. WALLACE, State Tax Com’r, et al.	State ex rel. Capital Trust & Savings Bank v. Wallace, State Tax Com'r	
+2336	45	SWAP	KEEP_DB	HIGH	0.97	Honstain Bros. v. Linden Investment Co.	HONSTAIN BROS. CO. v. LINDEN INV. CO. et al.	Honstain Bros. v. Linden Investment Co.	investment[doc28/cl29] vs inv[doc1/cl0]
+2383	45	COMPLEX	DEFER		0.96	Anderson v. Westchester Fire Insurance	ANDERSON v. WESTCHESTER FIRE INS. CO. STROM v. SAME.		
+2366	45	SWAP*MULTI	DEFER	HIGH	0.96	Taylor v. Grand Lodge of the Ancient Order of United Workmen	TAYLOR v. GRAND LODGE A. O. U. W. OF NORTH DAKOTA et al.		ancient[doc2/cl3] vs west[doc0/cl0] ; ancient[doc2/cl3] vs north[doc4/cl3] ; ancient[doc2/cl3] vs dakota[doc4/cl3] ; order[doc13/cl13] vs west[doc0/cl0] ; order[doc13/cl13] vs north[doc4/cl3] ; order[doc13/cl13] vs dakota[doc4/cl3] ; united[doc2/cl3] vs west[doc0/cl0] ; united[doc2/cl3] vs north[doc4/cl3] ; united[doc2/cl3] vs dakota[doc4/cl3] ; workmen[doc2/cl3] vs west[doc0/cl0] ; workmen[doc2/cl3] vs north[doc4/cl3] ; workmen[doc2/cl3] vs dakota[doc4/cl3]
+2390	45	ADDITION	USE_WL	MED	0.82	State ex rel. Mayo v. Thursby-Butte Special School District No. 37	STATE ex rel. MAYO et al. v. THURSBY-BUTTE SPECIAL SCHOOL DIST. NO. 37 IN McHENRY COUNTY et al.	State ex rel. Mayo v. Thursby-Butte Special School Dist in McHenry County	
+2393	45	EQUIV	DEFER		0.97	Horswill v. North Dakota Mutual Fire Insurance	HORSWILL v. NORTH DAKOTA MUT. FIRE INS. CO. OF NORTH DAKOTA.		
+2399	45	EQUIV	DEFER		0.96	Wehsner v. Kansas City Life Insurance	WEHSNER v. KANSAS CITY LIFE INS. CO.		
+2406	46	ADDITION	USE_WL	MED	0.91	Shirley v. Coal Field School District No. 16	SHIRLEY et al. v. COAL FIELD SCHOOL DIST. NO. 16, DIVIDE COUNTY, et al.	Shirley v. Coal Field School Dist, Divide County	
+2409	46	ADDITION	USE_WL	MED	0.93	First National Bank of Glasgow v. Carroll	FIRST NAT. BANK OF GLASGOW, MONT., v. CARROLL.	First Nat. Bank of Glasgow, Mont., v. Carroll	
+2445	46	EQUIV	DEFER		0.96	Gorder v. Lincoln National Life Insurance	GORDER v. LINCOLN NAT. LIFE INS. CO.		
+2405	46	SWAP*MULTI	DEFER	LOW	0.97	State ex rel. Lemke v. Chicago & Northwestern Railway Co.	STATE ex rel. WM. LEMKE, Asst. Atty. Gen., v. CHICAGO & N. W. RY. CO. et al.		northwestern[doc1/cl2] vs wm[doc3/cl3] ; northwestern[doc1/cl2] vs asst[doc3/cl2] ; northwestern[doc1/cl2] vs atty[doc4/cl3] ; northwestern[doc1/cl2] vs gen[doc4/cl3] ; northwestern[doc1/cl2] vs north[doc18/cl18] ; northwestern[doc1/cl2] vs west[doc0/cl0] ; northwestern[doc1/cl2] vs ry[doc9/cl8] ; railway[doc9/cl15] vs wm[doc3/cl3] ; railway[doc9/cl15] vs asst[doc3/cl2] ; railway[doc9/cl15] vs atty[doc4/cl3] ; railway[doc9/cl15] vs gen[doc4/cl3] ; railway[doc9/cl15] vs north[doc18/cl18] ; railway[doc9/cl15] vs west[doc0/cl0] ; railway[doc9/cl15] vs ry[doc9/cl8]
+2410	46	EQUIV	DEFER		0.96	Wanberg v. National Union Fire Insurance	WANBERG v. NATIONAL UNION FIRE INS. CO.		
+2439	46	ADDITION	USE_WL	MED	0.94	Christenson v. Grandy	CHRISTENSON v. GRANDY et al. Oct. 20. 1920. | Rehearing Denied Nov. 9, 1920.	Christenson v. Grandy Oct. 20. 1920. |	
+2447	46	EQUIV	DEFER		0.92	Carroll v. New York Life Insurance	CARROLL v. NEW YORK LIFE INS. CO.		
+2507	47	SWAP	DEFER	MED	0.89	Huffman v. Board of Supervisors	HUFFMAN v. BOARD OF SUP’RS OF WEST BAY TP., BENSON COUNTY.		supervisors[doc8/cl9] vs sup[doc1/cl0] ; supervisors[doc8/cl9] vs rs[doc1/cl0] ; supervisors[doc8/cl9] vs west[doc9/cl8] ; supervisors[doc8/cl9] vs bay[doc3/cl2] ; supervisors[doc8/cl9] vs tp[doc2/cl1] ; supervisors[doc8/cl9] vs benson[doc5/cl3] ; supervisors[doc8/cl9] vs county[doc7/cl5]
+2525	47	SWAP	USE_WL	HIGH	0.96	Beyer v. Investor's Syndicate	BEYER v. INVESTORS’ SYNDICATE et al.	Beyer v. Investors' Syndicate	investor[doc0/cl2] vs investors[doc16/cl14]
+2510	47	EQUIV	DEFER		0.91	Klimpel v. Hayko	KLIMPEL v. HAYKO.a1		
+2522	47	EQUIV	DEFER		0.93	Napoleon Farmers' Elevator Co. v. Dunahey	NAPOLEON FARMERS’ ELEVATOR CO. OF NAPOLEON v. DUNAHEY et al.		
+2497	48	ADDITION	USE_WL	MED	0.96	Daniels v. Payne	DANIELS v. PAYNE, Agent.	Daniels v. Payne, Agent	
+2498	48	ADDITION	USE_WL	MED	0.92	Bossen v. Olsness	BOSSEN v. OLSNESS, Ins. Com’r.	Bossen v. Olsness, Ins. Com'r	
+2570	48	SWAP*MULTI	DEFER	MED	0.94	Olson v. Grand Lodge of Ancient Order of United Workman	OLSON v. GRAND LODGE, A. O. U. W. OF NORTH DAKOTA.		ancient[doc1/cl2] vs west[doc0/cl0] ; ancient[doc1/cl2] vs north[doc3/cl2] ; ancient[doc1/cl2] vs dakota[doc3/cl2] ; order[doc21/cl20] vs west[doc0/cl0] ; order[doc21/cl20] vs north[doc3/cl2] ; order[doc21/cl20] vs dakota[doc3/cl2] ; united[doc9/cl9] vs west[doc0/cl0] ; united[doc9/cl9] vs north[doc3/cl2] ; united[doc9/cl9] vs dakota[doc3/cl2] ; workman[doc2/cl4] vs west[doc0/cl0] ; workman[doc2/cl4] vs north[doc3/cl2] ; workman[doc2/cl4] vs dakota[doc3/cl2]
+2528	48	EQUIV	DEFER		0.97	Plotner v. Northwestern National Life Insurance	PLOTNER v. NORTHWESTERN NAT. LIFE INS. CO.		
+2576	48	SWAP*MULTI	DEFER	HIGH	0.96	Edgedey Co-operative Grain Co. v. Spitzer	EDGELEY CO-OP. GRAIN CO. v. SPITZER.		edgedey[doc0/cl2] vs edgeley[doc5/cl3] ; co-operative[doc2/cl3] vs co-op[doc1/cl0]
+2571	48	ADDITION	USE_WL	MED	0.96	Booke & Olson v. Payne	BOOKE & OLSON v. PAYNE, Agent.	Booke & Olson v. Payne, Agent	
+2625	48	EQUIV	DEFER		0.98	Fleckenstein v. Provident Insurance	FLECKENSTEIN v. PROVIDENT INS. CO.		
+2596	48	EQUIV	DEFER		0.93	Parmeter v. Williamsburgh City Fire Insurance	PARMETER v. WILLIAMSBURGH CITY FIRE INS. CO.		
+2612	48	ADDITION	USE_WL	MED	0.96	State v. McCray	STATE ex rel. HERIGSTAD, State’s Atty., v. McCRAY et al.	State ex rel. Herigstad, State's Atty., v. McCray	
+2629	48	ADDITION	USE_WL	MED	0.93	Nat'l Petroleum Mutual Fire Ins. v. Payne	NATIONAL PETROLEUM MUTUAL FIRE INS. CO. et al. v. PAYNE, Director General, et al.	National Petroleum Mutual Fire Ins. Co. v. Payne, Director General	
+2640	48	ADDITION	USE_WL	MED	0.86	Dougherty v. Davis	DOUGHERTY v. DAVIS, Special Agent.	Dougherty v. Davis, Special Agent	
+2661	48	SWAP	USE_WL	MED	0.84	Lilly v. Haynes Cooperative Coal Mining Co.	LILLY v. HAYNES CO-OP. COAL MINING CO.	Lilly v. Haynes Co-Op. Coal Mining Co.	cooperative[doc0/cl2] vs co-op[doc1/cl0]
+2649	48	SWAP	USE_WL	MED	0.90	LaPoint v. Hodgins Transfer Co.	LA POINT v. HODGINS TRANSFER CO.	La Point v. Hodgins Transfer Co.	lapoint[doc0/cl2] vs la[doc2/cl0] ; lapoint[doc0/cl2] vs point[doc2/cl0]
+2656	48	EQUIV	DEFER		0.90	American Loan & Investment Co. v. Borass	AMERICAN LOAN & INVESTMENT CO. v. BORASS et al. (BJERKEN, Garnishee) (two cases).		
+2677	48	EQUIV	DEFER		0.84	Reinke v. Northwestern Fire & Marine Insurance	REINKE et al. v. NORTHWESTERN FIRE & MARINE INS. CO. et al.		
+2696	48	ADDITION	USE_WL	MED	0.96	State v. Prater	STATE ex rel. KOSITZKY v. PRATER.	State ex rel. Kositzky v. Prater	
+2727	49	SWAP	USE_WL	MED	0.91	Peoples State Bank of Hillsboro v. Steenson	PEOPLE’S STATE BANK OF HILLSBORO v. STEENSON.	People's State Bank of Hillsboro v. Steenson	peoples[doc0/cl2] vs people[doc2/cl0]
+2722	49	EQUIV	DEFER		0.81	Bowen v. Montana Life Insurance	BOWEN v. MONTANA LIFE INS. CO.		
+2734	49	COMPLEX	DEFER		0.89	Central Metropolitan Bank v. American State Bank of Burlington	CENTRAL METROPOLITAN BANK v. AMERICAN STATE BANK OF BURLINGTON et al. SAME v. FARMERS’ STATE BANK OF SANISH et al.		
+2744	49	EQUIV	DEFER		0.86	McDowell v. Fireman's Fund Insurance	McDOWELL v. FIREMAN’S FUND INS. CO.		
+2730	49	ADDITION	USE_WL	MED	0.91	Williston Coal & Ice Co. v. Davis	WILLISTON COAL & ICE CO. v. DAVIS, Agent.	Williston Coal & Ice Co. v. Davis, Agent	
+2709	49	SWAP*MULTI	DEFER	LOW	0.76	Chicago & Northwestern Railway Co. v. Nepstad	CHICAGO & N. W. RY. CO. v. NEPSTAD.		northwestern[doc1/cl2] vs north[doc1/cl1] ; northwestern[doc1/cl2] vs west[doc0/cl0] ; northwestern[doc1/cl2] vs ry[doc1/cl0] ; railway[doc1/cl2] vs north[doc1/cl1] ; railway[doc1/cl2] vs west[doc0/cl0] ; railway[doc1/cl2] vs ry[doc1/cl0]
+2743	49	EQUIV	DEFER		0.96	Rohlik v. Farmers Insurance	ROHLIK v. FARMERS’ INS. CO.		
+2770	49	ADDITION	USE_WL	MED	0.92	Daniels v. Payne	DANIELS v. PAYNE, Agent.	Daniels v. Payne, Agent	
+2761	49	ADDITION	USE_WL	MED	0.94	Davis v. County of Pierce	DAVIS, Agent, v. PIERCE COUNTY et al.	Davis, Agent, v. Pierce County	
+2758	49	EQUIV	DEFER		0.90	County of Burke v. Gerding	BURKE COUNTY v. GERDING et al.		
+2812	49	EQUIV	DEFER		0.95	Kroksather v. Western Union Life Insurance	KROKSATHER v. WESTERN UNION LIFE INS. CO.		
+2796	49	ADDITION	USE_WL	MED	0.96	Company A, First Regiment v. Hughes	COMPANY A, FIRST REGIMENT, NORTH DAKOTA NATIONAL GUARD TRAINING SCHOOL v. HUGHES.	Company A, First Regiment, North Dakota National Guard Training School v. Hughes	
+2818	49	SWAP*MULTI	DEFER	LOW	0.84	Mandan News Publishing Co. v. Board of City Commissioners	MANDAN NEWS PUB. CO. v. BOARD OF CITY COM’RS OF CITY OF MANDAN et al.		publishing[doc2/cl3] vs pub[doc1/cl0] ; publishing[doc2/cl3] vs com[doc1/cl0] ; publishing[doc2/cl3] vs rs[doc1/cl0] ; publishing[doc2/cl3] vs mandan[doc10/cl10] ; commissioners[doc1/cl3] vs pub[doc1/cl0] ; commissioners[doc1/cl3] vs com[doc1/cl0] ; commissioners[doc1/cl3] vs rs[doc1/cl0] ; commissioners[doc1/cl3] vs mandan[doc10/cl10]
+2810	49	EQUIV	DEFER		0.98	Carroll v. New York Life Insurance	CARROLL v. NEW YORK LIFE INS. CO.		
+2822	49	ADDITION	USE_WL	MED	0.90	State v. Dufek	STATE v. DUFEK et al. In re DUNBAR.	State v. Dufek in re Dunbar	
+2833	49	SPELLING	DEFER	LOW	0.88	Bottineau County Bank v. Stafford	BOTTINEAU COUNTY BANK v. STAF-FORD et al.		stafford[doc1/cl3] vs staf-ford[doc1/cl0]
+2835	49	EQUIV	DEFER		0.93	Coughlin v. Aetna Life Insurance	COUGHLIN v. ÆTNA LIFE INS. CO.		
+2831	49	SWAP	DEFER	LOW	0.84	Russell Grader Manufacturing Co. v. Farmers' Exchange State Bank	RUSSELL GRADER MFG. CO. v. FARMERS’ EXCH. STATE BANK OF SANGER.		exchange[doc1/cl2] vs exch[doc1/cl0] ; exchange[doc1/cl2] vs sanger[doc2/cl1]
+2863	50	DEFER_PAIRING	DEFER		0.25	Lincoln Addition Improvement Co. v. Lenhart	LINCOLN ADDITION IMPROVEMENT CO. v. LENHART et al. BAKER v. SAME.		
+2890	50	COMPLEX	DEFER		0.90	Carr v. Nurnberg	CARR v. NURNBERG et al. FELTON v. SAME.		
+2908	50	ADDITION	USE_WL	MED	0.94	Anderson v. City of Jamestown	ANDERSON v. CITY OF JAMESTOWN. Filed Dec. 29, 1923. | Rehearing Denied Jan. 22, 1924.	Anderson v. City of Jamestown. Filed Dec. 29, 1923. |	
+2922	50	ADDITION	USE_WL	MED	0.90	Union Insurance Agency v. Insurance Co. of North America	UNION INS. AGENCY OF MINOT v. INSURANCE CO. OF NORTH AMERICA.	Union Ins. Agency of Minot v. Insurance Co. of North America	
+2926	50	EQUIV	DEFER		0.89	Stene v. County of Divide	STENE v. DIVIDE COUNTY.		
+3039	51	EQUIV	DEFER		0.92	Roether v. National Union Fire Insurance	ROETHER v. NATIONAL UNION FIRE INS. CO.		
+3034	51	ADDITION	USE_WL	MED	0.96	State v. Kelber	In re KELBER et al. STATE v. KELBER et al.	In re Kelber State v. Kelber	
+3020	51	COMPLEX	DEFER		0.90	Crites v. St. Paul Fire & Marine Insurance	CRITES v. ST. PAUL FIRE & MARINE INS. CO. SAME v. FIDELITY-PH¤NIX FIRE INS. CO. SAME v.		
+3041	51	ADDITION	USE_WL	MED	0.97	Goer v. Taylor	GOER et al. v. TAYLOR, State Law Librarian, et al.	Goer v. Taylor, State Law Librarian	
+3061	51	EQUIV	DEFER		0.98	Anderson v. Northwestern Fire & Marine Insurance	ANDERSON v. NORTHWESTERN FIRE & MARINE INS. CO.		
+3084	52	ADDITION	USE_WL	MED	0.91	Olsness v. Baird	OLSNESS, State Ins. Com’r, v. BAIRD et al.	Olsness, State Ins. Com'r, v. Baird	
+3067	52	EQUIV	DEFER		0.89	County of Divide v. Citizens State Bank of Ambrose	DIVIDE COUNTY v. CITIZENS’ STATE BANK OF AMBROSE.		
+3085	52	ADDITION	USE_WL	MED	0.55	Olsness v. Baird	S. A. OLSNESS, as Commissioner of Insurance of the State of North Dakota, acting for and in behalf of the State Bonding Fund of the State of North Dakota, Plaintiff and appellant, v. L. R. BAIRD, as Receiver of the First State Bank of Amidon, North Dakota, and J. S. Douglas, Defendants and Respondents.	S. A. Olsness, as Commissioner of Insurance of the State of North Dakota, acting for and in behalf of the State Bonding Fund of the State of North Dakota, Plaintiff and appellant, v. L. R. Baird, as Receiver of the First State Bank of Amidon, North Dakota, and J. S. Douglas, Defendants and Respondents	
+3096	52	ADDITION	USE_WL	MED	0.78	State v. First State Bank of Jud	STATE of North Dakota, for Itself and on Behalf of All Creditors of the Defendant Banks, Plaintiff-Respondent, v. FIRST STATE BANK OF JUD et al., Defendants-Appellants.	State of North Dakota, for Itself and on Behalf of All Creditors of the Defendant Banks, Plaintiff-Respondent, v. First State Bank of Jud, Defendants-Appellants	
+3091	52	SWAP	DEFER	LOW	0.95	Hanson v. Menoken Farmers Co-Operative Asso.	HANSON v. MENOKEN FARMERS’ CO-OP. ASS’N et al.		co-operative[doc1/cl2] vs co-op[doc1/cl0] ; co-operative[doc1/cl2] vs ass[doc1/cl0] ; co-operative[doc1/cl2] vs north[doc1/cl1] ; asso[doc0/cl1] vs co-op[doc1/cl0] ; asso[doc0/cl1] vs ass[doc1/cl0] ; asso[doc0/cl1] vs north[doc1/cl1]
+3066	52	SWAP	DEFER	LOW	0.93	Spilman v. New Rockford Investment Co.	SPILMAN et al. v. NEW ROCKFORD INV. CO. OF NEW ROCKFORD.		investment[doc1/cl2] vs inv[doc1/cl0]
+3092	52	ADDITION	USE_WL	MED	0.95	Ellendale National Bank v. Hafey	In re HAFEY’S ESTATE. ELLENDALE NAT. BANK et al. v. HAFEY.	In re Hafey's Estate. Ellendale Nat. Bank v. Hafey	
+3108	52	SWAP	DEFER	LOW	0.95	Schatz v. Kintyre Farmers Co-Operative Elevator Co.	SCHATZ et al v. KINTYRE FARMERS’ COOP. ELEVATOR CO.		co-operative[doc1/cl2] vs coop[doc1/cl0]
+3103	52	COMPLEX	DEFER		0.96	Reimers v. Larson	REIMERS v. LARSON. SAME v. NELSON. SAME v.		
+3123	52	DB_DROP	DEFER		0.96	Ogren v. Crystal Springs School District Number 29 of Kidder County	OGREN v. CRYSTAL SPRINGS SCHOOL DIST. NO. 29 OF KIDDER COUNTY.		
+3111	52	SWAP	USE_WL	HIGH	0.93	Ashelman Brothers v. Siebold	ASHELMAN BROS., Inc., v. SIEBOLD et al.	Ashelman Bros., Inc., v. Siebold	brothers[doc0/cl2] vs bros[doc4/cl2]
+3149	52	ADDITION	USE_WL	MED	0.65	Wishek v. Hildenbrand	J. H. WISHEK, Plaintiff-Respondent, v. William HILDENBRAND, Mayor, and Christ Spitzer, Christ Schock, C. J. Eisenbeisz, Reinhold Schaber, John Schmidt, L. Walker, as Members of the City Council of the City of Ashley, McIntosh County, N. D., and the City of Ashley, McIntosh County, N. D., a Municipal Corporation, Defendants-Appellants. No. 4866. |	J. H. Wishek, Plaintiff-Respondent, v. William Hildenbrand, Mayor, and Christ Spitzer, Christ Schock, C. J. Eisenbeisz, Reinhold Schaber, John Schmidt, L. Walker, as Members of the City Council of the City of Ashley, McINtosh County, N. D., and the City of Ashley, McINtosh County, N. D., a Municipal Corporation, Defendants-Appellants	
+3165	52	COMPLEX	DEFER		0.95	McIntosh v. Dakota Trust Co.	McINTOSH v. DAKOTA TRUST CO. (two cases). SAME v. AMERICAN SURETY CO. OF NEW YORK et al.		
+3166	52	SWAP	DEFER	HIGH	0.82	Huether v. Havelock Equity Exchange	HUETHER v. HAVELOCK EQUITY EXCH. et al., and four other cases. Nos. 4850-4854. |		exchange[doc8/cl8] vs exch[doc1/cl0] ; exchange[doc8/cl8] vs four[doc1/cl0] ; exchange[doc8/cl8] vs other[doc2/cl1] ; exchange[doc8/cl8] vs cases[doc16/cl13] ; exchange[doc8/cl8] vs nos[doc1/cl0] ; exchange[doc8/cl8] vs 4850-4854[doc1/cl0]
+3181	52	ADDITION	USE_WL	MED	0.45	Rogers Lumber Co. v. Schatzel	ROGERS LUMBER CO. v. John SCHATZEL and Wimbledon Farmers’ Elevator Co. No. 4883. |	Rogers Lumber Co. v. John Schatzel and Wimbledon Farmers' Elevator Co.	
+3151	52	EQUIV	DEFER		0.98	Davis v. County of McLean	DAVIS v. McLEAN COUNTY. No. 4737. |		
+3156	52	ADDITION	USE_WL	MED	0.84	First National Bank of Buffalo v. Bratsberg	FIRST NAT. BANK OF BUFFALO, N. D., v. BRATSBERG. No. 4856. |	First Nat. Bank of Buffalo, N. D., v. Bratsberg	
+3155	52	EQUIV	DEFER		0.81	Wilson Co. v. Knowles	A. M. WILSON CO. v. KNOWLES. No. 4840. |		
+3169	52	SWAP	USE_WL	MED	0.87	North Dakota Wheat Growers Asso. v. Moore	NORTH DAKOTA WHEAT GROWERS’ ASS’N et al. v. MOORE et al. No. 4919. |	North Dakota Wheat Growers' Ass'n v. Moore	asso[doc0/cl1] vs ass[doc1/cl0]
+3168	52	ADDITION	USE_WL	MED	0.89	Rosatti v. Common School District No. 96	ROSATTI v. COMMON SCHOOL DIST. No. 96, CASS COUNTY. No. 4894. |	Rosatti v. Common School Dist, Cass County	
+3178	53	ADDITION	USE_WL	MED	0.87	Felch v. Olsness	FELCH v. OLSNESS, Insurance Com’r, et al. No. 4895. |	Felch v. Olsness, Insurance Com'r	
+3183	53	ADDITION	USE_WL	MED	0.98	Gamble-Robinson Fruit Co. v. Thoresen	GAMBLE-ROBINSON FRUIT CO. v. THORESEN, State Tax Com’r. No. 4948. |	Gamble-Robinson Fruit Co. v. Thoresen, State Tax Com'r	
+3205	53	ADDITION	USE_WL	MED	0.85	Stevens v. Fraser	STEVENS v. FRASER, Adjutant General.	Stevens v. Fraser, Adjutant General	
+3211	53	ADDITION	USE_WL	MED	0.94	Elm Creek School District No. 21 v. Jungers	ELM CREEK SCHOOL DIST. NO. 21, MERCER COUNTY, v. JUNGERS. No. 4957. |	Elm Creek School Dist, Mercer County, v. Jungers	
+3209	53	EQUIV	DEFER		0.91	Diehl v. Grant Farmers Mutual Fire & Lightning Insurance	DIEHL v. GRANT FARMERS’ MUT. FIRE & LIGHTNING INS. CO.		
+3236	53	ADDITION	USE_WL	MED	0.96	First National Bank of Sleepy Eye v. Mohall State Bank	FIRST NAT. BANK OF SLEEPY EYE, MINN., v. MOHALL STATE BANK et al. No. 4932. |	First Nat. Bank of Sleepy Eye, Minn., v. Mohall State Bank	
+3234	53	EQUIV	DEFER		0.86	Sperry v. North River Insurance	SPERRY v. NORTH RIVER INS. CO. No. 4985. |		
+3233	53	ADDITION	USE_WL	MED	0.82	State ex rel. Pfann v. Kunkel	Ex parte PFANN. STATE ex rel. PFANN v. KUNKEL, Sheriff. No. 5035. |	Ex parte Pfann. State ex rel. Pfann v. Kunkel	
+3231	53	EQUIV	DEFER		0.86	Michelsen v. North American National Insurance	MICHELSEN v. NORTH AMERICAN NAT. INS. CO. et al. No. 4960. |		
+3267	53	ADDITION	USE_WL	MED	0.91	State Ex Rel. Olsness v. McCarthy	STATE ex rel. OLSNESS, State Com’r of Insurance, v. McCARTHY, County Auditor. No. 5053. |	State ex rel. Olsness, State Com'r of Insurance, v. McCarthy	
+3269	53	ADDITION	USE_WL	MED	0.95	Board of Medical Examiners v. Shortridge	In re SHORTRIDGE. BOARD OF MEDICAL EXAMINERS OF STATE OF NORTH DAKOTA v. SHORTRIDGE. No. 5058. |	In re Shortridge. Board of Medical Examiners of State of North Dakota v. Shortridge	
+3279	53	SWAP	USE_WL	MED	0.80	Crandall v. North Dakota Workmen's Comp. Bureau	CRANDALL, Deputy Sheriff, v. NORTH DAKOTA WORKMEN’S COMPENSATION BUREAU. No. 4867. |	Crandall, Deputy Sheriff, v. North Dakota Workmen's Compensation Bureau	comp[doc0/cl7] vs deputy[doc3/cl1] ; comp[doc0/cl7] vs sheriff[doc3/cl1] ; comp[doc0/cl7] vs compensation[doc98/cl88]
+3332	53	SWAP*MULTI	DEFER	HIGH	0.96	Minot Special School District Number One v. Olsness	MINOT SPECIAL SCHOOL DIST. NO. 1 et al. v. OLSNESS, State Commissioner of Insurance. No. 5006. |		number[doc0/cl2] vs state[doc122/cl122] ; number[doc0/cl2] vs commissioner[doc34/cl33] ; number[doc0/cl2] vs insurance[doc60/cl59] ; one[doc2/cl4] vs state[doc122/cl122] ; one[doc2/cl4] vs commissioner[doc34/cl33] ; one[doc2/cl4] vs insurance[doc60/cl59]
+3288	53	EQUIV	DEFER		0.76	Booher v. Adams County Farmers Mutual Fire & Lightning Insurance	BOOHER v. ADAMS COUNTY FARMERS’ MUT. FIRE & LIGHTNING INS. CO. No. 5076. |		
+3284	53	EQUIV	DEFER		0.95	Hughes Electric Co. v. County of Burleigh	HUGHES ELECTRIC CO. v. BURLEIGH COUNTY. No. 5004. |		
+3289	53	EQUIV	DEFER		0.92	County of Morton v. Hughes Electric Co.	MORTON COUNTY v. HUGHES ELECTRIC CO. No. 5025. |		
+3295	53	SWAP	USE_WL	HIGH	0.79	Vincent v. Reynolds Farmers Elev. Co.	VINCENT v. REYNOLDS FARMERS’ ELEVATOR CO. No. 5096. |	Vincent v. Reynolds Farmers' Elevator Co.	elev[doc0/cl1] vs elevator[doc2/cl2]
+3309	53	ADDITION	USE_WL	MED	0.95	State v. Cook	STATE v. COOK. No. 4893.a1 |	State v. Cook.a1	
+3305	53	ADDITION	USE_WL	MED	0.92	State Ex Rel. Howieson v. Fraser	STATE ex rel. HOWIESON v. FRASER, Adjutant General. No. 5081. |	State ex rel. Howieson v. Fraser, Adjutant General	
+3310	54	COMPLEX	DEFER		0.82	Warren v. Resaake	WARREN et al. v. RESAAKE et al. HODGE v. ABDELLAH.		
+3315	54	SWAP	DEFER	LOW	0.93	Great Northern Railway Co. v. County of Ward	GREAT NORTHERN RY. CO. v. WARD COUNTY et al. No. 5054. |		railway[doc1/cl2] vs ry[doc1/cl0]
+3340	54	ADDITION	USE_WL	MED	0.82	Baird v. National Surety Co.	BAIRD v. NATIONAL SURETY CO. OF NEW YORK et al. (two cases). Nos. 4916, 4917. |	Baird v. National Surety Co. of New York, 4917	
+3351	54	ADDITION	USE_WL	MED	0.96	Dehn v. Kitchen	DEHN v. KITCHEN et al., Workmen’s Compensation Bureau. No. 5111. |	Dehn v. Kitchen, Workmen's Compensation Bureau	
+3360	54	ADDITION	USE_WL	MED	0.91	Boutrous v. Thoresen	BOUTROUS et al. v. THORESEN, State Tax Com’r, et al. No. 5091. |	Boutrous v. Thoresen, State Tax Com'r	
+3362	54	ADDITION	USE_WL	MED	0.89	Dillage v. Lincoln Nat. L. Ins. Co.	DILLAGE v. LINCOLN NAT. LIFE INS. CO. OF FT. WAYNE, IND. (HOFFMAN, Interpleader). No. 5157. |	Dillage v. Lincoln Nat. Life Ins. Co. of Ft. Wayne, Ind. (Hoffman, Interpleader)	
+3369	54	SWAP	USE_WL	HIGH	0.92	Johnson v. Minneapolis, St. P. S. Ste. M.R. Co.	JOHNSON v. MINNEAPOLIS, ST. P. & S. S. M. RY. CO. No. 5117. |	Johnson v. Minneapolis, St. P. & S. S. M. Ry. Co.	sainte[doc0/cl0] vs ry[doc2/cl1]
+3387	54	ADDITION	USE_WL	MED	0.95	Keller v. United States Fidelity G. Co.	KELLER v. UNITED STATES FIDELITY & GUARANTY CO. No. 5095. |	Keller v. United States Fidelity & Guaranty Co.	
+3379	54	ADDITION	USE_WL	MED	0.92	Halliday v. Equitable L. Assur. Soc.	HALLIDAY v. EQUITABLE LIFE ASSUR. SOC. No. 4946. |	Halliday v. Equitable Life Assur. Soc	
+3388	54	EQUIV	DEFER		0.95	Lyness v. Kuske Realty Co.	LYNESS v. L. J. KUSKE REALTY CO., et al. No. 4972. |		
+3381	54	ADDITION	USE_WL	MED	0.94	Klemmens v. Workmen's Compensation Bureau	KLEMMENS v. NORTH DAKOTA WORKMEN’S COMPENSATION BUREAU. No. 5137. |	Klemmens v. North Dakota Workmen's Compensation Bureau	
+3398	54	ADDITION	USE_WL	MED	0.77	Bremen Elevator Co. v. Farmers M. Bank	BREMEN ELEVATOR CO. v. FARMERS’ & MERCHANTS’ BANK OF SHEYENNE et al. No. 5115. |	Bremen Elevator Co. v. Farmers' & Merchants' Bank of Sheyenne	
+3421	54	ADDITION	USE_WL	MED	0.93	Marquette Nat. F. Ins. Co. v. McCutcheon	MARQUETTE NAT. FIRE INS. CO. v. McCUTCHEON. No. 5132. |	Marquette Nat. Fire Ins. Co. v. McCutcheon	
+3393	54	ADDITION	USE_WL	MED	0.95	Young v. Mutual Trust L. Ins. Co.	YOUNG v. MUTUAL TRUST LIFE INS. CO. No. 5160. |	Young v. Mutual Trust Life Ins. Co.	
+3417	54	SWAP	USE_WL	HIGH	0.94	State Bank v. Lehr Auto MacH. Co.	STATE BANK OF LEHR v. LEHR AUTO & MACHINE CO. No. 5154. |	State Bank of Lehr v. Lehr Auto & Machine Co.	mach[doc0/cl1] vs lehr[doc6/cl5] ; mach[doc0/cl1] vs machine[doc3/cl2]
+3395	54	ADDITION	USE_WL	MED	0.96	Blake v. Chicago, M. St. P.R. Co.	BLAKE v. CHICAGO, M. & St. P. RY. CO. No. 5116. |	Blake v. Chicago, M. & St. P. Ry. Co.	
+3414	54	ADDITION	USE_WL	MED	0.97	Storing v. Stutsman	STORING v. STUTSMAN (two cases). Nos. 5146, 5147. |	Storing v. Stutsman, 5147	
+3424	54	SWAP	DEFER	HIGH	0.88	Boynton v. Board of City Commissioners	BOYNTON et al. v. BOARD OF CITY COM’RS OF MINOT. No. 5209. |		commissioners[doc2/cl3] vs com[doc1/cl0] ; commissioners[doc2/cl3] vs rs[doc1/cl0] ; commissioners[doc2/cl3] vs minot[doc9/cl8]
+3429	54	ADDITION	USE_WL	MED	0.94	State Ex Rel. Thompson v. Olsness	STATE ex rel. THOMPSON et ux. v. OLSNESS, Com’r of Insurance. No. 5168. |	State ex rel. Thompson et ux. v. Olsness, Com'r of Insurance	
+3432	54	SWAP	USE_WL	MED	0.94	Erickson v. North Dakota State Fair Asso.	ERICKSON v. NORTH DAKOTA STATE FAIR ASS’N OF FARGO. No. 5167. |	Erickson v. North Dakota State Fair Ass'n of Fargo	asso[doc0/cl1] vs ass[doc1/cl0] ; asso[doc0/cl1] vs fargo[doc9/cl8]
+3450	54	SWAP	USE_WL	MED	0.99	Kutchera v. Minneapolis, St. P. S. Ste. M.R. Co.	KUTCHERA v. MINNEAPOLIS, St. P. & S. S. M. RY. CO. No. 5026. |	Kutchera v. Minneapolis, St. P. & S. S. M. Ry. Co.	sainte[doc0/cl0] vs ry[doc1/cl0]
+3452	55	ADDITION	USE_WL	MED	0.82	State Ex Rel. Holter v. State	STATE ex rel. HOLTER v. STATE HAIL DEPARTMENT et al. No. 5291. |	State ex rel. Holter v. State Hail Department	
+3445	55	EQUIV	DEFER		0.95	County of Divide v. Baird	DIVIDE COUNTY v. BAIRD et al. No. 5063. |		
+3454	55	ADDITION	USE_WL	MED	0.93	Pfaffengut v. Export Insurance	PFAFFENGUT v. EXPORT INS. CO. OF NEW YORK et al. (two cases). Nos. 5228, 5229. |	Pfaffengut v. Export Ins. Co. of New York, 5229	
+3463	55	ADDITION	USE_WL	MED	0.81	State Ex Rel. Wiff v. Sorlie	STATE ex rel. WIFF v. SORLIE et al., State Depositors’ Guaranty Fund Commission. No. 5278. |	State ex rel. Wiff v. Sorlie, State Depositors' Guaranty Fund Commission	
+3499	55	COMPLEX	DEFER		0.76	Lindseth v. National Fire Insurance	LINDSETH v. NATIONAL FIRE INS. CO. OF HARTFORD, CONN. SAME v. ST. PAUL FIRE & MARINE INS. CO.		
+3518	55	COMPLEX	DEFER		0.84	Re Volk	In re VOLK’S ESTATE. BISCHOF v. FISCHER et al. No. 5364. |		
+3583	55	ADDITION	USE_WL	MED	0.92	State Ex Rel. Friend v. District Court of the Fifth Judicial District	STATE ex rel. FRIEND et al. v. DISTRICT COURT OF FIFTH JUDICIAL DIST. IN AND FOR WARD COUNTY et al. No. 5390. |	State ex rel. Friend v. District Court of in and for Ward County	
+3593	55	EQUIV	DEFER		0.96	Wenstrom v. Aetna Life Insurance	WENSTROM v. AETNA LIFE INS. CO. No. 5301. |		
+3544	55	ADDITION	USE_WL	MED	0.96	Ward County v. Baird	WARD COUNTY et al. v. BAIRD (two cases). Nos. 5330, 5331. |	Ward County v. Baird, 5331	
+3535	55	ADDITION	USE_WL	MED	0.83	State v. Olsness	STATE et al. v. OLSNESS, State Insurance Com’r. No. 5358. |	State v. Olsness, State Insurance Com'r	
+3527	55	ADDITION	USE_WL	MED	0.86	Krogh v. Great West L. Assur. Co.	KROGH v. GREAT WEST LIFE ASSUR. CO. No. 5316. |	Krogh v. Great West Life Assur. Co.	
+3546	55	EQUIV	DEFER		0.97	McPeck v. Travelers Equitable Insurance	McPECK v. TRAVELERS’ EQUITABLE INS. CO. No. 5296. |		
+3557	55	ADDITION	USE_WL	MED	0.90	Mayer v. Central Light & Power Co.	MAYER v. CENTRAL LIGHT & POWER CO. (two cases). Nos. 5306, 5307. |	Mayer v. Central Light & Power Co., 5307	
+3591	56	EQUIV	DEFER		0.94	Hoover v. Northern States Life Insurance	HOOVER v. NORTHERN STATES LIFE INS. CO. et al. No. 5379. |		
+3609	56	ADDITION	USE_WL	MED	0.95	Gillespie v. Common School District No. 8	GILLESPIE v. COMMON SCHOOL DIST. NO. 8, McLEAN COUNTY. No. 5347. |	Gillespie v. Common School Dist, McLean County	
+3625	56	SWAP	USE_WL	MED	0.84	Laporte v. Van Buskirk	LA PORTE v. VAN BUSKIRK. No. 5353. |	La Porte v. Van Buskirk	laporte[doc0/cl2] vs la[doc2/cl0] ; laporte[doc0/cl2] vs porte[doc2/cl0]
+3627	56	EQUIV	DEFER		0.97	Bach v. North Dakota Mutual Fire Insurance	BACH v. NORTH DAKOTA MUTUAL FIRE INS. CO. OF NORTH DAKOTA. No. 5363. |		
+3692	56	ADDITION	USE_WL	MED	0.92	Langer v. Langer	In re LANGER’S ESTATE. LANGER et al. v. LANGER et al. No. 5433. |	In re Langer's Estate. Langer v. Langer	
+3701	56	ADDITION	USE_WL	MED	0.94	State v. Diamond	STATE v. DIAMOND. Cr. No. 16. |	State v. Diamond	
+3703	56	ADDITION	USE_WL	MED	0.60	State v. Diamond	STATE, Appellant, v. Herman H. DIAMOND and David Levich, Defendants and Respondents. Cr. No. 12. |	State, Appellant, v. Herman H. Diamond and David Levich, Defendants and Respondents	
+3707	56	SWAP*MULTI	DEFER	LOW	0.94	Korsmo v. Citizen's National Bank	In re KORSMO’S ESTATE. KORSMO v. CITIZENS’ NAT. BANK OF NORTHWOOD. No. 5425. |		citizen[doc0/cl2] vs citizens[doc5/cl3] ; south[doc0/cl0] vs south[doc0/cl0] ; south[doc0/cl0] vs northwood[doc5/cl4]
+3710	57	ADDITION	USE_WL	MED	0.66	Northern Pacific Railway Co. v. State	NORTHERN PACIFIC RAILWAY COMPANY, a Corporation, Plaintiff and Appellant, v. STATE of North Dakota, C. A. Fisher, as Treasurer of the State of North Dakota, and John Steen, as Auditor of the State of North Dakota, Defendants and Respondents. No. 5477. |	Northern Pacific Railway Company, a Corporation, Plaintiff and Appellant, v. State of North Dakota, C. A. Fisher, as Treasurer of the State of North Dakota, and John Steen, as Auditor of the State of North Dakota, Defendants and Respondents	
+3712	57	ADDITION	USE_WL	MED	0.95	Stangler v. Kanan	STANGLER v. KANAN et al. Nos. 5491, 5492. |	Stangler v. Kanan, 5492	
+3730	57	ADDITION	USE_WL	MED	0.92	State v. Bowe	STATE v. BOWE. Cr. No. 4. |	State v. Bowe	
+3733	57	ADDITION	USE_WL	MED	0.88	State v. Roth	STATE v. ROTH. Cr. No. 18. |	State v. Roth	
+3755	57	ADDITION	USE_WL	MED	0.91	First State Bank v. Hardgrove	FIRST STATE BANK OF RAY v. HARDGROVE. No. 5594. |	First State Bank of Ray v. Hardgrove	
+3757	57	ADDITION	USE_WL	MED	0.88	State v. Schook	STATE v. SCHOOK. Cr. No. 14. |	State v. Schook	
+3765	57	EQUIV	DEFER		0.92	Anderson v. United States Fire Insurance	ANDERSON et al. v. UNITED STATES FIRE INS. CO. No. 5540. |		
+3770	57	ADDITION	USE_WL	MED	0.89	State v. Tucker	STATE v. TUCKER. Cr. No. 3. |	State v. Tucker	
+3777	57	COMPLEX	DEFER		0.97	Axelson v. Jardine	AXELSON v. JARDINE et al. MADSEN v. SAME.		
+3776	57	ADDITION	USE_WL	MED	0.92	State v. Black	STATE v. BLACK et al. Cr. No. 29. |	State v. Black	
+3784	57	ADDITION	USE_WL	MED	0.90	Parrish v. Menz School District No. 5	PARRISH v. MENZ SCHOOL DIST. NO. 5, SIOUX COUNTY et al. No. 5569. |	Parrish v. Menz School Dist, Sioux County	
+3782	57	ADDITION	USE_WL	MED	0.84	State v. Krueger	STATE v. KRUEGER. Cr. No. 19. |	State v. Krueger	
+3787	57	ADDITION	USE_WL	MED	0.92	State v. Keller	STATE v. KELLER. Cr. No. 24. |	State v. Keller	
+3791	57	ADDITION	USE_WL	MED	0.92	State v. West	STATE v. WEST. Cr. No. 23. |	State v. West	
+3794	57	EQUIV	DEFER		0.95	Cary v. County of Morton	CARY v. MORTON COUNTY et al. No. 5607. |		
+3796	57	ADDITION	USE_WL	MED	0.86	State Ex Rel. Morris v. McFarland	STATE ex rel. MORRIS, Atty. Gen., v. McFARLAND et al. No. 5640. | Filed March 2, 1929.	State ex rel. Morris, Atty. Gen., v. McFarland. | Filed March 2, 1929	
+3805	57	ADDITION	USE_WL	MED	0.89	State v. Walla	STATE v. WALLA. Cr. No. 35. |	State v. Walla	
+3818	57	COMPLEX	DEFER		0.96	Klingensmith v. Siegal	KLINGENSMITH v. SIEGAL et al. HEFFNER v. SAME.		
+3807	57	COMPLEX	DEFER		0.97	Dakota Trust Co. v. Headland	DAKOTA TRUST CO. v. HEADLAND et al. SAME v. HEADLAND.		
+3800	57	SWAP*MULTI	DEFER	MED	0.97	Hadler v. North West Agricultural Live Stock F. Asso.	HADLER v. NORTHWEST AGRICULTURAL, LIVE STOCK, AND FAIR ASS’N. No. 5628. |		west[doc2/cl4] vs northwest[doc8/cl6] ; west[doc2/cl4] vs fair[doc64/cl63] ; west[doc2/cl4] vs ass[doc4/cl3] ; asso[doc0/cl1] vs northwest[doc8/cl6] ; asso[doc0/cl1] vs fair[doc64/cl63] ; asso[doc0/cl1] vs ass[doc4/cl3]
+3838	57	ADDITION	USE_WL	MED	0.92	State v. Hazer	STATE v. HAZER et al. Cr. No. 27. |	State v. Hazer	
+3821	57	ADDITION	USE_WL	MED	0.92	State v. Moher	STATE v. MOHER. Cr. No. 17. |	State v. Moher	
+3823	57	SWAP	KEEP_DB	HIGH	0.97	Brown v. Inter-State Business Men's Accident Ass'n	BROWN v. INTER-STATE BUSINESS MEN’S ACC. ASS’N OF DES MOINES, IOWA. No. 5645. |	Brown v. Inter-State Business Men's Accident Ass'n	accident[doc4/cl5] vs acc[doc1/cl0] ; accident[doc4/cl5] vs des[doc2/cl1] ; accident[doc4/cl5] vs moines[doc2/cl1] ; accident[doc4/cl5] vs iowa[doc2/cl1]
+3824	58	ADDITION	USE_WL	MED	0.95	State v. Pedie	STATE v. PEDIE. Cr. No. 33. |	State v. Pedie	
+3820	58	ADDITION	USE_WL	MED	0.94	State v. Tucker	STATE v. TUCKER. Cr. No. 3. |	State v. Tucker	
+3831	58	EQUIV	DEFER		0.96	Olson v. Union Central Life Insurance	OLSON et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5439. |		
+3841	58	EQUIV	DEFER		0.78	Lindblom v. Union Central Life Insurance	LINDBLOM et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5440. |		
+3848	58	ADDITION	USE_WL	MED	0.84	State v. Fradet	STATE v. FRADET. Cr. No. 22. |	State v. Fradet	
+3871	58	ADDITION	USE_WL	MED	0.94	State v. Kingen	STATE v. KINGEN. Cr. No. 25. |	State v. Kingen	
+3876	58	ADDITION	USE_WL	MED	0.93	State v. Schock	STATE v. SCHOCK. Cr. No. 37. |	State v. Schock	
+3874	58	ADDITION	USE_WL	MED	0.92	Hoover Grain Co. v. Thoresen	HOOVER GRAIN CO. v. THORESEN, State Tax Com’r. No. 5647. |	Hoover Grain Co. v. Thoresen, State Tax Com'r	
+3881	58	ADDITION	USE_WL	MED	0.83	State v. Fichtner	STATE v. FICHTNER. Cr. No. 38. |	State v. Fichtner	
+3888	58	ADDITION	USE_WL	MED	0.94	Root v. Childs	In re ROOT’S ESTATE. ROOT v. CHILDS. No. 5685. |	In re Root's Estate. Root v. Childs	
+3902	58	ADDITION	USE_WL	MED	0.93	Eberlien v. Guarantee Fund Life Ass'n of Omaha	EBERLIEN v. GUARANTEE FUND LIFE ASS’N OF OMAHA, NEB. No. 5637. |	Eberlien v. Guarantee Fund Life Ass'n of Omaha, Neb	
+3904	58	ADDITION	USE_WL	MED	0.95	Rhodes v. Farmers State Bank	RHODES v. FARMERS’ STATE BANK, CATHAY. No. 5654. |	Rhodes v. Farmers' State Bank, Cathay	
+3915	58	ADDITION	USE_WL	MED	0.94	State v. Keyes	STATE v. KEYES. Cr. No. 45. |	State v. Keyes	
+3918	58	ADDITION	USE_WL	MED	0.95	State v. Sullivan	STATE v. SULLIVAN. Cr. No. 43. |	State v. Sullivan	
+3921	58	SWAP*MULTI	DEFER	MED	0.97	Grand Lodge of the Ancient Order of United Workmen v. City of Bottineau	GRAND LODGE, A. O. U. W., v. CITY OF BOTTINEAU. No. 5566. |		ancient[doc1/cl2] vs west[doc0/cl0] ; order[doc1/cl2] vs west[doc0/cl0] ; united[doc1/cl2] vs west[doc0/cl0] ; workmen[doc1/cl2] vs west[doc0/cl0]
+3933	58	ADDITION	USE_WL	MED	0.98	International Elevator Co. v. Thoresen	INTERNATIONAL ELEVATOR CO. v. THORESEN, State Tax Com’r. No. 5694. |	International Elevator Co. v. Thoresen, State Tax Com'r	
+3934	58	ADDITION	USE_WL	MED	0.98	State v. Severin	STATE v. SEVERIN Cr. No. 30. |	State v. Severin	
+3942	58	EQUIV	DEFER		0.98	Baird v. County of Divide	BAIRD v. DIVIDE COUNTY. No. 5672. |		
+3941	58	SWAP	KEEP_DB	HIGH	0.92	Olson v. Union Central Life Insurance	OLSON et al. v. UNION CENT. LIFE INS. CO. et al. No. 5439. |	Olson v. Union Central Life Insurance	central[doc2/cl4] vs cent[doc1/cl0]
+3952	59	ADDITION	USE_WL	MED	0.75	Kelm v. Loiland	KELM v. LOILAND et al. Appeal of VORWERK. No. 5693. |	Kelm v. Loiland Appeal of Vorwerk	
+3959	59	ADDITION	USE_WL	MED	0.95	State v. Hinesh	STATE v. HINESH. Cr. No. 42. |	State v. Hinesh	
+3948	59	ADDITION	USE_WL	MED	0.79	State v. Shoars	STATE v. SHOARS. Cr. No. 51. |	State v. Shoars	
+3969	59	ADDITION	USE_WL	MED	0.98	State v. Flath	STATE v. FLATH. Cr. 52-54. |	State v. Flath-54	
+3977	59	ADDITION	USE_WL	MED	0.87	State v. Liberman	STATE v. LIBERMAN. Cr. No. 36. |	State v. Liberman	
+3982	59	ADDITION	USE_WL	MED	0.98	State v. Miller	STATE v. MILLER. Cr. No. 49. |	State v. Miller	
+4015	59	SWAP	KEEP_DB	HIGH	0.94	Citizens Bank of Hutchinson v. Township of Crane Creek	CITIZENS’ BANK OF HUTCHINSON, MINN., v. CRANE CREEK TP. No. 5773. |	Citizens Bank of Hutchinson v. Township of Crane Creek	township[doc7/cl8] vs minn[doc2/cl0] ; township[doc7/cl8] vs tp[doc1/cl0]
+4032	59	SWAP	USE_WL	HIGH	0.77	First State Bank v. Farmers Co-Op. Elevator Co.	FIRST STATE BANK OF NEW SALEM v. FARMERS’ CO-OPERATIVE ELEVATOR CO. No. 5752. |	First State Bank of New Salem v. Farmers' Co-Operative Elevator Co.	co-op[doc0/cl1] vs new[doc7/cl5] ; co-op[doc0/cl1] vs salem[doc5/cl4] ; co-op[doc0/cl1] vs co-operative[doc2/cl2]
+4043	59	ADDITION	USE_WL	MED	0.83	Colwell v. Union Central L. Ins. Co.	COLWELL v. UNION CENTRAL LIFE INS. CO. OF CINCINNATI, OHIO. No. 5780. |	Colwell v. Union Central Life Ins. Co. of Cincinnati, Ohio	
+4046	60	ADDITION	USE_WL	MED	0.94	Backman v. Larson	BACKMAN v. LARSON’S ESTATE et al. No. 5777. |	Backman v. Larson's Estate	
+4051	60	ADDITION	USE_WL	MED	0.93	State v. Johnson	STATE v. JOHNSON. Cr. No. 60. |	State v. Johnson	
+4064	60	EQUIV	DEFER		0.92	Midland National Life Insurance v. Mosher	MIDLAND NAT. LIFE INS. CO. v. MOSHER et al. No. 5747. |		
+4065	60	SPELLING	USE_WL	MED	0.95	Schlinker v. Jasz-Kowiak	SCHLINKER v. JASZKOWIAK. No. 5793. |	Schlinker v. Jaszkowiak	jasz-kowiak[doc0/cl2] vs jaszkowiak[doc2/cl0]
+4066	60	COMPLEX	DEFER		0.95	Kelley v. Isensee	KELLEY v. ISENSEE. SAME v. ISENSEE et ux.		
+4077	60	SWAP*MULTI	DEFER	MED	0.95	Farmer's Co-Operative Elevator Co. v. Schweigertewald Lumber Co.	FARMERS’ CO-OPERATIVE ELEVATOR CO. OF DODGE v. SCHWEIGERT-EWALD LUMBER CO. OF HEBRON et al. No. 5817. |		farmer[doc14/cl16] vs farmers[doc8/cl6] ; schweigertewald[doc0/cl2] vs schweigert-ewald[doc16/cl14] ; south[doc0/cl0] vs dodge[doc20/cl19] ; south[doc0/cl0] vs hebron[doc3/cl2]
+4080	60	ADDITION	USE_WL	MED	0.94	Wagner v. Haberman	WAGNER v. HABERMAN et al. Nos. 5815, 5816. |	Wagner v. Haberman, 5816	
+4102	60	ADDITION	USE_WL	MED	0.95	State v. Uttke	STATE v. UTTKE. Cr. No. 63. |	State v. Uttke	
+4095	60	EQUIV	DEFER		0.87	Johnson v. Federal Life Insurance	JOHNSON et al. v. FEDERAL LIFE INS. CO. No. 5825. |		
+4105	60	EQUIV	DEFER		0.97	Drew v. County of Bowman	DREW v. BOWMAN COUNTY et al. No. 5846. |		
+4112	60	ADDITION	USE_WL	MED	0.88	State v. Schasker	STATE v. SCHASKER. Cr. No. 61. |	State v. Schasker	
+4103	60	SWAP	KEEP_DB	HIGH	0.97	Schilling v. Carl Township	SCHILLING v. CARL TP., GRANT COUNTY. No. 5807. |	Schilling v. Carl Township	township[doc60/cl56] vs tp[doc1/cl0] ; township[doc60/cl56] vs grant[doc4/cl2] ; township[doc60/cl56] vs county[doc12/cl10]
+4117	60	SWAP	KEEP_DB	HIGH	0.86	Denmark Township v. Ukkelberg	DENMARK TP., WARD COUNTY v. UKKELBERG et al. No. 5859. |	Denmark Township v. Ukkelberg	township[doc14/cl15] vs tp[doc1/cl0] ; township[doc14/cl15] vs ward[doc4/cl2] ; township[doc14/cl15] vs county[doc5/cl3]
+4104	60	ADDITION	USE_WL	MED	0.95	First National Bank v. Plante	FIRST NAT. BANK IN MINNEAPOLIS v. PLANTE et al. No. 5864. |	First Nat. Bank in Minneapolis v. Plante	
+4115	60	COMPLEX	DEFER		0.90	Beskos v. Bittis	BESKOS v. BITTIS et al. SAME v. BITTIS.		
+4131	60	EQUIV	DEFER		0.92	Olson v. Union Central Life Insurance	OLSON et al. v. UNION CENTRAL LIFE INS. CO. et al. No. 5857. |		
+4132	60	DEFER_PAIRING	DEFER		0.38	Lindblom v. Union Central Life Insurance	LINDBLOM et al. v. UNION CENTRAL LIFE INS. CO et al. No. 5856. |		
+4145	60	ADDITION	USE_WL	MED	0.94	State Ex Rel. Harding v. Lane	STATE ex rel. HARDING et al., State Board of Railroad Com’rs, v. LANE et al. No. 5909. |	State ex rel. Harding, State Board of Railroad Com'rs, v. Lane	
+4151	60	COMPLEX	DEFER		0.94	Lakota Mercantile Co. v. Balsley	LAKOTA MERCANTILE CO. v. BALSLEY et al. GOLDAMMER-CRANNA-WEAVER CO. v. SAME.		
+4181	61	ADDITION	USE_WL	MED	0.92	Simmons v. Board of Education	SIMMONS v. BOARD OF EDUCATION OF CROSBY et al. No. 5878. |	Simmons v. Board of Education of Crosby	
+4190	61	ADDITION	USE_WL	MED	0.89	Mair v. Board of Administration	In re MAIR. MAIR et ux. v. BOARD OF ADMINISTRATION OF NORTH DAKOTA (JACKMAN et al., Interveners). No. 5916. |	In re Mair. Mair et ux. v. Board of Administration of North Dakota (Jackman, Interveners)	
+4210	61	SWAP*MULTI	DEFER	MED	0.92	Grand Lodge of the Ancient Order of United Workmen v. Wahlin	GRAND LODGE, A. O. U. W., OF NORTH DAKOTA v. WAHLIN et al. No. 5910. |		ancient[doc1/cl2] vs west[doc0/cl0] ; ancient[doc1/cl2] vs north[doc7/cl6] ; ancient[doc1/cl2] vs dakota[doc10/cl9] ; order[doc5/cl5] vs west[doc0/cl0] ; order[doc5/cl5] vs north[doc7/cl6] ; order[doc5/cl5] vs dakota[doc10/cl9] ; united[doc1/cl2] vs west[doc0/cl0] ; united[doc1/cl2] vs north[doc7/cl6] ; united[doc1/cl2] vs dakota[doc10/cl9] ; workmen[doc1/cl2] vs west[doc0/cl0] ; workmen[doc1/cl2] vs north[doc7/cl6] ; workmen[doc1/cl2] vs dakota[doc10/cl9]
+4219	61	EQUIV	DEFER		0.91	Union Central Life Insurance v. Alford	UNION CENTRAL LIFE INS. CO. v. ALFORD. No. 5957. |		
+4230	61	ADDITION	USE_WL	MED	0.94	State v. Ukkelberg	STATE v. UKKELBERG et al. Cr. No. 81. |	State v. Ukkelberg	
+4231	61	EQUIV	DEFER		0.95	Lincoln National Life Insurance v. Sampson	LINCOLN NAT. LIFE INS. CO. v. SAMPSON. No. 5967. |		
+4238	61	EQUIV	DEFER		0.92	Hollerman Mfg. Co. v. Standard Accident Insurance	HOLLERMAN MFG. CO., Inc., v. STANDARD ACCIDENT INS. CO. No. 5973. |		
+4250	61	ADDITION	USE_WL	MED	0.93	State v. Farrier	STATE v. FARRIER. Cr. No. 85. |	State v. Farrier	
+4243	61	ADDITION	USE_WL	MED	0.94	State v. Balliet	STATE v. BALLIET. Cr. No. 79. |	State v. Balliet	
+4251	61	EQUIV	DEFER		0.93	Allgood v. National Life Insurance	ALLGOOD v. NATIONAL LIFE INS. CO. No. 6000. |		
+4260	61	ADDITION	USE_WL	MED	0.90	State v. Parker	STATE v. PARKER. Cr. No. 88. |	State v. Parker	
+4270	62	COMPLEX	DEFER		0.84	State v. Bossart	STATE v. BOSSART et al. SAME v. ELLINGSON.		
+4269	62	EQUIV	DEFER		0.95	Griffin v. Implement Dealers Mutual Fire Insurance	GRIFFIN v. IMPLEMENT DEALERS’ MUT. FIRE INS. CO. No. 5956. |		
+4256	62	SWAP	KEEP_DB	MED	0.94	First Security Bank v. Hillesland	FIRST SEC. BANK OF UNDERWOOD v. HILLESLAND et al. No. 5999. |	First Security Bank v. Hillesland	security[doc6/cl7] vs sec[doc2/cl1] ; security[doc6/cl7] vs underwood[doc4/cl3]
+4274	62	SWAP	DEFER	MED	0.88	City of Enderlin v. Pontiac Township	CITY OF ENDERLIN v. PONTIAC TP., CASS COUNTY. No. 6029. |		township[doc19/cl20] vs tp[doc1/cl0] ; township[doc19/cl20] vs cass[doc12/cl11] ; township[doc19/cl20] vs county[doc133/cl118]
+4271	62	ADDITION	USE_WL	MED	0.91	Rusch v. Northern & Dakota Trust Co.	In re RUSCH’S ESTATE. RUSCH v. NORTHERN & DAKOTA TRUST CO. et al. No. 5981. |	In re Rusch's Estate. Rusch v. Northern & Dakota Trust Co.	
+4278	62	EQUIV	DEFER		0.88	Implement Dealers Mutual Fire Insurance v. Myron	IMPLEMENT DEALERS’ MUT. FIRE INS. CO. v. MYRON et al. No. 6012. |		
+4286	62	ADDITION	USE_WL	MED	0.90	State ex rel. Stricker v. Andrews	Ex parte STRICKER. STATE ex rel. STRICKER v. ANDREWS, Sheriff. No. 94. |	Ex parte Stricker. State ex rel. Stricker v. Andrews	
+4331	62	SWAP*MULTI	DEFER	HIGH	0.95	State v. Farmer's State Bank	STATE v. FARMERS’ STATE BANK OF MANDAN. In re FARMERS’ UNION LIVE STOCK MARKETING ASS’N. No. 6077. |		farmer[doc0/cl1] vs farmers[doc19/cl17] ; south[doc0/cl0] vs mandan[doc9/cl8] ; south[doc0/cl0] vs union[doc6/cl5] ; south[doc0/cl0] vs live[doc3/cl1] ; south[doc0/cl0] vs stock[doc3/cl1] ; south[doc0/cl0] vs marketing[doc3/cl2] ; south[doc0/cl0] vs ass[doc2/cl1] ; south[doc0/cl0] vs north[doc2/cl4]
+4320	62	ADDITION	USE_WL	MED	0.91	State v. Todd	STATE v. TODD. Cr. No. 93. |	State v. Todd	
+4313	62	ADDITION	USE_WL	MED	0.99	State v. Bannon	STATE v. BANNON. Cr. No. 89. |	State v. Bannon	
+4342	62	EQUIV	DEFER		0.95	Kreifels v. State Farm Mutual Automobile Insurance	KREIFELS v. STATE FARM MUT. AUTOMOBILE INS. CO. No. 6092. |		
+4356	63	SWAP	KEEP_DB	MED	0.92	State Ex Rel. Ness v. Board of City Commissioners	STATE ex rel. NESS v. BOARD OF CITY COM’RS OF CITY OF FARGO et al. No. 6031. |	State Ex Rel. Ness v. Board of City Commissioners	commissioners[doc30/cl30] vs com[doc2/cl1] ; commissioners[doc30/cl30] vs rs[doc3/cl2] ; commissioners[doc30/cl30] vs fargo[doc22/cl21]
+4360	63	SWAP	USE_WL	HIGH	0.81	Baird v. Kensal Light P. Co.	BAIRD v. KENSAL LIGHT & POWER CO. et al. No. 6110. |	Baird v. Kensal Light & Power Co.	paul[doc0/cl0] vs power[doc29/cl29]
+4369	63	ADDITION	USE_WL	MED	0.95	Russ v. Everson	RUSS v. EVERSON et al., County Com’rs. No. 6076. |	Russ v. Everson, County Com'rs	
+4373	63	SWAP*MULTI	DEFER	LOW	0.90	Brevick v. Cunard Steam Ship Co.	BREVICK v. CUNARD S. S. CO., Limited, et al. No. 6141. |		steam[doc0/cl3] vs south[doc0/cl0] ; steam[doc0/cl3] vs limited[doc2/cl0] ; ship[doc0/cl3] vs south[doc0/cl0] ; ship[doc0/cl3] vs limited[doc2/cl0]
+4374	63	COMPLEX	DEFER		0.96	Baldwin Piano Co. v. Wylie	BALDWIN PIANO CO. v. WYLIE. WYLIE et al. v. BALDWIN PIANO CO.		
+4395	63	EQUIV	DEFER		0.93	Dahl v. North Dakota Workmen's Compensation Bureau	DAHL v. WORKMEN’S COMPENSATION BUREAU OF NORTH DAKOTA. No. 6078. |		
+4396	63	ADDITION	USE_WL	MED	0.97	State Ex Rel. Harding v. Hoover Grain Co.	STATE ex rel. HARDING et al., Board of Railroad Com’rs, v. HOOVER GRAIN CO. No. 6087. |	State ex rel. Harding, Board of Railroad Com'rs, v. Hoover Grain Co.	
+4409	63	ADDITION	USE_WL	MED	0.91	Coan v. Plaza Equity Elevator Co.	COAN v. PLAZA EQUITY ELEVATOR CO. STATE ex rel. COAN v.	Coan v. Plaza Equity Elevator Co. State ex rel. Coan v.	
+4410	63	COMPLEX	DEFER		0.93	State Ex Rel. Coan v. Plaza Equity Elevator Co.	STATE ex rel. COAN v. PLAZA EQUITY ELEVATOR CO. et al. HARTFORD ACCIDENT & INDEMNITY CO. et al. v. PLAZA EQUITY ELEVATOR CO.		
+4414	63	COMPLEX	DEFER		0.97	Schwager v. Anderson	SCHWAGER v. ANDERSON. ANDERSON v. SAME.		
+4417	63	ADDITION	USE_WL	MED	0.87	Bingenheimer Mercantile Co. v. Horning	BINGENHEIMER MERCANTILE CO. v. HORNING (two cases). Nos. 6116, 6117. |	Bingenheimer Mercantile Co. v. Horning, 6117	
+4428	63	ADDITION	USE_WL	MED	0.91	State Ex Rel. Larkin v. Wheat Growers Warehouse Co.	STATE ex rel. LARKIN et al., Board of Railroad Com’rs, v. WHEAT GROWERS’ WAREHOUSE CO. et al. No. 6166. |	State ex rel. Larkin, Board of Railroad Com'rs, v. Wheat Growers' Warehouse Co.	
+4435	63	SWAP	USE_WL	MED	0.79	Michaelsohn v. Norway School District Number 12	MICHAELSOHN v. NORWAY SCHOOL DIST. NO. 12 OF McHENRY COUNTY. No. 6178. |	Michaelsohn v. Norway School Dist of McHenry County	number[doc1/cl2] vs mchenry[doc3/cl1] ; number[doc1/cl2] vs county[doc4/cl2]
+4448	63	ADDITION	USE_WL	MED	0.96	Teiten v. Van Sickle	In re TEITEN’S ESTATE. TEITEN v. VAN SICKLE. No. 6164. |	In re Teiten's Estate. Teiten v. Van Sickle	
+4444	64	ADDITION	USE_WL	MED	0.94	State v. Isensee	STATE v. ISENSEE. Cr. No. 96. |	State v. Isensee	
+4472	64	ADDITION	USE_WL	MED	0.95	Young v. McQueen	In re McQUEEN’S ESTATE. YOUNG v. McQUEEN et al. No. 6151. |	In re McQueen's Estate. Young v. McQueen	
+4468	64	EQUIV	DEFER		0.89	Ruble v. Grafton National Bank	RUBLE v. GRAFTON NAT. BANK OF GRAFTON. No. 6204. |		
+4467	64	EQUIV	DEFER		0.90	Griffin v. Implement Dealers Mutual Fire Insurance	GRIFFIN v. IMPLEMENT DEALERS’ MUT. FIRE INS. CO. No. 6160. |		
+4479	64	ADDITION	USE_WL	MED	0.92	Kopald Electric Co. v. Ocean Accident & Guarantee Corp.	KOPALD ELECTRIC CO. v. OCEAN ACCIDENT & GUARANTEE CORPORATION, Limited. No. 6148. |	Kopald Electric Co. v. Ocean Accident & Guarantee Corporation, Limited	
+4477	64	EQUIV	DEFER		0.96	Baird v. Forbes State Bank	BAIRD v. FORBES STATE BANK OF FORBES et al. No. 6231. |		
+4480	64	ADDITION	USE_WL	MED	0.94	State v. Ruemmele	STATE v. RUEMMELE. Cr. No. 107. |	State v. Ruemmele	
+4493	64	ADDITION	USE_WL	MED	0.91	State v. Ehr	STATE v. EHR. Cr. No. 110. |	State v. Ehr	
+4509	64	EQUIV	DEFER		0.92	Paul v. St. Paul Fire & Marine Insurance	PAUL v. ST. PAUL FIRE & MARINE INS. CO. et al. No. 6223. |		
+4515	64	ADDITION	USE_WL	MED	0.97	State v. Lindeman	STATE v. LINDEMAN. Cr. No. 112. |	State v. Lindeman	
+4528	64	ADDITION	USE_WL	MED	0.90	Tice v. Zlevor	In re GIESE’S ESTATE. TICE et al. v. ZLEVOR et al. No. 6220. |	In re Giese's Estate. Tice v. Zlevor	
+4538	64	ADDITION	USE_WL	MED	0.98	State v. Gammons	STATE v. GAMMONS. Cr. No. 113. |	State v. Gammons	
+4547	64	ADDITION	USE_WL	MED	0.80	Knudson v. Norman School District No. —	KNUDSON et al. v. NORMAN SCHOOL DIST. NO.–, TRAILL COUNTY, et al. No. 6285. |	Knudson v. Norman School Dist. No.–, Traill County	
+4570	65	SWAP	USE_WL	MED	0.96	Peoples Opinion Printing Co. v. Valley City Grocery Co.	PEOPLE’S OPINION PRINTING CO. v. VALLEY CITY GROCERY CO. No. 6273. |	People's Opinion Printing Co. v. Valley City Grocery Co.	peoples[doc0/cl2] vs people[doc2/cl0]
+4572	65	ADDITION	USE_WL	MED	0.96	State v. Stoddard	STATE v. STODDARD. Cr. No. 118. |	State v. Stoddard	
+4575	65	ADDITION	USE_WL	MED	0.79	Wasson v. Brotherhood of R. Trainmen	WASSON v. BROTHERHOOD OF RAILROAD TRAINMEN. No. 6307. |	Wasson v. Brotherhood of Railroad Trainmen	
+4576	65	ADDITION	USE_WL	MED	0.59	Huffman v. Brotherhood of R. Trainmen	HUFFMAN v. BROTHERHOOD OF RAILROAD TRAINMEN. No. 6308. |	Huffman v. Brotherhood of Railroad Trainmen	
+4597	65	ADDITION	USE_WL	MED	0.82	State v. Grams	STATE v. GRAMS. Cr. No. 119. |	State v. Grams	
+4600	65	SWAP	KEEP_DB	HIGH	0.95	Northern Pacific Railway Co. v. Northern Reo Co.	NORTHERN PAC. RY. CO. v. NORTHERN REO CO. et al. Nos. 6245, 6263. |	Northern Pacific Railway Co. v. Northern Reo Co.	railway[doc5/cl6] vs ry[doc1/cl0] ; railway[doc5/cl6] vs nos[doc1/cl1]
+4591	65	ADDITION	USE_WL	MED	0.96	State v. Chaffee	STATE v. CHAFFEE. Cr. No. 116. |	State v. Chaffee	
+4593	65	ADDITION	USE_WL	MED	0.73	Wasson v. Brotherhood of Railroad Trainmen	Howard WASSON, Plaintiff and Respondent, v. BROTHERHOOD OF RAILROAD TRAINMEN, Defendant and Appellant. No. 6307. |	Howard Wasson, Plaintiff and Respondent, v. Brotherhood of Railroad Trainmen, Defendant and Appellant	
+4604	65	ADDITION	USE_WL	MED	0.93	State v. Berenson	STATE v. BERENSON. Cr. No. 121. |	State v. Berenson	
+4611	65	SWAP*MULTI	DEFER	LOW	0.87	Corn Exchange Savings Bank v. Northwest Construction Co.	CORN EXCHANGE SAV. BANK, SIOUX FALLS, S. D., v. NORTHWEST CONST. CO. No. 6346. |		savings[doc1/cl2] vs sav[doc1/cl0] ; savings[doc1/cl2] vs sioux[doc2/cl1] ; savings[doc1/cl2] vs falls[doc2/cl1] ; savings[doc1/cl2] vs south[doc0/cl0] ; savings[doc1/cl2] vs const[doc1/cl0] ; construction[doc2/cl3] vs sav[doc1/cl0] ; construction[doc2/cl3] vs sioux[doc2/cl1] ; construction[doc2/cl3] vs falls[doc2/cl1] ; construction[doc2/cl3] vs south[doc0/cl0] ; construction[doc2/cl3] vs const[doc1/cl0]
+4608	65	EQUIV	DEFER		0.94	Griggs County v. County of Cass	GRIGGS COUNTY v. CASS COUNTY. No. 6290. |		
+4616	65	EQUIV	DEFER		0.99	Thomas v. New York Life Insurance	THOMAS v. NEW YORK LIFE INS. CO. No. 6304. |		
+4623	65	ADDITION	USE_WL	MED	0.97	State v. Duffy	STATE v. DUFFY. Cr. No. 115. |	State v. Duffy	
+4721	67	ADDITION	USE_WL	MED	0.91	Northwestern Trust Co. v. Getz	In re LE PAGE’S TRUST. NORTHWESTERN TRUST CO. v. GETZ et al. No. 6397. |	In re Le Page's Trust. Northwestern Trust Co. v. Getz	
+4728	67	ADDITION	USE_WL	MED	0.93	Hagstrom v. Estherville School District No. 43	HAGSTROM v. ESTHERVILLE SCHOOL DIST. NO. 43 IN BURLEIGH COUNTY et al. No. 6441. |	Hagstrom v. Estherville School Dist in Burleigh County	
+4735	67	SWAP	DEFER	LOW	0.92	State Ex Rel. Board of Railroad Commissioners v. Burt State Bank	STATE ex rel. BOARD OF RAILROAD COM’RS v. BURT STATE BANK. No. 6412. |		commissioners[doc1/cl2] vs com[doc1/cl0] ; commissioners[doc1/cl2] vs rs[doc1/cl0]
+4734	67	SWAP	USE_WL	HIGH	0.87	State Ex Rel. Jordan v. Anstrom	STATE ex rel. JORDON v. ANSTROM, Sheriff. Cr. 140. |	State ex rel. Jordon v. Anstrom, Sheriff	jordan[doc0/cl2] vs jordon[doc5/cl3]
+4740	67	ADDITION	USE_WL	MED	0.92	State Ex Rel. Schmeding v. District Court of the Sixth Judicial District	STATE ex rel. SCHMEDING v. DISTRICT COURT OF SIXTH JUDICIAL DIST. IN AND FOR MORTON COUNTY et al. No. 6454. |	State ex rel. Schmeding v. District Court of in and for Morton County	
+4772	67	ADDITION	USE_WL	MED	0.87	McKee v. Buck	In re McKEE’S ESTATE. McKEE et al. v. BUCK et al. No. 6451. |	In re McKee's Estate. McKee v. Buck	
+4777	67	EQUIV	DEFER		0.86	Rott v. Provident Life Insurance	ROTT v. PROVIDENT LIFE INS. CO. No. 6455. |		
+4776	67	ADDITION	USE_WL	MED	0.90	State v. Campbell	STATE v. CAMPBELL. Cr. No. 142. |	State v. Campbell	
+4791	68	SWAP*MULTI	DEFER	MED	0.92	Lower Yellowstone Irrigation District Number Two v. Tollefson	LOWER YELLOWSTONE IRR. DIST. NO. 2 v. TOLLEFSON, County Auditor. No. 6509. |		irrigation[doc4/cl5] vs irr[doc1/cl0] ; irrigation[doc4/cl5] vs county[doc53/cl51] ; irrigation[doc4/cl5] vs auditor[doc10/cl9] ; number[doc0/cl2] vs irr[doc1/cl0] ; number[doc0/cl2] vs county[doc53/cl51] ; number[doc0/cl2] vs auditor[doc10/cl9] ; two[doc0/cl2] vs irr[doc1/cl0] ; two[doc0/cl2] vs county[doc53/cl51] ; two[doc0/cl2] vs auditor[doc10/cl9]
+4815	68	ADDITION	USE_WL	MED	0.93	State v. Elkin	STATE v. ELKIN. Cr. No. 152. |	State v. Elkin	
+4842	68	ADDITION	USE_WL	MED	0.65	Weir v. Armour & Co.	Bert WEIR, Plaintiff and Respondent, v. ARMOUR & COMPANY, a Corporation, Defendant and Appellant. No. 6517. |	Bert Weir, Plaintiff and Respondent, v. Armour & Company, a Corporation, Defendant and Appellant	
+4841	68	ADDITION	USE_WL	MED	0.65	Haugen v. Armour & Co.	J. B. HAUGEN Plaintiff and Respondent, v. ARMOUR & COMPANY, a Corporation, Defendant and Appellant. No. 6519. |	J. B. Haugen Plaintiff and Respondent, v. Armour & Company, a Corporation, Defendant and Appellant	
+4825	68	ADDITION	USE_WL	MED	0.96	State v. Young	STATE v. YOUNG. Cr. No. 156. |	State v. Young	
+4826	68	ADDITION	USE_WL	MED	0.56	State v. Hawley	STATE v. HAWLEY. Cr. No. 158. |	State v. Hawley	
+4828	68	ADDITION	USE_WL	MED	0.56	State v. Coman	STATE v. COMAN. Cr. No. 157. |	State v. Coman	
+4832	68	ADDITION	USE_WL	MED	0.95	Sisters of Mercy v. Ramsey County	SISTERS OF MERCY OF DEVILS LAKE v. RAMSEY COUNTY et al. No. 6511. |	Sisters of Mercy of Devils Lake v. Ramsey County	
+4847	68	ADDITION	USE_WL	MED	0.96	Bismarck Hospital v. Harris	BISMARCK HOSPITAL AND DEACONESSES HOME v. HARRIS. No. 6475. |	Bismarck Hospital and Deaconesses Home v. Harris	
+4856	68	SWAP	DEFER	LOW	0.95	Kvame v. Farmers Co-Operative Elevator Co.	KVAME v. FARMERS CO-OP. ELEVATOR CO. OF SIMCOE. No. 6512. |		co-operative[doc2/cl3] vs co-op[doc1/cl0] ; co-operative[doc2/cl3] vs simcoe[doc2/cl1]
+4854	68	COMPLEX	DEFER		0.82	Re Russell	In re RUSSELL. RUSSELL v. GREAT NORTHERN RY. CO. et al. No. 6504. |		
+4852	68	ADDITION	USE_WL	MED	0.95	State v. Johnson	STATE v. JOHNSON. Cr. No. 151. |	State v. Johnson	
+4867	68	ADDITION	USE_WL	MED	0.88	Lyman County v. Scott	LYMAN COUNTY, S. D., v. SCOTT. No. 6525. |	Lyman County, S. D., v. Scott	
+4869	68	ADDITION	USE_WL	MED	0.82	State v. Hoffman	STATE v. HOFFMAN et al. Cr. No. 161. |	State v. Hoffman	
+4876	68	COMPLEX	DEFER		0.93	Westman v. Middlewest Trust Co.	WESTMAN v. MIDDLEWEST TRUST CO. et al. CLAPPER v. SAME.		
+4894	69	ADDITION	USE_WL	MED	0.91	State v. Jackson	In re WHITE. STATE v. JACKSON et al. No. 6539. |	In re White. State v. Jackson	
+4909	69	ADDITION	USE_WL	MED	0.89	McKee v. Buck	In re McKEE’S ESTATE. McKEE et al. v. BUCK et al. No. 6594. |	In re McKee's Estate. McKee v. Buck	
+4913	69	EQUIV	DEFER		0.93	Rott v. Provident Life Insurance	ROTT v. PROVIDENT LIFE INS. CO. No. 6570. |		
+4932	69	ADDITION	USE_WL	MED	0.91	Maher v. Smith	In re SMITH’S ESTATE. MAHER v. SMITH et al. No. 6593. |	In re Smith's Estate. Maher v. Smith	
+4928	69	ADDITION	USE_WL	MED	0.89	State v. Dellage	STATE v. DELLAGE. Cr. No. 168. |	State v. Dellage	
+4933	69	EQUIV	DEFER		0.94	County of Hettinger v. Trousdale	HETTINGER COUNTY v. TROUSDALE et al. No. 6605. |		
+4953	69	ADDITION	USE_WL	MED	0.93	City of Dickinson v. Thress	CITY OF DICKINSON v. THRESS. Cr. No. 171. |	City of Dickinson v. Thress	
+4967	70	ADDITION	USE_WL	MED	0.95	State v. Mostad	STATE v. MOSTAD. Cr. No. 169. |	State v. Mostad	
+4981	70	ADDITION	USE_WL	MED	0.89	State v. Taylor	STATE v. TAYLOR. Cr. No. 173. |	State v. Taylor	
+4985	70	EQUIV	DEFER		0.90	Jewel Tea Co. v. State Tax Commissioner	JEWEL TEA CO., Inc., v. STATE TAX COMMISSIONER. No. 6666. |		
+4984	70	COMPLEX	DEFER		0.86	Martin v. Anders	MARTIN v. ANDERS. HECHT v. SAME.		
+5004	70	SWAP	USE_WL	HIGH	0.93	LaBree v. Dakota Tractor & Equipment Co.	LA BREE v. DAKOTA TRACTOR & EQUIPMENT CO. No. 6708. |	La Bree v. Dakota Tractor & Equipment Co.	labree[doc0/cl2] vs la[doc4/cl2] ; labree[doc0/cl2] vs bree[doc4/cl2]
+5016	70	ADDITION	USE_WL	MED	0.92	Lamb v. King	LAMB, State Highway Com’r v. KING et al. No. 6713. |	Lamb, State Highway Com'r v. King	
+5047	70	ADDITION	USE_WL	MED	0.98	Voss v. Gray	VOSS v. GRAY, Tax Com’r. No. 6691. |	Voss v. Gray, Tax Com'r	
+5049	70	EQUIV	DEFER		0.98	Rott v. Provident Life Insurance	ROTT v. PROVIDENT LIFE INS. CO. No. 6696. |		
+5051	70	ADDITION	USE_WL	MED	0.92	McKenzie County v. Lamb	McKENZIE COUNTY v. LAMB, State Highway Com’r. No. 6758. |	McKenzie County v. Lamb, State Highway Com'r	
+5069	71	SWAP	KEEP_DB	MED	0.92	Standard Oil Co. v. State Tax Commissioner	STANDARD OIL CO. OF INDIANA v. STATE TAX COM’R OF STATE OF NORTH DAKOTA. No. 6706. |	Standard Oil Co. v. State Tax Commissioner	commissioner[doc9/cl8] vs indiana[doc2/cl1] ; commissioner[doc9/cl8] vs com[doc1/cl0] ; commissioner[doc9/cl8] vs north[doc7/cl6] ; commissioner[doc9/cl8] vs dakota[doc7/cl6]
+6055	71	EQUIV	DEFER		0.96	State v. Hartford Steam Boiler Inspection & Insurance	STATE v. HARTFORD STEAM BOILER INSPECTION & INSURANCE CO. No. 6701. |		
+7089	71	SWAP*MULTI	DEFER	MED	0.94	Lower Yellowstone Irrigation District Number Two v. Nelson	LOWER YELLOWSTONE IRR. DIST. NO. 2 v. NELSON et al. No. 6746. |		irrigation[doc4/cl5] vs irr[doc1/cl0] ; number[doc0/cl2] vs irr[doc1/cl0] ; two[doc0/cl2] vs irr[doc1/cl0]
+8303	71	SWAP	DEFER	MED	0.96	Lamb v. Northern Improvement Co.	LAMB, State Highway Commissioner v. NORTHERN IMP. CO. No. 6800. |		improvement[doc8/cl9] vs state[doc39/cl38] ; improvement[doc8/cl9] vs highway[doc23/cl22] ; improvement[doc8/cl9] vs commissioner[doc11/cl10] ; improvement[doc8/cl9] vs imp[doc1/cl0]
+8306	71	ADDITION	USE_WL	MED	0.98	Donaldson v. City of Bismarck	DONALDSON v. CITY OF BISMARCK. Nos. 6718, 6719. |	Donaldson v. City of Bismarck, 6719	
+9811	72	ADDITION	USE_WL	MED	0.51	McArthur v. Cass County	Peter McARTHUR, Plaintiff and Respondent, v. CASS COUNTY, North Dakota, a public corporation, Defendant and Appellant. No. 6786. |	Peter McArthur, Plaintiff and Respondent, v. Cass County, North Dakota, a public corporation, Defendant and Appellant	
+9810	72	ADDITION	USE_WL	MED	0.51	Arnold v. Cass County	Harold D. ARNOLD, Plaintiff and Respondent, v. CASS COUNTY, North Dakota, a public corporation, Defendant and Appellant. No. 6785. |	Harold D. Arnold, Plaintiff and Respondent, v. Cass County, North Dakota, a public corporation, Defendant and Appellant	
+9816	72	ADDITION	USE_WL	MED	0.90	Lamb v. State Tax Commissioner of the State	LAMB et al. v. STATE TAX COMMISSIONER. In re LAMB’S ESTATE. No. 6761. |	Lamb v. State Tax Commissioner. in re Lamb's Estate	
+9819	72	ADDITION	USE_WL	MED	0.88	Lynch v. Gray	In re LYNCH’S ESTATE. LYNCH et al. v. GRAY, State Tax Commissioner. No. 6823. |	In re Lynch's Estate. Lynch v. Gray, State Tax Commissioner	
+9814	72	ADDITION	USE_WL	MED	0.96	Berg v. Berg	In re BERG’S ESTATE. BERG v. BERG et al. No. 6766. |	In re Berg's Estate. Berg v. Berg	
+9823	72	ADDITION	USE_WL	MED	0.94	Schwarz v. Thoreson	In re THORESON’S GUARDIANSHIP. SCHWARZ et al. v. THORESON. No. 6841. |	In re Thoreson's Guardianship. Schwarz v. Thoreson	
+11384	72	ADDITION	USE_WL	MED	0.95	Stern v. Gray	STERN v. GRAY, Tax Com’r. No. 6815. |	Stern v. Gray, Tax Com'r	
+11391	72	ADDITION	USE_WL	MED	0.72	Ward County v. Pringle	WARD COUNTY, a Municipal Corporation and Political Subdivision of the State of North Dakota, Plaintiff and Respondent, v. Alex D. PRINGLE, Fred M. Brey, E. A. Donnelly, H. J. Yuly, Bertel Jacobsen, and State Bonding Fund, Defendants and Appellants. No. 6769. |	Ward County, a Municipal Corporation and Political Subdivision of the State of North Dakota, Plaintiff and Respondent, v. Alex D. Pringle, Fred M. Brey, E. A. Donnelly, H. J. Yuly, Bertel Jacobsen, and State Bonding Fund, Defendants and Appellants	
+11389	72	EQUIV	DEFER		0.97	County of Hettinger v. Trousdale	HETTINGER COUNTY v. TROUSDALE No. 6605. |		
+12993	72	ADDITION	USE_WL	MED	0.79	Lyche v. Steele County	LYCHE v. STEELE COUNTY et al. No. 6859-A. |	Lyche v. Steele County-A	
+12984	72	SWAP	USE_WL	MED	0.94	Pagel v. Trinity Hospital Asso.	PAGEL v. TRINITY HOSPITAL ASS’N. No. 6846. |	Pagel v. Trinity Hospital Ass'n	asso[doc0/cl1] vs ass[doc1/cl0] ; asso[doc0/cl1] vs north[doc8/cl8]
+17003	72	ADDITION	USE_WL	MED	0.97	State v. Thomas	STATE v. THOMAS. Cr. No. 188. |	State v. Thomas	
+17001	72	EQUIV	DEFER		0.93	Groff v. State	GROFF v. STATE (WORKMEN’S COMPENSATION BUREAU). No. 6880. |		
+17004	72	ADDITION	USE_WL	MED	0.98	State v. Cromwell	STATE v. CROMWELL. Cr. No. 184. |	State v. Cromwell	
+6071	72	SWAP	USE_WL	MED	0.93	Roethke v. North Dakota Taxpayers Asso.	ROETHKE v. NORTH DAKOTA TAXPAYERS ASS’N, Inc., et al. No. 6836. |	Roethke v. North Dakota Taxpayers Ass'n, Inc.	asso[doc0/cl1] vs ass[doc1/cl0]
+6075	72	ADDITION	USE_WL	MED	0.98	State v. Schmidt	STATE v. SCHMIDT. Cr. No. 174. |	State v. Schmidt	
+6159	73	ADDITION	USE_WL	MED	0.97	Novak v. Novak	In re NOVAK’S ESTATE. NOVAK v. NOVAK et al. No. 6854. |	In re Novak's Estate. Novak v. Novak	
+6152	73	SWAP	USE_WL	HIGH	0.91	State for Workmen's Comp. Fund v. Thompson	STATE, FOR BENEFIT OF WORKMEN’S COMPENSATION FUND et al. v. THOMPSON et al. No. 6821. |	State, for Benefit of Workmen's Compensation Fund v. Thompson	comp[doc0/cl1] vs benefit[doc6/cl5] ; comp[doc0/cl1] vs compensation[doc19/cl18]
+6255	73	EQUIV	DEFER		0.96	New York Life Insurance v. Fleck	NEW YORK LIFE INS. CO. v. FLECK et al. No. 6910. |		
+6257	73	EQUIV	DEFER		0.92	La Plante v. Implement Dealers Mutual Fire Insurance	LA PLANTE v. IMPLEMENT DEALERS MUT. FIRE INS. CO. et al. No. 6914. |		
+6361	73	ADDITION	USE_WL	MED	0.93	State v. Gebhard	STATE v. GEBHARD. Cr. No. 189. |	State v. Gebhard	
+6495	73	ADDITION	USE_WL	MED	0.61	Siewert v. Norgart	SIEWERT v. NORGART. No. 6912–A. |	Siewert v. Norgart–A	
+6618	73	SWAP	KEEP_DB	HIGH	0.92	Consolidated Freightways, Inc. v. Lamb Ex Rel. State	CONSOLIDATED FREIGHTWAYS, Inc., v. LAMB, Highway Commissioner, et al. No. 6928. |	Consolidated Freightways, Inc. v. Lamb Ex Rel. State	state[doc17/cl19] vs highway[doc3/cl3] ; state[doc17/cl19] vs commissioner[doc2/cl1]
+6793	73	ADDITION	USE_WL	MED	0.95	Johnson v. the Great Northern L. Ins. Co.	JOHNSON v. GREAT NORTHERN LIFE INS. CO. et al. No. 6892. |	Johnson v. Great Northern Life Ins. Co.	
+6799	73	EQUIV	DEFER		0.94	Lincoln National Life Insurance v. Kelly	LINCOLN NAT. LIFE INS. CO. v. KELLY. No. 6956. |		
+6796	73	ADDITION	USE_WL	MED	0.90	State v. Cowdrey	STATE v. COWDREY. Cr. No. 196. |	State v. Cowdrey	
+6797	73	ADDITION	USE_WL	MED	0.74	State v. Cowdrey	STATE v. COWDREY. Cr. No. 195. |	State v. Cowdrey	
+6798	73	ADDITION	USE_WL	MED	0.94	Hoffman v. Heirs of Hoffman	HOFFMAN v. HOFFMAN’S HEIRS. No. 6944. |	Hoffman v. Hoffman's Heirs	
+6974	73	ADDITION	USE_WL	MED	0.99	State v. Myers	STATE v. MYERS. Cr. No. 193. |	State v. Myers	
+6976	73	COMPLEX	DEFER		0.84	Re Gislason	In re GISLASON’S ESTATE. GISLASON v. GISLASON et al. No. 6967. |		
+7520	74	ADDITION	USE_WL	MED	0.85	Eberlein v. Eberly	In re BRATCHER’S ESTATE. EBERLEIN v. EBERLY et al. No. 7030. |	In re Bratcher's Estate. Eberlein v. Eberly	
+7181	74	ADDITION	USE_WL	MED	0.96	State v. Ave	STATE v. AVE. Cr. No. 201. |	State v. Ave	
+7177	74	SWAP	DEFER	LOW	0.97	Northern Pacific Railway Co v. McDonald	In re HANSON. NORTHERN PAC. RY. CO. v. McDONALD et al. No. 6965. |		railway[doc8/cl8] vs hanson[doc8/cl8] ; railway[doc8/cl8] vs ry[doc4/cl3]
+7179	74	SWAP	DEFER	MED	0.68	Northern Pacific Railway Co. v. McDonald	In re ADAMS. NORTHERN PAC. RY. CO. v. McDONALD et al. No. 6966. |		railway[doc2/cl2] vs adams[doc3/cl3] ; railway[doc2/cl2] vs ry[doc1/cl0]
+7182	74	ADDITION	USE_WL	MED	0.99	State Ex Rel. Johnson v. Baker	STATE ex rel. JOHNSON, Attorney General, v. BAKER, State Auditor. No. 6968. |	State ex rel. Johnson, Attorney General, v. Baker	
+7185	74	ADDITION	USE_WL	MED	0.90	State v. Becker	STATE v. BECKER. Cr. No. 202. |	State v. Becker	
+7311	74	SWAP	USE_WL	MED	0.98	Williston Savings and Loan Asso. v. Kellar	WILLISTON SAVINGS & LOAN ASS’N v. KELLAR et al. No. 6997. |	Williston Savings & Loan Ass'n v. Kellar	asso[doc0/cl1] vs ass[doc1/cl0] ; asso[doc0/cl1] vs north[doc4/cl4]
+7403	74	ADDITION	USE_WL	MED	0.91	Black v. Gray	In re BLACK’S ESTATE. BLACK v. GRAY, State Tax Com’r. No. 6982. |	In re Black's Estate. Black v. Gray, State Tax Com'r	
+7408	74	ADDITION	USE_WL	MED	0.99	State Ex Rel. Syvertson v. Jones	STATE ex rel. SYVERTSON v. JONES, State Highway Com’r, et al. No. 7002. |	State ex rel. Syvertson v. Jones, State Highway Com'r	
+7401	74	SWAP	USE_WL	HIGH	0.93	Schmidt v. State Workmen's Compensation Bureau	SCHMIDT v. NORTH DAKOTA WORKMEN’s COMPENSATION BUREAU et al. No. 7013. |	Schmidt v. North Dakota Workmen's Compensation Bureau	state[doc0/cl1] vs north[doc6/cl6] ; state[doc0/cl1] vs dakota[doc6/cl6]
+6983	74	ADDITION	USE_WL	MED	0.97	State Ex Rel. Johnson v. Myers	STATE ex rel. JOHNSON, Attorney General, v. MYERS. No. 6983. |	State ex rel. Johnson, Attorney General, v. Myers	
+7646	75	ADDITION	USE_WL	MED	0.89	Nelson v. Chadwick	In re GLAVKEE’S ESTATE. NELSON et al. v. CHADWICK et al. No. 7012. |	In re Glavkee's Estate. Nelson v. Chadwick	
+7899	75	ADDITION	USE_WL	MED	0.98	State v. Maresch	STATE v. MARESCH. Cr. No. 198. |	State v. Maresch	
+7906	75	SWAP	DEFER	LOW	0.96	State v. Columbus Hall Asso.	STATE, for Benefit of WORKMEN’S COMPENSATION FUND et al. v. COLUMBUS HALL ASS’N et al. No. 7042. |		asso[doc0/cl1] vs benefit[doc3/cl2] ; asso[doc0/cl1] vs workmen[doc3/cl2] ; asso[doc0/cl1] vs south[doc0/cl0] ; asso[doc0/cl1] vs compensation[doc3/cl2] ; asso[doc0/cl1] vs fund[doc3/cl2] ; asso[doc0/cl1] vs ass[doc2/cl1] ; asso[doc0/cl1] vs north[doc6/cl6]
+7908	75	ADDITION	USE_WL	MED	0.99	State Ex Rel. Johnson v. Broderick	STATE ex rel. JOHNSON, Attorney General, et al. v. BRODERICK, District Judge. In re NEMMERS. Crim. No. 206. |	State ex rel. Johnson, Attorney General v. Broderick, District Judge. in re Nemmers	
+8037	75	ADDITION	USE_WL	MED	0.79	State v. Prince	STATE v. PRINCE. Cr. No. 207. |	State v. Prince	
+8034	75	ADDITION	USE_WL	MED	0.85	State v. New	STATE v. NEW. Cr. No. 209. |	State v. New	
+8042	75	ADDITION	USE_WL	MED	0.99	State v. Nagel	STATE v. NAGEL. Cr. No. 204. |	State v. Nagel	
+8476	75	COMPLEX	DEFER		0.91	Grand Forks Building & Development Co. v. Implement Dealers Mutual Fire Insurance	GRAND FORKS BUILDING & DEVELOPMENT CO. v. IMPLEMENT DEALERS MUT. FIRE INS. CO. SAME v. IOWA HARDWARE MUT. INS. CO. et al.		
+9000	76	ADDITION	USE_WL	MED	0.94	Anderson v. Wells	In re ANDERSON’S ESTATE. ANDERSON et al. v. WELLS et al. No. 7091. |	In re Anderson's Estate. Anderson v. Wells	
+8999	76	COMPLEX	DEFER		0.78	In Re Glavkee	In re GLAVKEE’S ESTATE. CHADWICK v. HANSON et al. No. 7065. |		
+9004	76	ADDITION	USE_WL	MED	0.96	Eberlein v. Bratcher	In re BRATCHER’S ESTATE. EBERLEIN v. BRATCHER et al. No. 7099. |	In re Bratcher's Estate. Eberlein v. Bratcher	
+9131	76	ADDITION	USE_WL	MED	0.93	Westland v. Stalnecker	WESTLAND v. STALNECKER et al., County Com’rs. No. 7103. |	Westland v. Stalnecker, County Com'rs	
+9299	76	EQUIV	DEFER		0.96	Northwestern Sheet & Iron Works v. County of Sioux	NORTHWESTERN SHEET & IRON WORKS v. SIOUX COUNTY. No. 7125. |		
+9405	76	EQUIV	DEFER		0.95	Tooz v. Tooz	In re TOOZ’ ESTATE. TOOZ v. TOOZ et al. No. 7111. |		
+9538	76	ADDITION	USE_WL	MED	0.96	Guon v. Johnson	In re GUON. GUON v. JOHNSON, Attorney General. No. 7136. |	In re Guon. Guon v. Johnson	
+9676	76	ADDITION	USE_WL	MED	0.66	Ahoe v. Massill	Jacob AHOE and Ray Stinson, Copartners, Plaintiffs and Appellants, v. Ernest MASSILL, Defendant and Respondent. No. 7143. |	Jacob Ahoe and Ray Stinson, Copartners, Plaintiffs and Appellants, v. Ernest Massill, Defendant and Respondent	
+12033	79	ADDITION	USE_WL	MED	0.96	Loveland v. Nieters	LOVELAND v. NIETERS et al. (two cases). Nos. 7279, 7280. |	Loveland v. Nieters, 7280	
+12041	79	SWAP	KEEP_DB	HIGH	0.97	Emery v. Midwest Motor Express Inc.	EMERY v. MIDWEST MOTOR EXP., Inc. (two cases). No. 7237. |	Emery v. Midwest Motor Express Inc.	express[doc4/cl6] vs exp[doc1/cl0]
+12039	79	EQUIV	DEFER		0.90	Dakota National Insurance v. Commissioner of Insurance	DAKOTA NAT. INS. CO. v. COMMISSIONER OF INSURANCE. No. 7210. |		
+12044	79	ADDITION	USE_WL	MED	0.96	State v. Torzeski	STATE v. TORZESKI. Cr. No. 244. |	State v. Torzeski	
+12212	79	ADDITION	USE_WL	MED	0.87	Barrett v. Board of Trustees of Teachers' Insurance	BARRETT v. BOARD OF TRUSTEES OF TEACHERS’ INSURANCE AND RETIREMENT FUND et al. No. 7307. |	Barrett v. Board of Trustees of Teachers' Insurance and Retirement Fund	
+12544	79	ADDITION	USE_WL	MED	0.82	United States v. State	In re HEIDEN’S ESTATE. UNITED STATES v. STATE. No. 7343. |	In re Heiden's Estate. United States v. State	
+12549	79	EQUIV	DEFER		0.87	Kemmer v. Sunshine Mutual Insurance	KEMMER v. SUNSHINE MUT. INS. CO. No. 7351. |		
+12696	79	COMPLEX	DEFER		0.92	In Re Wilson	In re WILSON. TOWNER COUNTY v. STUTSMAN COUNTY et al. No. 7365. |		
+12697	79	SWAP	DEFER	MED	0.84	Stark v. Heart River Irrigation District	In re EXCLUSION OF LANDS FROM HEART RIVER IRR. DIST. STARK et al. v. HEART RIVER IRR. DIST. No. 7356. |		irrigation[doc13/cl13] vs exclusion[doc6/cl4] ; irrigation[doc13/cl13] vs lands[doc32/cl27] ; irrigation[doc13/cl13] vs from[doc12/cl9] ; irrigation[doc13/cl13] vs heart[doc8/cl7] ; irrigation[doc13/cl13] vs river[doc8/cl7] ; irrigation[doc13/cl13] vs irr[doc2/cl0] ; irrigation[doc13/cl13] vs district[doc44/cl37] ; irrigation[doc13/cl13] vs irr[doc2/cl0]
