@@ -2,6 +2,12 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-douglas-date-misread-2026-05-24` (1 date revert) + `section10-resequence-2026-05-24c` (12 cites)
+
+**Self-correction.** The `fix-bound-discrepancies-2026-05-24` batch changed *Douglas v. Glazier* (oid 5774, 9 N.D. 615) date_filed 1900-12-08 → 1900-11-24 from a **150-dpi scan misread**. Re-reading the bound page at **300 dpi** shows "Opinion filed **December 8, 1900**" — the original 1900-12-08 was correct. Reverted (`fix-douglas-date-misread-2026-05-24`), then re-ran the resequencer (`section10-resequence-2026-05-24c`, 12 cites): Douglas returns to `1900 ND 107` (its Dec-8 slot), *Wilson* stays `1900 ND 85` (Nov 13, confirmed at 300 dpi + corroborated by the all-Nov-13 Emmons block). The other `fix-bound-discrepancies` changes are **confirmed correct** and untouched: Wilson 5747 → 1900-11-13, and Nelson 2169 → 173 N.W. 475 (independently confirmed by the `NW/173/{475,474}.md` source paths and a 300-dpi read showing Nelson at 173 N.W. 475 / Olson 474).
+
+**Lesson:** read filing dates / cite digits from bound scans at **≥300 dpi** (or from the Westlaw `.doc` text, which carries a parseable date) — 150 dpi misreads single digits (this Douglas error, and a Cairncross "Oct 10"→"Oct 19" misread caught the same way). Invariants **22 ok / 2 known / 0 regressed**; `neutral_cite_uniqueness` 258.
+
 ## Batch `section10-resequence-2026-05-24b` (1 cluster reordered — vols 14 & 24)
 
 Filed two newly-downloaded bound volumes — **N.D. vol 14** (746 pp.) and **N.D. vol 24** (785 pp.) — into `~/refs/nd/opin/N.D./{14,24}/_bound-volume.pdf` and verified their §10 clusters against the scans (offsets vol 14 +22; vol 24 +29 near p.327, drifting to +31 by p.393 — plates; always re-confirm via running header).
