@@ -2,6 +2,22 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-section10-cluster-order-ndverify-2026-05-24` (4 synthetic cites reordered)
+
+Verified the on-page publication order for every §10 shared-page cluster that falls in an **on-disk bound N.D. Reports volume** (vols 9, 19, 20, 34, 44), reading each bound scan against the provisional oid-order. Offsets calibrated via running header: vol 9 +110, vol 19 +18, vol 20 **+22** (initial +34 was a low-res misread), vol 34 **+26**, vol 44 +17. Tool: `triage/fix_section10_ndverify_order_2026-05-24.py` (revertible).
+
+**Correct as-is (no change):** 19 N.D. 57 (McCue v. Minneapolis "Soo" Ry → McCue v. Great Northern), 20 N.D. 370 (McAndress → Koch), 20 N.D. 372 (Andor → Fitzmaurice), 20 N.D. 412 (Winterer → Stoltze), 34 N.D. 601 (Tallmadge → Mercer County State Bank). The 20 N.D. 370/372 opinions are per-curiam contempt companions to the lead *State v. Hoffman* (this-day-decided).
+
+**Reordered (2 clusters, 4 cites):**
+- **9 N.D. 615** (vol 9 pdf 725): bound prints *Emmons County v. Wilson* (top) then *Douglas v. Glazier* — provisional had Douglas first (it sorted by N.W. 552 < 1119). Now Wilson `1900 ND 106` / Douglas `1900 ND 107`.
+- **44 N.D. 250** (vol 44 pdf 267): bound prints *N. M. Nelson v. Middlewest Grain Co.* (top) then *Henry Olson v. Middlewest Grain Co.* — provisional had Olson first (DB lists both at 173 N.W. 474, so oid broke the tie). **N.D. Reports order governs** the ND synthetic cite (reporter-order guard). Now Nelson `1919 ND 127` / Olson `1919 ND 128`.
+
+**Two data-quality flags surfaced while reading (NOT changed here — need separate review):**
+- **9 N.D. 615 date_filed:** bound shows *Wilson* "Opinion filed November 13, 1900" and *Douglas* "Opinion filed November 24, 1900", but the DB dates **both** 1900-12-08. Wilson is actually the tail of the Nov-13 Emmons block (so its synthetic number should eventually sit with the 66–84 group, not 106). Correcting these filing dates would cascade into the synthetic sequence — deferred.
+- **44 N.D. 250 N.W. cite:** bound shows *Nelson* at **173 N.W. 475** and *Olson* at 173 N.W. 474, but the DB has **both** at 173 N.W. 474 (2169 Nelson was set to 474 by `ingest-emmons-additions-2026-05-24` — likely an error for this page-250 Nelson; the 472/473/474 sequence applied to the page-247 companions). Recommend 2169 → 173 N.W. 475 after review.
+
+15 → **4 changelog rows** (`field='citation_synthetic_order'`). Invariants **22 ok / 2 known / 0 regressed**; `neutral_cite_uniqueness` held 258. No new snapshot (covered by `opinions.db.bak-pre-section10-phase1a-2026-05-24` + changelog revert).
+
 ## Batch `fix-section10-cluster-order-2026-05-24` (15 synthetic cites reordered)
 
 Replaced the **provisional oid-tiebreaker** within-cluster order with the **true N.D. on-page publication order** for the shared-page clusters whose order is authoritatively known. Tool: `triage/fix_section10_cluster_order_2026-05-24.py` (dry-run default; revertible — old cite string stored per changelog row).
