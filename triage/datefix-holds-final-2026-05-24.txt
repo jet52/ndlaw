@@ -1,0 +1,8 @@
+court-source dates parsed for 11606 opinions
+ADOPT (court date governs) ... 0
+HOLD  (court date later >31d, possible rehearing) ... 93
+  adopt by source: {}
+holds written -> triage/date-discrepancy-holds-2026-05-24.tsv
+
+DRY-RUN. sample adoptions:
+re-run with --apply.
