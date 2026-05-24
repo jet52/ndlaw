@@ -1,8 +1,15 @@
 # TODO — Path to a Fully Validated Corpus
 
-Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-05-17.
+Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-05-24.
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
+
+**ACTIVE WORKSTREAM — §10 synthetic medium-neutral cites (full detail in §10):** Corpus **20,154**; invariants **22 ok / 2 known / 0 regressed**.
+- **Phase 1A DONE 2026-05-24** — all **12,604** pre-1997 opinions carry a provisional `YYYY ND nnn` synthetic cite (`reporter='ND-neutral-synthetic'`, `is_primary=0`). **Canonical re-runnable ordering tool = `triage/section10_resequence_2026-05-24.py`** (recomputes from current DB + verified `KNOWN_ORDER`; run after any pre-1997 data change). Numbers are PROVISIONAL until a publish freeze.
+- **On-page order verified** for clusters in on-disk bound vols (3, 9, 14, 19, 20, 24, 27, 34, 41, 44, 47). **Pending volumes: 16, 17, 18, 21, 23, 32, 50, 64, 74** (file into `~/refs/nd/opin/N.D./<vol>/_bound-volume.pdf`, add verified orders to `KNOWN_ORDER`, re-run). Plus 28 NW2d-era (1953–96) member rows need NW2d page pulls.
+- **`date_filed` discrepancy resolution applied** (ratified policy: court's filing date governs; §2) — 110 corrections (108 auto ≤31d + 2 verified). **93 large-gap holds for review in `triage/date-discrepancy-holds-2026-05-24.tsv`** (symmetric >31d guard; mix of rehearing dates, parse artifacts, and a few real year-typos).
+- **Open sub-items:** *White v. Lauder* 10 N.D. 400/445 cite+date knot (§10 sub-item); §6 DEFER_MODERN ~530 post-1997 pairs (CONFIDENTIAL juvenile matters — careful); Westlaw bulk-download the ~183 truly single-source 1953–1996 opinions (§2).
+- **NOTE (coordination):** a parallel session has been doing 1997+ case-name/dedup work in the same `opinions.db`. Disjoint from §10 (pre-1997), but `neutral_cite_uniqueness` may read below its 258 baseline as that work resolves native dups.
 
 **Highest-yield next steps (2026-05-18 — exhausted/superseded: Type Y sweep done-negative + **Type-Y-at-ingest now closed** (§1, `typey.py`), citation contracts applied, `align_primary_source` already LEFT JOIN, archive.ndcourts.gov re-scrape REJECTED; PDF-era second-source policy ratified §9 and the 41/41 mandatory-OCR worklist fully Westlaw-sourced):**
 1. **§6 long tail** — MERGE-HOLD-LOWJAC + NEEDS_DECISION + DEFER_MULTI all FULLY adjudicated 2026-05-18. LOWJAC: 50 merged. NEEDS_DECISION: 70 pairs → 16 merged (CL+Westlaw double-ingests) + 50 confirmed keep-separate (distinct shared-page / supplemental-by-design) + 2 stale. DEFER_MULTI: 37 cites → 5 merged + Schirado distinct + rest distinct/already-resolved; 9 post-1997 clusters reclassified into DEFER_MODERN. Corpus 20,229→**20,159**. **Only §6 work remaining: the ~530 DEFER_MODERN post-1997 pairs** (touches public release + the 258 neutral_cite_uniqueness baseline; some CONFIDENTIAL juvenile matters — handle carefully, separate vetting). Plus minor cite-hygiene follow-ups (below).
