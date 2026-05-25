@@ -56,6 +56,8 @@ from .ingest_westlaw import (
 from .ingest import _classify_reporter, recompute_primary
 from .ingest_nwcite import _split_frontmatter
 from .multisource_diff import jaccard, normalize_words, shingles
+from .strip_westlaw_headnotes import _PP, _excise_headnotes
+from .strip_westlaw_synopsis import strip_synopsis_editorial
 from .validation_status import _era_tier
 
 BATCH = f"westlaw-receive-{date.today().isoformat()}"
@@ -111,14 +113,35 @@ def _caption_key(name: str) -> str:
     return " v. ".join(p for p in out if p)
 
 
+def _strip_editorial(body: str) -> str:
+    """Strip leaked Westlaw editorial from a fallback-extracted body —
+    the West Headnotes block, the Procedural Posture line, and the
+    Synopsis stub — matching what _parse_westlaw_doc removes on the main
+    path. Court-authored narrative under a Synopsis header is preserved
+    (strip_synopsis_editorial). Reuses the corpus strip tools so the
+    fallback can't reintroduce the editorial those tools later remove."""
+    nb, _ = _excise_headnotes(body)
+    nb = _PP.sub("", nb)
+    nb = re.sub(r"\n{3,}", "\n\n", nb).strip()
+    nb, _, _ = strip_synopsis_editorial(nb)
+    return nb.strip()
+
+
 def _parse(text: str) -> dict | None:
     """_parse_westlaw_doc, with a memorandum fallback. '(Mem)' orders
     carry the cite/caption/date and an 'All Citations' footer but no
     Opinion/Attorneys header, so the base parser extracts no body. When
     that happens, take the body as everything between the filing date
-    and 'All Citations'."""
+    and 'All Citations' — then strip any leaked Westlaw editorial
+    (the base parser strips it; the fallback must too)."""
     p = _parse_westlaw_doc(text) or {}
     if p.get("full_bound_text") or p.get("opinion_text"):
+        # The base parser strips West Headnotes but (for modern memo-format
+        # docs) leaves the Synopsis stub and "Procedural Posture(s)" line in
+        # the body. Strip them here so neither parse path emits editorial.
+        for key in ("full_bound_text", "opinion_text"):
+            if p.get(key):
+                p[key] = _strip_editorial(p[key])
         return p
 
     lines = text.splitlines()
@@ -144,6 +167,9 @@ def _parse(text: str) -> dict | None:
     if all_idx is None or date_idx is None:
         return p or None
     body = "\n".join(lines[date_idx + 1:all_idx]).strip()
+    if not body:
+        return p or None
+    body = _strip_editorial(body)
     if not body:
         return p or None
     # caption = the lines between the "Supreme Court..."/cite header and
