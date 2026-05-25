@@ -6,7 +6,7 @@ Appeals decisions). Built on SQLite with FTS5 full-text search and
 served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
 opinion browser with multi-source diff/merge tools.
 
-The corpus currently contains **~20,200 opinions** with **111,000+
+The corpus currently contains **~20,200 opinions** with **112,000+
 citation links** between them, with every correction recorded in an
 auditable, revertible changelog.
 
@@ -14,6 +14,77 @@ This is a working tool, not an authoritative text. See
 [`NOTICE.md`](NOTICE.md) for sources, redistribution scope, and
 attribution; see [`TODO-validation.md`](TODO-validation.md) for the
 current state of data validation.
+
+To install it, jump to [Quick start](#quick-start) below.
+
+---
+
+## MCP tools exposed
+
+| Tool                  | Purpose                                                                         |
+|-----------------------|---------------------------------------------------------------------------------|
+| `lookup_opinion`      | Retrieve an opinion by any citation (neutral, N.W.2d, N.W.)                     |
+| `get_opinion_text`    | Read opinion text in paginated chunks                                           |
+| `search_opinions`     | Full-text search with date/author filters                                       |
+| `list_opinions_by_date` | Browse opinions by date range                                                 |
+| `get_database_stats`  | Corpus summary, source breakdown, quality stats, provenance                     |
+| `justice_info`        | Voting record for a case, or aggregate stats for a justice                      |
+| `search_by_case_type` | Filter by case type (criminal, civil, etc.)                                     |
+| `get_citing_opinions` | Find opinions that cite a given opinion                                         |
+| `verify_citation`     | Confirm a cite/case name and return its canonical form + Redbook-ordered cites; flags name drift |
+| `get_parallel_citations` | Return a case's full parallel-cite set (synthetic IDs bracketed separately)  |
+| `verify_quotation`    | Confirm a quoted passage is verbatim (typography-tolerant) and return the pinpoint ¶ |
+| `get_pinpoint`        | Resolve a paragraph number to its text, or a quote to the ¶ it lives in          |
+| `check_treatment`     | Citator: citing opinions with citing-sentence context + a conservative, non-authoritative treatment signal |
+| `get_cited_authorities` | Outbound authorities a case relies on (cases, statutes, rules, constitution), grouped with source links |
+| `case_summary`        | One-call bench-memo front matter: cites, panel, voting, disposition, ¶ count, syllabus points |
+| `get_subsequent_history` | Related opinions sharing the docket (rehearings, supplemental, companions)   |
+| `authoring_justice_on_issue` | A justice's authored opinions matching an issue (predictive bench-memo signal) |
+| `search_boolean`      | Westlaw-style Boolean/proximity search (`&` `\|` `%` `/N` `/s` `/p` `!`), translated to FTS5 |
+| `search_faceted`      | Filter by date, author, case type, disposition, dissent/concurrence, unanimity (+ optional full text) |
+| `find_opinions_construing` | Every opinion citing an N.D.C.C. section or court rule, with the official source link |
+| `more_like_this`      | Doctrinally similar opinions (hybrid co-citation + keyword ranking)             |
+| `detect_overruled_in_draft` | Scan a draft's cited cases through the citator; flag possible negative treatment (with citing context) |
+
+See [Quick start](#quick-start) to install the server and [Connecting to
+Claude](#connecting-to-claude) to wire it into an MCP client.
+
+---
+
+## What's in the database
+
+Counts below are as of 2026-05-18; rerun
+`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
+(~20,160, of which 39 are North Dakota Court of Appeals decisions and the
+rest North Dakota Supreme Court).
+
+The "primary text source" is the source whose text is stored in
+`text_content`; other sources for the same opinion are recorded in
+`opinion_sources` for cross-checking.
+
+| Era         | Opinions | Primary text source | Notes |
+|-------------|----------|---------------------|-------|
+| 1890–1952   | ~6,640   | Westlaw bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
+| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and Westlaw bound; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | manual Westlaw acquisition of the residual is ongoing (see TODO-validation.md) |
+| 1997–2019   | ~5,980   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
+| 2020–present| ~1,570   | ndcourts.gov | N.W.2d where available |
+
+See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
+and isn't redistributed in `text_content`. See
+[`TODO-validation.md`](TODO-validation.md) for known data-quality gaps and
+the current validation roadmap.
+
+---
+
+## Web opinion browser
+
+The FastAPI app at `http://localhost:8765` provides:
+
+- A sortable opinion table (date, author, citations, quality score, cited-by count)
+- A reader pane with opinion text, voting record, citing opinions, and side-by-side multi-source comparison
+- A meld-style diff/merge tool for source comparison and deduplication
+- Quality filters, a duplicate-review queue, and a flag system
+- Keyboard navigation (vim-style `j`/`k`, `Tab` for hunks, `Space` to toggle)
 
 ---
 
@@ -191,7 +262,7 @@ claude mcp add ndcourts -- uv --directory /absolute/path/to/ndcourts-mcp run ndc
 
 This stores the server in your user-level Claude Code config and makes it
 available in every project. Restart any active Claude Code session and the
-`ndcourts` server's eight tools will be available.
+`ndcourts` server's tools will be available.
 
 Alternative: a project-scoped `.mcp.json` in any project where you want
 ndcourts available. Create the file with:
@@ -260,73 +331,8 @@ Once connected, try a prompt like:
 > Use ndcourts to look up *State v. Boger*, 2021 ND 152.
 
 The tool call should return the case metadata and (with `include_text=true`)
-the opinion text. The server exposes eight tools — see the table below.
-
----
-
-## What's in the database
-
-Counts below are as of 2026-05-18; rerun
-`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
-(~20,160, of which 39 are North Dakota Court of Appeals decisions and the
-rest North Dakota Supreme Court).
-
-The "primary text source" is the source whose text is stored in
-`text_content`; other sources for the same opinion are recorded in
-`opinion_sources` for cross-checking.
-
-| Era         | Opinions | Primary text source | Notes |
-|-------------|----------|---------------------|-------|
-| 1890–1952   | ~6,640   | Westlaw bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
-| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and Westlaw bound; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | manual Westlaw acquisition of the residual is ongoing (see TODO-validation.md) |
-| 1997–2019   | ~5,980   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
-| 2020–present| ~1,570   | ndcourts.gov | N.W.2d where available |
-
-See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
-and isn't redistributed in `text_content`. See
-[`TODO-validation.md`](TODO-validation.md) for known data-quality gaps and
-the current validation roadmap.
-
----
-
-## MCP tools exposed
-
-| Tool                  | Purpose                                                                         |
-|-----------------------|---------------------------------------------------------------------------------|
-| `lookup_opinion`      | Retrieve an opinion by any citation (neutral, N.W.2d, N.W.)                     |
-| `get_opinion_text`    | Read opinion text in paginated chunks                                           |
-| `search_opinions`     | Full-text search with date/author filters                                       |
-| `list_opinions_by_date` | Browse opinions by date range                                                 |
-| `get_database_stats`  | Corpus summary, source breakdown, quality stats, provenance                     |
-| `justice_info`        | Voting record for a case, or aggregate stats for a justice                      |
-| `search_by_case_type` | Filter by case type (criminal, civil, etc.)                                     |
-| `get_citing_opinions` | Find opinions that cite a given opinion                                         |
-| `verify_citation`     | Confirm a cite/case name and return its canonical form + Redbook-ordered cites; flags name drift |
-| `get_parallel_citations` | Return a case's full parallel-cite set (synthetic IDs bracketed separately)  |
-| `verify_quotation`    | Confirm a quoted passage is verbatim (typography-tolerant) and return the pinpoint ¶ |
-| `get_pinpoint`        | Resolve a paragraph number to its text, or a quote to the ¶ it lives in          |
-| `check_treatment`     | Citator: citing opinions with citing-sentence context + a conservative, non-authoritative treatment signal |
-| `get_cited_authorities` | Outbound authorities a case relies on (cases, statutes, rules, constitution), grouped with source links |
-| `case_summary`        | One-call bench-memo front matter: cites, panel, voting, disposition, ¶ count, syllabus points |
-| `get_subsequent_history` | Related opinions sharing the docket (rehearings, supplemental, companions)   |
-| `authoring_justice_on_issue` | A justice's authored opinions matching an issue (predictive bench-memo signal) |
-| `search_boolean`      | Westlaw-style Boolean/proximity search (`&` `\|` `%` `/N` `/s` `/p` `!`), translated to FTS5 |
-| `search_faceted`      | Filter by date, author, case type, disposition, dissent/concurrence, unanimity (+ optional full text) |
-| `find_opinions_construing` | Every opinion citing an N.D.C.C. section or court rule, with the official source link |
-| `more_like_this`      | Doctrinally similar opinions (hybrid co-citation + keyword ranking)             |
-| `detect_overruled_in_draft` | Scan a draft's cited cases through the citator; flag possible negative treatment (with citing context) |
-
----
-
-## Web opinion browser
-
-The FastAPI app at `http://localhost:8765` provides:
-
-- A sortable opinion table (date, author, citations, quality score, cited-by count)
-- A reader pane with opinion text, voting record, citing opinions, and side-by-side multi-source comparison
-- A meld-style diff/merge tool for source comparison and deduplication
-- Quality filters, a duplicate-review queue, and a flag system
-- Keyboard navigation (vim-style `j`/`k`, `Tab` for hunks, `Space` to toggle)
+the opinion text. For the full set of tools, see the
+[MCP tools exposed](#mcp-tools-exposed) table near the top.
 
 ---
 
