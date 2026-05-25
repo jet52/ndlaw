@@ -2,6 +2,26 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `merge-356nw2d-dups-2026-05-25` (5 merges) + `register-nwimage-confidential-2026-05-25` (2) — 356 N.W.2d 1984 dedup + 1984 audit
+
+The §2 re-pull of the 6 "single-source" 356 N.W.2d opinions exposed a CL artifact: a **−4-page cascade of duplicate ingests** in vol 356 (1984). CL ingested a second copy of each of these opinions shifted **−4 pages and a few days earlier**, so the dup's N.W.2d cite collided with a neighbor (incl. two interleaved Nebraska cases, *State v. Vernon* 218 Neb. 539 = 356 N.W.2d 887 and *State v. Kaiser* 218 Neb. 556 = 356 N.W.2d 890). Each dup was confirmed against the Westlaw `.doc` pulled by case name + text jaccard.
+
+**5 duplicate merges** (`merge_opinions.merge_pair`; keep = correct-cite, court-archive/westlaw-sourced twin; drop = −4 dup; all drops had inbound cited_by handled). After each, removed the dup's carried-over wrong cite, synthetic cite, and wrong-page source from the survivor; re-ran `recompute_primary`:
+
+| Dropped (−4 dup) | Kept (twin) | Case · jaccard |
+|---|---|---|
+| 9235 @ 889 | 20486 @ 893 | State v. Lawson · 0.83 |
+| 9237 @ 890 | 9239 @ 894 | First Federal v. Scherle · 0.83 |
+| 9240 @ 897 | 9243 @ 901 | Calavera v. Vix · 0.79 |
+| 9242 @ 899 | 9244 @ 903 | State v. Ronngren · 0.84 |
+| 9238 @ 893 | 9241 @ 897 | Bauer v. Bauer · 0.91 (found by the 1984 audit; both 2-source) |
+
+Also re-homed **State v. Lawson's own court-archive page** (`court-archive/356/1007.htm`, docket 1007, which itself cites 356 N.W.2d 893) from the Bauer −4 dup (9238) where the cascade had misfiled it, onto the Lawson survivor (20486) — Lawson now correctly carries court-archive + westlaw. Corpus 20,154 → **20,149**. Snapshots `opinions.db.bak-pre-merge-356dups-2026-05-25`, `-pre-bauer-2026-05-25`. Resequenced `section10-resequence-2026-05-25f`/`-25g`; invariants **22 ok / 2 known / 0 regressed**.
+
+**1984 audit (task complete):** an all-pairs text-jaccard sweep of all 226 ND opinions filed in 1984 (`triage/merge_356nw2d_dups_2026-05-25.py` + ad-hoc sweep) found the Bauer pair as the *only* remaining duplicate (now merged); same-date and docket-collision passes corroborate. **1984 is now duplicate-clean.** A broader pass (adjacent N.W.2d volumes / other years for the same CL −4-cascade signature) is a recommended follow-up.
+
+**2 confidential NW-image registrations** (`register-nwimage-confidential-2026-05-25`): the genuinely single-source confidential cases **Clw v. Mj** (7710, 254 N.W.2d 446) and **Bh v. Kd** (11482, 506 N.W.2d 368) — page-image PDFs filed at `NW2d/<vol>/<page>.pdf`, registered as non-primary `NW-image` sources; anonymized `text_content` left unchanged (no de-anonymizing .doc text merged).
+
 ## Batch `fix-casename-rorvig-10933-2026-05-25` (1) — case-name correction
 
 oid 10933 (472 N.W.2d 914, docket 910249, 1991-08-15) case_name **"Disciplinary Board of the Supreme Court of the State v. Johnson" → "…v. Rorvig"**. CL had mislabeled it with the name of its shared-page companion *Johnson* (oid 10931, docket 910126, 1991-04-29). Authority: the Westlaw/bound caption is "Disciplinary Action Against Donald K. Rorvig," and the Rorvig `.doc` matched 10933 at jaccard 1.00 (surfaced during `westlaw-receive-2026-05-25`). Invariants 22 ok / 2 known / 0 regressed.

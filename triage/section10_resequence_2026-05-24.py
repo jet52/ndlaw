@@ -25,7 +25,7 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 from ndcourts_mcp.db import DEFAULT_DB_PATH, get_connection, log_change  # noqa: E402
 
-BATCH = "section10-resequence-2026-05-25e"
+BATCH = "section10-resequence-2026-05-25g"
 SYNTH = "ND-neutral-synthetic"
 INF = 10**9
 ND_RE = re.compile(r"^(\d+)\s+N\.D\.\s+(\d+)")
