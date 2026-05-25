@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-date-holds-clerror-verified-2026-05-25` (23) — date-discrepancy holds reviewed
+
+Reviewed all **93 >31d `date_filed` holds** (`triage/date-discrepancy-holds-2026-05-24.tsv`). **Key finding: the court-source date is NOT reliably the opinion's filing date for these holds** — archive.ndcourts.gov pages surface several dates (petition, argument, lower-court memorandum, rehearing) and the parser can grab a non-filing one. So the ratified "court date governs" policy (§2) does not cleanly apply to the >31d band.
+
+**Arbiter = the N.W.2d reporter volume window.** Opinions in one N.W.2d volume are filed within ~weeks; CL's `date_filed` matches that window for the bulk of the corpus. Testing both candidate dates against each opinion's volume window (built from volume-mates' CL dates, in `triage/classify_date_holds_2026-05-25.py`) split the 93 into two opposite error patterns:
+- **40 — KEEP CL**: CL is in-window; the court-source date is months *before* it (a proceeding/argument date, or a wrong document in the docket). CL is correct.
+- **23 — ADOPT court** (this batch): the court date is in-window; CL is *after* it. CL had recorded a later **rehearing/denial/mandate** date as `date_filed`. Each verified by reading the opinion's own source — archive "Filed" line (20) or Westlaw `.doc` (3, which show both the filing date and the later CL date, e.g. 8359 Ness filed 1981-01-29 with rehearing 1981-04-15; 10098 Hoopman filed 1988-03-29 with 1988-05-09). Reporter cite independently confirms (e.g. 8359 in 301 N.W.2d cannot be an April 1981 opinion). **8454 City of Casselton**: CL had **1994-10-25** for a **1981** case (307 N.W.2d 849 + docket Civ. 9935 + archive "Filed June 30, 1981") → corrected to 1981-06-30.
+- **30 — KEEP CL (default)**: 28 land in a wide/contaminated window (undecidable by the test — some windows are themselves polluted by other bad dates) + 2 degenerate; left at CL per the conservative default (some may be the same rehearing-date pattern; a future per-source pass could revisit).
+
+Snapshot `opinions.db.bak-pre-dateholds-verified-2026-05-25`. Resequenced `section10-resequence-2026-05-25d` (724 synthetic cites re-dealt). Invariants **22 ok / 2 known / 0 regressed**.
+
+**Process note (transparency):** an earlier bulk apply of 69 ADOPT (`fix-date-holds-adopt-court-2026-05-25` + resequence `-25b`) was made before the volume-window validation, then found to be ~40 wrong and reverted — dates via `cleanup revert`, synthetic cites by re-running the resequencer (`-25c`, since §10 batches log under a synthetic `citation_synthetic_order` field the generic `cleanup revert` can't reverse — a known tool limitation). Net effect of `-25b`/`-25c` is nil; only the 23 verified corrections + `-25d` stand.
+
 ## Vol 21 §10 cluster verification + vols 50/64/74/23/32 dispositions — 2026-05-25 (NO data changes)
 
 Filed vol 21 (and vol 23, which turned out to need nothing) into the refs tree and verified vol 21's clusters at 300 dpi (offset **+22**, flat across the volume). Resequencer dry-run **0 of 12,604** drift before and after. **No DB changes.**

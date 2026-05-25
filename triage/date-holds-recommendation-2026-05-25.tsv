@@ -1,0 +1,94 @@
+oid	action	new_date	class	cl_date	court_date	source	era	case_name
+1674	ADOPT	1916-12-02	ADOPT_COURT_adjacent	1917-03-15	1916-12-02	doc	1916	Youmans v. Hanna
+6097	ADOPT	1959-12-10	ADOPT_COURT_adjacent	1960-05-02	1959-12-10	doc	1960	Cose v. Towner County
+6507	ADOPT	1965-11-30	ADOPT_COURT_adjacent	1966-04-19	1965-11-30	archive	1966	Wilson v. City of Fargo
+7793	ADOPT	1977-12-19	ADOPT_COURT_adjacent	1978-03-20	1977-12-19	archive	1977	State v. Motsko
+7962	ADOPT	1978-10-16	ADOPT_COURT_adjacent	1979-01-25	1978-10-16	archive	1979	State v. Larson
+8131	ADOPT	1979-11-28	ADOPT_COURT_adjacent	1980-01-02	1979-11-28	archive	1979	Dahl v. City of Grafton
+8341	ADOPT	1980-11-03	ADOPT_COURT_adjacent	1981-01-08	1980-11-03	archive	1981	Anderson v. Kroh
+11827	ADOPT	1994-12-20	ADOPT_COURT_adjacent	1995-02-08	1994-12-20	archive	1995	Hecker v. Stark County Social Service Boar
+6103	ADOPT	1960-03-04	ADOPT_COURT_sameyear	1960-05-26	1960-03-04	doc	1960	Northwestern Bell Telephone Company v. Wen
+6242	ADOPT	1962-09-17	ADOPT_COURT_sameyear	1962-12-11	1962-09-17	doc	1962	City of Granville v. Kovash, Incorporated
+6243	ADOPT	1962-08-17	ADOPT_COURT_sameyear	1962-12-11	1962-08-17	doc	1962	Odegaard v. Investors Oil, Inc.
+6276	ADOPT	1963-03-28	ADOPT_COURT_sameyear	1963-05-16	1963-03-28	doc	1963	Higgins v. Hawks
+6280	ADOPT	1963-03-21	ADOPT_COURT_sameyear	1963-05-29	1963-03-21	doc	1963	Newby v. Johnston's Fuel Liners, Inc.
+6384	ADOPT	1964-04-21	ADOPT_COURT_sameyear	1964-12-03	1964-04-21	doc	1964	Northern Pacific Railway Co. v. Morton Cou
+6403	ADOPT	1965-01-18	ADOPT_COURT_sameyear	1965-03-11	1965-01-18	doc	1965	United Development Corp. v. State Highway 
+6487	ADOPT	1966-01-07	ADOPT_COURT_sameyear	1966-02-14	1966-01-07	archive	1965	Fischer v. Fischer
+6548	ADOPT	1966-08-16	ADOPT_COURT_sameyear	1966-10-13	1966-08-16	archive	1966	City of Bismarck v. Kleinschmidt
+6719	ADOPT	1968-04-25	ADOPT_COURT_sameyear	1968-07-22	1968-04-25	archive	1968	John v. State
+6945	ADOPT	1971-05-07	ADOPT_COURT_sameyear	1971-08-06	1971-05-07	archive	1971	Mader v. Hintz
+7027	ADOPT	1971-09-03	ADOPT_COURT_sameyear	1971-12-20	1971-09-03	archive	1971	Bloom v. Northern Pacific Beneficial Assoc
+7105	ADOPT	1972-06-09	ADOPT_COURT_sameyear	1972-09-06	1972-06-09	archive	1972	Moran v. Moran
+7196	ADOPT	1973-08-17	ADOPT_COURT_sameyear	1973-10-08	1973-08-17	archive	1973	In re Estate of Elmer
+7264	ADOPT	1974-02-13	ADOPT_COURT_sameyear	1974-04-25	1974-02-13	archive	1974	Stockmen's Insurance Agency, Inc. v. Guara
+7266	ADOPT	1974-03-29	ADOPT_COURT_sameyear	1974-05-02	1974-03-29	archive	1974	Johnson v. Hassett
+7316	ADOPT	1974-03-29	ADOPT_COURT_sameyear	1974-06-27	1974-03-29	archive	1974	Hefty v. Aldrich
+7337	ADOPT	1974-10-10	ADOPT_COURT_sameyear	1974-11-27	1974-10-10	archive	1974	Dangerfield v. Markel
+7346	ADOPT	1974-10-31	ADOPT_COURT_sameyear	1974-12-04	1974-10-31	archive	1974	Farmers Union Grain Terminal Ass'n v. Nels
+7538	ADOPT	1976-02-25	ADOPT_COURT_sameyear	1976-04-02	1976-02-25	archive	1976	State v. Hendrickson
+7550	ADOPT	1976-03-12	ADOPT_COURT_sameyear	1976-05-12	1976-03-12	archive	1976	Berry-Iverson Co. of North Dakota, Inc. v.
+7665	ADOPT	1977-03-11	ADOPT_COURT_sameyear	1977-05-03	1977-03-11	archive	1977	Grievance Commission v. Walton
+7714	ADOPT	1977-05-26	ADOPT_COURT_sameyear	1977-07-12	1977-05-26	archive	1977	State v. Unterseher
+7727	ADOPT	1977-03-24	ADOPT_COURT_sameyear	1977-07-27	1977-03-24	archive	1977	Gerhardt v. Fleck
+7807	ADOPT	1978-01-13	ADOPT_COURT_sameyear	1978-04-04	1978-01-13	archive	1978	Becker v. Becker
+7827	ADOPT	1978-03-02	ADOPT_COURT_sameyear	1978-05-09	1978-03-02	doc	1978	McKinnon v. Disciplinary Bd. of Supreme Co
+7879	ADOPT	1978-05-12	ADOPT_COURT_sameyear	1978-07-12	1978-05-12	archive	1978	State v. Mertens
+7882	ADOPT	1978-07-13	ADOPT_COURT_sameyear	1978-09-07	1978-07-13	archive	1978	Pride Laboratories, Inc. v. Sentinel Butte
+8049	ADOPT	1979-05-11	ADOPT_COURT_sameyear	1979-06-29	1979-05-11	archive	1979	Kuhn v. Kuhn
+8051	ADOPT	1979-06-18	ADOPT_COURT_sameyear	1979-08-02	1979-06-18	doc	1979	Matter of Estate of Nelson
+8090	ADOPT	1979-07-16	ADOPT_COURT_sameyear	1979-08-28	1979-07-16	doc	1979	Benson v. North Dakota Workmen's Compensat
+8100	ADOPT	1979-06-18	ADOPT_COURT_sameyear	1979-08-22	1979-06-18	archive	1979	Fettig v. Whitman
+8220	ADOPT	1980-02-14	ADOPT_COURT_sameyear	1980-06-20	1980-02-14	archive	1980	Matter of Estate of Honerud
+8249	ADOPT	1980-07-28	ADOPT_COURT_sameyear	1980-09-02	1980-07-28	doc	1980	Bergstrom v. Bergstrom
+8359	ADOPT	1981-01-29	ADOPT_COURT_sameyear	1981-04-15	1981-01-29	doc	1981	Ness v. St. Aloisius Hospital
+8440	ADOPT	1981-06-25	ADOPT_COURT_sameyear	1981-09-01	1981-06-25	archive	1981	Lithun v. Grand Forks Public School Distri
+8465	ADOPT	1981-07-15	ADOPT_COURT_sameyear	1981-09-03	1981-07-15	archive	1981	Peterson v. City of Golden Valley, North D
+8607	ADOPT	1982-03-11	ADOPT_COURT_sameyear	1982-04-15	1982-03-11	archive	1982	Fritz v. Hassan
+8638	ADOPT	1982-04-29	ADOPT_COURT_sameyear	1982-06-10	1982-04-29	archive	1982	Lee v. Gulf Oil Exploration & Production C
+8847	ADOPT	1983-01-20	ADOPT_COURT_sameyear	1983-04-12	1983-01-20	archive	1983	North Dakota State Water Commission v. Boa
+8958	ADOPT	1983-09-30	ADOPT_COURT_sameyear	1983-12-21	1983-09-30	archive	1983	Meier v. Novak
+9097	ADOPT	1984-02-23	ADOPT_COURT_sameyear	1984-05-10	1984-02-23	archive	1984	Andersen v. Teamsters Local 116 Building C
+9220	ADOPT	1984-10-23	ADOPT_COURT_sameyear	1984-12-04	1984-10-23	archive	1984	State v. Obrigewitch
+9624	ADOPT	1986-04-23	ADOPT_COURT_sameyear	1986-06-04	1986-04-23	archive	1986	Federal Land Bank of Saint Paul v. Thomas
+9722	ADOPT	1986-07-30	ADOPT_COURT_sameyear	1986-11-25	1986-07-30	archive	1986	Ruud v. Larson
+9768	ADOPT	1986-09-16	ADOPT_COURT_sameyear	1986-11-03	1986-09-16	doc	1986	In re Schirado
+9876	ADOPT	1987-04-16	ADOPT_COURT_sameyear	1987-06-17	1987-04-16	archive	1987	Szarkowski v. Reliance Insurance Co.
+10098	ADOPT	1988-03-29	ADOPT_COURT_sameyear	1988-05-09	1988-03-29	doc	1988	City of Bismarck v. Hoopman
+10109	ADOPT	1988-02-01	ADOPT_COURT_sameyear	1988-03-29	1988-02-01	archive	1988	Courchene v. Delaney Distributors, Inc.
+10196	ADOPT	1988-08-17	ADOPT_COURT_sameyear	1988-09-20	1988-08-17	archive	1988	Williams Co. v. Hamilton
+10245	ADOPT	1988-06-30	ADOPT_COURT_sameyear	1988-10-18	1988-06-30	archive	1988	Jacobs v. Anderson Building Co.
+10278	ADOPT	1989-01-09	ADOPT_COURT_sameyear	1989-03-08	1989-01-09	archive	1989	Worden v. Worden
+10443	ADOPT	1989-07-17	ADOPT_COURT_sameyear	1989-10-25	1989-07-17	archive	1989	Olson v. Olson
+11469	ADOPT	1993-05-11	ADOPT_COURT_sameyear	1993-08-10	1993-05-11	archive	1993	DeCoteau v. State
+11673	ADOPT	1994-06-15	ADOPT_COURT_sameyear	1994-07-18	1994-06-15	archive	1994	Matter of Conservatorship of Sickles
+12352	ADOPT	1997-01-16	ADOPT_COURT_sameyear	1997-04-25	1997-01-16	archive	1997	Neset v. First Bank
+12359	ADOPT	1997-01-16	ADOPT_COURT_sameyear	1997-03-25	1997-01-16	archive	1997	Delzer v. United Bank
+13779	ADOPT	1954-09-02	ADOPT_COURT_sameyear	1954-11-18	1954-09-02	doc	1954	Megarry Bros. v. City of St. Thomas
+14145	ADOPT	1955-03-14	ADOPT_COURT_sameyear	1955-04-18	1955-03-14	doc	1955	Haaland v. Verendrye Electric Cooperative
+17492	ADOPT	1958-09-29	ADOPT_COURT_sameyear	1958-12-31	1958-09-29	doc	1958	Rybnicek v. City of Mandan
+18182	ADOPT	1959-09-29	ADOPT_COURT_sameyear	1959-11-17	1959-09-29	doc	1959	Albrecht v. Albrecht
+1014	FLAG		FLAG_later_eramatch	1912-11-20	1913-01-03	doc	1913	Hawkins v. Sinclair
+10797	FLAG		FLAG_later_eramatch	1990-09-12	1991-02-04	archive	1991	In re Goetz
+7068	FLAG		FLAG_xyear_largegap	1972-06-01	1971-10-22	archive	1972	East Grand Forks Federal Savings & Loan As
+7194	FLAG		FLAG_xyear_largegap	1973-06-05	1972-02-08	archive	1973	In re Anderson
+7288	FLAG		FLAG_xyear_largegap	1974-06-04	1973-11-16	archive	1974	Application of Montana-Dakota Utilities Co
+8454	FLAG		FLAG_xyear_largegap	1994-10-25	1981-06-30	archive	1981	City of Casselton v. North Dakota Public S
+11675	FLAG		FLAG_xyear_largegap	1994-06-15	1993-09-08	archive	1994	In re Disciplinary Action Against Schmidt
+13270	FLAG		FLAG_xyear_largegap	1954-03-01	1953-08-18	doc	1954	Kelly v. Lang
+11244	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Coldwell Banker First Realty, Inc. v. Kane
+11245	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	In the Interest of S.S.
+11246	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Olson v. Griggs County
+11248	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Ertelt v. North Dakota Department of Trans
+11262	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Johnson Construction, Inc. v. Rugby Munici
+11263	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	McAdoo v. McAdoo
+11264	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Mees v. Ereth
+11265	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Steckler v. Steckler
+11267	KEEP		KEEP_CL_cluster	1992-11-05	1992-05-05	archive	1992	Butz v. World Wide, Inc.
+6948	KEEP		KEEP_CL_later	1971-03-30	1971-05-17	archive	1971	Sabot v. Sabot
+7396	KEEP		KEEP_CL_later	1975-04-28	1975-10-28	archive	1975	McGuire v. WARDEN OF STATE FARM, ETC.
+8360	KEEP		KEEP_CL_later	1981-01-29	1982-01-29	archive	1981	Robar v. Ellingson
+8677	KEEP		KEEP_CL_later	1982-05-19	1982-07-08	archive	1982	C. H. Carpenter Lumber Co. v. Schauer
+10248	KEEP		KEEP_CL_later	1988-10-05	1998-10-05	archive	1988	Order of Public Reprimand in re Bard
+10655	KEEP		KEEP_CL_later	1990-06-20	1990-12-19	archive	1990	Disciplinary Board of the Supreme Court of
+9597	KEEP		KEEP_CL_year_artifact	1986-03-19	1896-03-19	archive	1986	Production Credit Ass'n of Minot v. Schlak
