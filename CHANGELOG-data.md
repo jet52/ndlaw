@@ -2,6 +2,30 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `westlaw-receive-2026-05-25` (180) + editorial strips — single-source 1953–1996 second sources
+
+Ingested the Westlaw Find&Print returns for the §2 single-source pull (183 cites, 3 zips). `receive_westlaw` promoted the Westlaw bound text to the authoritative second source. **177 of 183 pull-list opinions now carry a `westlaw` source** (178 auto-promoted + 2 explicit-oid; 3 of the 178 promotes, incl. *Rorvig*/10933, were non-pull-list shared-page siblings). Snapshots `opinions.db.bak-pre-westlaw-singlesource-2026-05-25`, `-pre-explicit-2026-05-25`. Invariants **22 ok / 2 known / 0 regressed**.
+
+- **178 auto-promoted** (`receive_westlaw --incoming … --apply`); 0 created, 0 low-sim.
+- **2 explicit-oid promotes** (`triage/promote_explicit_singlesource_2026-05-25.py`): *Sletten* (11968) and *Moosbrugger* (11969) — both at 536 N.W.2d 354 **and** filed the same day, so the formulaic disciplinary captions went AMBIGUOUS in the auto-resolver; hand-confirmed (jaccard 0.85 / 0.71).
+- **472 N.W.2d 914 dup** resolved cleanly: *Johnson*→10931 and *Rorvig*→10933 (jaccard 1.00, confirming 10933 is **Rorvig** despite its "Johnson" `case_name` — a cleanup item).
+
+**Editorial strips (redistribution scope):** the `receive_westlaw` memorandum-fallback path bypasses the Synopsis stripper, so Westlaw editorial leaked. Cleaned: `strip-westlaw-headnotes-2026-05-25` (20 rows — West Headnotes / Procedural Posture) + `strip-westlaw-synopsis-singlesource-2026-05-25` (4 rows — Synopsis stub, scoped to this batch). **0 West Headnotes / Procedural Posture markers remain** in the promoted rows. **14 rows** retain a *narrative-style* Synopsis ("no-stub-found") that the stripper conservatively leaves to avoid clipping court narrative — flagged to the project's existing human-review backlog (a separate corpus-wide ~285-row synopsis residue was noted, out of scope here).
+
+**6 still unsourced (need a targeted re-pull):**
+- **4 in 356 N.W.2d 889–899** (Lawson 9235, Scherle 9237, Calavera 9240, Ronngren 9242): Westlaw returned two **Nebraska** cases for some 356-range requests — *State v. Vernon* (218 Neb. 539) and *State v. Kaiser* (218 Neb. 556) — which the parser correctly refused (no ND N.W.2d cite). Re-pull by exact cite + verify our N.W.2d page numbers for these 1984 ND opinions. (*Calavera* 9240 shares 356 N.W.2d 897 with *Bauer* 9241, which already had a source and absorbed that pull.)
+- **2 anonymized confidential cases** not returned: *Clw v. Mj* (254 N.W.2d 446), *Bh v. Kd* (506 N.W.2d 368) — handle carefully.
+
+Revert: `cleanup revert westlaw-receive-2026-05-25` (+ `align_primary_source --apply`); strips revert by their own batches.
+
+## Batch `fix-white-lauder-2026-05-25` (2) — White v. Lauder knot resolved (10 N.D. 400 / 445)
+
+Resolved the long-flagged *White v. Lauder* knot (oids 5833/5834). Read bound N.D. Reports vol 10 pp.400 & 445 (offset +64) and the N.W. images (NW/87/996, /1135). **Finding: two distinct companion mandamus per curiams** (ruled keep-both 2026-05-25), both following *Gunn v. Lauder* (10 N.D. 389, 87 N.W. 999), both at 87 N.W. 1135, both filed Nov. 21, 1901:
+- **10 N.D. 400** (oid 5834): "Patrick White v. W. S. Lauder," with syllabus "Mandamus to Judge—Disqualification—Failure to Call Other Judge."
+- **10 N.D. 445** (oid 5833): "Patrick White et al. v. W. S. Lauder," no syllabus. Distinct LEXIS IDs (57/58); bound prints both at separate pages with other cases between.
+
+Two errors corrected on **5834**: (1) `date_filed` **1901-10-25 → 1901-11-21** — the 10-25 was *Willard v. Monarch Elevator*'s date (the next case down on bound p.400, "filed Oct. 25, 1901"), mis-grabbed by CL; bound + CL text both say Nov. 21. (2) NW-image source **NW/87/996.pdf → NW/87/1135.pdf** — 996 is *Willard*'s N.W. page (the N.W. reporter cross-references 10 N.D. 400 to Willard); White is at 87 N.W. 1135. Both White companions now share the 87 N.W. 1135 image. No merge. Snapshot `opinions.db.bak-pre-whitelauder-2026-05-25`; resequenced `section10-resequence-2026-05-25e` (16 cites; 5834 now 1901 ND 64, 5833 ND 65). Invariants **22 ok / 2 known / 0 regressed**.
+
 ## Batch `fix-date-holds-clerror-verified-2026-05-25` (23) — date-discrepancy holds reviewed
 
 Reviewed all **93 >31d `date_filed` holds** (`triage/date-discrepancy-holds-2026-05-24.tsv`). **Key finding: the court-source date is NOT reliably the opinion's filing date for these holds** — archive.ndcourts.gov pages surface several dates (petition, argument, lower-court memorandum, rehearing) and the parser can grab a non-filing one. So the ratified "court date governs" policy (§2) does not cleanly apply to the >31d band.
