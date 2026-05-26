@@ -1,0 +1,12 @@
+MERGE_CLEAN keep 12919 <- drop 12918  => 'Judicial Conduct Commission v. Hoffman'
+MERGE_CLEAN keep 13254 <- drop 13255  => 'Interest of W.E., et al.'
+MERGE_CLEAN keep 13669 <- drop 13668  => 'Jacobson v. Garaas'
+MERGE_CLEAN keep 13852 <- drop 13853  => 'Interest of D.P.O.'
+MERGE_CLEAN keep 14262 <- drop 14261  => 'Disciplinary Board v. Edin'
+MERGE_CLEAN keep 15246 <- drop 15245  => 'Chambering of the New Judgeship in the Northwest Judicial District'
+MERGE_CLEAN keep 15557 <- drop 15556  => 'Pizza Corner v. C.F.L. Transport'
+MERGE_CLEAN keep 15724 <- drop 15725  => 'Benz Farm, LLP v. Cavendish Farms, Inc.'
+MERGE_CLEAN keep 15846 <- drop 15849  => 'Come Big or Stay Home, LLC v. EOG Resources, Inc.'
+MERGE_CLEAN keep 15975 <- drop 15976  => 'MayPort Farmers Co-Op v. St. Hilaire Seed Company, Inc.'
+EVERETT strip 777 N.W.2d 62 from 15332; merge 15508 <- 15332
+OHARA strip 897 N.W.2d 326 from 16963 (no merge)

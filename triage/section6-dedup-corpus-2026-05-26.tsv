@@ -1,0 +1,622 @@
+kind	cite	keep	drop	name_old->canonical	detail
+MERGE-HOLD-LOWJAC	87 N.W. 1135	5834	5833	'White v. Lauder' -> 'White v. Lauder'	j=0.68 < 0.85; drop='White v. Lauder'; '' -> ''
+MERGE-HOLD-LOWJAC	140 N.W. 246	1018	1017	'Hawkins v. Sinclair' -> 'Hawkins v. Sinclair'	j=0.76 < 0.85; drop='Burger v. Sinclair'; '' -> 'Cueiam'
+MERGE-HOLD-LOWJAC	173 N.W. 474	2168	2167	'Livingston v. Middlewest Grain Co.' -> 'Livingston v. Middlewest Grain Co.'	j=0.67 < 0.85; drop='Olson v. Middlewest Grain Co.'; 'Grace, Pee' -> 'Grace, Pee'
+MERGE-HOLD-LOWJAC	173 N.W. 475	2170	2169	'Crawson v. Middlewest Grain Co.' -> 'Crawson v. Middlewest Grain Co.'	j=0.74 < 0.85; drop='Nelson v. Middlewest Grain Co.'; 'Grace' -> 'Grace'
+MERGE-HOLD-LOWJAC	44 N.D. 247	20499	2171	'Lammadee v. Middlewest Grain Co.' -> 'Lammadee v. Middlewest Grain Co.'	j=0.63 < 0.85; drop='Nelson v. Middlewest Grain Co.'; 'Per Curiam' -> 'Per Curiam'
+MERGE-HOLD-LOWJAC	44 N.D. 250	2169	2167	'Nelson v. Middlewest Grain Co.' -> 'Nelson v. Middlewest Grain Co.'	j=0.75 < 0.85; drop='Olson v. Middlewest Grain Co.'; 'Grace' -> 'Grace'
+MERGE-HOLD-LOWJAC	196 N.W. 553	2904	2903	'Johnson v. National Union Fire Ins. Co. of Pittsburg, Pa' -> 'Johnson v. National Union Fire Ins. Co. of Pittsburg, Pa'	j=0.73 < 0.85; drop='Colgrove v. National Union Fire Ins. Co. of Pittsburg, Pa'; 'Being, Biruzell, Bronson, Chas, Christianson, Cooley, Dist, First, Johnson, Nuessee, Stead' -> 'Being, Biruzell, Bronson, Chas, Christianson, Cooley, Dist, First, Johnson, Nuessee, Stead'
+MERGE-HOLD-LOWJAC	280 N.W. 204	4842	4841	'Weir v. Armour & Co.' -> 'Weir v. Armour & Co.'	j=0.82 < 0.85; drop='Haugen v. Armour & Co.'; 'Burr, Iristianson, Morris, Nuessle, Sathre' -> 'Burr, Iristianson, Morris, Nuessle, Sathre'
+MERGE-HOLD-LOWJAC	4 N.W.2d 224	9811	9810	'McArthur v. Cass County' -> 'McArthur v. Cass County'	j=0.76 < 0.85; drop='Arnold v. Cass County'; 'Burke, Burr, Christianson, Morris, Nuessle' -> 'Burke, Burr, Christianson, Morris, Nuessle'
+MERGE-HOLD-LOWJAC	21 N.W.2d 351	7180	7179	'In re Adams' -> 'In re Adams'	j=0.66 < 0.85; drop='Northern Pacific Railway Co. v. McDonald'; 'BURR, J.' -> 'Burke, Burr, Christxanson, Morris, Nuessle'
+MERGE-HOLD-LOWJAC	74 N.D. 242	7180	7179	'In re Adams' -> 'In re Adams'	j=0.66 < 0.85; drop='Northern Pacific Railway Co. v. McDonald'; 'BURR, J.' -> 'Burke, Burr, Christxanson, Morris, Nuessle'
+MERGE-HOLD-LOWJAC	55 N.W.2d 576	12213	12212	'Barrett v. BOARD OF TRUSTEES, ETC.' -> 'Barrett v. BOARD OF TRUSTEES, ETC.'	j=0.83 < 0.85; drop="Barrett v. Board of Trustees of Teachers' Insurance"; 'Wigen' -> 'Burke, Christianson, Crimson, Hon, Morris, Sathre, Sixth, Stead, Wigen'
+MERGE-HOLD-LOWJAC	176 N.W.2d 522	6847	6846	'Giese v. Engelhardt' -> 'Giese v. Engelhardt'	j=0.74 < 0.85; drop='Fuchs v. Engelhardt'; 'Erick, Gefreh, Himself, Knudson, Paulson, Stad, Stead, Strutz, Teigen, Third' -> 'Erick, Gefreh, Himself, Knudson, Paulson, Stad, Stead, Strutz, Teigen, Third'
+MERGE-HOLD-LOWJAC	418 N.W.2d 789	10044	10043	'Matter of Montgomery' -> 'Matter of Montgomery'	j=0.60 < 0.85; drop='In re Teevens'; 'Erickstad, Vande Walle, Gierke, III, Meschke, Levine' -> 'Erickstad, Vande Walle, Gierke, III, Meschke, Levine'
+NEEDS_DECISION	107 N.W. 1081	190	189	'Walker v. Stimmel' | 'Tamlyn v. Peterson'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	107 N.W. 365	200	201	'Mathie v. Lemery' | 'Connolly v. Luros'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	107 N.W. 43	204	203	'Olson v. County of Sargent' | 'Edwards v. Eagles'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	111 N.W. 614	275	274	'Kerr v. Anderson' | 'Kerr v. Sunstrum'	jaccard 0.05 < 0.55 — distinct/shared-page
+NEEDS_DECISION	116 N.W. 335	394	395	'Buchanan v. Minneapolis Threshing Machine Co.' | 'Bertleson v. Ehr'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	117 N.W. 864	434	435	'State ex rel. Murphy v. Gottbreht' | 'State ex rel. Cox v. Fabrick'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	120 N.W. 874	20498	499	'State ex rel. McCue v. Great Northern Railway Co.' | 'State ex rel. McCue, Atty. Gen., v. Minneapolis, St. P. & S. S. M. Ry. Co.'	jaccard 0.54 < 0.55 — distinct/shared-page
+NEEDS_DECISION	14 N.D. 557	152	146	'Murphy v. District Court of the Eighth Judicial District' | 'State v. Poull'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	152 N.W. 660	1358	1359	'Holobuck v. Schaffner' | 'Marquart v. Schaffner'	jaccard 0.11 < 0.55 — distinct/shared-page
+NEEDS_DECISION	163 N.W. 268	1762	1761	'Kline v. Harris' | 'Hendricks v. Hughes'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	17 N.D. 266	383	382	'Skeffington v. Prante' | 'Ross v. Prante'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	172 N.W. 62	2121	2122	'Pollock v. Johnson' | 'Scandia State Bank of Fergus Falls, Minn., v. Dinnie'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	176 N.W.2d 521	20478	6845	'Jack MITTELSTADT and Margaret Mittelstadt, Charles W. Schollmeyer and Angaletta D. Schollmeyer, Ed Heise and Edward A. Heise, Plaintiffs and Appellants, v. Edward ENGELHART [Engelhardt], Dale Hewson, P.W. Blank, Charles Tighe, Matt G. Koffler, H.E. Sondreal, P.W. Lanier, Ray Lorenz, George Letvin, John Zoller, Gilbert Saxowsky, State Acceptance Corporation, the Liberty National Bank and Trust Company, Paul McCann Company, a partnership, Paul McCann and Company, a partnership, Orser, Olson, Wolfe & St. Peter, a partnership, and St. Paul Fire & Marine Insurance Company, a corporation, Defendants, and P.W. Blank, Charles Tighe, H.E. Sondreal, P.W. Lanier, Ray Lorenz and George Letvin, Defendants and Respondents.' | 'Giese v. Engelhardt'	jaccard 0.55 < 0.55 — distinct/shared-page
+NEEDS_DECISION	18 N.D. 76	458	20386	'State ex rel. City of Minot v. Willis' | 'State ex rel. City of Minot v. Willis (per curiam follow-on)'	jaccard 0.04 < 0.55 — distinct/shared-page
+NEEDS_DECISION	184 N.W. 575	2562	2563	'Cohn v. Wyngarden' | 'Martin v. Ludowese, Police Magistrate'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	19 N.D. 57	20498	499	'State ex rel. McCue v. Great Northern Railway Co.' | 'State ex rel. McCue, Atty. Gen., v. Minneapolis, St. P. & S. S. M. Ry. Co.'	jaccard 0.54 < 0.55 — distinct/shared-page
+NEEDS_DECISION	20 N.D. 370	675	674	'State v. Koch' | 'State v. McAndress'	jaccard 0.43 < 0.55 — distinct/shared-page
+NEEDS_DECISION	20 N.D. 372	680	672	"Fitzmaurice v. Willis, County Com'rs" | 'State v. Andor'	jaccard 0.00 < 0.55 — distinct/shared-page
+NEEDS_DECISION	20 N.D. 412	692	683	'Stoltze v. Hurd' | 'Winterer v. Minneapolis, St. P. & S. S. M. Ry. Co.'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	202 N.W. 404	3097	3096	'Continental Supply Co. v. Syndicate Trust Co.' | 'State v. First State Bank of Jud'	jaccard 0.00 < 0.55 — distinct/shared-page
+NEEDS_DECISION	203 N.W. 898	3130	3131	'Ex parte Solberg. State ex rel. Solberg v. Spicher, Sheriff' | 'State Bank of Fairfax v. Blum'	jaccard 0.00 < 0.55 — distinct/shared-page
+NEEDS_DECISION	206 N.W. 230	3233	3234	'State ex rel. Pfann v. Kunkel' | 'Sperry v. North River Insurance'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	208 N.W. 104	3287	3288	'Lamoreaux v. Randall' | 'Booher v. Adams County Farmers Mutual Fire & Lightning Insurance'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	21 N.D. 348	765	767	'Lanpher-Skinner Co. v. Quam' | 'Heard v. Holbrook'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	21 N.D. 69	733	699	'State ex rel. Kramer v. Kiefer' | 'Willis v. Weatherwax'	jaccard 0.06 < 0.55 — distinct/shared-page
+NEEDS_DECISION	213 N.W. 961	3500	3499	'State v. Sukut' | 'Lindseth v. National Fire Insurance'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	215 N.W. 552	3570	3569	'State v. Murbach' | 'Klasen v. Kinnischtyke'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	219 N.W. 834	3703	3702	'State v. Diamond' | 'Bakken v. State'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	24 N.D. 326	1012	1013	'Burger v. Sinclair' | 'Seckerson v. Sinclair'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	24 N.D. 395	978	1007	'McCarty v. Talley' | 'McCarty v. Kepreta'	jaccard 0.00 < 0.55 — distinct/shared-page
+NEEDS_DECISION	248 N.W. 268	4393	4394	'Taylor v. Minneapolis, Saint Paul & Sault Ste. Marie Railway Co.' | 'Farmers State Bank of Richardton v. Walth'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	27 N.D. 458	1186	1189	'Hackney v. Lynn' | 'Bussey v. Boynton'	jaccard 0.24 < 0.55 — distinct/shared-page
+NEEDS_DECISION	277 N.W. 604	4811	4809	'Altman v. Altman' | 'Southall v. Quam'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	3 N.D. 538	5275	5274	'Globe Investment Co. v. Boyum' | 'Kellogg, Johnson & Co. v. Gilman'	jaccard 0.04 < 0.55 — distinct/shared-page
+NEEDS_DECISION	355 N.W.2d 798	9209	9208	'Allegree v. Jankowski' | 'Patzer v. Glaser'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	383 N.W.2d 813	9595	9594	'State v. Kautzman' | 'United Bank of Bismarck v. Boehm'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	41 N.D. 473	2125	20387	'Druey v. Baldwin (Baldwin, Interveners)' | 'Druey v. Baldwin (Robinson, J., separate opinion)'	jaccard 0.23 < 0.55 — distinct/shared-page
+NEEDS_DECISION	456 N.W.2d 772	10656	10657	'Disciplinary Board of the Supreme Court of the State of North Dakota v. Britton' | 'Disciplinary Board of the Supreme Court of the State of North Dakota v. Palda'	jaccard 0.17 < 0.55 — distinct/shared-page
+NEEDS_DECISION	460 N.W.2d 716	20479	10722	'In the Matter of the Application for DISCIPLINARY ACTION AGAINST F. Lorene Whitesides LARSON, a Member of the Bar of the State of North Dakota. DISCIPLINARY BOARD OF THE SUPREME COURT OF the STATE OF NORTH DAKOTA, Petitioner, v. F. Lorene Whitesides LARSON, Respondent.' | 'Disciplinary Board of the Supreme Court of the State of North Dakota v. Larson'	jaccard 0.18 < 0.55 — distinct/shared-page
+NEEDS_DECISION	465 N.W.2d 175	20480	10796	'Reimers Seed Co. v. Stedman' | 'Disciplinary Board of the Supreme Court of the State of North Dakota v. Ellis'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	469 N.W.2d 801	10874	10873	'Ebach v. Ralston' | 'Schumacher v. Schumacher'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	47 N.D. 266	2473	20388	'Altenbrun v. First Nat. Bank of Rock Lake' | 'Altenbrun v. First National Bank (concurring opinion)'	jaccard 0.05 < 0.55 — distinct/shared-page
+NEEDS_DECISION	473 N.W.2d 134	20481	10934	'In the Matter of a DISTRICT JUDGE VACANCY in the CHAMBER at WILLISTON in the NORTHWEST JUDICIAL DISTRICT.' | 'In re District Judge Vacancy in the Chamber at Linton South Central Judicial District'	jaccard 0.52 < 0.55 — distinct/shared-page
+NEEDS_DECISION	489 N.W.2d 886	11205	11204	'Putney v. Backes' | 'Woessner v. Backes'	jaccard 0.28 < 0.55 — distinct/shared-page
+NEEDS_DECISION	50 N.D. 25	2863	20390	'Lincoln Addition Improvement Co. v. Lenhart' | 'Lincoln Addition Improvement Co. v. Lenhart (per curiam (joint with Baker v. Lenhart))'	jaccard 0.28 < 0.55 — distinct/shared-page
+NEEDS_DECISION	521 N.W.2d 643	11741	11740	'Ferris v. North Dakota Centennial Commission' | 'Hosman v. North Dakota State University'	jaccard 0.25 < 0.55 — distinct/shared-page
+NEEDS_DECISION	525 N.W.2d 250	11804	11803	'Kieffer v. Huebner' | 'Morehouse v. Morehouse'	jaccard 0.09 < 0.55 — distinct/shared-page
+NEEDS_DECISION	536 N.W.2d 354	11969	11968	'In re Disciplinary Action Against Moosbrugger' | 'In re Disciplinary Action Against Sletten'	jaccard 0.14 < 0.55 — distinct/shared-page
+NEEDS_DECISION	58 N.W. 339	5275	5274	'Globe Investment Co. v. Boyum' | 'Kellogg, Johnson & Co. v. Gilman'	jaccard 0.04 < 0.55 — distinct/shared-page
+NEEDS_DECISION	61 N.W. 18	5321	5322	'Hannah v. Chase' | 'Bennett v. Northern Pacific Ry. Co.'	jaccard 0.01 < 0.55 — distinct/shared-page
+NEEDS_DECISION	64 N.D. 367	4482	4484	'Thorvaldson-Johnson Co. v. Cochran' | 'Ott v. Kelley'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	73 N.W.2d 782	14733	14732	'Karabensh v. Grant' | 'Gunsch v. Bauer'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	75 N.W. 1135	5507	5506	'Cass County v. Certain Lands of Darling' | 'Cass County v. Certain Lands of Fisher'	jaccard 0.54 < 0.55 — distinct/shared-page
+NEEDS_DECISION	75 N.W. 781	5528	5527	'Betts v. Signor' | 'Hillsboro National Bank v. Hyde'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	80 N.W. 762	5658	5657	'Becker v. Duncan' | 'Heyrock v. McKenzie'	jaccard 0.02 < 0.55 — distinct/shared-page
+NEEDS_DECISION	9 N.D. 608	20489	5754	'Emmons County v. Cranmer' | 'Emmons County v. Davidson'	jaccard 0.48 < 0.55 — distinct/shared-page
+NEEDS_DECISION	9 N.D. 614	20502	5748	'Emmons County v. Thistlewaite' | 'Emmons County v. Thistlewaite'	jaccard 0.48 < 0.55 — distinct/shared-page
+DEFER_MODERN	1997 ND 101	12447	12446	'In Interest of EH' | 'T.W. v. E.H.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 126	12471	12470	'In Interest of JCS' | 'Interest of J.C.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 134	12479	12478	'Matter of BEM' | 'State, County of Cass ex rel. L.F.F. v. K.D.M.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 146	12482	12481	'In Interest of PA' | 'Interest of P.A.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 148	12484	12483	'Matter of Montgomery' | 'In re Montgomery'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 234	12569	12570	'Disciplinary Board v. Fisher (Consolidated w/ 970344)' | 'Disciplinary Action Against Fisher'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1997 ND 96	12441	12440	'Lc v. Rp' | 'Cheshire v. North Dakota Conference of the United Methodist Church'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 114	12688	12687	'Presteng v. DIR., ND DEPT. OF TRANSP.' | 'Allen H. Presteng v. Director, North Dakota Department of Transportation'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 129	12710	12709	'In Interest of LF' | 'In the Interest of L.F. and J.F., Children'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 13	12623	9485	'State v. Esparza' | 'State of North Dakota v. Angel Esparza'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 149	12737	12738	'Messiha v. State of North Dakota, et al.' | 'Messina v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 15	12629	12628	'Interest of Rdb' | 'In the Interest of R.D.B., a child; Jason Dellwo v. R.D.B., a child, and D.B. and M.B., his parents'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1998 ND 181	12764	12763	'In Interest of As' | 'In the Interest of A.S., Child'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 110	12900	12899	'In re Disciplinary Action Against Moe' | 'Disciplinary Board v. Moe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 117	12902	12903	'Interest of M.S.  (CONFIDENTIAL - M.H.)' | 'In re MS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 122	12919	12918	'Judicial Conduct Commission v. Hoffman' | 'Judicial Conduct Commission v. Hoffman (Consolidated w/990061-990063)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 182	12978	12979	'Interest of J.K.  (CONFIDENTIAL)' | 'In re JK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 184	12981	12980	'In re Disciplinary Action Against Dooley' | 'Disciplinary Board v. Dooley    (CONSOLIDATED W/ 980393)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 195	13010	13011	'Interest of A.M., et al.           (CONFIDENTIAL)' | 'In re AM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 205	13021	13020	'In re Disciplinary Action Against Boughey' | 'Disciplinary Board v. Boughey (CONSOLIDATED W/ 990184 & 19990304)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 216	13029	13030	'Interest of D.F.G. and E.K.B. (CONFIDENTIAL)' | 'In re DFG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 219	13022	13023	'In the Interest of L.A.G., a Child  (CONFIDENTIAL)' | 'In re LAG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 221	13024	13025	'In the Interest of C.R., a Minor Child  (CONFIDENTIAL)' | 'In re CR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	1999 ND 229	13037	13036	'In re Disciplinary Action Against Seaworth' | 'Disciplinary Board v. Seaworth'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 101	13169	13168	'State, County of Cass, ex rel. Dd' | 'State ex rel. D.D., et al. v. G.K.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 125	13187	13186	'In re Disciplinary Action Against Roybal' | 'Disciplinary Board v. Roybal'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 126	13189	13188	'In re Disciplinary Action Against Stevenson' | 'Disciplinary Board v. Stevenson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 129	13193	13194	'Interest of N.C.C.' | 'In re NCC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 130	13195	13196	'Interest of A.R.         (CONFIDENTIAL)' | 'In re AR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 158	13218	13219	'Interest of  S.J.F.   (CONFIDENTIAL) (CONSOLIDATED W/20000036)' | 'In re SJF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 161	13213	13214	'Interest of S.F., et al.   (CONFIDENTIAL)' | 'In re SF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 174	13234	13235	'Interest of E.T.         (CONFIDENTIAL)' | 'In re ET'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 181	13244	13243	"Fandrich v. WELLS CTY. BD. OF COUNTY COMM'RS" | 'Fandrich, et al. v. Wells Co. Bd. of Co. Comm., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 189	13407	13246	'Farstveet v. Rudolph' | 'Farstveet, et al. v. Rudolph, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 208	13254	13255	'Interest of W.E., et al. (CONFIDENTIAL)(Consolidated w/20000079 & 20000080)' | 'In re WE'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 221	13277	13276	'In re Disciplinary Action Against Keller' | 'Disciplinary Board v. Keller'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 222	13281	13282	'Interest of C.R.H.      (CONFIDENTIAL)' | 'In re CRH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 46	13102	13101	'In re SRA' | 'Interest of S.R.A.        (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 50	13096	13097	'Interest of K.M.G.' | 'In re KMG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 85	13135	13134	'Burke v. ND DEPT. OF CORRECTIONS & REHAB.' | 'Burke v. ND Dept. of Corrections & Rehab.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2000 ND 87	13123	13122	'In re Disciplinary Action Against McDonald' | 'Disciplinary Board v. McDonald    (CONSOLIDATED W/990360 & 990361)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 111	13388	13387	'In re AB' | 'Interest of A.B.         (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 127	13408	13409	'Interest of T.K. (Consolidated w/20000329)' | 'In re TK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 142	13432	13433	'Interest of H.G.        (CONFIDENTIAL)' | 'In re HG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 143	13430	13431	'Interest of N.H., et al.   (CONFIDENTIAL)' | 'In re NH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 158	13444	13443	'In re Disciplinary Action Against Gronneberg' | 'Disciplinary Board v. Gronneberg'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 183	13466	13467	'Interest of D.R., et al.  (CONFIDENTIAL)(Consolidated w/20010099)' | 'In re DR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 198	13484	13482	'Disciplinary Action Against Dooley' | 'In the Matter of the Application For Disciplinary Action Against Fintan L. Dooley'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 203	13479	13480	'Interest of D.P.   (Confidential)' | 'In re DP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 205	13487	13488	'Interest of M.C.H.    (CONFIDENTIAL)                (CROSS-REF. W/20010132)' | 'In re MCH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 210	13493	13492	'In re Disciplinary Action Against Boulger' | 'Disciplinary Board v. Boulger'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 33	13320	13319	'Klg v. Sln' | 'K.L.G v. S.L.N.      (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 37	13323	13324	'Interest of C.H., et al.     (CONFIDENTIAL)' | 'In re CH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 55	13342	13341	'In re Disciplinary Action Against Hawkins' | 'Disciplinary Board v. Hawkins'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 59	13338	13339	'Interest of A.L. and J.L.     (CONSOLIDATED w/20000218-20000220)' | 'In re AL and JL'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 63	13346	13347	'Disciplinary Board v. Keller' | 'In re Disciplinary Action Against Keller'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 68	13350	13349	'In re MS' | 'Interest of M.S.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 71	13351	13352	'Interest of D.N., D.N., C.N., Children (CONFIDENTIAL)(Consol. w/20000235)' | 'In re DN'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 83	13362	13363	'Interest of C.R.C. (CONFIDENTIAL)' | 'In re CRC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2001 ND 86	13370	13371	'Disciplinary Board v. Howe' | 'In re Howe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 106	13599	13598	'In re Disciplinary Action Against Edwardson' | 'Disciplinary Board v. Edwardson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 111	13592	13593	'Interest of R.K.    (CONFIDENTIAL)' | 'In re RK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 132	13608	13609	'Interest of D.Z.   (CONFIDENTIAL)' | 'In re DZ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 137	13638	13637	"US BANK, NATIONAL ASS'N v. Koenig" | 'U.S. Bank v. Koenig, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 15	13510	13509	'Judicial Conduct Commission v. Tessmann' | 'Judicial Conduct Commission v. Tessmann'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 154	13654	13655	'Interest of R.O.      (CONFIDENTIAL)' | 'In re RO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 155	13662	13661	'In re Disciplinary Action Against Butz' | 'In the Matter of the Application for Disciplinary Action Against Mark J. Butz'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 164	13657	13658	'Interest of K.S. and A.S.  (CONFIDENTIAL)' | 'In re KS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 178	13667	13666	'In re Adoption of SAL' | 'Adoption of S.A.L.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 181	13669	13668	'In re Disciplinary Action Against Garaas' | 'Jacobson v. Garaas   (Consolidated w/ 20020113)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 188	13686	13687	'Interest of D.Q., et al.   (Confidential) (Consolidated w/20020079)' | 'In re DQ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 191	13677	13676	'In re FRS' | 'Interest of F.R.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 197	13693	13694	'Disciplinary Board v. Sundby' | 'In re Disciplinary Action Against Sundby'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 211	13709	13708	'In re Estate of Gleeson' | 'Estate of Gleeson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 25	13515	13514	'In re MBK' | 'Grosinger v. M.B.K.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 50	13546	13547	'Interest of J.D.    (CONFIDENTIAL)' | 'In re Jd'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 54	13562	13635	'Petition to Change Resident Chambers from Watford City to Minot' | 'In the Matter of Petition to Change the Resident Chambers for District Judgeship No. 8'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2002 ND 78	13570	13571	'Interest of J.R. and L.R.   (CONFIDENTIAL)' | 'In re JR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 101	13816	13817	'Interest of I.K.   (CONFIDENTIAL)' | 'In re IK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 114	13833	13834	'Interest of K.P.' | 'In re KP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 127	13852	13853	'Interest of D.P.O.(CONFIDENTIAL) (Consolidated w/20030020)' | 'In re DPO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 138	13860	13861	'Interest of J.S.        (CONFIDENTIAL)                    (see Docket Memo)' | 'In re Js'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 147	13873	13872	'In re Guardianship of Shatzka' | 'Guardianship of Shatzka'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 152	13867	13868	'Disciplinary Board v. Edin' | 'In re Disciplinary Action Against Edin'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 161	13889	13888	'In re Application for Disciplinary Action Against Hoffman' | 'Disciplinary Board v. Hoffman  (Consolidated w/ 20030142)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 162	13887	13886	'In re Rf' | 'Interest of R.F.     (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 170	13896	13897	'Disciplinary Board v. McKechnie               (Cross-reference w/ 20020199)' | 'In re Disciplinary Action Against McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 182	13904	13905	'Interest of L.D.' | 'In re LD'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 22	13723	13722	'In re Disciplinary Action Against McKechnie' | 'Disciplinary Board v. McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 25	13729	13730	'Interest of T.M.H.           (CONFIDENTIAL)' | 'In re Tmh'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 34	13745	13744	'In re TH' | 'Berger v. Holt'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 37	13748	13747	'In re Disciplinary Action Against McKechnie' | 'Hegland v. McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 54	13762	13763	'Disciplinary Board v. Schoppert' | 'In re Disciplinary Action Against Schoppert'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 61	13769	13768	'In re Thompson' | 'Lanners, et al. v. Johnson, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 84	13805	13804	'In re Garrison State Bank and Trust' | 'Matter of Garrison State Bank and Trust'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 88	13808	13807	'Klb v. Sb' | 'K.L.B., et al. v. S.B.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2003 ND 98	13820	13819	'In re AB' | 'Interest of A.B. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 138	14051	14052	'Interest of T.T.   (CONFIDENTIAL)' | 'In re TT'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 142	14066	14065	'In Interest of TJL' | 'Interest of T.J.L.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 170	14092	14093	'Interest of R.H.' | 'In re RH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 171	14090	14089	'In re Disciplinary Action Against McGuire' | 'Judicial Conduct Commission v. McGuire'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 180	14106	14105	'In re Disciplinary Action Against Secrest' | 'Disciplinary Board v. Secrest'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 202	14125	14126	'Interest of E.R.  (CONFIDENTIAL)' | 'In re ER'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 216	14137	14136	'In re Adoption of HRW' | 'Adoption of H.R.W.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 25	13951	13952	'Interest of J.P. and D.P. (CONFIDENTIAL)(Consolidated w/20030118)' | 'In re JP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 31	13957	13956	'MORTON COUNTY SOCIAL SERV. BD. v. Schumacher' | 'Morton Co. S.S.B., et al. v. Schumacher'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 52	13973	13972	'In re KP' | 'Interest of K.P.    (CONFIDENTIAL)                  (cross-ref. w/20030175)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 57	13976	13977	'Interest of D.V.A.  (CONFIDENTIAL)' | 'In re DVA'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 64	13989	13990	'Graves v. State Board of Law Examiners' | 'In re Application of Graves for Admission'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2004 ND 86	14004	14005	'Oliver-Mercer Electric Coop. v. Davis, et al. (Consol. w/ 20030158)' | 'OLIVER-MERCER ELEC. CO-OP., INC. v. Davis'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 106	14257	14256	'Klindt v. PEMBINA COUNTY WATER RESOURCE BD.' | 'Klindt, et al. v. Pembina Co. Water Resource Bd., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 109	14262	14261	'In re Disciplinary Action Against Edin' | 'Disciplinary Board v. Edin  (Consolidated w/ 20050011)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 116	14267	14268	'Interest of D.A.     (CONFIDENTIAL)' | 'In re DA'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 119	14274	14275	'Disciplinary Board v. Vela' | 'In re Disciplinary Action Against Vela'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 122	14305	14304	'In re Guardianship of Barros' | 'Guardianship of Barros'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 135	14307	14306	'In re Disciplinary Action Against Sundby' | 'Disciplinary Board v. Sundby (Consolidated w/ 20050189 - 20050194)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 138	14319	14320	'Interest of B.J.K.          (Confidential)' | 'In re BJK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 144	14309	14310	'Disciplinary Board v. Ward' | 'In re Ward'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 145	14315	14314	'In re Estate of Richmond' | 'Estate of Richmond'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 146	14322	14323	'CybrCollect, Inc. v. ND Dept. of Financial Institutions, et al.' | 'Cybrcollect v. Dfi'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 148	14326	14325	'In re Disciplinary Action Against Korsmo' | 'Disciplinary Board v. Korsmo'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 153	14332	14333	'Disciplinary Board v. Hoffman' | 'In re Disciplinary Action Against Hoffman'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 156	14334	14335	'Interest of K.G.          (Confidential)' | 'In re Kg'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 157	14336	14337	'Disciplinary Board v. Vela' | 'In re Disciplinary Action Against Vela'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 168	14347	14346	'In re Disciplinary Action Against Wilkes' | 'Disciplinary Board v. Wilkes'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 171	14348	14349	'Hoffman v. Disciplinary Board' | 'In re Hoffman'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 177	14352	14353	'Interest of L.D.M.   (CONFIDENTIAL)' | 'In re Ldm'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 180	14360	14359	'Lcv v. Deg' | 'L.C.V. v. D.E.G. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 201	14373	14374	'Interest of P.B. (CONFIDENTIAL)' | 'In re Pb'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 216	14386	14387	'Interest of A.B., et al.  (CONFIDENTIAL)' | 'In re AB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 33	14192	14193	'Beckler v. Workforce Safety and Insurance' | 'In re Beckler'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 39	14187	14186	'In re DPO' | 'Interest of D.P.O.                       (Cross-ref. w/20030002 & 20030020)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 45	14205	14204	'Disciplinary Action Against Schoppert' | 'Disciplinary Board v. Schoppert'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 54	14198	14199	'Interest of R.F.          (CONFIDENTIAL)' | 'In re RF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 64	14230	14228	'AMS ex rel. Farthing v. Stoppleworth' | 'Interest of A.M.S. (Consolidated w/20040269 & 20040270)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 75	14224	14223	'FIRE AND TORNADO FUND v. University' | 'State of ND v. NDSU, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 87	14240	14239	'Disciplinary Action Against Christensen' | 'Disciplinary Board v. Christensen   (CONSOLIDATE W/ 20050139 & 20050140)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2005 ND 99	14250	14249	'OLIVER-MERCER ELEC. CO-OP., INC. v. Davis' | 'Oliver-Mercer Electric Coop. v. Davis, et al. (Consol. w/20040308)(see Memo)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 104	14510	14509	'In re CS' | 'Interest of C.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 105	14515	14514	'In re Disciplinary Action Against Hellerud' | 'Disciplinary Board v. Hellerud'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 107	14518	14517	'In re Disciplinary Action Against Chinquist' | 'Disciplinary Board v. Chinquist'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 13	14422	14421	'In re Disciplinary Action Against Giese' | 'Disciplinary Board v. Giese'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 142	14542	14541	'Demers v. Demers' | 'DeMers v. DeMers'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 143	14549	14550	'Interest of J.S. (CONFIDENTIAL)' | 'In re Js'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 144	14559	14561	'State ex rel. Bd. of University and School Lands v. Alexander, et al.' | 'STATE ex rel. BD. OF UNIV. v. Alexander'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 146	14555	14558	'Disciplinary Board v. Aakre' | 'In re Disciplinary Action Against Aakre'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 148	14571	14570	'In re Disciplinary Action Against Korsmo' | 'Disciplinary Board v. Korsmo'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 175	14602	14601	'STATE ex rel. HOUSING FINANCE AGENCY v. Center Mut. Ins. Co.' | 'State ex rel. ND Housing Finance Agency v. Center Mutual Ins. Co.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 188	14621	14622	'Interest of B.L.S.            (Confidential)' | 'In re BLS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 19	14410	14411	'Interest of M.B., et al.     (CONFIDENTIAL)' | 'In re MB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 219	14638	14637	'Guardianship & Conservatorship of Thomas' | 'Guardianship/Conservatorship of Thomas'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 22	14400	14401	'Interest of B.V.         (CONFIDENTIAL)' | 'In re Bv'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 230	14649	14650	'Disciplinary Board v. Aakre' | 'Disciplinary Action Against Aakre'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 249	14666	14665	'In re Disciplinary Action Against Overboe' | 'Disciplinary Board v. Overboe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 250	14668	14667	'In re Edison' | 'Petition of Edison'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 251	14670	14669	'In re Disciplinary Action Against Stensland' | 'Disciplinary Board v. Stensland'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 30	14405	14406	'Interest of D.D., et al.  (CONFIDENTIAL)(Consolidated w/ 20050177)' | 'In re Dd'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 47	14465	14466	'Interest of F.F., et al.   (CONFIDENTIAL)' | 'In re FF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 56	14480	14479	'In re GRH' | 'Matter of G.R.H.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2006 ND 96	14503	14504	'Interest of J.M.           (CONFIDENTIAL)' | 'In re JM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 105	14770	14771	'Disciplinary Board v. Sletten' | 'In re Disciplinary Action Against Sletten'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 111	14785	14786	'Interest of J.C.            (Confidential)' | 'In re JC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 115	14775	14776	'Interest of B.B.         (Confidential)' | 'In re BB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 138	14800	14799	'State v. Washington' | 'State v. Washington'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 166	14833	14832	'Interest of Te' | 'Interest of T. E.  (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 170	14848	14847	'In re Disciplinary Action Against Light' | 'Disciplinary Board v. Light'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 186	14852	14853	'Interest of B.D.K. (CONFIDENTIAL)' | 'In re Bdk'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 203	14878	14879	'Disciplinary Board v. Johnson  (Consolidated w/ 20070108)' | 'In re Disciplinary Action Against Johnson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 204	14880	14881	'Disciplinary Board v. Nemec' | 'In re Disciplinary Action Against Nemec'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 37	14708	14709	'Interest of R.W.S.     (CONFIDENTIAL)' | 'In re RWS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 62	14738	14739	'Interest of D.M., a child          CONFIDENTIAL' | 'In re DM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2007 ND 83	14756	14757	'Interest of A.S. and N.S.   (CONFIDENTIAL)' | 'In re As'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 100	14970	14971	'Guardianship/Conservatorship of D.M.O. (cross-reference 20040235)' | 'In re Guardianship of DMO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 107	14996	14995	'Bll v. Wdc' | 'B.L.L., et al. v. W.D.C.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 130	15010	15009	'In re EWF' | 'Matter of E.W.F.      (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 131	15007	15008	'Interest of K.L. and M.S. (CONFIDENTIAL)(consolidated w/20070310)' | 'In re KL'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 162	15036	15035	'In re DISCIPLINARY ACTION AGAINST McCRAY' | 'Disciplinary Board v. McCray  (Consolidated w/ 20070377)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 177	15045	15046	'Disciplinary Board v. Tollefson' | 'In re Disciplinary Action Against Tollefson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 185	15062	15061	'In re RAS' | 'Matter of R.A.S.        (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 190	15074	15073	'In re Estate of Samuelson' | 'Estate of Samuelson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 194	15083	15082	'PA v. Aho' | 'P.A. v. A.H.O.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 210	15085	15084	'In re Pederson Trust' | 'Matter of the Trust of Pederson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 215	15091	15090	'In re Disciplinary Action Against Sletten' | 'Disciplinary Board v. Sletten (Consolidated w/ 20080147 - 20080150)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 216	15092	15093	'Disciplinary Board v. Nemec' | 'In re Disciplinary Action Against Nemec'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 222	15102	15101	'In re GRH' | 'Matter of G.R.H. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 225	15109	15108	"In re Peterson's Dogs" | "Matter of Peterson's dogs"	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 51	14926	14927	'Interest of B.B.  (CONFIDENTIAL)  (Cross-ref. w/ 20060322)' | 'In re BB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 53	14922	14921	'Buchholtz v. DIRECTOR, ND DEPT. OF TRANSP.' | 'Buchholtz v. Director, N.D. Dept. of Transportation'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2008 ND 86	14958	14959	'Interest of T.E.  (Confidential)' | 'In re TE'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 104	15202	15201	'In re AM' | 'Matter of A.M.       (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 113	15216	15215	'Vicknair v. Phelps Dodge Industries, Inc.' | 'Vicknair, et al. v. Phelps Dodge Industries, Inc., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 133	15246	15245	'Chambering of the New Judgeship in the Northwest Judicial District' | 'Chambering of the New Judgeship in the Northwest Judicial District'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 152	15269	15268	'In re Vantreece' | 'Matter of Vantreece   (Cross-Ref. w/20080004)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 158	15273	15272	'In re Disciplinary Action Against Fisher' | 'Disciplinary Board v. Fisher  (Cross-ref. w/ 20070343, 20070344, & 20080198)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 19	15145	15144	'In re Adoption of HGC' | 'Adoption of H.G.C.       (confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 194	15304	15303	'In re OHW' | 'Matter of O.H.W. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 195	15298	15297	'In re Conservatorship of Tk' | 'Conservatorship of T.K.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 196	15293	15292	'Landsiedel v. DIRECTOR DEPT. OF TRANSP.' | 'Landsiedel v. Director, N.D. Dept. of Transp. (consol. with 20090057)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 208	15321	15320	'MacHart v. MacHart' | 'Machart v. Machart'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 209	15310	15309	'In re To' | 'Matter of T.O.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 218	15317	15318	'Interest of W.K. (Confidential)' | 'In re Wk'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 53	15172	15173	'Interest of B.F.    (CONFIDENTIAL)' | 'In re Bf'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2009 ND 83	15192	15193	'Disciplinary Board v. Light (Consolidated w/ 20080321-20080327)' | 'In re Application for Disciplinary Action Against Light'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 103	15429	15430	'Interest of D.H. (CONFIDENTIAL)' | 'In re DH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 127	15458	15457	'In re Disciplinary Action Against Kuhn' | 'Disciplinary Board v. Kuhn'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 131	15468	15467	'In re Cah' | 'Interest of C.H. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 135	15460	15461	'Interest of M.W.      (CONFIDENTIAL)' | 'In re Mw'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 243	15557	15556	'Pizza Corner v. C.F.L. Transport' | 'Pizza Corner v. C.F.L. Transport'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 27	15354	15353	'In re Hk' | 'Cruff v. H.K.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 28	15350	15351	'Petition of Berger' | 'In re Berger ex rel. Kcf'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 35	15361	15360	'Parisien v. Parisien' | 'Parisien v. Parisien'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 4	15508	15332	'Everett v. State' | 'Everett v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 43	15369	15368	'STATE ex rel. ND DEPT. OF LABOR v. Riemers' | 'State ex rel. Dept. of Labor v. Riemers, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 46	15365	15366	'Interest of K.J., et al.   (CONFIDENTIAL) (consolidated w/20090265)' | 'In re KJ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 57	15394	15393	'State v. M.B.' | 'State v. M.B.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 58	15399	15398	'MORTON COUNTY SOCIAL SERVICE BD. v. Cramer' | 'Morton County Social Service Board, et al. v. Cramer'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 82	15476	15426	'State v. Gietzen' | 'State v. Gietzen'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 84	15405	15406	'Interest of A.R. (CONFIDENTIAL)' | 'In re Ar'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2010 ND 92	15423	15422	"Skogen v. HEMEN TP. BD. OF TP. SUP'RS" | 'Skogen, et al. v. Hemen Township Board, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2011 ND 184	15725	15724	'Benz Farm, LLP v. Cavendish Farms, Inc.' | 'Benz Farm, LLP v. Cavendish Farms, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2012 ND 257	15976	15975	'MayPort Farmers Co-Op v. St. Hilaire Seed Company, Inc.' | 'MayPort Farmers Co-Op v. St. Hilaire Seed Company, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2012 ND 91	15849	15846	'Come Big or Stay Home, LLC v. EOG Resources, Inc.' | 'Come Big or Stay Home, LLC v. EOG Resources, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2013 ND 135	16137	16084	'In re Judicial Redistricting' | 'Judicial Redistricting (consol. w/ 20130221)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2017 ND 13	16835	16834	'Matter of C.D.G.E.' | 'Matter of C.D.G.E. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	2022 ND 123	18040	18052	'Interest of A.C. (CONFIDENTIAL)' | 'Interest of A.C.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	563 N.W.2d 799	12441	12440	'Lc v. Rp' | 'Cheshire v. North Dakota Conference of the United Methodist Church'	1997+ neutral-cite; separate pass
+DEFER_MODERN	564 N.W.2d 281	12447	12446	'In Interest of EH' | 'T.W. v. E.H.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	565 N.W.2d 759	12471	12470	'In Interest of JCS' | 'Interest of J.C.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	566 N.W.2d 414	12479	12478	'Matter of BEM' | 'State, County of Cass ex rel. L.F.F. v. K.D.M.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	566 N.W.2d 422	12482	12481	'In Interest of PA' | 'Interest of P.A.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	566 N.W.2d 426	12484	12483	'Matter of Montgomery' | 'In re Montgomery'	1997+ neutral-cite; separate pass
+DEFER_MODERN	571 N.W.2d 370	12569	12570	'Disciplinary Board v. Fisher (Consolidated w/ 970344)' | 'Disciplinary Action Against Fisher'	1997+ neutral-cite; separate pass
+DEFER_MODERN	575 N.W.2d 420	12629	12628	'Interest of Rdb' | 'In the Interest of R.D.B., a child; Jason Dellwo v. R.D.B., a child, and D.B. and M.B., his parents'	1997+ neutral-cite; separate pass
+DEFER_MODERN	579 N.W.2d 212	12688	12687	'Presteng v. DIR., ND DEPT. OF TRANSP.' | 'Allen H. Presteng v. Director, North Dakota Department of Transportation'	1997+ neutral-cite; separate pass
+DEFER_MODERN	580 N.W.2d 573	12710	12709	'In Interest of LF' | 'In the Interest of L.F. and J.F., Children'	1997+ neutral-cite; separate pass
+DEFER_MODERN	583 N.W.2d 385	12737	12738	'Messiha v. State of North Dakota, et al.' | 'Messina v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	584 N.W.2d 853	12764	12763	'In Interest of As' | 'In the Interest of A.S., Child'	1997+ neutral-cite; separate pass
+DEFER_MODERN	594 N.W.2d 317	12900	12899	'In re Disciplinary Action Against Moe' | 'Disciplinary Board v. Moe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	594 N.W.2d 924	12902	12903	'Interest of M.S.  (CONFIDENTIAL - M.H.)' | 'In re MS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	595 N.W.2d 592	12919	12918	'Judicial Conduct Commission v. Hoffman' | 'Judicial Conduct Commission v. Hoffman (Consolidated w/990061-990063)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	599 N.W.2d 337	12978	12979	'Interest of J.K.  (CONFIDENTIAL)' | 'In re JK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	599 N.W.2d 619	12981	12980	'In re Disciplinary Action Against Dooley' | 'Disciplinary Board v. Dooley    (CONSOLIDATED W/ 980393)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	601 N.W.2d 253	13010	13011	'Interest of A.M., et al.           (CONFIDENTIAL)' | 'In re AM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	602 N.W.2d 268	13021	13020	'In re Disciplinary Action Against Boughey' | 'Disciplinary Board v. Boughey (CONSOLIDATED W/ 990184 & 19990304)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	602 N.W.2d 516	13022	13023	'In the Interest of L.A.G., a Child  (CONFIDENTIAL)' | 'In re LAG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	602 N.W.2d 520	13024	13025	'In the Interest of C.R., a Minor Child  (CONFIDENTIAL)' | 'In re CR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	602 N.W.2d 697	13029	13030	'Interest of D.F.G. and E.K.B. (CONFIDENTIAL)' | 'In re DFG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	603 N.W.2d 176	13037	13036	'In re Disciplinary Action Against Seaworth' | 'Disciplinary Board v. Seaworth'	1997+ neutral-cite; separate pass
+DEFER_MODERN	606 N.W.2d 108	13076	13077	'State v. Burke' | 'Strom-Sell v. Council for Concerned Citizens, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	606 N.W.2d 117	13078	13079	'Interest of C.J.C.      (CONFIDENTIAL)' | 'In re CJC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	607 N.W.2d 248	13096	13097	'Interest of K.M.G.' | 'In re KMG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	607 N.W.2d 575	13102	13101	'In re SRA' | 'Interest of S.R.A.        (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	609 N.W.2d 418	13123	13122	'In re Disciplinary Action Against McDonald' | 'Disciplinary Board v. McDonald    (CONSOLIDATED W/990360 & 990361)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	609 N.W.2d 729	13135	13134	'Burke v. ND DEPT. OF CORRECTIONS & REHAB.' | 'Burke v. ND Dept. of Corrections & Rehab.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	611 N.W.2d 179	13169	13168	'State, County of Cass, ex rel. Dd' | 'State ex rel. D.D., et al. v. G.K.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	612 N.W.2d 277	13187	13186	'In re Disciplinary Action Against Roybal' | 'Disciplinary Board v. Roybal'	1997+ neutral-cite; separate pass
+DEFER_MODERN	612 N.W.2d 561	13193	13194	'Interest of N.C.C.' | 'In re NCC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	612 N.W.2d 569	13195	13196	'Interest of A.R.         (CONFIDENTIAL)' | 'In re AR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	615 N.W.2d 511	13213	13214	'Interest of S.F., et al.   (CONFIDENTIAL)' | 'In re SF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	615 N.W.2d 533	13218	13219	'Interest of  S.J.F.   (CONFIDENTIAL) (CONSOLIDATED W/20000036)' | 'In re SJF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	617 N.W.2d 470	13234	13235	'Interest of E.T.         (CONFIDENTIAL)' | 'In re ET'	1997+ neutral-cite; separate pass
+DEFER_MODERN	618 N.W.2d 166	13244	13243	"Fandrich v. WELLS CTY. BD. OF COUNTY COMM'RS" | 'Fandrich, et al. v. Wells Co. Bd. of Co. Comm., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	619 N.W.2d 494	13254	13255	'Interest of W.E., et al. (CONFIDENTIAL)(Consolidated w/20000079 & 20000080)' | 'In re WE'	1997+ neutral-cite; separate pass
+DEFER_MODERN	620 N.W.2d 156	13277	13276	'In re Disciplinary Action Against Keller' | 'Disciplinary Board v. Keller'	1997+ neutral-cite; separate pass
+DEFER_MODERN	620 N.W.2d 175	13281	13282	'Interest of C.R.H.      (CONFIDENTIAL)' | 'In re CRH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	622 N.W.2d 232	13320	13319	'Klg v. Sln' | 'K.L.G v. S.L.N.      (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	622 N.W.2d 720	13323	13324	'Interest of C.H., et al.     (CONFIDENTIAL)' | 'In re CH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	623 N.W.2d 418	13338	13339	'Interest of A.L. and J.L.     (CONSOLIDATED w/20000218-20000220)' | 'In re AL and JL'	1997+ neutral-cite; separate pass
+DEFER_MODERN	623 N.W.2d 431	13342	13341	'In re Disciplinary Action Against Hawkins' | 'Disciplinary Board v. Hawkins'	1997+ neutral-cite; separate pass
+DEFER_MODERN	624 N.W.2d 667	13346	13347	'Disciplinary Board v. Keller' | 'In re Disciplinary Action Against Keller'	1997+ neutral-cite; separate pass
+DEFER_MODERN	624 N.W.2d 678	13350	13349	'In re MS' | 'Interest of M.S.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	624 N.W.2d 686	13351	13352	'Interest of D.N., D.N., C.N., Children (CONFIDENTIAL)(Consol. w/20000235)' | 'In re DN'	1997+ neutral-cite; separate pass
+DEFER_MODERN	625 N.W.2d 533	13362	13363	'Interest of C.R.C. (CONFIDENTIAL)' | 'In re CRC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	626 N.W.2d 650	13370	13371	'Disciplinary Board v. Howe' | 'In re Howe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	627 N.W.2d 776	13388	13387	'In re AB' | 'Interest of A.B.         (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	630 N.W.2d 38	13408	13409	'Interest of T.K. (Consolidated w/20000329)' | 'In re TK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	632 N.W.2d 451	13430	13431	'Interest of N.H., et al.   (CONFIDENTIAL)' | 'In re NH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	632 N.W.2d 458	13432	13433	'Interest of H.G.        (CONFIDENTIAL)' | 'In re HG'	1997+ neutral-cite; separate pass
+DEFER_MODERN	634 N.W.2d 491	13444	13443	'In re Disciplinary Action Against Gronneberg' | 'Disciplinary Board v. Gronneberg'	1997+ neutral-cite; separate pass
+DEFER_MODERN	636 N.W.2d 412	13466	13467	'Interest of D.R., et al.  (CONFIDENTIAL)(Consolidated w/20010099)' | 'In re DR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	636 N.W.2d 921	13479	13480	'Interest of D.P.   (Confidential)' | 'In re DP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	637 N.W.2d 1	13484	13482	'Disciplinary Action Against Dooley' | 'In the Matter of the Application For Disciplinary Action Against Fintan L. Dooley'	1997+ neutral-cite; separate pass
+DEFER_MODERN	637 N.W.2d 678	13487	13488	'Interest of M.C.H.    (CONFIDENTIAL)                (CROSS-REF. W/20010132)' | 'In re MCH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	637 N.W.2d 710	13493	13492	'In re Disciplinary Action Against Boulger' | 'Disciplinary Board v. Boulger'	1997+ neutral-cite; separate pass
+DEFER_MODERN	638 N.W.2d 883	13510	13509	'Judicial Conduct Commission v. Tessmann' | 'Judicial Conduct Commission v. Tessmann'	1997+ neutral-cite; separate pass
+DEFER_MODERN	639 N.W.2d 473	13515	13514	'In re MBK' | 'Grosinger v. M.B.K.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	640 N.W.2d 733	13546	13547	'Interest of J.D.    (CONFIDENTIAL)' | 'In re Jd'	1997+ neutral-cite; separate pass
+DEFER_MODERN	643 N.W.2d 699	13570	13571	'Interest of J.R. and L.R.   (CONFIDENTIAL)' | 'In re JR'	1997+ neutral-cite; separate pass
+DEFER_MODERN	646 N.W.2d 699	13592	13593	'Interest of R.K.    (CONFIDENTIAL)' | 'In re RK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	647 N.W.2d 126	13599	13598	'In re Disciplinary Action Against Edwardson' | 'Disciplinary Board v. Edwardson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	649 N.W.2d 231	13608	13609	'Interest of D.Z.   (CONFIDENTIAL)' | 'In re DZ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	650 N.W.2d 820	13638	13637	"US BANK, NATIONAL ASS'N v. Koenig" | 'U.S. Bank v. Koenig, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	652 N.W.2d 327	13654	13655	'Interest of R.O.      (CONFIDENTIAL)' | 'In re RO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	652 N.W.2d 341	13657	13658	'Interest of K.S. and A.S.  (CONFIDENTIAL)' | 'In re KS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	652 N.W.2d 358	13662	13661	'In re Disciplinary Action Against Butz' | 'In the Matter of the Application for Disciplinary Action Against Mark J. Butz'	1997+ neutral-cite; separate pass
+DEFER_MODERN	652 N.W.2d 912	13667	13666	'In re Adoption of SAL' | 'Adoption of S.A.L.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	652 N.W.2d 918	13669	13668	'In re Disciplinary Action Against Garaas' | 'Jacobson v. Garaas   (Consolidated w/ 20020113)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	653 N.W.2d 659	13677	13676	'In re FRS' | 'Interest of F.R.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	653 N.W.2d 713	13686	13687	'Interest of D.Q., et al.   (Confidential) (Consolidated w/20020079)' | 'In re DQ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	654 N.W.2d 391	13693	13694	'Disciplinary Board v. Sundby' | 'In re Disciplinary Action Against Sundby'	1997+ neutral-cite; separate pass
+DEFER_MODERN	655 N.W.2d 69	13709	13708	'In re Estate of Gleeson' | 'Estate of Gleeson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	656 N.W.2d 661	13723	13722	'In re Disciplinary Action Against McKechnie' | 'Disciplinary Board v. McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	656 N.W.2d 709	13729	13730	'Interest of T.M.H.           (CONFIDENTIAL)' | 'In re Tmh'	1997+ neutral-cite; separate pass
+DEFER_MODERN	657 N.W.2d 273	13745	13744	'In re TH' | 'Berger v. Holt'	1997+ neutral-cite; separate pass
+DEFER_MODERN	657 N.W.2d 287	13748	13747	'In re Disciplinary Action Against McKechnie' | 'Hegland v. McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	658 N.W.2d 767	13762	13763	'Disciplinary Board v. Schoppert' | 'In re Disciplinary Action Against Schoppert'	1997+ neutral-cite; separate pass
+DEFER_MODERN	659 N.W.2d 864	13769	13768	'In re Thompson' | 'Lanners, et al. v. Johnson, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	662 N.W.2d 267	13805	13804	'In re Garrison State Bank and Trust' | 'Matter of Garrison State Bank and Trust'	1997+ neutral-cite; separate pass
+DEFER_MODERN	662 N.W.2d 277	13808	13807	'Klb v. Sb' | 'K.L.B., et al. v. S.B.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	663 N.W.2d 197	13816	13817	'Interest of I.K.   (CONFIDENTIAL)' | 'In re IK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	663 N.W.2d 625	13820	13819	'In re AB' | 'Interest of A.B. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	665 N.W.2d 65	13833	13834	'Interest of K.P.' | 'In re KP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	667 N.W.2d 590	13852	13853	'Interest of D.P.O.(CONFIDENTIAL) (Consolidated w/20030020)' | 'In re DPO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	667 N.W.2d 641	13860	13861	'Interest of J.S.        (CONFIDENTIAL)                    (see Docket Memo)' | 'In re Js'	1997+ neutral-cite; separate pass
+DEFER_MODERN	669 N.W.2d 118	13867	13868	'Disciplinary Board v. Edin' | 'In re Disciplinary Action Against Edin'	1997+ neutral-cite; separate pass
+DEFER_MODERN	669 N.W.2d 95	13873	13872	'In re Guardianship of Shatzka' | 'Guardianship of Shatzka'	1997+ neutral-cite; separate pass
+DEFER_MODERN	670 N.W.2d 499	13887	13886	'In re Rf' | 'Interest of R.F.     (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	670 N.W.2d 500	13889	13888	'In re Application for Disciplinary Action Against Hoffman' | 'Disciplinary Board v. Hoffman  (Consolidated w/ 20030142)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	670 N.W.2d 864	13896	13897	'Disciplinary Board v. McKechnie               (Cross-reference w/ 20020199)' | 'In re Disciplinary Action Against McKechnie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	671 N.W.2d 791	13904	13905	'Interest of L.D.' | 'In re LD'	1997+ neutral-cite; separate pass
+DEFER_MODERN	674 N.W.2d 273	13951	13952	'Interest of J.P. and D.P. (CONFIDENTIAL)(Consolidated w/20030118)' | 'In re JP'	1997+ neutral-cite; separate pass
+DEFER_MODERN	674 N.W.2d 505	13957	13956	'MORTON COUNTY SOCIAL SERV. BD. v. Schumacher' | 'Morton Co. S.S.B., et al. v. Schumacher'	1997+ neutral-cite; separate pass
+DEFER_MODERN	676 N.W.2d 744	13973	13972	'In re KP' | 'Interest of K.P.    (CONFIDENTIAL)                  (cross-ref. w/20030175)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	676 N.W.2d 776	13976	13977	'Interest of D.V.A.  (CONFIDENTIAL)' | 'In re DVA'	1997+ neutral-cite; separate pass
+DEFER_MODERN	677 N.W.2d 215	13989	13990	'Graves v. State Board of Law Examiners' | 'In re Application of Graves for Admission'	1997+ neutral-cite; separate pass
+DEFER_MODERN	678 N.W.2d 757	14004	14005	'Oliver-Mercer Electric Coop. v. Davis, et al. (Consol. w/ 20030158)' | 'OLIVER-MERCER ELEC. CO-OP., INC. v. Davis'	1997+ neutral-cite; separate pass
+DEFER_MODERN	681 N.W.2d 779	14051	14052	'Interest of T.T.   (CONFIDENTIAL)' | 'In re TT'	1997+ neutral-cite; separate pass
+DEFER_MODERN	682 N.W.2d 735	14066	14065	'In Interest of TJL' | 'Interest of T.J.L.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	685 N.W.2d 748	14090	14089	'In re Disciplinary Action Against McGuire' | 'Judicial Conduct Commission v. McGuire'	1997+ neutral-cite; separate pass
+DEFER_MODERN	686 N.W.2d 107	14092	14093	'Interest of R.H.' | 'In re RH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	687 N.W.2d 251	14106	14105	'In re Disciplinary Action Against Secrest' | 'Disciplinary Board v. Secrest'	1997+ neutral-cite; separate pass
+DEFER_MODERN	688 N.W.2d 384	14125	14126	'Interest of E.R.  (CONFIDENTIAL)' | 'In re ER'	1997+ neutral-cite; separate pass
+DEFER_MODERN	689 N.W.2d 403	14137	14136	'In re Adoption of HRW' | 'Adoption of H.R.W.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	691 N.W.2d 193	14162	14161	'State v. Ernst' | 'State v. Bates'	1997+ neutral-cite; separate pass
+DEFER_MODERN	692 N.W.2d 128	14187	14186	'In re DPO' | 'Interest of D.P.O.                       (Cross-ref. w/20030002 & 20030020)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	692 N.W.2d 483	14192	14193	'Beckler v. Workforce Safety and Insurance' | 'In re Beckler'	1997+ neutral-cite; separate pass
+DEFER_MODERN	692 N.W.2d 905	14198	14199	'Interest of R.F.          (CONFIDENTIAL)' | 'In re RF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	693 N.W.2d 19	14205	14204	'Disciplinary Action Against Schoppert' | 'Disciplinary Board v. Schoppert'	1997+ neutral-cite; separate pass
+DEFER_MODERN	694 N.W.2d 225	14224	14223	'FIRE AND TORNADO FUND v. University' | 'State of ND v. NDSU, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	694 N.W.2d 8	14230	14228	'AMS ex rel. Farthing v. Stoppleworth' | 'Interest of A.M.S. (Consolidated w/20040269 & 20040270)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	696 N.W.2d 495	14240	14239	'Disciplinary Action Against Christensen' | 'Disciplinary Board v. Christensen   (CONSOLIDATE W/ 20050139 & 20050140)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	696 N.W.2d 924	14250	14249	'OLIVER-MERCER ELEC. CO-OP., INC. v. Davis' | 'Oliver-Mercer Electric Coop. v. Davis, et al. (Consol. w/20040308)(see Memo)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	697 N.W.2d 339	14257	14256	'Klindt v. PEMBINA COUNTY WATER RESOURCE BD.' | 'Klindt, et al. v. Pembina Co. Water Resource Bd., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	697 N.W.2d 727	14262	14261	'In re Disciplinary Action Against Edin' | 'Disciplinary Board v. Edin  (Consolidated w/ 20050011)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	698 N.W.2d 474	14267	14268	'Interest of D.A.     (CONFIDENTIAL)' | 'In re DA'	1997+ neutral-cite; separate pass
+DEFER_MODERN	699 N.W.2d 839	14274	14275	'Disciplinary Board v. Vela' | 'In re Disciplinary Action Against Vela'	1997+ neutral-cite; separate pass
+DEFER_MODERN	701 N.W.2d 402	14305	14304	'In re Guardianship of Barros' | 'Guardianship of Barros'	1997+ neutral-cite; separate pass
+DEFER_MODERN	701 N.W.2d 863	14307	14306	'In re Disciplinary Action Against Sundby' | 'Disciplinary Board v. Sundby (Consolidated w/ 20050189 - 20050194)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	701 N.W.2d 873	14309	14310	'Disciplinary Board v. Ward' | 'In re Ward'	1997+ neutral-cite; separate pass
+DEFER_MODERN	701 N.W.2d 897	14315	14314	'In re Estate of Richmond' | 'Estate of Richmond'	1997+ neutral-cite; separate pass
+DEFER_MODERN	701 N.W.2d 924	14319	14320	'Interest of B.J.K.          (Confidential)' | 'In re BJK'	1997+ neutral-cite; separate pass
+DEFER_MODERN	703 N.W.2d 285	14322	14323	'CybrCollect, Inc. v. ND Dept. of Financial Institutions, et al.' | 'Cybrcollect v. Dfi'	1997+ neutral-cite; separate pass
+DEFER_MODERN	703 N.W.2d 305	14326	14325	'In re Disciplinary Action Against Korsmo' | 'Disciplinary Board v. Korsmo'	1997+ neutral-cite; separate pass
+DEFER_MODERN	703 N.W.2d 345	14332	14333	'Disciplinary Board v. Hoffman' | 'In re Disciplinary Action Against Hoffman'	1997+ neutral-cite; separate pass
+DEFER_MODERN	703 N.W.2d 660	14334	14335	'Interest of K.G.          (Confidential)' | 'In re Kg'	1997+ neutral-cite; separate pass
+DEFER_MODERN	704 N.W.2d 23	14336	14337	'Disciplinary Board v. Vela' | 'In re Disciplinary Action Against Vela'	1997+ neutral-cite; separate pass
+DEFER_MODERN	704 N.W.2d 809	14347	14346	'In re Disciplinary Action Against Wilkes' | 'Disciplinary Board v. Wilkes'	1997+ neutral-cite; separate pass
+DEFER_MODERN	704 N.W.2d 810	14348	14349	'Hoffman v. Disciplinary Board' | 'In re Hoffman'	1997+ neutral-cite; separate pass
+DEFER_MODERN	704 N.W.2d 838	14352	14353	'Interest of L.D.M.   (CONFIDENTIAL)' | 'In re Ldm'	1997+ neutral-cite; separate pass
+DEFER_MODERN	705 N.W.2d 257	14360	14359	'Lcv v. Deg' | 'L.C.V. v. D.E.G. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	706 N.W.2d 78	14373	14374	'Interest of P.B. (CONFIDENTIAL)' | 'In re Pb'	1997+ neutral-cite; separate pass
+DEFER_MODERN	707 N.W.2d 75	14386	14387	'Interest of A.B., et al.  (CONFIDENTIAL)' | 'In re AB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	708 N.W.2d 857	14393	14394	'Disciplinary Board v. Buresh' | 'In re Disciplinary Action Against Buresh'	1997+ neutral-cite; separate pass
+DEFER_MODERN	708 N.W.2d 877	14400	14401	'Interest of B.V.         (CONFIDENTIAL)' | 'In re Bv'	1997+ neutral-cite; separate pass
+DEFER_MODERN	708 N.W.2d 900	14405	14406	'Interest of D.D., et al.  (CONFIDENTIAL)(Consolidated w/ 20050177)' | 'In re Dd'	1997+ neutral-cite; separate pass
+DEFER_MODERN	709 N.W.2d 11	14410	14411	'Interest of M.B., et al.     (CONFIDENTIAL)' | 'In re MB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	709 N.W.2d 717	14422	14421	'In re Disciplinary Action Against Giese' | 'Disciplinary Board v. Giese'	1997+ neutral-cite; separate pass
+DEFER_MODERN	711 N.W.2d 144	14465	14466	'Interest of F.F., et al.   (CONFIDENTIAL)' | 'In re FF'	1997+ neutral-cite; separate pass
+DEFER_MODERN	711 N.W.2d 587	14480	14479	'In re GRH' | 'Matter of G.R.H.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	713 N.W.2d 518	14503	14504	'Interest of J.M.           (CONFIDENTIAL)' | 'In re JM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	713 N.W.2d 542	14510	14509	'In re CS' | 'Interest of C.S.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	714 N.W.2d 38	14515	14514	'In re Disciplinary Action Against Hellerud' | 'Disciplinary Board v. Hellerud'	1997+ neutral-cite; separate pass
+DEFER_MODERN	714 N.W.2d 469	14518	14517	'In re Disciplinary Action Against Chinquist' | 'Disciplinary Board v. Chinquist'	1997+ neutral-cite; separate pass
+DEFER_MODERN	717 N.W.2d 545	14542	14541	'Demers v. Demers' | 'DeMers v. DeMers'	1997+ neutral-cite; separate pass
+DEFER_MODERN	717 N.W.2d 598	14549	14550	'Interest of J.S. (CONFIDENTIAL)' | 'In re Js'	1997+ neutral-cite; separate pass
+DEFER_MODERN	718 N.W.2d 1	14555	14558	'Disciplinary Board v. Aakre' | 'In re Disciplinary Action Against Aakre'	1997+ neutral-cite; separate pass
+DEFER_MODERN	718 N.W.2d 2	14559	14561	'State ex rel. Bd. of University and School Lands v. Alexander, et al.' | 'STATE ex rel. BD. OF UNIV. v. Alexander'	1997+ neutral-cite; separate pass
+DEFER_MODERN	718 N.W.2d 6	14571	14570	'In re Disciplinary Action Against Korsmo' | 'Disciplinary Board v. Korsmo'	1997+ neutral-cite; separate pass
+DEFER_MODERN	719 N.W.2d 384	14582	14583	'Clifford v. Redmann' | 'State v. Wheeler'	1997+ neutral-cite; separate pass
+DEFER_MODERN	720 N.W.2d 425	14602	14601	'STATE ex rel. HOUSING FINANCE AGENCY v. Center Mut. Ins. Co.' | 'State ex rel. ND Housing Finance Agency v. Center Mutual Ins. Co.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	721 N.W.2d 50	14621	14622	'Interest of B.L.S.            (Confidential)' | 'In re BLS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	723 N.W.2d 384	14638	14637	'Guardianship & Conservatorship of Thomas' | 'Guardianship/Conservatorship of Thomas'	1997+ neutral-cite; separate pass
+DEFER_MODERN	723 N.W.2d 682	14649	14650	'Disciplinary Board v. Aakre' | 'Disciplinary Action Against Aakre'	1997+ neutral-cite; separate pass
+DEFER_MODERN	724 N.W.2d 576	14666	14665	'In re Disciplinary Action Against Overboe' | 'Disciplinary Board v. Overboe'	1997+ neutral-cite; separate pass
+DEFER_MODERN	724 N.W.2d 579	14668	14667	'In re Edison' | 'Petition of Edison'	1997+ neutral-cite; separate pass
+DEFER_MODERN	725 N.W.2d 191	14670	14669	'In re Disciplinary Action Against Stensland' | 'Disciplinary Board v. Stensland'	1997+ neutral-cite; separate pass
+DEFER_MODERN	728 N.W.2d 326	14708	14709	'Interest of R.W.S.     (CONFIDENTIAL)' | 'In re RWS'	1997+ neutral-cite; separate pass
+DEFER_MODERN	730 N.W.2d 604	14738	14739	'Interest of D.M., a child          CONFIDENTIAL' | 'In re DM'	1997+ neutral-cite; separate pass
+DEFER_MODERN	733 N.W.2d 232	14756	14757	'Interest of A.S. and N.S.   (CONFIDENTIAL)' | 'In re As'	1997+ neutral-cite; separate pass
+DEFER_MODERN	735 N.W.2d 409	14770	14771	'Disciplinary Board v. Sletten' | 'In re Disciplinary Action Against Sletten'	1997+ neutral-cite; separate pass
+DEFER_MODERN	735 N.W.2d 855	14775	14776	'Interest of B.B.         (Confidential)' | 'In re BB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	736 N.W.2d 451	14785	14786	'Interest of J.C.            (Confidential)' | 'In re JC'	1997+ neutral-cite; separate pass
+DEFER_MODERN	737 N.W.2d 382	14800	14799	'State v. Washington' | 'State v. Washington'	1997+ neutral-cite; separate pass
+DEFER_MODERN	740 N.W.2d 100	14833	14832	'Interest of Te' | 'Interest of T. E.  (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	741 N.W.2d 215	14848	14847	'In re Disciplinary Action Against Light' | 'Disciplinary Board v. Light'	1997+ neutral-cite; separate pass
+DEFER_MODERN	742 N.W.2d 41	14852	14853	'Interest of B.D.K. (CONFIDENTIAL)' | 'In re Bdk'	1997+ neutral-cite; separate pass
+DEFER_MODERN	743 N.W.2d 117	14878	14879	'Disciplinary Board v. Johnson  (Consolidated w/ 20070108)' | 'In re Disciplinary Action Against Johnson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	743 N.W.2d 129	14880	14881	'Disciplinary Board v. Nemec' | 'In re Disciplinary Action Against Nemec'	1997+ neutral-cite; separate pass
+DEFER_MODERN	746 N.W.2d 181	14922	14921	'Buchholtz v. DIRECTOR, ND DEPT. OF TRANSP.' | 'Buchholtz v. Director, N.D. Dept. of Transportation'	1997+ neutral-cite; separate pass
+DEFER_MODERN	746 N.W.2d 411	14926	14927	'Interest of B.B.  (CONFIDENTIAL)  (Cross-ref. w/ 20060322)' | 'In re BB'	1997+ neutral-cite; separate pass
+DEFER_MODERN	748 N.W.2d 677	14958	14959	'Interest of T.E.  (Confidential)' | 'In re TE'	1997+ neutral-cite; separate pass
+DEFER_MODERN	749 N.W.2d 517	14970	14971	'Guardianship/Conservatorship of D.M.O. (cross-reference 20040235)' | 'In re Guardianship of DMO'	1997+ neutral-cite; separate pass
+DEFER_MODERN	750 N.W.2d 466	14996	14995	'Bll v. Wdc' | 'B.L.L., et al. v. W.D.C.    (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	751 N.W.2d 677	15007	15008	'Interest of K.L. and M.S. (CONFIDENTIAL)(consolidated w/20070310)' | 'In re KL'	1997+ neutral-cite; separate pass
+DEFER_MODERN	751 N.W.2d 686	15010	15009	'In re EWF' | 'Matter of E.W.F.      (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	755 N.W.2d 835	15036	15035	'In re DISCIPLINARY ACTION AGAINST McCRAY' | 'Disciplinary Board v. McCray  (Consolidated w/ 20070377)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	755 N.W.2d 912	15045	15046	'Disciplinary Board v. Tollefson' | 'In re Disciplinary Action Against Tollefson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	756 N.W.2d 344	15056	15055	'State v. Everett' | 'Riemers v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	756 N.W.2d 771	15062	15061	'In re RAS' | 'Matter of R.A.S.        (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	757 N.W.2d 44	15074	15073	'In re Estate of Samuelson' | 'Estate of Samuelson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	757 N.W.2d 58	15083	15082	'PA v. Aho' | 'P.A. v. A.H.O.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	757 N.W.2d 740	15085	15084	'In re Pederson Trust' | 'Matter of the Trust of Pederson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	758 N.W.2d 657	15091	15090	'In re Disciplinary Action Against Sletten' | 'Disciplinary Board v. Sletten (Consolidated w/ 20080147 - 20080150)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	758 N.W.2d 660	15092	15093	'Disciplinary Board v. Nemec' | 'In re Disciplinary Action Against Nemec'	1997+ neutral-cite; separate pass
+DEFER_MODERN	758 N.W.2d 719	15102	15101	'In re GRH' | 'Matter of G.R.H. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	758 N.W.2d 749	15109	15108	"In re Peterson's Dogs" | "Matter of Peterson's dogs"	1997+ neutral-cite; separate pass
+DEFER_MODERN	761 N.W.2d 565	15145	15144	'In re Adoption of HGC' | 'Adoption of H.G.C.       (confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	764 N.W.2d 170	15172	15173	'Interest of B.F.    (CONFIDENTIAL)' | 'In re Bf'	1997+ neutral-cite; separate pass
+DEFER_MODERN	765 N.W.2d 536	15192	15193	'Disciplinary Board v. Light (Consolidated w/ 20080321-20080327)' | 'In re Application for Disciplinary Action Against Light'	1997+ neutral-cite; separate pass
+DEFER_MODERN	767 N.W.2d 171	15216	15215	'Vicknair v. Phelps Dodge Industries, Inc.' | 'Vicknair, et al. v. Phelps Dodge Industries, Inc., et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	770 N.W.2d 221	15246	15245	'Chambering of the New Judgeship in the Northwest Judicial District' | 'Chambering of the New Judgeship in the Northwest Judicial District'	1997+ neutral-cite; separate pass
+DEFER_MODERN	771 N.W.2d 585	15269	15268	'In re Vantreece' | 'Matter of Vantreece   (Cross-Ref. w/20080004)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	771 N.W.2d 609	15273	15272	'In re Disciplinary Action Against Fisher' | 'Disciplinary Board v. Fisher  (Cross-ref. w/ 20070343, 20070344, & 20080198)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	774 N.W.2d 645	15293	15292	'Landsiedel v. DIRECTOR DEPT. OF TRANSP.' | 'Landsiedel v. Director, N.D. Dept. of Transp. (consol. with 20090057)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	775 N.W.2d 496	15298	15297	'In re Conservatorship of Tk' | 'Conservatorship of T.K.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	775 N.W.2d 73	15304	15303	'In re OHW' | 'Matter of O.H.W. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	776 N.W.2d 47	15310	15309	'In re To' | 'Matter of T.O.  (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	776 N.W.2d 572	15317	15318	'Interest of W.K. (Confidential)' | 'In re Wk'	1997+ neutral-cite; separate pass
+DEFER_MODERN	776 N.W.2d 795	15321	15320	'MacHart v. MacHart' | 'Machart v. Machart'	1997+ neutral-cite; separate pass
+DEFER_MODERN	778 N.W.2d 579	15350	15351	'Petition of Berger' | 'In re Berger ex rel. Kcf'	1997+ neutral-cite; separate pass
+DEFER_MODERN	778 N.W.2d 764	15354	15353	'In re Hk' | 'Cruff v. H.K.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	779 N.W.2d 130	15361	15360	'Parisien v. Parisien' | 'Parisien v. Parisien'	1997+ neutral-cite; separate pass
+DEFER_MODERN	779 N.W.2d 635	15365	15366	'Interest of K.J., et al.   (CONFIDENTIAL) (consolidated w/20090265)' | 'In re KJ'	1997+ neutral-cite; separate pass
+DEFER_MODERN	779 N.W.2d 649	15369	15368	'STATE ex rel. ND DEPT. OF LABOR v. Riemers' | 'State ex rel. Dept. of Labor v. Riemers, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	780 N.W.2d 663	15394	15393	'State v. M.B.' | 'State v. M.B.   (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	780 N.W.2d 688	15399	15398	'MORTON COUNTY SOCIAL SERVICE BD. v. Cramer' | 'Morton County Social Service Board, et al. v. Cramer'	1997+ neutral-cite; separate pass
+DEFER_MODERN	781 N.W.2d 644	15405	15406	'Interest of A.R. (CONFIDENTIAL)' | 'In re Ar'	1997+ neutral-cite; separate pass
+DEFER_MODERN	782 N.W.2d 638	15423	15422	"Skogen v. HEMEN TP. BD. OF TP. SUP'RS" | 'Skogen, et al. v. Hemen Township Board, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	783 N.W.2d 12	15429	15430	'Interest of D.H. (CONFIDENTIAL)' | 'In re DH'	1997+ neutral-cite; separate pass
+DEFER_MODERN	785 N.W.2d 195	15458	15457	'In re Disciplinary Action Against Kuhn' | 'Disciplinary Board v. Kuhn'	1997+ neutral-cite; separate pass
+DEFER_MODERN	785 N.W.2d 211	15460	15461	'Interest of M.W.      (CONFIDENTIAL)' | 'In re Mw'	1997+ neutral-cite; separate pass
+DEFER_MODERN	785 N.W.2d 253	15468	15467	'In re Cah' | 'Interest of C.H. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	786 N.W.2d 706	15480	15479	'S.H.B. v. T.A.H. (CONFIDENTIAL)' | 'S.H.B. v. T.A.H.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	792 N.W.2d 911	15557	15556	'Pizza Corner v. C.F.L. Transport' | 'Pizza Corner v. C.F.L. Transport'	1997+ neutral-cite; separate pass
+DEFER_MODERN	803 N.W.2d 818	15725	15724	'Benz Farm, LLP v. Cavendish Farms, Inc.' | 'Benz Farm, LLP v. Cavendish Farms, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	816 N.W.2d 80	15849	15846	'Come Big or Stay Home, LLC v. EOG Resources, Inc.' | 'Come Big or Stay Home, LLC v. EOG Resources, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	825 N.W.2d 883	15976	15975	'MayPort Farmers Co-Op v. St. Hilaire Seed Company, Inc.' | 'MayPort Farmers Co-Op v. St. Hilaire Seed Company, Inc.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	889 N.W.2d 863	16835	16834	'Matter of C.D.G.E.' | 'Matter of C.D.G.E. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	894 N.W.2d 906	16930	16929	'State v. Cox' | 'Jessop v. Levi'	1997+ neutral-cite; separate pass
+DEFER_MODERN	895 N.W.2d 314	16938	16937	'State v. Raphael' | "Junas v.  N.D. Dep't of Transportation"	1997+ neutral-cite; separate pass
+DEFER_MODERN	897 N.W.2d 326	16963	16962	"O'Hara v. Schneider" | 'Jasmann v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	898 N.W.2d 406	16972	16971	'Mosser, et al. v. Denbury Resources, Inc., et al.' | 'Interest of A.F.L. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	902 N.W.2d 515	17044	17043	'State v. Duchaine' | 'State v. Doornek (Consolidated w/20170027)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	902 N.W.2d 924	17057	17058	'State v. Whetsel' | 'Clark v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	903 N.W.2d 60	17073	17072	'Wisham v. State' | 'Wisham v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	904 N.W.2d 34	17093	17091	'Osborne v. Brown & Saenger, Inc.' | 'Coppage v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	904 N.W.2d 40	17095	17096	'Interest of Jane Doe (CONFIDENTIAL)' | 'State v. Todd'	1997+ neutral-cite; separate pass
+DEFER_MODERN	904 N.W.2d 469	17099	17100	'Ceynar, et al. v. Barth, et al.' | 'State v. Sabot'	1997+ neutral-cite; separate pass
+DEFER_MODERN	908 N.W.2d 697	17119	17118	'State of North Dakota v. Steven Wayne Sauter' | 'State v. Redtomahawk'	1997+ neutral-cite; separate pass
+DEFER_MODERN	908 N.W.2d 732	17125	17124	'State v. Terrill' | 'State v. Mbulu'	1997+ neutral-cite; separate pass
+DEFER_MODERN	909 N.W.2d 110	17129	17128	'Miller v. R.F.' | 'Peterson v. S.B.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	909 N.W.2d 112	17132	17131	'State v. Ali' | 'State v. Rutherford'	1997+ neutral-cite; separate pass
+DEFER_MODERN	910 N.W.2d 845	17156	17155	'Wheeler v. Burgum' | 'State v. Parks'	1997+ neutral-cite; separate pass
+DEFER_MODERN	910 N.W.2d 860	17160	17159	'Interest of R.C. (CONFIDENTIAL)' | 'Interest of F.M.G. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	910 N.W.2d 868	17162	17163	'IRET Properties v. Lee, et al.' | 'Interest of A.H. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	911 N.W.2d 919	17184	17185	'Rath v. Rath' | 'State v. Ashford'	1997+ neutral-cite; separate pass
+DEFER_MODERN	913 N.W.2d 769	17201	17200	'Adoption of B.A.T. (CONFIDENTIAL)' | 'Cass Cnty. Soc. Servs. v. A.C.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	913 N.W.2d 771	17204	17203	'Matthews v. State' | 'Butts v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	913 N.W.2d 773	17207	17206	'Tillich v. Bruce' | 'State v. Cullett'	1997+ neutral-cite; separate pass
+DEFER_MODERN	913 N.W.2d 774	17209	17208	'Chase v. State' | 'State v. Everett'	1997+ neutral-cite; separate pass
+DEFER_MODERN	918 N.W.2d 43	17274	17275	"DeForest v. N.D. Dep't of Transportation" | 'Interest of S.R. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	918 N.W.2d 64	17279	17280	'State v. Wallace' | 'Tamba v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	919 N.W.2d 180	17283	17282	'Pederson v. State' | 'McGath v. Waide'	1997+ neutral-cite; separate pass
+DEFER_MODERN	919 N.W.2d 334	17290	17289	"Prairie Winds Apartments 1, LLC v. Stark Cnty. Bd. of Comm'rs" | '.J.K. v. M.J.K.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	919 N.W.2d 914	17297	17296	'State v. Mejia' | 'Sorlie v. Sorlie'	1997+ neutral-cite; separate pass
+DEFER_MODERN	920 N.W.2d 306	17313	17314	'LeClair v. Sorel' | 'State v. Hebert'	1997+ neutral-cite; separate pass
+DEFER_MODERN	920 N.W.2d 454	17320	17319	'Tornabeni v. Wold, et al.' | 'Interest of D.V.A. (Confidential)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	921 N.W.2d 402	17340	17339	'Lunde v. Paulson' | 'DeLong v. Shields, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	922 N.W.2d 782	17368	17367	'State v. Brakke' | 'Heldstab v. Heldstab'	1997+ neutral-cite; separate pass
+DEFER_MODERN	923 N.W.2d 123	17374	17373	'State v. Powley' | 'State v. Cody'	1997+ neutral-cite; separate pass
+DEFER_MODERN	923 N.W.2d 137	17378	17377	'Dick v. Erman' | 'State v. Goldsack'	1997+ neutral-cite; separate pass
+DEFER_MODERN	924 N.W.2d 87	17422	17421	'Brewer v. State' | 'State v. Gomez'	1997+ neutral-cite; separate pass
+DEFER_MODERN	925 N.W.2d 396	17425	17426	'State v. Mohamud' | 'State v. Johnson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	926 N.W.2d 708	17454	17453	'State v. Johnson' | 'Lavallie v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	929 N.W.2d 538	17483	17482	"Schatz v. N.D. Dep't of Transportation" | 'Everett v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	939 N.W.2d 405	17603	17602	'Smithberg v. Jacobson, et al.' | 'In the Interest of G.L.D.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	946 N.W.2d 506	17667	17666	'State v. Metz' | 'State v. Lindquist'	1997+ neutral-cite; separate pass
+DEFER_MODERN	949 N.W.2d 824	17696	17695	'Hoffarth v. Hoffarth' | 'Thiele v. Bousquet, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	949 N.W.2d 831	17700	17699	'Beyer v. State' | 'State v. Lubitz'	1997+ neutral-cite; separate pass
+DEFER_MODERN	950 N.W.2d 768	17728	17727	'State v. Vaagen' | 'Interest of K.R.C.W. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	954 N.W.2d 671	17751	17750	'Munzal v. State' | 'Matter of Didier'	1997+ neutral-cite; separate pass
+DEFER_MODERN	956 N.W.2d 403	17778	17779	'Gerving v. Gerving' | 'Tebay v. State (consolidated w/ 20200317)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	960 N.W.2d 764	17822	17823	'Dixon v. Dixon' | 'Mistic v. Mistic'	1997+ neutral-cite; separate pass
+DEFER_MODERN	960 N.W.2d 770	17825	17824	'Tesoro Great Plains Gathering & Marketing v. Mountain Peak Builders' | 'State v. Coleman'	1997+ neutral-cite; separate pass
+DEFER_MODERN	964 N.W.2d 730	17876	17875	'State v. Demerais' | 'State v. Marsolek'	1997+ neutral-cite; separate pass
+DEFER_MODERN	965 N.W.2d 425	17884	17883	'State v. Urrabazo' | 'State v. Woodruff'	1997+ neutral-cite; separate pass
+DEFER_MODERN	967 N.W.2d 778	17913	17912	'Swanson v. Larson' | 'State v. Rieger'	1997+ neutral-cite; separate pass
+DEFER_MODERN	968 N.W.2d 134	17921	17920	'State v. Carrillo' | 'Hehr v. Hehr'	1997+ neutral-cite; separate pass
+DEFER_MODERN	969 N.W.2d 163	17935	17936	'Wald v. Hovey, et al.' | 'Livingston v. WSI, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	969 N.W.2d 175	17939	17938	'Vic Christensen Mineral Trust v. Enerplus Resources Corp., et al.' | 'Plaisimond v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	969 N.W.2d 442	17947	17948	'Simmons v. Cudd Pressure Control, et al.' | 'State v. Martinez'	1997+ neutral-cite; separate pass
+DEFER_MODERN	969 N.W.2d 708	17954	17955	'Sherman v. Guillaume, et al.' | 'State v. Clairmont'	1997+ neutral-cite; separate pass
+DEFER_MODERN	971 N.W.2d 861	17984	17985	'Schrodt v. Schrodt, et al.' | 'State v. Schuh'	1997+ neutral-cite; separate pass
+DEFER_MODERN	972 N.W.2d 928	17994	17993	'Solberg v. Hennessy' | 'Etemad v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	973 N.W.2d 1	17997	17996	'State v. Heywood' | 'Schauer v. Peterson'	1997+ neutral-cite; separate pass
+DEFER_MODERN	973 N.W.2d 2	18002	17998	'Schultz v. DeClusin' | 'Holmes v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	973 N.W.2d 207	17999	18000	'Sauvageau, et al. v. Bailey, et al.' | 'Eckroth v. Eckroth, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	973 N.W.2d 5	18008	18009	'Gaede v. State' | 'Moncada v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	973 N.W.2d 7	18012	18011	'City of Bismarck v. Goodwin' | 'Ali v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	975 N.W.2d 560	18037	18038	'Quamme v. Quamme' | 'State v. Frohlich'	1997+ neutral-cite; separate pass
+DEFER_MODERN	979 N.W.2d 913	18048	18049	'Interest of J.G. (CONFIDENTIAL) (consolidated w/20220190)' | 'Newfield Exploration Company, et al. v. State, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	980 N.W.2d 203	18071	18070	'State v. Pieper' | 'Interest of T.L.E. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	982 N.W.2d 526	18101	18102	'Buchholz v. Mayo' | 'Schmidt v. Hageness, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	982 N.W.2d 856	18116	18115	'Washington v. Job Service, et al.' | 'State v. Clauthier (consolidated w/20220224)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	982 N.W.2d 864	18118	18117	'Shafer v. Scarborough, et al.' | 'Matter of Wolff'	1997+ neutral-cite; separate pass
+DEFER_MODERN	984 N.W.2d 350	18123	18122	'Quamme v. Quamme' | 'Interest of S.M.B. (CONFIDENTIAL)'	1997+ neutral-cite; separate pass
+DEFER_MODERN	984 N.W.2d 660	18127	18126	'State v. Rademacher (consolidated w/20220127 & 20220128)' | 'State v. Moore'	1997+ neutral-cite; separate pass
+DEFER_MODERN	985 N.W.2d 635	18129	18130	'Krogstad v. State' | 'State v. Knight'	1997+ neutral-cite; separate pass
+DEFER_MODERN	988 N.W.2d 548	18158	18157	'Wilkinson v. State' | 'Rath v. Rath, et al.'	1997+ neutral-cite; separate pass
+DEFER_MODERN	988 N.W.2d 586	18168	18167	'State v. Linner' | 'Richardson v. State'	1997+ neutral-cite; separate pass
+DEFER_MODERN	990 N.W.2d 569	18189	18188	'Matter of Amy Jo Yates' | 'Johnson v. City of Jamestown'	1997+ neutral-cite; separate pass
+DEFER_MULTI	100 N.W. 1084				3 rows share this cite
+DEFER_MULTI	111 N.W. 615				3 rows share this cite
+DEFER_MULTI	127 N.W. 78				5 rows share this cite
+DEFER_MULTI	140 N.W. 239				3 rows share this cite
+DEFER_MULTI	145 N.W. 825				4 rows share this cite
+DEFER_MULTI	147 N.W. 263				3 rows share this cite
+DEFER_MULTI	147 N.W. 264				3 rows share this cite
+DEFER_MULTI	16 N.D. 59				3 rows share this cite
+DEFER_MULTI	162 N.W. 413				3 rows share this cite
+DEFER_MULTI	396 N.W.2d 729				3 rows share this cite
+DEFER_MULTI	51 N.W. 787				3 rows share this cite
+DEFER_MULTI	612 N.W.2d 278				3 rows share this cite
+DEFER_MULTI	638 N.W.2d 45				3 rows share this cite
+DEFER_MULTI	709 N.W.2d 21				5 rows share this cite
+DEFER_MULTI	711 N.W.2d 606				3 rows share this cite
+DEFER_MULTI	719 N.W.2d 759				5 rows share this cite
+DEFER_MULTI	742 N.W.2d 839				13 rows share this cite
+DEFER_MULTI	756 N.W.2d 548				3 rows share this cite
+DEFER_MULTI	766 N.W.2d 437				3 rows share this cite
+DEFER_MULTI	777 N.W.2d 62				3 rows share this cite
+DEFER_MULTI	84 N.W. 1117				9 rows share this cite
+DEFER_MULTI	84 N.W. 1118				10 rows share this cite
+DEFER_MULTI	9 N.D. 609				3 rows share this cite
+DEFER_MULTI	9 N.D. 610				3 rows share this cite
+DEFER_MULTI	9 N.D. 611				3 rows share this cite
+DEFER_MULTI	9 N.D. 612				3 rows share this cite
+DEFER_MULTI	9 N.D. 613				3 rows share this cite
+DEFER_MULTI	92 N.W. 1133				4 rows share this cite
+DEFER_MULTI	92 N.W. 1134				3 rows share this cite
