@@ -26,6 +26,9 @@ _OCR_ARTIFACT_CHARS = set("¡¿■£„")
 # Smart quotes, section sign, pilcrow, em/en dash, bullet, degree,
 # common accented chars in names (é, ñ, etc.)
 _LEGIT_NONASCII = set(
+    "\u00a0"        # non-breaking space \u2014 whitespace, NOT garbage (pervasive in
+                    #   Westlaw .doc exports; counting it zeroed long clean opinions)
+    "¢"        # cent sign — legit currency in older commercial opinions
     "\u2018\u2019"  # '' smart single quotes
     "\u201C\u201D"  # "" smart double quotes
     "\u2014\u2013"  # — – em/en dash
