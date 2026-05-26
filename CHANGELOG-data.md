@@ -2,6 +2,15 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `recover-2023nd120-2026-05-26` — recovered the missing Goetz v. Goetz, 2023 ND 120
+
+Follow-up to the Goetz merge: a real, *distinct* 2023 ND 120 Goetz v. Goetz (2023-07-07) was missing from the corpus because the `~/refs` source files for 2023 ND 53 and 2023 ND 120 were content-swapped — `markdown/2023/2023ND53.md` (and the matching pdf) held the 2023 ND 120 text, and `2023ND120.md`/pdf held the 2023 ND 53 text (confirmed by reading both PDFs).
+
+- **File rename (`~/refs`, not version-controlled):** swapped both the `.md` and `.pdf` pairs so each name matches its content. Verified afterward: `2023ND53.{md,pdf}` = 2023 ND 53, `2023ND120.{md,pdf}` = 2023 ND 120.
+- **Repointed 19722** (Goetz, 2023 ND 53) `source_path` and its ND `opinion_sources` row from the old misnamed `markdown/2023/2023ND120.md` → `markdown/2023/2023ND53.md` (text_content unchanged — it was already the 2023 ND 53 text).
+- **Ingested 2023 ND 120 as oid 20503** via the ingest pipeline's helpers (`_add_citations`, `_record_source`, `recompute_primary`): Goetz v. Goetz, 2023-07-07, docket 20220231, author McEvers (Chief Justice Jensen and Justice Tufte joined; Surrogate Judge Nelson dissenting), disposition REVERSED, child-custody/residential-responsibility, cluster_id 9412027. text_content = the corrected `markdown/2023/2023ND120.md` (verbatim, 17 `[¶N]` markers); ND-neutral primary cite `2023 ND 120`; ND markdown primary source; quality score 80.8; FTS-indexed. Corpus 20,147 → 20,148. Invariants 22 ok / 2 known / 0 regressed. Snapshot `opinions.db.bak-pre-recover-2023nd120`; script `triage/recover_2023nd120_2026-05-26.py`.
+- **Residual:** (a) no N.W.2d parallel cite yet (absent from CL and the opinion text); add when published. (b) `text_citations`/`cited_by` for 20503 are unbuilt (jetcite not installed) — a later `cite_extract` run populates the outbound graph, as for any fresh ingest.
+
 ## Batch `fix-three-dups-2026-05-26` — Goetz / Swanson duplicates + Holter cross-source leak
 
 Three citation-collision / cross-source items flagged by name+date dedup, each verified against CourtListener and (for Holter) the West reporter `.doc`. Corpus 20,149 → 20,147 (two merges). Invariants 22 ok / 2 known / 0 regressed. Snapshot `opinions.db.bak-pre-dedup3-2026-05-26`; script `triage/fix_three_dups_2026-05-26.py`.
