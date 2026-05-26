@@ -2,6 +2,10 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `unwrap-anchors-2026-05-26` (2, `field=text_content`) — last has_html anchors
+
+The 2 remaining `has_html=1` opinions held genuine `<a href="URL">URL</a>` markup around URLs the Court itself cited: **20116** *Axvig v. Czajkowski* (2025-07-17) → `https://www.merriam-webster.com/dictionary/specification` ("See Merriam-Webster's Online Dictionary, [specification]"); **20290** *Matter of Emelia Hirsch Trust* (2025-04-24) → `https://www.ndcourts.gov/legal-self-help` (the form at "the Court's Legal Self Help Center"). Inner anchor text equals the href in both, so unwrapped each `<a href="X">X</a>` → `X`, leaving the bare URL — citation preserved, markup removed. Corpus `has_html` 2 → **0**; both rescore ~82. Invariants 22 ok / 2 known / 0 regressed. Script `triage/unwrap_anchors_2026-05-26.py`.
+
 ## Batch `dedup-13240-2026-05-26` + quality-scanner HTML/JS & prime-mark hardening — low-score follow-ups
 
 Closed the two follow-ups from the low-score work; both turned out to be scanner false positives plus one real de-duplication.
