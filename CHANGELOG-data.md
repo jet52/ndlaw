@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-phantom-westlaw-paths-2026-05-26` — 35 blanked vol-79 westlaw source paths restored
+
+The §2-residual triage (2026-05-25) flagged 35 `opinion_sources` rows with an empty `source_path`, all `source_reporter='westlaw'`, as "phantom second sources." They are not phantom: all 35 are vol-79 N.D. Reports Westlaw `.doc`s at `~/refs/nd/opin/N.D./79/<page>-<slug>.doc` that exist on disk. Their paths were set correctly by `backfill-westlaw-source-paths` (2026-04-27), then **blanked by a bug in `receive_westlaw._promote`**: the `westlaw-receive-2026-05-16` run computed an empty `archive_path` and overwrote both `opinions.source_path` and the westlaw `opinion_sources.source_path` with `''`, then set `is_primary=1` on the now-empty row (the `is_primary=1 WHERE source_path=archive_path` clause matched the empty path). `text_content` had already been promoted to the Westlaw bound text — only the file pointer was lost.
+
+Verification before restore (paths from the recorded backfill `new_value`): N.D. citation page == `.doc` filename page for 35/35 (0 mismatch); file exists for 35/35; two captions spot-read (79 N.D. 366 *Carroll v. Ryan*; 79 N.D. 673 *State ex rel. City of Minot v. Gronna*); the surviving 34 vol-79 westlaw siblings already use the identical absolute-path convention with the westlaw row primary.
+
+Restored both `opinions.source_path` (34 westlaw-primary opinions) and the westlaw `opinion_sources.source_path` (all 35) to the absolute `/Users/jerod/refs/nd/opin/N.D./79/...` path. **12705** *In re Lyons' Estate* (79 N.D. 595 / 58 N.W.2d 845) is NW2d-primary — only its westlaw `opinion_sources` row was restored (it stays NW2d-primary, westlaw as 2nd source); jaccard 0.86 vs the NW2d `text_content` confirms the same opinion, so its `validation_status.crosscheck_state` was upgraded `single_source_accepted` → `cross_checked` (`sources_seen=["NW2d","westlaw"]`).
+
+Result: corpus-wide `opinion_sources` rows with empty `source_path` now = **0** (any reporter). Corpus unchanged at 20,149. Invariants **22 ok / 2 known / 0 regressed**. Snapshot `opinions.db.bak-pre-phantom-paths-2026-05-26`; restore script `triage/restore_phantom_westlaw_paths_2026-05-26.py`. **Open code follow-up:** guard `receive_westlaw._promote` so an empty `archive_path` can never overwrite a non-empty `source_path` (prevents recurrence on the next gap-era receive).
+
 ## `cited_by` shared-page disambiguation — 2026-05-25 (graph rebuild, not a row batch)
 
 Fixed a silent misattribution in the citation graph: `cite_extract.build_citation_lookup` mapped each citation string to a *single* opinion, so when distinct cases share a reporter page (845 colliding cite strings, 1,750 opinions), every citer of that page was attributed to one arbitrary winner. Concretely, all 8 citers of `298 N.W.2d 372` had been attributed to *In re McMahon* (20482) when they actually cite *Boedecker v. St. Alexius Hospital* (8266) — which showed 0 citers.
