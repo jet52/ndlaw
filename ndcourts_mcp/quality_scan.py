@@ -29,6 +29,7 @@ _LEGIT_NONASCII = set(
     "\u00a0"        # non-breaking space \u2014 whitespace, NOT garbage (pervasive in
                     #   Westlaw .doc exports; counting it zeroed long clean opinions)
     "¢"        # cent sign — legit currency in older commercial opinions
+    "′″"  # prime / double-prime — feet & inches, survey metes-and-bounds
     "\u2018\u2019"  # '' smart single quotes
     "\u201C\u201D"  # "" smart double quotes
     "\u2014\u2013"  # — – em/en dash
@@ -46,13 +47,23 @@ _LEGIT_NONASCII.update(chr(c) for c in range(0x00C0, 0x0100))  # À–ÿ
 # Additional math/legal symbols
 _LEGIT_NONASCII.update(set("\u00BD\u00BC\u00BE\u00D7\u00F7"))  # ½¼¾×÷
 
-# HTML/JS contamination patterns
+# HTML/JS contamination patterns.
+# Require real markup syntax, not prose that happens to contain angle brackets or
+# code-like words. The earlier loose forms false-flagged legitimate opinions:
+#   - "<the fruits of one's labor>" / "<a sentence of 20 years>" — dictionary usage
+#     quotes where short tag names (th, a) matched the words "the"/"a "; so the tag
+#     name must be followed only by proper attr="value" pairs (or nothing) then '>'.
+#   - "governmental function (...)" / "Prosecution Function (1971)" — the word
+#     "function (" matched; so a JS function now requires a '{' body.
 _HTML_RE = re.compile(
-    r'<\s*(?:script|div|span|html|head|body|style|link|meta|iframe|form|input|button|table|tr|td|th|img|a\s)[^>]*>',
+    r'</?(?:script|div|span|html|head|body|style|link|meta|iframe|form|input|button|table|tr|td|th|img|a)'
+    r'(?:\s+[a-zA-Z][a-zA-Z0-9-]*\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))*\s*/?>',
     re.IGNORECASE,
 )
 _JS_RE = re.compile(
-    r'(?:onclick|onload|onerror|javascript\s*:|document\.(?:write|getElementById)|window\.(?:location|open)|var\s+\w+\s*=|function\s*\()',
+    r'(?:onclick\s*=|onload\s*=|onerror\s*=|javascript\s*:'
+    r'|document\.(?:write|getElementById)|window\.(?:location|open)'
+    r'|var\s+\w+\s*=\s*[^\s;]|function\s*\w*\s*\([^)]*\)\s*\{)',
     re.IGNORECASE,
 )
 

@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `dedup-13240-2026-05-26` + quality-scanner HTML/JS & prime-mark hardening — low-score follow-ups
+
+Closed the two follow-ups from the low-score work; both turned out to be scanner false positives plus one real de-duplication.
+
+**`dedup-13240-2026-05-26` (1, `field=text_content`).** 13240 *Johnson v. Johnson* (2000 ND 170) stored the opinion **twice**: a frontmatter/title/caption/attorney shell, then copy1 (the half whose `[¶N]` markers had been Thai-codec mojibake'd, repaired the prior batch) and copy2 (the originally-intact copy, complete through the ¶166 Sandstrom dissent). Healthy 2000-era siblings carry one copy. Kept the shell + the clean copy2 (`text[:first 'MARING, Justice'] + text[second:]`): 237,643 → 119,578 chars, one coherent opinion, ¶1–166, 0 garbage chars, score 67.9. FTS verified in sync.
+
+**Quality-scanner HTML/JS detection tightened (`quality_scan.py`).** `has_html` was 13, of which 11 were false positives on legitimate legal prose: `_JS_RE`'s `function\s*\(` matched "governmental function (…)", "Prosecution Function (1971)", "banking function (…)" (6 opinions: 3434, 9554, 10982, 12909, 13138, 19939); `_HTML_RE`'s short tag names `th`/`a` matched dictionary usage quotes — "<the fruits of one's labor>", "<the wisdom that accrues with age>", "<a sentence of 20 years in prison>", "< the [amount] of the fine is doubled >" (5 opinions: 10112, 13701, 15792, 16336, 17430). Tightened `_HTML_RE` to require real tag+`attr="value"` syntax and `_JS_RE` to require a `function(){` body / `handler=` form. Result: `has_html` 13 → **2** — only the genuinely-embedded `<a href="https://…">` anchors remain (20116 *Axvig*, 20290 *Hirsch Trust*). A 3,000-opinion sample confirmed no false-positive blowup.
+
+**Prime/double-prime added to `_LEGIT_NONASCII`.** 1787 *Bayne v. Thorson* (1917) scored 8.5 because `′`×7 and `″`×31 (feet/inches in a bridge-contract dimensional table, e.g. "6″ joists") were counted as garbage. `′ ″` are legitimate in legal text (surveys, metes-and-bounds, dimensions); added them. After a corpus `--rescan` nothing scores <25 (bottom is now legitimately-modest short/old opinions at 26.5–32). Invariants **22 ok / 2 known / 0 regressed**. Scripts: `triage/dedup_13240_2026-05-26.py`; snapshot `opinions.db.bak-pre-dedup13240-2026-05-26`.
+
 ## Batches `fix-noauthor-2026-05-26` + `demangle-13240-2026-05-26` + quality-scorer fix — no-author & low-score queues
 
 **No-author / non-per-curiam queue (79 → 40).** `auto_author` only rescans opinions with a *non-null* author (it fixes garbled values), so the empty-author set needed manual byline-vs-per-curiam triage. Each correction verified against the opinion's own text:
