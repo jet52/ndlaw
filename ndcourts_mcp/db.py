@@ -1,12 +1,41 @@
 """Database schema and connection management."""
 
+import os
 import sqlite3
 from pathlib import Path
 
-DEFAULT_DB_PATH = Path(__file__).parent.parent / "opinions.db"
+from platformdirs import user_data_path
 
 
-def get_connection(db_path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
+def resolve_db_path() -> Path:
+    """Locate opinions.db independent of working directory or install layout.
+
+    Resolution order:
+      1. ``NDCOURTS_DB`` environment variable (explicit override).
+      2. ``opinions.db`` bundled alongside the source tree / release tarball.
+      3. The per-user data directory (where a pip/uvx install keeps it).
+    """
+    env = os.environ.get("NDCOURTS_DB")
+    if env:
+        return Path(env).expanduser()
+    bundled = Path(__file__).resolve().parent.parent / "opinions.db"
+    if bundled.exists():
+        return bundled
+    return user_data_path("ndcourts-mcp", appauthor=False) / "opinions.db"
+
+
+DEFAULT_DB_PATH = resolve_db_path()
+
+
+def get_connection(
+    db_path: Path = DEFAULT_DB_PATH, *, must_exist: bool = True
+) -> sqlite3.Connection:
+    if must_exist and not Path(db_path).exists():
+        raise FileNotFoundError(
+            f"opinions.db not found at {db_path}. Download the database release "
+            f"asset or set NDCOURTS_DB to its location (see the README 'Quick "
+            f"start'). Pass must_exist=False to create a new database."
+        )
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode=WAL")

@@ -520,7 +520,7 @@ def main():
         args.db.unlink()
         print(f"Removed existing {args.db}")
 
-    conn = get_connection(args.db)
+    conn = get_connection(args.db, must_exist=False)
     # Bound SQLite's page cache (~20 MB) for this bulk-ingest connection so
     # a large run can't balloon cache memory on top of the WAL.
     conn.execute("PRAGMA cache_size=-20000")
