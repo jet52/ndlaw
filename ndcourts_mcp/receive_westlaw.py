@@ -302,6 +302,24 @@ def _resolve(conn, parsed: dict) -> tuple[str, dict | None, float]:
 
 def _promote(conn, oid: int, parsed: dict, archive_path: str,
              apply: bool) -> str:
+    cite = parsed.get("primary_citation", "")
+
+    # Safety gate: an empty archive_path means _archive_doc could not derive
+    # an N.W. destination from the primary cite (e.g. an N.D.-only cite). The
+    # writes below would otherwise overwrite opinions.source_path AND the
+    # westlaw opinion_sources row with '' and then flag that empty row primary
+    # — the exact corruption repaired in restore-phantom-westlaw-paths-2026-05-26.
+    # Refuse: leave the row untouched, flag it for manual archiving.
+    if not archive_path:
+        if apply:
+            conn.execute(
+                "INSERT OR REPLACE INTO review_flags (opinion_id, note) "
+                "VALUES (?, ?)",
+                (oid, f"[{BATCH}] westlaw match but _archive_doc returned no "
+                 f"path (cite {cite!r} has no parseable N.W. vol/page); not "
+                 f"promoted to avoid blanking source_path"))
+        return "NO_ARCHIVE_PATH — not promoted (cite has no N.W. vol/page)"
+
     row = conn.execute(
         "SELECT source_reporter, source_path, text_content "
         "FROM opinions WHERE id=?", (oid,)
@@ -310,7 +328,6 @@ def _promote(conn, oid: int, parsed: dict, archive_path: str,
     wl_text = parsed.get("full_bound_text") or parsed.get("opinion_text") or ""
     sim = jaccard(shingles(normalize_words(body)),
                   shingles(normalize_words(wl_text)))
-    cite = parsed.get("primary_citation", "")
     auth = _authority(cite)
 
     # Safety gate: at jaccard < floor the Westlaw text is a different
@@ -447,7 +464,7 @@ def _iter_docs(incoming: Path):
 
 def run(conn, incoming: Path, apply: bool) -> dict:
     st = {"docs": 0, "promoted": 0, "low_sim": 0, "created": 0,
-          "ambiguous": 0, "skipped": 0, "parse_error": 0}
+          "ambiguous": 0, "skipped": 0, "parse_error": 0, "no_archive": 0}
     report: list[str] = []
 
     # PHASE 1 — classify every doc read-only against the ORIGINAL DB.
@@ -497,13 +514,20 @@ def run(conn, incoming: Path, apply: bool) -> dict:
     for doc, parsed, kind, op, score in decisions:
         cite = parsed.get("primary_citation", "")
         name = parsed.get("case_name", "?")
-        archive_path = _archive_doc(doc, cite, name) if apply else \
-            f"N.W.2d/(dry)/{doc.name}"
+        # In dry-run, mirror _archive_doc's empty return for cites with no
+        # parseable N.W. vol/page so the NO_ARCHIVE_PATH gate surfaces in the
+        # dry-run report instead of only at apply time.
+        archive_path = _archive_doc(doc, cite, name) if apply else (
+            f"N.W.2d/(dry)/{doc.name}" if _NW_CITE.search(cite or "") else "")
         if kind == "match":
             msg = _promote(conn, op["id"], parsed, archive_path, apply)
             if msg.startswith("LOW_SIM"):
                 st["low_sim"] += 1
                 report.append(f"LOW_SIM\t{cite}\t{name}\toid={op['id']}\t{msg}")
+            elif msg.startswith("NO_ARCHIVE_PATH"):
+                st["no_archive"] += 1
+                report.append(
+                    f"NO_ARCHIVE_PATH\t{cite}\t{name}\toid={op['id']}\t{msg}")
             else:
                 st["promoted"] += 1
                 report.append(
