@@ -1,0 +1,62 @@
+signal	oid	db_cite	body_cite_or_docket	date_filed	case_name	source_path
+CITE	19290	2018 ND 246	2017 ND 1	2017-01-18	In the Matter of a Petition to Permit Temporary Provision of Legal Services by Qualified Attorneys From Outside North Dakota	markdown/2018/2018ND246.md
+CITE	19363	2019 ND 167	2015 ND 256	2019-06-27	In the Interest of T.A.G.	N.W.2d/930/0166-In-the-INTEREST-OF-TAG-Julie-Lawyer-Petitioner-and-Appellee-v-TAG-Respondent-and-Appellant.doc
+CITE	19429	2019 ND 283	2020 ND 287	2019-12-12	State v. Pailing	markdown/2019/2019ND283.md
+CITE	19433	2019 ND 287	2020 ND 287	2019-12-12	Jesser v. N.D. Dep't of Transportation	markdown/2019/2019ND287.md
+CITE	19690	2022 ND 225	2023 ND 225	2022-12-08	Nodak Electric Coop. v. N.D. Public Svc. Commission, et al.	markdown/2022/2022ND225.md
+CITE	19750	2023 ND 165	2022 ND 136	2023-09-14	Buller v. Buller	N.W.2d/995/0461-Abigail-Lillian-BULLER-Plaintiff-and-Appellant-v-Matthew-John-BULLER-Defendant-and-Appelle.doc
+CITE	19854	2024 ND 111	2020 ND 52	2024-05-30	Mohammed v. State	N.W.3d/7/0307-Ibrahim-Ahmed-MOHAMMED-Petitioner-and-Appellant-v-STATE-of-North-Dakota-Respondent-and-App.doc
+CITE	19877	2024 ND 132	2024 ND 70	2024-04-18	Interest of H.J.J.N.	markdown/2024/2024ND132.md
+CITE	19988	2024 ND 232	2025 ND 232	2024-12-19	Sanderson v. Agotness	markdown/2024/2024ND232.md
+CITE	20064	2024 ND 89	2023 ND 246	2024-05-16	State v. Eggl	N.W.3d/6/0859-STATE-of-North-Dakota-Plaintiff-and-Appellee-v-Travis-Garth-EGGL-Defendant-and-Appellant-N.doc
+CITE	20066	2024 ND 90	2007 ND 112	2024-05-16	Rivera-Rieffel v. State	N.W.3d/6/0857-Jose-Javier-RIVERA-RIEFFEL-Petitioner-and-Appellant-v-STATE-of-North-Dakota-Respondent-and.doc
+CITE	20068	2024 ND 92	2023 ND 137	2024-05-16	Interest of S.M.F.	N.W.3d/6/0858-In-the-INTEREST-OF-SMF-a-Child-Grand-Forks-County-Human-Service-Zone-Petitioner-and-Appell.doc
+DOCKET	13527	2001 ND 172	20010059->20010056		Farmers Elevator, Inc. of Grace City v. Custom Processors, Inc.	markdown/2001/2001ND172.md
+DOCKET	13713	2002 ND 157	20020072->20010315		J.B. v. M.R.       (CONFIDENTIAL)	markdown/2002/2002ND157.md
+DOCKET	13552	2002 ND 20	20010232->20010175		Piatz v. ND Dept. of Transportation	markdown/2002/2002ND20.md
+DOCKET	14128	2004 ND 91	20030321->20030207		All New Gutter Service, Inc. v. Dusek	markdown/2004/2004ND91.md
+DOCKET	14412	2005 ND 169	20050093->20050111		Acuity Ins. Co. v. Meridian Ins. Co.	markdown/2005/2005ND169.md
+DOCKET	14868	2007 ND 152	20070080->20060354		State v. Jager	markdown/2007/2007ND152.md
+DOCKET	14837	2007 ND 159	20070034->20060304		State v. Skarsgard	markdown/2007/2007ND159.md
+DOCKET	15112	2008 ND 181	20080081->20080068		House v. Royer, et al.	markdown/2008/2008ND181.md
+DOCKET	15246	2009 ND 133	20090162->20090163		Chambering of the New Judgeship in the Northwest Judicial District	markdown/2009/2009ND133.md
+DOCKET	15217	2009 ND 65	20080335->20080303		Asset Acceptance LLC v. Grzeskowiak	markdown/2009/2009ND65.md
+DOCKET	15557	2010 ND 243	20100084->20100351		Pizza Corner v. C.F.L. Transport	markdown/2010/2010ND243.md
+DOCKET	15508	2010 ND 4	20090244->20090135		Everett v. State	markdown/2010/2010ND4.md
+DOCKET	15515	2010 ND 52	20090283->20090248		State v. Delaney	markdown/2010/2010ND52.md
+DOCKET	15642	2011 ND 13	20100249->20100320		Rudolph v. State	markdown/2011/2011ND13.md
+DOCKET	15743	2011 ND 198	20100407->20110007		Tarnavsky, et al. v. Tarnavsky, et al. (consolidated w/20110027 &20110061)	markdown/2011/2011ND198.md
+DOCKET	15656	2011 ND 83	20110002->20100310		A.R. Audit Services, Inc. v. Ulledahl	markdown/2011/2011ND83.md
+DOCKET	15850	2012 ND 107	20110301->20120020		State v. Unruh	markdown/2012/2012ND107.md
+BODYDUP	13202	2000 ND 138	2000 ND 141		In the Matter of the Application for Disciplinary Action Against Michael E. Keller	
+BODYDUP	13203	2000 ND 141	2000 ND 141		Disciplinary Board v. Keller	
+BODYDUP	14043	2004 ND 115	2004 ND 115		State v. Higgins	
+BODYDUP	14095	2004 ND 168	2004 ND 115		State v. Spidahl   (Consolidated w/20030349-20030352)	
+BODYDUP	14780	2007 ND 112	2007 ND 112		Roth v. State       (Cross-Ref. w/20050227)	
+BODYDUP	20066	2024 ND 90	2007 ND 112		Rivera-Rieffel v. State	
+BODYDUP	15595	2011 ND 65	2011 ND 65		Grand Forks Homes, Inc., et al. v. State of North Dakota	
+BODYDUP	15600	2011 ND 48	2011 ND 65		State v. Johnson (consolidated w/20100241-20100242)	
+BODYDUP	15865	2012 ND 148	2012 ND 148		Hale v. State of North Dakota, et al.	
+BODYDUP	15869	2012 ND 138	2012 ND 148		State v. Garg (consolidated w/20110299)	
+BODYDUP	19094	2015 ND 256	2015 ND 256		Interest of T.A.G.	
+BODYDUP	19363	2019 ND 167	2015 ND 256		In the Interest of T.A.G.	
+BODYDUP	16829	2017 ND 1	2017 ND 1		In the Matter of a Petition to Permit Temporary Provision of Legal Services by Qualified Attorneys From Outside North Dakota	
+BODYDUP	19290	2018 ND 246	2017 ND 1		In the Matter of a Petition to Permit Temporary Provision of Legal Services by Qualified Attorneys From Outside North Dakota	
+BODYDUP	17035	2017 ND 220	2017 ND 233		Vacancy in Judgeship No. 3, NECJD	
+BODYDUP	17046	2017 ND 233	2017 ND 233		Vacancy in Judgeship No. 9, ECJD	
+BODYDUP	19429	2019 ND 283	2020 ND 287		State v. Pailing	
+BODYDUP	19433	2019 ND 287	2020 ND 287		Jesser v. N.D. Dep't of Transportation	
+BODYDUP	17606	2020 ND 52	2020 ND 52		State v. Mohammed	
+BODYDUP	19854	2024 ND 111	2020 ND 52		Mohammed v. State	
+BODYDUP	18040	2022 ND 123	2022 ND 123		Interest of A.C.	
+BODYDUP	18052	2022 ND 169	2022 ND 123		Interest of A.C.	
+BODYDUP	19650	2022 ND 136	2022 ND 136		Berdahl v. Berdahl	
+BODYDUP	19750	2023 ND 165	2022 ND 136		Buller v. Buller	
+BODYDUP	19734	2023 ND 137	2023 ND 137		Interest of B.R. (CONFIDENTIAL) (consolidated w/20230187)	
+BODYDUP	20068	2024 ND 92	2023 ND 137		Interest of S.M.F.	
+BODYDUP	18237	2023 ND 225	2023 ND 225		Hattie Albertson v. Trent Albertson	
+BODYDUP	19690	2022 ND 225	2023 ND 225		Nodak Electric Coop. v. N.D. Public Svc. Commission, et al.	
+BODYDUP	18247	2023 ND 246	2023 ND 246		State v. Nelson (consolidated w/20230235)	
+BODYDUP	20064	2024 ND 89	2023 ND 246		State v. Eggl	
+BODYDUP	19988	2024 ND 232	2025 ND 232		Sanderson v. Agotness	
+BODYDUP	20224	2025 ND 232	2025 ND 232		Bohe v. State	
