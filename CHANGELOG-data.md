@@ -2,6 +2,42 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `section7-hjjn-swap-2026-05-26` — repaired the Interest of H.J.J.N. text-swap; CITE flags now all FPs
+
+A fifth cite-swap (surfaced from the 19877 CITE flag): the two *Interest of H.J.J.N.* opinions (docket 20240060, a retained-jurisdiction sequence) had their texts swapped by the scraper name-scramble — 19877 (label 2024 ND 132) held the 2024 ND 70 text; 20044 (label 2024 ND 70) held the 2024 ND 132 text (jaccard 0.179 = distinct). Kept each row's existing neutral cite (20044 has 1 inbound cited_by as 2024 ND 70 — no repointing) and rebuilt each from the user-supplied Westlaw .doc:
+- **20044 = 2024 ND 70** — McEvers, "Remanded; jurisdiction retained," filed **2024-04-18**, +**5 N.W.3d 775**; per_curiam 1→0; docket `2024ND70`→20240060; date `2024-01-01`(placeholder)→2024-04-18.
+- **19877 = 2024 ND 132** — **per curiam** mem (post-remand affirm), filed **2024-07-05**, +**9 N.W.3d 656**; author McEvers→∅, per_curiam 0→1.
+
+Invariants 22/2/0; corpus 19,888. Snapshot `opinions.db.bak-pre-hjjn-swap-2026-05-26`; script `triage/fix_hjjn_swap_2026-05-26.py`. **Cite-swap workstream now clean:** the 7 remaining `detect_cite_swap` CITE flags are all false positives — 6 Westlaw `.doc` rows whose body-first cite is a *cited authority* (19363/19750/19854/20064/20066/20068) + **19877**, whose 2024 ND 132 mem legitimately cites the prior 2024 ND 70 opinion it follows. Zero real mislabels remain (was 34 at session start). Detector `.doc`-and-cross-reference exclusion refinement still owed to silence these FPs.
+
+## Batch `section7-inbody-citenorm-2026-05-26` — normalized 3 corrected-opinion in-body header cites
+
+The three corrected-opinion rows correctly cited in the DB still carried the **phantom new-year cite** in their stored text's header self-cite line (the artifact the Court's reissued PDF prints). Per the Court's rule (the published citation never changes on correction, even when the corrected opinion is reissued in a later year), normalized each in-body header to the official cite — a single, header-only occurrence per row (verified: each phantom appeared exactly once; the official cite was absent):
+- **Jesser v. NDDOT (19433):** body `2020 ND 287` → **2019 ND 287**
+- **Nodak Electric Coop. (19690):** body `2023 ND 225` → **2022 ND 225**
+- **Sanderson v. Agotness (19988):** body `2025 ND 232` → **2024 ND 232**
+
+Invariants 22/2/0; `detect_cite_swap` CITE 10→**7**, BODYDUP 14→**12** collisions. Snapshot `opinions.db.bak-pre-inbody-citenorm-2026-05-26` (text edits revert via snapshot). The remaining 7 CITE flags are the 6 Westlaw `.doc` Group-C false positives + 19877 (2024 ND 132, unexamined).
+
+## Batch `section7-groupA-rebuild-2026-05-26` — recovered 2 genuinely-missing opinions; reframed the "4 tangles"
+
+Resolved the Group A cite-swap tangles. Key reframe (ruled this session): the ND Supreme Court's **corrected opinions keep their original neutral cite** — the new-year cite stamped on a reissue (e.g. a 12/2022 opinion corrected 02/2023 prints "2023 ND nnn") is a template artifact, not a second cite. That artifact, carried into the scraped text, is what made the detector flag three pairs. Net: only **two** of the four "tangles" were real, and both were genuinely-missing opinions whose rows held a duplicate of a later opinion.
+
+- **2018 ND 246 (oid 19290)** rebuilt from the user-supplied Westlaw .doc (920 N.W.2d 908): a distinct **11/15/2018 per curiam** DAPL pro-hac-vice **extension** order (docket 20160436) — *not* the 01/18/2017 order (2017 ND 1) it had been holding a duplicate of. Set date 2017-01-18→**2018-11-15**, docket `2018ND246`→**20160436**, added parallel **920 N.W.2d 908**, westlaw primary, corrupt ND markdown detached.
+- **State v. Pailing, 2019 ND 283 (oid 19429)** rebuilt from the Westlaw .doc (936 N.W.2d 78, docket 20190086, Crothers J., 12/12/2019): it had been holding a duplicate of *Jesser*. Added parallel **936 N.W.2d 78**, docket→**20190086**, westlaw primary, corrupt markdown detached.
+- **Jesser v. NDDOT, 2019 ND 287 (oid 19433)** — already correctly cited; added the missing parallel **936 N.W.2d 102**. (Its body still prints the corrected-opinion artifact "2020 ND 287"; in-body normalization deferred pending review.)
+- **NOT touched (corrected-opinion artifacts, cites already correct):** Nodak Electric Coop. = **2022 ND 225** (19690; body prints artifact "2023 ND 225"), Albertson v. Albertson = **2023 ND 225** (18237, the genuine 225th of 2023, 12/01/2023), Sanderson v. Agotness = **2024 ND 232** (19988; body prints artifact "2025 ND 232"), Bohe v. State = **2025 ND 232** (20224; placeholder date 2025-12-31 still needs the real filing date). The detector's BODYDUP flags on these pairs are **false positives** from the corrected-opinion stamp.
+
+The `.docs` were archived to the canonical refs N.W.2d tree (`N.W.2d/920/0908-…doc`, `N.W.2d/936/0078-State-v-Pailing.doc`). Corpus unchanged at **19,888** (updates, no add/delete); invariants 22/2/0; `detect_cite_swap` CITE 12→**10**, BODYDUP 16→**14** collisions. Snapshot `opinions.db.bak-pre-groupA-rebuild-2026-05-26` (text swaps not changelog-revertible); script `triage/fix_groupA_rebuild_2026-05-26.py`. Remaining CITE flags: 3 corrected-opinion in-body artifacts (19433/19690/19988, pending normalization decision) + 6 Westlaw `.doc` Group-C false positives + 19877 (2024 ND 132, unexamined).
+
+## Batch `section6-vol74-adams-2026-05-26` — merged the 74 N.D. 242 CL double-ingest (§10 vol 74); resequenced 1945
+
+Resolved the lone genuinely-open pair in the legacy `duplicate_candidates` (dc id 1359). Confirmed against the user-supplied bound N.D. Reports vol 74 pp. 242–243 that **74 N.D. 242 is a single opinion** — *In re Adams* (File No. 6966), Burr, J.; Christianson Ch. J., Nuessle, Burke, Morris JJ. concur; 21 N.W.2d 351; filed 1945-08-08. (The case ending atop p. 242 is the separate *In re Hanson*, 74 N.D. 224 / 21 N.W.2d 341 = oid 7177, File 6965, holds 1945 ND 25 — distinct, untouched.)
+
+Textbook §6 CL double-ingest: **keep 7180** (matter caption *In re Adams*, low cluster_id 3933583, correct per-opinion author Burr, `NW2d/21/351_2.md`); **drop 7179** (parties caption *Northern Pacific Railway Co. v. McDonald*, high cluster_id 6852041, CL-mis-defaulted author "Burke" — its own body text reads "BURR, Judge." — carrying the Westlaw `.doc` + `NW2d/21/351.md`). Both 0 inbound cited_by; tie broken by lower cluster_id. Survivor now consolidates all three sources. `merge_pair` carried the fuller panel from the drop; the OCR typo **Christxanson → Christianson** was fixed on the survivor from the bound volume (judges now `Burke, Burr, Christianson, Morris, Nuessle`).
+
+The merge left the survivor with two synthetic neutral cites (1945 ND 26 + 1945 ND 27, the two pre-merge row assignments); deleted the surplus **1945 ND 27** row (Adams holds **1945 ND 26**, right after Hanson's 25). Re-ran `triage/section10_resequence_2026-05-24.py --apply`: the 1945 tail shifted down one (ND 28→45 → ND 27→44, 18 cites). Corpus 19,889 → **19,888**; invariants 22/2/0; `duplicate_candidates` open pair resolved (the remaining ~130 unreviewed are known-distinct shared-page clusters). Snapshot `opinions.db.bak-pre-vol74-adams-merge-2026-05-26` (row deletion NOT changelog-revertible); scripts `triage/merge_vol74_adams_2026-05-26.py` + the inline synthetic-dedup.
+
 ## Detector enhancement 2026-05-26 — `detect_cite_swap` BODYDUP pass (content-claims-wrong-cite class)
 
 Added `scan_bodydup` to `ndcourts_mcp/detect_cite_swap.py` to catch the Albertson/Bohe class the CITE check is blind to (the wrong neutral cite baked into the stored text, so the row's label *matches* its wrong body). Self-contained: groups native-neutral (1997+) opinions by their body header self-cite and flags any `YYYY ND n` claimed by 2+ opinions. Run: 16 collisions / 32 rows. A "label absent from own text" discriminator separates REAL content-mislabels from cross-reference FPs. Findings:

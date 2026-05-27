@@ -20,6 +20,13 @@ Two independent signals, scanning only native-neutral (1997+) opinions:
            so its absence + a different cite present = the body is another case.
            (Tolerates the no-space "2018 ND238" rendering.)
 
+           EXCLUDES westlaw-sourced rows: a Westlaw `.doc` body never restates
+           the opinion's own neutral self-cite (it lives only in metadata), so
+           the first `YYYY ND n` in the body is always a *cited authority*, not
+           the self-cite — a structural false positive for both CITE and
+           BODYDUP. The self-cite signal is only meaningful for sources that
+           print it in the header (ndcourts.gov markdown / archive HTML).
+
   DOCKET  — an 8-digit docket (20XXXXXX) appears in the header window and the DB
            docket_number's 8-digit core is NOT among them. Catches leaks where
            the analyzer header cite was correct but the body text leaked
@@ -62,10 +69,19 @@ def _body(text: str) -> str:
     return text
 
 
+def _selfcite_reliable(source_reporter: str | None) -> bool:
+    """The self-cite signal only holds for sources that print the opinion's
+    own neutral cite in the header. Westlaw `.doc` text never does (the cite
+    is metadata-only), so its body's first `YYYY ND n` is a cited authority,
+    not the self-cite — exclude it from CITE/BODYDUP to kill that FP class."""
+    return (source_reporter or "") != "westlaw"
+
+
 def scan(conn, window: int = DEFAULT_WINDOW):
     rows = conn.execute(
         "SELECT o.id, o.date_filed, o.docket_number, o.source_path, "
-        "       o.case_name, substr(o.text_content, 1, ?) AS head, "
+        "       o.source_reporter, o.case_name, "
+        "       substr(o.text_content, 1, ?) AS head, "
         "       (SELECT citation FROM citations WHERE opinion_id=o.id "
         "        AND reporter='ND-neutral' LIMIT 1) AS cite "
         "FROM opinions o "
@@ -73,7 +89,7 @@ def scan(conn, window: int = DEFAULT_WINDOW):
         "             AND reporter='ND-neutral')",
         (_FETCH,)).fetchall()
 
-    scanned = no_header_cite = 0
+    scanned = no_header_cite = westlaw_skipped = 0
     cite_flags, docket_flags = [], []
     for r in rows:
         cite = _norm_cite(r["cite"])
@@ -82,6 +98,17 @@ def scan(conn, window: int = DEFAULT_WINDOW):
         scanned += 1
         win = _body(r["head"] or "")[:window]
 
+        # DOCKET works for any source (Westlaw bodies do print "No. 20XXXXXX").
+        db_dock = _DOCKET8.search(r["docket_number"] or "")
+        body_docks = _DOCKET8.findall(win)
+        if db_dock and body_docks and db_dock.group(1) not in body_docks:
+            docket_flags.append((r["id"], cite, db_dock.group(1),
+                                 body_docks[0], r["source_path"], r["case_name"]))
+
+        # CITE only where the source prints the self-cite (not Westlaw .doc).
+        if not _selfcite_reliable(r["source_reporter"]):
+            westlaw_skipped += 1
+            continue
         cites = _neutral_cites(win)
         if cites and cite not in cites:
             cite_flags.append((r["id"], cite, cites[0], r["date_filed"],
@@ -89,36 +116,45 @@ def scan(conn, window: int = DEFAULT_WINDOW):
         elif not cites:
             no_header_cite += 1
 
-        db_dock = _DOCKET8.search(r["docket_number"] or "")
-        body_docks = _DOCKET8.findall(win)
-        if db_dock and body_docks and db_dock.group(1) not in body_docks:
-            docket_flags.append((r["id"], cite, db_dock.group(1),
-                                 body_docks[0], r["source_path"], r["case_name"]))
-
     return {"scanned": scanned, "no_header_cite": no_header_cite,
+            "westlaw_skipped": westlaw_skipped,
             "cite": cite_flags, "docket": docket_flags}
 
 
 def scan_bodydup(conn, window: int = DEFAULT_WINDOW):
-    """Detect the content-claims-wrong-cite class (the Albertson/Bohe pattern,
-    invisible to the CITE check because the row's label MATCHES its wrong body).
+    """Detect the content-claims-wrong-cite class (a row's stored text is a
+    DIFFERENT opinion than its label, with that other opinion's cite as the
+    body's first cite).
 
-    Group native-neutral (1997+) opinions by their body header self-cite; any
-    `YYYY ND n` claimed as the self-cite by 2+ distinct opinions means at least
-    one has the wrong neutral cite baked into its stored text. Returns
-    {body_cite: [(oid, label_cite, case_name), ...]} for collisions."""
+    Group native-neutral (1997+) opinions by their body's first `YYYY ND n`;
+    a group with 2+ rows is only a genuine swap candidate if at least one row
+    is SUSPICIOUS — its own label cite is ABSENT from its body window (the body
+    really is another opinion). Excludes that filter and every group is a
+    cross-reference FP: a consolidated/companion opinion (correctly labelled,
+    its own cite present) that merely cites the lead opinion early, colliding
+    with the lead under the lead's cite. Westlaw rows are excluded (their body
+    never prints the self-cite — see _selfcite_reliable). Returns
+    {body_cite: [(oid, label_cite, case_name), ...]} for genuine collisions."""
     from collections import defaultdict
     rows = conn.execute(
-        "SELECT o.id, o.case_name, substr(o.text_content,1,?) head, "
+        "SELECT o.id, o.case_name, o.source_reporter, substr(o.text_content,1,?) head, "
         "(SELECT citation FROM citations WHERE opinion_id=o.id AND reporter='ND-neutral' LIMIT 1) cite "
         "FROM opinions o WHERE EXISTS(SELECT 1 FROM citations WHERE opinion_id=o.id "
         "AND reporter='ND-neutral')", (_FETCH,)).fetchall()
     by_body = defaultdict(list)
     for r in rows:
+        if not _selfcite_reliable(r["source_reporter"]):
+            continue   # Westlaw body's first cite is a cited authority, not self
+        label = _norm_cite(r["cite"])
         cites = _neutral_cites(_body(r["head"] or "")[:window])
         if cites:
-            by_body[cites[0]].append((r["id"], _norm_cite(r["cite"]), r["case_name"]))
-    return {bc: lst for bc, lst in by_body.items() if len(lst) > 1}
+            suspicious = label not in cites   # own cite missing from own body
+            by_body[cites[0]].append((r["id"], label, r["case_name"], suspicious))
+    # report only groups with 2+ rows AND a genuinely suspicious member;
+    # drop the per-row suspicious flag from the returned tuples
+    return {bc: [(oid, lab, cn) for oid, lab, cn, _s in lst]
+            for bc, lst in by_body.items()
+            if len(lst) > 1 and any(s for *_h, s in lst)}
 
 
 def main() -> None:
@@ -146,6 +182,7 @@ def main() -> None:
 
     print("=== adjacent-cite content-swap scan ===")
     print(f"  scanned native-neutral (1997+) opinions: {res['scanned']}")
+    print(f"  westlaw-sourced (CITE/BODYDUP n/a):      {res['westlaw_skipped']}")
     print(f"  no neutral cite in header window:        {res['no_header_cite']}")
     print(f"  CITE flags (likely mislabel/swap):       {len(res['cite'])}")
     print(f"  DOCKET flags (advisory; consolidated FP): {len(res['docket'])}")
