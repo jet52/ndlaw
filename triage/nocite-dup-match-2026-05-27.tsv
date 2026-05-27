@@ -1,0 +1,107 @@
+confidence	nocite_oid	nocite_date	nocite_name	keep_oid	keep_cite	keep_name	name_ratio	jaccard
+NOMATCH	14343	2003-04-29	Ernst v. TJON					
+HIGH	14196	2005-01-19	Johnson v. State	14179	2005 ND 19	Johnson v. State	1.00	0.02
+REVIEW	14344	2005-04-29	In re Nb	18543	2005 ND 78	Interest of B.M., et al.  (CONFIDE	0.29	0.00
+NOMATCH	14341	2005-07-06	In re Knh					
+MEDIUM	14342	2005-07-13	State v. Jackson	14303	2005 ND 125	State v. Hatlewick	0.64	0.00
+HIGH	14414	2005-11-09	State v. Moore	18516	2005 ND 183	State v. Moore	1.00	0.01
+REVIEW	14415	2005-11-29	Johnson v. State	14372	2005 ND 202	Matthews v. State	0.59	0.00
+HIGH	14416	2005-12-20	State v. White Mountain	18527	2005 ND 209	State v. White Mountain	1.00	0.01
+HIGH	14481	2006-02-23	State v. Klein	18572	2006 ND 37	State v. Klein	1.00	0.00
+HIGH	14482	2006-03-29	State v. Feist	18578	2006 ND 52	State v. Feist	1.00	0.01
+HIGH	14483	2006-03-29	State v. Smith	18579	2006 ND 53	State v. Smith	1.00	0.01
+NOMATCH	14585	2006-09-29	In re Nb					
+NOMATCH	14586	2006-09-29	City of Fargo v. Curtis					
+NOMATCH	14587	2006-09-29	In re Kg					
+NOMATCH	14588	2006-09-29	State v. Rutherford					
+NOMATCH	14589	2006-09-29	State v. JELLEBERG					
+HIGH	14677	2006-10-17	Ernst v. State	18560	2006 ND 203	Ernst v. State	1.00	0.00
+MEDIUM	14766	2007-05-01	Kessel v. Rutherford	18623	2007 ND 55	Kessel v. Rutherford, et al.	0.89	0.00
+REVIEW	14861	2007-10-16	Kram v. DIRECTOR, NORTH DAKOTA DEP	18598	2007 ND 151	Kram v. N.D. Department of Transpo	0.52	0.01
+HIGH	14866	2007-10-16	State v. GRUETT	18603	2007 ND 157	State v. Gruett	1.00	0.01
+MEDIUM	14867	2007-10-16	State v. Grzeskowiak	18602	2007 ND 156	State v. Moilwa	0.62	0.00
+HIGH	14869	2007-10-16	State v. Knight	18601	2007 ND 155	State v. Knight	1.00	0.01
+HIGH	14870	2007-10-16	State v. MOILWA	18602	2007 ND 156	State v. Moilwa	1.00	0.01
+HIGH	14871	2007-10-16	State v. Overby	18604	2007 ND 158	State v. Overby	1.00	0.01
+REVIEW	14872	2007-11-14	State v. SKARSGARD	18608	2007 ND 174	State v. Skarsgard (Consolidated w	0.59	0.00
+MEDIUM	14873	2007-11-14	State v. Thompson	18610	2007 ND 176	State v. Jacobs	0.62	0.00
+MEDIUM	14862	2007-12-13	Bowman v. NORTH DAKOTA WORKFORCE S	18618	2007 ND 200	Bowman v. ND Workforce Safety and 	0.81	0.02
+HIGH	14863	2007-12-13	City of Jamestown v. Baker	18615	2007 ND 189	City of Jamestown v. Baker	1.00	0.01
+HIGH	14864	2007-12-13	State v. GANDESBERY	18613	2007 ND 187	State v. Gandesbery	1.00	0.01
+HIGH	14865	2007-12-13	State v. Matuska	18616	2007 ND 190	State v. Matuska	1.00	0.01
+HIGH	14874	2007-12-13	Witzke v. Gonzales	18617	2007 ND 191	Witzke v. Gonzales	1.00	0.01
+HIGH	14937	2008-03-20	Mulske v. State	18680	2008 ND 46	Mulske v. State	1.00	0.01
+MEDIUM	15055	2008-06-26	Riemers v. State	18647	2008 ND 118	Riemers, et al. v. State, et al.	0.76	0.01
+REVIEW	15057	2008-07-02	State v. TORKELSEN	15011	2008 ND 135	State v. Blunt	0.54	0.00
+MEDIUM	15058	2008-09-23	State v. Johnson	18659	2008 ND 169	State v. Krogen	0.64	0.00
+HIGH	15059	2008-09-26	Tarnavsky v. Tarnavsky	18660	2008 ND 179	Tarnavsky v. Tarnavsky, et al.	0.90	0.01
+HIGH	15113	2008-11-24	State v. Evans	18671	2008 ND 213	State v. Evans	1.00	0.01
+HIGH	15319	2009-11-17	State v. Johnson	18700	2009 ND 186	State v. Johnson	1.00	0.00
+NOMATCH	16005	2013-01-16	Young v. Oury					
+NOMATCH	16006	2013-01-16	Thompson v. Avera Queen of Peace H					
+HIGH	17116	2018-03-22	J.B. v. R.B.	19335	2018 ND 83	J.B., et al. v. R.B.	0.71	0.90
+HIGH	17130	2018-04-10	Thorstad v. State	19338	2018 ND 88	Thorstad v. State	1.00	0.53
+MEDIUM	17133	2018-04-10	Brekhus v. N. Dakota Dep't of Tran	19336	2018 ND 86	Brekhus v. N.D. Dep't of Transport	0.77	0.56
+HIGH	17134	2018-04-10	Rath v. Rath	19348	2018 ND 98	Rath v. Rath	1.00	0.92
+HIGH	17136	2018-04-10	Olson v. N.D. Dep't of Transp.	19345	2018 ND 94	Olson v. N.D. Dep't of Transportat	0.83	0.89
+HIGH	17137	2018-04-10	State v. Wilder	19344	2018 ND 93	State v. Wilder	1.00	0.93
+HIGH	17138	2018-04-10	Hoffman v. P.T.D.	19347	2018 ND 97	Interest of P.T.D., C.R.D., P.A.D.	0.26	0.75
+HIGH	17139	2018-04-10	Disciplinary Bd. of the Supreme Co	19343	2018 ND 92	In the Matter of the Application f	0.31	0.92
+HIGH	17140	2018-04-10	State v. Gunn	19346	2018 ND 95	State v. Gunn	1.00	0.88
+HIGH	17148	2018-04-10	Nelson v. Mattson	19349	2018 ND 99	Nelson, et al. v. Mattson, et al. 	0.49	0.91
+HIGH	17166	2018-05-08	Molbert v. Kornkven	19246	2018 ND 120	Molbert v. Kornkven, et al.	0.89	0.93
+HIGH	17193	2018-06-11	In re Poochigian	19249	2018 ND 144	Poochigian, et al. v. City of Gran	0.44	0.93
+MEDIUM	17196	2018-07-11	Grand Forks Cnty. Soc. Servs. v. Z	19252	2018 ND 151	Interest of Z.F.T. (CONFIDENTIAL)(	0.20	0.47
+HIGH	17197	2018-07-11	State v. Vanberkom	19262	2018 ND 167	State v. Vanberkom	1.00	0.84
+HIGH	17198	2018-07-11	State v. Kisi	19250	2018 ND 147	State v. Kisi	1.00	0.34
+MEDIUM	17199	2018-07-11	Grand Forks Cnty. Soc. Servs. v. N	19259	2018 ND 160	Interest of N.F.F. (CONFIDENTIAL) 	0.20	0.48
+REVIEW	17200	2018-07-11	Cass Cnty. Soc. Servs. v. A.C.	17209	2018 ND 154	Chase v. State	0.47	0.05
+HIGH	17208	2018-07-11	State v. Everett	19260	2018 ND 162	State v. Everett, Jr.	0.93	0.47
+HIGH	17211	2018-07-11	State v. Jorgenson	19263	2018 ND 169	State v. Jorgenson	1.00	0.86
+HIGH	17212	2018-07-11	State v. Beltran	19261	2018 ND 166	State v. Beltran	1.00	0.93
+HIGH	17213	2018-07-11	State v. Ngale	19267	2018 ND 172	State v. Ngale	1.00	0.92
+HIGH	17216	2018-07-11	State v. Yost	19257	2018 ND 157	State v. Yost (consolidated w/2017	0.41	0.94
+HIGH	17218	2018-07-11	State v. Hunter	19268	2018 ND 173	State v. Hunter	1.00	0.94
+HIGH	17220	2018-07-11	State v. Peltier	19265	2018 ND 170	State, et al. v. Peltier	0.87	0.92
+HIGH	17221	2018-07-11	State v. Blue	19266	2018 ND 171	State of North Dakota v. James Mil	0.43	0.94
+HIGH	17223	2018-07-11	Agri Indus., Inc. v. Franson	19256	2018 ND 156	Agri Industries, Inc. v. Franson	0.89	0.91
+MEDIUM	17239	2018-08-01	Grand Forks Cnty. Soc. Servs. v. M	19271	2018 ND 191	Interest of M.S.H. (CONFIDENTIAL)(	0.20	0.49
+HIGH	17284	2018-11-06	Upton v. Nolan	19288	2018 ND 243	Upton v. Nolan	1.00	0.91
+HIGH	17285	2018-11-06	State v. Sanchez	19287	2018 ND 242	State v. Sanchez (consolidated w/2	0.55	0.88
+MEDIUM	17286	2018-11-06	Marler v. Martin	19282	2018 ND 238	Marler v. Martin, et al.	0.87	0.52
+HIGH	17287	2018-11-06	State v. Etemad	19285	2018 ND 240	State v. Etemad	1.00	0.56
+HIGH	17288	2018-11-06	State v. Rogers	19289	2018 ND 244	State v. Rogers	1.00	0.85
+HIGH	17291	2018-11-06	State v. Jessee	19286	2018 ND 241	State v. Jessee	1.00	0.88
+HIGH	17292	2018-11-06	City of Fargo v. Nelson	19281	2018 ND 237	City of Fargo v. Nelson	1.00	0.52
+MEDIUM	17293	2018-11-06	McKenzie Cnty. Soc. Servs. v. G.F.	19280	2018 ND 236	Interest of G.F. (CONFIDENTIAL)	0.17	0.50
+MEDIUM	17338	2019-01-15	State v. P.T.D.	17347	2019 ND 18	State v. Lott	0.74	0.02
+HIGH	17355	2019-01-15	S.E.L. v. J.A.P.	19361	2019 ND 16	S.E.L. v. J.A.P., et al. (CONFIDEN	0.47	0.89
+HIGH	17367	2019-02-21	Heldstab v. Heldstab	19456	2019 ND 39	Heldstab v. Heldstab	1.00	0.57
+MEDIUM	17369	2019-02-21	State v. H.B.	17368	2019 ND 34	State v. Brakke	0.70	0.09
+MEDIUM	17377	2019-02-21	State v. Goldsack	17373	2019 ND 38	State v. Cody	0.67	0.10
+HIGH	17421	2019-03-13	State v. Gomez	19457	2019 ND 59	State v. Gomez	1.00	0.45
+REVIEW	17455	2019-05-16	In re F.M.G.	19352	2019 ND 125	In the Matter of J.M.	0.45	0.00
+HIGH	17456	2019-05-16	Lee v. Lee	19357	2019 ND 142	Lee v. Lee	1.00	0.89
+HIGH	17460	2019-05-16	Bride v. Trinity Hosp.	19353	2019 ND 131	Bride v. Trinity Hospital, et al.	0.81	0.83
+HIGH	17461	2019-05-16	Lawyer v. J.M.	19352	2019 ND 125	In the Matter of J.M.	0.42	0.92
+HIGH	17465	2019-05-16	James Vault & Precast Co. v. B&B H	19358	2019 ND 143	James Vault & Precast Co., et al. 	0.86	0.93
+HIGH	17467	2019-05-16	In re Estate of Hogen	19356	2019 ND 141	Estate of Hogen	0.87	0.90
+HIGH	17471	2019-05-16	State v. Gardner	19351	2019 ND 122	State v. Gardner	1.00	0.95
+HIGH	17475	2019-05-16	Ortega v. Bismarck	19354	2019 ND 133	Ortega v. Sanford Bismarck, et al.	0.73	0.93
+HIGH	17502	2019-06-27	Bridgeford v. Sorel	19360	2019 ND 153	Bryan Andrew Bridgeford v. Thomas 	0.39	0.93
+HIGH	17505	2019-06-27	Burdick v. R.A.S.	19364	2019 ND 169	Matter of R.A.S. (Confidential)	0.24	0.88
+HIGH	17506	2019-06-27	In re Interest of T.A.G.	19363	2019 ND 167	In the Interest of T.A.G.	0.91	0.92
+HIGH	17507	2019-06-27	State v. Hollis	19362	2019 ND 163	State v. Hollis	1.00	0.93
+HIGH	17509	2019-06-27	W.C. v. J.H.	19365	2019 ND 171	W.C. v. J.H., et al. (CONFIDENTIAL	0.38	0.88
+HIGH	17523	2019-06-27	State v. Wills	19367	2019 ND 176	State v. Wills	1.00	0.94
+HIGH	17524	2019-06-27	French v. Director, North Dakota D	19366	2019 ND 172	French v. N.D. Dep't of Transporta	0.69	0.90
+HIGH	17532	2019-07-11	Smithberg v. Smithberg	19369	2019 ND 195	Smithberg v. Smithberg, et al.	0.90	0.94
+HIGH	17541	2019-07-30	Facio v. N. Dakota Dep't of Transp	19370	2019 ND 199	Facio v. N.D. Dep't of Transportat	0.75	0.93
+HIGH	17542	2019-07-30	Great W. Cas. Co. v. Butler Mach. 	19371	2019 ND 200	Great West Casualty Company v. But	0.68	0.91
+HIGH	17547	2019-07-30	State v. Nelson	19372	2019 ND 204	State of North Dakota v. Jessica D	0.50	0.92
+HIGH	17555	2019-08-19	Disciplinary Bd. of the Supreme Co	19373	2019 ND 213	Disciplinary Board v. Bolinske (co	0.48	0.95
+HIGH	17559	2019-08-22	Baker v. Baker	19377	2019 ND 225	Baker v. Baker	1.00	0.92
+HIGH	17561	2019-08-22	City of Bismarck v. Vagts	19376	2019 ND 224	City of Bismarck v. Vagts	1.00	0.90
+HIGH	17562	2019-08-22	Van Chase v. State	19374	2019 ND 214	Chase v. State	0.88	0.89
+HIGH	17564	2019-08-22	Plains Trucking, LLC v. Cresap	19378	2019 ND 226	Plains Trucking, LLC v. Hagar, et 	0.82	0.95
+HIGH	17567	2019-08-22	N. D. Private Investigative & Sec.	19375	2019 ND 219	North Dakota Private Investigative	0.77	0.91

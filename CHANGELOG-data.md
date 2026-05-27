@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Post-1997 missing-neutral-cite investigation (2026-05-27) — sequence now gap-free; 2 opinions recovered; dedup + contamination surfaced
+
+Investigated the 107 post-1997 opinions lacking an `ND-neutral` cite and audited the per-year neutral sequence (which must run 1→max with no gaps). Findings + fixes:
+
+- **Sequence was gap-free 1997–2026 except three slots.** Fixed:
+  - **2010 ND 149** (`fix-2010nd149-reporter-2026-05-27`): existed (oid 15479 *S.H.B. v. T.A.H.*) but its cite was mis-tagged `reporter='ND'`; reclassified → `ND-neutral`.
+  - **2010 ND 54** *Hoffner v. Job Service North Dakota* and **2012 ND 196** *Bank of North Dakota v. Brown* (`recover-seq-gaps-2026-05-27`): **genuinely absent** — created from on-disk archive HTML (docket 20090357 / 20120145; per curiam; +789 N.W.2d 731 / +821 N.W.2d 385). Corpus 19,887 → **19,889**. All 1997–2026 sequences now gap-free; invariants 22/2/0.
+
+- **The remaining 106 no-cite rows are NOT missing opinions — they're duplicates** (the sequence is complete, so each real opinion already holds its cite). They're CL/NW2d double-ingests that never merged into the markdown opinion and, carrying no neutral cite, never tripped `neutral_cite_uniqueness`. Dry-run matcher `triage/match_nocite_dups_2026-05-27.py` → `triage/nocite-dup-match-2026-05-27.tsv`: **74 HIGH** (same date + exact name), 16 MEDIUM, plus REVIEW/NOMATCH that split into (a) real twins with name-format/date variance (e.g. Kram→2007 ND 151, Skarsgard→2007 ND 174, Curtis/Rutherford/Jelleberg→2006 ND 128/129/131), (b) anonymized-juvenile twins (In re Knh/Nb/Kg), and (c) **foreign-jurisdiction contamination**: 16005 *Young v. Oury* = **2013 SD 7** and 16006 *Thompson v. Avera* = **2013 SD 8** (South Dakota justices, mislabeled `court='North Dakota Supreme Court'`, in via the shared N.W.2d reporter) + 14343 *Ernst v. TJON* (ambiguous, docket `...CA`). The dedup merge + a corpus-wide foreign-jurisdiction scan are deferred for review (no merges/deletes applied yet).
+
 ## Batches `fix-archive-rebuild-2001-2012-2026-05-27` + `fix-farok-lunstad-2026-05-27` — 18 more markdown-leak cite-swaps recovered; detector hardened
 
 The `detect_cite_swap` DOCKET pass surfaced 17 rows (2001–2012) that the CITE pass was **blind to**: these markdown files lead with a `# Title\nNorth Dakota Supreme Court\nYYYY ND n; …` block (not YAML `---`), so the frontmatter stripper left the correct label cite visible and masked a body that had leaked a **different, nearby-numbered opinion** (e.g. 13527 labeled 2001 ND 172 *Farmers Elevator* held 2001 ND 176 *McDowell*). Metadata (cite, case_name, N.W.2d, docket) was correct; only `text_content` (and sometimes author/per_curiam — 15557 *Pizza Corner* Maring→Crothers, 15508 *Everett* Sandstrom→per curiam) had leaked.
