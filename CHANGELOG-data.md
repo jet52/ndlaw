@@ -2,6 +2,15 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-klose-twocol-primary-2026-05-27` — two-column mis-extraction sweep (the deferred Neset follow-up)
+
+Ran the analyzer-markdown two-column mis-extraction sweep flagged in the Neset note below. Detector = mean body-line length < 18 over ≥40 lines (two-column PDF extraction shreds text into ~8-char column fragments). Across all 14,338 `markdown/` files, only **two** genuine corruptions exist, and a corpus-wide scan of every opinion's *served* `text_content` (cheap char/newline ratio) confirmed no other opinion serves scrambled text:
+
+- **Neset 1998 ND 206 (oid 12782)** — already handled; corrupted `markdown/1998/1998ND206.md` is non-primary, the clean Westlaw `.doc` is primary. No change.
+- **State v. Klose 2003 ND 39 (oid 13746)** — **fixed.** The corrupted `markdown/2003/2003ND39.md` (3,391 lines, mean 8.7 — two opinions' columns interleaved) was flagged `is_primary=1` and was `opinions.source_reporter='ND'`/`source_path=markdown/…`, *but the served `text_content` was already the clean, byte-identical `NW2d/657/276.md`* (mean line 168, intact `[¶N]`). So the served opinion was fine; only the primary pointer lied — a latent landmine (a future "rebuild text from primary" would have clobbered the clean text with the corrupted markdown). Repointed `source_reporter`→`NW2d`, `source_path`→`NW2d/657/276.md`; `align_primary_source --apply` flipped the primary flag (NW2d primary, corrupted ND markdown demoted to non-primary, archive non-primary). `text_content` unchanged. Snapshot `opinions.db.bak-pre-klose-source-fix-2026-05-27`.
+
+Three served-text false positives were inspected and cleared (coherent text, short lines — not interleaving): *Everett v. State* 2019 ND 149 (inline citations split across lines), and the consolidated-juvenile captions *Interest of A.J.L.H.* 2012 ND 235 and *Interest of P.T.D.* 2019 ND 3 (multi-party captions listed one-per-line). The two corrupted markdown files are left on disk as non-primary sources (re-extractable from the court PDF later). Corpus unchanged (19,785); invariants 22/2/0; `detect_cite_swap` 0/0/0.
+
 ## Batch `register-nw-images-2026-05-27` — filed acquired bound volumes + page photos; registered 8 shared/Table-page images
 
 Acquired imagery (user-supplied, `~/Downloads`) filed into the canonical source tree and, for the page photos, registered as `NW-image` cross-check sources:
