@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-volume-date-2026-05-27` — corrections from the new volume↔date audit
+
+Built `volume_date_check` (flags opinions whose `date_filed` is inconsistent with the date range of the reporter volume they're cited in; the reporter cite is independent of `date_filed`, so a mismatch reveals a contaminated date/cite/pairing). Initial run: 29 flags; **18 corrected, 11 quarantined** (`triage/volume-date-quarantine-2026-05-27.md`), corpus unchanged (19,785), invariants 22/2/0, cite-swap 0/0/0. Snapshot `opinions.db.bak-pre-voldate-fix-2026-05-27`.
+
+**8 date fixes** (text "Decided/Filed" + neutral + N.W.2d cite all agreed on a year ≠ stored `date_filed`): Schnellbach **2007→2017** (oid 16931); Kostrzewski 2003→2004 (14038); Buchholz 2007→2006 (14645); Wold 2007→2008 (14896); Kieper 2007→2008 (14941); K&L Homes 2012→2013 (16020); and the **swapped Queen v. Martel pair** — 18077 2023-02-23→2022-10-04 and 18142 2022-10-04→2023-02-23 (each row's date_filed had been set to the other's).
+
+**11 stray-cite drops** (date confirmed by the remaining cites/text; the dropped cite was a wrong-era contaminant, all `sharedby=1`): 6417 `134 N.W.2d 84` + `78 N.D. 1` (1912 *Johnson v. Bartron*; kept `134 N.W. 84`); 5888 `62 N.D. 767`; 5968 `62 N.D. 771`; 12623 `375 N.W.2d 203` (text says 575); 815 `50 N.D. 1`; 985 `139 N.W. 138` (typo of its 199 N.W. 138); 5270 `58 N.W. 1051`; 5352 `64 N.W. 563`; 15985 `826 N.W.2d 352`; 15757 `808 N.W.2d 205`. On 4 of these (6417/5888/5968/815) the dropped cite had been flagged citation-`is_primary`, so the primary was reassigned to the surviving N.W. reporter cite.
+
+**11 quarantined** for 2nd-source review: six pre-1953 rows where two reporter cites agree on a *later* year than the stored date (date likely wrong, exact date not in the served text — Hart v. Evanson, the two First Nat. Bank of Hillsboro rows, Marshall v. Blaisdell, Bernier v. Preckel, Rufer v. Rufer); three date-vs-single/shared-cite cases (vacancy order 11760, App. for Transfer 16652, Lang v. Binstock 20474); and two off-by-one neutral-cite cases where the text-date agrees with the DB (Johnson Farms 13716, Boyda 20180).
+
 ## Batch `normalize-judges-ocr-2026-05-27` — normalized OCR-garbled justice names in opinions.judges
 
 The pre-1953 OCR'd N.W.-reporter opinions carry heavily garbled justice surnames in the `judges` panel field (`Biedzell`/`Bikdzell`→Birdzell, `Cheistianson`→Christianson, `Yandewalle`→VandeWalle, `Geimson`→Grimson, `Bobinson`→Robinson, …). Mapped each garble back to its canonical justice (`triage/normalize_judges_ocr_2026-05-27.py`), then per-row replaced + de-duplicated panel tokens. **569 garble tokens → 32 justices; 4,444 rows updated.** Snapshot `opinions.db.bak-pre-judges-ocr-2026-05-27`; invariants 22/2/0.
