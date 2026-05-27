@@ -60,12 +60,24 @@ def _norm_cite(c: str | None) -> str:
 
 
 def _body(text: str) -> str:
-    """Strip a leading YAML frontmatter block so the analyzer's metadata
-    `citations:` list is not mistaken for the opinion's own header cite."""
+    """Return the opinion body starting at its real court header, so a
+    *masking* cite in leading metadata is not mistaken for the self-cite.
+
+    Two leading-metadata forms both repeat the (correct label) cite and would
+    hide a body that actually leaked a different opinion:
+      * YAML frontmatter (`---\\ncitations:\\n - "YYYY ND n"\\n---`)
+      * a markdown title block (`# Name\\nNorth Dakota Supreme Court\\nYYYY ND n;
+        639 N.W.2d ...\\nDecided ...`)
+    Strip the YAML, then advance to the all-caps `IN THE SUPREME COURT` /
+    `COURT OF APPEALS` header (the start of the real opinion). This is what
+    exposes the 2001-2012 markdown-leak class the title block had masked."""
     if text.startswith("---"):
         end = text.find("\n---", 3)
         if end != -1:
-            return text[end + 4:]
+            text = text[end + 4:]
+    m = re.search(r"IN THE (?:SUPREME COURT|COURT OF APPEALS)", text[:1500])
+    if m:
+        return text[m.start():]
     return text
 
 

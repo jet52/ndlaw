@@ -2,6 +2,18 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `fix-archive-rebuild-2001-2012-2026-05-27` + `fix-farok-lunstad-2026-05-27` — 18 more markdown-leak cite-swaps recovered; detector hardened
+
+The `detect_cite_swap` DOCKET pass surfaced 17 rows (2001–2012) that the CITE pass was **blind to**: these markdown files lead with a `# Title\nNorth Dakota Supreme Court\nYYYY ND n; …` block (not YAML `---`), so the frontmatter stripper left the correct label cite visible and masked a body that had leaked a **different, nearby-numbered opinion** (e.g. 13527 labeled 2001 ND 172 *Farmers Elevator* held 2001 ND 176 *McDowell*). Metadata (cite, case_name, N.W.2d, docket) was correct; only `text_content` (and sometimes author/per_curiam — 15557 *Pizza Corner* Maring→Crothers, 15508 *Everett* Sandstrom→per curiam) had leaked.
+
+**Recovered all 17 from on-disk archive HTML** (independent of the analyzer that produced the leak), via `scrape_archive.parse_opinion_page`, keeping the correct metadata and guarding that the archive title cites the DB label (normalized for the zero-padded `2010 ND 04` form). Archive made primary; leaked ND markdown detached. oids: 13527, 13713, 13552, 14128, 14412, 14868, 14837, 15112, 15246, 15217, 15557, 15508, 15515, 15642, 15743, 15656, 15850. Script `triage/fix_archive_rebuild_2001_2012_2026-05-27.py`; snapshot `opinions.db.bak-pre-archive-rebuild-2001-2012-2026-05-27`.
+
+**Detector hardened** (`_body` now skips the `# Title` block to the real `IN THE SUPREME COURT` header) — which then surfaced 2 more:
+- **13130 *State v. Farok* (2000 ND 48)** — genuine leak (held *DeCoteau* 2000 ND 44 text); rebuilt from `archive/2000/990326.htm`.
+- **18358 *State v. Lunstad* (2000 ND 198)** — correct content, but the **archive HTML's own body header has a typo** printing "2000 ND 113" (echoing docket 20000113) instead of 2000 ND 198 (which collided with the real *Schiff* 2000 ND 113). Normalized the single in-body cite → 2000 ND 198. (Batch `fix-farok-lunstad-2026-05-27`; snapshot `…-pre-farok-lunstad-2026-05-27`.)
+
+Corpus unchanged at **19,887** (all updates, no add/delete); invariants 22/2/0. `detect_cite_swap` now reads **CITE 0 / DOCKET 0 / BODYDUP 0** — the cite-swap workstream is fully clean (34 real flags at session start → 0, plus 18 additional leaks this batch the hardened detector caught).
+
 ## Batch `section6-2018nd246-dupmerge-2026-05-26` — merged the CL NW2d dup surfaced by the 2018 ND 246 rebuild
 
 Rebuilding 19290 to the real 2018 ND 246 (prior batch) added its 920 N.W.2d 908 parallel, which surfaced a pre-existing duplicate: **17334** ("In re Provision of Legal Servs…", NW2d-sourced `NW2d/920/908.md`, same docket 20160436, same date 2018-11-15, per curiam) was the CourtListener NW2d copy of the same order (jaccard 0.87). Classic §6 CL double-ingest. Merged 17334 → **19290** (keep: carries the neutral cite 2018 ND 246 + authoritative Westlaw text + the fuller petition caption matching the sibling 2017 ND 1 / 2019 ND 1 rows), absorbing the NW2d source. Post-merge realigned the primary `opinion_sources` row to the Westlaw `.doc` (matches `text_content`) — the merge engine's `_fix_single_primary` had picked the older NW2d row, briefly tripping `source_reporter/path_matches_primary`. Corpus 19,888 → **19,887**; invariants 22/2/0. Snapshot `opinions.db.bak-pre-2018nd246-dupmerge-2026-05-26`.
