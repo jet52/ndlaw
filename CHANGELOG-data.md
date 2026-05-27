@@ -2,6 +2,10 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `delete-sd-contamination-2026-05-27` — removed 2 South Dakota opinions mislabeled as ND
+
+Deleted the 2 foreign-jurisdiction opinions found by the contamination scan: **16005 *Young v. Oury*** (2013 SD 7, SD docket No. 26182) and **16006 *Thompson v. Avera Queen of Peace Hospital*** (2013 SD 8, SD docket No. 26296) — both KONENKAMP, J., South Dakota Supreme Court, in via the shared 827 N.W.2d volume and mislabeled `court='North Dakota Supreme Court'`. Confirmed not-ND by reading the opinions (SD justices, SD sequential dockets, SD facts) and 0 inbound `cited_by`. All FK references purged (citations, opinion_sources, text_citations, quality_scores, validation_status, cite_extract_progress, and 4 changelog audit rows); FTS updated by trigger; 0 orphans. Corpus 19,815 → **19,813**; invariants 22/2/0. Snapshot `opinions.db.bak-pre-sd-delete-2026-05-27` (row deletions revert via snapshot). Post-1997 no-cite set now 30 (all ND dups / juvenile / 1 ambiguous — next-step dedup).
+
 ## Batch `section6-nocite-high-merge-2026-05-27` — merged 74 no-cite NW2d duplicates; foreign-jurisdiction scan
 
 Merged the 74 HIGH-confidence post-1997 no-neutral-cite NW2d duplicates into their cited markdown twins (`triage/merge_nocite_high_2026-05-27.py`; keep=cited twin, drop=no-cite NW2d stub; folds the N.W.2d parallel into the survivor). Guard: drop has no ND-neutral cite, keep does, and match is exact-name (≥0.9) or same-text (jaccard≥0.6). Corpus 19,889 → **19,815**; post-1997 no-cite 106 → 32. merge_pair left the older NW2d source flagged primary on the 74 survivors (tripped `source_reporter/path_matches_primary`); fixed with `align_primary_source --apply` (74 flips, `opinions.source_reporter` is ground truth). Invariants back to 22/2/0. Snapshot `opinions.db.bak-pre-nocite-high-merge-2026-05-27`.
