@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `section6-nocite-{v2,v3,v4,brekhus}-merge-2026-05-27` — 19 more no-cite NW2d dups merged via widened matching
+
+Cleared the rest of the mergeable post-1997 no-cite NW2d duplicates the strict same-date/exact-name pass missed, in escalating passes (each followed by `align_primary_source --apply`; cite guard throughout = drop lacks ND-neutral, keep has one):
+- **v2 (same-year + name/jaccard): 7** — e.g. fixed the earlier Johnson→*Matthews* mismatch to the correct Johnson→2005 ND 19; Skarsgard→2007 ND 159, Torkelsen→2008 ND 141, Curtis/Rutherford/Jelleberg→2006 ND 128/129/131.
+- **v3 (distinctive-surname + same-year): 6** — Kessel→2007 ND 55, Grzeskowiak→2007 ND 150, Thompson→2007 ND 173, Bowman→2007 ND 200, Marler→2018 ND 238, Goldsack→2019 ND 36.
+- **v4 (shared docket): 5** — resolved anonymized/ambiguous: In re N.B.→2006 ND 132, In re K.G.→2006 ND 130, Kram→2007 ND 151, Riemers→2008 ND 118, Johnson→2008 ND 168.
+- **Brekhus (text jaccard 0.56): 1** — 17133→19336 (2018 ND 86); carried docket 20170296 onto the survivor (which had none).
+
+Corpus 19,813 → **19,794**; invariants 22/2/0. **Post-1997 no-cite set 106 → 11 over the session** (95 cleared: 93 merged + 2 SD deleted). **Residual 11 (per-case, low-value tail):** 3 are ND **Court of Appeals** opinions (CA dockets 20040373CA/20040340CA/20050018CA — *Ernst v. TJON*, *In re Nb*, *In re Knh* — mislabeled `court='North Dakota Supreme Court'`, correctly outside the `YYYY ND n` sequence) and 8 are anonymized juvenile/social-services memorandum stubs (Grand Forks/Cass/McKenzie Soc. Servs., State v. P.T.D./H.B., In re F.M.G.) whose cited twins weren't findable by name, surname, docket, or text. Scripts `triage/match_nocite_dups_v{2,3,4}_2026-05-27.py`.
+
 ## Batch `delete-sd-contamination-2026-05-27` — removed 2 South Dakota opinions mislabeled as ND
 
 Deleted the 2 foreign-jurisdiction opinions found by the contamination scan: **16005 *Young v. Oury*** (2013 SD 7, SD docket No. 26182) and **16006 *Thompson v. Avera Queen of Peace Hospital*** (2013 SD 8, SD docket No. 26296) — both KONENKAMP, J., South Dakota Supreme Court, in via the shared 827 N.W.2d volume and mislabeled `court='North Dakota Supreme Court'`. Confirmed not-ND by reading the opinions (SD justices, SD sequential dockets, SD facts) and 0 inbound `cited_by`. All FK references purged (citations, opinion_sources, text_citations, quality_scores, validation_status, cite_extract_progress, and 4 changelog audit rows); FTS updated by trigger; 0 orphans. Corpus 19,815 → **19,813**; invariants 22/2/0. Snapshot `opinions.db.bak-pre-sd-delete-2026-05-27` (row deletions revert via snapshot). Post-1997 no-cite set now 30 (all ND dups / juvenile / 1 ambiguous — next-step dedup).
