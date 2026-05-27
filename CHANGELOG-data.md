@@ -2,6 +2,12 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `section6-2018nd246-dupmerge-2026-05-26` — merged the CL NW2d dup surfaced by the 2018 ND 246 rebuild
+
+Rebuilding 19290 to the real 2018 ND 246 (prior batch) added its 920 N.W.2d 908 parallel, which surfaced a pre-existing duplicate: **17334** ("In re Provision of Legal Servs…", NW2d-sourced `NW2d/920/908.md`, same docket 20160436, same date 2018-11-15, per curiam) was the CourtListener NW2d copy of the same order (jaccard 0.87). Classic §6 CL double-ingest. Merged 17334 → **19290** (keep: carries the neutral cite 2018 ND 246 + authoritative Westlaw text + the fuller petition caption matching the sibling 2017 ND 1 / 2019 ND 1 rows), absorbing the NW2d source. Post-merge realigned the primary `opinion_sources` row to the Westlaw `.doc` (matches `text_content`) — the merge engine's `_fix_single_primary` had picked the older NW2d row, briefly tripping `source_reporter/path_matches_primary`. Corpus 19,888 → **19,887**; invariants 22/2/0. Snapshot `opinions.db.bak-pre-2018nd246-dupmerge-2026-05-26`.
+
+**§6 status (2026-05-26):** the corpus dedup scan now shows **0 actionable merges** — the long-quoted "~530 DEFER_MODERN pairs" was stale (cleared in prior sessions). Remaining buckets are all correctly-held non-merges: 1 DEFER_MODERN (638 N.W.2d 45 = *Interest of J.S.* / *City of Fargo v. Tipler*, distinct shared page), 12 MERGE-HOLD-LOWJAC (shared-page distincts, different parties — e.g. Middlewest Grain, Cass County; *White v. Lauder* already ruled distinct), 57 needs_decision, 25 defer_multi (bound-volume multi-opinion pages). The `detect_cite_swap` refinement (this commit) also drove CITE 34→**0** and BODYDUP→**0** for the session (westlaw rows + cross-reference FPs excluded).
+
 ## Batch `section7-hjjn-swap-2026-05-26` — repaired the Interest of H.J.J.N. text-swap; CITE flags now all FPs
 
 A fifth cite-swap (surfaced from the 19877 CITE flag): the two *Interest of H.J.J.N.* opinions (docket 20240060, a retained-jurisdiction sequence) had their texts swapped by the scraper name-scramble — 19877 (label 2024 ND 132) held the 2024 ND 70 text; 20044 (label 2024 ND 70) held the 2024 ND 132 text (jaccard 0.179 = distinct). Kept each row's existing neutral cite (20044 has 1 inbound cited_by as 2024 ND 70 — no repointing) and rebuilt each from the user-supplied Westlaw .doc:
