@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `fix-coa-court-nocite-2026-05-27` + `merge-juvenile-nocite-dups-2026-05-27` — resolved the post-1997 no-cite tail (11 → 3)
+
+Closed out the 11-row post-1997 "no `YYYY ND n` cite" tail that prior passes had left as a low-value residual. Re-examination split it cleanly into two classes:
+
+- **`fix-coa-court-nocite-2026-05-27` (3 rows).** *Ernst v. TJON* (oid 14343, dk 20040373CA), *In re Nb* (14344, dk 20040340CA), *In re Knh* (14341, dk 20050018CA) — CA-suffix-docket "Affirmed by summary opinion" stubs that CourtListener attributed to "Supreme Court of North Dakota." These have no genuine published "IN THE SUPREME COURT" caption (just CL's auto-attribution line), so per the 2026-05-25 COA-in-scope ruling the CA docket governs: `court` → **North Dakota Court of Appeals**. They correctly remain outside the `YYYY ND n` sequence (COA opinions cite as `ND App`). COA-labeled total 41 → 44. Snapshot `opinions.db.bak-pre-coa-court-fix-2026-05-27`.
+- **`merge-juvenile-nocite-dups-2026-05-27` (8 merges).** The remaining 8 were anonymized juvenile-termination / mental-health summary dispositions (2018–2019) that CourtListener double-ingested: a **NW2d-sourced stub** carrying the N.W.2d cite + consolidated dockets under a `County Social Services v. [Initials]` caption, and a **CONFIDENTIAL twin** carrying the canonical `YYYY ND n` neutral cite + the authoritative ND/archive court text under an `Interest of [Initials]` caption. The prior matcher missed them because the twins share no N.W.2d page (neutral-cite only) and the captions diverge; the discriminator is **child initials + filing date**, confirmed by identical holding text (body jaccard up to 0.93). Merged each stub → its neutral-cited twin (survivor keeps the ND/archive authoritative text), absorbing the N.W.2d cite and carrying the stub's dockets onto the survivor; survivor caption set to the ND published `Interest of [Initials]` form with `(CONFIDENTIAL)`/`(consolidated …)` annotations stripped:
+
+  | survivor | neutral cite | absorbed N.W.2d | child |
+  |---|---|---|---|
+  | 19252 | 2018 ND 151 | 913 N.W.2d 763 | Z.F.T. |
+  | 19259 | 2018 ND 160 | 913 N.W.2d 768 | N.F.F. |
+  | 19253 | 2018 ND 152 | 913 N.W.2d 769 | A.C. |
+  | 19271 | 2018 ND 191 | 916 N.W.2d 112 | M.S.H. |
+  | 19280 | 2018 ND 236 | 919 N.W.2d 340 | G.F. |
+  | 19446 | 2019 ND 3 | 921 N.W.2d 176 | P.T.D. |
+  | 19454 | 2019 ND 35 | 923 N.W.2d 105 | H.B. |
+  | 19350 | 2019 ND 118 | 926 N.W.2d 709 | F.M.G. |
+
+  Corpus **19,793 → 19,785**; `align_primary_source --apply` flipped 8 primaries (NW2d demoted, ND stays authoritative). Snapshot `opinions.db.bak-pre-juvenile-merge-2026-05-27`.
+
+**Post-1997 no-cite tail is now 3, all correctly-labeled Court of Appeals summary affirmances** (cite-less by design). Invariants 22/2/0; `detect_cite_swap` 0/0/0.
+
 ## Batch `fix-berger-goetz-pairing-2026-05-27` — moved a wrong-paired court-archive (Goetz → Berger) + new court-archive audit
 
 Closing the coverage gap flagged in `fix-ellis-reimers-archive-2026-05-27`: extended `fix_archive_pairings` with a **`--reporter court-archive` report-only audit**. Court-archive titles are pre-1997 (parallel N.W. cite only, no neutral) and the reporter prints many N.D.R.App.P. 35.1 summary dispositions on one shared "Table" page, so the neutral-cite logic used for `archive` rows does not apply. The new mode classifies by **page cardinality** — how many opinions own each cite the file's `<title>` asserts: `ok` (linked opinion uniquely owns a title cite), `shared_page` (a title cite is shared with another opinion — verify by docket), `title_elsewhere` (no title cite belongs to the linked opinion — verify the BODY, titles lie), `unresolved`. Run over all 4,837 court-archive rows: **ok 4822 / shared_page 2 / title_elsewhere 7 / unresolved 6** (report `triage/court-archive-pairing-audit-2026-05-27.md`). It is **report-only** because the fix requires reading the file body — the `<title>` tag is frequently contaminated with a sibling opinion's cite while the body is correct (proven below). This rule collapses the naïve name/cite-comparison's ~144 false positives (caption-convention divergence — `Disciplinary Action Against X` vs `Disciplinary Board v. X`, `Estate of X` vs `X v. Bank`, abbreviations, archive-title typos) to a clean, reviewable handful.
