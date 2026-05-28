@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 // ndcourts-mcp .mcpb wrapper.
-// Reads URL + credentials from env (populated by user_config in manifest.json),
-// derives the Basic Auth header, and execs the bundled mcp-remote with the
-// SAME Node interpreter (process.execPath) and an absolute path — so we don't
-// depend on `npx` or PATH inside Claude Desktop's spawned environment.
+//
+// Loads the bundled mcp-remote IN-PROCESS via dynamic import, after rewriting
+// process.argv to look like mcp-remote was invoked directly. This avoids
+// spawning a child process, which fails inside Claude Desktop because the
+// "built-in Node" is actually the Claude Helper Electron binary —
+// process.execPath does NOT point at a real Node executable, so
+// spawn(process.execPath, [...]) hangs indefinitely.
 
+const fs = require("fs");
 const path = require("path");
-const { spawn } = require("child_process");
+const { pathToFileURL } = require("url");
 
 const url = process.env.MCP_URL;
 const username = process.env.MCP_USERNAME;
@@ -23,46 +27,43 @@ if (!url || !username || !password) {
 }
 
 // Guard against a Claude Desktop bug: when a user_config field is marked
-// `sensitive: true`, Desktop stores the value as `__encrypted__:<ciphertext>`
-// but substitutes the encrypted form into the env var without decrypting it.
-// Our manifest avoids `sensitive: true` for that reason, but if a future
-// Desktop / manifest change re-triggers it, we surface a clear error instead
-// of silently sending a 401-bound Basic Auth header.
+// `sensitive: true`, Desktop stores `__encrypted__:<ciphertext>` but
+// substitutes that same encrypted string into the env var. Our manifest
+// avoids `sensitive: true` on credentials for this reason; if a future
+// Desktop / manifest change re-triggers it, surface a clear error.
 if (password.startsWith("__encrypted__:") || username.startsWith("__encrypted__:")) {
   console.error(
     "[ndcourts-wrapper] credential is encrypted ciphertext, not the actual " +
-    "value. This is a Claude Desktop bug with sensitive user_config fields. " +
-    "Ensure the manifest does not set sensitive=true on the credential fields."
+    "value. This is a Claude Desktop bug with sensitive user_config fields."
   );
   process.exit(3);
 }
 
 const auth = Buffer.from(`${username}:${password}`).toString("base64");
 
-// mcp-remote is bundled inside this extension at <root>/node_modules/mcp-remote.
-// __dirname here is <root>/server, so the package sits one directory up.
 const mcpRemoteEntry = path.join(
   __dirname, "..", "node_modules", "mcp-remote", "dist", "proxy.js"
 );
 
-console.error(`[ndcourts-wrapper] spawning ${process.execPath} ${mcpRemoteEntry}`);
+if (!fs.existsSync(mcpRemoteEntry)) {
+  console.error(`[ndcourts-wrapper] bundled mcp-remote not found at ${mcpRemoteEntry}`);
+  process.exit(4);
+}
 
-const child = spawn(
+// Rewrite process.argv so mcp-remote's argv parsing sees the args we want.
+// argv[0] = node-like path, argv[1] = script path, then mcp-remote's own args.
+process.argv = [
   process.execPath,
-  [mcpRemoteEntry, url, "--header", `Authorization: Basic ${auth}`],
-  { stdio: "inherit" }
-);
+  mcpRemoteEntry,
+  url,
+  "--header",
+  `Authorization: Basic ${auth}`,
+];
 
-child.on("spawn", () => {
-  console.error(`[ndcourts-wrapper] mcp-remote spawned (pid ${child.pid})`);
-});
+console.error(`[ndcourts-wrapper] importing bundled mcp-remote in-process`);
 
-child.on("error", (err) => {
-  console.error(`[ndcourts-wrapper] spawn error: ${err.code} ${err.message}`);
-  process.exit(1);
-});
-
-child.on("exit", (code, signal) => {
-  console.error(`[ndcourts-wrapper] mcp-remote exited (code=${code} signal=${signal})`);
-  process.exit(code ?? 0);
+import(pathToFileURL(mcpRemoteEntry).href).catch((err) => {
+  console.error(`[ndcourts-wrapper] import failed: ${err && err.message}`);
+  if (err && err.stack) console.error(err.stack);
+  process.exit(5);
 });
