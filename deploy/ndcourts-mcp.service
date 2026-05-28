@@ -1,0 +1,43 @@
+# systemd unit — ndcourts-mcp over Streamable HTTP, bound to localhost.
+# Install to /etc/systemd/system/ndcourts-mcp.service (see deploy/SETUP.md).
+#
+# Adjust User/paths if you don't use the /srv/ndcourts layout from SETUP.md.
+
+[Unit]
+Description=ndcourts-mcp (MCP server, Streamable HTTP)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ndcourts
+Group=ndcourts
+WorkingDirectory=/srv/ndcourts/ndcourts-mcp
+
+# Transport + bind. Host stays on localhost — only Caddy is public.
+Environment=NDCOURTS_TRANSPORT=http
+Environment=NDCOURTS_HOST=127.0.0.1
+Environment=NDCOURTS_PORT=8000
+Environment=NDCOURTS_DB=/srv/ndcourts/opinions.db
+
+ExecStart=/srv/ndcourts/ndcourts-mcp/.venv/bin/ndcourts-mcp
+Restart=on-failure
+RestartSec=2
+
+# --- Hardening ---
+# The app only READS opinions, but SQLite WAL mode writes -wal/-shm files
+# next to the DB, so the DB directory must stay writable: hence the
+# ReadWritePaths exception under ProtectSystem=strict.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/ndcourts
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
