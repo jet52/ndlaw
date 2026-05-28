@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "ndcourts",
   "display_name": "ND Courts (Supreme Court Opinions)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search North Dakota Supreme Court opinions (1889–present) via a remote MCP server.",
-  "long_description": "Connects Claude Desktop to a self-hosted ndcourts-mcp endpoint over Streamable HTTP with HTTP Basic Auth. The bundle proxies through `mcp-remote` (downloaded on first use via npx) and prompts for the server URL and credentials at install time.\n\nProvides 22 tools for opinion lookup, full-text search, citation tracing, citing-opinion lists, and more.",
+  "long_description": "Connects Claude Desktop to a self-hosted ndcourts-mcp endpoint over Streamable HTTP with HTTP Basic Auth. The bundle ships `mcp-remote` inside the extension and invokes it with an absolute path, so it works regardless of whether `npx` is on the spawned Node process's PATH. Prompts for the server URL and credentials at install time.\n\nProvides 22 tools for opinion lookup, full-text search, citation tracing, citing-opinion lists, and more.",
   "author": {
     "name": "Jerod Tufte"
   },
