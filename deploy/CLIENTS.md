@@ -59,20 +59,62 @@ file untracked.
 
 ---
 
-## Claude Desktop — macOS and Linux
+## Claude Desktop — easiest path (.mcpb bundle, any OS)
 
-Claude Desktop's MCP loader only accepts **stdio** servers, so we
-proxy through `mcp-remote` (an npx package that runs locally and
-forwards to the HTTP endpoint).
+A pre-built **MCP Bundle** is in the repo at
+[`deploy/ndcourts.mcpb`](ndcourts.mcpb) (~2 KB). It contains a
+manifest and a tiny Node wrapper that proxies to the remote server.
+Works on macOS, Linux, and Windows with one set of instructions.
 
-**Prerequisites:** Node.js. Confirm with `node --version`; install via
-`brew install node` on macOS or your package manager on Linux.
+**For colleagues:**
 
-**Config file:**
+1. Download the bundle:
+   <https://github.com/jet52/ndcourts-mcp/raw/main/deploy/ndcourts.mcpb>
+2. Double-click it. Claude Desktop opens the install dialog showing
+   the extension name and asking for three fields:
+   - **Server URL** — paste what the admin sent you
+   - **Username** — from the admin
+   - **Password** — from the admin (input is masked, stored in the OS
+     keychain)
+3. Click **Install**. Restart Claude Desktop if it doesn't auto-pick
+   the new extension up. Confirm in Settings → Extensions that
+   "ND Courts (Supreme Court Opinions)" is enabled.
+
+**Requirements:** Node.js (any recent version). The bundle calls
+`npx -y mcp-remote` under the hood, which auto-installs the remote
+proxy on first use. If you don't have Node, install via
+`brew install node` (macOS) or `winget install OpenJS.NodeJS.LTS`
+(Windows).
+
+**Updating / re-installing:** download a newer `.mcpb` from the same
+URL and double-click again. Claude Desktop replaces the previous
+version in place.
+
+**For the admin (maintaining the bundle):** the source lives at
+`deploy/mcpb/`. Edit `manifest.json` or `server/wrapper.js`, bump
+the `version` field, run `deploy/mcpb/build.sh`, commit both the
+source changes and the rebuilt `deploy/ndcourts.mcpb` together.
+
+---
+
+## Claude Desktop — manual config (.mcpb alternative)
+
+If the `.mcpb` route doesn't fit (no Node, locked-down machine,
+custom config required), edit the config JSON directly. Claude
+Desktop's MCP loader only accepts **stdio** servers, so we proxy
+through `mcp-remote` (an npx package that runs locally and forwards
+to the HTTP endpoint).
+
+**Prerequisites:** Node.js (`node --version` to confirm). Install via
+`brew install node` (macOS), your package manager (Linux), or
+`winget install OpenJS.NodeJS.LTS` (Windows).
+
+**Config file location:**
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Linux: `~/.config/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
-Open it via Settings → Developer → **Edit Config**, or edit directly.
+Open via Settings → Developer → **Edit Config**, or edit directly.
 Add the following inside `mcpServers` (preserve anything already there):
 
 ```json
@@ -88,36 +130,14 @@ Add the following inside `mcpServers` (preserve anything already there):
 }
 ```
 
-Generate the base64 in Terminal:
+Generate the base64 once:
 
-```bash
-printf '<username>:<password>' | base64
-```
+- **macOS / Linux:** `printf '<username>:<password>' | base64`
+- **Windows PowerShell:** `[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('<username>:<password>'))`
 
-Save, **⌘Q** Claude Desktop (a window-close isn't enough), reopen.
-Settings → Developer → MCP servers should show `ndcourts` connected.
-
----
-
-## Claude Desktop — Windows
-
-Same approach, different paths.
-
-**Prerequisites:** Node.js. In PowerShell, `node --version`; install
-via `winget install OpenJS.NodeJS.LTS` if missing.
-
-**Config file:** `%APPDATA%\Claude\claude_desktop_config.json`. Open
-via Settings → Developer → **Edit Config**, or edit directly.
-
-Add the same `ndcourts` block as in the macOS section. To generate
-the base64 in PowerShell:
-
-```powershell
-[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('<username>:<password>'))
-```
-
-Save, fully quit Claude Desktop (right-click tray → **Quit**, not just
-close the window), reopen.
+Save, fully quit Claude Desktop (⌘Q on macOS, right-click tray → **Quit**
+on Windows — a window-close isn't enough), reopen. Settings → Developer
+→ MCP servers should show `ndcourts` connected.
 
 ---
 

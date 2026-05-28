@@ -1,0 +1,58 @@
+{
+  "manifest_version": "0.3",
+  "name": "ndcourts",
+  "display_name": "ND Courts (Supreme Court Opinions)",
+  "version": "1.0.0",
+  "description": "Search North Dakota Supreme Court opinions (1889–present) via a remote MCP server.",
+  "long_description": "Connects Claude Desktop to a self-hosted ndcourts-mcp endpoint over Streamable HTTP with HTTP Basic Auth. The bundle proxies through `mcp-remote` (downloaded on first use via npx) and prompts for the server URL and credentials at install time.\n\nProvides 22 tools for opinion lookup, full-text search, citation tracing, citing-opinion lists, and more.",
+  "author": {
+    "name": "Jerod Tufte"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jet52/ndcourts-mcp.git"
+  },
+  "homepage": "https://github.com/jet52/ndcourts-mcp",
+  "license": "CC0-1.0",
+  "server": {
+    "type": "node",
+    "entry_point": "server/wrapper.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/wrapper.js"],
+      "env": {
+        "MCP_URL": "${user_config.url}",
+        "MCP_USERNAME": "${user_config.username}",
+        "MCP_PASSWORD": "${user_config.password}"
+      }
+    }
+  },
+  "user_config": {
+    "url": {
+      "type": "string",
+      "title": "Server URL",
+      "description": "The full URL of the ndcourts MCP endpoint, ending in /mcp.",
+      "default": "https://mcp.example.com/mcp",
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "title": "Username",
+      "description": "Username assigned by the admin.",
+      "required": true
+    },
+    "password": {
+      "type": "string",
+      "title": "Password",
+      "description": "Password shared via secure channel.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
