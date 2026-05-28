@@ -1,6 +1,8 @@
 """MCP server for North Dakota Supreme Court opinions."""
 
+import os
 import sqlite3
+import sys
 from pathlib import Path
 
 from fastmcp import FastMCP
@@ -1633,7 +1635,32 @@ def detect_overruled_in_draft(
 
 
 def main():
-    mcp.run()
+    """Run the MCP server.
+
+    Defaults to stdio (how local MCP clients launch the server as a
+    subprocess — they pass no env, so this path is unchanged). For a
+    remote/team deployment set:
+
+      NDCOURTS_TRANSPORT=http   serve Streamable HTTP (or `sse`)
+      NDCOURTS_HOST=127.0.0.1   bind address (default localhost-only;
+                                front it with a TLS+auth reverse proxy)
+      NDCOURTS_PORT=8000        bind port
+
+    The server exposes read-only tools; auth/TLS belong in the proxy.
+    """
+    transport = os.environ.get("NDCOURTS_TRANSPORT", "stdio").lower()
+    if transport in ("http", "streamable-http", "sse"):
+        norm = "sse" if transport == "sse" else "http"
+        host = os.environ.get("NDCOURTS_HOST", "127.0.0.1")
+        port = int(os.environ.get("NDCOURTS_PORT", "8000"))
+        print(
+            f"ndcourts-mcp: serving {norm} on {host}:{port} "
+            "(front with a TLS+auth reverse proxy; tools are read-only)",
+            file=sys.stderr,
+        )
+        mcp.run(transport=norm, host=host, port=port)
+    else:
+        mcp.run()
 
 
 if __name__ == "__main__":

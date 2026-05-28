@@ -336,6 +336,89 @@ the opinion text. For the full set of tools, see the
 
 ---
 
+## Remote / team deployment
+
+By default the server speaks **stdio** — each user runs their own copy and
+their MCP client launches it as a subprocess (the configs above). To serve a
+whole team from one host instead, the same server can run over **Streamable
+HTTP**. The opinion data is public (CC0), so the goal of auth here is access
+control, not secrecy; the recommended posture is **work-network / VPN-only
+with a bearer token**, with TLS and the token check handled by a reverse
+proxy in front of the app.
+
+The only thing the app itself needs is three environment variables:
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `NDCOURTS_TRANSPORT` | `http` (Streamable HTTP) or `sse`; anything else = stdio | `stdio` |
+| `NDCOURTS_HOST` | bind address — keep `127.0.0.1` so only the local proxy can reach it | `127.0.0.1` |
+| `NDCOURTS_PORT` | bind port | `8000` |
+| `NDCOURTS_DB` | path to `opinions.db` on the server | bundled / app-data |
+
+The MCP endpoint is **`/mcp`** (no trailing slash — `/mcp/` issues a 307
+redirect, which some clients mishandle on POST).
+
+The tools are read-only (search / lookup / citation analysis); the
+data-editing CLIs are not exposed over MCP.
+
+### Run it as a service (systemd)
+
+```ini
+# /etc/systemd/system/ndcourts-mcp.service
+[Unit]
+Description=ndcourts-mcp (Streamable HTTP)
+After=network.target
+
+[Service]
+User=ndcourts
+WorkingDirectory=/srv/ndcourts/ndcourts-mcp
+Environment=NDCOURTS_TRANSPORT=http
+Environment=NDCOURTS_HOST=127.0.0.1
+Environment=NDCOURTS_PORT=8000
+Environment=NDCOURTS_DB=/srv/ndcourts/opinions.db
+ExecStart=/srv/ndcourts/ndcourts-mcp/.venv/bin/ndcourts-mcp
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Terminate TLS and enforce the token (Caddy)
+
+```
+mcp.court.example {
+    # only requests carrying the shared token reach the app
+    @authorized header Authorization "Bearer REPLACE_WITH_A_LONG_RANDOM_TOKEN"
+    handle @authorized {
+        reverse_proxy 127.0.0.1:8000
+    }
+    respond "Unauthorized" 401
+}
+```
+
+For revocable, per-person access, give each user a distinct token and add a
+matching `@authorized` line per token. Restrict the host's firewall so the
+proxy port is reachable only from the VPN subnet.
+
+### What each team member runs
+
+```bash
+claude mcp add --transport http ndcourts https://mcp.court.example/mcp \
+  --header "Authorization: Bearer REPLACE_WITH_A_LONG_RANDOM_TOKEN"
+```
+
+(Claude Desktop: add an equivalent `"type": "http"` server with a `headers`
+block in `claude_desktop_config.json`.) Users connect to the VPN first, then
+the client reaches the server.
+
+### Updating the deployed database
+
+The weekly pipeline regenerates `opinions.db`. Because it is served
+read-only, deploying an update is just: copy the new file to the server,
+then `systemctl restart ndcourts-mcp`.
+
+---
+
 ## Working on the data
 
 A separate CLI is built into the package for ingesting new opinions,
