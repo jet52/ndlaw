@@ -2,6 +2,12 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `strip-truncation-phantoms-2026-05-29` — remove stale reporter-truncation phantoms (§14c)
+
+Third fix from the 2026-05-29 citation-graph audit. An **older jetcite** tokenized `419 F.2d 1197` / `892 So. 2d 1075` / `43 F.4th 100` as reporter `F.`/`So.` + the *series digit* as the page, producing phantom rows like `419 F. 2` (real page lost). **Current jetcite 2.1.0 no longer does this** (verified by scanning the problem strings — `419 F.2d 1197` etc. parse correctly, and the genuine first-series `200 F. 100` is still caught), so **no jetcite change was needed**; the phantoms simply persisted because `cite_extract` uses `INSERT OR IGNORE` and never deletes superseded rows.
+
+**Deleted 1,650 sibling-confirmed phantoms.** Conservative criterion: a candidate `VOL BASE. D` (`cite_type='case'`, D∈{2,3,4}) was deleted only when the *same opinion* also contained the correct full cite `VOL BASE.Dd|th …` (either spacing) — guaranteeing a truncation artifact, not a genuine first-series cite. Reporter families: F. (883), S.W. (195), So. (124), S.E. (116), Cal. (20), plus L. Ed./F. Supp./A./P. **Held 191** no-sibling rows untouched — they include real `S. Ct.` page-low cites, genuine first-series `N.W.`/`F.` cites, and a separate garbage-leading-zero-volume defect (`006 N.D. 3`) to be handled on its own. These are out-of-corpus cites with no `cited_by` edges, so this is forward-display only. `text_citations` 309,110→307,460; 1,650 changelog rows; invariants 23/2/0. Snapshot `opinions.db.bak-pre-strip-truncation-phantoms-2026-05-29.zst`; tool `triage/cite-audit-2026-05-29/strip_truncation_phantoms.py`.
+
 ## Batch `strip-self-citations-2026-05-29` — remove self-citations from text_citations (§14b)
 
 First fix from the 2026-05-29 citation-graph audit (§14 of TODO-validation.md). A case cannot be an authority it cites, but the extractor scanned the whole `text_content` including the caption/header block — which prints the opinion's own neutral (and usually N.W.) cite — so essentially every opinion "cited" itself: **31,331 self-cite rows across 19,759 opinions**. `cited_by` already excluded these (0 self-edges); this cleans the forward `text_citations` table to match, and was visibly inflating `get_cited_authorities` (e.g. Rocket Dogs, 2023 ND 103, listed itself).
