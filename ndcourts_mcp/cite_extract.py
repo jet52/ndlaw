@@ -216,19 +216,26 @@ def _store_results(
 
     for cd in cite_dicts:
         ct = cd["cite_type"]
+        jurisdiction = cd["jurisdiction"]
 
-        # Skip the opinion's OWN citation when it is mis-extracted from the
-        # caption/header as an authority it cites — a case cannot cite itself.
-        # Guard only when the cite is unique to this opinion; if another opinion
-        # shares the citation (shared-page twins), keep it: it may be a genuine
-        # reference to the companion, resolved by shared-page disambiguation.
+        resolved: list[int] = []
+        others: list[int] = []
         if ct == "case":
-            _nk = _normalize_cite_key(cd["normalized"])
-            if _nk in own_normalized:
-                _resolved = (citation_lookup.get(cd["normalized"])
-                             or citation_lookup.get(_nk) or [])
-                if not [o for o in _resolved if o != opinion_id]:
-                    continue
+            norm_key = _normalize_cite_key(cd["normalized"])
+            resolved = (citation_lookup.get(cd["normalized"])
+                        or citation_lookup.get(norm_key) or [])
+            others = [o for o in resolved if o != opinion_id]
+            # Skip the opinion's OWN citation mis-extracted from the caption as
+            # an authority it cites — a case cannot cite itself. Guard only when
+            # the cite is unique to this opinion; shared-page twins (others
+            # present) are kept for shared-page disambiguation.
+            if norm_key in own_normalized and not others:
+                continue
+            # Any match to a corpus opinion means a North Dakota case: the N.W.
+            # regional reporter defaults to 'us', but a unique volume+page that
+            # resolves into our (ND-only) corpus is definitionally ND.
+            if resolved:
+                jurisdiction = "nd"
 
         counts[ct] = counts.get(ct, 0) + 1
 
@@ -236,17 +243,15 @@ def _store_results(
             """INSERT OR IGNORE INTO text_citations
                (opinion_id, normalized, cite_type, jurisdiction, raw_text, url, parallel_group, antecedent_name)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-            (opinion_id, cd["normalized"], ct, cd["jurisdiction"],
+            (opinion_id, cd["normalized"], ct, jurisdiction,
              cd["raw_text"], cd["url"], cd["parallel_group"], cd.get("antecedent_name")),
         )
 
         # Build cited_by for case citations
         if ct == "case":
-            norm_key = _normalize_cite_key(cd["normalized"])
             if norm_key in own_normalized:
                 continue
-            candidates = citation_lookup.get(cd["normalized"]) or citation_lookup.get(norm_key) or []
-            candidates = [o for o in candidates if o != opinion_id]
+            candidates = others
             if not candidates:
                 continue
             cited_opinion_id = _resolve_cited_oid(

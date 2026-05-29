@@ -2,6 +2,14 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `jurisdiction-backfill-2026-05-29` — tag in-corpus N.W. case cites as `nd` (§14f)
+
+Fourth fix from the 2026-05-29 citation-graph audit. jetcite tags the N.W./N.W.2d/N.W.3d regional reporter as `jurisdiction='us'` (it's regional — ND/MN/SD/NE/IA/WI/MI), so N.W. citations to North Dakota cases were mis-tagged. But a specific volume+page is one unique case: any N.W. cite that resolves to an opinion in this (ND-only) corpus is definitionally an ND case.
+
+**Set `jurisdiction='nd'` for 106,961** `cite_type='case'` text_citations whose normalized cite matches a corpus opinion's citation and wasn't already `nd` (N.W.2d 98,656 / N.W. 8,301 / N.W.3d 4). Out-of-corpus cites (federal, other-state, ND cases not in the corpus) keep their jetcite jurisdiction. Made **durable in `cite_extract`**: a case cite that resolves to a corpus opinion is now stored as `nd` at insert (verified by re-scan). Invariants 23/2/0.
+
+**Logging note:** this is a deterministic, rule-based reclassification of ~107k rows, not a per-item judgment correction. Because the `changelog` table keys on `opinion_id` (an opinion has many cites) it can't precisely revert an individual text_citation's jurisdiction anyway, so this batch is **snapshot-reversible** (`opinions.db.bak-pre-jurisdiction-backfill-2026-05-29.zst`) with this narrative as the audit trail, rather than 107k per-row changelog entries. Tool `triage/cite-audit-2026-05-29/backfill_jurisdiction.py`.
+
 ## Batch `strip-truncation-phantoms-2026-05-29` — remove stale reporter-truncation phantoms (§14c)
 
 Third fix from the 2026-05-29 citation-graph audit. An **older jetcite** tokenized `419 F.2d 1197` / `892 So. 2d 1075` / `43 F.4th 100` as reporter `F.`/`So.` + the *series digit* as the page, producing phantom rows like `419 F. 2` (real page lost). **Current jetcite 2.1.0 no longer does this** (verified by scanning the problem strings — `419 F.2d 1197` etc. parse correctly, and the genuine first-series `200 F. 100` is still caught), so **no jetcite change was needed**; the phantoms simply persisted because `cite_extract` uses `INSERT OR IGNORE` and never deletes superseded rows.
