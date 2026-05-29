@@ -2,6 +2,18 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `strip-self-citations-2026-05-29` — remove self-citations from text_citations (§14b)
+
+First fix from the 2026-05-29 citation-graph audit (§14 of TODO-validation.md). A case cannot be an authority it cites, but the extractor scanned the whole `text_content` including the caption/header block — which prints the opinion's own neutral (and usually N.W.) cite — so essentially every opinion "cited" itself: **31,331 self-cite rows across 19,759 opinions**. `cited_by` already excluded these (0 self-edges); this cleans the forward `text_citations` table to match, and was visibly inflating `get_cited_authorities` (e.g. Rocket Dogs, 2023 ND 103, listed itself).
+
+**Deleted 30,712 unambiguous self-cites** — rows whose normalized cite is unique to the opinion (definitionally the caption). **Left 619** whose cite is shared with another opinion (shared-page twins, e.g. *White v. Lauder* / *Willard* at `10 N.D. 400`): a match there may be a genuine companion reference, so it's deferred to the shared-page disambiguation pass rather than bulk-deleted. 30,712 changelog rows; `text_citations` 339,822→309,110.
+
+**Recurrence prevented, not just cleaned:**
+- `cite_extract._store_results` now skips inserting a `text_citations` row when the cite equals one of the opinion's own citations and is unique to it (mirrors the existing self-edge skip in the cited_by build). Verified: re-scanning 2024 ND 99 did not re-add its self-cite.
+- New `invariants.py` check **`no_self_citation`** (baseline 0; excludes shared-page cites) — a regression now surfaces on the weekly run. Invariants **23 ok / 2 known / 0 regressed**.
+
+Snapshot `opinions.db.bak-pre-strip-self-cites-2026-05-29.zst` (integrity-verified). Tools `triage/cite-audit-2026-05-29/strip_self_citations.py` (+ `REPORT.md`).
+
 ## Batch `backfill-dockets-2026nd101-107-2026-05-29` — docket_number for the 7 newly-scraped opinions
 
 The 2026-05-29 weekly catch-up ingested **2026 ND 101–107** (Baker, Busche, Porteus, Craig, Shively, Reller, Rademacher) from freshly scraped court PDFs — recovered after fixing the scraper's Cloudflare block (curl_cffi Chrome TLS impersonation; see `scraper/nd_http.py`). These ingested with `docket_number` NULL because `merge_nd_metadata` sources dockets from CourtListener cluster JSON, which CL hasn't created yet for opinions this new — even though the scraped `2026_opinions.json` carries the docket from the published listing. **Backfilled 7** dockets from that listing JSON (8-digit `YYYYNNNN` form, matching the 1997+ convention): 101→20250258, 102→20250409, 103→20250450, 104→20260038, 105→20250374, 106→20250419, 107→20250304. Authority = ndcourts.gov opinion listing. Corpus 19,792; invariants 22/2/0. Tool `triage/backfill_dockets_2026nd101-107_2026-05-29.py`; revertible.

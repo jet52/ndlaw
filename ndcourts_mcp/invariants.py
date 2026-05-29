@@ -123,6 +123,21 @@ def _orphan_cited_by(conn, refs):
     ).fetchall()
 
 
+@_check("no_self_citation",
+        "no opinion lists its own (unique) citation as an authority it cites (§14b)")
+def _no_self_citation(conn, refs):
+    # A case cannot be an authority it cites. Excludes shared-page citations
+    # (a cite held by >1 opinion), where a match may be a genuine companion
+    # reference handled by shared-page disambiguation rather than a caption FP.
+    return conn.execute(
+        "SELECT tc.id, tc.opinion_id, tc.normalized "
+        "FROM text_citations tc "
+        "JOIN citations ci ON ci.opinion_id = tc.opinion_id AND ci.citation = tc.normalized "
+        "WHERE tc.normalized NOT IN ("
+        "  SELECT citation FROM citations GROUP BY citation HAVING COUNT(DISTINCT opinion_id) > 1)"
+    ).fetchall()
+
+
 # ---- source consistency -----------------------------------------------------
 
 @_check("primary_source_unique",

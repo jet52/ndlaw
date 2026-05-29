@@ -216,6 +216,20 @@ def _store_results(
 
     for cd in cite_dicts:
         ct = cd["cite_type"]
+
+        # Skip the opinion's OWN citation when it is mis-extracted from the
+        # caption/header as an authority it cites — a case cannot cite itself.
+        # Guard only when the cite is unique to this opinion; if another opinion
+        # shares the citation (shared-page twins), keep it: it may be a genuine
+        # reference to the companion, resolved by shared-page disambiguation.
+        if ct == "case":
+            _nk = _normalize_cite_key(cd["normalized"])
+            if _nk in own_normalized:
+                _resolved = (citation_lookup.get(cd["normalized"])
+                             or citation_lookup.get(_nk) or [])
+                if not [o for o in _resolved if o != opinion_id]:
+                    continue
+
         counts[ct] = counts.get(ct, 0) + 1
 
         conn.execute(
