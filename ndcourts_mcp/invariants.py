@@ -42,7 +42,7 @@ DEFAULT_REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 # --update-baseline to refresh).
 BASELINES: dict[str, int] = {
     "neutral_cite_uniqueness":     258,      # 258 known dup pairs (§6 queue)
-    "nd_modern_paragraph_markers": 85,       # 85 short orders w/o markers (§4)
+    "nd_modern_paragraph_markers": 18,       # 18 short orders w/o markers (was 85; 57 full opinions re-OCR'd via marker 2026-05-30, §14 TODO #4)
 }
 
 SAMPLE_LIMIT = 5
@@ -385,7 +385,7 @@ def _text_non_empty(conn, refs):
 
 @_check("nd_modern_paragraph_markers",
         "ND-primary opinions filed >= 1997-01-01 carry [¶N] markers "
-        "(currently 85 known short orders — §4)")
+        "(currently 18 known short orders — §4)")
 def _nd_modern_para(conn, refs):
     return conn.execute(
         "SELECT id, case_name, date_filed, source_path FROM opinions "

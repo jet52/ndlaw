@@ -52,3 +52,6 @@ desktop.ini
 
 # Jupyter
 .ipynb_checkpoints/
+
+# paragraph-marker re-OCR working tree (PDFs, marker output, Westlaw docs — scratch)
+triage/cite-audit-2026-05-29/para-markers/
