@@ -166,16 +166,37 @@ The endpoint is **`/mcp`** (no trailing slash — `/mcp/` 307-redirects).
 
 ## 8. Updating the database
 
-The weekly pipeline regenerates `opinions.db`. To deploy a new copy:
+The DB ships as a GitHub release asset (`opinions.db.zip` + `.sha256`). Updating
+is a publish-then-pull: cut a release from your build machine, then have the
+server pull, validate, and swap it.
+
+**One command, from the repo on your build machine:**
 
 ```bash
-sudo -u ndcourts bash -lc '
-  cd /srv/ndcourts
-  curl -L -o opinions.db.zip https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
-  unzip -o opinions.db.zip && rm opinions.db.zip
-'
-sudo systemctl restart ndcourts-mcp
+NDCOURTS_SSH=ndcourts@mcp.YOURDOMAIN.com deploy/push-db.sh
 ```
+
+This runs `scripts/make_release.sh --publish` (gates on invariants + redistribution
+scope + clean tree, zips, sha256s, creates the `v<version>` GitHub release) and
+then SSHes in to run `deploy/update-db.sh` on the server.
+
+**Server side only** (if you publish the release separately, or want to pull on
+the box): `deploy/update-db.sh` downloads the latest release, **verifies the
+sha256**, validates the staged DB (`PRAGMA quick_check` + opinions-count floor),
+then **stops the service, swaps atomically (keeping `opinions.db.bak`), clears
+stale `-wal`/`-shm`, restarts, and runs an end-to-end `/mcp` probe — auto-rolling
+back to `.bak` if the probe fails**. Preview without swapping:
+
+```bash
+sudo -u ndcourts deploy/update-db.sh --dry-run   # download + validate only
+sudo deploy/update-db.sh                          # validate, swap, health-check
+```
+
+> Don't `unzip -o` over the live `opinions.db` by hand: it overwrites an open
+> WAL database in place and orphans its `-wal`/`-shm` sidecars. Use the script —
+> it stops the service first and cleans the sidecars.
+
+The update is a few seconds of downtime (a restart drops live MCP sessions).
 
 ## Alternative: alongside an existing web server
 
