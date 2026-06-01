@@ -1,0 +1,24 @@
+§5 court-report field validation — 12329 report rows
+
+MATCH METHODS:
+  nd-cite                  7031
+  nw-cite                  4912
+  UNMATCHED                270
+  nw-cite-COLLISION        82
+  docket                   22
+  docket-COLLISION         12
+
+  matched (1:1): 11965
+  collisions (>1 oid): 94
+  unmatched: 270
+
+FIELD MISMATCHES (among 1:1 matched):
+  casename_diff            1808
+  author_diff              371
+  date_diff                137
+
+DATE-DIFF GAP DISTRIBUTION:
+  <=7d     29
+  8-31d    7
+  32-90d   45
+  >90d     56
