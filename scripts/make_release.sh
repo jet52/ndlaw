@@ -71,10 +71,18 @@ if [ "$PUBLISH" = "--publish" ]; then
   if gh release view "$TAG" >/dev/null 2>&1; then
     echo "ABORT: release $TAG already exists" >&2; exit 1
   fi
+  # Pin the tag to THIS commit. `gh release create` defaults the tag to the
+  # remote branch tip, so if the version-bump commit isn't pushed yet the tag
+  # silently lands on the prior commit (v0.10.0 hit this on 2026-06-02). Push
+  # the release commit first, then create the tag explicitly at its SHA.
+  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  HEAD_SHA="$(git rev-parse HEAD)"
+  git push origin "$BRANCH"
   gh release create "$TAG" "$ZIP" "$SHA" \
+    --target "$HEAD_SHA" \
     --title "$TAG" \
     --notes "ND Supreme Court opinion database — ${TAG}. See CHANGELOG-data.md for corrections in this cycle. Verify: shasum -a 256 -c ${SHA}"
-  echo "  published $TAG"
+  echo "  published $TAG at $HEAD_SHA"
 else
   echo "  built locally only. To publish:"
   echo "    scripts/make_release.sh --publish"
