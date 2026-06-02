@@ -170,33 +170,104 @@ The DB ships as a GitHub release asset (`opinions.db.zip` + `.sha256`). Updating
 is a publish-then-pull: cut a release from your build machine, then have the
 server pull, validate, and swap it.
 
+Publishing is the deliberate editorial gate; everything downstream is mechanical
+and gated (sha256 verify, `quick_check`, count floor, live `/mcp` probe, rollback).
+
 **One command, from the repo on your build machine:**
 
 ```bash
-NDCOURTS_SSH=ndcourts@mcp.YOURDOMAIN.com deploy/push-db.sh
+NDCOURTS_SSH=jerod@mcp.YOURDOMAIN.com deploy/push-db.sh
 ```
 
 This runs `scripts/make_release.sh --publish` (gates on invariants + redistribution
-scope + clean tree, zips, sha256s, creates the `v<version>` GitHub release) and
-then SSHes in to run `deploy/update-db.sh` on the server.
+scope + clean tree; zips; sha256s; **pushes the release commit and pins the tag to
+it**; creates the `v<version>` GitHub release) and then SSHes in to run
+`deploy/self-update.sh` on the server, which pins the code to the new tag,
+reinstalls, swaps the DB, restarts, and health-probes.
 
-**Server side only** (if you publish the release separately, or want to pull on
-the box): `deploy/update-db.sh` downloads the latest release, **verifies the
-sha256**, validates the staged DB (`PRAGMA quick_check` + opinions-count floor),
-then **stops the service, swaps atomically (keeping `opinions.db.bak`), clears
-stale `-wal`/`-shm`, restarts, and runs an end-to-end `/mcp` probe — auto-rolling
-back to `.bak` if the probe fails**. Preview without swapping:
+> **The venv is a non-editable install** (`uv pip install .`, not `-e .`), so a
+> `git pull`/`checkout` alone does **not** change the running code — you must
+> `uv pip install .` again. `self-update.sh` does this; a bare `update-db.sh`
+> does not (it only swaps the DB). If you ever pull code by hand, reinstall:
+> `sudo -u ndcourts bash -lc 'cd /srv/ndcourts/ndcourts-mcp && uv pip install .'`
+> then `sudo systemctl restart ndcourts-mcp`.
+
+**Server side only** (publishing the release separately, or pulling on the box).
+`deploy/update-db.sh` downloads the latest release, **verifies the sha256**,
+validates the staged DB (`PRAGMA quick_check` + opinions-count floor), then
+**stops the service, swaps atomically (keeping `opinions.db.bak`), clears stale
+`-wal`/`-shm`, restarts, and runs an end-to-end `/mcp` probe — auto-rolling back
+to `.bak` if the probe fails**. Run it as **root** (the `ndcourts` home is not
+readable by your login user, so `sudo -u ndcourts` fails its venv preflight):
 
 ```bash
-sudo -u ndcourts deploy/update-db.sh --dry-run   # download + validate only
-sudo deploy/update-db.sh                          # validate, swap, health-check
+sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh --dry-run   # download + validate only
+sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh             # validate, swap, health-check
 ```
 
 > Don't `unzip -o` over the live `opinions.db` by hand: it overwrites an open
 > WAL database in place and orphans its `-wal`/`-shm` sidecars. Use the script —
-> it stops the service first and cleans the sidecars.
+> it stops the service first and cleans the sidecars. `sqlite3` (the CLI) must be
+> installed: `sudo apt-get install -y sqlite3`.
 
 The update is a few seconds of downtime (a restart drops live MCP sessions).
+
+## 8a. Optional: scheduled self-update
+
+Let the server poll GitHub nightly and deploy any new release on its own, with
+an email on each deploy/rollback. Publishing stays the human gate; the box does
+the rest. Components live in `deploy/`: `self-update.sh`, `ndcourts-update.service`,
+`ndcourts-update.timer`.
+
+```bash
+# 1. systemd units
+sudo cp /srv/ndcourts/ndcourts-mcp/deploy/ndcourts-update.{service,timer} /etc/systemd/system/
+
+# 2. (optional) email target — kept out of the repo
+echo 'MAIL_TO=you@example.com' | sudo tee /etc/ndcourts-update.env
+
+# 3. seed the marker with the currently-deployed tag so the first run is a no-op
+#    until something newer ships
+echo "$(curl -fsS -o /dev/null -w '%{url_effective}' -L \
+  https://github.com/jet52/ndcourts-mcp/releases/latest | sed 's#.*/##')" \
+  | sudo tee /srv/ndcourts/.deployed-release
+
+# 4. enable the timer
+sudo systemctl daemon-reload
+sudo systemctl enable --now ndcourts-update.timer
+systemctl list-timers ndcourts-update.timer        # confirm next fire time
+
+# dry test (forces a real check now; no-op if already current):
+sudo systemctl start ndcourts-update.service && journalctl -u ndcourts-update -n 20 --no-pager
+```
+
+**Email** uses the `sendmail -t` interface, so any MTA works. Lightweight option —
+msmtp as the system sendmail, relaying through Gmail with an app password:
+
+```bash
+sudo apt-get install -y msmtp msmtp-mta        # provides /usr/sbin/sendmail
+# /etc/msmtprc (chmod 600): account with host smtp.gmail.com, port 587, tls on,
+# user <you>@gmail.com, password <app-password>, and `aliases /etc/aliases`.
+```
+
+Without an MTA, deploys still happen — results just go to journald
+(`journalctl -u ndcourts-update`) instead of email.
+
+**Laptop one-command path** (`deploy/push-db.sh`) SSHes in and runs
+`sudo self-update.sh`. For that to work non-interactively, give the SSH login
+user passwordless sudo for just that script:
+
+```bash
+echo 'jerod ALL=(root) NOPASSWD: /srv/ndcourts/ndcourts-mcp/deploy/self-update.sh' \
+  | sudo tee /etc/sudoers.d/ndcourts-selfupdate
+sudo chmod 440 /etc/sudoers.d/ndcourts-selfupdate
+```
+
+> **Scope of autonomy:** auto-deploy runs only *after* you publish a release, and
+> the `/mcp` health probe auto-rolls-back the DB on gross failure — but it cannot
+> catch subtle data errors. The build-time gates and your pre-publish review remain
+> the control for data correctness. Keep `gh release create` a human act. OS/kernel
+> patching is a separate track (`unattended-upgrades`).
 
 ## Alternative: alongside an existing web server
 

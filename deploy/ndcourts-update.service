@@ -1,0 +1,20 @@
+# systemd unit — scheduled self-update of the deployed MCP server.
+# Driven by ndcourts-update.timer (no [Install]/WantedBy here on purpose).
+# Install to /etc/systemd/system/ alongside the .timer (see deploy/SETUP.md §8a).
+#
+# Runs as root: self-update.sh must systemctl the app and write under
+# /srv/ndcourts; it drops to the ndcourts user for the git/uv steps itself.
+
+[Unit]
+Description=ndcourts-mcp self-update (poll GitHub release, deploy if new)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Optional server-local overrides (e.g. MAIL_TO=you@example.com). The leading
+# '-' makes the file optional, so the unit starts even if it's absent.
+EnvironmentFile=-/etc/ndcourts-update.env
+ExecStart=/srv/ndcourts/ndcourts-mcp/deploy/self-update.sh
+# A redeploy can take a couple of minutes (465 MB download + reinstall + swap).
+TimeoutStartSec=900

@@ -7,14 +7,19 @@
 #   2. ssh <server> 'deploy/update-db.sh'  (safe pull/validate/swap/rollback)
 #
 # Set the SSH target (no default — your server):
-#   NDCOURTS_SSH=ndcourts@mcp.ndconst.org deploy/push-db.sh
-# If update-db.sh lives elsewhere on the server, or needs a login shell:
-#   NDCOURTS_REMOTE_CMD='cd /srv/ndcourts/ndcourts-mcp && deploy/update-db.sh'
+#   NDCOURTS_SSH=jerod@mcp.ndconst.org deploy/push-db.sh
+# Override the remote command if your layout differs:
+#   NDCOURTS_REMOTE_CMD='sudo /path/to/deploy/self-update.sh'
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 : "${NDCOURTS_SSH:?set NDCOURTS_SSH=user@host (the deployed server)}"
-REMOTE_CMD="${NDCOURTS_REMOTE_CMD:-cd /srv/ndcourts/ndcourts-mcp && deploy/update-db.sh}"
+# Drive the same self-update.sh the nightly timer uses: it pins the repo to the
+# just-published tag, REINSTALLS the (non-editable) package — which update-db.sh
+# alone does NOT do — then swaps the DB, restarts, and health-probes. Needs root
+# (it systemctls + writes /srv/ndcourts); the SSH login user must have NOPASSWD
+# sudo for self-update.sh (see deploy/SETUP.md §8a).
+REMOTE_CMD="${NDCOURTS_REMOTE_CMD:-sudo /srv/ndcourts/ndcourts-mcp/deploy/self-update.sh}"
 
 # Preflight: make_release aborts on an existing tag — but only after zipping
 # 548MB. Catch it here first. Each push needs a fresh version: bump `version`

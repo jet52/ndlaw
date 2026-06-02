@@ -1,0 +1,17 @@
+# systemd timer — fire the self-update once daily in an off-peak window.
+# Install to /etc/systemd/system/ then: systemctl enable --now ndcourts-update.timer
+# Inspect: systemctl list-timers ndcourts-update.timer ; journalctl -u ndcourts-update
+
+[Unit]
+Description=Daily ndcourts-mcp self-update check
+
+[Timer]
+# 09:00 in the system timezone (UTC on most VPS ⇒ ~03:00–04:00 US Central).
+OnCalendar=*-*-* 09:00:00
+# Spread the GitHub hit and avoid an exact-second thundering herd.
+RandomizedDelaySec=900
+# If the box was off at fire time, run once at next boot.
+Persistent=true
+
+[Install]
+WantedBy=timers.target
