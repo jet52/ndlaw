@@ -1472,44 +1472,71 @@ def search_faceted(
 
 @mcp.tool()
 def find_opinions_construing(authority: str, limit: int = 50) -> dict:
-    """Find opinions that cite/construe an N.D.C.C. section or court rule.
+    """Find opinions that cite/construe an N.D.C.C. section, court rule, or
+    constitutional provision.
 
     Accepts forms like "14-09-06.2", "N.D.C.C. § 14-09-06.2", "chapter 28-32",
-    "N.D.R.Crim.P. 12", or "Rule 56 NDRCivP". Returns the matched authority
-    (or authorities, if the reference is ambiguous) and the opinions citing it,
-    newest first.
+    "N.D.R.Crim.P. 12", "Rule 56 NDRCivP", or "N.D. Const. art. I, § 8".
+    Returns the matched authority (or authorities, if the reference is
+    ambiguous) and the opinions citing it, newest first. When the cited
+    provision's corpus is installed, also returns the provision's own text.
 
     Args:
-        authority: A statutory or court-rule reference.
+        authority: A statutory, court-rule, or constitutional reference.
         limit: Max opinions per matched authority (default 50, max 200).
     """
     limit = min(limit, 200)
     spec = research.normalize_authority(authority)
-    if not spec["token"]:
-        return {"error": f"Couldn't parse a statute or court-rule reference from: {authority}"}
 
     conn = get_connection(DB_PATH)
     try:
-        # Prefer an exact canonical match; else token-boundary matches.
         matched: list[dict] = []
-        if spec["exact"]:
+        if spec["kind"] == "constitution":
+            # Constitution cites match text_citations by canonical normalized
+            # string (jetcite's normalized form == the canonical citation).
+            # Canonicalize via the corpus if installed so varied input still
+            # matches; report the provision even if no opinion cites it.
+            canonical = authority
+            ccorp = _conn_with_corpora()
+            try:
+                calias = _attached_corpora(ccorp).get("const")
+                if calias:
+                    prow = ccorp.execute(
+                        f"SELECT citation FROM {calias}.provisions WHERE cite_key = ?",
+                        (corpus.cite_key(authority),),
+                    ).fetchone()
+                    if prow:
+                        canonical = prow["citation"]
+            finally:
+                ccorp.close()
             row = conn.execute(
-                "SELECT normalized, url FROM text_citations WHERE cite_type = ? AND normalized = ? LIMIT 1",
-                (spec["kind"], spec["exact"]),
+                "SELECT normalized, url FROM text_citations "
+                "WHERE cite_type = 'constitution' AND normalized = ? LIMIT 1",
+                (canonical,),
             ).fetchone()
-            if row:
-                matched = [{"normalized": row["normalized"], "url": row["url"]}]
-        if not matched:
-            cands = conn.execute(
-                "SELECT DISTINCT normalized, url FROM text_citations "
-                "WHERE cite_type = ? AND normalized LIKE ?",
-                (spec["kind"], f"%{spec['token']}"),
-            ).fetchall()
-            matched = [
-                {"normalized": c["normalized"], "url": c["url"]}
-                for c in cands
-                if research.authority_token_matches(c["normalized"], spec["token"])
-            ]
+            matched = [{"normalized": canonical, "url": row["url"] if row else None}]
+        else:
+            if not spec["token"]:
+                return {"error": f"Couldn't parse a statute, court-rule, or constitutional reference from: {authority}"}
+            # Prefer an exact canonical match; else token-boundary matches.
+            if spec["exact"]:
+                row = conn.execute(
+                    "SELECT normalized, url FROM text_citations WHERE cite_type = ? AND normalized = ? LIMIT 1",
+                    (spec["kind"], spec["exact"]),
+                ).fetchone()
+                if row:
+                    matched = [{"normalized": row["normalized"], "url": row["url"]}]
+            if not matched:
+                cands = conn.execute(
+                    "SELECT DISTINCT normalized, url FROM text_citations "
+                    "WHERE cite_type = ? AND normalized LIKE ?",
+                    (spec["kind"], f"%{spec['token']}"),
+                ).fetchall()
+                matched = [
+                    {"normalized": c["normalized"], "url": c["url"]}
+                    for c in cands
+                    if research.authority_token_matches(c["normalized"], spec["token"])
+                ]
 
         if not matched:
             return {"found": False, "authority": authority,
@@ -1610,16 +1637,44 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed on this server.",
             }
         row = corpus.lookup_provision_version(conn, alias, citation, as_of_date)
+        warning = None
+        if not row and as_of_date:
+            # No captured version covers as_of_date. If the provision exists,
+            # return its earliest captured version with a clear warning rather
+            # than nothing — full historical text before that date may not yet
+            # be captured (the amendment chronology is in get_authority_history).
+            q = f"{alias}."
+            prov = conn.execute(
+                f"SELECT id FROM {q}provisions WHERE cite_key = ?",
+                (corpus.cite_key(citation),),
+            ).fetchone()
+            if prov:
+                row = conn.execute(
+                    f"SELECT p.citation, p.heading, p.status, v.* "
+                    f"FROM {q}provisions p JOIN {q}provision_versions v "
+                    f"  ON v.provision_id = p.id WHERE p.id = ? "
+                    f"ORDER BY COALESCE(v.effective_start,'0000-01-01') ASC LIMIT 1",
+                    (prov["id"],),
+                ).fetchone()
+                if row:
+                    warning = (
+                        f"No captured text is dated on or before {as_of_date}; "
+                        f"returning the earliest captured version (effective "
+                        f"{row['effective_start']}). Earlier text may exist but is "
+                        f"not yet captured — see get_authority_history for the "
+                        f"amendment chronology."
+                    )
         if not row:
             asof = f" in force on {as_of_date}" if as_of_date else ""
             return {"found": False, "citation": citation, "corpus": ckind,
                     "error": f"No provision matching {citation!r}{asof}."}
-        # cross-link: how many opinions construe this authority
+        # cross-link: how many opinions construe this authority (jetcite's
+        # normalized form equals the canonical citation).
         construing = conn.execute(
-            "SELECT COUNT(DISTINCT opinion_id) AS n FROM text_citations WHERE normalized LIKE ?",
-            (f"%{(spec['exact'] or citation)}",),
+            "SELECT COUNT(DISTINCT opinion_id) AS n FROM text_citations WHERE normalized = ?",
+            (row["citation"],),
         ).fetchone()["n"]
-        return {
+        result = {
             "found": True,
             "corpus": ckind,
             "citation": row["citation"],
@@ -1634,6 +1689,9 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
             "text": row["text_content"],
             "opinions_construing": construing,
         }
+        if warning:
+            result["warning"] = warning
+        return result
     finally:
         conn.close()
 
@@ -1677,14 +1735,22 @@ def get_authority_history(citation: str) -> dict:
                 ORDER BY COALESCE(effective_start, '0000-01-01')""",
             (prov["id"],),
         ).fetchall()
-        return {
+        # Amendment events — the full chronology, including amendments whose
+        # prior full text has not yet been captured as a provision_version.
+        amendments = conn.execute(
+            f"""SELECT action, effective_date, raw_date, authority, source_url, raw
+                FROM {q}amendments WHERE provision_id = ?
+                ORDER BY COALESCE(effective_date, '0000-01-01')""",
+            (prov["id"],),
+        ).fetchall()
+        result = {
             "found": True,
             "corpus": ckind,
             "citation": prov["citation"],
             "heading": prov["heading"],
             "status": prov["status"],
             "version_count": len(versions),
-            "versions": [
+            "captured_versions": [
                 {
                     "effective_start": v["effective_start"],
                     "effective_end": v["effective_end"],
@@ -1695,7 +1761,30 @@ def get_authority_history(citation: str) -> dict:
                 }
                 for v in versions
             ],
+            "amendment_count": len(amendments),
+            "amendments": [
+                {
+                    "action": a["action"],
+                    "effective_date": a["effective_date"],
+                    "raw_date": a["raw_date"],
+                    "authority": a["authority"],
+                    "source_url": a["source_url"],
+                }
+                for a in amendments
+            ],
         }
+        if versions and not amendments:
+            result["note"] = (
+                "No amendment events recorded; the captured version is the text "
+                "as published. (Amendment chronology may be incomplete for v1.)"
+            )
+        elif amendments:
+            result["note"] = (
+                "Amendment events list the chronology; full prior text is only "
+                "available for captured_versions. Use lookup_authority(..., "
+                "as_of_date=) to read a captured version."
+            )
+        return result
     finally:
         conn.close()
 

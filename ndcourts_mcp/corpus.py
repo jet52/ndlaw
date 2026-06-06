@@ -70,7 +70,13 @@ def cite_key(citation: str) -> str:
     map to the same key only if they differ solely in cosmetic punctuation.
     """
     s = citation.lower().replace("§", " ")
-    # Keep alphanumerics, hyphens, and dots; turn everything else into spaces.
+    # Drop abbreviation dots ("n.d." -> "nd", "art." -> "art") but keep decimal
+    # dots inside ND numbering ("12.1-20-03"): only remove a dot that follows a
+    # letter, never one between digits.
+    s = re.sub(r"(?<=[a-z])\.", "", s)
+    # Drop section/subsection filler words so "art VI sec 8" == "art. VI, § 8".
+    s = re.sub(r"\b(?:sec|section|subsec|subsection|subdiv|subdivision)\b", " ", s)
+    # Keep alphanumerics, hyphens, and (decimal) dots; everything else -> space.
     s = re.sub(r"[^a-z0-9.\- ]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
@@ -157,6 +163,28 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
         );
 
         CREATE INDEX IF NOT EXISTS idx_corpus_changelog_batch ON changelog(batch);
+
+        -- Amendment EVENTS, distinct from full-text versions. We often know an
+        -- amendment occurred (date + enacting authority) before we have captured
+        -- the full prior text as a provision_version. This table records the
+        -- complete amendment chronology; get_authority_history merges it with
+        -- whatever provision_versions exist. version_id links an event to its
+        -- captured full text when available (else NULL).
+        CREATE TABLE IF NOT EXISTS amendments (
+            id INTEGER PRIMARY KEY,
+            provision_id INTEGER NOT NULL REFERENCES provisions(id),
+            version_id INTEGER REFERENCES provision_versions(id),
+            action TEXT,                 -- 'adopted' | 'amended' | 'repealed' | ...
+            effective_date TEXT,         -- ISO date (NULL if only a raw label parsed)
+            raw_date TEXT,               -- the source's human date string, verbatim
+            authority TEXT,              -- enacting authority, e.g. 'S.L. 1985, ch. 702'
+            source_url TEXT,
+            raw TEXT,                    -- the source annotation, verbatim (provenance)
+            UNIQUE(provision_id, raw)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_amendments_provision ON amendments(provision_id);
+        CREATE INDEX IF NOT EXISTS idx_amendments_date ON amendments(effective_date);
 
         -- FTS over version text + citation/heading for full-text search.
         CREATE VIRTUAL TABLE IF NOT EXISTS provisions_fts USING fts5(

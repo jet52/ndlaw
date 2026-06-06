@@ -1,0 +1,332 @@
+"""Ingest the ND Constitution from ndconst.org into a versioned corpus DB.
+
+ndconst.org is a DokuWiki (CC0) whose pages carry the *current* text of each
+constitutional provision plus amendment annotations of the form::
+
+    [{{laws:1985-sl-ima.pdf|Amended Nov. 6, 1984}} (S.L. 1985, ch. 702)]
+
+We therefore capture, for each section: the current text (as one
+``provision_version`` effective from the most recent amendment, or original
+adoption) and the full amendment *chronology* (one ``amendments`` row per
+annotation, with date + enacting authority + source PDF). Full prior-version
+*text* is not on the section pages; ``get_authority_history`` reports the
+amendment events even where the older text has not yet been captured.
+
+Usage:
+    python -m ndcourts_mcp.ingest_constitution            # dry run (parse, report)
+    python -m ndcourts_mcp.ingest_constitution --apply    # build constitution.db
+    python -m ndcourts_mcp.ingest_constitution --apply --limit 2   # first 2 articles
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+import time
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+from . import corpus
+
+BASE = "https://ndconst.org"
+MEDIA_BASE = f"{BASE}/_media"
+USER_AGENT = "ndcourts-mcp constitution ingest (personal CC0 corpus build)"
+ORIGINAL_ADOPTION = "1889-10-01"  # ND Constitution ratified Oct. 1, 1889
+
+_ROMAN = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
+
+
+def roman_to_int(s: str) -> int | None:
+    s = s.lower().strip()
+    if not s or any(ch not in _ROMAN for ch in s):
+        return None
+    total, prev = 0, 0
+    for ch in reversed(s):
+        val = _ROMAN[ch]
+        total += -val if val < prev else val
+        prev = max(prev, val)
+    return total
+
+
+def fetch_raw(page_path: str, *, delay: float = 0.4) -> str | None:
+    """Fetch a DokuWiki page's raw source. ``page_path`` is a slash path
+    (e.g. 'arti/sec8/start'). Returns None on 404/empty."""
+    url = f"{BASE}/{page_path}?do=export_raw"
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            body = resp.read().decode("utf-8", "replace")
+    except Exception:
+        return None
+    finally:
+        time.sleep(delay)
+    body = body.strip()
+    return body or None
+
+
+def resolve_section_raw(link_id: str, *, delay: float = 0.4) -> tuple[str, str] | None:
+    """Given a DokuWiki link id ('arti:sec8:', 'artiv:sec1', 'artiv:sec13:start'),
+    fetch the section's raw source. Returns (page_path, raw) or None.
+
+    DokuWiki ids vary: a trailing colon means a namespace (→ :start), a bare id
+    may be a page or a namespace, and some already end in 'start'. Try the
+    plausible forms in order."""
+    base = link_id.strip().rstrip(":").replace(":", "/")
+    candidates = []
+    if base.endswith("/start"):
+        candidates = [base]
+    else:
+        candidates = [f"{base}/start", base]
+    for path in candidates:
+        raw = fetch_raw(path, delay=delay)
+        if raw:
+            return path, raw
+    return None
+
+
+# --- parsing ---------------------------------------------------------------
+
+# Lenient: any DokuWiki link [[id|text]] (text non-greedy up to ']]'). Section
+# number + heading are parsed from the link text afterward, because the source
+# format varies ("Section 8. [Heading]", "1. HEADING", and occasionally an
+# unclosed heading bracket).
+_LINK_RE = re.compile(r"\[\[([^|\]]+)\|(.*?)\]\]", re.S)
+# Leading "Section 8." / "8." / "8.1." section number in the link text.
+_LINK_SECNUM_RE = re.compile(r"^\s*(?:Section\s+)?([0-9]+(?:\.[0-9]+)?[A-Za-z]?)\.", re.I)
+
+# [{{laws:FILE|Amended Nov. 6, 1984}} (S.L. 1985, ch. 702)]
+_AMEND_LAWS_RE = re.compile(
+    r"\[\{\{laws:([^|}\s]+)(?:\?[^|}]*)?\s*\|\s*([^}]+?)\s*\}\}\s*(?:\(([^)]*)\))?\s*\]"
+)
+# Annotations without a media link: [Amended Nov. 8, 1960 (S.L. ...)] etc.
+_AMEND_PLAIN_RE = re.compile(
+    r"\[(Amended|Adopted|Added|Initiated|Repealed|Approved)\b([^\]]*)\]", re.I
+)
+
+_DATE_FORMATS = ("%b. %d, %Y", "%B %d, %Y", "%b %d, %Y", "%B %d %Y", "%b. %d %Y")
+_DATE_IN_TEXT_RE = re.compile(
+    r"((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},?\s+\d{4})"
+)
+_ACTION_RE = re.compile(r"\b(Amended|Adopted|Added|Initiated|Repealed|Approved)\b", re.I)
+_LEADING_SECNUM_RE = re.compile(r"^\s*Sec(?:tion|\.)?\s+[0-9A-Za-z.\-]+\.\s*", re.I)
+
+
+def parse_date(label: str) -> tuple[str | None, str | None]:
+    """Extract (iso_date, raw_date_string) from an amendment label."""
+    m = _DATE_IN_TEXT_RE.search(label)
+    if not m:
+        return None, None
+    raw = m.group(1).strip()
+    norm = raw.replace(",", "")
+    for fmt in (f.replace(",", "") for f in _DATE_FORMATS):
+        try:
+            return datetime.strptime(norm, fmt).strftime("%Y-%m-%d"), raw
+        except ValueError:
+            continue
+    return None, raw
+
+
+def parse_amendments(raw: str) -> tuple[str, list[dict]]:
+    """Return (clean_text, amendments). Strips amendment annotations from the
+    body and returns each as a dict with action/date/authority/source/raw."""
+    events: list[dict] = []
+    spans: list[tuple[int, int]] = []
+
+    for m in _AMEND_LAWS_RE.finditer(raw):
+        file_, label, authority = m.group(1), m.group(2).strip(), (m.group(3) or "").strip()
+        action_m = _ACTION_RE.search(label)
+        iso, rawdate = parse_date(label)
+        events.append({
+            "action": action_m.group(1).lower() if action_m else None,
+            "effective_date": iso,
+            "raw_date": rawdate,
+            "authority": authority or None,
+            "source_url": f"{MEDIA_BASE}/laws/{file_}",
+            "raw": m.group(0).strip(),
+        })
+        spans.append(m.span())
+
+    for m in _AMEND_PLAIN_RE.finditer(raw):
+        # skip if this span overlaps a laws-annotation already captured
+        if any(s <= m.start() < e for s, e in spans):
+            continue
+        action, rest = m.group(1).lower(), m.group(2)
+        iso, rawdate = parse_date(rest)
+        auth_m = re.search(r"\(([^)]*)\)", rest)
+        events.append({
+            "action": action,
+            "effective_date": iso,
+            "raw_date": rawdate,
+            "authority": auth_m.group(1).strip() if auth_m else None,
+            "source_url": None,
+            "raw": m.group(0).strip(),
+        })
+        spans.append(m.span())
+
+    # Build clean text by removing annotation spans.
+    keep, last = [], 0
+    for s, e in sorted(spans):
+        keep.append(raw[last:s])
+        last = e
+    keep.append(raw[last:])
+    text = "".join(keep)
+    text = _LEADING_SECNUM_RE.sub("", text)
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text, events
+
+
+def article_citation(roman: str) -> str:
+    return f"N.D. Const. art. {roman.upper()}"
+
+
+# --- enumeration -----------------------------------------------------------
+
+# [[arti|Article I. Declaration of Rights]]
+_ARTICLE_LINK_RE = re.compile(
+    r"\[\[(art[ivxlcdm]+)\|\s*Article\s+([IVXLCDM]+)\.\s*([^\]]+?)\s*\]\]", re.I
+)
+
+
+def enumerate_articles() -> list[dict]:
+    raw = fetch_raw("start")
+    if not raw:
+        raise RuntimeError("could not fetch ndconst.org start page")
+    arts = []
+    for m in _ARTICLE_LINK_RE.finditer(raw):
+        arts.append({"id": m.group(1).lower(), "roman": m.group(2).upper(),
+                     "title": m.group(3).strip()})
+    return arts
+
+
+def enumerate_sections(article_id: str, *, delay: float) -> list[dict]:
+    raw = fetch_raw(article_id, delay=delay)
+    if not raw:
+        return []
+    secs = []
+    for m in _LINK_RE.finditer(raw):
+        link_id, text = m.group(1).strip(), m.group(2).strip()
+        # Only links into this article's namespace (skip footer/URL links).
+        if not link_id.lower().startswith(article_id.lower() + ":"):
+            continue
+        num_m = _LINK_SECNUM_RE.match(text)
+        if not num_m:
+            continue
+        secnum = num_m.group(1)
+        rest = text[num_m.end():].strip()
+        # Heading is the bracketed phrase if present, else the trailing text.
+        hm = re.search(r"\[([^\]]*)\]?", rest)
+        heading = (hm.group(1) if hm else rest).strip().rstrip(".]").strip()
+        secs.append({"link_id": link_id, "secnum": secnum, "heading": heading})
+    return secs
+
+
+# --- DB build --------------------------------------------------------------
+
+def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict:
+    conn = corpus.get_corpus_connection(db_path, must_exist=False)
+    corpus.create_corpus_schema(conn)
+    articles = enumerate_articles()
+    if limit:
+        articles = articles[:limit]
+
+    n_prov = n_ver = n_amend = 0
+    for art in articles:
+        secs = enumerate_sections(art["id"], delay=delay)
+        for sec in secs:
+            got = resolve_section_raw(sec["link_id"], delay=delay)
+            if not got:
+                print(f"  WARN: no page for {sec['link_id']}", file=sys.stderr)
+                continue
+            _path, raw = got
+            text, events = parse_amendments(raw)
+            if not text:
+                print(f"  WARN: empty text for {sec['link_id']}", file=sys.stderr)
+                continue
+            citation = f"{article_citation(art['roman'])}, § {sec['secnum']}"
+            # effective_start = latest amendment date, else original adoption.
+            dates = [e["effective_date"] for e in events if e["effective_date"]]
+            eff_start = max(dates) if dates else ORIGINAL_ADOPTION
+            # Repealed-in-place sections list "Repealed." as their text, or carry
+            # a 'repealed' amendment event.
+            repealed = bool(re.match(r"(?i)^\s*repealed\b", text)) or any(
+                e["action"] == "repealed" for e in events
+            )
+            status = "repealed" if repealed else "active"
+            pid = conn.execute(
+                "INSERT INTO provisions (corpus, citation, cite_key, heading, status) "
+                "VALUES (?,?,?,?,?)",
+                ("const", citation, corpus.cite_key(citation), sec["heading"] or None, status),
+            ).lastrowid
+            n_prov += 1
+            vid = conn.execute(
+                "INSERT INTO provision_versions "
+                "(provision_id, effective_start, effective_end, text_content, "
+                " source_authority, source_url, batch) VALUES (?,?,?,?,?,?,?)",
+                (pid, eff_start, None, text,
+                 "current text (ndconst.org)", f"{BASE}/{_path}", batch),
+            ).lastrowid
+            conn.execute("UPDATE provisions SET current_version_id=? WHERE id=?", (vid, pid))
+            corpus.index_version_fts(conn, vid, citation, sec["heading"], text)
+            n_ver += 1
+            for e in events:
+                conn.execute(
+                    "INSERT OR IGNORE INTO amendments "
+                    "(provision_id, version_id, action, effective_date, raw_date, "
+                    " authority, source_url, raw) VALUES (?,?,?,?,?,?,?,?)",
+                    (pid, None, e["action"], e["effective_date"], e["raw_date"],
+                     e["authority"], e["source_url"], e["raw"]),
+                )
+                n_amend += 1
+        conn.commit()
+        print(f"  art {art['roman']}: {len(secs)} sections")
+
+    corpus.create_corpus_schema(conn)  # no-op if exists; keep idempotent
+    conn.execute(
+        "INSERT INTO provenance (operation, command, source_paths, rows_affected, notes) "
+        "VALUES (?,?,?,?,?)",
+        ("ingest_constitution", batch, BASE, n_prov,
+         f"{n_prov} provisions, {n_ver} versions, {n_amend} amendment events"),
+    )
+    conn.commit()
+    conn.close()
+    return {"provisions": n_prov, "versions": n_ver, "amendments": n_amend}
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="Ingest ND Constitution from ndconst.org")
+    ap.add_argument("--apply", action="store_true", help="write the DB (default: dry run)")
+    ap.add_argument("--db", type=Path, default=None, help="output DB path")
+    ap.add_argument("--limit", type=int, default=None, help="first N articles only")
+    ap.add_argument("--delay", type=float, default=0.4, help="seconds between requests")
+    args = ap.parse_args()
+
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    batch = f"const-ingest-{stamp}"
+
+    if not args.apply:
+        # dry run: enumerate + parse a couple sections, report, write nothing
+        arts = enumerate_articles()
+        print(f"Found {len(arts)} articles: {', '.join(a['roman'] for a in arts)}")
+        sample = enumerate_sections(arts[0]["id"], delay=args.delay)
+        print(f"Article {arts[0]['roman']} has {len(sample)} sections; sample:")
+        for sec in sample[:3]:
+            got = resolve_section_raw(sec["link_id"], delay=args.delay)
+            if not got:
+                print(f"  {sec['secnum']}: <no page>")
+                continue
+            text, events = parse_amendments(got[1])
+            print(f"  § {sec['secnum']} [{sec['heading']}] — {len(text)} chars, "
+                  f"{len(events)} amendment(s): {[e['effective_date'] for e in events]}")
+        print("\nDry run only. Re-run with --apply to build the DB.")
+        return
+
+    db_path = args.db or corpus.resolve_corpus_db_path("const")
+    print(f"Building Constitution corpus → {db_path}")
+    stats = build(db_path, limit=args.limit, delay=args.delay, batch=batch)
+    print(f"Done: {stats}")
+
+
+if __name__ == "__main__":
+    main()
