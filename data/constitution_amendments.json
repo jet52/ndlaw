@@ -97,6 +97,53 @@
    "discrepancies": "Base text taken from the authoritative session-law operative passage (marker line 148). OCR artifacts corrected against the three published codes and the parallel referral resolution (marker line 13): 'All property.' -> 'All property,'; restored dropped comma in 'villages, townships and districts'; 'use<l' -> 'used'; 'provicled' -> 'provided'. (1) 'carrying of persons, property or messages': the operative session-law text and manual1907 (the Art. IV amendment) BOTH include 'property'; cl1913 (line 12892) and manual1919 (line 10288) omit 'property' — treated as a later published-code omission; 'property' retained per the operative text. (2) Final clause 'over which any part ... within such counties, towns, villages, townships and districts' omits 'cities' in the operative text AND in all three published codes; only the earlier referral resolution (marker line 13) had 'cities' there — the operative/ratified reading (no 'cities') is used. (3) The three published codes insert commas after 'railroads', 'state', and 'value' ('roadbed, rails and rolling stock of all railroads, and...'; 'operated in this state, and used...'; 'actual value, and such assessed value...'); the operative session-law marker text lacks these commas. The session-law text governs, so they are not added; the difference is non-substantive punctuation."
   },
   {
+   "number": "5 & 6",
+   "election_date": "1904-11-08",
+   "effective_date": "1904-12-08",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 215",
+     "heading": "State institutions (deaf-and-dumb school; insane hospital / feeble-minded institution)",
+     "text": "The following public institutions of the State are permanently located\nat the places hereinafter named, each to have the lands specifically\ngranted to it by the United States, in the Act of Congress, approved\nFebruary 22, 1889, to be disposed of and used in such manner as the\nLegislative Assembly may prescribe, subject to the limitations\nprovided in the article on school and public lands contained in this\nConstitution.\n\nFirst. The seat of government at the city of Bismarck in the county of\nBurleigh.\n\nSecond. The State University and the School of Mines at the city of\nGrand Forks, in the county of Grand Forks.\n\nThird. The Agricultural College at the city of Fargo in the county of\nCass.\n\nFourth. A State Normal School at the city of Valley City, in the\ncounty of Barnes; and the Legislative Assembly in apportioning the\ngrant of eighty thousand acres of land for Normal schools made in the\nAct of Congress referred to shall grant to the said Normal School at\nValley City as aforementioned, fifty thousand (50,000) acres, and said\nlands are hereby appropriated to said institution for that purpose.\n\nFifth. The school for the deaf and dumb of North Dakota, at the city of Devils Lake, in the county of Ramsey.\n\nSixth. A State Reform School at the city of Mandan in the county of\nMorton.\n\nSeventh. A State Normal School at the city of Mayville, in the county\nof Traill. And the Legislative Assembly in apportioning the grant of\nlands made by Congress, in the act aforesaid for State Normal Schools,\nshall assign thirty thousand acres to the institution hereby located\nat Mayville, and said lands are hereby appropriated for said purpose.\n\nEighth. A state hospital for the insane at the City of Jamestown, in the County of Stutsman. And the legislative assembly shall appropriate twenty thousand acres of the grant of lands made by the act of congress aforesaid for \"Other Educational and Charitable Institutions\" to the benefit and for the endowment of said institution, and there shall be located at or near the City of Grafton, in the County of Walsh, an institution for the feeble minded, on the grounds purchased by the secretary of the interior for a penitentiary building."
+    }
+   ],
+   "authority": "Amendments V & VI, ratified Nov. 8, 1904",
+   "source_urls": [
+    "https://www.legis.nd.gov/assembly/sessionlaws/1903/sl1903.pdf#page=292"
+   ],
+   "sources_verified": [
+    "marker OCR of S.L. 1903 (subdivisions Fifth & Eighth)",
+    "1954 Blue Book integrated §215 (Fifth/Eighth confirmed)",
+    "assembled onto validated 1889 base §215"
+   ],
+   "confidence": "high",
+   "notes": "Subdivision-level amendments (Fifth: deaf-and-dumb school; Eighth: separates insane hospital at Jamestown from feeble-minded institution at Grafton) assembled into the full §215 from the 1889 base; other subdivisions unchanged. Single 1904-12-08 version."
+  },
+  {
+   "number": "7",
+   "election_date": "1904-11-08",
+   "effective_date": "1904-12-08",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 176",
+     "heading": "Taxation; grain in elevators",
+     "text": "Laws shall be passed taxing by uniform rule all property according to\nits true value in money, but the property of the United States and the\nstate, county and municipal corporations, both real and personal,\nshall be exempt from taxation, and the Legislative Assembly shall by a\ngeneral law exempt from taxation property used exclusively for school,\nreligions, cemetery or charitable purposes and personal property to\nany amount not exceeding in value two hundred dollars for each\nindividual liable to taxation; but the Legislative Assembly may, by\nlaw, provide for the payment of a per centum of gross earnings of\nrailroad companies to be paid in lieu of all State, county, township\nand school taxes on property exclusively used in and about the\nprosecution of the business of such companies as common carriers, but\nno real estate of said corporations shall be exempted from taxation in\nthe same manner, and on the same basis as other real estate is taxed,\nexcept roadbed, right of way, shops and buildings used exclusively in\ntheir business as common carriers, and whenever and so long as such\nlaw providing for the payment of a per centum on earnings shall be in\nforce, that part of section 179 of this article relating to assessment\nof railroad property shall cease to be in force.\n\nThe legislative assembly may further provide that grain grown within the state and held therein in elevators, warehouses and granaries may be taxed at a fixed rate."
+    }
+   ],
+   "authority": "Amendment VII, ratified Nov. 8, 1904",
+   "source_urls": [
+    "https://www.legis.nd.gov/assembly/sessionlaws/1903/sl1903.pdf#page=291"
+   ],
+   "sources_verified": [
+    "marker OCR of S.L. 1903 (appended clause)",
+    "assembled onto validated 1889 base §176"
+   ],
+   "confidence": "high",
+   "notes": "Amendment appended a grain-in-elevators taxation clause to §176; assembled onto the 1889 base §176."
+  },
+  {
    "number": "8",
    "election_date": "1908-11-03",
    "effective_date": "1908-12-03",
@@ -248,51 +295,1172 @@
    "discrepancies": "No substantive disagreement. Only the 1913 Compiled Laws has an OCR artifact at the final word ('^e^utors'), resolved as 'elevators' by agreement of the marker source and the 1919 Legislative Manual. The 1907 Legislative Manual (through 1906) does not contain this article, as expected for a 1912 amendment. Capitalization of 'states/States' varies by edition; marker source and 1913 use lowercase 'states', adopted here as the session-law text."
   },
   {
-   "number": "5 & 6",
-   "election_date": "1904-11-08",
-   "effective_date": "1904-12-08",
+   "number": "XV",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
    "type": "amend_section",
    "changes": [
     {
-     "target": "N.D. Const. § 215",
-     "heading": "State institutions (deaf-and-dumb school; insane hospital / feeble-minded institution)",
-     "text": "The following public institutions of the State are permanently located\nat the places hereinafter named, each to have the lands specifically\ngranted to it by the United States, in the Act of Congress, approved\nFebruary 22, 1889, to be disposed of and used in such manner as the\nLegislative Assembly may prescribe, subject to the limitations\nprovided in the article on school and public lands contained in this\nConstitution.\n\nFirst. The seat of government at the city of Bismarck in the county of\nBurleigh.\n\nSecond. The State University and the School of Mines at the city of\nGrand Forks, in the county of Grand Forks.\n\nThird. The Agricultural College at the city of Fargo in the county of\nCass.\n\nFourth. A State Normal School at the city of Valley City, in the\ncounty of Barnes; and the Legislative Assembly in apportioning the\ngrant of eighty thousand acres of land for Normal schools made in the\nAct of Congress referred to shall grant to the said Normal School at\nValley City as aforementioned, fifty thousand (50,000) acres, and said\nlands are hereby appropriated to said institution for that purpose.\n\nFifth. The school for the deaf and dumb of North Dakota, at the city of Devils Lake, in the county of Ramsey.\n\nSixth. A State Reform School at the city of Mandan in the county of\nMorton.\n\nSeventh. A State Normal School at the city of Mayville, in the county\nof Traill. And the Legislative Assembly in apportioning the grant of\nlands made by Congress, in the act aforesaid for State Normal Schools,\nshall assign thirty thousand acres to the institution hereby located\nat Mayville, and said lands are hereby appropriated for said purpose.\n\nEighth. A state hospital for the insane at the City of Jamestown, in the County of Stutsman. And the legislative assembly shall appropriate twenty thousand acres of the grant of lands made by the act of congress aforesaid for \"Other Educational and Charitable Institutions\" to the benefit and for the endowment of said institution, and there shall be located at or near the City of Grafton, in the County of Walsh, an institution for the feeble minded, on the grounds purchased by the secretary of the interior for a penitentiary building."
+     "target": "N.D. Const. § 25",
+     "heading": "Legislative authority; initiative and referendum",
+     "text": "The legislative authority of the State of North Dakota shall be vested in a legislative assembly, consisting of a senate and house of representatives, but the people reserve to themselves power to propose laws and to enact or reject the same at the polls, independent of the legislative assembly, and also reserve power, at their own option, to approve or reject at the polls, any act, item, section or part of any act or measure passed by the legislative assembly. The first power reserved by the people is the initiative, or the power to propose measures for enactment into laws, and at least ten per cent. of the legal voters to be secured in a majority of the counties of this state shall be required to propose any measure by initiative petition, and every such petition shall include the full text of the measure so proposed. Initiative petitions shall be filed with the Secretary of State not less than thirty days before any regular session of the legislative assembly; he shall transmit the same to the legislative assembly as soon as it convenes. Such initiative measure shall take precedence over all other measures in the legislative assembly except appropriation bills, and shall be either enacted or rejected without change or amendment by the legislative assembly within forty days. If any such initiative measure shall be enacted by the legislative assembly it shall be subject to referendum petition or it may be referred by the legislative assembly to the people for approval or rejection. If it is rejected or no action is taken upon it by the legislative assembly within said forty days, the Secretary of State shall submit it to the people for approval or rejection at the next ensuing regular general election. The legislative assembly may reject any measure so proposed by initiative petition and propose a different one to accomplish the same purpose, and in any such event both measures shall be submitted by the Secretary of State to the people for approval or rejection at the next ensuing regular election. If conflicting measures submitted to the people at the next ensuing election shall be approved by a majority of the votes severally cast for and against the same, the one receiving the highest number of affirmative votes shall thereby become valid, and the other shall thereby be rejected. The second power is the referendum, or the power to order any act, item, or part of any act to be referred to the people for their approval or rejection at the polls, and it may be ordered (except as to laws necessary for the immediate preservation of the public peace, health or safety), as to any measure or any parts, items or sections of any measures passed by the legislative assembly either by a petition signed by ten per cent. of the legal voters of the state from a majority of the counties, or by the legislative assembly if a majority of the members elect vote therefor. When it is necessary for the immediate preservation of the public peace, health or safety that a law shall become effective without delay, such necessity and the facts creating the same shall be stated in one section of the bill, and if upon aye and nay vote in each house two-thirds of all the members elected to each house shall vote on a separate roll call in favor of the said law going into instant operation for the immediate preservation of the public peace, health or safety, such law shall become operative upon approval by the Governor.\n\nThe filing of a referendum petition against one or more items, sections or parts of an act shall not delay the remainder of that act from becoming operative. Referendum petitions against measures passed by the legislative assembly shall be filed with the Secretary of State not more than ninety days after the final adjournment of the session of the legislative assembly which passed the measure on which the referendum is demanded. The veto power of the Governor shall not extend to measures referred to the people. All elections on measures referred to the people of the state shall be had at biennial regular elections, except as provision may be made by law for a special election or elections. Any measure referred to the people shall take effect when it is approved by a majority of the votes cast thereon and not otherwise, and shall be in force from the date of the official declaration of the vote.\n\nThe enacting clause of all the initiative bills shall be, \"Be it enacted by the people of the State of North Dakota.\" This Section shall not be construed to deprive any member of the legislative assembly of the right to introduce any measure. The whole number of votes cast for Secretary of State at the regular election last preceding the filing of any petition for the initiative and referendum shall be the basis upon which the number of legal voters necessary to sign such petition shall be counted.\n\nPetitions and orders for the initiative and for the referendum shall be filed with the Secretary of State, and in submitting the same to the people he and all other officers shall be guided by the general laws and the acts submitting this amendment until legislation shall be especially provided therefor.\n\nThis amendment shall be self executing, but legislation may be enacted to facilitate its operation."
     }
    ],
-   "authority": "Amendments V & VI, ratified Nov. 8, 1904",
-   "source_urls": [
-    "https://www.legis.nd.gov/assembly/sessionlaws/1903/sl1903.pdf#page=292"
-   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
    "sources_verified": [
-    "marker OCR of S.L. 1903 (subdivisions Fifth & Eighth)",
-    "1954 Blue Book integrated §215 (Fifth/Eighth confirmed)",
-    "assembled onto validated 1889 base §215"
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (session-law marker OCR, ARTICLE XV / § 25, primary)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution snapshot)",
+    "/tmp/cl1913.txt (1913 Compiled Laws — earlier/variant printing)"
    ],
    "confidence": "high",
-   "notes": "Subdivision-level amendments (Fifth: deaf-and-dumb school; Eighth: separates insane hospital at Jamestown from feeble-minded institution at Grafton) assembled into the full §215 from the 1889 base; other subdivisions unchanged. Single 1904-12-08 version."
+   "variants": [
+    {
+     "location": "at least ten per cent. of the legal voters",
+     "enacted_session_law": "at least ten per cent. (period after 'cent', appearing twice: also 'signed by ten per cent. of the legal voters')",
+     "other_publications": "off1925 prints 'ten per cent' with NO period both times; cl1913 also prints 'ten per cent' with no period. The session-law marker shows the abbreviating period."
+    },
+    {
+     "location": "This amendment shall be self executing",
+     "enacted_session_law": "self executing (no hyphen)",
+     "other_publications": "off1925 prints 'self-executing' (hyphenated). cl1913 prints 'self executing' (no hyphen), matching the session law."
+    },
+    {
+     "location": "counties of this state shall be required",
+     "enacted_session_law": "counties of this state",
+     "other_publications": "off1925 reads 'counties of this state'; cl1913 reads 'counties of the state'."
+    },
+    {
+     "location": "the basis upon which the number of legal voters",
+     "enacted_session_law": "the whole number of votes cast for Secretary of State ... shall be the basis upon which the number of legal voters necessary to sign such petition shall be counted",
+     "other_publications": "off1925 agrees ('the whole number of votes cast ... the basis upon which'). cl1913 differs materially: 'the whole number of votes for secretary of state ... the basis on which' and 'for the initiative or for the referendum' (vs. session law 'for the initiative and referendum')."
+    },
+    {
+     "location": "if upon aye and nay vote in each house",
+     "enacted_session_law": "aye and nay vote",
+     "other_publications": "off1925 agrees 'aye and nay vote'; cl1913 differs: 'aye and no vote'."
+    },
+    {
+     "location": "from a majority of the counties, or by the legislative assembly if a majority of the members elect",
+     "enacted_session_law": "by the legislative assembly if a majority (no comma after 'assembly')",
+     "other_publications": "off1925 agrees (no comma); cl1913 inserts a comma: 'by the legislative assembly, if a majority'."
+    },
+    {
+     "location": "until legislation shall be especially provided therefor",
+     "enacted_session_law": "especially provided therefor",
+     "other_publications": "off1925 agrees ('especially'); cl1913 reads 'specially provided therefor'."
+    }
+   ],
+   "discrepancies": "No unresolved discrepancy as to the ENACTED 1914 text: the session-law marker and the 1925 official snapshot agree throughout (confidence high). The 1913 Compiled Laws (cl1913) reproduces a different, earlier draft of § 25 with several substantive word-level differences ('the state' vs 'this state'; 'aye and no vote' vs 'aye and nay vote'; 'votes for secretary of state' vs 'votes cast for Secretary of State'; 'initiative or for the referendum' vs 'initiative and referendum'; 'specially' vs 'especially'; an extra 'and' in 'filed with the secretary of state and not less than thirty days'). These cl1913 readings are NOT adopted because cl1913 predates and does not reflect the 1914 enactment. Two genuine cross-publication style divergences flagged as variants for human review: the abbreviating period in 'ten per cent.' (present in session law, absent in off1925/cl1913) and 'self executing' vs off1925's hyphenated 'self-executing'. OCR garble in the marker corrected against off1925: 'inde pendent'→'independent', 'effect ve'→'effective'. manual1907, manual1919, and bb1954 did not contain a legible matching § 25 passage for this provision."
   },
   {
-   "number": "7",
-   "election_date": "1904-11-08",
-   "effective_date": "1904-12-08",
+   "number": "XVI",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 202",
+     "heading": "Initiative petitions for constitutional amendments (Article 16; amends § 202)",
+     "text": "§ 202. This Constitution may be amended as follows:\n\nFirst: Any amendment or amendments to this Constitution may be proposed in either house of the legislative assembly; and if the same shall be agreed to by a majority of the members elected to each of the two houses, such proposed amendments shall be entered on the journal of the house with the yeas and nays taken thereon, and referred to the legislative assembly to be chosen at the next general election, and shall be published, as provided by law, for three months previous to the time of making such choice, and if the legislative assembly so next chosen as aforesaid such proposed amendment or amendments shall be agreed to by a majority of all members elected to each house, then it shall be the duty of the legislative assembly to submit such proposed amendment or amendments to the people in such manner and at such times as the legislative assembly shall provide; and if the people shall approve and ratify such amendment or amendments by a majority of the electors qualified to vote for members of the legislative assembly voting thereon, such amendment or amendments shall become a part of the Constitution of this state. If two or more amendments shall be submitted at the same time, they shall be submitted in such manner that the electors shall vote for or against each of such amendments separately.\n\nSecond: Any amendment or amendments to this Constitution may also be proposed by the people by the filing with the Secretary of State, at least six months previous to a general election, of an initiative petition containing the signatures of at least twenty-five per cent. of the legal voters in each of not less than one-half of the counties of the state. When such petition has been properly filed the proposed amendment or amendments shall be published as the legislature may provide, for three months previous to the general election, and shall be placed upon the ballot to be voted upon by the people at the next general election. Should any such amendment or amendments proposed by initiative petition and submitted to the people receive a majority of all the legal votes cast at such general election, such amendment or amendments shall be referred to the next legislative assembly, and should such proposed amendment or amendments be agreed upon by a majority of all the members elected to each house, such amendment or amendments shall become a part of the Constitution of this state. Should any amendment or amendments proposed by initiative petition and receiving a majority of all the votes cast at the general election as herein provided, but failing to receive approval by the following legislative assembly to which it has been referred, such amendement or amendments shall again be submitted to the people at the next general election for their approval or rejection as at the previous general election. Should such amendment or amendments receive a majority of all the legal votes cast at such succeeding general election such amendment or amendments at once become a part of the Constitution of this state. Any amendment or amendments proposed by initiative petition and failing of adoption as herein provided, shall not be again considered until the expiration of six years."
+    }
+   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (session-law marker OCR, ARTICLE XVI / § 202)",
+    "/tmp/sl1915.pdf pp. 431-432 (re-OCR at 400 and 600 DPI)",
+    "/tmp/cl1913.txt (1913 Compiled Laws)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov snapshot, expressly labels this Article 16 of Amendments, ratified 1914)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, partial corroboration)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "at least twenty-five per cent. of the legal voters",
+     "enacted_session_law": "twenty-five per cent. (terminal period after \"cent\")",
+     "other_publications": "Both the 1913 Compiled Laws (/tmp/cl1913.txt) and the 1925 official snapshot (/tmp/off1925.txt) print \"twenty-five per cent\" with NO terminal period. The session law's period is confirmed by re-OCR at 400 and 600 DPI."
+    },
+    {
+     "location": "to which it has been referred, such amendement or amendments shall again be submitted",
+     "enacted_session_law": "such amendement (spelled with an extra interior \"e\")",
+     "other_publications": "Both 1913 Compiled Laws and 1925 official snapshot read \"such amendment\" (normal spelling). The misspelling is in the session law and is confirmed by the marker OCR plus re-OCR at 400 and 600 DPI; preserved verbatim as a genuine session-law typo."
+    }
+   ],
+   "discrepancies": "No wording disagreements among sources; all four publications carry identical substantive text. Two punctuation/spelling divergences are recorded in variants: (1) session-law \"per cent.\" vs. codes' \"per cent\"; (2) session-law \"amendement\" vs. codes' \"amendment\". OCR artifacts that were corrected (not divergences): \"each-of\" -> \"each of\" (line-spacing hyphen, both codes confirm no hyphen); \"bythe\"/\"by .the people\" -> \"by the people\"; \"<sup>a</sup>\" -> \"a\"; inter-word line-break splits (\"pro posed\", \"amend ments\", \"pro: vided\", \"here by\"). Note on scope: affected section is 202 (designated Article 16 of Amendments); this amend_section reflects the full post-amendment text of § 202 as printed in the session law and the 1925 official snapshot's express recitation of Article 16. The 1925 snapshot notes § 202 was later superseded by Article 28 (1918), but Article 16 (1914) is the text transcribed here."
+  },
+  {
+   "number": "XVII",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 216",
+     "heading": "Permanent location of state institutions; School for the Blind at Bathgate; School of Forestry at Bottineau",
+     "text": "§ 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred and seventy thousand acres of land made by the United States for \"other educational and charitable institutions,\" as is allotted by law, viz:\n\nFIRST: A Soldiers' Home, when located, or such other charitable institution as the legislative assembly may determine at Lisbon, in the County of Ransom, with a grant of forty thousand acres of land.\n\nSECOND: The School for the Blind of North Dakota, at Bathgate, in the County of Pembina, with a grant of thirty thousand acres.\n\nTHIRD: An Industrial School and School for Manual Training, or such other educational or charitable institution as the legislative assembly may provide, at the Town of Ellendale, in the County of Dickey, with a grant of forty thousand acres.\n\nFOURTH: A School of Forestry, or such other institution as the legislative assembly may determine, at the City of Bottineau in the County of Bottineau.\n\nFIFTH: A Scientific School, or such other educational or charitable institution as the legislative assembly may prescribe, at the City of Wahpeton, County of Richland, with a grant of forty thousand acres.\n\nSIXTH: A State Normal School, at the City of Minot in the County of Ward; provided, that no other institution, of a character similar to any one of those located by this Article, shall be established or maintained without a revision of this Constitution."
+    }
+   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (PRIMARY — session-law marker OCR, ARTICLE XVII, § 216, lines 46-64)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, ARTICLE XVII, SEC. 216, lines 10657-10685)",
+    "/tmp/cl1913.txt (1913 Compiled Laws, amendment-to-§216 block, lines 13328-13352, Approved March 10, 1913)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "viz:",
+     "enacted_session_law": "as is allotted by law, viz:",
+     "other_publications": "1913 Compiled Laws (cl1913) prints \"viz.:\" with a period after viz; manual1919 prints \"viz:\""
+    },
+    {
+     "location": "may determine at Lisbon, in the County of Ransom",
+     "enacted_session_law": "as the legislative assembly may determine at Lisbon, in the County of Ransom (no comma after 'determine')",
+     "other_publications": "cl1913 inserts a comma: \"may determine, at Lisbon, in the county\"; manual1919 reads \"may determine at Lisbon,' in\" (no comma after determine, matching session law apart from a stray OCR apostrophe)"
+    },
+    {
+     "location": "FIRST / SECOND / THIRD heading capitalization and institution names",
+     "enacted_session_law": "Headings and institution names capitalized: \"FIRST: A Soldiers' Home ...\", \"SECOND: The School for the Blind of North Dakota ...\", \"An Industrial School and School for Manual Training\", \"A School of Forestry\", \"A Scientific School\", \"A State Normal School\"",
+     "other_publications": "cl1913 (1913 Compiled Laws) renders headings and institution names in lower case: \"First. A soldiers' home ...\", \"Second. The school for the blind of North Dakota ...\", \"school of forestry\", \"scientific school\", \"state normal school\" (and uses a period after each ordinal rather than a colon)"
+    },
+    {
+     "location": "at the City of Bottineau in the County of Bottineau",
+     "enacted_session_law": "at the City of Bottineau in the County of Bottineau (no comma before 'in')",
+     "other_publications": "cl1913 inserts a comma: \"at the city of Bottineau, in the county of Bottineau\""
+    },
+    {
+     "location": "at the City of Minot in the County of Ward; provided",
+     "enacted_session_law": "at the City of Minot in the County of Ward; provided, that no other institution, of a character similar (no comma before 'in'; semicolon before provided)",
+     "other_publications": "cl1913 reads \"at the city of Minot, in the county of Ward provided, that\" (comma before 'in', and an OCR-garbled \"Ward ; ...\" with the semicolon displaced)"
+    }
+   ],
+   "discrepancies": "No substantive disagreement among the three sources carrying this version. All divergences are punctuation/capitalization (recorded in variants): cl1913 uses lower-case institution names and ordinal-with-period (\"First.\") whereas the session law and the 1919 Manual use capitalized names and \"FIRST:\". The 1925 official snapshot (off1925) and 1954 Blue Book (bb1954) do not contain this version of § 216 at all — they carry the post-1916 amended text (Blind Asylum at an elector-chosen Pembina site; School of Forestry sited among McHenry/Ward/Bottineau/Rolette; added Dickinson normal school and second insane hospital), so they could not be used to cross-check this 1914 reading. OCR fixes applied to the marker (each confirmed against manual1919 and/or cl1913): \\\"per manently\\\"->\\\"permanently\\\", \\\"char itable\\\"->\\\"charitable\\\", \\\"Bath\\\\ngate\\\"->\\\"Bathgate\\\", stray period in \\\"at Lisbon. in\\\"->comma \\\"at Lisbon, in\\\", and the \\\"<sup>a</sup>\\\" markup -> \\\"a\\\". None of these are genuine period spellings.",
+   "status": "pending",
+   "pending_reason": "§216 institutions list: same-year amendments (XXI/XXII) restate the section non-cumulatively (XXI has Dickinson not Blind/Forestry; XXII has alt-hospital only). Needs integrated reconciliation."
+  },
+  {
+   "number": "XVIII",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 185",
+     "heading": "Internal improvements; state aid; appropriations for public highways",
+     "text": "§ 185. Neither the state nor any county, city, township, town, school district or any other political sub-division shall loan or give its credit or make donations to or in aid of any individual, association or corporation except for necessary support of the poor, nor subscribe to or become the owner of the capital stock of any association or corporation, nor shall the state engage in any work of internal improvement unless authorized by a two-thirds vote of the people. Provided, that the state may appropriate money in the treasury or to be thereafter raised by taxation for the construction or improvement of public highways."
+    }
+   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (marker OCR of session law, ARTICLE XVIII / § 185, line 68)",
+    "/tmp/sl1915.pdf p.433 (re-OCR via /tmp/ocrpages.sh — ENACTED authoritative text)",
+    "/tmp/off1925.txt (1925 official constitution snapshot, §185 amended form, ~ln 5808)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, SEC. 185, ~ln 10688)",
+    "/tmp/manual1907.txt (1907 Legislative Manual — pre-amendment §185, confirms proviso was added)",
+    "/tmp/cl1913.txt (1913 Compiled Laws — pre-amendment §185)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "any other political sub-division shall loan",
+     "enacted_session_law": "sub-division (hyphenated)",
+     "other_publications": "The 1925 official snapshot (off1925) prints 'subdivision' (one word, no hyphen). The session law (re-OCR) and the 1919 Legislative Manual print 'sub-division' (hyphenated)."
+    },
+    {
+     "location": "vote of the people. Provided, that the state",
+     "enacted_session_law": "Provided, (capital P, roman type, comma following; preceded by a period ending the prior clause)",
+     "other_publications": "The marker OCR (seg3_src.md) renders this word in italics as '*Provided*,' — an OCR/typographic artifact not present in the enacted session law. off1925 and manual1919 both print 'Provided,' in plain roman, consistent with the session law."
+    }
+   ],
+   "discrepancies": "No substantive (wording) discrepancies among sources; all post-ratification publications carry identical operative language. The only divergences are minor punctuation/typography judgment calls recorded in variants: (1) 'sub-division' (session law + manual1919, hyphenated) vs 'subdivision' (off1925, solid); (2) the marker source's italicized '*Provided*' is a rendering artifact — the re-OCR'd session law and all published codes show plain-roman 'Provided,'. Transcribed text follows the enacted session-law reading ('sub-division', plain 'Provided,')."
+  },
+  {
+   "number": "XIX",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
+   "type": "new_article",
+   "changes": [
+    {
+     "target": "N.D. Const. amend. art. XIX",
+     "heading": "Terminal grain elevators",
+     "text": "The legislative assembly is hereby authorized and empowered to provide by law for the erection, purchasing or leasing and operation of one or more terminal grain elevators in the State of North Dakota, to be maintained and operated in such manner as the legislative assembly shall prescribe, and provide for inspection, weighing and grading of all grain received in such elevator or elevators."
+    }
+   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (lines 72-76; primary, session-law marker OCR)",
+    "/tmp/manual1919.txt (lines 10698-10705; ARTICLE XIX, full agreement)",
+    "/tmp/cl1913.txt (lines 13412-13420; 1913 referred/proposed version, variant 'purchase')"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "erection, purchasing or leasing",
+     "enacted_session_law": "erection, purchasing or leasing",
+     "other_publications": "1913 Compiled Laws (cl1913.txt) prints 'erection, purchase or leasing' ('purchase' not 'purchasing'). That source reproduces the 1913 proposed/referred text approved March 10, 1913; the enacted session-law text and the 1919 Legislative Manual both read 'purchasing'."
+    }
+   ],
+   "discrepancies": "No substantive disagreement on the enacted text. (1) The marker OCR introduces a spurious paragraph/line break between 'provide for inspection,' and 'weighing and grading' (a page-layout artifact); the 1919 Manual and 1913 Compiled Laws confirm it is one continuous sentence, transcribed as such. (2) The 1913 Compiled Laws prints 'purchase' where the enacted text reads 'purchasing'; recorded as a variant — this reflects the 1913 proposed stage, not the final 1914-ratified text. (3) This article is absent from off1925.txt (an annotation/index snapshot), manual1907.txt (predates the 1914 ratification), and bb1954_const.md (the 1954 Blue Book, where the terminal-elevator subject had been superseded by later industrial-program amendments referencing the State Mill and Elevator Association); their absence is expected and is not a discrepancy."
+  },
+  {
+   "number": "XX",
+   "election_date": "1914-11-03",
+   "effective_date": "1914-12-03",
    "type": "amend_section",
    "changes": [
     {
      "target": "N.D. Const. § 176",
-     "heading": "Taxation; grain in elevators",
-     "text": "Laws shall be passed taxing by uniform rule all property according to\nits true value in money, but the property of the United States and the\nstate, county and municipal corporations, both real and personal,\nshall be exempt from taxation, and the Legislative Assembly shall by a\ngeneral law exempt from taxation property used exclusively for school,\nreligions, cemetery or charitable purposes and personal property to\nany amount not exceeding in value two hundred dollars for each\nindividual liable to taxation; but the Legislative Assembly may, by\nlaw, provide for the payment of a per centum of gross earnings of\nrailroad companies to be paid in lieu of all State, county, township\nand school taxes on property exclusively used in and about the\nprosecution of the business of such companies as common carriers, but\nno real estate of said corporations shall be exempted from taxation in\nthe same manner, and on the same basis as other real estate is taxed,\nexcept roadbed, right of way, shops and buildings used exclusively in\ntheir business as common carriers, and whenever and so long as such\nlaw providing for the payment of a per centum on earnings shall be in\nforce, that part of section 179 of this article relating to assessment\nof railroad property shall cease to be in force.\n\nThe legislative assembly may further provide that grain grown within the state and held therein in elevators, warehouses and granaries may be taxed at a fixed rate."
+     "heading": "Uniformity of taxation; exemptions",
+     "text": "Taxes shall be uniform upon the same class of property, including franchises within the territorial limits of the authority levying the tax, and shall be levied and collected for public purposes only, but the property of the United States, and of the state, county and municipal corporations shall be exempt from taxation; and the legislative assembly shall by a general law exempt from taxation property used exclusively for school, religious, cemetery, charitable or other public purposes, and personal property to any amount not exceeding in value two hundred dollars for each individual liable to taxation; provided that all taxes and exemptions in force when this amendment is adopted shall remain in force, in the same manner and to the same extent, until otherwise provided by statute."
+    },
+    {
+     "target": "N.D. Const. § 179",
+     "heading": "Situs and assessment of property; railroad property used for non-railroading locally assessed",
+     "text": "All taxable property except as hereinafter in this Section provided, shall be assessed in the county, city, township, village or district in which it is situated, in the manner prescribed by law. The property, including franchises of all railroads operated in this state, and of all express companies, freight line companies, dining car companies, sleeping car companies, car equipment companies, or private car line companies, telegraph or telephone companies or corporations operating in this state and used directly or indirectly in the carrying of persons, property or messages, shall be assessed by the State Board of Equalization in a manner prescribed by such state board or commission as may be provided by law. But should any railroad allow any portion of its railway to be used for any purposes other than the operation of a railroad thereon, such portion of its railway, while so used shall be assessed in a manner provided for the assessment of other real property."
     }
    ],
-   "authority": "Amendment VII, ratified Nov. 8, 1904",
-   "source_urls": [
-    "https://www.legis.nd.gov/assembly/sessionlaws/1903/sl1903.pdf#page=291"
-   ],
+   "authority": "Amendment ratified 1914-11-03",
+   "source_urls": [],
    "sources_verified": [
-    "marker OCR of S.L. 1903 (appended clause)",
-    "assembled onto validated 1889 base §176"
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (1915 session laws marker OCR — Amendments to the Constitution 1914, Article XX, §§ 176 & 179)",
+    "/tmp/off1925.txt (1925 official constitution snapshot — confirms 1914 Article 20 text for both sections)",
+    "/tmp/cl1913.txt (pre-1914 § 176, non-applicable — establishes the amendment changed the section)",
+    "/tmp/manual1907.txt (pre-1914 § 176, non-applicable)",
+    "/tmp/manual1919.txt (§ 179 'purpose' singular variant)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (later-amended § 179; 'purpose' singular variant)"
    ],
    "confidence": "high",
-   "notes": "Amendment appended a grain-in-elevators taxation clause to §176; assembled onto the 1889 base §176."
+   "variants": [
+    {
+     "location": "used for any purposes other than the operation of a railroad (§ 179)",
+     "enacted_session_law": "any purposes other than",
+     "other_publications": "1919 Legislative Manual and 1954 Blue Book read \"any purpose other than\" (singular \"purpose\"); 1925 official snapshot agrees with the session law (\"purposes\")"
+    }
+   ],
+   "discrepancies": "Cross-publication divergence in § 179: the enacted session law and the 1925 snapshot read \"any purposes other than the operation of a railroad\" (plural \"purposes\"), while the 1919 Legislative Manual and the 1954 Blue Book read \"any purpose other than\" (singular). Transcribed the session-law plural reading. Note also that several supplied cross-check files carry NON-applicable versions of these sections: cl1913 and manual1907 predate this amendment (old § 176 with the gross-earnings/per-centum language); the 1954 Blue Book § 179 is a later-amended version adding electric light/heat/power language; and marker line 381 is a later (Article 20-of-amendments-as-amended) § 176. Only off1925 carries the matching 1914 text, used as the corroborating publication."
+  },
+  {
+   "number": "XXI",
+   "election_date": "1916-11-07",
+   "effective_date": "1916-12-07",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 216",
+     "heading": "State normal school at Dickinson",
+     "text": "Section 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred and seventy thousand (170,000) acres of land made by the United States for \"other educational and charitable institutions\" as is allotted by law, namely:\n\nFirst: A soldiers' home, when located or such other charitable institution as the legislative assembly may determine, at Lisbon, in the county of Ransom, with a grant of forty thousand (40,000) acres of land.\n\nSecond: A blind asylum, or such other institution as the legislative assembly may determine, at such place in the county of Pembina as the qualified electors of said county may determine at an election to be held as prescribed by the legislative assembly with a grant of thirty thousand (30,000) acres.\n\nThird: An industrial school and school for manual training or such other educational or charitable institution as the legislative assembly may provide, at the town of Ellendale, in the county of Dickey, with a grant of forty thousand (40,000) acres.\n\nFourth: A school of forestry, or such other institution as the legislative assembly may determine, at such place in one of the counties of McHenry, Ward, Bottineau or Rolette, as the electors of said counties may determine by an election for that purpose, to be held as provided by the legislative assembly.\n\nFifth: A scientific school or such other educational or charitable institution as the legislative assembly may prescribe, at the city of Wahpeton, county of Richland, with a grant of forty thousand (40,000) acres.\n\nSixth: A state normal school at the city of Minot, in the county of Ward.\n\nSeventh: (a) A state normal school at the city of Dickinson, in the county of Stark.\n\nProvided, That no other institution of a character similar to any one of those located by this article shall be established or maintained without a revision of this Constitution."
+    }
+   ],
+   "authority": "Amendment ratified 1916-11-07",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary; enacted session-law marker OCR, lines 123-153)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution, lines 6922-6948)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, lines 862-876; secondary, reflects later amendments)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "one hundred and seventy thousand (170,000) acres",
+     "enacted_session_law": "one hundred and seventy thousand (170,000) acres (marker + 1925 official agree, with \"and\" and the parenthetical numeral)",
+     "other_publications": "1954 Blue Book reads \"one hundred seventy thousand acres\" — drops \"and\" and omits the (170,000) numeral (reflects later re-printing/amendments)"
+    },
+    {
+     "location": "as is allotted by law, namely:",
+     "enacted_session_law": "namely : (marker uses a space before the colon; sense identical)",
+     "other_publications": "1925 official and 1954 Blue Book print \"namely:\" with no space"
+    },
+    {
+     "location": "Sixth: A state normal school at the city of Minot, in the county of Ward.",
+     "enacted_session_law": "...at the city of Minot, in the county of Ward. (comma after Minot)",
+     "other_publications": "1954 Blue Book reads \"at the city of Minot in the county of Ward\" — no comma after Minot"
+    },
+    {
+     "location": "Second : A blind asylum, or such other institution",
+     "enacted_session_law": "A blind asylum, or such other institution as the legislative assembly may determine, at such place in the county of Pembina... (marker + 1925 official)",
+     "other_publications": "1954 Blue Book substitutes an entirely different Second clause (\"The blind asylum shall be known as the North Dakota school for the blind...\") reflecting a post-1916 amendment; not the enacted 1916 text"
+    },
+    {
+     "location": "First: A soldiers' home, when located or such other",
+     "enacted_session_law": "when located or such other charitable institution (no comma after \"located\"; marker + 1925 official)",
+     "other_publications": "1954 Blue Book reads \"when located, or such other\" — adds a comma after \"located\""
+    }
+   ],
+   "discrepancies": "cl1913 (1913 Compiled Laws) and manual1907 (1907 Legislative Manual) predate this 1916 amendment and contain no Dickinson normal school; not usable as cross-checks for the amended text. The 1925 official text and 1954 Blue Book both print a \\\"Seventh: (b) A state hospital for the insane...\\\" clause that does NOT belong to this Dickinson amendment — it was added by the companion second-state-hospital amendment (same 1916 election; marker line 159 et seq.). Accordingly the enacted Dickinson amendment's substantive contribution is the \\\"(a)\\\" clause only; the verbatim section text above re-states section 216 as the Dickinson resolution itself printed it (ending at the Provided clause, before any (b) clause).",
+   "status": "pending",
+   "pending_reason": "§216 institutions list: same-year amendments (XXI/XXII) restate the section non-cumulatively (XXI has Dickinson not Blind/Forestry; XXII has alt-hospital only). Needs integrated reconciliation."
+  },
+  {
+   "number": "XXII",
+   "election_date": "1916-11-07",
+   "effective_date": "1916-12-07",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 216",
+     "heading": "Second state hospital for the insane — alternate location selected by the legislature (§ 216)",
+     "text": "Section 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred and seventy thousand (170,000) acres of land made by the United States for \"other educational and charitable institutions\" as is allotted by law, namely:\n\nFirst: A soldiers' home, when located, or such other charitable institution as the legislative assembly may determine, at Lisbon, in the county of Ransom, with a grant of forty thousand (40,000) acres of land.\n\nSecond: A blind asylum, or such other institution as the legislative assembly may determine, at such place in the county of Pembina as the qualified electors of said county may determine at an election to be held as prescribed by the legislative assembly with a grant of thirty thousand (30,000) acres.\n\nThird: An industrial school and school for manual training or such other educational or charitable institution as the legislative assembly may provide, at the town of Ellendale, in the county of Dickey, with a grant of forty thousand (40,000) acres.\n\nFourth: A school of forestry, or such other institution as the legislative assembly may determine, at such place in one of the counties of McHenry, Ward, Bottineau or Rolette; as the electors of said counties may determine by an election for that purpose, to be held as provided by the legislative assembly.\n\nFifth: A scientific school or such other educational or charitable institution as the legislative assembly may prescribe, at the city of Wahpeton, county of Richland, with a grant of forty thousand (40,000) acres.\n\nSixth: A state normal school at the city of Minot, in the county of Ward.\n\nSeventh: (b) A state hospital for the insane at such place within this state as shall be selected by the legislative assembly, provided, that no other institution of a character similar to any one of those located by this article shall be established or maintained without a revision of this Constitution."
+    }
+   ],
+   "authority": "Amendment ratified 1916-11-07",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (PRIMARY — 1917 Session Laws p.432 marker OCR; lines 155-181)",
+    "/tmp/manual1919.txt (1919 Legislative Manual — labels this section ARTICLE XXII; lines 10740-10810)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution snapshot, § 216; lines 6920-6960)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, integrated § 216; line 876)",
+    "/tmp/cl1913.txt (1913 Compiled Laws — predates amendment; older form of § 216, not a wording cross-check)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "Bottineau or Rolette; as the electors",
+     "enacted_session_law": "Bottineau or Rolette; as the electors of said counties may determine (SEMICOLON after Rolette)",
+     "other_publications": "1925 official and 1919 Legislative Manual (Article XXII printing) use a COMMA: 'Bottineau or Rolette, as the electors'. A separate 1919 Manual integrated printing of the same subdivision reads 'Bottineau AND Rolette' (and for or)."
+    },
+    {
+     "location": "may determine at an election to be held",
+     "enacted_session_law": "qualified electors of said county may determine at an election (NO comma after 'determine')",
+     "other_publications": "1925 official agrees (no comma). 1919 Legislative Manual inserts a comma: 'may determine, at an election'."
+    },
+    {
+     "location": "prescribed by the legislative assembly with a grant of thirty thousand",
+     "enacted_session_law": "to be held as prescribed by the legislative assembly with a grant of thirty thousand (NO comma before 'with')",
+     "other_publications": "1919 Legislative Manual inserts a comma: 'legislative assembly, with a grant of thirty thousand'."
+    },
+    {
+     "location": "First: A soldiers' home, when located, or such other",
+     "enacted_session_law": "A soldiers' home, when located, or such other charitable institution (COMMA after 'located')",
+     "other_publications": "1925 official omits the second comma: 'when located or such other charitable institution'."
+    },
+    {
+     "location": "Seventh: (b) A state hospital for the insane",
+     "enacted_session_law": "Seventh: (b) A state hospital for the insane at such place within this state as shall be selected by the legislative assembly, provided, that no other institution ... without a revision of this Constitution.",
+     "other_publications": "1925 official and 1954 Blue Book detach the 'provided' clause and the geographic order differs in codified integration (e.g., 1954 prints 'Seventh: (a) ... Dickinson ... (b) A state hospital for the insane ...' as one combined subdivision). 'this Constitution' is capitalized in the session law; 1925 official/1954 Blue Book lowercase 'constitution' in some printings."
+    }
+   ],
+   "discrepancies": "No substantive disagreement; all checked publications agree on the operative text and on the amendment's defining provision (the alternate-location 'Seventh: (b)' second state hospital for the insane). Divergences are punctuation/capitalization only (recorded in variants). Note: this amendment re-enacts the WHOLE of § 216 (subdivisions First–Seventh) as it then stood, layering subdivision 'Seventh: (b)' onto the existing 'Seventh: (a)' Dickinson normal-school provision (Art. XXI, ratified 1914); only subdivision Seventh (b) is new in this amendment, but the enacted resolution restates the entire section, which is transcribed here verbatim. The CL 1913 Compiled Laws predates this amendment and shows the older eight-subdivision form of § 216, so it is not a cross-check for this wording. The 1907 Legislative Manual likewise predates the amendment.",
+   "status": "pending",
+   "pending_reason": "§216 institutions list: same-year amendments (XXI/XXII) restate the section non-cumulatively (XXI has Dickinson not Blind/Forestry; XXII has alt-hospital only). Needs integrated reconciliation."
+  },
+  {
+   "number": "XXIII",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 135",
+     "heading": "Cumulative voting; cooperative corporations may limit voting power",
+     "text": "In all elections for directors or managers of a corporation, each member or shareholder may cast the whole number of his votes for one candidate, or distribute them upon two or more candidates, as he may prefer; provided, any cooperative corporation may adopt by-laws limiting the voting power of its stockholders."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary, line 293, Article XXIII / Sec. 135)",
+    "/tmp/off1925.txt (lines 4098-4108, post-amendment with explanatory note)",
+    "/tmp/manual1919.txt (line 10812, Article XXIII post-amendment text; line 8872 pre-amendment text)",
+    "/tmp/manual1907.txt (line 5643, pre-amendment text)",
+    "/tmp/cl1913.txt (line 11176, pre-amendment text)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (line 464)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "directors or managers of a corporation",
+     "enacted_session_law": "directors or managers",
+     "other_publications": "The 1925 official snapshot (off1925.txt line 4104) reads \"directors and managers\". All other sources (marker session-law text, 1919 Manual Article XXIII at line 10812, 1913 Compiled Laws, 1907 Manual, 1954 Blue Book) read \"directors or managers\". The off1925 \"and\" appears to be a printing deviation."
+    },
+    {
+     "location": "any cooperative corporation may adopt",
+     "enacted_session_law": "cooperative (no hyphen)",
+     "other_publications": "off1925.txt (\"co-operative\"), 1919 Manual Article XXIII (\"co-operative\"), and 1954 Blue Book (\"co-operative\") all hyphenate. The enacted session-law marker text has no hyphen."
+    },
+    {
+     "location": "as he may prefer; provided, any cooperative",
+     "enacted_session_law": "prefer; provided (semicolon)",
+     "other_publications": "The 1919 Manual Article XXIII printing (line 10812) reads \"prefer, provided\" with a comma. The marker session-law text and off1925 use a semicolon."
+    }
+   ],
+   "discrepancies": "OCR garble in the primary marker text was corrected: \\\"may east the whole number\\\" -> \\\"may cast the whole number\\\" (every published source reads \\\"cast\\\"); the procedural \\\"declared earried\\\" -> \\\"carried\\\" appears in the excluded canvasser certification, not in the transcribed substantive text. No unresolved substantive uncertainty. Genuine cross-publication divergences (or/and, hyphenation of co-operative, semicolon/comma) are recorded in variants for human review; the enacted session-law reading is transcribed into the text."
+  },
+  {
+   "number": "XXIV",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "new_article",
+   "changes": [
+    {
+     "target": "N.D. Const. amend. art. XXIV",
+     "heading": "State hail-insurance tax (new article)",
+     "text": "The Legislative Assembly may by law provide for the levy of a tax upon such lands as may be provided by law of the State for the purpose of creating a fund to insure the owners of growing crops against losses by hail; provided, that such tax shall not affect the tax of four mills levied by the Constitution. The Legislative Assembly may classify such lands of the state as may be provided by law, and divide the State into districts on such basis as shall seem just and necessary and may vary the tax rate in such districts in accordance with the risk, in order to secure an equitable distribution of the burden of such tax among the owners of such land as may be provided by law."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (ARTICLE XXIV, line 299-301)",
+    "/tmp/sl1919.pdf page 514 (fresh re-OCR via /tmp/ocrpages.sh)",
+    "/tmp/manual1919.txt lines 10817-10829 (1919 Legislative Manual)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "shall seem just and necessary and may vary the tax rate",
+     "enacted_session_law": "...just and necessary and may vary the tax rate in such districts... (no comma after 'necessary'; singular 'rate')",
+     "other_publications": "1919 Legislative Manual (/tmp/manual1919.txt) reads '...just and necessary, and may vary the tax rates in such districts...' — adds a comma after 'necessary' and uses plural 'rates'."
+    }
+   ],
+   "discrepancies": "No unresolved discrepancy on the substantive enacted text. (1) The 1919 Legislative Manual inserts a comma after 'necessary' and pluralizes 'rate' to 'rates'; the enacted session law (confirmed by fresh re-OCR) has no comma and singular 'rate' — recorded as a variant. (2) off1925.txt and bb1954 contain a separate, later hail-tax provision (Sec. 177 / Art. 11, 'indemnify... against damages by hail'), not this 1918 Article XXIV; they were therefore not used to verify this text. (3) The vote tally and the 'A majority of the voters... duly declared carried and adopted' certification language following the article are procedural and excluded from the transcribed text."
+  },
+  {
+   "number": "XXV",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 89",
+     "heading": "Supreme Court; number of judges; quorum; four required to declare an act unconstitutional",
+     "text": "The Supreme Court shall consist of five judges, a majority of whom shall be necessary to form a quorum or pronounce a decision, but one or more of said judges may adjourn the court from day to day or to a day certain; provided, however, that in no case shall any legislative enactment or law of the State of North Dakota be declared unconstitutional unless at least four of the judges shall so decide."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (line 313 -- session-law marker, ARTICLE XXV, amend Section 89)",
+    "/tmp/off1925.txt (lines 3207-3212 -- 1925 official ndlegis.gov constitution snapshot, § 89)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (line 323 -- 1954 Blue Book, renumbered Section 80)",
+    "/tmp/cl1913.txt (lines 12994-13000 -- 1913 Compiled Laws, pre-amendment § 89, Article 10)",
+    "/tmp/manual1919.txt (line 8546 -- 1919 Legislative Manual, pre-amendment 'three judges' text, confirms amendment effect)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "five judges, a majority of whom",
+     "enacted_session_law": "five judges, a majority of whom (comma after 'judges'; the marker OCR renders this as a period -- 'five judges. a majority' -- which is OCR garble, not the enacted punctuation)",
+     "other_publications": "1925 official snapshot and 1954 Blue Book both print a comma after 'judges'. The 1913 Compiled Laws (pre-amendment base text) likewise reads 'five judges, a majority'. The enacted/comma reading is adopted in the transcribed text."
+    },
+    {
+     "location": "pronounce a decision, but one or more",
+     "enacted_session_law": "pronounce a decision, but one or more (comma before 'but')",
+     "other_publications": "1925 official snapshot reads 'pronounce a decision, but' (comma, matching enacted). However other historical printings vary: the 1907/1919 Legislative Manuals and a second 1925-snapshot rendering print a semicolon ('pronounce a decision; but'), and the 1913 Compiled Laws drops the comma entirely ('pronounce a decision but'). Recorded as a cross-printing punctuation divergence for human review; the session-law comma is transcribed."
+    }
+   ],
+   "discrepancies": "No substantive (wording) discrepancy. The session-law marker OCR shows a period after 'five judges' ('five judges. a majority'), which is OCR garble; all published codes (1925 official, 1954 Blue Book) and the pre-amendment 1913 Compiled Laws read a comma there, so the comma is the enacted punctuation. A secondary punctuation divergence exists across historical printings at 'pronounce a decision, but': comma in the session law and 1925 official vs. semicolon in the 1907/1919 Manuals and no punctuation in the 1913 Compiled Laws -- recorded in variants. A direct re-OCR of session-law printed p. 515 of /tmp/sl1919.pdf could not be pinned because the PDF's internal page index is offset from the printed page number; the amendment text was not located within the scanned PDF page ranges attempted (460-560). This does not lower confidence: the high-quality marker OCR is itself the session-law transcription, and it agrees with two independent official publications on every substantive word."
+  },
+  {
+   "number": "XXVI",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 25",
+     "heading": "Legislative power; reservation of initiative and referendum",
+     "text": "The legislative power of this State shall be vested in a legislature consisting of a senate and a house of representatives. The people, however, reserve the power, first, to propose measures and to enact or reject the same at the polls; second, to approve or reject at the polls any measure or any item, section, part or parts of any measure enacted by the legislature.\n\nThe first power reserved is the initiative. Ten thousand electors at large may propose any measure by initiative petition. Every such petition shall contain the full text of the measure and shall be filed with the secretary of state not less than ninety days before the election at which it is to be voted upon.\n\nThe second power reserved is the referendum. Seven thousand Electors at large may, by referendum petition, suspend the operation of any measure enacted by the legislature, except an Emergency measure. But the filing of a referendum petition against one or more items, sections or parts of any measure shall not prevent the remainder from going into effect. Such petition shall be filed with the Secretary of State not later than ninety days after the adjournment of the session of the Legislature at which such measure was enacted.\n\nEach measure initiated by or referred to the Electors, shall be submitted by its ballot title, which shall be placed upon the ballot by the Secretary of State and shall be voted upon at any state-wide election designated in the petition, or at any special election called by the Governor. The result of the vote upon any measure shall be canvassed and declared by the Board of Canvassers.\n\nAny measure, except an Emergency Measure submitted to the Electors of the State, shall become a law when approved by a majority of the votes cast thereon. And such law shall go into effect on the thirtieth day after the election, unless otherwise specified in the measure.\n\nIf a Referendum Petition is filed against an Emergency Petition, such measure shall be a law until voted upon by the Electors. And if it is then rejected by a majority of the votes cast thereon, it shall be thereby repealed. Any such measure shall be submitted to the Electors at a special election if so ordered by the Governor or if the Referendum petition filed against it shall be signed by thirty thousand electors at large. Such special election shall be called by the Governor and shall be held not less than one hundred nor more than one hundred thirty days after the adjournment of the session of the Legislature.\n\nThe Secretary of State shall pass upon each petition, and if he finds it insufficient he shall notify the \"Committee for the Petitioners\" and allow twenty days for correction or amendment. All decisions of the Secretary of State in regard to any such petition shall be subject to review by the Supreme Court. But if the sufficiency of such petition is being reviewed at the time the ballot is prepared, the Secretary of State shall place the measure on the ballot and no subsequent decision shall invalidate such measure if it is at such election approved by a majority of the votes cast thereon. If proceedings are brought against any petition upon any ground, the burden of proof shall be upon the party attacking it.\n\nNo law shall be enacted limiting the number of copies of a petition which may be circulated. Such copies shall become a part of the original petition when filed or attached thereto. Nor shall any law be enacted prohibiting any person from giving or receiving compensation for circulating the petition, nor in any manner interfering with the freedom in securing signatures to petitions.\n\nEach petition shall have printed thereon a ballot title which shall fairly represent the subject matter of the measure, and the names of at least five electors who shall constitute the \"Committee for the Petitioners\" and who shall represent and act for the petitioners.\n\nAll measures submitted to the Electors shall be published by the state as follows: \"The Secretary of State shall cause to be printed and mailed to each elector a publicity pamphlet, containing a copy of each measure together with its ballot title to be submitted at any election. Any citizen, or the officers of any organization may submit to the Secretary of State, for publication in such pamphlet, arguments concerning any measure therein upon first subscribing their names and addresses thereto and paying the fee therefor, which, until otherwise fixed by the Legislature, shall be the sum of two hundred dollars per page.\"\n\nThe enacting clause of all measures initiated by the Electors, shall be: \"Be it enacted by the people of the State of North Dakota.\" In submitting measures to the Electors, the Secretary of State and all other officials shall be guided by the election laws until additional legislation shall be provided.\n\nIf conflicting measures initiated by or referred to the Electors shall be approved by a majority of the votes cast thereon, the one receiving the highest number of affirmative votes shall become the law.\n\nThe word \"measure\" as used herein shall include any law or amendment thereto, resolution, legislative proposal or enactment of any character.\n\nThe veto power of the Governor shall not extend to the measures initiated by or referred to the Electors. No measures enacted or approved by a vote of the Electors shall be repealed or amended by the Legislature, except upon a yea and nay vote upon roll call of two-thirds of all the members elected to each house.\n\nThis section shall be self-executing and all of its provisions shall be treated as mandatory. Laws may be enacted to facilitate its operation, but no law shall be enacted to hamper, restrict or impair the exercise of the rights herein reserved to the people."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary, session-law marker OCR, lines 325-355)",
+    "/tmp/sl1919.pdf re-OCR pp. 516-517 (printed pp. 504-505) — confirms 'thirtieth'",
+    "/tmp/off1925.txt §25 lines 1648-1740 (1925 official ndlegis.gov snapshot; identifies as Art. 26, ratified 1918, Laws 1919 p. 503)",
+    "/tmp/manual1919.txt (fragments confirmed)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (fragments confirmed)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "shall go into effect on the thirtieth day after the election",
+     "enacted_session_law": "thirtieth day",
+     "other_publications": "off1925.txt (1925 official ndlegis.gov snapshot) reads \"thirteenth day\" — a secondary-publication error. The enacted reading \"thirtieth\" was confirmed by re-OCR of the session-law PDF itself (sl1919.pdf p. 516)."
+    },
+    {
+     "location": "Seven thousand Electors at large ... Each measure initiated by or referred to the Electors ... except an Emergency measure ... by the Secretary of State ... called by the Governor ... by the Board of Canvassers",
+     "enacted_session_law": "Inconsistent initial-capitals throughout: Electors, Emergency (and Emergency Measure / Emergency Petition), Secretary of State, Governor, Legislature, Board of Canvassers, Referendum Petition, Committee for the Petitioners — while \"secretary of state\" and \"legislature\" appear lowercase in the first two paragraphs.",
+     "other_publications": "off1925.txt normalizes ALL of these to lowercase (\"electors,\" \"emergency,\" \"secretary of state,\" \"governor,\" \"legislature,\" \"board of canvassers\"). The session-law's mixed capitalization is transcribed verbatim in the text field."
+    },
+    {
+     "location": "If a Referendum Petition is filed against an Emergency Petition, such measure shall be a law",
+     "enacted_session_law": "against an Emergency Petition",
+     "other_publications": "off1925.txt prints \"against an emergency petition [measure]\" — the bracketed \"[measure]\" is the 1925 editor's interpolated correction, signaling that \"petition\" here is likely a drafting/printing slip in the enacted text; the session law as enacted reads \"Petition\" and is transcribed as such."
+    },
+    {
+     "location": "If conflicting measures initiated by or referred to the Electors",
+     "enacted_session_law": "If conflicting measures",
+     "other_publications": "off1925.txt prints \"In [If] conflicting measures\" — i.e., the 1925 snapshot OCR/text reads \"In\" with an editorial \"[If]\" correction; the session law reads \"If\"."
+    }
+   ],
+   "discrepancies": "No substantive disagreement on the operative text. (1) \"thirtieth\" vs. off1925 \"thirteenth\" resolved in favor of the enacted \"thirtieth\" via direct re-OCR of sl1919.pdf. (2) \"provisious\" appears as OCR garble in BOTH the marker file and a fresh tesseract pass of the PDF image; it is corrected to \"provisions\" (the only real word; confirmed by off1925), treated as OCR error, not period spelling. (3) Capitalization and the \"Emergency Petition\"/\"If conflicting\" wording differ between the enacted session law and the 1925 official snapshot; recorded as variants, with the enacted reading transcribed. The marker's heading line (\"Sec. 25 IN ARTICLE 2 AS AMENDED BY ARTICLE 15 OF AMENDMENT\") is the resolution caption, not constitutional text, and is excluded from the section text; likewise the trailing \"Yes....\" tally and the board-of-canvassers ratification declaration are excluded as procedural."
+  },
+  {
+   "number": "XXVII",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 67",
+     "heading": "Section 67 in Article 2 — Emergency measures; no franchise or special privilege",
+     "text": "No Act of the legislative assembly shall take effect until July 1st after the close of the Session, unless the Legislature by a vote of two-thirds of the members present and voting, in each house shall declare it an Emergency measure, which declaration shall be set forth in the Act; provided, however, that no Act granting a franchise or special privilege, or Act creating any vested right or interest other than in the State, shall be declared an Emergency measure. An Emergency measure shall take effect and be in force from and after its passage and approval by the Governor."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (line 361-363, primary session law, ARTICLE XXVII)",
+    "/tmp/off1925.txt (line ~2469, 1925 official constitution snapshot, § 67)",
+    "/tmp/manual1919.txt (line ~10940, 1919 Legislative Manual, ARTICLE XXVII)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (line 223, 1954 Blue Book, Section 67)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "set forth in the Act; provided, however, that",
+     "enacted_session_law": "semicolon before \"provided\" — \"set forth in the Act; provided, however, that\"",
+     "other_publications": "The 1919 Legislative Manual and the 1954 Blue Book use a COMMA instead: \"set forth in the act, provided, however, that\". The 1925 official snapshot agrees with the session law (semicolon)."
+    },
+    {
+     "location": "No Act of the legislative assembly ... an Emergency measure ... in the State",
+     "enacted_session_law": "capitalizes \"Act\", \"Session\", \"Legislature\", \"Emergency measure\", and \"State\"",
+     "other_publications": "All three published codes (1925 official, 1919 Manual, 1954 Blue Book) render these lowercase: \"act\", \"session\", \"legislature\", \"emergency measure\", \"state\"."
+    },
+    {
+     "location": "approval by the Governor",
+     "enacted_session_law": "\"Governor\" capitalized",
+     "other_publications": "The 1919 Manual and 1954 Blue Book also capitalize \"Governor\"; the 1925 official snapshot lowercases it as \"governor\"."
+    },
+    {
+     "location": "voting, in each house shall declare",
+     "enacted_session_law": "no comma after \"house\" — \"in each house shall declare\"",
+     "other_publications": "The 1919 Manual, 1954 Blue Book, and 1925 official snapshot insert a comma: \"in each house, shall declare\"."
+    }
+   ],
+   "discrepancies": "No substantive discrepancy. Divergences are confined to punctuation and capitalization across printings (see variants). Vote tally reported in the session-law marker: Yes 46,121 / No 32,507."
+  },
+  {
+   "number": "XXVIII",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 202",
+     "heading": "Submission of constitutional amendments; initiated amendments",
+     "text": "Any amendment or amendments to the Constitution of the State may be proposed in either house of the Legislature, and if the same shall be agreed to upon roll call by a majority of the members elected to each house it shall be submitted to the Electors and if a majority of the votes cast thereon are affirmative, such amendment shall be a part of this Constitution.\n\nAmendments to the Constitution of the State may also be proposed by initiative petition of the Electors; such petition shall be signed by twenty thousand of the Electors at large and shall be filed with the Secretary of State at least one hundred twenty days prior to the election at which they are to be voted upon, and any amendment or amendments so proposed shall be submitted to the Electors and shall become a part of the Constitution, if a majority of the votes cast thereon are affirmative. All provisions of the Constitution relating to the submission and adoption of measures by initiative petition and on referendum petition, shall apply to the submission and adoption of amendments to the Constitution of the State."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary marker OCR of session law, Art. XXVIII)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution snapshot, § 202)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, Art. XXVIII)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, § 202)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "majority of the members elected to each house it shall be submitted",
+     "enacted_session_law": "each house it shall be submitted (no comma after \"house\")",
+     "other_publications": "manual1919 and bb1954 insert a comma: \"each house, it shall be submitted.\" off1925 agrees with the session law (no comma)."
+    },
+    {
+     "location": "such petition shall be signed by twenty thousand of the Electors at large",
+     "enacted_session_law": "twenty thousand of the Electors at large",
+     "other_publications": "manual1919 and bb1954 omit \"of the\": \"twenty thousand electors at large.\" off1925 agrees with the session law: \"twenty thousand of the electors at large.\""
+    },
+    {
+     "location": "so proposed shall be submitted to the Electors and shall become a part of the Constitution",
+     "enacted_session_law": "shall be submitted to the Electors and shall become a part of the Constitution",
+     "other_publications": "manual1919 and bb1954 read \"shall be submitted to the electors and become a part of the constitution\" (dropping the second \"shall\"). off1925 agrees with the session law (\"shall become a part\")."
+    },
+    {
+     "location": "All provisions of the Constitution relating to the submission and adoption of measures by initiative petition and on referendum petition, shall apply",
+     "enacted_session_law": "by initiative petition and on referendum petition, shall apply (comma only after \"petition\")",
+     "other_publications": "manual1919 and bb1954 add a comma after \"initiative petition\": \"by initiative petition, and on referendum petition shall apply\" (comma after \"initiative petition,\" none after \"referendum petition\"). off1925 matches the session law."
+    },
+    {
+     "location": "capitalization of Constitution / State / Legislature / Electors / Secretary of State",
+     "enacted_session_law": "marker capitalizes \"Constitution,\" \"State,\" \"Legislature,\" \"Electors,\" and \"Secretary of State\"",
+     "other_publications": "off1925, manual1919, and bb1954 lowercase \"constitution,\" \"state,\" \"legislature,\" \"electors\"; manual1919 and bb1954 capitalize \"Secretary of State.\" These are typographic/period-rendering differences across printings."
+    }
+   ],
+   "discrepancies": "No substantive (meaning-altering) discrepancy. The only OCR garble in the primary marker text was \"votes east thereon\" (x2), corrected to \"votes cast thereon\" with unanimous support from all three published codes. Remaining differences among publications are punctuation, capitalization, and the dropped function words (\"of the\", second \"shall\") noted in variants — all judgment-call divergences, not errors. The marker session-law reading is uniformly corroborated by off1925."
+  },
+  {
+   "number": "XXIX",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 176",
+     "heading": "Taxation — classification and exemption of personal property",
+     "text": "Taxes shall be uniform upon the same class of property including franchises, within the territorial limits of the authority levying the tax. The Legislature may by law exempt any or all classes of personal property from taxation, and within the meaning of this section, fixtures, buildings and improvements of every character whatsoever, upon land, shall be deemed personal property. The property of the United States and of the State, County and Municipal Corporations, and property used exclusively for school, religious, cemetery, charitable or other public purposes, shall be exempt from taxation. Except as restricted by this Article, the Legislature may provide for raising revenue and fixing the situs of all property for the purpose of taxation. Provided, that all taxes and exemptions in force when this amendment is adopted shall remain in force until otherwise provided by statute."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (PRIMARY — session-law marker OCR, line 381, ARTICLE XXIX)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov snapshot, § 176, lines 5259-5270, with explanatory note confirming Article 29 of Amendments, ratified 1918)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, ARTICLE XXIX, lines 10972-10987)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, Section 176, line 606)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "same class of property including franchises, within",
+     "enacted_session_law": "property including franchises, within (no comma after \"property\"; comma after \"franchises\")",
+     "other_publications": "manual1919 reads \"property; including franchises within\" (semicolon after \"property\", no comma after \"franchises\"); off1925 reads \"property including franchises, within\" (agrees with session law); bb1954 reads \"property including franchises within\" (no comma after \"franchises\")"
+    },
+    {
+     "location": "every character whatsoever, upon land, shall be deemed",
+     "enacted_session_law": "every character whatsoever, upon land, shall be deemed (no comma before \"whatsoever\"; comma after \"land\")",
+     "other_publications": "manual1919 and bb1954 read \"every character, whatsoever, upon land shall be deemed\" (comma before \"whatsoever\"; no comma after \"land\"); off1925 reads \"every character whatsoever, upon land, shall be deemed\" (agrees with session law)"
+    },
+    {
+     "location": "County and Municipal Corporations, and property used exclusively",
+     "enacted_session_law": "County and Municipal Corporations, and property used exclusively (capitalized \"County\", \"Municipal Corporations\"; comma after \"Corporations\")",
+     "other_publications": "off1925, manual1919, and bb1954 lowercase \"county and municipal corporations\"; manual1919 and bb1954 omit the comma after \"corporations\"; off1925 keeps the comma after \"corporations\""
+    },
+    {
+     "location": "school, religious, cemetery, charitable",
+     "enacted_session_law": "for school, religious, cemetery, charitable (singular \"school\")",
+     "other_publications": "bb1954 reads \"for schools, religious\" (plural \"schools\"); off1925 and manual1919 read singular \"school\" (agree with session law)"
+    },
+    {
+     "location": "restricted by this Article, the Legislature",
+     "enacted_session_law": "by this Article, the Legislature (capitalized \"Article\" and \"Legislature\")",
+     "other_publications": "off1925 and manual1919 lowercase \"article\" and \"legislature\"; off1925 lowercases \"article\" but the session-law/seg3 reading capitalizes both"
+    }
+   ],
+   "discrepancies": "No substantive disagreement on the operative constitutional text — all four publications containing the amendment agree on meaning and word order. Divergences are confined to punctuation and capitalization (recorded in variants): comma placement around \"franchises\" and \"whatsoever/land\", capitalization of \"County/Municipal Corporations/Article/Legislature\", the comma after \"Corporations\", and \"school\" vs. \"schools\" (bb1954). The 1925 official snapshot most closely tracks the session-law reading. The session-law marker text (seg3) presents this as Article XXIX of the Amendments via the State Board of Canvassers certificate; procedural/canvass wording and vote tallies (Yes 46,833 / No 33,921) were excluded."
+  },
+  {
+   "number": "XXX",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 177",
+     "heading": "Acreage tax for hail crop insurance",
+     "text": "The Legislature may by law provide for the levy and collection of an acreage tax on lands within the State in addition to the limitation specified in Section 174 in Article 11 of the Constitution. The proceeds of such tax shall be used to indemnify the owners of growing crops against damages by hail, provided that lands used exclusively for public roads, rights of way of common carriers, mining, manufacturing or pasturage, may be exempt from such tax."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (session law, marker OCR, line 389, ARTICLE XXX)",
+    "/tmp/off1925.txt (1925 official snapshot, line 5466, § 177)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, line 10991, ARTICLE XXX)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, line 610, Section 177)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "the limitation specified in Section 174",
+     "enacted_session_law": "singular \"limitation\" (\"in addition to the limitation specified\")",
+     "other_publications": "plural \"limitations\" in the 1919 Legislative Manual and the 1954 Blue Book; the 1925 official snapshot agrees with the session law (\"limitation\")"
+    },
+    {
+     "location": "manufacturing or pasturage, may be exempt",
+     "enacted_session_law": "comma after \"pasturage\" (\"manufacturing or pasturage, may be exempt\")",
+     "other_publications": "no comma after \"pasturage\" in the 1919 Legislative Manual and the 1954 Blue Book; the 1925 official snapshot agrees with the session law (comma present)"
+    }
+   ],
+   "discrepancies": "No substantive disagreement. The amendment heading in the session law reads \"Section 177 in Article 11.)\", indicating it sets the present form of existing § 177 (off1925 explanatory note confirms § 177 had a prior original form, so this is amend_section, not a new article). Two punctuation/spelling divergences across publications recorded in variants (singular vs. plural \"limitation(s)\"; comma after \"pasturage\") — both judgment calls for human review; the session-law reading governs and is transcribed in the text. The 1954 Blue Book marker OCR shows obvious OCR garble (\"stat e\", \"Buch tax\") that does not reflect the enacted text. Note: a separate hail-insurance amendment (ARTICLE XXIV, an initiated measure with different wording referencing the \"four mills\" tax) also appears in the same file but does not reference § 177 and is a different amendment."
+  },
+  {
+   "number": "XXXI",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 182",
+     "heading": "Section 182 in Article 12 (state bonding limit; mortgages of state industries)",
+     "text": "The state may issue or guarantee the payment of bonds, provided that all bonds in excess of two million dollars shall be secured by first mortgages upon real estate, in amounts not to exceed one-half of its value; or upon real or personal property of State owned utilities, enterprises or industries in amounts, not exceeding its value, and provided, further, that the state shall not issue or guarantee bonds upon property of state owned utilities, enterprises or industries in excess of ten million dollars.\n\nNo future indebtedness shall be incurred by the State unless evidenced by a bond issue, which shall be authorized by law for certain purposes, to be clearly defined. Every law authorizing a bond issue shall provide for levying an annual tax or make other provisions, sufficient to pay the interest semi-annually, and the principal within thirty years from the passage of such law and shall specially appropriate the proceeds of such tax, or of such other provisions, to the payment of said principal and interest, and such appropriation shall not be repealed nor the tax or other provisions discontinued until such debt, both principal and interest, shall have been paid. No debt in excess of the limit named herein shall be incurred except for the purposes of repelling invasion, suppressing insurrection, defending the state in time of war or to provide for the public defense in case of threatened hostilities."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (ARTICLE XXXI, Section 182 in Article 12 — primary session-law marker source)",
+    "/tmp/off1925.txt (1925 official snapshot, explanatory note quoting 1918 Article 31 of Amendments)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, ARTICLE XXXI, SEC. 182 in Article 12)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "real or personal property of State owned utilities",
+     "enacted_session_law": "real or personal property",
+     "other_publications": "off1925 explanatory note (1918 text) agrees: 'real or personal'. manual1919 reads 'real and personal'. (The later 1924 Art. 42 re-amendment in off1925 running text and bb1954 also reads 'real and personal'.)"
+    },
+    {
+     "location": "property of State owned utilities, enterprises",
+     "enacted_session_law": "State owned utilities (capital S in first occurrence; 'state owned' lowercase in the second occurrence within the section)",
+     "other_publications": "off1925 note prints both occurrences lowercase 'state owned'; manual1919 prints 'state-owned' (hyphenated, lowercase). The capital 'S' in the marker first occurrence is likely an OCR/printing artifact."
+    },
+    {
+     "location": "in amounts, not exceeding its value",
+     "enacted_session_law": "in amounts, not exceeding its value (comma after 'amounts')",
+     "other_publications": "off1925 note prints 'in amounts. not exceeding' (stray period — OCR); manual1919 prints 'in amounts not exceeding' (no comma)."
+    },
+    {
+     "location": "and provided, further, that the state shall not issue",
+     "enacted_session_law": "and provided, further, that",
+     "other_publications": "off1925 note agrees: 'provided, further'. manual1919 reads 'and, provided further, that'."
+    }
+   ],
+   "discrepancies": "No substantive wording discrepancy among the three sources for the 1918 Article XXXI text; differences are limited to punctuation/capitalization/conjunction printings recorded in variants. Important context: section 182 was re-amended in 1924 (Article 42 of Amendments), and off1925's main running text and the 1954 Blue Book (bb1954) print THAT later version (singular 'first mortgage', 'real and personal property'), not the 1918 text — do not confuse the two. cl1913 and manual1907 predate this amendment and reproduce the original $200,000 limit ('two hundred thousand dollars'), confirming the amendment's effect (raising the limit). The marker source omits the vote tally and ratification certification, which is correct per the extraction rule."
+  },
+  {
+   "number": "XXXII",
+   "election_date": "1918-11-05",
+   "effective_date": "1918-12-05",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 185",
+     "heading": "Authorizes the state, counties, and cities to engage in business activities",
+     "text": "The state, any county or city, may make internal improvements and may engage in any industry, enterprise or business, not prohibited by Article 20 of the Constitution, but neither the state nor any political subdivision thereof shall otherwise loan or give its credit or make donations to or in aid of any individual, association or corporation except for reasonable support of the poor, nor subscribe to or become the owner of capital stock in any association or corporation."
+    }
+   ],
+   "authority": "Amendment ratified 1918-11-05",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (session law, line 411 — PRIMARY/enacted)",
+    "/tmp/off1925.txt (1925 official constitution snapshot, line 5794)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, line 11026)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, line 648 — OCR garbled, structural confirmation only)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "any county or city, may make internal improvements",
+     "enacted_session_law": "comma present after \"city\": \"any county or city, may make\"",
+     "other_publications": "The 1919 Legislative Manual (manual1919) omits the comma: \"any county or city may make\". The 1925 official snapshot (off1925) retains the comma, agreeing with the session law."
+    },
+    {
+     "location": "any industry, enterprise or business, not prohibited",
+     "enacted_session_law": "comma present after \"business\": \"enterprise or business, not prohibited\"",
+     "other_publications": "The 1919 Legislative Manual (manual1919) omits the comma: \"enterprise or business not prohibited\". The 1925 official snapshot (off1925) retains the comma, agreeing with the session law."
+    },
+    {
+     "location": "not prohibited by Article 20 of the Constitution",
+     "enacted_session_law": "capital \"A\" and capital \"C\": \"Article 20 of the Constitution\"",
+     "other_publications": "The 1925 official snapshot (off1925) lowercases both: \"article 20 of the Constitution\" (and elsewhere \"article 20\"). The 1919 Manual matches the session law with capital \"Article 20\"."
+    }
+   ],
+   "discrepancies": "No substantive wording disagreement among the legible sources. Divergences are punctuation/capitalization only and are recorded in variants for human review: (1) comma after \"city\"; (2) comma after \"business\"; (3) capitalization of \"Article 20\". The session-law (enacted) reading governs and is transcribed into text. The 1954 Blue Book OCR is too corrupted to adjudicate punctuation (e.g., \"internnl improvements\", \"nny industry\", \"Iiuslnrjs\"); it confirms only structure and substance, not punctuation."
+  },
+  {
+   "number": "XXXIII",
+   "election_date": "1920-03-16",
+   "effective_date": "1920-04-15",
+   "type": "new_article",
+   "changes": [
+    {
+     "target": "N.D. Const. amend. art. XXXIII",
+     "heading": "Recall of elective congressional, state, county, judicial and legislative officers",
+     "text": "The qualified electors of the state or of any county, or of any congressional, judicial or legislative district may petition for the recall any elective congressional, state, county, judicial or legislative officer by filing a petition with the officer with whom the petition for nomination to such office in the primary election is filed, demanding the recall of such officer. Such petition shall be signed by at least thirty per cent of the qualified electors who voted at the preceding election for the office of Governor in the state, county or district from which such officer is to be recalled. The officer with whom such petition is filed shall call a special election to be held not less than forty or more than forty-five days from the filing of such petition.\n\nThe officer against whom such petition has been filed shall continue to perform the duties of his office until the result of such special election shall have been officially declared. Other candidates for such office may be nominated in the manner as is provided by law in primary elections. The candidate who shall receive the highest number of votes shall be deemed elected for the remainder of the term. The name of the candidate against whom the recall petition is filed shall go on the ticket unless he resigns within ten days after the filing of the petition. After one such petition and special election, no further recall petition shall be filed against the same officer during the term for which he was elected. This article shall be self executing and all of its provisions shall be treated as mandatory. Laws may be enacted to facilitate its operation, but no law shall be enacted to hamper, restrict or impair the right of recall."
+    }
+   ],
+   "authority": "Amendment ratified 1920-03-16",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary marker OCR, ch. 93, two passes)",
+    "/tmp/sl1919.pdf p.123 (fresh high-quality re-OCR via ocrpages.sh — authoritative session law)",
+    "/tmp/manual1919.txt (1919 Legislative Manual — corroborating)",
+    "/tmp/off1925.txt (1925 official snapshot — recall article NOT present)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book — recall article NOT present)",
+    "/tmp/cl1913.txt (1913 Compiled Laws — predates amendment, no recall text)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "thirty per cent of the qualified electors",
+     "enacted_session_law": "thirty per cent of the qualified electors (no comma after \"cent\")",
+     "other_publications": "1919 Legislative Manual prints a comma: \"thirty per cent, of the qualified electors\""
+    },
+    {
+     "location": "for the office of Governor",
+     "enacted_session_law": "office of Governor (capital G)",
+     "other_publications": "1919 Legislative Manual lowercases it: \"office of governor\""
+    }
+   ],
+   "discrepancies": "No substantive textual disagreement. The two OCR readings within the primary marker file diverged on minor dropped words (marker line 231 omitted \"for the\" in \"deemed elected [for the] remainder\" and omitted \"the\" in \"name of [the] candidate\"); both omissions are OCR errors, resolved by a fresh high-quality re-OCR of session-law page 123 and corroborated by the 1919 Legislative Manual, which both read \"deemed elected for the remainder of the term\" and \"The name of the candidate.\" The article number in the enacted text is left blank (\"Article ........\") in the session law itself; it is conventionally cited as Article XXXIII (amend. art. 33) per the amendment metadata. The recall article does not appear in the 1925 official snapshot or the 1954 Blue Book (those carry the initiative/referendum article); whether the recall provision was later superseded/renumbered is outside the scope of this transcription."
+  },
+  {
+   "number": "XXXIV",
+   "election_date": "1920-03-16",
+   "effective_date": "1920-04-15",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 161",
+     "heading": "Leasing of state lands and coal lands for agricultural purposes up to five years",
+     "text": "Section 161, Article 9. The Legislative Assembly shall have authority to provide by law for the leasing of lands granted to the state for educational and charitable purposes; but no such law shall authorize the leasing of said lands for a longer period than five years. Said lands shall only be leased for pasturage and meadow purposes and at a public auction after notice as heretofore provided in case of sale; provided, that all of said school lands now under cultivation may be leased, at the discretion and under the control of the Board of University and School Lands, for other than pasturage and meadow purposes until sold. All rents shall be paid in advance.\n\nProvided further, that coal lands may also be leased for agricultural cultivation upon such terms and conditions and for such a period, not exceeding five years as the legislature may provide."
+    }
+   ],
+   "authority": "Amendment ratified 1920-03-16",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (Article 34, lines 486-492 — primary, enacted session-law marker OCR)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov snapshot, § 161, lines 4874-4885)",
+    "/tmp/manual1919.txt (1919 Legislative Manual, Sec. 161 Art. 9, lines 11214-11228)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, § 101, line 542)",
+    "/tmp/cl1913.txt (1913 Compiled Laws, pre-amendment original § 161, line 11478)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "pasturage and meadow purposes and at a public auction",
+     "enacted_session_law": "pasturage and meadow purposes and at a public auction (no comma or punctuation between 'purposes' and 'and'; the marker's stray hyphen 'purposes-' is OCR garble)",
+     "other_publications": "1925 official, 1919 Manual, and 1954 Blue Book all read 'purposes and' with no intervening punctuation — confirming the enacted reading."
+    },
+    {
+     "location": "not exceeding five years as the legislature may provide",
+     "enacted_session_law": "not exceeding five years as the legislature may provide (no comma after 'years')",
+     "other_publications": "1925 official snapshot also has no comma after 'years'. The 1919 Legislative Manual inserts a comma: 'not exceeding five years, as the legislature may provide.'"
+    },
+    {
+     "location": "Provided further, that coal lands may also be leased",
+     "enacted_session_law": "Provided further, that (comma after 'further' only)",
+     "other_publications": "1925 official reads 'Provided further, that' (matches). The 1919 Legislative Manual reads 'Provided, further, that' (additional comma after 'Provided')."
+    },
+    {
+     "location": "Board of University and School Lands",
+     "enacted_session_law": "Board of University and School Lands (initial caps; marker OCR 'UniVersity' is garble)",
+     "other_publications": "1925 official lowercases: 'board of university and school lands'. 1919 Manual and 1954 Blue Book capitalize 'Board of University and School Lands'."
+    },
+    {
+     "location": "The Legislative Assembly shall have authority",
+     "enacted_session_law": "The Legislative Assembly (initial caps)",
+     "other_publications": "1925 official reads 'The legislative assembly' (lowercase). 1919 Manual reads 'The Legislative Assembly' (caps)."
+    }
+   ],
+   "discrepancies": "No substantive (meaning-changing) discrepancy among sources. All five publications carry the identical operative text. Divergences are confined to punctuation/capitalization (recorded in variants) and to OCR garble in the marker (corrected against the codes). The 1919 Legislative Manual prints the pre-adoption resolution text (Chapter 91, \"Approved February 28, 1919\") and includes commas not present in the enacted/official printings."
+  },
+  {
+   "number": "XXXV",
+   "election_date": "1920-03-16",
+   "effective_date": "1920-04-15",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 183",
+     "heading": "Limitations on public indebtedness; school district 5 percent increase; county and city utility bonds",
+     "text": "Section 183. The debt of any county, township, city, town, school district or any other political sub-division shall never exceed five per centum upon the assessed value of the taxable property therein; provided that any incorporated city may, by a two-thirds vote, increase such indebtedness three per centum on such assessed value beyond said five per centum limit, and a school district, by a majority vote may increase such indebtedness five per cent on such assessed value beyond said five per centum limit; provided also that any county or city by a majority vote may issue bonds upon any revenue producing utility owned by such county or city, or for the purchasing or acquiring the same or building or establishment thereof, in amounts not exceeding the physical value of such utility, industry or enterprise.\n\nIn estimating the indebtedness which a city, county, township, school district or any other political subdivision may incur, the entire amount, exclusive of the bonds upon said revenue producing utilities, whether contracted prior or subsequent to the adoption of this constitution, shall be included; provided further, that any incorporated city may become indebted in any amount not exceeding four per centum of such assessed value without regard to the existing indebtedness of such city for the purpose of constructing or purchasing water works for furnishing a supply of water to the inhabitants of such city, or for the purpose of constructing sewers and for no other purposes whatever. All bonds and obligations in excess of the amount of indebtedness permitted by this Constitution, given by any city, county, township, town, school district, or any other political subdivision shall be void."
+    }
+   ],
+   "authority": "Amendment ratified 1920-03-16",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary, enacted session-law marker OCR)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution snapshot)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book)",
+    "/tmp/manual1919.txt (1919 Legislative Manual — NOT a valid cross-check: contains a DIFFERENT, earlier proposed § 183 amendment approved Feb. 26, 1919, lacking the utility-bond clause)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "a school district, by a majority vote may increase such indebtedness five per cent on such assessed value",
+     "enacted_session_law": "five per cent",
+     "other_publications": "The 1925 official ndlegis.gov snapshot (/tmp/off1925.txt) reads \"five per centum\" here. The 1954 Blue Book (/tmp/bb1954_marker) agrees with the session law (\"five per cent\"). Judgment call: the session-law marker reading \"five per cent\" is transcribed per the authority rule; this is the only substantive cross-publication divergence."
+    },
+    {
+     "location": "school district or any other political sub-division shall never exceed",
+     "enacted_session_law": "sub-division (hyphenated)",
+     "other_publications": "The 1925 official snapshot prints \"subdivision\" (unhyphenated) in this first occurrence; the session-law marker hyphenates only the first occurrence and prints \"subdivision\" later. Minor styling divergence."
+    },
+    {
+     "location": "for no other purposes whatever. All bonds",
+     "enacted_session_law": "purposes whatever. (plural \"purposes\")",
+     "other_publications": "The 1919 Legislative Manual's earlier/different proposal reads \"purpose whatever\" (singular); the 1925 official snapshot and session-law marker both read \"purposes whatever.\" Noted only because the earlier proposal is a near neighbor in the sources."
+    }
+   ],
+   "discrepancies": "One substantive cross-publication divergence (recorded in variants): the school-district clause reads \"five per cent\" in the enacted session-law marker and 1954 Blue Book, but \"five per centum\" in the 1925 official snapshot. Transcribed the session-law reading per authority rule. The 1919 Legislative Manual is NOT a cross-check for this amendment: it contains a distinct, earlier § 183 amendment (approved Feb. 26, 1919) that omits the revenue-producing-utility bond provision entirely; the enacted Article 35 (adopted March 16, 1920, Chapter 28 Special Session Laws 1919) is the one with the utility clause. OCR garble in the marker (e.g., \"five per cen-'tum\", \"school. district\", \"suchv\", \"constructing'water works\", \"sup ply-0f water tothe inhabitants 0f.such\", \"by: this\", \"purposes whatever,\") was corrected against the 1925 official snapshot; none of these affect substance."
+  },
+  {
+   "number": "XXXVI",
+   "election_date": "1920-03-16",
+   "effective_date": "1920-04-15",
+   "type": "new_article",
+   "changes": [
+    {
+     "target": "N.D. Const. amend. art. XXXVI",
+     "heading": "Elective franchise — voting residence; right to vote in former precinct until residence established in new precinct",
+     "text": "Amendment. Every qualified elector who shall have resided in the state one year, and in the county ninety days, and in the precinct thirty days next preceding any election, shall be entitled to vote at such election; provided, that where a qualified elector moves from one precinct to another within the same county, he shall be entitled to vote in the precinct from which he moved, until he establishes his residence in the precinct to which he moved."
+    }
+   ],
+   "authority": "Amendment ratified 1920-03-16",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (line 506, ARTICLE 36 — marker OCR of session-law pages)",
+    "/tmp/sl1921.pdf page 270 (re-OCR via /tmp/ocrpages.sh — authoritative session law, confirms text verbatim)",
+    "/tmp/off1925.txt (1925 official snapshot — carries only superseding 1922 version, §121 integration)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (line 426 — carries only superseding 1922 Article 40 version)",
+    "/tmp/cl1913.txt (no match — predates amendment)",
+    "/tmp/manual1919.txt (no match)",
+    "/tmp/manual1907.txt (no match)"
+   ],
+   "confidence": "medium",
+   "variants": [
+    {
+     "location": "moves from one precinct to another within the same county",
+     "enacted_session_law": "within the same county",
+     "other_publications": "The superseding 1922 version (Article 40), as printed in off1925 (§121 integration), bb1954 line 426, and marker line 563, reads \"within the state\" instead of \"within the same county.\" No publication reproduces this 1920 article's \"within the same county\" reading."
+    },
+    {
+     "location": "the precinct from which he moved, until he establishes his residence in the precinct to which he moved",
+     "enacted_session_law": "moved ... moved (past tense)",
+     "other_publications": "The superseding 1922 version (off1925, bb1954, marker Article 40) uses present tense throughout: \"from which he moves ... to which he moves.\""
+    },
+    {
+     "location": "in the county ninety days, and in the precinct thirty days",
+     "enacted_session_law": "ninety days ... thirty days (spelled out)",
+     "other_publications": "The marker rendering of the superseding 1922 Article 40 (line 563) uses numerals \"90 days\" and \"30 days\"; bb1954's 1922 version spells them out (\"ninety days\"/\"thirty days\")."
+    }
+   ],
+   "discrepancies": "DATE DISCREPANCY: The supplied metadata gives election_date 1920-03-16 / effective 1920-04-15, but the authoritative session law (/tmp/sl1921.pdf p.270, confirmed by re-OCR) and the marker source both annotate ARTICLE 36 as \"Chapter 89, Session Laws 1917. Chapter 92, Session Laws 1919. Adopted November 2, 1920. 135,370 to 60,772.\" The March 16, 1920 date in the metadata actually belongs to the PRECEDING article (Article 35 / Chapter 28, Special Session Laws 1919, adopted March 16, 1920, 31,082 to 16,366). On the session-law page, this Article 36 was adopted November 2, 1920. Recommend human review of the metadata election/effective dates; the session-law adoption date for this article is November 2, 1920.\n\nSUPERSESSION: This 1920 Article 36 (\"within the same county\") was superseded ~2 years later by the 1922 Article 40 (\"within the state\"; Chapter 41, Session Laws 1921, adopted June 28, 1922), which the published codes (off1925, bb1954) integrate into Section 121. Because the codes carry only the later text, no published code corroborates this article's exact 1920 wording — hence medium (not high) confidence, even though two independent session-law renderings agree verbatim.\n\nOCR garble resolved: marker OCR had \"onevyear\"/\"beentitled\"/\"an other\"; high-quality re-OCR of sl1921.pdf p.270 confirms the correct readings \"one year\"/\"be entitled\"/\"another\" used in the transcription."
+  },
+  {
+   "number": "XXXVII",
+   "election_date": "1920-11-02",
+   "effective_date": "1920-12-02",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 121",
+     "heading": "Qualifications of electors (woman suffrage)",
+     "text": "Sec. 121. Every person of the age of twenty-one years or upwards, belonging to either of the following classes who shall have resided in the state one year and in the county ninety days and in the precinct thirty days next preceding any election shall be a qualified elector at such election. First, citizens of the United States; Second, civilized persons of Indian descent who have severed their tribal relation two years next preceding such election."
+    }
+   ],
+   "authority": "Amendment ratified 1920-11-02",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (session-law marker OCR, Ch. 92, S.B. 81, lines 207-211 — ENACTED/authoritative)",
+    "/tmp/off1925.txt (1925 official ndlegis.gov constitution snapshot, §121, lines 3786-3791)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, §121, line 424)",
+    "/tmp/cl1913.txt (1913 Compiled Laws — pre-amendment baseline)",
+    "/tmp/manual1919.txt (1919 Legislative Manual — pre-amendment baseline)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "severed their tribal relation two years",
+     "enacted_session_law": "tribal relation (singular)",
+     "other_publications": "The 1954 Blue Book reads \"tribal relations\" (plural). The session law and the 1925 official snapshot both read \"tribal relation\" (singular)."
+    },
+    {
+     "location": "First, citizens of the United States; Second, civilized persons",
+     "enacted_session_law": "First ... Second (both capitalized)",
+     "other_publications": "The 1925 official snapshot capitalizes \"First\" but prints \"second\" in lowercase. The 1954 Blue Book also prints \"second\" lowercase. The session law capitalizes both."
+    }
+   ],
+   "discrepancies": "No discrepancy in the substantive constitutional text: the marker session-law OCR and the 1925 official snapshot agree on every word of the amended §121. Two minor cross-publication typographic divergences are recorded in variants (singular vs. plural \"tribal relation(s)\"; capitalization of \"Second\"); the enacted session-law readings are transcribed into the text field. Note the resolution carries an \"Approved February 18, 1919\" legislative date (Sixteenth Legislative Assembly agreement); the operative ratification was by the electors on 1920-11-02 per the metadata and the 1925/1954 attributions."
+  },
+  {
+   "number": "XXXVIII",
+   "election_date": "1920-11-02",
+   "effective_date": "1920-12-02",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 215",
+     "heading": "Permanent location of state institutions; State Reform School renamed State Training School",
+     "text": "Section 215. The following public institutions of the State are permanently located at the places hereinafter named, each to have the lands specifically granted to it by the United States in the Act of Congress approved February 22, 1889, to be disposed of and used in such manner as the Legislative Assembly may prescribe subject to the limitations provided in the article on school and public lands contained in this Constitution.\n\nFirst: The seat of government at the City of Bismarck in the County of Burleigh.\n\nSecond: The State University and the School of Mines at the city of Grand Forks, in the County of Grand Forks.\n\nThird: The Agricultural College at the City of Fargo, in the County of Cass.\n\nFourth: A State Normal School at the city of Valley City, in the County of Barnes, and the Legislative Assembly, in apportioning the grant of eighty thousand acres of land for normal schools made in the act of Congress referred to shall grant to the said Normal School at Valley City, as aforementioned, fifty thousand (50,000) acres, and said lands are hereby appropriated to said institution for that purpose.\n\nFifth: The School for the Deaf and Dumb of North Dakota at the City of Devils Lake, in the County of Ramsey.\n\nSixth: A State Training School at the City of Mandan, in the County of Morton.\n\nSeventh: A State Normal School at the City of Mayville, in the County of Traill, and the Legislative Assembly in apportioning the grant of lands made by Congress in the act aforesaid for State Normal Schools shall assign thirty thousand (30,000) acres to the institution hereby located at Mayville, and said lands are hereby appropriated for said purpose.\n\nEighth: A State Hospital for the Insane at the City of Jamestown, in the County of Stutsman. And the Legislative Assembly shall appropriate twenty thousand acres of the grant of lands made by the Act of Congress aforesaid for other educational and charitable institutions to the benefit and for the endowment of said institution, and there shall be located at or near the City of Grafton, in the County of Walsh, an institution for the Feeble Minded, on the grounds purchased by the Secretary of the Interior for a Penitentiary building."
+    }
+   ],
+   "authority": "Amendment ratified 1920-11-02",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (primary; ARTICLE 38 enacted text lines 516-538, plus 1919 proposing resolution lines 241-271)",
+    "/tmp/off1925.txt (1925 official snapshot, lines 6839-6880, incl. explanatory note confirming Art. 38 / 1920 ratification)",
+    "/tmp/cl1913.txt (pre-amendment baseline: 'reform school')",
+    "/tmp/manual1919.txt (pre-amendment baseline: 'reform school')"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "A State Training School at the City of Mandan",
+     "enacted_session_law": "City (capitalized); institution names capitalized throughout (e.g., \"State Training School\", \"State Normal School\", \"State Hospital for the Insane\")",
+     "other_publications": "1925 official ndlegis.gov snapshot lowercases both the descriptors and \"city\"/\"county\" throughout: \"A state training school at the city of Mandan, in the county of Morton.\""
+    },
+    {
+     "location": "in the Act of Congress approved February 22, 1889",
+     "enacted_session_law": "ARTICLE 38 canvassers' text (sl1921): \"Act of Congress approved February 22, 1889\" (Act capitalized, no \"nd\" suffix on 22)",
+     "other_publications": "The 1919 proposing-resolution instance in the same marker reads \"act of Congress Approved February 22nd, 1889\" (lowercase act, capitalized Approved, ordinal \"22nd\"); 1925 official reads \"act of Congress approved February 22, 1889\" (lowercase act)."
+    },
+    {
+     "location": "an institution for the Feeble Minded",
+     "enacted_session_law": "Feeble Minded (capitalized)",
+     "other_publications": "1925 official: \"an institution for the feeble minded\" (lowercase)."
+    }
+   ],
+   "discrepancies": "No substantive wording discrepancy. The only divergences are capitalization of descriptive nouns (\"city\"/\"county\"/institution names) and the ordinal \"22nd\" vs \"22\" — recorded as variants. OCR garble corrected: marker \"SectiOn\" -> \"Section\"; \"lVlorton\" -> \"Morton\" (confirmed Morton by both the 1919 resolution instance and the 1925 official). The 1919 proposing-resolution instance (marker lines 247-271) was cut off at \"Seventh\" by a page break; the full enacted list was transcribed from the 1921 canvassers' ARTICLE 38 statement (marker lines 516-538), cross-confirmed against the 1925 official snapshot. 1925 explanatory note confirms: \"The only change made by this amendment was to substitute the term 'training school' for 'reform school' in subdivision 6.\" cl1913, manual1919, manual1907 predate the amendment (show \"reform school\") and serve only to confirm the pre-amendment baseline. bb1954 had no grep hit for this section."
+  },
+  {
+   "number": "XXXIX",
+   "election_date": "1920-11-02",
+   "effective_date": "1920-12-02",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 162",
+     "heading": "Investment of permanent school fund and other educational funds; loans on farm lands up to one-half appraised value",
+     "text": "Section 162. The moneys of the permanent school fund and other educational funds shall be invested only in bonds of school corporations or of counties, or of townships, or of municipalities within the state, bonds issued for the construction of drains under authority of law within the state, bonds of the United States, bonds of the State of North Dakota, or on first mortgages on farm lands in this state, not exceeding in amount one-half of the actual value of any sub-division on which the same may be loaned, such value to be determined by the board of appraisal of school lands."
+    }
+   ],
+   "authority": "Amendment ratified 1920-11-02",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/sl1921.pdf p.271-272 (canonical session law, ARTICLE 39 / Section 162, re-OCR'd at 400 dpi via /tmp/ocrpages.sh)",
+    "/tmp/seg3_marker/seg3_src/seg3_src.md lines 538-546 (marker OCR compilation)",
+    "/tmp/off1925.txt lines 4903-4923 (1925 official ndlegis.gov constitution snapshot, incl. explanatory note distinguishing the 1908 and original versions)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md line 550 (1954 Blue Book)",
+    "/tmp/cl1913.txt lines 12946-12955 (1913 Compiled Laws — prior 1908 version, used to confirm what changed)",
+    "/tmp/manual1919.txt lines 10339-10350 (1919 Legislative Manual — prior 1908 version)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "any sub-division on which the same may be loaned",
+     "enacted_session_law": "sub-division (hyphenated)",
+     "other_publications": "subdivision (no hyphen) in off1925.txt (1925 official snapshot, current text), bb1954_const.md (1954 Blue Book), and the prior-version cl1913.txt (1913 Compiled Laws)"
+    },
+    {
+     "location": "or of townships, or of municipalities within the state",
+     "enacted_session_law": "townships, (comma) — per 400-dpi re-OCR of sl1921.pdf p.272",
+     "other_publications": "townships. (period) in the marker compilation seg3_src.md and in off1925.txt; judged an OCR/typesetting artifact. cl1913.txt (prior version) also reads 'townships,' with a comma."
+    }
+   ],
+   "discrepancies": "Two cross-publication divergences recorded as variants (see below): (1) the session law reads 'sub-division' (hyphenated) while off1925, bb1954, and the prior 1913 CL read 'subdivision'; (2) punctuation after 'townships' — the high-quality 400-dpi OCR of the canonical session law (sl1921.pdf) shows a comma ('townships,'), which I adopt; the marker compilation (seg3_src.md) and the off1925 snapshot both render 'townships.' with a period, judged to be an OCR/typesetting artifact rather than the enacted reading. Provenance-attribution ambiguity: in the marker compilation the line 'Chapter 94, Session Laws 1917. Chapter 95, Session Laws 1919. Adopted November 2, 1920. 124,431 to 56,526.' sits between the Section 215 (Article 38) content and the ARTICLE 39 heading; the publication's layout places provenance lines after their article body, so on its face this provenance reads as Article 38's. However, off1925's explanatory note and the task metadata both confirm Article 39 = the 1920 school-fund/§162 amendment proposed by Chapter 95, Session Laws 1919 and adopted Nov. 2, 1920, so the chapter/election-date provenance is consistent; only the precise vote-total attribution to Art. 39 is not independently confirmed from this layout. None of this affects the verbatim operative text."
+  },
+  {
+   "number": "XL",
+   "election_date": "1922-06-28",
+   "effective_date": "1922-07-28",
+   "type": "new_article",
+   "changes": [
+    {
+     "target": "N.D. Const. amend. art. XL",
+     "heading": "Qualified elector may vote in former precinct until residence established in new precinct (move within the state)",
+     "text": "Every qualified elector, who shall have resided in the State one year, in the county 90 days and in the precinct 30 days next preceding any election, shall be entitled to vote at such election. Provided that where a qualified elector moves from one precinct to another within the state he shall be entitled to vote in the precinct from which he moves until he establishes his residence in the precinct to which he moves."
+    }
+   ],
+   "authority": "Amendment ratified 1922-06-28",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (marker OCR of session law, p.566)",
+    "re-OCR of /tmp/sl1923.pdf p.566 via ocrpages.sh",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (1954 Blue Book, integrated as Section 121)",
+    "/tmp/off1925.txt (1925 official constitution — confirms 1922 Art.40 did NOT replace the codified §121 text there)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "in the county 90 days and in the precinct 30 days",
+     "enacted_session_law": "numerals: \"90 days\" and \"30 days\"",
+     "other_publications": "1954 Blue Book spells these out as \"ninety days\" and \"thirty days\""
+    },
+    {
+     "location": "Section/article designation",
+     "enacted_session_law": "enacted and published as \"Article 40\" (a constitutional amendment adopted by the electors)",
+     "other_publications": "1954 Blue Book integrates the same operative text as the body of \"Section 121\" (superseding the earlier §121 elector-qualification language)"
+    }
+   ],
+   "discrepancies": "The 1925 official constitution snapshot (off1925.txt) does not carry this 1922 Article 40 text under §121; it retains the 1920 elector-qualification §121. This is an editorial/codification divergence, not a wording conflict in the enacted amendment. The marker text contains the ballot-title artifact \\\"North Dakota: Amendment.)\\\" preceding the substantive provision; this is procedural/heading material and was excluded from the transcribed text. Numeral-vs-spelled-out day counts noted in variants."
+  },
+  {
+   "number": "XLI",
+   "election_date": "1924-03-18",
+   "effective_date": "1924-04-17",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 173",
+     "heading": "Consolidation of county judge and clerk of district court in counties of six thousand or less",
+     "text": "At the First general election held after the adoption of this Constitution, and every two years thereafter, there shall be elected in each organized county in the State, a register of deeds, county auditor, treasurer, sheriff, state's attorney, county judge and a clerk of the district court, who shall be electors in the county in which they are elected, and who shall hold their office until their successors are elected and qualified; provided in counties having six thousand population or less the county judge shall also be the clerk of the district court. The legislative assembly shall provide by law for such other county, township and district officers as may be deemed necessary, and shall prescribe the duties and compensation of all county, township and district officers. The sheriff and treasurer of any county shall not hold their respective offices for more than four years in succession."
+    }
+   ],
+   "authority": "Amendment ratified 1924-03-18",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (Chapter 177, Article 41, line 664)",
+    "/tmp/sl1925.pdf p.341 (independent re-OCR via ocrpages.sh)",
+    "/tmp/off1925.txt line ~5126 (1925 official ndlegis.gov snapshot, Article 41)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "At the First general election",
+     "enacted_session_law": "First (capitalized)",
+     "other_publications": "off1925.txt lowercases it: \"At the first general election\""
+    },
+    {
+     "location": "in each organized county in the State",
+     "enacted_session_law": "State (capitalized)",
+     "other_publications": "off1925.txt lowercases it: \"in the state\""
+    },
+    {
+     "location": "elected and qualified; provided in counties",
+     "enacted_session_law": "qualified ; provided (space before the semicolon as typeset/OCR'd in the session law)",
+     "other_publications": "off1925.txt sets it tight: \"qualified; provided\"; transcribed here without the spurious pre-semicolon space"
+    }
+   ],
+   "discrepancies": "No substantive discrepancy. The only OCR artifact in the session-law text was the line-break hyphenation \"deem-ed\"/\"deem ed\", resolved to \"deemed\" (confirmed clean in off1925.txt). The space before the semicolon in \"qualified ;\" is a typesetting/OCR artifact and was normalized to \"qualified;\". Cross-publication capitalization variants (First/first, State/state) are recorded in variants; the enacted session-law reading capitalizes both. The 1913 Compiled Laws and 1907/1919 Manuals predate this amendment and show the original section 173; the 1954 Blue Book shows the later 1940 (Article 55) revision — neither is a conflict with the 1924 enacted text."
+  },
+  {
+   "number": "XLII",
+   "election_date": "1924-03-18",
+   "effective_date": "1924-04-17",
+   "type": "amend_section",
+   "changes": [
+    {
+     "target": "N.D. Const. § 182",
+     "heading": "Public debt; state bonds; payment within thirty years from date of issue",
+     "text": "The State may issue or guarantee the payment of bonds, provided that all bonds in excess of two million dollars shall be secured by first mortgage upon real estate in amounts not to exceed one-half of its value; or upon real and personal property of state owned utilities, enterprises or industries, in amounts not exceeding its value, and provided further, that the state shall not issue or guarantee bonds upon property of state owned utilities, enterprises or industries in excess of ten million dollars.\n\nNo further indebtedness shall be incurred by the state unless evidenced by a bond-issue, which shall be authorized by law for certain purposes, to be clearly defined. Every law authorizing a bond issue shall provide for levying an annual tax, or make other provision, sufficient to pay the interest semi-annually, and the principal within thirty years from the date of the issue of such bonds and shall specially appropriate the proceeds of such tax, or of such other provisions to the payment of said principal and interest, and such appropriation shall not be repealed nor the tax or other provisions discontinued until such debt, both principal and interest, shall have been paid. No debt in excess of the limit named herein shall be incurred except for the purpose of repelling invasion, suppressing insurrection, defending the state in time of war or to provide for the public defense in case of threatened hostilities."
+    }
+   ],
+   "authority": "Amendment ratified 1924-03-18",
+   "source_urls": [],
+   "sources_verified": [
+    "/tmp/seg3_marker/seg3_src/seg3_src.md (lines 672-680, session-law enacted text, ARTICLE 42 / CHAPTER 178)",
+    "/tmp/off1925.txt (lines 5603-5624, 1925 official constitution snapshot)",
+    "/tmp/bb1954_marker/bb1954_const/bb1954_const.md (line 632, 1954 Blue Book; OCR-degraded, confirms operative phrase)",
+    "/tmp/cl1913.txt (line 11783, 1913 Compiled Laws — shows the PRIOR text 'within thirty years from the passage of such law', confirming the change effected by amendment XLII)"
+   ],
+   "confidence": "high",
+   "variants": [
+    {
+     "location": "of such other provisions to the payment of said principal",
+     "enacted_session_law": "no comma after 'provisions' (\"...of such other provisions to the payment...\")",
+     "other_publications": "off1925.txt also has no comma here. NOTE the SUPERSEDED 1918 version of this same section (seg3_src.md line 403, Article XXXI) read 'of such other provisions, to the payment' WITH a comma. The enacted 1924 reading (no comma) is adopted."
+    },
+    {
+     "location": "first mortgage upon real estate",
+     "enacted_session_law": "singular 'first mortgage' (\"secured by first mortgage upon real estate\")",
+     "other_publications": "off1925.txt agrees (singular). The superseded 1918 Article XXXI version (seg3_src.md line 397) read plural 'first mortgages'. Enacted 1924 = singular."
+    },
+    {
+     "location": "except for the purpose of repelling invasion",
+     "enacted_session_law": "singular 'purpose' (\"except for the purpose of repelling invasion\")",
+     "other_publications": "off1925.txt agrees (singular 'purpose'). The superseded 1918 Article XXXI version (seg3_src.md line 403) read plural 'purposes'. Enacted 1924 = singular."
+    }
+   ],
+   "discrepancies": "No substantive disagreement among sources. Two OCR-only corrections applied from off1925.txt: (1) marker 'anuual tax' -> 'annual tax'; (2) marker line 674 'first mortgage' / line 676 'anuual' OCR artifacts resolved. All corrected forms are confirmed by the 1925 official snapshot. The 1954 Blue Book text is too OCR-degraded (e.g., 'shnll', 'stnte', 'Ifjkuc') to use for wording but confirms the distinctive operative clause. Amendment XLII changed § 182's deadline language from the prior 'within thirty years from the passage of such law' (per cl1913.txt) to 'within thirty years from the date of the issue of such bonds'."
   }
  ]
 }
