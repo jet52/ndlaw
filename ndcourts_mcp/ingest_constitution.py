@@ -222,6 +222,154 @@ def enumerate_sections(article_id: str, *, delay: float) -> list[dict]:
     return secs
 
 
+# --- amendment chronology (the :amendments table) --------------------------
+
+_ISO_DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+# Modern, current-numbering targets: "art. XI, § 29", "art. XV, §§ 1-6",
+# "art. IX, §§ 12&13". (Pre-1996 rows use bare historical section numbers and
+# are intentionally left unlinked.)
+_TARGET_RE = re.compile(
+    r"art\.\s*([IVXLCDM]+)\s*,\s*§+\s*([0-9]+(?:\.[0-9]+)?)"
+    r"(?:\s*([-&])\s*([0-9]+(?:\.[0-9]+)?))?",
+    re.I,
+)
+
+
+def _protect_links(s: str) -> str:
+    """Replace '|' inside [[...]] / {{...}} so a row can be split on '|'."""
+    def repl(m):
+        return m.group(0).replace("|", "\x00")
+    return re.sub(r"\[\[[^\]]*\]\]|\{\{[^}]*\}\}", repl, s)
+
+
+def wiki_plain(s: str) -> str:
+    """DokuWiki markup -> readable text. [[t|x]]->x, [[t]]->t, {{m|x}}->x."""
+    s = s.replace("\x00", "|")
+    s = re.sub(r"\[\[[^|\]]*\|([^\]]*)\]\]", r"\1", s)
+    s = re.sub(r"\[\[([^\]]*)\]\]", r"\1", s)
+    s = re.sub(r"\{\{[^|}]*\|([^}]*)\}\}", r"\1", s)
+    s = re.sub(r"\{\{([^}]*)\}\}", r"\1", s)
+    return s.strip()
+
+
+def first_url(cell: str) -> str | None:
+    m = re.search(r"\[\[(https?://[^|\]\x00]+)", cell)
+    return m.group(1) if m else None
+
+
+def parse_amendment_rows(raw: str) -> list[dict]:
+    """Parse the :amendments wiki table into chronology rows."""
+    rows: list[dict] = []
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line.startswith("|"):
+            continue  # skip header (^...^) and prose
+        protected = _protect_links(line)
+        cells = [c.strip() for c in protected.split("|")]
+        cells = [c for c in cells[1:] if c != ""] if cells and cells[0] == "" else cells
+        # need at least election, effective, sections, subject, number
+        if len(cells) < 4:
+            continue
+        election, effective, sections, subject = cells[0], cells[1], cells[2], cells[3]
+        number = cells[4] if len(cells) > 4 else None
+        eff_m = _ISO_DATE_RE.search(effective.replace("\x00", "|"))
+        el_m = _ISO_DATE_RE.search(election.replace("\x00", "|"))
+        rows.append({
+            "election_date": el_m.group(0) if el_m else None,
+            "effective_date": eff_m.group(0) if eff_m else None,
+            "affected": wiki_plain(sections),
+            "affected_raw": sections,
+            "subject": wiki_plain(subject),
+            "source_url": first_url(subject),
+            "number": wiki_plain(number) if number else None,
+        })
+    return rows
+
+
+def amendment_targets(affected: str) -> list[str]:
+    """Current-numbering citations an amendment touches, expanding §§ ranges.
+    Returns [] for pre-1996 rows that use only historical section numbers."""
+    targets: list[str] = []
+    for m in _TARGET_RE.finditer(affected):
+        roman = m.group(1).upper()
+        start, sep, end = m.group(2), m.group(3), m.group(4)
+        nums = [start]
+        if sep and end:
+            if sep == "&":
+                nums = [start, end]
+            elif sep == "-" and start.isdigit() and end.isdigit():
+                nums = [str(n) for n in range(int(start), int(end) + 1)]
+            else:
+                nums = [start, end]
+        for n in nums:
+            targets.append(f"N.D. Const. art. {roman}, § {n}")
+    return targets
+
+
+def ingest_amendments(conn, prov_index: dict, *, batch: str) -> tuple[int, int]:
+    """Load the authoritative :amendments chronology. Modern rows link to
+    current provisions; pre-1996 rows are stored unlinked with their original
+    section reference preserved. Returns (rows, linked_rows)."""
+    raw = fetch_raw("amendments")
+    if not raw:
+        print("  WARN: could not fetch :amendments page", file=sys.stderr)
+        return 0, 0
+    rows = parse_amendment_rows(raw)
+    n_rows = n_linked = 0
+    latest: dict[int, str] = {}  # pid -> latest linked effective_date
+    for r in rows:
+        n_rows += 1
+        action = "repealed" if "repeal" in r["subject"].lower() else "amended"
+        targets = amendment_targets(r["affected"])
+        linked_pids = []
+        for cite in targets:
+            hit = prov_index.get(corpus.cite_key(cite))
+            if hit:
+                linked_pids.append(hit[0])
+        if linked_pids:
+            for pid in linked_pids:
+                conn.execute(
+                    "INSERT OR IGNORE INTO amendments "
+                    "(provision_id, action, effective_date, raw_date, election_date, "
+                    " affected, amendment_number, authority, source_url, raw) "
+                    "VALUES (?,?,?,?,?,?,?,?,?,?)",
+                    (pid, action, r["effective_date"], r["election_date"],
+                     r["election_date"], r["affected"], r["number"], None,
+                     r["source_url"], r["subject"]),
+                )
+                if r["effective_date"]:
+                    cur = latest.get(pid)
+                    if not cur or r["effective_date"] > cur:
+                        latest[pid] = r["effective_date"]
+            n_linked += 1
+        else:
+            conn.execute(
+                "INSERT OR IGNORE INTO amendments "
+                "(provision_id, action, effective_date, raw_date, election_date, "
+                " affected, amendment_number, authority, source_url, raw) "
+                "VALUES (NULL,?,?,?,?,?,?,?,?,?)",
+                (action, r["effective_date"], r["election_date"], r["election_date"],
+                 r["affected"], r["number"], None, r["source_url"], r["subject"]),
+            )
+    # Recompute each linked provision's current-version effective_start from the
+    # authoritative chronology (more accurate than the inline annotations).
+    for pid, eff in latest.items():
+        vid = prov_index_by_pid(prov_index, pid)
+        if vid:
+            conn.execute(
+                "UPDATE provision_versions SET effective_start=? WHERE id=?", (eff, vid)
+            )
+    conn.commit()
+    return n_rows, n_linked
+
+
+def prov_index_by_pid(prov_index: dict, pid: int) -> int | None:
+    for (p, v) in prov_index.values():
+        if p == pid:
+            return v
+    return None
+
+
 # --- DB build --------------------------------------------------------------
 
 def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict:
@@ -231,7 +379,8 @@ def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict
     if limit:
         articles = articles[:limit]
 
-    n_prov = n_ver = n_amend = 0
+    n_prov = n_ver = 0
+    prov_index: dict[str, tuple[int, int]] = {}  # cite_key -> (provision_id, current_version_id)
     for art in articles:
         secs = enumerate_sections(art["id"], delay=delay)
         for sec in secs:
@@ -240,58 +389,53 @@ def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict
                 print(f"  WARN: no page for {sec['link_id']}", file=sys.stderr)
                 continue
             _path, raw = got
-            text, events = parse_amendments(raw)
+            text, events = parse_amendments(raw)  # events used only for status/cleanup
             if not text:
                 print(f"  WARN: empty text for {sec['link_id']}", file=sys.stderr)
                 continue
             citation = f"{article_citation(art['roman'])}, § {sec['secnum']}"
-            # effective_start = latest amendment date, else original adoption.
-            dates = [e["effective_date"] for e in events if e["effective_date"]]
-            eff_start = max(dates) if dates else ORIGINAL_ADOPTION
-            # Repealed-in-place sections list "Repealed." as their text, or carry
-            # a 'repealed' amendment event.
+            # Provisional effective_start; overwritten below from the
+            # authoritative amendment chronology for amended sections.
             repealed = bool(re.match(r"(?i)^\s*repealed\b", text)) or any(
                 e["action"] == "repealed" for e in events
             )
             status = "repealed" if repealed else "active"
+            key = corpus.cite_key(citation)
             pid = conn.execute(
                 "INSERT INTO provisions (corpus, citation, cite_key, heading, status) "
                 "VALUES (?,?,?,?,?)",
-                ("const", citation, corpus.cite_key(citation), sec["heading"] or None, status),
+                ("const", citation, key, sec["heading"] or None, status),
             ).lastrowid
             n_prov += 1
             vid = conn.execute(
                 "INSERT INTO provision_versions "
                 "(provision_id, effective_start, effective_end, text_content, "
                 " source_authority, source_url, batch) VALUES (?,?,?,?,?,?,?)",
-                (pid, eff_start, None, text,
+                (pid, ORIGINAL_ADOPTION, None, text,
                  "current text (ndconst.org)", f"{BASE}/{_path}", batch),
             ).lastrowid
             conn.execute("UPDATE provisions SET current_version_id=? WHERE id=?", (vid, pid))
             corpus.index_version_fts(conn, vid, citation, sec["heading"], text)
+            prov_index[key] = (pid, vid)
             n_ver += 1
-            for e in events:
-                conn.execute(
-                    "INSERT OR IGNORE INTO amendments "
-                    "(provision_id, version_id, action, effective_date, raw_date, "
-                    " authority, source_url, raw) VALUES (?,?,?,?,?,?,?,?)",
-                    (pid, None, e["action"], e["effective_date"], e["raw_date"],
-                     e["authority"], e["source_url"], e["raw"]),
-                )
-                n_amend += 1
         conn.commit()
         print(f"  art {art['roman']}: {len(secs)} sections")
 
-    corpus.create_corpus_schema(conn)  # no-op if exists; keep idempotent
+    # Authoritative amendment chronology (ndconst.org :amendments — 167 rows).
+    n_amend, n_linked = ingest_amendments(conn, prov_index, batch=batch)
+    print(f"  amendments: {n_amend} rows ({n_linked} linked to current provisions)")
+
     conn.execute(
         "INSERT INTO provenance (operation, command, source_paths, rows_affected, notes) "
         "VALUES (?,?,?,?,?)",
         ("ingest_constitution", batch, BASE, n_prov,
-         f"{n_prov} provisions, {n_ver} versions, {n_amend} amendment events"),
+         f"{n_prov} provisions, {n_ver} versions, {n_amend} amendment rows "
+         f"({n_linked} linked)"),
     )
     conn.commit()
     conn.close()
-    return {"provisions": n_prov, "versions": n_ver, "amendments": n_amend}
+    return {"provisions": n_prov, "versions": n_ver,
+            "amendment_rows": n_amend, "linked": n_linked}
 
 
 def main() -> None:

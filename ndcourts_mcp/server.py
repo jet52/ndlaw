@@ -1697,6 +1697,66 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
 
 
 @mcp.tool()
+def constitutional_amendments(
+    date_from: str | None = None, date_to: str | None = None, limit: int = 200,
+) -> dict:
+    """List the chronology of amendments to the ND Constitution.
+
+    Returns every amendment from ndconst.org's authoritative table (1889–present,
+    ~167 amendments) with its effective date, election date, affected section(s),
+    subject, and a link to the enacting session law. Optionally filter by
+    effective-date range (ISO ``YYYY-MM-DD``). Note: pre-1996 amendments list the
+    section numbers in effect at the time (the Constitution was renumbered in
+    1996), so those do not map to current article/section citations.
+
+    Args:
+        date_from: Only amendments effective on/after this ISO date.
+        date_to: Only amendments effective on/before this ISO date.
+        limit: Max amendments to return (default 200).
+    """
+    conn = _conn_with_corpora()
+    try:
+        alias = _attached_corpora(conn).get("const")
+        if not alias:
+            return {"found": False,
+                    "error": "The ND Constitution corpus is not installed on this server."}
+        where = ["effective_date IS NOT NULL"]
+        params: list = []
+        if date_from:
+            where.append("effective_date >= ?"); params.append(date_from)
+        if date_to:
+            where.append("effective_date <= ?"); params.append(date_to)
+        params.append(min(limit, 500))
+        rows = conn.execute(
+            f"""SELECT DISTINCT amendment_number, effective_date, election_date,
+                       affected, raw AS subject, source_url
+                FROM {alias}.amendments
+                WHERE {' AND '.join(where)}
+                ORDER BY effective_date DESC, amendment_number LIMIT ?""",
+            params,
+        ).fetchall()
+        return {
+            "found": True,
+            "date_from": date_from,
+            "date_to": date_to,
+            "count": len(rows),
+            "amendments": [
+                {
+                    "amendment_number": r["amendment_number"],
+                    "effective_date": r["effective_date"],
+                    "election_date": r["election_date"],
+                    "affected": r["affected"],
+                    "subject": r["subject"],
+                    "source_url": r["source_url"],
+                }
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
 def get_authority_history(citation: str) -> dict:
     """Show the amendment history of a ND constitutional, statutory, court-rule,
     or administrative provision — every version with its effective dates and the
@@ -1738,7 +1798,8 @@ def get_authority_history(citation: str) -> dict:
         # Amendment events — the full chronology, including amendments whose
         # prior full text has not yet been captured as a provision_version.
         amendments = conn.execute(
-            f"""SELECT action, effective_date, raw_date, authority, source_url, raw
+            f"""SELECT action, effective_date, raw_date, election_date, affected,
+                       amendment_number, authority, source_url, raw
                 FROM {q}amendments WHERE provision_id = ?
                 ORDER BY COALESCE(effective_date, '0000-01-01')""",
             (prov["id"],),
@@ -1764,9 +1825,12 @@ def get_authority_history(citation: str) -> dict:
             "amendment_count": len(amendments),
             "amendments": [
                 {
+                    "amendment_number": a["amendment_number"],
                     "action": a["action"],
                     "effective_date": a["effective_date"],
-                    "raw_date": a["raw_date"],
+                    "election_date": a["election_date"],
+                    "affected": a["affected"],
+                    "subject": a["raw"],
                     "authority": a["authority"],
                     "source_url": a["source_url"],
                 }

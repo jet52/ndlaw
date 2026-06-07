@@ -172,15 +172,18 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
         -- captured full text when available (else NULL).
         CREATE TABLE IF NOT EXISTS amendments (
             id INTEGER PRIMARY KEY,
-            provision_id INTEGER NOT NULL REFERENCES provisions(id),
+            provision_id INTEGER REFERENCES provisions(id),  -- NULL if not mapped to a current provision
             version_id INTEGER REFERENCES provision_versions(id),
             action TEXT,                 -- 'adopted' | 'amended' | 'repealed' | ...
             effective_date TEXT,         -- ISO date (NULL if only a raw label parsed)
             raw_date TEXT,               -- the source's human date string, verbatim
+            election_date TEXT,          -- date the amendment was voted on (where known)
+            affected TEXT,               -- affected section(s) as the source states them
+            amendment_number TEXT,       -- sequential amendment number (where known)
             authority TEXT,              -- enacting authority, e.g. 'S.L. 1985, ch. 702'
             source_url TEXT,
-            raw TEXT,                    -- the source annotation, verbatim (provenance)
-            UNIQUE(provision_id, raw)
+            raw TEXT,                    -- the source annotation / subject, verbatim
+            UNIQUE(provision_id, raw, effective_date)
         );
 
         CREATE INDEX IF NOT EXISTS idx_amendments_provision ON amendments(provision_id);
@@ -196,6 +199,12 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
             tokenize='porter unicode61'
         );
     """)
+    # Additive migrations for pre-existing corpus DBs (CREATE TABLE IF NOT EXISTS
+    # won't add columns to a table that already exists).
+    have = {r[1] for r in conn.execute("PRAGMA table_info(amendments)")}
+    for col in ("election_date", "affected", "amendment_number"):
+        if col not in have:
+            conn.execute(f"ALTER TABLE amendments ADD COLUMN {col} TEXT")
     conn.commit()
 
 
