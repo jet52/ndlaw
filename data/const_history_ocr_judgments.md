@@ -43,3 +43,15 @@ sl1955, 1959/1963 CAP, 1961/1965 CMA, 1977 CAA), except LVIII.
 | LXXIII | 1961_sl/CMA.pdf + 1959_sl/CAP.pdf | clean (both witnesses); no judgment |
 
 Full verbatim text + per-amendment provenance: `data/const_amend_session_law_extraction_2026-06-08.md`.
+
+
+---
+
+## Batch (2026-06-08): Blue-Book re-validation of 38 post-1955 amendments (LXV-CVIII)
+
+Re-validated against clean session-law CAA/CMA text (workflow). 30/38 clean. Body-text
+corrections recovered from session law: LXXIV §215 (missing institution rename) and XC §216
+(stripped Blue Book annotation; fixed Bottineau comma / Stark period / Constitution cap). The
+2 "OCR-only" flags (LXXXVIII, XCIX) were OCR noise in the session-law *scan*, not the stored
+text — no change. Metadata/date fixes (LXXIX, XCIII, C, CIV, CV, CVII) do not affect body text.
+Verdicts archived in `data/const_bluebook_revalidation_2026-06-08.json`.

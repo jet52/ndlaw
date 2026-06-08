@@ -227,7 +227,7 @@ def apply_amendments(conn, *, batch: str) -> dict:
     if not AMENDMENTS_JSON.exists():
         return {"amendments_applied": 0}
     records = json.loads(AMENDMENTS_JSON.read_text()).get("amendments", [])
-    n_add = n_mod = n_rep = n_skipped = n_warn = 0
+    n_add = n_mod = n_rep = n_skipped = n_warn = n_future = 0
 
     def find(cite):
         return conn.execute(
@@ -247,6 +247,10 @@ def apply_amendments(conn, *, batch: str) -> dict:
         rec_default = ("repeal" if r["type"] == "repeal"
                        else "add" if r["type"] == "new_article" else "amend")
         for ch in changes:
+            eff = ch.get("effective_date") or r["effective_date"]  # per-change date override (e.g. split-effective amendments)
+            if eff > REORG_EVE:  # effective after the 1889-scheme cap -> belongs to the post-1981 modern layer
+                n_future += 1
+                continue
             action = ch.get("action") or rec_default
             text = re.sub(r"^\s*§\s*[0-9]+[A-Za-z]?\.\s*", "", ch.get("text") or "")
             for cite in _expand_targets(ch["target"]):
@@ -308,7 +312,7 @@ def apply_amendments(conn, *, batch: str) -> dict:
                     (ev["id"] if ev else None, action, eff, r.get("election_date"),
                      r.get("affected") or cite, r.get("number"), auth, url, ch.get("heading") or ""))
     conn.commit()
-    return {"adds": n_add, "amends": n_mod, "repeals": n_rep,
+    return {"adds": n_add, "amends": n_mod, "repeals": n_rep, "future_skipped": n_future,
             "pending_skipped": n_skipped, "unresolved": n_warn}
 
 

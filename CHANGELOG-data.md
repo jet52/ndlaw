@@ -2385,3 +2385,46 @@ delete `constitution_history.db` first). Result: provisions 243, adds 22, amends
 repeals 47, pending_skipped 3, unresolved 0. Verified: §82 chain 6 contiguous versions
 (no dups/backwards), amend. art. LVI chains 1940->1960, point-in-time §162@1953 = LXI
 text, 422 versions = 422 distinct (provision, effective_start) keys.
+
+
+## Batch: const-history-bluebook-revalidation-2026-06-08 (8 corrections / 38 re-validated)
+
+Applied 2026-06-08. Multi-agent workflow re-validated the 38 post-1955 Blue-Book-OCR-sourced
+amendments (LXV-CVIII) against clean session-law text (CAA/CMA, with CAP as a clean second
+witness). Scripts: validation = workflow `const-bluebook-revalidate`; verdicts archived in
+`data/const_bluebook_revalidation_2026-06-08.json`; fixes = `scripts/fix_bluebook_revalidation_2026-06-08.py`.
+
+**Result: 30 of 38 confirmed clean** (28 identical; 2 — LXXXVIII, XCIX — diverged only by OCR
+noise in the session-law *scan*, stored text already correct). **8 had real errors:**
+
+Substantive (body):
+- **LXXIV (§215):** the amendment's operative rename was never applied in the stored text —
+  paragraph Third still read "The Agricultural College at the City of Fargo"; corrected to
+  "The North Dakota State University of Agriculture and Applied Science at the City of Fargo,
+  in the County of Cass."
+- **XC (§216):** stored text carried appended Blue Book editorial annotation as if enacted, plus
+  3 punctuation/caps divergences; replaced with clean session-law §216. Chapter 526 SECTION 2 also
+  amended subsection 1 of amend. art. LIV (Board of Higher Ed membership) — NOT applied (same
+  single-provision art-LIV issue as LXXVIII/XCVI); flagged to the structural backlog.
+
+Metadata/date:
+- **LXXIX (§113):** authority chamber House -> Senate Concurrent Resolution "T"; dropped unsupported "(mislabeled T)".
+- **XCIII / C:** added missing election_date (1974-11-05 / 1978-09-05).
+- **CIV (§§121-129):** authority "Senate House Concurrent Resolution No. 3014" -> "House Concurrent Resolution No. 3014".
+- **CV (art CV, §25, art XXXIII):** effective_date 1978-12-07 -> **1979-01-01** (express, SECTION 4 of ch. 696).
+  This also **explains why §25 shows status='repealed' in the base**: CV repealed §25 (and art. XXXIII)
+  and replaced it with the new Initiative/Referendum/Recall article. LXXXI's 1964 partial repeal of
+  §25's tenth paragraph thus governed the 1964-1979 window — lineage consistent.
+- **CVII (§173 + §69):** split effective dates — §173 amendment effective **1983-01-01** (delayed by
+  SECTION 3), §69 repeal 1980-10-02. Required a 1-line ingest change (per-change `effective_date`
+  override) plus a guard skipping changes effective after REORG_EVE (1980-12-31) — they belong to the
+  post-1981 modern layer. The §173/1983 change is correctly `future_skipped` in the 1889-1980 layer.
+
+**Ingest changes** (`ingest_constitution_history.py`): per-change `effective_date` override; skip
+changes with eff > REORG_EVE (counter `future_skipped`). DB rebuild (rm first): provisions 243,
+adds 22, amends 109, repeals 47, future_skipped 1, pending_skipped 3, unresolved 0; 0 versions with
+start>end.
+
+**Provenance upgrade:** these 38 records' authoritative basis is now documented as clean session-law
+text, not dirty Blue Book OCR. Pre-1956 Blue-Book/marker-OCR amendments and the 45 marker-OCR set
+remain for a later round (diff-QA).

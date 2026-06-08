@@ -1,0 +1,865 @@
+{
+ "summary": {
+  "total": 38,
+  "returned": 38,
+  "identical": [
+   "LXV",
+   "LXVI",
+   "LXVII",
+   "LXVIII",
+   "LXIX",
+   "LXX",
+   "LXXI",
+   "LXXII",
+   "LXXV",
+   "LXXVI",
+   "LXXVII",
+   "LXXX",
+   "LXXXII",
+   "LXXXIII",
+   "LXXXIV",
+   "LXXXV",
+   "LXXXVI",
+   "LXXXVII",
+   "LXXXIX",
+   "XCI",
+   "XCII",
+   "XCVII",
+   "XCVIII",
+   "CI",
+   "CII",
+   "CIII",
+   "CVI",
+   "CVIII"
+  ],
+  "ocr_only": [
+   "LXXXVIII",
+   "XCIX"
+  ],
+  "substantive": [
+   "LXXIV",
+   "XC"
+  ],
+  "metadata": [
+   "LXXIX",
+   "XCIII",
+   "C",
+   "CIV",
+   "CV",
+   "CVII"
+  ],
+  "not_found": [],
+  "error": [],
+  "needs_fix": [
+   "LXXIV",
+   "LXXIX",
+   "XC",
+   "XCIII",
+   "C",
+   "CIV",
+   "CV",
+   "CVII"
+  ]
+ },
+ "results": [
+  {
+   "number": "LXV",
+   "source_used": "1957_sl/CAA.pdf (Constitutional Amendments Approved), Chapter 396, \"Korean Veterans Bonus Bond Issue,\" Article 65, § 1, approved June 26, 1956",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. LXV",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law text word-for-word. Session law reads (de-OCR'd) '§ 1.) The legislative assembly of the state of North Dakota is hereby authorized and empowered to provide by legislation for the issuance, sale and delivery of the bonds of the state of North Dakota in the principal amount not to exceed $9,000,000.00, the proceeds thereof to be used in payment of adjusted compensation to North Dakota veterans of the Korean conflict who served in the armed forces of the United States or any of its allies during the period from June 25, 1950 to July 27, 1953 on the basis of terms of service, and under such terms and conditions as the legislative assembly may prescribe.' Heading 'Korean Veterans Bonus Bond Issue' matches; Article 65 = amend. art. LXV; authority (HCR 'D', Ch. 358 1955 SL, enacted as Ch. 396 1957 SL, approved June 26, 1956) all confirmed against the CAA file. PDF OCR artifacts ('North D akota') are not in the stored text.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Heading, article number, chapter authority, and approval date (June 26, 1956) all match the session law. The session law's note ('This measure was No. 1 on the primary election ballot') is consistent with the stored 1956-07-26 effective date; the session law itself states only the approval date, so the stored effective/election dates are neither confirmed nor contradicted by it."
+  },
+  {
+   "number": "LXVI",
+   "source_used": "1957_sl/CAA.pdf (Constitutional Amendments Approved), Chapter 397 / Article 66, \"Compensation for Public Taking Private Property,\" amending § 14; located by section number and distinctive eminent-domain wording",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 14",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law Article 66 text word-for-word, including 'provided however, that when the state or any of its departments, agencies or political subdivisions seeks to acquire right of way...' and the closing 'to determine the damages.' Stored heading 'Article 66 — Compensation for Public Taking Private Property' matches the session-law ARTICLE 66 designation and chapter title 'COMPENSATION FOR PUBLIC TAKING PRIVATE PROPERTY.' Authority (HCR 'O', Ch. 359, 1955 S.L.; S.L. 1957 ch. 397; approved June 26, 1956) all confirmed by the session law.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": ""
+  },
+  {
+   "number": "LXVII",
+   "source_used": "1957_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 398 / Article 67, \"REMOVE FOUR YEAR LIMIT ON COUNTY TREASURER TERM,\" § 1 amendment of Section 173 of article 10; approved June 26, 1956",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 173",
+     "verdict": "identical",
+     "note": "Stored body text matches the CAA session-law text word-for-word after whitespace/line-wrap normalization (verified programmatically: MATCH). Heading 'SECTION 173.' matches. Amendment is Article 67 (= LXVII) amending section 173 of article 10. Authority cite 'ch. 398' matches CHAPTER 398; 'approved June 26, 1956' matches 'Approved June 26, 1956.'",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. The session law contains no effective date (only approval date June 26, 1956, which matches the stored authority note). Stored effective_date 1956-07-26 is not contradicted by the session law (initiated measures take effect ~30 days after approval; that date is not stated in the session-law text, so it is not a discrepancy against this source). Article number (67/LXVII), section number (173), and article-of-Constitution (article 10) all match.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXVIII",
+   "source_used": "1959_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 430 \"JURISDICTION OF UNITED STATES AND INDIAN LANDS\", SECTION 203 (paragraph 2 \"Second.\")",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 203",
+     "verdict": "identical",
+     "note": "Stored text matches the enacted Chapter 430 body verbatim. Stored uses lowercase 'act of Congress' for the inserted phrase, which matches the operative body text ('by act of Congress;'); the chapter recital's capitalized 'Act of Congress' is only in the explanatory recital, not the enacted text. All words, numbers, and structure align. The only divergences are OCR artifacts in the PDF scan itself (e.g. 'unapproprhited', 'l~ds', 'Constjtqtion'), not in the stored record. Heading 'JURISDICTION OF UNITED STATES AND INDIAN LANDS' matches the chapter title; section number 203 and the 'Second.' paragraph designation match.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "Section number (203), article context, and heading all match the session law. effective_date 1958-07-24 is consistent (30 days after the June 24, 1958 approval). The dedicated election_date field is null in the stored record, though the session law states the measure was approved at the June 24, 1958 primary election; this date is captured in the authority string but not in the structured election_date field. Minor completeness gap, not a substantive text error.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXIX",
+   "source_used": "1959_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 431 \"ELECTIVE FRANCHISE\", amendment of section 121 of article V (SCR \"B-B\")",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 121",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law operative text word-for-word, including 'twenty-one or upwards', 'citizen of the United States', 'one year ... ninety days ... thirty days', 'qualified elector at such election', and the proviso. Heading 'ELECTIVE FRANCHISE' matches Chapter 431's heading. Target section number (§ 121, article V) confirmed by the chapter header. Approval date June 24, 1958 and vote 99,749 to 25,296 match stored authority.",
+     "sessionlaw_text": "",
+     "verdict_detail": ""
+    }
+   ],
+   "confidence": "high",
+   "metadata_issues": ""
+  },
+  {
+   "number": "LXX",
+   "source_used": "1961_sl/CMA.pdf, Constitutional Measures Approved, ch. 403 \"Authorizing Department of Labor\" (SCR \"A\", ch. 437, 1959), amending §§ 82, 83, 84; located by section numbers and \"department of labor\" wording; approved June 28, 1960, 82,114 to 79,112",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 82",
+     "verdict": "identical",
+     "note": "Stored text matches the enacted SECTION 82 verbatim across all five paragraphs (officers list, terms of office, department-of-labor paragraph, tax-commissioner/no-party-ballot paragraph, 1940 PSC election paragraph, railroad-commission transfer paragraph). The only divergences are OCR artifacts in the session-law PDF itself (e.g. 'qualified•' for 'qualified.'), not in the stored text. Same words, numbers, and structure.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 83",
+     "verdict": "identical",
+     "note": "Stored text matches enacted SECTION 83 verbatim. Session-law PDF shows OCR garble 'commissioner ·o f agriculture and labor' which is the scan's rendering of 'commissioner of agriculture and labor' as in the stored text. No substantive difference.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 84",
+     "verdict": "identical",
+     "note": "Stored text matches enacted SECTION 84 verbatim: 'Salaries of public officers shall be as prescribed by law, but the salaries of any of the said officers shall not be increased or diminished during the period for which they shall have been elected, and all fees and profits arising from any of the said offices shall be covered into the state treasury.' Same words and punctuation.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No corrections needed. Heading \"Authorizing Department of Labor\" matches session-law title. Authority string matches (ch. 403; SCR \"A\", ch. 437, 1959; approved June 28, 1960; vote 82,114 to 79,112). Section numbers 82/83/84 correct. Minor note: election_date is stored as null though the session law gives the approval/primary-election date of June 28, 1960 (the vote and date are already captured in the authority string); effective_date 1960-07-28 is consistent with the 30-day post-approval convention.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXI",
+   "source_used": "1961_sl/CMA.pdf (Constitutional Measures, Approved, Chapter 404, \"SALE OF COAL LANDS AND RESERVATION OF MINERALS\", §155 amendment; HCR \"J\", approved June 28, 1960)",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 155",
+     "verdict": "identical",
+     "note": "Stored operative text of SECTION 155 matches the clean session-law text verbatim, word for word, including the full mineral list (oil, gas, coal, cement materials, sodium sulphate, sand and gravel, road material, building stone, chemical substances, metallic ores, uranium ores, or colloidal or other clays). The only divergences are artifacts in the pdftotext dump itself (e.g. 'r oad', 'legis-lative' line-wrap, 'm easure'), not in the stored record. Heading 'SALE OF COAL LANDS AND RESERVATION OF MINERALS' matches the chapter heading; authority (HCR 'J', ch. 436 1959 SL; approved June 28, 1960; vote 84,348 to 72,088; Const. Measures Approved ch. 404, 1961 SL) all matches the session law.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": ""
+  },
+  {
+   "number": "LXXII",
+   "source_used": "1961_sl/CMA.pdf, Constitutional Measures, Approved, Chapter 405 \"Legislative Districts and Reapportionment\" (SCR \"M\", ch. 438, 1959 Session Laws), amending §§ 26, 29, 35; located by section numbers and \"so as to read as follows\" operative text",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 26",
+     "verdict": "identical",
+     "note": "Stored 'The senate shall be composed of forty-nine members.' matches the operative session-law text verbatim.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 29",
+     "verdict": "identical",
+     "note": "Stored text matches the operative session-law text verbatim: 'Each existing senatorial district as provided by law at the effective date of this amendment shall permanently constitute a senatorial district. Each senatorial district shall be represented by one senator and no more.'",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 35",
+     "verdict": "identical",
+     "note": "Stored text matches the operative session-law text verbatim, including capitalization of 'House of Representatives,' 'Legislative Assembly,' 'Chief Justice of the Supreme Court,' 'Attorney General,' 'Secretary of State,' and 'Constitution.' No word/number/punctuation divergence. (The earlier deletion-clause recital contains an OCR artifact 'shan be the duty,' but the controlling 'so as to read as follows' text reads 'shall be the duty' cleanly and matches the stored text.)",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Heading 'Legislative Districts and Reapportionment' matches Chapter 405 title. Authority block (SCR 'M', ch. 438, 1959 Session Laws; Chapter 405, Constitutional Measures, Approved; approved June 28, 1960; vote 84,002 to 66,529) all confirmed against the session law. The session law shows approval date 'June 28, 1960' (primary election ballot measure No. 3); the stored effective_date 1960-07-28 reflects the post-canvass effective date and is not contradicted by the session law.",
+   "confidence": "high"
+  },
+  {
+   "confidence": "high",
+   "number": "LXXIV",
+   "source_used": "1961_sl/CMA.pdf, Chapter 407 \"North Dakota State University of Agriculture and Applied Science,\" Constitutional Measures Approved p. 693 (amendment to third paragraph of §215, Art. XIX)",
+   "overall": "substantive",
+   "metadata_issues": "None. Stored authority (Chapter 407; Approved November 8, 1960; 174,566 to 86,106; Constitutional Measures, Approved, p. 693) matches the session law. Effective date 1960-12-08 (30 days after the Nov. 8, 1960 election) is consistent. The session law's \"Oonstitution\" is an OCR artifact in the PDF, not a real divergence.",
+   "findings": [
+    {
+     "target": "N.D. Const. § 215",
+     "verdict": "substantive",
+     "note": "Amendment LXXIV's SOLE operative effect was to amend and reenact the THIRD paragraph of §215 to rename the institution. The session law enacts: 'Third: The North Dakota State University of Agriculture and Applied Science at the City of Fargo, in the County of Cass.' But the stored text's Third paragraph still reads the OLD, pre-amendment name: 'Third: The Agricultural College at the City of Fargo, in the County of Cass.' The stored record reproduces the entire unamended §215 and never applied the rename that this very amendment enacted, so the operative change is missing. (The stored heading correctly references 'ND State University of Agriculture,' but the body text contradicts it.) All other paragraphs of stored §215 are not part of this amendment's enacted text.",
+     "sessionlaw_text": "Be It Enacted by the People of the State of North Dakota:\n\nParagraph third of section 215 of Article XIX of the Constitution of the state of North Dakota, as amended, is hereby amended and reenacted to read as follows:\n\nThird: The North Dakota State University of Agriculture and Applied Science at the City of Fargo, in the County of Cass."
+    }
+   ]
+  },
+  {
+   "number": "LXXV",
+   "source_used": "1963_sl/CMA.pdf (Constitutional Measures, Approved, Chapter 445, \"Continuity of Government\", § 1); located by distinctive phrase \"continuity\"/\"enemy attack\"/\"succession\"",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. LXXV",
+     "verdict": "identical",
+     "note": "Stored body text matches the CMA approved session-law text (S.L. 1963, ch. 445, § 1) word-for-word, number-for-number. Heading \"Continuity of Government\" matches the CMA caption exactly. Phrasings the prior variant log flagged in the 1973 Blue Book OCR (\"length or sessions\", \"all respect conform\", capitalized \"In the judgment\"/\"Impracticable\") do NOT appear in the stored text; stored correctly reads \"length of sessions\", \"in all respects conform\", \"in the judgment ... would be impracticable\". The CMA scan's \"loans ·or donations\" middle-dot is an OCR artifact; stored \"loans or donations\" is correct. Authority metadata (ch. 445; HCR \"A\", ch. 409, 1961 S.L.; 37th Leg. Assembly; approved June 26, 1962; 56,097 to 46,646) all confirmed against CMA. No substantive or metadata divergence.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": ""
+  },
+  {
+   "number": "LXXVI",
+   "source_used": "1963_sl/CMA.pdf, Constitutional Measures, Approved, Chapter 446 \"STATE BOND ISSUE\" (located by distinctive phrases \"economic growth\"/\"natural resources into power\"; approved Nov. 6, 1962, 105,787 to 84,112, Measure No. 1)",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. LXXVI",
+     "verdict": "identical",
+     "note": "Word-for-word identical after whitespace/line-wrap normalization across all six sections (§§ 1-6). Confirmed programmatically (normalized stored == normalized session law). The only difference is a stray OCR artifact in the PDF — a lone '·' character printed after 'severable.' at the end of § 6 — which is not part of the enacted text and is correctly absent from the stored text. Heading 'State Bond Issue' matches the chapter heading exactly. This is NOT a 'section 173' amendment (that is the adjacent Chapter 447, County Officials' Terms); the prompt's section-173 hint does not apply here.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No metadata errors. Heading 'State Bond Issue' matches CMA Chapter 446 exactly. Authority 'S.L. 1963, ch. 446 (Constitutional Measures, Approved)' matches. Vote 105,787 to 84,112 matches. Session law shows 'Approved November 6, 1962' (Measure No. 1); stored effective_date 1962-12-06 reflects the standard ~30-day post-election effective date and is consistent. Minor note (not an error): stored election_date is null though the approval date Nov. 6, 1962 is in the source; populating election_date=1962-11-06 would be more complete but null is not wrong. Stored 'House measure' chamber attribution could not be independently confirmed from CMA (CAP/CMD do not contain the 1962-approved State Bond Issue resolution, which would have originated in the 1961 session), but it is not contradicted by the session law and the vote count matches.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXVII",
+   "source_used": "1963_sl/CMA.pdf (Constitutional Measures, Approved), Chapter 447 \"County Officials' Terms\", initiated constitutional amendment to amend and reenact § 173 of Article X; located by \"§ 173\" and distinctive register-of-deeds wording; Measure No. 2 on general election ballot, approved November 6, 1962, 111,733 to 91,924",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 173",
+     "verdict": "identical",
+     "note": "Stored body text matches the session law verbatim, word for word and punctuation for punctuation. The amended section number (173), Article X reference, heading 'County Officials' Terms', and the vote (111,733 to 91,924) all match. The stored authority cites S.L. 1963, ch. 447, which is correct (CMA Chapter 447). Stored effective_date 1962-12-06 is consistent with the November 6, 1962 approval (initiated measure effective 30 days later). Minor completeness gap (not a divergence): stored election_date is null though session law shows approval date November 6, 1962.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No wrong metadata. Body, section number (§ 173), heading, and authority all match. The stored election_date field is null while the session law records the approval/election date as November 6, 1962; populating it would improve completeness but no stored value is wrong.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXIX",
+   "source_used": "1965_sl/CMA.pdf (Constitutional Measures, Approved), Chapter 474, \"MUNICIPAL JUDGES\", § 1 Amendment of section 113; located by section number \"113\" and heading/distinctive wording \"municipal judges\"",
+   "overall": "metadata",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 113",
+     "verdict": "metadata",
+     "note": "Body text is verbatim identical to the session law (SECTION 113 enacted text matches word-for-word). BUT the stored 'authority' field misidentifies the proposing resolution's chamber: stored says 'House Concurrent Resolution \"T\"' while the session law (ch. 474 heading) says 'Senate Concurrent Resolution \"T\", chapter 454, 1963 Session Laws'. Chapter (454) and letter ('T') match; chamber (House vs Senate) is wrong. Also the stored parenthetical '(mislabeled \"T\")' is unsupported by the session-law text, which cleanly cites Resolution \"T\". Effective date 1964-07-30 not contradicted: session law shows 'Approved June 30, 1964' (an OCR-truncated 'June 3' in the layout dump, but the parallel measures on the same primary ballot read 'June 30, 1964' and the measure note says it was measure No. 3 on the primary election ballot); July 30 effective date is the +30-day derived effective date, distinct from the June 30 election/approval date.",
+     "sessionlaw_text": "CHAPTER 474\n\nMUNICIPAL JUDGES\n\nSenate Concurrent Resolution \"T\", chapter 454, 1963 Session Laws, proposed by the 38th Legislative Assembly of the state of North Dakota to provide for the amendment of section 113 of the Constitution of North Dakota, relating to the office [of] police magistrate by adding the words \"selection or\" before the word election; by adding the words \"and the qualifications\" after the word election; by omitting the words \"police magistrates\" and adding the words \"municipal judges\"; by omitting the words \"in addition to their jurisdiction of all\" and by adding the words \"shall hear, try, and determine\"; by omitting the words \"shall be ex officio justices of the peace of the county in which said cities, towns and villages may be located. And the legislative assembly may confer upon said police magistrates the jurisdiction to hear, try, and determine all cases of misdemeanors, and the prosecutions therein shall be by information\". And by adding the words \"and shall have such other jurisdiction as the legislative assembly may confer upon them.\" so as to read as follows:\n\nBe It Enacted by the People of the State of North Dakota:\n\n§ 1. Amendment.) Section 113 of the Constitution of the state of North Dakota is hereby amended and reenacted to read as follows:\n\nSECTION 113. The legislative assembly shall provide by law for the selection or election and the qualifications of municipal judges in cities, incorporated towns, and villages, who shall hear, try, and determine cases arising under the ordinances of said cities, towns and villages, and shall have such other jurisdiction as the legislative assembly may confer upon them.\n\nApproved June 30, 1964.    55,202 to 49,504\nNote: This was measure No. 3 on the primary election ballot."
+    }
+   ],
+   "metadata_issues": "Authority chamber wrong: stored \"House Concurrent Resolution \\\"T\\\"\" vs session-law \"Senate Concurrent Resolution \\\"T\\\", chapter 454, 1963 Session Laws\". Chapter and letter (\"T\") are correct; only the chamber (House -> Senate) needs correction. The stored \"(mislabeled \\\"T\\\")\" parenthetical is unsupported by the session law and should be removed. Date: session law shows approval/election \"June 30, 1964\" (primary ballot measure No. 3); stored effective_date 1964-07-30 is consistent as the +30-day effective date and is not contradicted."
+  },
+  {
+   "number": "LXXX",
+   "source_used": "1965_sl/CMA.pdf, Constitutional Measures Approved, Chapter 475 \"Terms of Office for State Officials and Superintendent of Schools for Each County\" (amends §§71, 82, 150), approved June 30, 1964, measure No. 5",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 71",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim (Section 71 of Article III). No OCR artifacts; words, numbers ('term of four years beginning in the year 1965'), and structure all match.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 82",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim across all three paragraphs (Section 82 of Article III). All key terms match: 'twenty-five years', 'two consecutive terms', 'no party ballot', 'three public service commissioners', 'term of six years', and the department-of-labor paragraph. No divergences.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 150",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim (Section 150 of Article VIII): 'A superintendent of schools for each county shall be elected every four years beginning in the year 1964, whose qualifications, duties, powers and compensation shall be fixed by law.' The session law's trailing clause 'This amendment shall be self executing, but legislation may be enacted to facilitate its operation' is a general enactment provision for the whole measure, not part of §150's constitutional text, and is correctly excluded.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Stored heading ('Terms of office for state officials and superintendent of schools for each county') matches the Chapter 475 title. Authority correctly cites Chapter 475, 1965 Session Laws, approved June 30, 1964 (60,099 to 55,294), measure No. 5 — all confirmed against CMA. Effective date 1964-07-30 is consistent with the June 30, 1964 approval plus the standard 30-day window. election_date is stored null, but the primary-election approval date (June 30, 1964) is captured in the authority field; not a substantive error.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXXII",
+   "source_used": "1967_sl/CAA.pdf (Constitutional Amendments, Approved), Chapter 508, \"TAX LEVIES\", § 1 Amendment of Section 175; located by section number 175 and \"No tax shall be levied\" wording",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 175",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law SECTION 175 (Chapter 508) word-for-word, including the income-tax/federal-definition proviso. Heading 'Tax Levies' matches chapter caption 'TAX LEVIES'. Section number 175 correct. Authority metadata (SCR 'L', ch. 482 1965 SL, ch. 508 1967 SL, vote 46,052 to 37,743, measure No. 1 primary ballot) all match. No OCR or substantive divergence.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. The session law states \"Approved September 6, 1966\"; the stored effective_date 1966-10-06 reflects the canvass/proclamation effective date convention (one month after approval) and is consistent with the stored authority note's \"Approved September 6, 1966\" — not contradicted by the session law. No heading, subject, section# or article# errors."
+  },
+  {
+   "number": "LXXXIII",
+   "source_used": "1967_sl/CAA.pdf (Constitutional Amendments, Approved), Chapter 509, \"Office of County Superintendent of Schools,\" § 1 Amendment of section 150; located by section number \"150\" and distinctive phrase \"superintendent of schools may be elected by and serve two or more counties\"",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 150",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law text word-for-word, including punctuation: 'A superintendent of schools for each county shall be elected every four years beginning in the year 1964, whose qualifications, duties, powers and compensation shall be fixed by law. Provided, however, a superintendent of schools may be elected by and serve two or more counties or parts of counties as provided by law.' Target section number (150) and heading ('Office of County Superintendent of Schools' = session-law 'OFFICE OF COUNTY SUPERINTENDENT OF SCHOOLS') both match.",
+     "sessionlaw_text": "SECTION 150. A superintendent of schools for each county shall be elected every four years beginning in the year 1964, whose qualifications, duties, powers and compensation shall be fixed by law. Provided, however, a superintendent of schools may be elected by and serve two or more counties or parts of counties as provided by law."
+    }
+   ],
+   "metadata_issues": "Date discrepancy to flag (not part of body text): The session law states the amendment was \"Approved September 6, 1966\" (vote 56,175 to 32,297), and notes \"This was measure No. 2 on the primary election ballot\" — i.e., approved at the June/September 1966 primary election. The stored effective_date is 1966-10-06, which does not match the session-law approval date of September 6, 1966. The stored election_date is null; the session-law approval/election date is September 6, 1966. The session-law \"so as to read as follows\" recital confirms the operative amendment adds the words 'Provided, however, a superintendent of schools may be elected by and serve two or more counties or parts of counties as provided by law' to existing section 150. Authority field correctly cites HCR \"O\", ch. 485, 1965 Session Laws, enacted as ch. 509, 1967 Session Laws (CAA).",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXXIV",
+   "source_used": "1967_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 510, \"HOME RULE FOR CITIES AND VILLAGES\", § 1 Amendment of section 130",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 130",
+     "verdict": "identical",
+     "note": "Stored text matches the enacted text of Chapter 510 word-for-word. Heading 'HOME RULE FOR CITIES AND VILLAGES' matches; section number 130 matches. Both paragraphs identical incl. 'non-home rule city or village', 'home rule charter', and 'section 183 of this Constitution'. The only divergences are in the session-law scan itself (OCR artifact '·cities' and line-wrap hyphenation), not in the stored record. Authority cite (S.C.R. 'C' ch. 480 1965; ch. 510 1967; approved Nov. 8, 1966, 84,255 to 77,187) all confirmed against the chapter header and vote tally.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Stored effective_date 1966-12-08 is the proclamation/canvass date; the session law shows approval at the Nov. 8, 1966 general election (84,255 to 77,187), which is consistent and reflected in the stored authority field. Heading, section number, and authority citations all match."
+  },
+  {
+   "number": "LXXXV",
+   "source_used": "1969_sl/CAA.pdf (Constitutional Amendments, Approved, Chapter 581, \"Uniform System of Free Public Schools\", §148 amendment)",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 148",
+     "verdict": "identical",
+     "note": "Stored body text matches the enacted SECTION 148 word-for-word. The operative text in the session law reads 'public schools of higher education' (the enacting/preamble clause has an OCR artifact 'tligher' but the operative SECTION 148 itself prints 'higher' cleanly, matching stored). Heading 'Uniform System of Free Public Schools' matches the chapter title. No divergence in words, numbers, punctuation, or structure.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No metadata problems. Section number 148, heading, authority (SCR \"J\", ch. 514 1967 SL; enacted ch. 581 CAA 1969 SL), vote 59,675 to 52,449, and approval date Sept. 3, 1968 all match the session law. Effective date stored as 1968-10-03 is consistent (30 days after approval). Election date is null in stored record; session law notes it was constitutional measure No. 1 on the primary election ballot but does not print a separate election date in this chapter."
+  },
+  {
+   "number": "LXXXVI",
+   "source_used": "1969_sl/CAA.pdf (Constitutional Amendments, Approved, ch. 582, \"Terms of Legislators and Meeting of Legislative Assembly,\" HCR \"O\" ch. 519 of 1967 Sess. Laws; located by section numbers 41/53/56 and distinctive wording)",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 41",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim: 'The term of service of the members of the legislative assembly shall begin on the first day of December following their election, or at such other time as may be prescribed by law.' Heading SECTION 41 correct.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 53",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim, including 'twelve o'clock noon on the first Tuesday after the first Monday in January' and 'but not later than the eighth day of January.' Heading SECTION 53 correct.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 56",
+     "verdict": "identical",
+     "note": "Stored text matches the session law verbatim: 'Each session of the legislative assembly shall not exceed sixty legislative days, except in the case of impeachment. The organizational meeting of the legislative assembly as provided in section 53 shall not be counted as part of such sixty legislative days.' Heading SECTION 56 correct.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. The session law confirms the stored authority: ch. 582; HCR \"O\", ch. 519, 1967 Sess. Laws; approved September 3, 1968; vote 64,727 to 41,675; constitutional measure No. 3 on the primary election ballot. The stored effective_date 1968-10-03 reflects the standard post-canvass effective date and is consistent with the Sept. 3, 1968 approval; election_date is null but the session law gives the approval date (Sept. 3, 1968) rather than a separate election date, so no correction is required."
+  },
+  {
+   "number": "LXXXVII",
+   "source_used": "1971_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 616 \"Vietnam Veterans Bonus\" (S.C.R. No. 17, ch. 592, 1969 Session Laws)",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. LXXXVII",
+     "verdict": "identical",
+     "note": "Stored body text matches the enacted session-law text word for word, including 'such principal amounts as determined by the legislative assembly', 'World War II and the Korean conflict', and the educational-assistance deduction clause. The only divergence is in the PDF scan itself: the CAA OCR renders 'necessary fer the payment' (a scan artifact for 'for'); the stored text correctly has 'for'. Heading 'Vietnam Veterans Bonus' matches Chapter 616's title. Approval data (Approved September 1, 1970; 75,294 to 25,199) matches the stored authority field.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "confidence": "high",
+   "metadata_issues": "No metadata corrections required. Heading, authority chain (S.C.R. No. 17, ch. 592 1969 SL; ch. 616 1971 SL), and approval date/vote all match. Note: the session law records this as constitutional measure No. 1 on the primary election ballot, approved September 1, 1970; the stored election_date is null but the approval date is captured in the authority field. The stored effective_date (1970-10-01) is not stated in the session law text itself (the session law gives only the September 1, 1970 approval date); not a divergence from the CAA, but it is not corroborated by this source."
+  },
+  {
+   "number": "LXXXVIII",
+   "source_used": "1971_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 617 \"CONSTITUTIONAL CONVENTION\" (HCR No. 16, ch. 595, 1969 S.L.), Section 1; approved Sept. 1, 1970 (56,734 to 40,094)",
+   "overall": "ocr_only",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. LXXXVIII",
+     "verdict": "ocr_only",
+     "note": "Stored operative text matches Section 1 of Chapter 617 verbatim. The only divergence is an OCR artifact in the session-law scan itself: session law reads 'Such conventio~ shall be called' (OCR mangling of 'convention'), while the stored text correctly reads 'Such convention shall be called'. Stored text correctly captures only the operative Section 1 amendment and omits Section 2 (the procedural ballot-question framing), which is not part of the constitutional text. Authority 'S.L. 1971, ch. 617' confirmed = Chapter 617; 'approved September 1, 1970' confirmed.",
+     "sessionlaw_text": "A constitutional convention shall be called for the purpose of proposing a new Constitution, or revision or amendment of the existing Constitution. Such convention shall be called and conducted, and delegates thereto shall be chosen in the manner provided by law.\n\nA constitutional convention called by a majority affirmative vote on this question shall be called and conducted as provided by law, and the proposed revision or amendment of the Constitution resulting from such shall be submitted by such convention directly to the people of North Dakota for approval or disapproval at the statewide special election called by the governor as provided by law."
+    }
+   ],
+   "metadata_issues": "No substantive metadata errors. Note: the session-law chapter title is \"CONSTITUTIONAL CONVENTION\"; the stored heading is a descriptive paraphrase (\"Calls for a constitutional convention\") rather than the verbatim session-law title — not an error if descriptive headings are the convention. Effective date 1970-10-01 is consistent with primary-election approval Sept. 1, 1970; election_date is null but the session law shows this was on the primary election ballot (constitutional measure No. 2), approved Sept. 1, 1970 — consider populating election_date.",
+   "confidence": "high"
+  },
+  {
+   "number": "LXXXIX",
+   "source_used": "1971_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 618 \"INVESTMENT OF INSTITUTIONAL TRUST FUNDS\" (SCR No. 62), amending §§153, 156 and repealing §§159, 162; located by section numbers 153/156/159/162 and approval line \"Approved September 1, 1970. 48,552 to 43,435\"",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 153",
+     "verdict": "identical",
+     "note": "Stored Section 153 text matches the session-law operative text word-for-word, including 'per centum', 'by escheat', 'institution's fund', and the closing paragraph 'The interest and income of each institutional trust fund...to the exclusive use of the institution for which the funds were given.' The CAA scan's preamble OCR garbling (e.g. 'aljiendment') does not affect the operative Section 153 body, which is clean and matches.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 156",
+     "verdict": "identical",
+     "note": "Stored Section 156 matches. The session-law scan shows the OCR artifact 'a:nd' for 'and' ('secretary of state a:nd state auditor'); stored correctly reads 'and'. All words/structure identical: 'Board of University and School Lands,' through 'invested as provided by law.'",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 159",
+     "verdict": "identical",
+     "note": "Session law SECTION 3. REPEAL.) 'Sections 159 and 162 of the North Dakota State Constitution are hereby repealed.' Stored '[Repealed effective 1970-10-01]' correctly reflects the repeal.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 162",
+     "verdict": "identical",
+     "note": "Same SECTION 3 repeals §162 alongside §159. Stored '[Repealed effective 1970-10-01]' is correct.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No metadata discrepancies. Heading \"INVESTMENT OF INSTITUTIONAL TRUST FUNDS\" matches the Chapter 618 title. Authority field matches: SCR No. 62, ch. 594, 1969 Session Laws; enacted ch. 618, 1971 Session Laws; approved September 1, 1970, 48,552 to 43,435. Session law states \"Approved September 1, 1970\" and notes this was constitutional measure No. 3 on the primary election ballot; stored effective_date 1970-10-01 (30 days post-approval) is not contradicted by the session law. Stored election_date is null; session law gives approval date September 1, 1970 (could optionally be recorded as election_date) but this is not a substantive error."
+  },
+  {
+   "number": "XC",
+   "source_used": "1973_sl/CAA.pdf (Constitutional Amendments, Approved; Chapter 526, \"Constitutional Status of UND-Ellendale Branch\", HCR 3045; located by \"Section 216\" and \"Ellendale\"). CAP.pdf does not contain this amendment.",
+   "overall": "substantive",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 216",
+     "verdict": "substantive",
+     "note": "The enacted body text matches in substance, but the stored text diverges from the session law in three places and (a) appends non-enacted Blue Book editorial annotation and (b) omits the second operative part of the measure. Specifics: (1) Stored 'McHenry, Ward, Bottineau or Rolette' vs session law 'McHenry, Ward, Bottineau, or Rolette' (session law has a comma after 'Bottineau'). (2) Stored 'in the county of Stark, (b)' (comma) vs session law 'in the county of Stark. (b)' (period). (3) Stored 'revision of this constitution' (lowercase) vs session law 'revision of this Constitution' (capital C). (4) Stored text appends editorial matter not in the enacted law: '(As amended by Articles 21 and 22 ... S.L. 1917, pp. 407 and 408.) Amendments: Art. 12, Nov. 8. 1910 ... Art. 90, Sept. 5. 1972 (S.L. 1971. ch. 623; S.L. 1973, ch. 526).' — this is Blue Book annotation, not enacted text. (5) The session law (Chapter 526, SECTION 2) ALSO amends and reenacts 'Subsection 1 of article 54 of the amendments' (State Board of Higher Education membership), which the stored record omits entirely.",
+     "sessionlaw_text": "Section 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred seventy thousand acres of land made by the United States for \"other educational and charitable institutions\" as is allotted by law, namely:\n\nFirst: A soldiers' home, when located, or such other charitable institution as the legislative assembly may determine, at Lisbon, in the county of Ransom, with a grant of forty thousand acres of land.\n\nSecond: The blind asylum shall be known as the North Dakota school for the blind and may be removed from the county of Pembina to such other location as may be determined by the board of administration to be in the best interests of the students of such institution and the state of North Dakota.\n\nThird: A school of forestry, or such other institution as the legislative assembly may determine, at such place in one of the counties of McHenry, Ward, Bottineau, or Rolette, as the electors of said counties may determine by an election for that purpose, to be held as provided by the legislative assembly.\n\nFourth: A scientific school or such other educational or charitable institution as the legislative assembly may prescribe, at the city of Wahpeton, county of Richland, with a grant of forty thousand acres.\n\nFifth: A state normal school at the city of Minot in the county of Ward.\n\nSixth: (a) A state normal school at the city of Dickinson, in the county of Stark. (b) A state hospital for the insane at such place within this state as shall be selected by the legislative assembly, provided, that no other institution of a character similar to any one of those located by this article shall be established or maintained without a revision of this Constitution."
+    }
+   ],
+   "metadata_issues": "Heading: stored heading \"State institutions (Ellendale removed)\" is reasonable; the session law's chapter caption is \"CONSTITUTIONAL STATUS OF UND-ELLENDALE BRANCH\" (Chapter 526). Effective/election date: stored effective_date 1972-10-05 and authority's \"approved at primary election ... September 5, 1972, 68,575 to 41,350; chapter 526\" both match the session law (\"Approved September 5, 1972. 68,575 to 41,350\"). election_date is null in the stored record though the vote occurred Sept. 5, 1972. Scope/omission: the enacted measure (Chapter 526) amends BOTH section 216 (SECTION 1) and subsection 1 of article 54 (SECTION 2 — State Board of Higher Education); the stored record records only the § 216 change and omits the article 54 amendment."
+  },
+  {
+   "confidence": "high",
+   "number": "XCIII",
+   "source_used": "1975_sl/CAA.pdf, Constitutional Amendments, Approved, chapter 605 (SCR No. 4031, ch. 531, 1973 Session Laws), amending sections 74 and 77; located via section numbers and \"JOINT BALLOT FOR GOVERNOR AND LIEUTENANT GOVERNOR\" heading",
+   "overall": "metadata",
+   "metadata_issues": "election_date is stored as null but the session law shows this measure was approved at the general election of November 5, 1974 (constitutional measure No. 1 on the general election ballot, 111,197 to 89,977). election_date should be 1974-11-05. The stored effective_date 1974-12-05 is consistent with the 30-day post-approval convention (approved Nov 5, 1974). Heading, chapter/authority citation, and section numbers (74, 77) all match the session law.",
+   "findings": [
+    {
+     "target": "N.D. Const. § 74",
+     "verdict": "ocr_only",
+     "note": "Stored text matches the session law verbatim. The only differences are OCR artifacts in the session-law PDF scan itself ('electo·rs' for 'electors', 'Section.74' for 'Section 74'); the stored text has the correct clean words. No word/number/structural difference.",
+     "sessionlaw_text": "Section 74. The governor and lieutenant governor shall be elected upon a joint ballot by the qualified electors of the state beginning with elections held in 1976. A single vote shall be cast upon a joint ballot by each qualified elector for the joint candidates representing the political party or affiliation of his choice. The joint candidates having the highest number of votes shall be declared elected, but if two or more joint candidates shall have an equal and highest number of votes for governor and lieutenant governor, the two houses of the legislative assembly at its next regular session shall forthwith in joint session choose one pair of such joint candidates for said offices. The returns of the election for governor and lieutenant governor shall be made in such manner as shall be prescribed by law."
+    },
+    {
+     "target": "N.D. Const. § 77",
+     "verdict": "ocr_only",
+     "note": "Stored text matches the session law verbatim. Only differences are OCR artifacts in the session-law PDF scan ('unless '·they' for 'unless they', 'prescribed bY' for 'prescribed by'); the stored text has the correct clean words. No word/number/structural difference.",
+     "sessionlaw_text": "Section 77. The powers and duties of the lieutenant governor shall be to serve as president of the senate, but he shall have no vote unless they be equally divided. Additional duties shall be prescribed by the governor. If, during a vacancy in the office of governor, the lieutenant governor shall be impeached, displaced, resign or die, or from mental or physical disease, or otherwise become incapable of performing the duties of his office, the secretary of state shall act as governor until the vacancy shall be filled or the disability removed."
+    }
+   ]
+  },
+  {
+   "number": "XCI",
+   "source_used": "1975_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 603, \"SIZE OF TRIAL JURIES\", §7 amendment (HCR 3002, ch. 532, 1973)",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 7",
+     "verdict": "identical",
+     "note": "Stored body text matches the CAA.pdf enacted text verbatim, word for word and punctuation for punctuation. Heading 'Size of Trial Juries' matches the chapter caption 'SIZE OF TRIAL JURIES'. Effective date July 1, 1975 matches Section 2 of the session law. Authority (HCR 3002, ch. 532, 1973; approved at the 1974 primary) matches the chapter header and note.",
+     "sessionlaw_text": "Section 7. The right of trial by jury shall be secured to all, and remain inviolate. A person accused of a crime for which he may be confined for a period of more than one year has the right of trial by a jury of twelve. The legislative assembly may determine the size of the jury for all other cases, provided that the jury consists of at least six members. All verdicts must be unanimous."
+    }
+   ],
+   "metadata_issues": "None. The approved measure was constitutional measure No. 1 on the primary election ballot, approved September 3, 1974 (73,763 to 32,813); stored election_date is null but the authority field correctly identifies the 1974 primary. No section#, article#, heading, subject, or effective-date discrepancy.",
+   "confidence": "high"
+  },
+  {
+   "number": "XCII",
+   "source_used": "1975_sl/CAA.pdf (Constitutional Amendments, Approved), Chapter 604 \"OPEN MEETINGS\", S.C.R. No. 4010 / ch. 530 of 1973 Session Laws; located by section number \"Section 50\" and phrase \"shall be open to the public\"",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. XCII",
+     "verdict": "identical",
+     "note": "Stored body matches session-law SECTION 1 verbatim: 'Unless otherwise provided by law, all meetings of public or governmental bodies, boards, bureaus, commissions, or agencies of the state or any political subdivision of the state, or organizations or agencies supported in whole or in part by public funds, or expending public funds, shall be open to the public.' No word/number/punctuation differences.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 50",
+     "verdict": "identical",
+     "note": "Stored body matches session-law SECTION 2 verbatim: 'Section 50. All sessions of the legislative assembly, including the committee of the whole and meetings of legislative committees, shall be open to the public.' The session-law scan shows a stray trailing OCR mark ('public.·') which is an artifact, not text; stored text correctly ends 'public.'",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No wrong values. effective_date 1975-07-01 matches SECTION 3 (\"shall take effect on July 1, 1975\"). Heading \"Open Meetings\" matches the session-law chapter title. Authority cite references \"1973 S.C.R. No. 4010, ch. 530\" — correct as the underlying 1973 resolution; note the amendment was published as Chapter 604 of the 1975 Session Laws (Constitutional Amendments, Approved), not flagged as an error. Minor completeness gap: stored election_date is null; the session law states it was approved September 3, 1974 (vote 82,799 to 22,894) as constitutional measure No. 3 on the primary election ballot — the stored authority already notes \"approved 1974,\" so no correction required."
+  },
+  {
+   "number": "XCVII",
+   "source_used": "1977_sl/CAA.pdf, Constitutional Amendments Approved, chapter 598 \"Qualifications of Legislators,\" SECTION 1 (§28) and SECTION 2 (§34), HCR 3016, approved Sept. 7, 1976",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 28",
+     "verdict": "identical",
+     "note": "Stored text matches the enacted §28 word-for-word: 'Each person elected as a senator must be, on the day of his election, a qualified elector in the district from which he is chosen and have been a resident of the state for one year next preceding his election.' PDF scan artifacts ('Section 28.' spacing) are not real differences.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 34",
+     "verdict": "identical",
+     "note": "Stored text matches the enacted §34 word-for-word: 'Each person elected as a representative must be, on the day of his election, a qualified elector in the district from which he is chosen and have been a resident of the state for one year next preceding his election.' OCR noise in the dump ('be ,', 'Section 34 .') is scan artifact only.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No corrections needed. Stored heading \"Qualifications of Legislators\" matches chapter 598 caption. Authority (HCR 3016, chapter 614 1975 Session Laws, chapter 598, approved September 7, 1976, 66,383 to 58,538, primary election measure No. 1) matches the session law exactly, including that this was constitutional measure No. 1 on the PRIMARY election ballot. Effective date 1976-10-07 is consistent with the Sept. 7, 1976 primary approval."
+  },
+  {
+   "number": "XCVIII",
+   "source_used": "1977_sl/CAA.pdf, Constitutional Amendments Approved, CHAPTER 599 \"JUDICIAL ARTICLE\" (HCR 3056; approved Sept 7, 1976, 59,795 to 55,784; primary measure No. 3); located by section numbers (Section 85–97) and distinctive phrase \"unified judicial system\". The 1977_sl/CAA.pdf volume contains the 1975–1976 approved amendments (chapters 596–600). CAP.pdf is the 1977 \"Proposed\" volume and does not contain this amendment.",
+   "overall": "identical",
+   "confidence": "high",
+   "metadata_issues": "No wrong values. Authority field matches the session law exactly (HCR 3056, chapter 615, 1975 Session Laws; chapter 599; approved September 7, 1976, 59,795 to 55,784; primary election constitutional measure No. 3). Effective date 1976-10-07 is consistent (Chapter 599 has no effective-date section; default 30 days after the September 7, 1976 approval). Minor completeness gap only: election_date is null but the measure was approved at the September 7, 1976 primary election (could be set to 1976-09-07). The session-law heading is \"JUDICIAL ARTICLE\" creating a new Article IV (sections 85–97) and repealing former Article IV (sections 85–120); the stored per-section headings are fine.",
+   "findings": [
+    {
+     "target": "N.D. Const. § 85",
+     "verdict": "identical",
+     "note": "Stored text matches session law verbatim (words, numbers, structure).",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 86",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 87",
+     "verdict": "identical",
+     "note": "Both paragraphs match verbatim. Session-law OCR shows 'system . . He' (stray double period) and 'oy the supreme court' (=by); these are artifacts in the SL scan, not in the stored clean text.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 88",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 89",
+     "verdict": "identical",
+     "note": "Identical. SL OCR hyphenates 'con-cisely' = 'concisely'; words match.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 90",
+     "verdict": "identical",
+     "note": "Identical to session law (SL lines: 'Appeals shall be allowed from decisions of lower courts to the supreme court as may be provided by law.').",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 91",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 92",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 93",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 94",
+     "verdict": "identical",
+     "note": "Both paragraphs match verbatim.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 95",
+     "verdict": "identical",
+     "note": "Identical to session law.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 96",
+     "verdict": "identical",
+     "note": "Identical to session law, including cross-references to sections 194, 195, 196 and 197.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 97",
+     "verdict": "identical",
+     "note": "Identical to session law. SL OCR shows 'fill~the' (=fill the) and 'appoint-ment' (=appointment); words match.",
+     "sessionlaw_text": ""
+    }
+   ]
+  },
+  {
+   "number": "XCIX",
+   "source_used": "1977_sl/CAA.pdf, Constitutional Amendments, Approved, Chapter 600 \"LOTTERIES AND GIFT ENTERPRISES\" — HCR No. 3087, amendment of Article I of the Amendments to the Constitution; located by phrase \"games of chance\"/\"public-spirited\"",
+   "overall": "ocr_only",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. I",
+     "verdict": "ocr_only",
+     "sessionlaw_text": "",
+     "note": "Stored body text matches the enacted Chapter 600 text word-for-word, including structure and punctuation. The only divergences are OCR/typesetting artifacts in the SESSION-LAW scan, not the stored text: the source prints \"veterans '\" with a stray space before the apostrophe (stored correctly has \"veterans'\"), the article heading scans as \"ARTICLE l\" (lowercase-L for I), and \"educational\" is line-wrap hyphenated as \"educa-\\ntional\". No real difference in words, numbers, or meaning. Heading, subject, chapter (600), vote (93,287 to 38,394), approval date (Sept 7, 1976), and measure number (No. 4 on primary ballot) all match the session law."
+    }
+   ],
+   "metadata_issues": "",
+   "confidence": "high"
+  },
+  {
+   "number": "C",
+   "source_used": "1979_sl/CAA.pdf (Constitutional Amendments, Approved), Chapter 691 \"ORIGINAL STATE APPORTIONMENT AND TRANSITION SCHEDULE\", located by S.C.R. No. 4009 / repeal of section 214 and sections 1-25 of the transition schedule",
+   "overall": "metadata",
+   "findings": [
+    {
+     "target": "N.D. Const. § 214",
+     "verdict": "identical",
+     "note": "Session law repeals section 214 (SECTION 1. REPEAL.) Section 214 ... are hereby repealed). Stored record correctly marks target as repealed; substance matches. The stored body string '[Repealed effective 1978-10-05]' is an editorial repeal marker, not verbatim enacted text, and accurately reflects the repeal.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. Sched. §§ 1-25",
+     "verdict": "identical",
+     "note": "Session law repeals sections 1 through 25 of the transition schedule. Stored record correctly marks target as repealed; substance matches. '[Repealed effective 1978-10-05]' is an editorial marker, not verbatim text.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "election_date is null in the stored record but the session law supplies it: \"Approved September 5, 1978\" and \"This was constitutional measure No. 2 on the primary election ballot.\" The election/approval date should be 1978-09-05. The stored effective_date 1978-10-05 is consistent with the dataset's ~30-day-after-election convention (Sept 5 + 30 days) and is plausibly correct, but the missing election_date should be backfilled to 1978-09-05. Stored heading, authority (S.C.R. No. 4009, ch. 607, 1977 Sess. Laws, 45th Leg. Assembly; ch. 691, Constitutional Amendments Approved), and repeal targets (§ 214 and Sched. §§ 1-25) all match the session law.",
+   "confidence": "high"
+  },
+  {
+   "number": "CI",
+   "source_used": "1979_sl/CAA.pdf, Constitutional Amendments Approved, CHAPTER 692 (Powers and Duties of Lieutenant Governor), SCR No. 4075, ch. 610, amending §§65 and 77",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 65",
+     "verdict": "identical",
+     "note": "Stored text matches the session law word-for-word, including punctuation and numbers. Session law (CHAPTER 692, SECTION 1) reads: 'Section 65. No bill shall become a law: except by a vote of a majority of all the members-elect in the house of representatives, and a vote of the majority of the members-elect in the senate, however the lieutenant governor may vote as provided in section 77 in the event the senate is equally divided, nor unless, on its final passage, the vote be taken by yeas and nays, and the names of those voting be entered on the journal.' Only difference vs stored is OCR layout whitespace, which is normalized.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 77",
+     "verdict": "identical",
+     "note": "Stored text matches the session law word-for-word. Session law (CHAPTER 692, SECTION 2) reads: 'Section 77. The powers and duties of the lieutenant governor shall be to serve as president of the senate, and he may, when the senate is equally divided, vote on procedural matters, and on substantive matters if his vote would be decisive. Additional duties shall be prescribed by the governor. If, during the vacancy in the office of governor, the lieutenant governor shall be impeached, displaced, resign, or die, or from mental or physical disease, or otherwise become incapable of performing the duties of his office, the secretary of state shall act as governor until the vacancy shall be filled or the disability removed.' Only differences vs stored are OCR layout spacing (e.g. 'decisive .' / 'office ,'), normalized away.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Heading 'POWERS AND DUTIES OF LIEUTENANT GOVERNOR' matches CHAPTER 692 title; authority (SCR No. 4075, ch. 610, ch. 692, approved September 5, 1978, 46,442 to 29,960) matches the session law exactly, including the vote tally and approval date. Section numbers 65 and 77 are correct. Note: the session law states this was constitutional measure No. 5 on the primary election ballot; stored record has election_date null but that is not a session-law contradiction.",
+   "confidence": "high"
+  },
+  {
+   "number": "CII",
+   "source_used": "1979_sl/CAA.pdf, Constitutional Amendments Approved, Chapter 693 \"Veteran Bonus Bonds and Constitutional Convention\" (HCR 3004, repeal of articles 59, 65, 87, 88)",
+   "overall": "identical",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. 59",
+     "verdict": "identical",
+     "note": "Session law Chapter 693, SECTION 1. REPEAL.) repeals 'Articles 59, 65, 87, and 88 of the amendments to the Constitution of the State of North Dakota.' Stored text '[Repealed effective 1978-10-05]' correctly represents this repeal of article 59. Heading matches ('Veteran Bonus Bonds and Constitutional Convention').",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. 65",
+     "verdict": "identical",
+     "note": "Article 65 included in the same Chapter 693 repeal. Stored '[Repealed effective 1978-10-05]' is correct. Note: 'section 65' (the lieutenant-governor provision in Chapter 692) is distinct from 'article 65' of the amendments here — Chapter 693 repeals article 65, matching the stored target.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. 87",
+     "verdict": "identical",
+     "note": "Article 87 included in Chapter 693 repeal. Stored '[Repealed effective 1978-10-05]' is correct.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. 88",
+     "verdict": "identical",
+     "note": "Article 88 included in Chapter 693 repeal. Stored '[Repealed effective 1978-10-05]' is correct.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "None. Heading, authority (HCR 3004, ch. 603, 1977 Session Laws; Chapter 693, 1979 Session Laws), approval date (September 5, 1978), vote count (41,379 to 32,613), and primary election ballot measure No. 6 all match the session law. The operative session-law text reads \"SECTION 1. REPEAL.) Articles 59, 65, 87, and 88 of the amendments to the Constitution of the State of North Dakota are hereby repealed.\" (the scan's \"~orth Dakota\" is an OCR artifact, not in the enacted text)."
+  },
+  {
+   "number": "CIII",
+   "source_used": "1979_sl/CAA.pdf, Constitutional Amendments, Approved, Chapter 694 \"OPEN RECORDS\" (SCR 4024, ch. 612 1977 SL); located by phrase \"open and accessible for inspection during reasonable office hours\"",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. CIII",
+     "verdict": "identical",
+     "note": "Stored OPEN RECORDS text matches the enacted Chapter 694 text word-for-word. Heading 'OPEN RECORDS' matches the chapter title. The only differences are OCR artifacts on the PDF source side (e.g. 'gov ernmental', 'funds ,'), not in the stored record. Authority (SCR 4024, ch. 612 1977 SL; enacted 1979 SL ch. 694; approved Nov. 7, 1978; 172,125 to 33,965) all match the session law.",
+     "sessionlaw_text": "Unless otherwise provided by law, all records of public or governmental bodies, boards, bureaus, commissions, or agencies of the state or any political subdivision of the state, or organizations or agencies supported in whole or in part by public funds, or expending public funds, shall be public records, open and accessible for inspection during reasonable office hours."
+    }
+   ],
+   "metadata_issues": "No metadata errors affecting the verdict. Note: stored election_date is null, but the session law records the approval/general-election date as November 7, 1978 (matching the stored effective_date of 1978-12-07 as the 30-day post-election effective date). Populating election_date = 1978-11-07 would be a minor completeness improvement, but no stored value is wrong.",
+   "confidence": "high"
+  },
+  {
+   "number": "CIV",
+   "source_used": "1979_sl/CAA.pdf (Constitutional Amendments, Approved), Chapter 695 \"ELECTIVE FRANCHISE\", House Concurrent Resolution No. 3014; located by section numbers 121/122 and the repeal of Article V (§§121-129) and articles 36/40",
+   "overall": "metadata",
+   "confidence": "high",
+   "metadata_issues": "Authority/resolution attribution is wrong: stored authority reads \"Senate House Concurrent Resolution No. 3014\" but the session law (Ch. 695) identifies the measure as \"House Concurrent Resolution No. 3014, chapter 611, 1977 Session Laws.\" Drop \"Senate\". Election/approval date \"November 7, 1978\" and vote (124,519 to 61,224) and constitutional measure No. 2 all match the session law. The session law does not state an effective date of 1978-12-07 (it only gives the November 7, 1978 approval date); effective date not verifiable from this source.",
+   "findings": [
+    {
+     "target": "N.D. Const. § 121",
+     "verdict": "identical",
+     "note": "Body text matches the session-law Section 121 verbatim (heading ELECTIVE FRANCHISE / Article V created). No word, number, or punctuation difference.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 122",
+     "verdict": "identical",
+     "note": "Body text matches the session-law Section 122 verbatim. No difference.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. §§ 123-129",
+     "verdict": "identical",
+     "note": "Session law SECTION 2 (REPEAL) repeals Article V, consisting of sections 121 through 129, and articles 36 and 40 of the amendments. Stored '[Repealed effective 1978-12-07]' is consistent with the repeal; no substantive divergence in the operative repeal scope.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. 36",
+     "verdict": "identical",
+     "note": "Repeal confirmed by session-law SECTION 2 (articles 36 and 40 repealed). Stored as repealed; consistent.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. 40",
+     "verdict": "identical",
+     "note": "Repeal confirmed by session-law SECTION 2 (articles 36 and 40 repealed). Stored as repealed; consistent.",
+     "sessionlaw_text": ""
+    }
+   ]
+  },
+  {
+   "number": "CV",
+   "source_used": "1979_sl/CAA.pdf, chapter 696 \"INITIATIVE, REFERENDUM, AND RECALL\" (Constitutional Amendments, Approved), House Concurrent Resolution No. 3088; located by header + section text; SECTION 3 confirms repeal of section 25 and article 33; SECTION 4 sets effective date Jan. 1, 1979",
+   "overall": "metadata",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. amend. art. CV",
+     "verdict": "identical",
+     "note": "New-article body (Sections 1-10) matches word-for-word against CAA chapter 696. Diff yielded only session-law line-wrap/hyphenation artifacts ('twenty-five' split as 'twenty-\\nfive'; 'recalled .' spacing). Heading 'INITIATIVE, REFERENDUM, AND RECALL' matches the session-law header exactly. No substantive divergence.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. § 25",
+     "verdict": "identical",
+     "note": "Repeal confirmed: CAA SECTION 3 (REPEALS) states 'Section 25 and article 33 of the Amendments to the Constitution of the State of North Dakota are hereby repealed.' Stored marker '[Repealed effective 1978-12-07]' is correct as a repeal, but the EFFECTIVE DATE is wrong per the session law (see effective-date note below); flagged under metadata_issues / overall.",
+     "sessionlaw_text": ""
+    },
+    {
+     "target": "N.D. Const. amend. art. XXXIII",
+     "verdict": "identical",
+     "note": "Repeal confirmed by CAA SECTION 3 (same clause repealing section 25 and article 33). Repeal status correct; effective date wrong (see below).",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "EFFECTIVE DATE WRONG: stored effective_date = 1978-12-07 (= election Nov. 7, 1978 + 30 days, a generic convention). The session law contains an EXPRESS effective date: CAA chapter 696, SECTION 4 (EFFECTIVE DATE) — \"The provisions of this resolution, if approved by the people, shall take effect on January 1, 1979.\" Correct effective date for the new article AND for the repeals of § 25 and art. XXXIII is 1979-01-01, not 1978-12-07. The two repeal markers ('[Repealed effective 1978-12-07]') carry the same wrong date.\n\nELECTION DATE MISSING: stored election_date = null; session law states \"Approved November 7, 1978   102,182 to 75,413\" and \"constitutional measure No. 3 on the general election ballot.\" Election date should be 1978-11-07 (matches the vote tally already in authority).\n\nSCOPE NOTE (informational): This same resolution (HCR 3088, ch. 696) also amended section 202 (re constitutional amendment: \"Section 202 ... is hereby amended and reenacted ...\") via its SECTION 2. The stored CV record lists only art. CV (new), § 25 (repealed), and art. XXXIII (repealed); the § 202 amendment is not among the listed targets here — verify it is captured under the appropriate provision elsewhere."
+  },
+  {
+   "number": "CVI",
+   "source_used": "1981_sl/CAA.pdf, Constitutional Amendments, Approved, Chapter 654 \"STATE PROPERTY TAX AUTHORITY,\" §174 amendment (HCR 3009; approved Sept. 2, 1980, primary measure No. 2, 63,699 to 56,618)",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 174",
+     "verdict": "identical",
+     "note": "The session law strikes the old four-mill-levy language (rendered as OCR-garbled tilde/dash strikethrough: '~~ev~ae-fe~', 'e~ff~e~eR~', 'fe~--eaea--yea~...') and enacts new text. Reading only the non-struck enacted words yields: 'The legislative assembly shall be prohibited from raising revenue to defray the expenses of the state through the levying of a tax on the assessed value of real or personal property.' This matches the stored text word-for-word. The only difference is the session-law scan prints 'section 174' in lowercase (an OCR/typesetting artifact in the source itself); words, numbers, and structure are identical.",
+     "sessionlaw_text": "Section 174. The legislative assembly shall be prohibited from raising revenue to defray the expenses of the state through the levying of a tax on the assessed value of real or personal property."
+    }
+   ],
+   "metadata_issues": "None. Stored heading \"STATE PROPERTY TAX AUTHORITY\" matches Chapter 654 heading. Stored authority (HCR 3009, ch. 703 1979 SL; enacted ch. 654 1981 SL; approved Sept. 2, 1980 primary measure No. 2, 63,699 to 56,618) all confirmed by the session law. Effective date 1980-10-02 consistent (30 days after Sept. 2, 1980 approval). Section number 174 correct.",
+   "confidence": "high"
+  },
+  {
+   "number": "CVII",
+   "source_used": "1981_sl/CAA.pdf (Chapter 655, Constitutional Amendments, Approved; \"JUDICIAL OFFICERS\"; SCR No. 4006; located via grep for \"Section 173\" and \"subsection 6 of section 69\"; approved Sept 2, 1980, 58,827 to 50,643)",
+   "overall": "metadata",
+   "confidence": "high",
+   "findings": [
+    {
+     "target": "N.D. Const. § 173",
+     "verdict": "metadata",
+     "note": "Body text is IDENTICAL to the clean amended session-law text (the OCR-garbled spans like 'eeaaty-;aa§e' and the long '~~ev~aea...' run are struck-through deletions, not part of the operative new text). The only problem is the effective date. The stored effective_date is 1980-10-02, but session-law SECTION 3 expressly provides a SEPARATE, LATER effective date for the §173 amendment: 'The provisions of section 1 of this resolution, if approved by the people, shall take effect on January 1, 1983.' Section 1 is the §173 amendment. Only the §69 repeal and the clerk-election provisions (sections 2 and 3) 'shall take effect thirty days after certification of approval' (i.e., ~1980-10-02). Applying 1980-10-02 to the §173 amendment is wrong; it should be 1983-01-01.",
+     "sessionlaw_text": "Section 173. There shall be elected in each county, organized under the provisions of section 172 of the Constitution of the State of North Dakota, a register of deeds, county auditor, treasurer, sheriff, state's attorney, and a clerk of the district court, who shall be electors in the county in which they are elected and who shall hold their office for a term of four years and until their successors are elected and qualified; provided that in counties having population of six thousand or less the register of deeds shall also be clerk of the district court. This amendment shall be self-executing, but legislation may be enacted to facilitate its operation."
+    },
+    {
+     "target": "N.D. Const. § 69",
+     "verdict": "identical",
+     "note": "Session-law SECTION 2 REPEAL: 'Subsection 6 of section 69 of the Constitution of the State of North Dakota is hereby repealed.' Stored content '[Repealed effective 1980-10-02]' and heading match. Effective date 1980-10-02 is correct for this provision (sections 2 and 3 'shall take effect thirty days after certification of approval'; approved Sept 2, 1980).",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "Split effective dates not reflected in stored record. The §173 amendment (SECTION 1 of SCR 4006) is effective January 1, 1983 per session-law SECTION 3, NOT 1980-10-02. The stored effective_date of 1980-10-02 is correct only for the §69 repeal (SECTION 2, effective thirty days after certification of approval). Recommend recording the §173 change with effective_date 1983-01-01 while keeping the §69 repeal at 1980-10-02. Also: election_date is null in the stored record but the measure was approved at the September 2, 1980 primary (NOTE: \"measure No. 5 on the primary election ballot\"); election_date should be 1980-09-02. Heading/subject (\"election of certain county officials\"; \"jurisdiction of police magistrates, constables, and justices of the peace\") and section/article numbers match the session law."
+  },
+  {
+   "number": "CVIII",
+   "source_used": "1981_sl/CAA.pdf, Constitutional Amendments, Approved, Chapter 656 \"STATE BOND SECURITY\", SCR No. 4004 (1979 SL ch. 708, 46th Leg. Assembly), located by \"Section 182\" and bond-security wording",
+   "overall": "identical",
+   "findings": [
+    {
+     "target": "N.D. Const. § 182",
+     "verdict": "identical",
+     "note": "Stored body text matches the session-law operative text word-for-word, including the amended phrase 'amounts not to exceed sixty-five percent of its value'. The session law prints the deleted prior language as struck-through OCR garble ('eRe-sa~€', i.e. 'one-half') immediately before 'sixty-five percent'; the enacted/operative text is 'sixty-five percent', which the stored record correctly carries. Heading 'STATE BOND SECURITY' matches Chapter 656 title. Authority citation (SCR No. 4004, ch. 708, 1979 SL, 46th Leg. Assembly; Constitutional Amendments, Approved, ch. 656) matches the session-law header.",
+     "sessionlaw_text": ""
+    }
+   ],
+   "metadata_issues": "No wrong metadata in the stored fields. effective_date 1980-12-04 is consistent (approved at the Nov. 4, 1980 general election + 30 days). One gap (not an error in stored data, but worth noting): election_date is null, whereas the session law records \"Approved November 4, 1980\" (vote 132,014 to 125,973; measure No. 1 on the general election ballot). Consider populating election_date as 1980-11-04.",
+   "confidence": "high"
+  }
+ ]
+}

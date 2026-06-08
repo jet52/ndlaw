@@ -2248,15 +2248,13 @@
         {
           "target": "N.D. Const. § 215",
           "heading": "State institutions (ND State University of Agriculture)",
-          "text": "Section 215. The following public institutions of the State are permanently located at the places hereinafter named, each to have the lands specifically granted to it by the United States in the Act of Congress approved February 22, 1889, to be disposed of and used in such manner as the Legislative Assembly may prescribe subject to the limitations provided in the article on school and public lands contained in this Constitution.\n\nFirst: The seat of government at the City of Bismarck in the County of Burleigh.\n\nSecond: The State University and the School of Mines at the city of Grand Forks, in the County of Grand Forks.\n\nThird: The Agricultural College at the City of Fargo, in the County of Cass.\n\nFourth: A State Normal School at the city of Valley City, in the County of Barnes, and the Legislative Assembly, in apportioning the grant of eighty thousand acres of land for normal schools made in the act of Congress referred to shall grant to the said Normal School at Valley City, as aforementioned, fifty thousand (50,000) acres, and said lands are hereby appropriated to said institution for that purpose.\n\nFifth: The School for the Deaf and Dumb of North Dakota at the City of Devils Lake, in the County of Ramsey.\n\nSixth: A State Training School at the City of Mandan, in the County of Morton.\n\nSeventh: A State Normal School at the City of Mayville, in the County of Traill, and the Legislative Assembly in apportioning the grant of lands made by Congress in the act aforesaid for State Normal Schools shall assign thirty thousand (30,000) acres to the institution hereby located at Mayville, and said lands are hereby appropriated for said purpose.\n\nEighth: A State Hospital for the Insane at the City of Jamestown, in the County of Stutsman. And the Legislative Assembly shall appropriate twenty thousand acres of the grant of lands made by the Act of Congress aforesaid for other educational and charitable institutions to the benefit and for the endowment of said institution, and there shall be located at or near the City of Grafton, in the County of Walsh, an institution for the Feeble Minded, on the grounds purchased by the Secretary of the Interior for a Penitentiary building."
+          "text": "Section 215. The following public institutions of the State are permanently located at the places hereinafter named, each to have the lands specifically granted to it by the United States in the Act of Congress approved February 22, 1889, to be disposed of and used in such manner as the Legislative Assembly may prescribe subject to the limitations provided in the article on school and public lands contained in this Constitution.\n\nFirst: The seat of government at the City of Bismarck in the County of Burleigh.\n\nSecond: The State University and the School of Mines at the city of Grand Forks, in the County of Grand Forks.\n\nThird: The North Dakota State University of Agriculture and Applied Science at the City of Fargo, in the County of Cass.\n\nFourth: A State Normal School at the city of Valley City, in the County of Barnes, and the Legislative Assembly, in apportioning the grant of eighty thousand acres of land for normal schools made in the act of Congress referred to shall grant to the said Normal School at Valley City, as aforementioned, fifty thousand (50,000) acres, and said lands are hereby appropriated to said institution for that purpose.\n\nFifth: The School for the Deaf and Dumb of North Dakota at the City of Devils Lake, in the County of Ramsey.\n\nSixth: A State Training School at the City of Mandan, in the County of Morton.\n\nSeventh: A State Normal School at the City of Mayville, in the County of Traill, and the Legislative Assembly in apportioning the grant of lands made by Congress in the act aforesaid for State Normal Schools shall assign thirty thousand (30,000) acres to the institution hereby located at Mayville, and said lands are hereby appropriated for said purpose.\n\nEighth: A State Hospital for the Insane at the City of Jamestown, in the County of Stutsman. And the Legislative Assembly shall appropriate twenty thousand acres of the grant of lands made by the Act of Congress aforesaid for other educational and charitable institutions to the benefit and for the endowment of said institution, and there shall be located at or near the City of Grafton, in the County of Walsh, an institution for the Feeble Minded, on the grounds purchased by the Secretary of the Interior for a Penitentiary building."
         }
       ],
       "authority": "An Initiative Petition to amend and reenact the third paragraph of section 215 of Article XIX of the Constitution of the state of North Dakota to change the name of the Agricultural College to \"The North Dakota State University of Agriculture and Applied Science.\" Approved November 8, 1960, 174,566 to 86,106 (Chapter 407, 1961 Session Laws; Constitutional Measures, Approved, pp. 693).",
       "source_urls": [],
       "sources_verified": [
-        "/tmp/caa1961.pdf (page 6, Chapter 407, Constitutional Measures Approved, pp. 693 — primary enacted text)",
-        "/tmp/bb1973.txt (lines 20484-20485, OCR cross-check)",
-        "/tmp/bb1961.txt (cross-check; no clean constitutional-text rendering found)"
+        "~/refs/nd/sess/1961_sl/CMA.pdf ch. 407 (Constitutional Measures Approved; clean) — re-validated 2026-06-08; the amendment reenacted only the third paragraph of §215 to rename the institution"
       ],
       "confidence": "high",
       "variants": [
@@ -2266,7 +2264,8 @@
           "other_publications": "Blue Book 1973 (OCR, gross check): \"Third: The North Dakota State University of Agriculture and Applied Science at the city of Fargo, in the county of Cuss.\" — lowercase \"city\"/\"county\" and OCR garble \"Cuss\" for \"Cass\". Blue Book 1961 has no clean constitutional-text rendering of this paragraph (only biographical mentions of the institution name)."
         }
       ],
-      "notes": "Subdivision Third renamed Agricultural College -> North Dakota State University of Agriculture and Applied Science; assembled onto the 1920 §215."
+      "notes": "Subdivision Third renamed Agricultural College -> North Dakota State University of Agriculture and Applied Science; assembled onto the 1920 §215.",
+      "election_date": "1960-11-08"
     },
     {
       "number": "LXXV",
@@ -2389,7 +2388,7 @@
           "text": "SECTION 113. The legislative assembly shall provide by law for the selection or election and the qualifications of municipal judges in cities, incorporated towns, and villages, who shall hear, try, and determine cases arising under the ordinances of said cities, towns and villages, and shall have such other jurisdiction as the legislative assembly may confer upon them."
         }
       ],
-      "authority": "House Concurrent Resolution \"T\" (mislabeled \"T\"), chapter 454, 1963 Session Laws; enacted ch. 474, 1965 Session Laws (\"Constitutional Measures, Approved\")",
+      "authority": "Senate Concurrent Resolution \"T\", chapter 454, 1963 Session Laws; enacted ch. 474, 1965 Session Laws (\"Constitutional Measures, Approved\"). Approved June 30, 1964.",
       "source_urls": [],
       "sources_verified": [
         "/tmp/caa1965.pdf (ch. 474, p. 966 — primary, clean modern typeset)",
@@ -2403,7 +2402,8 @@
           "enacted_session_law": "1965 Session Laws ch. 474 (CAA): \"...municipal judges in cities, incorporated towns, and villages, who shall hear, try, and determine cases arising under the ordinances of said cities, towns and villages...\"",
           "other_publications": "1973 Blue Book (integrated, poor OCR) reads \"municipal judges In cities. Incorporated towns, and villages... arising under the ordinances of suid cities\" — capitalization (In/Incorporated), terminal period mid-sentence, and \"suid\" for \"said\" are OCR artifacts, not genuine publication divergences. The pre-amendment 1961 Blue Book carries the prior \"police magistrate\" text (confirming the amendment took effect between editions)."
         }
-      ]
+      ],
+      "election_date": "1964-06-30"
     },
     {
       "number": "LXXX",
@@ -2735,7 +2735,7 @@
         {
           "target": "N.D. Const. § 216",
           "heading": "State institutions (Ellendale removed)",
-          "text": "Section 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred seventy thousand acres of land made by the United States for \"other educational and charitable institutions\" as is allotted by law, namely: First: A soldiers' home, when located, or such other charitable institution as the legislative assembly may determine, at Lisbon, in the county of Ransom, with a grant of forty thousand acres of land. Second: The blind asylum shall be known as the North Dakota school for the blind and may be removed from the county of Pembina to such other location as may be determined by the board of administration to be in the best interests of the students of such institution and the state of North Dakota. Third: A school of forestry, or such other institution as the legislative assembly may deter- mine, at such place in one of the counties of McHenry, Ward, Bottineau or Rolette, as the electors of said counties may determine by an election for that purpose, to be held as provided by the legislative assembly. Fourth: A scientific school or such other educational or charitable institution as the legislative assembly may prescribe, at the city of Wahpeton, county of Richland, with a grant of forty thousand acres. Fifth: A state normal school at the city of Minot in the county of Ward. Sixth: (a) A state normal school at the city of Dickinson, in the county of Stark, (b) A state hospital for the insane at such place within this state as shall be selected by the legislative assembly, provided, that no other institution of a character similar to any one of those located by this article shall be established or maintained without a revision of this constitution. (As amended by Articles 21 and 22 of the amendments to the constitution, both approved and ratified on November 7, 1916 S.L. 1913, cc. 96 and 99; S.L. 1915, cc. 84 and 85; S.L. 1917, pp. 407 and 408.) Amendments: Art. 12, Nov. 8. 1910 (S.L. 1907. p. 453; 1909. p. 339); Art. 17, Nov. 3. 1914 (S.L. 1911, p. 178; 1913. p. 120); Art. 21, Nov. 7, 1916 (S.L. 1913, ch. 96; 1915, ch. 84; 1917. p. 407); Art. 22, Nov. 7, 1916 (S.L. 1913. ch. 99; 1915. ch. 85; 1917, p. 408); Art. 63, June 24, 1952 (S.L. 1951, ch. 348; 1953, p. 590); Art. 90, Sept. 5. 1972 (S.L. 1971. ch. 623; S.L. 1973, ch. 526)."
+          "text": "Section 216. The following named public institutions are hereby permanently located as hereinafter provided, each to have so much of the remaining grant of one hundred seventy thousand acres of land made by the United States for \"other educational and charitable institutions\" as is allotted by law, namely:\n\nFirst: A soldiers' home, when located, or such other charitable institution as the legislative assembly may determine, at Lisbon, in the county of Ransom, with a grant of forty thousand acres of land.\n\nSecond: The blind asylum shall be known as the North Dakota school for the blind and may be removed from the county of Pembina to such other location as may be determined by the board of administration to be in the best interests of the students of such institution and the state of North Dakota.\n\nThird: A school of forestry, or such other institution as the legislative assembly may determine, at such place in one of the counties of McHenry, Ward, Bottineau, or Rolette, as the electors of said counties may determine by an election for that purpose, to be held as provided by the legislative assembly.\n\nFourth: A scientific school or such other educational or charitable institution as the legislative assembly may prescribe, at the city of Wahpeton, county of Richland, with a grant of forty thousand acres.\n\nFifth: A state normal school at the city of Minot in the county of Ward.\n\nSixth: (a) A state normal school at the city of Dickinson, in the county of Stark. (b) A state hospital for the insane at such place within this state as shall be selected by the legislative assembly, provided, that no other institution of a character similar to any one of those located by this article shall be established or maintained without a revision of this Constitution."
         }
       ],
       "authority": "House Concurrent Resolution No. 3045, chapter 623, 1971 Session Laws, proposed by the Forty-second Legislative Assembly; approved at primary election (constitutional measure No. 2) September 5, 1972, 68,575 to 41,350; chapter 526.",
@@ -2758,7 +2758,9 @@
           "other_publications": "bb1973 (OCR) reads: \"Valley City, Muyville, Minot and Dickinson\" — no serial comma; \"Muyville\" is an OCR artifact of \"Mayville\""
         }
       ],
-      "notes": "§216 1972 version from the 1973 Blue Book integrated text (content-matched; Ellendale Normal-and-Industrial School removed). The 1914-1952 §216 intermediates remain deferred (need the 1925 official snapshot OCR or a corrected 1942 Blue Book slice)."
+      "notes": "§216 1972 version from the 1973 Blue Book integrated text (content-matched; Ellendale Normal-and-Industrial School removed). The 1914-1952 §216 intermediates remain deferred (need the 1925 official snapshot OCR or a corrected 1942 Blue Book slice).",
+      "election_date": "1972-09-05",
+      "structural_followup": "Chapter 526 SECTION 2 ALSO amended and reenacted subsection 1 of amend. art. LIV (State Board of Higher Education membership). Not applied here — same single-provision art-LIV issue as LXXVIII/XCVI. Backlog."
     },
     {
       "number": "XCIII",
@@ -2789,7 +2791,8 @@
           "enacted_session_law": "\"...he shall have no vote unless they be equally divided.\"",
           "other_publications": "bb1973.txt (pre-amendment text) reads \"...but shall have no vote unless they be equally divided.\" — but that is the OLD section 77 superseded by this amendment, not a typeset variant of the new text"
         }
-      ]
+      ],
+      "election_date": "1974-11-05"
     },
     {
       "number": "XCIV",
@@ -3128,7 +3131,8 @@
           "enacted_session_law": "CAA ch. 691: \"Section 214 and sections 1 through 25 of the transition schedule of the Constitution of the State of North Dakota are hereby repealed.\"",
           "other_publications": "Blue Book 1973 (/tmp/bb1973.txt) shows § 214 already annotated as \"(Superceded by legislative action. Section 54-03-01, and also by Federal District ...)\" with the original text reproduced in an editorial note; this is an editorial/annotation divergence in the integrated code, not a divergence in enacted text. No section 214 hit located in /tmp/bb1961.txt on the \"transition schedule\" grep (OCR/coverage)."
         }
-      ]
+      ],
+      "election_date": "1978-09-05"
     },
     {
       "number": "CI",
@@ -3266,18 +3270,19 @@
           "action": "repeal"
         }
       ],
-      "authority": "Senate House Concurrent Resolution No. 3014, chapter 611, 1977 Session Laws; Constitutional Amendments Approved, chapter 695 (Forty-fifth Legislative Assembly); approved November 7, 1978, 124,519 to 61,224 (constitutional measure No. 2 on the general election ballot)",
+      "authority": "House Concurrent Resolution No. 3014, chapter 611, 1977 Session Laws; Constitutional Amendments Approved, chapter 695 (Forty-fifth Legislative Assembly); approved November 7, 1978, 124,519 to 61,224 (constitutional measure No. 2 on the general election ballot)",
       "sources_verified": [
         "/tmp/caa1979.pdf (Constitutional Amendments Approved, chapter 695, p. 1730 of session laws / PDF page 5) — primary enacted text, clean modern typeset",
         "/tmp/bb1973.txt — gross OCR check (contains the pre-1978 former Article V being repealed, not the new text)",
         "/tmp/bb1961.txt — gross OCR check (former Article V)"
       ],
       "confidence": "high",
-      "variants": []
+      "variants": [],
+      "election_date": "1978-11-07"
     },
     {
       "number": "CV",
-      "effective_date": "1978-12-07",
+      "effective_date": "1979-01-01",
       "type": "new_article",
       "changes": [
         {
@@ -3299,14 +3304,15 @@
           "action": "repeal"
         }
       ],
-      "authority": "Senate... House Concurrent Resolution No. 3088, chapter 613, 1977 Session Laws; chapter 696, Constitutional Amendments, Approved (1979 compilation); approved Nov. 7, 1978, 102,182 to 75,413 (constitutional measure No. 3, general election ballot)",
+      "authority": "House Concurrent Resolution No. 3088, chapter 613, 1977 Session Laws; chapter 696, Constitutional Amendments, Approved (1979 compilation); approved Nov. 7, 1978, 102,182 to 75,413 (constitutional measure No. 3, general election ballot) Express effective date January 1, 1979 (SECTION 4 of the resolution).",
       "sources_verified": [
         "/tmp/caa1979.pdf p.1731-1733 (Chapter 696)",
         "/tmp/bb1973.txt (gross OCR cross-check, §202 prior wording only)",
         "/tmp/bb1961.txt (gross OCR cross-check)"
       ],
       "confidence": "high",
-      "variants": []
+      "variants": [],
+      "election_date": "1978-11-07"
     },
     {
       "number": "CVI",
@@ -3344,7 +3350,8 @@
           "target": "N.D. Const. § 173",
           "heading": "Judicial Officers — election of certain county officials",
           "text": "Section 173. There shall be elected in each county, organized under the provisions of section 172 of the Constitution of the State of North Dakota, a register of deeds, county auditor, treasurer, sheriff, state's attorney, and a clerk of the district court, who shall be electors in the county in which they are elected and who shall hold their office for a term of four years and until their successors are elected and qualified; provided that in counties having population of six thousand or less the register of deeds shall also be clerk of the district court. This amendment shall be self-executing, but legislation may be enacted to facilitate its operation.",
-          "action": "amend"
+          "action": "amend",
+          "effective_date": "1983-01-01"
         },
         {
           "target": "N.D. Const. § 69",
@@ -3353,7 +3360,7 @@
           "action": "repeal"
         }
       ],
-      "authority": "Senate Concurrent Resolution No. 4006, chapter 706, 1979 Session Laws (Forty-sixth Legislative Assembly); approved September 2, 1980 (58,827 to 50,643); enacted as Chapter 655, Constitutional Amendments, Approved (1981 Session Laws compilation)",
+      "authority": "Senate Concurrent Resolution No. 4006, chapter 706, 1979 Session Laws (Forty-sixth Legislative Assembly); approved September 2, 1980 (58,827 to 50,643); enacted as Chapter 655, Constitutional Amendments, Approved (1981 Session Laws compilation) Per SECTION 3, the §173 amendment took effect January 1, 1983; the §69 repeal took effect thirty days after certification (1980-10-02).",
       "sources_verified": [
         "/tmp/caa1981.pdf (Chapter 655, p. 1817-1818) — enacted CAA text, clean modern typeset, governs",
         "/tmp/bb1973.txt — integrated Blue Book 1973, pre-amendment Section 173 (gross OCR cross-check)",
@@ -3366,7 +3373,8 @@
           "enacted_session_law": "CAA Chapter 655: \"...sheriff, state's attorney, and a clerk of the district court... provided that in counties having population of six thousand or less the register of deeds shall also be clerk of the district court.\" (county judge and fifteen-thousand-population proviso struck)",
           "other_publications": "Blue Book 1973 (pre-amendment): \"...sheriff, state's attorney, county judge and a clerk of the district court... provided in counties having fifteen thousand population or less, the county judge shall also be clerk of the district court; provided further that in counties having population of six thousand or less the register of deeds shall also be clerk of the district court and county judge. This amendment shall be construed as applying to the officers elected at the general election in 1962.\" Divergence is substantive (this is the older text the 1980 amendment superseded), not a publication-error variant; minor Blue Book OCR artifacts: \"shull lie\" for \"shall be,\" \"cterk\" for \"clerk,\" \"u\"/\"und\" for \"a\"/\"and.\""
         }
-      ]
+      ],
+      "election_date": "1980-09-02"
     },
     {
       "number": "CVIII",
