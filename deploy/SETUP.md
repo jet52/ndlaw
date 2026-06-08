@@ -83,6 +83,16 @@ sudo -u ndcourts bash -lc '
 > The DB directory must stay writable by the `ndcourts` user: SQLite WAL mode
 > creates `opinions.db-wal` / `-shm` files next to it even when only reading.
 
+> **Primary-law corpora.** Besides opinions, the server also serves the ND
+> Constitution, court rules, N.D.C.C. statutes, and Administrative Code from
+> separate per-corpus DBs (`constitution.db`, `rules.db`, `statutes.db`,
+> `admincode.db`). These ship as additional release assets and are fetched +
+> validated automatically by `deploy/update-db.sh` (and the nightly
+> self-update) — see §8. The server's `attach_corpora()` serves whatever corpus
+> DBs are present, each placed where the installed package resolves it, so no
+> extra config is needed. To pull them on first install, run
+> `sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh` once the service is up.
+
 ## 3. Run it as a service
 
 ```bash
@@ -164,11 +174,18 @@ Windows, and notes on the web/mobile clients).
 
 The endpoint is **`/mcp`** (no trailing slash — `/mcp/` 307-redirects).
 
-## 8. Updating the database
+## 8. Updating the databases
 
-The DB ships as a GitHub release asset (`opinions.db.zip` + `.sha256`). Updating
-is a publish-then-pull: cut a release from your build machine, then have the
-server pull, validate, and swap it.
+The databases ship as GitHub release assets — `opinions.db.zip` plus one per
+primary-law corpus (`constitution.db.zip`, `rules.db.zip`, `statutes.db.zip`,
+`admincode.db.zip`), each with a `.sha256`. Updating is a publish-then-pull: cut
+a release from your build machine, then have the server pull, validate, and swap.
+
+`deploy/update-db.sh` is multi-corpus, idempotent, and self-healing: `opinions.db`
+is required, and each corpus is optional — a corpus whose asset isn't in the
+release is skipped (and picked up on a later run once it ships), so new corpora
+roll out without a script change. Each corpus DB is placed exactly where the
+installed package resolves it, so the server serves it with no unit/env change.
 
 Publishing is the deliberate editorial gate; everything downstream is mechanical
 and gated (sha256 verify, `quick_check`, count floor, live `/mcp` probe, rollback).
@@ -193,9 +210,10 @@ reinstalls, swaps the DB, restarts, and health-probes.
 > then `sudo systemctl restart ndcourts-mcp`.
 
 **Server side only** (publishing the release separately, or pulling on the box).
-`deploy/update-db.sh` downloads the latest release, **verifies the sha256**,
-validates the staged DB (`PRAGMA quick_check` + opinions-count floor), then
-**stops the service, swaps atomically (keeping `opinions.db.bak`), clears stale
+`deploy/update-db.sh` downloads each shipped DB from the latest release,
+**verifies its sha256**, validates each staged DB (`PRAGMA quick_check` + a
+per-DB row floor), then **stops the service once, swaps all atomically (keeping a
+`<db>.bak` each), clears stale
 `-wal`/`-shm`, restarts, and runs an end-to-end `/mcp` probe — auto-rolling back
 to `.bak` if the probe fails**. Run it as **root** (the `ndcourts` home is not
 readable by your login user, so `sudo -u ndcourts` fails its venv preflight):

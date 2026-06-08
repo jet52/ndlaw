@@ -46,6 +46,21 @@ To install it, jump to [Quick start](#quick-start) below.
 | `more_like_this`      | Doctrinally similar opinions (hybrid co-citation + keyword ranking)             |
 | `detect_overruled_in_draft` | Scan a draft's cited cases through the citator; flag possible negative treatment (with citing context) |
 
+### Primary law (Constitution, court rules, N.D.C.C. statutes, Admin. Code)
+
+Beyond opinions, the server serves North Dakota primary law from separate
+per-corpus databases (`constitution.db`, `rules.db`, `statutes.db`,
+`admincode.db`), ATTACH-ed onto the opinions connection. These are
+point-in-time versioned: `lookup_authority` accepts an `as_of_date` to return
+the text in force on a given date.
+
+| Tool                  | Purpose                                                                         |
+|-----------------------|---------------------------------------------------------------------------------|
+| `lookup_authority`    | Text of a constitutional / rule / statute / admin-code provision (with `as_of_date` for the version in force) |
+| `search_authority`    | Full-text search across the primary-law corpora                                 |
+| `get_authority_history` | Amendment / version history of a provision                                    |
+| `constitutional_amendments` | The ND Constitution's amendment chronology                                |
+
 See [Quick start](#quick-start) to install the server and [Connecting to
 Claude](#connecting-to-claude) to wire it into an MCP client.
 
