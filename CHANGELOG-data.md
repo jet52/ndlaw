@@ -2467,3 +2467,30 @@ are unverified against the correct volume -> all fold into action 4.
 
 DB rebuild: provisions 243, adds 22, amends 109, repeals 47, future_skipped 1, pending_skipped 3,
 unresolved 0.
+
+## Batch: const-history-revalidation-round3-2026-06-08 (14 early amendments, volume-corrected)
+
+Applied 2026-06-08. Re-ran the 11 round-2 not_found + 3 early-era body flags (#1/XXX/XXXVII)
+against BOTH the proposing sl(E-1) and approved sl(E+1) volumes with date-based disambiguation
+(workflow `const-revalidate-round3`; verdicts in `data/const_revalidation_round3_2026-06-08.json`).
+Volume fix worked: 14/14 located, 0 not_found.
+
+Result: 10/14 clean (3 identical + 7 OCR-noise-only). Of 4 "substantive" flags, only ONE held up
+on scrutiny:
+- **APPLIED #1 (art I, lotteries):** removed an extraneous stored comma ("for any purpose, and" ->
+  "for any purpose and"). Confirmed absent in BOTH sl1893 (proposing) and sl1895 (approved) — two
+  independent witnesses, not OCR-dependent. High confidence.
+- **HELD #3 (§76):** "board of pardons" (stored) vs "board of pardon" (singular, sl1899). Medium
+  confidence, single-letter, old scan -> needs page-image confirmation before changing.
+- **HELD XXX (§177):** "limitation" vs "limitations" read out of heavy OCR garble ("li111itatio11s").
+  Medium -> needs image confirmation.
+- **HELD #5&6 (§215):** agent "substantive" was capitalization ("City"->"city") + one comma;
+  words/numbers identical. Cosmetic, not an error.
+
+Also RETRACTED a round-2 false positive: **XXXVII (§121)** is OCR-only (stored "Second" is correct);
+the round-2 "Second->second" flag was scan-related. Confirms the discipline of verifying early-era
+"substantive" flags against the correct volume before applying.
+
+This completes re-validation of the entire pre-1981 amendment corpus against session-law text
+(rounds 1-3). Remaining: 4 structural pending (LXXVIII/XCVI/XC-subsec-1/LXXXI); optional image
+confirmation of the 3 held items (#3/XXX/§5&6); optional early-record authority enrichment.

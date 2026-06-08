@@ -10,7 +10,7 @@
         {
           "target": "N.D. Const. amend. art. I",
           "heading": "Lotteries prohibited",
-          "text": "The legislative assembly shall have no power to authorize lotteries or gift enterprises for any purpose, and shall pass laws to prohibit the sale of lottery or gift enterprise tickets."
+          "text": "The legislative assembly shall have no power to authorize lotteries or gift enterprises for any purpose and shall pass laws to prohibit the sale of lottery or gift enterprise tickets."
         }
       ],
       "authority": "Amendment ratified Nov. 6, 1894",
@@ -20,7 +20,8 @@
       "sources_verified": [
         "S.L. 1893 p.294",
         "1895 Revised Codes",
-        "ndconst.org :amendments"
+        "ndconst.org :amendments",
+        "Re-validated 2026-06-08 (round 3) vs sl1893 (proposing) + sl1895 (approved); both lack the comma after 'purpose' — removed an extraneous stored comma."
       ]
     },
     {
