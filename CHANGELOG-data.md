@@ -2338,3 +2338,50 @@ Fixes (3 parts):
 3. **New invariants** (`invariants.py`): `citation_row_unique_per_opinion` and `source_row_unique_per_opinion` — both keyed per-opinion so they never flag legitimate cross-opinion shared cites; both now pass (0). Dashboard now 15 ok / 2 baseline / 0 regressed.
 
 Surfaced but NOT fixed here (separate, needs a documented contract): **817 opinions carry >1 `is_primary=1` citation row** — the undocumented `is_primary` contract / A.L.R.-class mis-flagging. Tracked as the A.L.R. follow-up below.
+
+
+## Batch: const-history-pending-amendments-sessionlaw-2026-06-08 (10 finalized, 3 upgraded)
+
+Applied 2026-06-08 to `data/constitution_amendments.json` + `constitution_history.db`
+(script `scripts/apply_pending_amendments_2026-06-08.py`; full verbatim transcription
++ sources in `data/const_amend_session_law_extraction_2026-06-08.md`).
+
+**Method change.** Retired the handoff's "backstop-first via Blue Books" workaround.
+The ND Session Laws are local at `~/refs/nd/sess/` with **clean text layers** and are
+the project's stated authoritative source. All 13 previously-pending amendments are now
+transcribed **directly from the enacted session-law text** (the "Constitutional
+Amendments / Measures — Approved" section in the volume following the ratification
+election; proposed-resolution `CAP.pdf` used as a clean second witness where the
+approved scan was OCR-dirty). Validated source rule: ratified year Y -> `sl(Y+1)` or
+`(Y+1)_sl/{CMA,CAA}.pdf`. (Note: `1961_sl`/`1965_sl` approved file is `CMA.pdf`, not
+`CAA.pdf`; legis.nd.gov has no `CAA.pdf` for those years.)
+
+**FINALIZED (status:pending dropped, confidence high) — 10:** LV (§§167/170/172/173
+amend + §171 repeal, Art. 55), LVI (new Art. 56, gasoline motor-fuel dedication —
+*recovered, was "TEXT NOT FOUND"*), LVII (§82, Art. 57), LVIII (§158, Art. 58), LIX
+(new Art. 59), LX (new Art. 60), LXI (§162, Art. 61), LXII (§173, Art. 62), LXIV (§138,
+Art. 64), LXXIII (re-enacts amend. art. LVI, 1960).
+
+**Source-of-truth metadata corrections:** LIX = **WWII veterans' adjusted-compensation**
+bond ($27M), not "state building program"; LX = **State Medical Center** one-mill levy
+at UND, not generic "state building"; LXI = **§162 permanent-school-fund investment**
+(record previously had empty changes); LXII = **§173 county officers** (removes the
+*sheriff* from the four-year-succession limit) — prior "school funds" heading belonged
+to LXI; LVII effective_date 1940-06-25 -> **1940-07-25** (election + 30 days). ndconst.org
+had LXI/LXII section numbers right but subject descriptions swapped. All effective dates
+re-confirmed against the canvass vote tallies.
+
+**UPGRADED (verified verbatim text + high confidence; STILL pending) — 3 structural:**
+LXXVIII (amends only subdivision (d) of subsection 6 of amend. art. LIV), XCVI (amends
+subsections 2 & 4 of amend. art. LIV), LXXXI (**partial** repeal — only the tenth
+paragraph of §25). The ingest does whole-provision replacement and amend. art. LIV is a
+single provision; these need the full enclosing-provision text assembled first. LXXXI
+also: §25 already shows status='repealed' in the base — investigate before applying.
+
+**DB rebuild:** `python -m ndcourts_mcp.ingest_constitution_history --apply` on a FRESH
+db (the ingest is NOT idempotent — `build()` uses CREATE TABLE IF NOT EXISTS and
+`apply_amendments` appends, so re-running on an existing db doubles every amendment;
+delete `constitution_history.db` first). Result: provisions 243, adds 22, amends 110,
+repeals 47, pending_skipped 3, unresolved 0. Verified: §82 chain 6 contiguous versions
+(no dups/backwards), amend. art. LVI chains 1940->1960, point-in-time §162@1953 = LXI
+text, 422 versions = 422 distinct (provision, effective_start) keys.
