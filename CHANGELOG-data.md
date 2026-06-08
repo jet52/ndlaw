@@ -2494,3 +2494,22 @@ the round-2 "Second->second" flag was scan-related. Confirms the discipline of v
 This completes re-validation of the entire pre-1981 amendment corpus against session-law text
 (rounds 1-3). Remaining: 4 structural pending (LXXVIII/XCVI/XC-subsec-1/LXXXI); optional image
 confirmation of the 3 held items (#3/XXX/§5&6); optional early-record authority enrichment.
+
+## Batch: const-history-held-items-2026-06-08 (page-image resolution of 3 held items)
+
+Resolved the 3 round-3 held items by reading the actual session-law page images (300 dpi),
+not OCR text:
+- **APPLIED #3 (§76):** sl1899 pp. 256-257 clearly print "board of pardon" (SINGULAR) in BOTH
+  places ("in conjunction with the board of pardon of which the governor shall be ex-officio a
+  member"; "granted by the board of pardon, stating the name of the convict"). Corrected stored
+  plural "board of pardons" -> "board of pardon" (2 occurrences). Now high confidence.
+- **NO CHANGE — XXX (§177): FALSE POSITIVE.** sl1919 p. 519 (ARTICLE XXX) clearly prints
+  "in addition to the limitation specified in Section 174" (SINGULAR). The rounds-2/3 agents
+  misread a plural "s" out of the OCR garble "li111itatio11s"; the stored singular "limitation"
+  is CORRECT. (Third OCR-based false positive caught, after #12 §216 and XXXVII §121.)
+- **NO CHANGE — #5&6 (§215):** capitalization only ("City"/"County" vs session-law lowercase);
+  cosmetic, not a textual error; left as-is.
+
+Lesson reinforced: medium-confidence single-letter OCR diffs on old scans must be confirmed
+against the page image before altering authoritative text. Page images render via
+`pdftoppm -png -r 300 -f N -l N <pdf> <out>`.
