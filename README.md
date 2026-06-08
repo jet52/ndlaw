@@ -6,9 +6,15 @@ Appeals decisions). Built on SQLite with FTS5 full-text search and
 served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
 opinion browser with multi-source diff/merge tools.
 
-The corpus currently contains **~19,800 opinions** with **108,000+
+The opinions corpus currently contains **~20,200 opinions** with **108,000+
 citation links** between them, with every correction recorded in an
 auditable, revertible changelog.
+
+It also serves North Dakota **primary law** — the Constitution (including a
+1889–1980 historical point-in-time layer), N.D.C.C. statutes, court rules, and
+the Administrative Code — from separate per-corpus databases. See
+[Primary law](#primary-law-constitution-court-rules-ndcc-statutes-admin-code)
+below for what each database contains.
 
 This is a working tool, not an authoritative text. See
 [`NOTICE.md`](NOTICE.md) for sources, redistribution scope, and
@@ -49,10 +55,26 @@ To install it, jump to [Quick start](#quick-start) below.
 ### Primary law (Constitution, court rules, N.D.C.C. statutes, Admin. Code)
 
 Beyond opinions, the server serves North Dakota primary law from separate
-per-corpus databases (`constitution.db`, `rules.db`, `statutes.db`,
-`admincode.db`), ATTACH-ed onto the opinions connection. These are
-point-in-time versioned: `lookup_authority` accepts an `as_of_date` to return
-the text in force on a given date.
+per-corpus SQLite databases, each `ATTACH`-ed onto the opinions connection at
+startup (the server serves whatever corpus DBs are present). All use a shared
+point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
+`as_of_date` to return a provision's text as it stood on a given date.
+
+| Database | Corpus | Contents (approx.) |
+|----------|--------|--------------------|
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | ~20,200 opinions, 108,000+ citation links, 1890–present |
+| `constitution.db` | ND Constitution | ~200 current provisions (modern article/§ numbering) + amendment chronology, **plus** a ~265-provision historical point-in-time layer in the original 1889 numbering (§§ 1–217 + Schedule), in force 1889–1980 |
+| `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
+| `rules.db`        | ND court rules | ~650 rule provisions |
+| `admincode.db`    | ND Administrative Code | ~13,800 provisions |
+
+Each ships as its own GitHub release asset (`<name>.db.zip` + `.sha256`) — see
+[Quick start](#quick-start) to install them locally and `deploy/SETUP.md` for the
+server-side multi-corpus delivery. The historical constitutional layer is queried
+by its original 1889 citation (e.g. `lookup_authority("N.D. Const. § 82",
+as_of_date="1945-01-01")`); it is not yet cross-linked to the modern numbering.
+The primary-law corpora are newer and less validated than the opinions corpus —
+see [`TODO-primarylaw.md`](TODO-primarylaw.md).
 
 | Tool                  | Purpose                                                                         |
 |-----------------------|---------------------------------------------------------------------------------|
@@ -150,12 +172,15 @@ irm https://astral.sh/uv/install.ps1 | iex
 git clone https://github.com/jet52/ndcourts-mcp.git
 cd ndcourts-mcp
 
-# Download the database release asset (replace v0.5.0 with the latest tag)
-Invoke-WebRequest `
-  -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip" `
-  -OutFile opinions.db.zip
-Expand-Archive opinions.db.zip -DestinationPath .
-Remove-Item opinions.db.zip
+# Download + extract every database release asset (opinions + primary-law corpora).
+# The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
+foreach ($db in "opinions","constitution","statutes","rules","admincode") {
+  Invoke-WebRequest `
+    -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip" `
+    -OutFile "$db.db.zip"
+  Expand-Archive "$db.db.zip" -DestinationPath . -Force
+  Remove-Item "$db.db.zip"
+}
 
 uv sync
 ```
@@ -169,10 +194,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 git clone https://github.com/jet52/ndcourts-mcp.git
 cd ndcourts-mcp
 
-# Download and extract the database release asset
-curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
-unzip opinions.db.zip
-rm opinions.db.zip
+# Download + extract every database release asset (opinions + primary-law corpora).
+# The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
+for db in opinions constitution statutes rules admincode; do
+  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  unzip -o "$db.db.zip" && rm "$db.db.zip"
+done
 
 uv sync
 ```
@@ -186,10 +213,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 git clone https://github.com/jet52/ndcourts-mcp.git
 cd ndcourts-mcp
 
-# Download and extract
-curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
-unzip opinions.db.zip
-rm opinions.db.zip
+# Download + extract every database release asset (opinions + primary-law corpora).
+# The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
+for db in opinions constitution statutes rules admincode; do
+  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  unzip -o "$db.db.zip" && rm "$db.db.zip"
+done
 
 uv sync
 ```
@@ -199,8 +228,10 @@ uv sync
 Confirm the database is wired correctly:
 
 ```bash
-sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"
-# Should print an opinion count above 20,000 (currently around 20,200)
+sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # ~20,200
+# Primary-law corpora (if you downloaded them):
+sqlite3 constitution.db "SELECT COUNT(*) FROM provisions"    # ~466
+sqlite3 statutes.db     "SELECT COUNT(*) FROM provisions"    # ~29,100
 ```
 
 ### Updating to a newer database release
@@ -208,21 +239,24 @@ sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"
 When a new database release is published, replace the local copy:
 
 ```bash
-# macOS / Linux
-rm opinions.db
-curl -LO https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
-unzip opinions.db.zip
-rm opinions.db.zip
+# macOS / Linux — refresh every database (or list just the ones you use)
+for db in opinions constitution statutes rules admincode; do
+  rm -f "$db.db"
+  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  unzip -o "$db.db.zip" && rm "$db.db.zip"
+done
 ```
 
 ```powershell
 # Windows PowerShell
-Remove-Item opinions.db
-Invoke-WebRequest `
-  -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip" `
-  -OutFile opinions.db.zip
-Expand-Archive opinions.db.zip -DestinationPath . -Force
-Remove-Item opinions.db.zip
+foreach ($db in "opinions","constitution","statutes","rules","admincode") {
+  Remove-Item "$db.db" -ErrorAction SilentlyContinue
+  Invoke-WebRequest `
+    -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip" `
+    -OutFile "$db.db.zip"
+  Expand-Archive "$db.db.zip" -DestinationPath . -Force
+  Remove-Item "$db.db.zip"
+}
 ```
 
 Then `git pull` to pick up any code changes since the release was cut.
@@ -369,6 +403,10 @@ The only thing the app itself needs is three environment variables:
 | `NDCOURTS_HOST` | bind address — keep `127.0.0.1` so only the local proxy can reach it | `127.0.0.1` |
 | `NDCOURTS_PORT` | bind port | `8000` |
 | `NDCOURTS_DB` | path to `opinions.db` on the server | bundled / app-data |
+| `NDCOURTS_CONST_DB` | path to `constitution.db` (ND Constitution corpus) | bundled / app-data |
+| `NDCOURTS_NDCC_DB` | path to `statutes.db` (N.D.C.C. corpus) | bundled / app-data |
+| `NDCOURTS_RULE_DB` | path to `rules.db` (court-rules corpus) | bundled / app-data |
+| `NDCOURTS_ADMIN_DB` | path to `admincode.db` (Admin. Code corpus) | bundled / app-data |
 
 The MCP endpoint is **`/mcp`** (no trailing slash — `/mcp/` issues a 307
 redirect, which some clients mishandle on POST).
