@@ -2,6 +2,20 @@
 
 Changes applied to the primary-law databases (`constitution.db`, `constitution_history.db`, `statutes.db`, `rules.db`, `admincode.db`) after import. All corrections are also recorded in each corpus DB's `changelog` table.
 
+## Batch `ndac-extraction-fix-2026-06-08` — fix the same two extraction bugs in the admin code (646 sections)
+
+`admincode.db` · 646 sections · fields `heading` + `text_content`
+
+The N.D. Administrative Code was extracted by the **same** `scrape_nd_code.py` converter as the N.D.C.C. statutes (`ingest_admin.py` reads its `### §` markdown), so it carried **both** bugs fixed there: dropped cross-reference lines and phantom-duplicate headers. A scan found **117** phantom-duplicate section numbers in the NDAC markdown (13,980 headers vs 13,838 provisions) and **287** sections with dropped-cross-reference seams; `admincode.db` had **0 duplicate citations** because the ingest's first-wins dedup silently kept whichever occurrence parsed first — so corrupted sections held garbage (e.g. § 10-16-03-12's DB heading was the body sentence "If the prize allocated to each claimant is less than six hundred dollars, at" with text starting mid-sentence).
+
+Both bugs are already fixed in the converter (code-mirror `ce5af93`); the fix transfers to NDAC unchanged (4-part section numbers, article/chapter file layout) — confirmed on sample chapters including the 1,169-section hazardous-waste chapter 33.1-24-05, which has **0 phantom dups** after the fix.
+
+**Application:** re-extracted all 2,131 NDAC chapter/article PDFs with the fixed converter (`~/code/code-mirror/rebuild_ndac_md.py`, parallel; `/tmp/ndac_fixed`, 0 phantom dups), parsed identically to the ingest (`ingest_admin.section_files` + `parse_sections`, first-wins), and for every admin section whose DB heading or text differed, replaced both with the clean re-extraction's (`triage/apply_ndac_fix_2026-06-08.py`). **651 sections differed; 646 applied** (59 heading corrections — garbled sentence-fragment headings → proper catchlines, e.g. § 10-16-03-12 → "Delay of paying a prize"; 609 grew where the DB was truncated/fragmented, 37 shrank where the DB had absorbed garbage). Verified in both directions on a sample (e.g. § 75-02-06-26 DB 19,002 garbled chars → 1,221 "Reconsiderations"; § 31-13-05-style shrinks all DB-garbled).
+
+**5 sections HELD** for manual review (`33.1-24-02-42`, `33.1-24-05-235`, `33.1-24-05-280`, `33.1-24-06-14`, `33.1-24-08-64`) — all inside the enormous embedded "Treatment Standards" tables in the hazardous-waste chapters, where **both** the old and new extraction misjudge the section boundary and the re-extraction's heading came out as a body sentence; auto-overwrite was suppressed (a guard holds any section whose re-extracted heading is sentence-like). **1 spurious section** (`33.1-24-06-235`, heading "33") is a phantom-only entry the clean re-extraction does not produce — left in place, flagged for deletion. Both groups tracked in TODO-primarylaw.md PL-3.
+
+`authority` recorded per section; heading+text logged; FTS re-indexed; changelog-revertible. DB backup `admincode.db.bak-pre-ndacfix-2026-06-08`. Integrity `quick_check ok`, FTS `integrity-check ok`, 0 duplicate citations. After this batch `admincode.db` equals the clean re-extraction for every non-held section.
+
 ## Batch `ndcc-fix-29-15-21-subsec3-2026-06-08` — restore dropped clause in N.D.C.C. § 29-15-21(3)
 
 `statutes.db` · provision/version 11275 · field `text_content`

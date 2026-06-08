@@ -54,6 +54,18 @@ Validation backlog for the primary-law databases (`constitution.db`, `constituti
 
 **Fix approach (harder than PL-1 — mis-parses occur mid-body, so position-gating won't work):** make the header detector reject a candidate unless its number (a) **belongs to the current chapter** (prefix match) AND (b) is **greater than the last accepted section** in this chapter (monotonic). That rejects both cross-chapter phantoms and backward mid-body refs. Mind sub-section suffixes (`.1`, `.2`) and the first real header. Then regenerate + re-validate, and **per-section verify each DB-corrupted section against the official ndlegis.gov text** before overwriting (some sections the DB is right and the re-extraction is wrong — do not bulk-trust either source). Re-validation detectors: section-length outliers vs neighbors, headings that are sentence fragments / lowercase-start bodies, and the cross-reference resolver (PL-VALIDATE below). The 16 PL-1 held sections get fixed as part of this pass.
 
+### PL-3 · Admin code (NDAC) — same two extraction bugs
+
+**✅ SCANNED + FIXED + APPLIED 2026-06-08.** The admin code was extracted by the same converter, so it carried both PL-1 (dropped lines) and PL-2 (phantom-duplicate headers) bugs: scan found 117 phantom-dup section numbers + 287 dropped-cross-ref seams; `admincode.db` had 0 dup citations (first-wins hid the corruption). The committed converter fix transfers to NDAC unchanged (confirmed incl. the 1,169-section hazardous-waste chapter 33.1-24-05 → 0 phantom dups). Re-extracted all 2,131 NDAC PDFs (`~/code/code-mirror/rebuild_ndac_md.py`, parallel), compared vs `admincode.db`, **applied 646 corrections** (59 headings; batch `ndac-extraction-fix-2026-06-08`, `triage/apply_ndac_fix_2026-06-08.py`). DB == clean re-extraction for every non-held section; integrity ok, FTS ok, 0 dup citations. DB backup `admincode.db.bak-pre-ndacfix-2026-06-08`.
+
+**Remaining (manual):**
+- **5 held sections** in the hazardous-waste "Treatment Standards" tables (`33.1-24-02-42`, `33.1-24-05-235`, `33.1-24-05-280`, `33.1-24-06-14`, `33.1-24-08-64`) — both old and new extraction misjudge the boundary inside the giant embedded tables; the re-extraction heading came out as a body sentence so auto-overwrite was suppressed. Fetch the official text per section.
+- **1 spurious section** `33.1-24-06-235` (heading "33") — a phantom-only entry the clean re-extraction doesn't produce; delete it from `admincode.db`.
+- Regenerate `~/refs/reg/NDAC` markdown with the fixed converter (in progress / done this session) and re-index, mirroring PL-1(b).
+- Commit `rebuild_ndac_md.py` (code-mirror) with the NDCC rebuild helper.
+
+The embedded-table boundary failure (held 5) is a **third, narrower extraction weakness** beyond PL-1/PL-2: a multi-page table whose rows are not section bodies confuses section splitting. Low-volume (≈5 sections, all in 33.1-24-*); fix only if table-heavy chapters matter, otherwise hand-correct.
+
 ### PL-VALIDATE · Broader text-faithfulness validators (proposed 2026-06-08)
 
 Beyond the two known bugs, to certify the corpus as authoritative (and reusable for the admin-code + constitution corpora). Ranked by which blind spot they close — the seam-detector only catches drops that leave an ungrammatical seam; clean substitutions and whole-section loss need these:
