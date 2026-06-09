@@ -101,8 +101,8 @@ The "primary text source" is the source whose text is stored in
 
 | Era         | Opinions | Primary text source | Notes |
 |-------------|----------|---------------------|-------|
-| 1890–1952   | ~6,640   | Westlaw bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
-| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and Westlaw bound; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | manual Westlaw acquisition of the residual is ongoing (see TODO-validation.md) |
+| 1890–1952   | ~6,640   | Bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
+| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and court text from bound volumes; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | incremental validation of the residual is ongoing (see TODO-validation.md) |
 | 1997–2019   | ~5,980   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
 | 2020–present| ~1,570   | ndcourts.gov | N.W.2d where available |
 
