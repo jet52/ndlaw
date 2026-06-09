@@ -62,14 +62,14 @@ file untracked.
 ## Claude Desktop — easiest path (.mcpb bundle, any OS)
 
 A pre-built **MCP Bundle** is in the repo at
-[`deploy/ndcourts.mcpb`](ndcourts.mcpb) (~2 KB). It contains a
+[`deploy/ndlaw.mcpb`](ndlaw.mcpb) (~2 KB). It contains a
 manifest and a tiny Node wrapper that proxies to the remote server.
 Works on macOS, Linux, and Windows with one set of instructions.
 
 **For colleagues:**
 
 1. Download the bundle:
-   <https://github.com/jet52/ndlaw/raw/main/deploy/ndcourts.mcpb>
+   <https://github.com/jet52/ndlaw/raw/main/deploy/ndlaw.mcpb>
 2. Double-click it. Claude Desktop opens the install dialog showing
    the extension name and asking for three fields:
    - **Server URL** — paste what the admin sent you
@@ -93,7 +93,7 @@ version in place.
 **For the admin (maintaining the bundle):** the source lives at
 `deploy/mcpb/`. Edit `manifest.json` or `server/wrapper.js`, bump
 the `version` field, run `deploy/mcpb/build.sh`, commit both the
-source changes and the rebuilt `deploy/ndcourts.mcpb` together.
+source changes and the rebuilt `deploy/ndlaw.mcpb` together.
 
 ---
 
