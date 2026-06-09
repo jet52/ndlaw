@@ -12,8 +12,9 @@
 #   3. records the new tag and emails the result.
 # When already current it exits silently (no download, no restart, no email).
 #
-# Runs as ROOT (the systemd service has no User=), so it can systemctl and
-# write under /srv/ndcourts; git/uv steps drop to the service user via sudo.
+# Runs as ROOT so it can systemctl and write under /srv/ndcourts; git/uv steps
+# and the corpus-DB path resolution drop to the service user (the unit's User=,
+# e.g. ndcourts) via sudo, since corpus DBs resolve per-$HOME.
 #
 # Config via env (defaults match deploy/SETUP.md's /srv/ndcourts layout):
 #   APP_HOME, REPO, RUN_USER, SERVICE, SLUG, MARKER, MAIL_TO, MAIL_FROM, LOCK

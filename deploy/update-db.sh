@@ -43,8 +43,19 @@ die() { echo "[update-db] ABORT: $*" >&2; exit 1; }
 command -v sqlite3 >/dev/null || die "sqlite3 not found"
 [ -x "$VENV/bin/python" ] || die "venv python not found at $VENV/bin/python"
 
-# Resolve where the INSTALLED package expects a corpus DB (env -> bundled -> user data).
-resolve() { "$VENV/bin/python" -c "from ndcourts_mcp import corpus; print(corpus.resolve_corpus_db_path('$1'))" 2>/dev/null; }
+# The systemd service runs as this user (no User= ⇒ root). Corpus DB paths are
+# resolved per-user (platformdirs keys off $HOME), so they MUST be resolved as the
+# SERVICE user — resolving as root (this script's user) places them under
+# /root/.local/share where the ndcourts service cannot read them.
+RUN_USER="$(systemctl show "$SERVICE" -p User --value 2>/dev/null)"
+[ -n "$RUN_USER" ] || RUN_USER=root
+RUN_HOME="$(getent passwd "$RUN_USER" | cut -d: -f6)"; [ -n "$RUN_HOME" ] || RUN_HOME=/root
+as_run_user() { sudo -u "$RUN_USER" env HOME="$RUN_HOME" "$@"; }
+
+# Resolve where the INSTALLED package expects a corpus DB (env -> bundled -> user
+# data), AS THE SERVICE USER so $HOME-based user-data paths match what the running
+# service opens.
+resolve() { as_run_user "$VENV/bin/python" -c "from ndcourts_mcp import corpus; print(corpus.resolve_corpus_db_path('$1'))" 2>/dev/null; }
 
 # Manifest rows: name|dbfile|count_sql|floor|required|dest
 declare -a ROWS=()
@@ -109,6 +120,9 @@ for s in "${SWAP[@]}"; do
   if [ -f "$dest" ]; then $SUDO cp -f "$dest" "$dest.bak"; BAK+=("$dest"); fi
   $SUDO rm -f "$dest-wal" "$dest-shm"     # stale sidecars from the old DB
   $SUDO cp -f "$src" "$dest"
+  # The service user must be able to read the DB and create WAL/-shm sidecars in
+  # its directory (SQLite WAL mode writes them even for read-only use).
+  $SUDO chown "$RUN_USER:" "$(dirname "$dest")" "$dest" 2>/dev/null || true
 done
 $SUDO systemctl start "$SERVICE"
 
