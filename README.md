@@ -139,7 +139,7 @@ appropriate MCP servers) — run them for you. After install it will add
 the server to your Claude MCP config and verify it works.
 
 > Please help me install the `ndcourts-mcp` server from
-> `https://github.com/jet52/ndcourts-mcp` on my computer. Read the
+> `https://github.com/jet52/ndlaw` on my computer. Read the
 > repository's `README.md` and `NOTICE.md` first so you understand what
 > it is and what it redistributes. Then walk me through (or run for me,
 > if you can) the install steps for my platform, download the latest
@@ -169,14 +169,14 @@ the Python dependencies.
 # Install uv (a fast Python package manager) — skip if already installed
 irm https://astral.sh/uv/install.ps1 | iex
 
-git clone https://github.com/jet52/ndcourts-mcp.git
+git clone https://github.com/jet52/ndlaw.git
 cd ndcourts-mcp
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
 foreach ($db in "opinions","constitution","statutes","rules","admincode") {
   Invoke-WebRequest `
-    -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip" `
+    -Uri "https://github.com/jet52/ndlaw/releases/latest/download/$db.db.zip" `
     -OutFile "$db.db.zip"
   Expand-Archive "$db.db.zip" -DestinationPath . -Force
   Remove-Item "$db.db.zip"
@@ -191,13 +191,13 @@ uv sync
 # Install uv — skip if already installed
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-git clone https://github.com/jet52/ndcourts-mcp.git
+git clone https://github.com/jet52/ndlaw.git
 cd ndcourts-mcp
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
 for db in opinions constitution statutes rules admincode; do
-  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  curl -LO "https://github.com/jet52/ndlaw/releases/latest/download/$db.db.zip"
   unzip -o "$db.db.zip" && rm "$db.db.zip"
 done
 
@@ -210,13 +210,13 @@ uv sync
 # Install uv — skip if already installed
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-git clone https://github.com/jet52/ndcourts-mcp.git
+git clone https://github.com/jet52/ndlaw.git
 cd ndcourts-mcp
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
 for db in opinions constitution statutes rules admincode; do
-  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  curl -LO "https://github.com/jet52/ndlaw/releases/latest/download/$db.db.zip"
   unzip -o "$db.db.zip" && rm "$db.db.zip"
 done
 
@@ -242,7 +242,7 @@ When a new database release is published, replace the local copy:
 # macOS / Linux — refresh every database (or list just the ones you use)
 for db in opinions constitution statutes rules admincode; do
   rm -f "$db.db"
-  curl -LO "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip"
+  curl -LO "https://github.com/jet52/ndlaw/releases/latest/download/$db.db.zip"
   unzip -o "$db.db.zip" && rm "$db.db.zip"
 done
 ```
@@ -252,7 +252,7 @@ done
 foreach ($db in "opinions","constitution","statutes","rules","admincode") {
   Remove-Item "$db.db" -ErrorAction SilentlyContinue
   Invoke-WebRequest `
-    -Uri "https://github.com/jet52/ndcourts-mcp/releases/latest/download/$db.db.zip" `
+    -Uri "https://github.com/jet52/ndlaw/releases/latest/download/$db.db.zip" `
     -OutFile "$db.db.zip"
   Expand-Archive "$db.db.zip" -DestinationPath . -Force
   Remove-Item "$db.db.zip"
@@ -296,9 +296,9 @@ The server can run under any MCP client. The two most common are Claude
 Code (CLI, all platforms) and Claude Desktop (Mac and Windows only — no
 Linux build is shipped today).
 
-Throughout the snippets below, replace `/absolute/path/to/ndcourts-mcp`
+Throughout the snippets below, replace `/absolute/path/to/ndlaw`
 with the full path to your cloned repo. On Windows you can use forward
-slashes in JSON strings (`C:/Users/you/ndcourts-mcp`) — they work fine and
+slashes in JSON strings (`C:/Users/you/ndlaw`) — they work fine and
 avoid double-backslash escaping.
 
 ### Claude Code (Windows, macOS, Linux)
@@ -306,7 +306,7 @@ avoid double-backslash escaping.
 One-liner from any directory:
 
 ```bash
-claude mcp add ndcourts -- uv --directory /absolute/path/to/ndcourts-mcp run ndcourts-mcp
+claude mcp add ndlaw -- uv --directory /absolute/path/to/ndlaw run ndcourts-mcp
 ```
 
 This stores the server in your user-level Claude Code config and makes it
@@ -319,10 +319,10 @@ ndcourts available. Create the file with:
 ```json
 {
   "mcpServers": {
-    "ndcourts": {
+    "ndlaw": {
       "type": "stdio",
       "command": "uv",
-      "args": ["--directory", "/absolute/path/to/ndcourts-mcp",
+      "args": ["--directory", "/absolute/path/to/ndlaw",
                "run", "ndcourts-mcp"]
     }
   }
@@ -336,9 +336,9 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "ndcourts": {
+    "ndlaw": {
       "command": "uv",
-      "args": ["--directory", "/absolute/path/to/ndcourts-mcp",
+      "args": ["--directory", "/absolute/path/to/ndlaw",
                "run", "ndcourts-mcp"]
     }
   }
@@ -358,9 +358,9 @@ otherwise use the full path, e.g.
 ```json
 {
   "mcpServers": {
-    "ndcourts": {
+    "ndlaw": {
       "command": "uv",
-      "args": ["--directory", "C:/Users/you/ndcourts-mcp",
+      "args": ["--directory", "C:/Users/you/ndlaw",
                "run", "ndcourts-mcp"]
     }
   }
@@ -456,7 +456,7 @@ proxy port is reachable only from the VPN subnet.
 ### What each team member runs
 
 ```bash
-claude mcp add --transport http ndcourts https://mcp.court.example/mcp \
+claude mcp add --transport http ndlaw https://mcp.court.example/mcp \
   --header "Authorization: Bearer REPLACE_WITH_A_LONG_RANDOM_TOKEN"
 ```
 

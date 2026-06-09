@@ -27,7 +27,7 @@ talk to it today. Adding OAuth is a future-work item.
 One command — replace the placeholders:
 
 ```bash
-claude mcp add --transport http ndcourts https://mcp.example.com/mcp \
+claude mcp add --transport http ndlaw https://mcp.example.com/mcp \
   --header "Authorization: Basic $(printf '<username>:<password>' | base64)"
 ```
 
@@ -42,7 +42,7 @@ level config:
 ```json
 {
   "mcpServers": {
-    "ndcourts": {
+    "ndlaw": {
       "type": "http",
       "url": "https://mcp.example.com/mcp",
       "headers": {
@@ -69,7 +69,7 @@ Works on macOS, Linux, and Windows with one set of instructions.
 **For colleagues:**
 
 1. Download the bundle:
-   <https://github.com/jet52/ndcourts-mcp/raw/main/deploy/ndcourts.mcpb>
+   <https://github.com/jet52/ndlaw/raw/main/deploy/ndcourts.mcpb>
 2. Double-click it. Claude Desktop opens the install dialog showing
    the extension name and asking for three fields:
    - **Server URL** — paste what the admin sent you
@@ -118,7 +118,7 @@ Open via Settings → Developer → **Edit Config**, or edit directly.
 Add the following inside `mcpServers` (preserve anything already there):
 
 ```json
-"ndcourts": {
+"ndlaw": {
   "command": "npx",
   "args": [
     "-y",

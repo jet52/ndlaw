@@ -11,7 +11,7 @@ from . import corpus, memo, proofread, research
 from .db import DEFAULT_DB_PATH, get_connection
 
 mcp = FastMCP(
-    "ndcourts",
+    "ndlaw",
     instructions=(
         "North Dakota primary law. Opinions (1889–present): use lookup_opinion "
         "for citation-based retrieval, search_opinions for full-text search, and "

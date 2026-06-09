@@ -33,7 +33,7 @@ VENV="${VENV:-$APP_HOME/ndcourts-mcp/.venv}"
 SERVICE="${SERVICE:-ndcourts-mcp}"
 PORT="${PORT:-8000}"
 MIN_OPINIONS="${MIN_OPINIONS:-19000}"   # floor; current corpus ~19,792
-REPO_BASE="${REPO_BASE:-https://github.com/jet52/ndcourts-mcp/releases/latest/download}"
+REPO_BASE="${REPO_BASE:-https://github.com/jet52/ndlaw/releases/latest/download}"
 DRY_RUN=0; [ "${1:-}" = "--dry-run" ] && DRY_RUN=1
 
 if [ "$(id -u)" -ne 0 ]; then SUDO=sudo; else SUDO=; fi

@@ -29,7 +29,7 @@ On a **fresh** Ubuntu droplet with no web server already on :80/:443,
 idempotent run. From a root shell:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jet52/ndcourts-mcp/main/deploy/bootstrap.sh \
+curl -fsSL https://raw.githubusercontent.com/jet52/ndlaw/main/deploy/bootstrap.sh \
   | MCP_DOMAIN=mcp.yourdomain.com \
     MCP_EMAIL=you@example.com \
     MCP_USER=teammate1 \
@@ -66,7 +66,7 @@ sudo -u ndcourts bash -lc 'curl -LsSf https://astral.sh/uv/install.sh | sh'
 # clone + venv + install
 sudo -u ndcourts bash -lc '
   cd /srv/ndcourts
-  git clone https://github.com/jet52/ndcourts-mcp.git
+  git clone https://github.com/jet52/ndlaw.git
   cd ndcourts-mcp
   ~/.local/bin/uv venv
   ~/.local/bin/uv pip install .
@@ -75,7 +75,7 @@ sudo -u ndcourts bash -lc '
 # download the database release asset (~528 MB zip, ~1.1 GB unzipped)
 sudo -u ndcourts bash -lc '
   cd /srv/ndcourts
-  curl -L -o opinions.db.zip https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip
+  curl -L -o opinions.db.zip https://github.com/jet52/ndlaw/releases/latest/download/opinions.db.zip
   unzip -o opinions.db.zip && rm opinions.db.zip
 '
 ```
@@ -164,7 +164,7 @@ Preset the credential header so the client never hits the 401 challenge
 (some MCP clients try to start OAuth on a bare 401):
 
 ```bash
-claude mcp add --transport http ndcourts https://mcp.yourdomain.com/mcp \
+claude mcp add --transport http ndlaw https://mcp.yourdomain.com/mcp \
   --header "Authorization: Basic $(printf 'teammate1:thepassword' | base64)"
 ```
 
@@ -247,7 +247,7 @@ echo 'MAIL_TO=you@example.com' | sudo tee /etc/ndcourts-update.env
 # 3. seed the marker with the currently-deployed tag so the first run is a no-op
 #    until something newer ships
 echo "$(curl -fsS -o /dev/null -w '%{url_effective}' -L \
-  https://github.com/jet52/ndcourts-mcp/releases/latest | sed 's#.*/##')" \
+  https://github.com/jet52/ndlaw/releases/latest | sed 's#.*/##')" \
   | sudo tee /srv/ndcourts/.deployed-release
 
 # 4. enable the timer
@@ -298,7 +298,7 @@ location) that proxies to `127.0.0.1:8000`.
 **App side** — bootstrap with `MCP_SKIP_CADDY=1`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jet52/ndcourts-mcp/main/deploy/bootstrap.sh \
+curl -fsSL https://raw.githubusercontent.com/jet52/ndlaw/main/deploy/bootstrap.sh \
   | MCP_SKIP_CADDY=1 bash
 ```
 

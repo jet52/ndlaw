@@ -13,12 +13,12 @@
 #                         Caddy, no Caddyfile, no fail2ban-for-Caddy). Use this
 #                         when nginx/Apache/etc. is already fronting :80/:443
 #                         and you'll reverse-proxy to 127.0.0.1:8000 yourself.
-#   MCP_REPO              default: https://github.com/jet52/ndcourts-mcp.git
+#   MCP_REPO              default: https://github.com/jet52/ndlaw.git
 #   MCP_DB_URL            default: <repo>/releases/latest/download/opinions.db.zip
 #   MCP_FORCE_CADDYFILE   set =1 to overwrite an existing /etc/caddy/Caddyfile
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/jet52/ndcourts-mcp/main/deploy/bootstrap.sh \
+#   curl -fsSL https://raw.githubusercontent.com/jet52/ndlaw/main/deploy/bootstrap.sh \
 #     | MCP_DOMAIN=mcp.example.com MCP_EMAIL=you@example.com \
 #       MCP_USER=teammate1 MCP_PASSWORD='...' bash
 
@@ -35,8 +35,8 @@ if [[ "${MCP_SKIP_CADDY:-0}" != "1" ]]; then
   done
 fi
 
-MCP_REPO="${MCP_REPO:-https://github.com/jet52/ndcourts-mcp.git}"
-MCP_DB_URL="${MCP_DB_URL:-https://github.com/jet52/ndcourts-mcp/releases/latest/download/opinions.db.zip}"
+MCP_REPO="${MCP_REPO:-https://github.com/jet52/ndlaw.git}"
+MCP_DB_URL="${MCP_DB_URL:-https://github.com/jet52/ndlaw/releases/latest/download/opinions.db.zip}"
 APP_HOME=/srv/ndcourts
 APP_DIR=$APP_HOME/ndcourts-mcp
 DB_PATH=$APP_HOME/opinions.db
