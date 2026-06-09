@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build deploy/ndcourts.mcpb from the sources in this directory.
+# Build deploy/ndlaw.mcpb from the sources in this directory.
 # An .mcpb file is a zip with manifest.json at the root. We bundle mcp-remote
 # (~7 MB on disk, ~3 MB zipped) so the wrapper can invoke it via absolute path
 # rather than relying on `npx`, which fails to resolve inside Claude Desktop's
@@ -7,7 +7,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
-out="../ndcourts.mcpb"
+out="../ndlaw.mcpb"
 
 python3 -c "import json; json.load(open('manifest.json'))" \
   || { echo "manifest.json is not valid JSON" >&2; exit 1; }

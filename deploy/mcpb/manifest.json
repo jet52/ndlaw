@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "ndlaw",
   "display_name": "North Dakota Law (primary law)",
-  "version": "1.0.3",
-  "description": "Search North Dakota Supreme Court opinions (1889–present) via a remote MCP server.",
-  "long_description": "Connects Claude Desktop to a self-hosted ndcourts-mcp endpoint over Streamable HTTP with HTTP Basic Auth. The bundle ships `mcp-remote` inside the extension and invokes it with an absolute path, so it works regardless of whether `npx` is on the spawned Node process's PATH. Prompts for the server URL and credentials at install time.\n\nProvides 22 tools for opinion lookup, full-text search, citation tracing, citing-opinion lists, and more.\n\nNote: the password field is stored as plaintext in the Claude Extensions Settings file (mode 0600, user-only readable). This is a workaround for a Claude Desktop bug where `sensitive: true` fields are stored encrypted but passed to env vars without decryption.",
+  "version": "1.0.4",
+  "description": "Search North Dakota primary law — Supreme Court & Court of Appeals opinions (1889–present), the Constitution, N.D.C.C. statutes, court rules, and the Administrative Code — via a remote MCP server.",
+  "long_description": "Connects Claude Desktop to a self-hosted ndlaw endpoint over Streamable HTTP with HTTP Basic Auth. The bundle ships `mcp-remote` inside the extension and invokes it with an absolute path, so it works regardless of whether `npx` is on the spawned Node process's PATH. Prompts for the server URL and credentials at install time.\n\nProvides 26 tools across ND opinions and primary law (Constitution, N.D.C.C. statutes, court rules, Administrative Code): citation/authority lookup, point-in-time provision text, full-text search, citation tracing, citing-opinion lists, and more.\n\nNote: the password field is stored as plaintext in the Claude Extensions Settings file (mode 0600, user-only readable). This is a workaround for a Claude Desktop bug where `sensitive: true` fields are stored encrypted but passed to env vars without decryption.",
   "author": {
     "name": "JET"
   },
@@ -31,7 +31,7 @@
     "url": {
       "type": "string",
       "title": "Server URL",
-      "description": "The full URL of the ndcourts MCP endpoint, ending in /mcp.",
+      "description": "The full URL of the ndlaw MCP endpoint, ending in /mcp.",
       "default": "https://mcp.example.com/mcp",
       "required": true
     },
