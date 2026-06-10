@@ -312,6 +312,12 @@ _KNOWN_COURT_PAIRS = {
     (15869, "2011 ND 234", "812 N.W.2d 484"),  # Jones is 817 N.W.2d 313 (court miscites vol+page)
     (16413, "2000 ND 12", "604 N.W.2d 543"),   # Lyon is 604 N.W.2d 453
     (16533, "2014 ND 17", "842 N.W.2d 64"),    # Howe is 842 N.W.2d 646 (truncated in print)
+    # parallel-pair triage, print-verified 2026-06-10:
+    (13031, "1999 ND 218", "587 N.W.2d 423"),  # Lee is 1998 ND 218
+    (13124, "1999 ND 5", "689 N.W.2d 566"),    # Ebach is 589 N.W.2d 566
+    (16816, "2014 ND 102", "346 N.W.2d 724"),  # Datz is 846 N.W.2d 724
+    (14391, "1997 ND 223", "575 N.W.2d 635"),  # Harmon is 1997 ND 233
+    (13208, "1998 ND 89", "578 N.W.2d 129"),   # Gibson; printed parallel belongs to Moch (578 N.W.2d 129)
 }
 
 
