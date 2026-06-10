@@ -74,6 +74,17 @@ _NW_ARCHIVE_DIR = {
 }
 _NW_CITE = re.compile(r"\b(\d+)\s+N\.\s?W\.\s?(2d|3d)?\s+(\d+)\b")
 
+# Out-of-state guard. Shared N.W. reporter pages put foreign-state opinions
+# under a cite we pulled (e.g. 50 N.W. 969 returns BOTH Gould v. Duluth, 2
+# N.D. 216 and the Iowa State v. Hays). The base parser strips the
+# "Supreme Court of North Dakota" header into a court field but leaves a
+# FOREIGN court header in the case_name ("Supreme Court of Iowa. STATE v.
+# HAYS."). Refuse to CREATE such rows — they would contaminate the ND corpus.
+_FOREIGN_COURT = re.compile(
+    r"\b(?:Supreme Court|Court of Appeals|Court of Civil Appeals|"
+    r"Court of Errors(?: and Appeals)?|Superior Court|Court of Chancery)\s+of\s+"
+    r"(?!North Dakota\b)([A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)?)", )
+
 # A genuine same-opinion promote, even with heavy NW2d-era OCR drift,
 # shared 0.50-0.93 shingle-Jaccard in the dry-run; 0.00 means the
 # Westlaw text is a different document than the resolved DB row (a
@@ -217,6 +228,22 @@ def _archive_doc(doc_path: Path, primary_cite: str, case_name: str) -> str:
     dest = dest_dir / f"{page:04d}-{_slug(case_name)}.doc"
     shutil.copy2(doc_path, dest)
     return str(dest.relative_to(REFS_ROOT))
+
+
+def _db_nw_cite(conn, oid: int) -> str:
+    """The matched DB row's N.W.-series citation. Pre-1953 ND Westlaw docs
+    lead with the N.D. Reports cite ('9 N.D. 538') and carry no N.W. cite in
+    the header, so _archive_doc can't build a destination from the parsed
+    primary cite. The resolved DB opinion already holds the N.W. parallel —
+    use it to archive into the N.W./N.W.2d tree. Prefer 2d over 1st series."""
+    rows = conn.execute(
+        "SELECT citation, reporter FROM citations "
+        "WHERE opinion_id=? AND reporter IN ('NW2d', 'NW')", (oid,)).fetchall()
+    nw2d = [r["citation"] for r in rows
+            if r["reporter"] == "NW2d" and _NW_CITE.search(r["citation"])]
+    nw1 = [r["citation"] for r in rows
+           if r["reporter"] == "NW" and _NW_CITE.search(r["citation"])]
+    return (nw2d or nw1 or [""])[0]
 
 
 def _clean_cite(cite: str) -> str:
@@ -408,6 +435,9 @@ def _create(conn, parsed: dict, archive_path: str, apply: bool) -> str:
         or raw_name
     if not date_filed or not wl_text:
         return "skipped (no date/text)"
+    foreign = _FOREIGN_COURT.search(raw_name or "")
+    if foreign:
+        return f"skipped (out-of-state court: {foreign.group(1)})"
     is_coa = "COURT OF APPEALS" in wl_text[:160].upper()
     court = ("North Dakota Court of Appeals" if is_coa
              else "North Dakota Supreme Court")
@@ -464,7 +494,8 @@ def _iter_docs(incoming: Path):
 
 def run(conn, incoming: Path, apply: bool) -> dict:
     st = {"docs": 0, "promoted": 0, "low_sim": 0, "created": 0,
-          "ambiguous": 0, "skipped": 0, "parse_error": 0, "no_archive": 0}
+          "ambiguous": 0, "skipped": 0, "parse_error": 0, "no_archive": 0,
+          "duplicate": 0}
     report: list[str] = []
 
     # PHASE 1 — classify every doc read-only against the ORIGINAL DB.
@@ -488,37 +519,54 @@ def run(conn, incoming: Path, apply: bool) -> dict:
         decisions.append([doc, parsed, kind, op, score])
 
     # RECONCILE — at most one doc may promote a given existing row. When
-    # several docs resolve "match" to the same opinion (two short
-    # formulaic shared-page orders both clearing the cite+agreement bar),
-    # keep the highest-scoring as the match; the rest are distinct
-    # companion opinions → demote to "create" so they get their own row
-    # instead of dog-piling/overwriting one.
+    # several docs resolve "match" to the same opinion, keep the
+    # highest-scoring as the match. The losers are one of two things:
+    #   * the SAME opinion downloaded twice — e.g. the user re-queued a
+    #     shared-page cite by its N.D. parallel after first pulling it by
+    #     N.W. cite, so two .docs carry identical text → DROP as duplicate.
+    #   * a genuinely DISTINCT shared-page companion (two gap-era opinions
+    #     printed under one N.W.2d cite, both resolving to the row we
+    #     already have) → CREATE its own row.
+    # Text similarity is the discriminator: a primary-cite comparison can't
+    # tell them apart, because true companions legitimately share the cite.
     best_for: dict[int, float] = {}
     for _d, _p, kind, op, score in decisions:
         if kind == "match":
             oid = op["id"]
             if score > best_for.get(oid, -1.0):
                 best_for[oid] = score
-    claimed: set[int] = set()
-    for dec in decisions:
+    winner_idx: dict[int, int] = {}
+    for i, (_d, _p, kind, op, score) in enumerate(decisions):
+        if kind == "match" and op["id"] not in winner_idx \
+                and score == best_for[op["id"]]:
+            winner_idx[op["id"]] = i
+    for i, dec in enumerate(decisions):
         _d, _p, kind, op, score = dec
-        if kind != "match":
+        if kind != "match" or i == winner_idx[op["id"]]:
             continue
-        oid = op["id"]
-        if score == best_for[oid] and oid not in claimed:
-            claimed.add(oid)            # this doc wins the row
-        else:
-            dec[2], dec[3] = "create", None   # companion → create
+        win_parsed = decisions[winner_idx[op["id"]]][1]
+        wt = win_parsed.get("full_bound_text") or win_parsed.get("opinion_text") or ""
+        lt = _p.get("full_bound_text") or _p.get("opinion_text") or ""
+        sim = jaccard(shingles(normalize_words(lt)),
+                      shingles(normalize_words(wt)))
+        dec[2], dec[3] = ("duplicate" if sim >= 0.90 else "create"), None
 
     # PHASE 2 — apply writes from the frozen, reconciled classification.
     for doc, parsed, kind, op, score in decisions:
         cite = parsed.get("primary_citation", "")
         name = parsed.get("case_name", "?")
+        # Pre-1953 ND docs lead with the N.D. Reports cite and carry no N.W.
+        # cite in the header. For a resolved match, fall back to the matched
+        # DB row's N.W. parallel cite so _archive_doc can still build an N.W.
+        # destination instead of declining with NO_ARCHIVE_PATH.
+        archive_cite = cite
+        if kind == "match" and not _NW_CITE.search(cite or ""):
+            archive_cite = _db_nw_cite(conn, op["id"]) or cite
         # In dry-run, mirror _archive_doc's empty return for cites with no
         # parseable N.W. vol/page so the NO_ARCHIVE_PATH gate surfaces in the
         # dry-run report instead of only at apply time.
-        archive_path = _archive_doc(doc, cite, name) if apply else (
-            f"N.W.2d/(dry)/{doc.name}" if _NW_CITE.search(cite or "") else "")
+        archive_path = _archive_doc(doc, archive_cite, name) if apply else (
+            f"N.W.2d/(dry)/{doc.name}" if _NW_CITE.search(archive_cite or "") else "")
         if kind == "match":
             msg = _promote(conn, op["id"], parsed, archive_path, apply)
             if msg.startswith("LOW_SIM"):
@@ -539,6 +587,11 @@ def run(conn, incoming: Path, apply: bool) -> dict:
             else:
                 st["created"] += 1
             report.append(f"CREATE\t{cite}\t{name}\t{r}")
+        elif kind == "duplicate":
+            st["duplicate"] += 1
+            report.append(
+                f"DUPLICATE\t{cite}\t{name}\t"
+                f"same opinion as a promoted doc (dropped, not re-created)")
         else:
             st["ambiguous"] += 1
             report.append(f"AMBIGUOUS\t{cite}\t{name}\t"
