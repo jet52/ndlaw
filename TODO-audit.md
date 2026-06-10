@@ -222,17 +222,18 @@ Process integrity:
   **Check #6 still owed for pre-1997** — the sweep keys on [¶N]/## Opinion;
   markerless old texts need shingle self-similarity. (Also note 20124/20408:
   embedded quoted orders with own ¶ numbering are a legitimate NONMONO class.)
-- [~] **Digit-flip exposure beyond citations:** the same OCR pass corrupted
-  digits generally — dates, dollar amounts, statute numbers in the affected
-  analyzer-era texts have no parallel-pair witness. **METHOD PROVEN + 226-opinion
-  cohort DONE 2026-06-10** (`digit-flips-pdfverified-2026-06-09`): per-¶ DB-vs-PDF
-  digit-sequence compare → context-matched single-digit candidates → render the
-  printed glyphs and read each (PDF text layer alone is NOT sufficient — 2 of 72
-  candidates were text-layer ToUnicode errors with correct DB text). 70 fixed in
-  51 opinions. **Remaining: scale the compare to the rest of the analyzer era**
-  (~7K markdown-source opinions; tools `triage/digit_compare_2026-06-09.py` +
-  `digit_flip_candidates_2026-06-09.py` + `render_flip_crops_2026-06-09.py`
-  generalize directly — only the worklist source changes).
+- [x] **Digit-flip exposure beyond citations — CLOSED corpus-wide 2026-06-10**
+  (`digit-flips-corpus-2026-06-10`; method proven on the 226-cohort first,
+  `digit-flips-pdfverified-2026-06-09`). Full analyzer era: 6,965 opinions /
+  129,160 ¶s digit-compared vs PDFs → 621 candidates → all print-verified
+  (21-agent crop fan-out + 10% personal spot-check 57/57 + personal read of all
+  38 unclears). **618 fixes in 499 opinions; 3 text-layer ToUnicode rejects
+  (never apply from the text layer alone); 4 more court typos baselined.**
+  Residue: `triage/digit-flip-followup-2026-06-10.tsv` (5 adjacent multi-digit
+  divergences the single-flip pairing can't propose — extend pass-2 to
+  2-digit/length-change diffs for a final small sweep); 130 opinions have no
+  PDF (pre-scraper 1997–98 era — Westlaw cross-check is their only witness);
+  17 newly-visible cited-side parallel issues joined the parallel_pair queue.
 
 ### Build order
 

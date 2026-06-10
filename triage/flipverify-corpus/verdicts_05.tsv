@@ -1,0 +1,30 @@
+150	13749	11	680	630	CONFIRM	630	print reads 630 N.W.2d 56 — following page number prints 56, db context shows 66 (possible separate flip)
+151	13749	11	82	32	CONFIRM	32	Section 29-32.1-12(2)(a)
+152	13753	6	3801	3301	CONFIRM	3301	§§ 3301 through 3311
+153	13753	15	798	793	CONFIRM	793	print reads "See also Edinger, 793"; surrounding wording differs from db context ("In Edinger")
+154	13789	18	89	39	CONFIRM	39	N.D.R.Civ.P. 39.1(b)
+155	13795	5	8	3	CONFIRM	3	$3,000,000
+156	13812	16	803	303	CONFIRM	303	Cowger, 303 N.W.2d 791
+157	13813	17	656	655	CONFIRM	655	655 N.W.2d 712
+158	13814	5	887	837	CONFIRM	837	479 N.W.2d 837, 844
+159	13830	15	89	39	CONFIRM	39	N.D.C.C. § 39-08-01
+160	13850	7	2002	2003	CONFIRM	2003	100 A.L.R.5th 1 (2003)
+161	13854	14	568	563	CONFIRM	563	print shows full cite "478 N.W.2d 561, 563-64 (N.D. 1991)"; db context has short-cite form "at 563-64"
+162	13881	2	1998	1993	CONFIRM	1993	Between 1990 and 1993
+163	13882	9	28	23	CONFIRM	23	2002 ND 209, ¶ 23
+164	13882	17	348	343	CONFIRM	343	Restatement (Second) of Torts § 343A (1965)
+165	13922	10	892	392	CONFIRM	392	Christianson, 392 N.W.2d 385, 386
+166	13940	10	1885	1385	CONFIRM	1385	Fed. Practice & Procedure § 1385 (2d ed. 1990)
+167	13944	6	19	49	CONFIRM	49	§§ 28-32-46 and 28-32-49
+168	13959	19	382	388	CONFIRM	388	Township v. Skauge, 6 N.D. 388, 71 N.W. 544
+169	13993	4	2008	2003	CONFIRM	2003	hearing was held on July 2, 2003
+170	13998	8	16	15	CONFIRM	15	print reads 12.1-06.1-01(2)(f)(15); db context "00(" is garbled "(f)("
+171	13998	9	781	281	CONFIRM	281	print parenthetical reads (Cal. Ct. App. 1992) vs db (1992)
+172	13999	31	1992	1994	CONFIRM	1994	485 N.W.2d 792, 795 (N.D. 1994)
+173	14012	16	2002	2001	CONFIRM	2001	Daggett, 2001 WI App 32
+174	14048	23	1975	1995	CONFIRM	1995	print reads (ND 1995) immediately before "The Court has no informat..."; rest of Rogelstad cite cut off at crop edge
+175	14057	4	82	32	CONFIRM	32	$32,000 check Couch wrote
+176	14062	6	2002	2001	CONFIRM	2001	803 (8th Cir. 2001)
+177	14064	16	89	39	CONFIRM	39	crop shows § 39-20-03.1(3) in adjacent sentence ("required by N.D.C.C. § 39-20-03.1(3)"); exact context sentence not visible but same section, title prints 39
+178	14087	10	1925	1923	CONFIRM	1923	print reads 267 U.S. 132, 153, 155 (1923) with no S.Ct./L.Ed. parallels; note Carroll was actually decided 1925 — court's print has 1923, preserve per source-typo policy
+179	14088	16	8	3	CONFIRM	3	Q. And there's 3 denominations?

@@ -51,6 +51,10 @@ _NEUTRAL_GLOB = "[0-9][0-9][0-9][0-9] ND *"
 # (citing_oid, cited_cite, pincite). Audited 2026-06-09.
 _KNOWN_COURT_PINCITES = {
     (16446, "2004 ND 87", 18),  # PDF prints "Jaste v. Gailfus, 2004 ND 87, ¶ 18" — Jaste is 2004 ND 94
+    (14777, "2006 ND 6", 25),   # print: "2006 ND 6, ¶ 25, 604 N.W.2d 445" — Dvorak is 2000 ND 6 (verified 2026-06-10)
+    (13063, "1999 ND 141", 22), # print: "Henry, 1999 ND 141, ¶ 22" — Henry is 1998 ND 141 (verified 2026-06-10)
+    (15011, "2003 ND 133", 15), # print: "Rist ..., 2003 ND 133, ¶ 15, 665 N.W.2d 45" — Rist is 2003 ND 113 (verified 2026-06-10)
+    (15834, "1998 ND 155", 28), # print: "Clark, 1998 ND 155, ¶ 28, 583 N.W.2d 377" — Clark is 1998 ND 153 (verified 2026-06-10)
 }
 
 SAMPLE_LIMIT = 5
@@ -294,6 +298,10 @@ _KNOWN_COURT_PAIRS = {
     (16894, "2006 ND 98", "716 N.W.2d 535"),   # Pace parallel is 713 N.W.2d 535
     (16184, "2013 ND 137", "835 N.W.2d 836"),  # Hoffman parallel is 834 N.W.2d 636; print verified 2026-06-09
     (16917, "2011 ND 64", "795 N.W.2d 194"),   # Johnson v. Hovland parallel is 795 N.W.2d 294; print verified 2026-06-09
+    (14777, "2006 ND 6", "604 N.W.2d 445"),    # Dvorak is 2000 ND 6; print verified 2026-06-10
+    (13063, "1999 ND 141", "581 N.W.2d 921"),  # Henry is 1998 ND 141; print verified 2026-06-10
+    (15011, "2003 ND 133", "665 N.W.2d 45"),   # Rist is 2003 ND 113; print verified 2026-06-10
+    (15834, "1998 ND 155", "583 N.W.2d 377"),  # Ohio Cas. v. Clark is 1998 ND 153; print verified 2026-06-10
 }
 
 

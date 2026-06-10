@@ -1,0 +1,12 @@
+corpus	citation	issue	detail
+rule	N.D.R.Ct. 3.5	START_GE_END	v1131: 2018-03-01 >= 2018-03-01
+rule	N.D.R.Ct. 3.5	START_GE_END	v1133: 2019-03-01 >= 2019-03-01
+rule	N.D.R.Ct. 4.1	START_GE_END	v1137: 2000-03-01 >= 2000-03-01
+rule	N.D.R.Ct. 5.3	START_GE_END	v1145: 2013-03-01 >= 2013-03-01
+rule	N.D.R.Ct. 8.8	START_GE_END	v1235: 2001-03-01 >= 2001-03-01
+rule	N.D.R.Ct. appendix a	START_GE_END	v1248: 2011-03-01 >= 2011-03-01
+rule	N.D.R.Ct. appendix b	START_GE_END	v1250: 2000-03-01 >= 2000-03-01
+rule	N.D. Sup. Ct. Admin. R. 13	START_GE_END	v1658: 2018-03-01 >= 2018-03-01
+rule	N.D. Sup. Ct. Admin. R. 48	START_GE_END	v1837: 2021-01-06 >= 2021-01-06
+rule	N.D. Sup. Ct. Admin. R. 7	START_GE_END	v1914: 2001-01-01 >= 2001-01-01
+rule	N.D. Sup. Ct. Admin. Order 21	START_GE_END	v1977: 2021-08-11 >= 2021-08-11

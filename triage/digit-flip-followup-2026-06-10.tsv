@@ -1,0 +1,6 @@
+idx	oid	para	db_token	pdf_token	verdict	printed	note
+80	13133	16	88	83	CONFIRM	83	"crop showed wrong cite; re-rendered source PDF p6: ""Mitchell v. Sanborn, 536 N.W.2d 678, 682-83 (N.D. 1995)"". NB DB context reads ""726 N.W.2d"" but print reads 536 — separate DB discrepancy worth checking"
+150	13749	11	680	630	CONFIRM	630	print reads 630 N.W.2d 56 — following page number prints 56, db context shows 66 (possible separate flip)
+387	15869	8	817	812	CONFIRM	812	"print reads ""¶ 8, 812 N.W.2d 484""; note db context shows ""313"" after token where print has 484"
+	15864	29	108	103	FOLLOWUP	103	DB 'Wentz, 108 N.W.2d' vs print '103 N.W.2d' — adjacent volume flip not in manifest
+	16283	7	89	39	FOLLOWUP	39	DB '89-20-05' vs print '39-20-05' — adjacent section flip not in manifest
