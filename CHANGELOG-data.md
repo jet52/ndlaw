@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `rules-version-surgery-2026-06-10` (rules.db) — version_intervals 11→0; 5 provisions created, 7 versions relocated, 9 deleted
+
+Worked the `version_intervals` audit queue (11 zero-width `START_GE_END` intervals). Every involved page was fetched live from ndcourts.gov and classified by its **H1 title + Effective Date** — the zero-widths were symptoms of three ingest defects:
+
+**A. Foreign pages filed as rule versions.** The rules ingest followed version-history links to documents that are not the rule. Relocated to their own (new) provisions, intervals set from the pages' own effective dates: **N.D.R.Ct. appendix k** (2 versions, was inside Rule 3.5 — its H1 is "APPENDIX K. RULE 3.5 ELECTRONIC FILING REQUIREMENTS"), **N.D.R.Ct. appendix f** (2, was inside 8.8), **N.D.R.Ct. appendix a to rule 8.9** (1, was inside 8.9), **N.D.R.Civ.P. Table A** (2, was inside Rule 81 — and Rule 81's `current_version_id` pointed at the Table A page), **N.D.R.Ct. 8.3.1** (2, was inside 8.3 — 8.3.1 is a distinct rule, adopted eff 3/1/2018). Admin **Order** 21 carried five Admin **Rule** 21 pages — byte-identical duplicates of provision 505's own rows → deleted. Home timelines restitched (3.5, 8.8, 8.9, 81, 8.3, Order 21).
+
+**B. Same-date republication twins** (two site pages, same effective date, near-identical text): non-current twin deleted — Admin R. 13 (identical), Admin R. 48 (ratio 0.909), Admin R. 7 (0.820), N.D.R.Ct. appendix a (0.999). Full rows preserved in the snapshot.
+
+**C. Renumber/repeal pages carrying the successor's date** → prior text gets `effective_start=NULL` (schema: unknown/from −inf), end = supersession: **N.D.R.Ct. 4.1** pre-repeal text [NULL→2000-03-01], repeal notice now the operative version, provision status → `repealed` (an `as_of` lookup today previously returned the repealed rule's text as current!); **5.3** pre-renumber text (page titled "RULE 8.1 RECEIVERS") [NULL→2013-03-01]; **appendix b** pre-2000 form [NULL→2000-03-01].
+
+`current_version_id` repointed (81, 8.3, appendix a, appendix b, Order 21, 4.1); external-content FTS maintained (delete + re-add with the new citation). Verified: `version_intervals` **0**; point-in-time spot-checks correct (3.5@2018-06 → rule text not appendix; 4.1@1999 → pre-repeal text, 4.1@today → repeal notice; Order 21 → minority-justice order); **0 active provisions without an open version** corpus-wide. Snapshot `rules.db.bak-pre-version-surgery-2026-06-10`. Tool `triage/rules_version_surgery_2026-06-10.py`.
+
+**Ingest gaps surfaced for follow-up** (TODO-audit.md): the live N.D.R.Ct. index lists appendices a–m, but provisions exist only for a/b/g/i/j (+f/k/8.9-appendix created here from rule-history strays) — **c, d, e, l, m are absent from the DB entirely**; the rules ingest needs (1) an H1-vs-provision guard so foreign pages can't join a rule's timeline, and (2) full appendix coverage from the index.
+
 ## Batch `digit-flips-pdfverified-2026-06-09` — 70 non-citation-layer digit flips fixed, every one verified against the printed page
 
 The first systematic audit of the **non-citation digit-flip exposure** (memory class: 3↔8/5↔6 flips in analyzer-era texts, invisible to character scans). Scope: the 226 substantive-missing-¶ cohort — the texts with demonstrated analyzer extraction failures. Method (`triage/digit_compare_2026-06-09.py` + `digit_flip_candidates_2026-06-09.py`): per ¶ present in both DB and court PDF, compare ordered digit-token sequences; candidate = same-length token pair differing in exactly one digit with matching ±12-char context AND the DB token absent from the PDF ¶ entirely (so every DB occurrence is a flip). 5,014 ¶s compared → 1,640 raw mismatches (mostly star-pagination/footnote noise) → **72 context-matched candidates**.

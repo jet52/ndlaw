@@ -131,7 +131,20 @@ Metadata cross-field consistency:
 Primary-law structural (ex-PL-VALIDATE):
 - [x] **14. provision_versions interval integrity** (`version_intervals`) — start<end;
   no overlaps per provision; ≤1 open version; `current_version_id` points at it.
-  *Built 2026-06-09.*
+  *Built 2026-06-09.* **Queue WORKED 2026-06-10, 11→0**
+  (`rules-version-surgery-2026-06-10`): zero-widths were foreign pages filed as
+  rule versions (appendix-k/f/8.9-appendix/Table A/Rule 8.3.1 + Admin Rule 21
+  dups inside Admin Order 21), same-date republication twins, and
+  renumber/repeal pages carrying the successor's date (4.1 was serving repealed
+  text as current). 5 provisions created, 7 relocated, 9 deleted; verified vs
+  live ndcourts.gov H1 titles + effective dates.
+- [ ] **14b. Rules-ingest hardening (from the surgery's root causes):**
+  (a) H1-title-vs-provision guard — a version page whose H1 names a different
+  instrument must not join the rule's timeline; (b) ingest the N.D.R.Ct.
+  appendices missing as provisions entirely (**c, d, e, l, m** per the live
+  index; a–m exist there, DB had only a/b/g/i/j); (c) same-date republication
+  twins need a dedup rule (keep current-slug page); (d) repealed rules: page
+  title `[REPEALED ...]` → provision.status='repealed' + repeal-notice version.
 - [ ] **15. Enumeration continuity** — subsection 1,2,3…/subdivision a,b,c… gaps
   (dropped enumerated blocks read grammatically); syllabus-point numbering in
   pre-1953 opinions.
