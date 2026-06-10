@@ -2,6 +2,10 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `rules-missing-appendices-2026-06-10` (rules.db) — appendices c, d, e, l, m added
+
+The five N.D.R.Ct. appendices on the live index but absent from the mirror repo and the DB (surfaced by the version-interval surgery). Fetched + converted with the **rules-scraper's own extractor/HTML→markdown converter** (same provenance as the rest of the corpus): **Appendix C** (Rule 8.3 Informational Statement), **D** (Pretrial Conference Statement), **E** (Confidential Property and Debt Listing), **L** (Rule 8.3.1 Informational Statement), **M** (Rule 8.3.1 Scheduling Order). Single current versions each; `effective_start=NULL` — the site's own version table carries a placeholder date (01/01/0001), so the adoption date is honestly unknown rather than invented. FTS indexed; lookups verified. The mirror-repo/scraper gap stays filed under TODO-audit 14b (a future full re-ingest must include them or it would silently drop these provisions).
+
 ## Batches `dedup-ramstad-12824-2026-06-10` + `marker-style-dotted-2026-06-10` — check #6 run corpus-wide; the dotted-marker blind spot
 
 Ran the **shingle self-similarity detector** (audit check #6 proper — the body-duplication scan the marker-keyed stored-twice sweep couldn't extend to markerless texts) over all 19,793 opinions. Result: **pre-1997 is clean**; 2 flags, both modern. *Statoil* 16959 (0.564) is legitimate — consolidated-case party/lease lists genuinely repeat. ***Ramstad* 12824 (0.37) was a real markerless stored-twice**: CL OCR copy + analyzer copy, undetected because the analyzer copy's markers use a **dotted style `[¶ 1.]`** that no marker regex in the pipeline matches — the opinion was invisible to para_continuity entirely. Dropped the CL copy (rehearing-keyword scan clean), normalized markers to the PDF's `[¶N]` style; result ¶1–38 contiguous, exactly matching the PDF.
