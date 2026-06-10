@@ -302,6 +302,16 @@ _KNOWN_COURT_PAIRS = {
     (13063, "1999 ND 141", "581 N.W.2d 921"),  # Henry is 1998 ND 141; print verified 2026-06-10
     (15011, "2003 ND 133", "665 N.W.2d 45"),   # Rist is 2003 ND 113; print verified 2026-06-10
     (15834, "1998 ND 155", "583 N.W.2d 377"),  # Ohio Cas. v. Clark is 1998 ND 153; print verified 2026-06-10
+    # pass-3 court typos, every one print-verified 2026-06-10 (crops in triage/flipverify-corpus/pass3/):
+    (12875, "1998 ND 7", "574 N.W.2d 801"),    # Paulson is 1998 ND 17
+    (12920, "1997 ND 76", "652 N.W.2d 750"),   # Dakutak is 562 N.W.2d 750
+    (13927, "2002 ND 44", "640 N.W.2d 617"),   # Henderson is 640 N.W.2d 714
+    (14719, "1997 ND 61", "506 N.W.2d 903"),   # Stout is 560 N.W.2d 903
+    (15087, "2006 ND 146", "718 N.W.2d 01"),   # print literally reads "718 N.W.2d 01"
+    (15308, "1999 ND 125", "579 N.W.2d 406"),  # Rockwell is 597 N.W.2d 406
+    (15869, "2011 ND 234", "812 N.W.2d 484"),  # Jones is 817 N.W.2d 313 (court miscites vol+page)
+    (16413, "2000 ND 12", "604 N.W.2d 543"),   # Lyon is 604 N.W.2d 453
+    (16533, "2014 ND 17", "842 N.W.2d 64"),    # Howe is 842 N.W.2d 646 (truncated in print)
 }
 
 

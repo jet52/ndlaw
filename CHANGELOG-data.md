@@ -2,6 +2,14 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `digit-flips-pass3-2026-06-10` + `digit-flips-residue-2026-06-10` — final 23 fixes; the digit-flip sweep is DRY
+
+**Pass 3** re-swept the whole analyzer era with looser pairing (2-digit diffs and ±1-length tokens, BOTH-side context match required): 22 candidates in 20 opinions — the expected residue tail (multi-digit corruptions like `688886`→`68886`, `714`→`617`, `1881`→`1331` that single-flip pairing cannot propose). **All 22 personally read against rendered print crops** (`triage/flipverify-corpus/pass3/`); all 22 confirm; applied. **Residue batch**: completed the Jones cite in 15869 ¶8 — the court's print miscites *State v. Jones* as "812 N.W.2d 484" (true 817 N.W.2d 313); the corpus batch had applied the volume half, this applies the page half + drops a stray analyzer period, making the text verbatim-faithful to the print.
+
+A striking sub-class surfaced: in **9 of the 22, the print itself carries the typo** and the DB had been silently "correct" (matching the true cite — these texts likely passed through CL's editorial corrections): *Paulson* printed as "1998 ND 7" (is ND 17), *Dakutak* "652 N.W.2d 750" (562), *Stout* "506 N.W.2d 903" (560), *Rockwell* "579 N.W.2d 406" (597), *Henderson* "640 N.W.2d 617" (714), *Lyon* "604 N.W.2d 543" (453), *Howe* "842 N.W.2d 64" (646), *Jones* (above), and a literal "718 N.W.2d 01". Per [[feedback_preserve_source_typos]] the slip print governs: text now matches the print verbatim, the `citations` table keeps the true parallels, and all 9 are baselined in `_KNOWN_COURT_PAIRS`. Cite graph re-scanned (tc 333,760, cb 114,354, 0 unresolved collisions); `parallel_pair` 607→**606** net; pinpoint_range 0; invariants 23/2/0.
+
+**The analyzer-era digit-corruption sweep is now dry**: cite layer (310) + cohort (70) + corpus single-flip (618) + pass-3/residue (23) = **1,021 print-verified corrections**; remaining known exposure is only the 130 no-PDF opinions (1997–98 pre-scraper, Westlaw-witness only).
+
 ## Batch `digit-flips-corpus-2026-06-10` — 618 digit fixes in 499 opinions; the analyzer-era digit-flip class CLOSED corpus-wide
 
 Scaled the print-verified digit-flip method to the **entire analyzer era**: 6,965 markdown-source opinions scanned (130 no PDF), **129,160 ¶s digit-compared** against their court PDFs (`triage/digit_compare_corpus_2026-06-10.py`, 10-way parallel) → 31,336 raw-mismatch ¶s (24% star-pagination/footnote noise) → **621 context-matched single-digit candidates in 502 opinions** (1997–2017, falling to ~zero after — exactly the OCR-era signature). Only overlap with the 2026-06-09 cohort: the 2 known text-layer rejects, confirming the 70 prior fixes now match their PDFs.

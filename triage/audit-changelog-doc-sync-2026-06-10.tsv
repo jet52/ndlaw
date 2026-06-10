@@ -1,5 +1,4 @@
 db	expected_doc	batch	rows	first_timestamp	match
-opinions.db	CHANGELOG-data.md	digit-flips-corpus-2026-06-10	499	2026-06-10T15:17:27	missing
 opinions.db	CHANGELOG-data.md	01-case-normalization	4825	2026-04-05T03:35:16	known-baseline
 opinions.db	CHANGELOG-data.md	02-birdzell-ocr	423	2026-04-05T03:35:22	known-baseline
 opinions.db	CHANGELOG-data.md	03-bronson-ocr	76	2026-04-05T03:37:17	known-baseline
