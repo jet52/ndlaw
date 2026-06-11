@@ -6,9 +6,12 @@ Appeals decisions). Built on SQLite with FTS5 full-text search and
 served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
 opinion browser with multi-source diff/merge tools.
 
-The opinions corpus currently contains **~20,200 opinions** with **108,000+
+The opinions corpus currently contains **~19,800 opinions** with **114,000+
 citation links** between them, with every correction recorded in an
-auditable, revertible changelog.
+auditable, revertible changelog. Where the court's own print contains an
+apparent typo, the text is preserved verbatim and the case is recorded in a
+shipped `print_anomalies` table (with the apparent intended reading and
+evidence); the citation graph resolves those cites to the intended case.
 
 It also serves North Dakota **primary law** — the Constitution (including a
 1889–1980 historical point-in-time layer), N.D.C.C. statutes, court rules, and

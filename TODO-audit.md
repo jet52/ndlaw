@@ -110,9 +110,15 @@ Text integrity:
     extend the variant fixer.
   - NONMONO-only flags include the legitimate embedded-quoted-order class
     (20124/20408 — the court's own PDFs print restarting sequences).
-- [ ] **6. Body-duplication detector** — repeated long substring / shingle
-  self-similarity within one text_content (the 13240 stored-twice class; guards
-  merge concatenation).
+- [x] **6. Body-duplication detector — BUILT + RUN corpus-wide 2026-06-10**
+  (`triage/shingle_selfsim_2026-06-10.py`: fraction of word-8-shingles occurring
+  2+, flag ≥0.30). **Pre-1997 is clean.** 2 flags: Statoil 16959 legit
+  (consolidated party/lease lists repeat); Ramstad 12824 was a real markerless
+  stored-twice with a **dotted `[¶ N.]` marker style invisible to every marker
+  regex** — deduped + style normalized; 6 more dotted carriers (1999 ND 24–35
+  ingest run) normalized, 12825 ¶10–11 spliced
+  (`dedup-ramstad-12824` / `marker-style-dotted-2026-06-10`). Re-run the
+  detector after any future merge concatenation.
 - [ ] **7. Truncation heuristics** — body ends w/o terminal punctuation or signature
   block; short body vs PDF page count.
 - [ ] **8. Char-histogram regression scan, all 5 DBs** — non-ASCII inventory per
@@ -144,11 +150,16 @@ Primary-law structural (ex-PL-VALIDATE):
   live ndcourts.gov H1 titles + effective dates.
 - [ ] **14b. Rules-ingest hardening (from the surgery's root causes):**
   (a) H1-title-vs-provision guard — a version page whose H1 names a different
-  instrument must not join the rule's timeline; (b) ingest the N.D.R.Ct.
-  appendices missing as provisions entirely (**c, d, e, l, m** per the live
-  index; a–m exist there, DB had only a/b/g/i/j); (c) same-date republication
-  twins need a dedup rule (keep current-slug page); (d) repealed rules: page
-  title `[REPEALED ...]` → provision.status='repealed' + repeal-notice version.
+  instrument must not join the rule's timeline; (b) ~~ingest the missing
+  N.D.R.Ct. appendices~~ **c/d/e/l/m ADDED to the DB 2026-06-10**
+  (`rules-missing-appendices-2026-06-10`, scraper's own converter, NULL start —
+  the site's version table has placeholder dates) — but the **mirror repo +
+  scraper still lack them**, and the surgery + these inserts live only in the
+  DB; (c) same-date republication twins need a dedup rule (keep current-slug
+  page); (d) repealed rules: page title `[REPEALED ...]` →
+  provision.status='repealed' + repeal-notice version. **FOOTGUN: a full rules
+  re-ingest today would wipe the 2026-06-10 surgery and the added appendices —
+  fix the scraper/ingest first, like PL-1(b)/(c) for statutes.**
 - [ ] **15. Enumeration continuity** — subsection 1,2,3…/subdivision a,b,c… gaps
   (dropped enumerated blocks read grammatically); syllabus-point numbering in
   pre-1953 opinions.
@@ -200,13 +211,18 @@ Process integrity:
   2,455→610 mismatches (98.9%). **Residue queued** in
   `triage/backfill-parallel-candidates-2026-06-09.tsv`: 125 single-witness
   (need CL/Westlaw — a lone witness may itself carry a digit flip), 24
-  WINDOW:OUT, 20 CONFLICT.
+  WINDOW:OUT, 20 CONFLICT. **+8 more AUTO adds 2026-06-10**
+  (`parallel-backfill-witnessed-2026-06-10`, 2018–2025 CL-lag class, 2–11
+  witnesses each); parallel_pair 597→556. Remaining 556 = single-witness holds,
+  the shared-table-page family (multiple summary affirmances on one N.W.2d
+  page), and the ~25 clusters above.
 - [ ] **242 `OTHER` mismatch rows** (`triage/parallel-pair-classified-2026-06-09.tsv`)
   — sample & classify (regex artifacts vs deeper tangles vs >1-digit corruption).
-- [ ] **199 cite-shaped `docket_number` values** (`YYYYNDn` in the docket field;
-  159 from 1997 — found via the 12500 Herrick fix 2026-06-09). The #1 docket
-  recovery closed *empty* dockets; these are *wrong* ones. Recover from the
-  frontmatter/body `Criminal/Civil NNNNNN` lines like `recover-dockets-2026-05-27`.
+- [x] **Cite-shaped `docket_number` values — DONE 2026-06-10**
+  (`docket-cite-shaped-2026-06-10`): all 198 fixed + 2 side-catches (17035 had
+  its neighbor's docket; 17046 `No. ` prefix) = **200 corrections, 0 remain**.
+  Sources: cTrack report join (36), 1997 frontmatter/caption `Civil 960144` →
+  `19960144` (158+), caption file numbers for the stragglers.
 - [x] **Stored-twice opinions — WORKED 2026-06-09** (`dedup-storedtwice-2026-06-09`):
   the 31 marker-flagged seeds led to a corpus sweep finding **563**; **549 fixed**
   (4-gate surgery incl. jaccard≥0.5 so appended rehearings can't be deleted).
@@ -237,10 +253,28 @@ Process integrity:
 
 ### Build order
 
-Done 2026-06-09: 1, 3, 4, 5, 14, 19 (the top-tier set). Next by yield-per-effort:
+Done 2026-06-09: 1, 3, 4, 5, 14, 19 (the top-tier set). Done 2026-06-10: 6
+(shingle detector, corpus run clean). Next by yield-per-effort:
 2 (antecedent witness — pairs with the §14(d) re-measure), 10 (volume-window
-invariant), 6+7 (duplication/truncation), 8 (char histogram, primary-law DBs),
+invariant), 7 (truncation), 8 (char histogram, primary-law DBs),
 20 (FTS sync). Tier 2 as sessions allow; 23 belongs in the weekly pipeline.
+
+### Standing registry — `print_anomalies` (added 2026-06-10, SCHEMA.md Contract 3)
+
+35 verified typos in the COURT'S print (text verbatim; cited_by overridden to
+the intended case on every rebuild; audit baselines must stay in sync).
+- [ ] **West-corrected-page follow-up sweep:** for each registered anomaly,
+  check the West advance sheet / N.W.2d–3d bound volume (and any court-submitted
+  corrected page) — if West prints the corrected cite, the court may have
+  approved a correction our slip-PDF text misses. Work from
+  `SELECT * FROM print_anomalies` (each row carries the followup note).
+
+### Dashboard as of v0.12.1 (2026-06-10)
+
+cite_temporal / pinpoint_range / version_intervals / changelog_doc_sync **0**;
+parallel_pair **556**; para_continuity **520**; xref_resolve **759**;
+invariants 23/2/0. Digit-flip class CLOSED (1,025 print-verified corrections);
+TEXT_MISSING worked; stored-twice worked incl. markerless; dockets clean.
 
 ### First-run baseline (2026-06-09, TSVs in `triage/audit-*-2026-06-09.tsv`)
 

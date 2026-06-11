@@ -1,6 +1,6 @@
 # TODO — Path to a Fully Validated Corpus
 
-Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-05-30.
+Progress map for reaching full two-source validation of every ND Supreme Court opinion 1890–present. Updated 2026-06-10 — see `TODO-audit.md` for the 2026-06-09/10 text-integrity cycle (digit-flip class closed, 1,025 print-verified corrections; TEXT_MISSING/stored-twice/docket queues worked; `print_anomalies` registry shipped, SCHEMA.md Contract 3; shipped as v0.12.0/v0.12.1).
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 

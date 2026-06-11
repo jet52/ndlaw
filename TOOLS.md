@@ -51,11 +51,13 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 | `audit` / `audit_sources` | CLI | Audit for missing opinions / data anomalies / source completeness. |
 | `volume_date_check` | CLI | Flag opinions whose `date_filed` is inconsistent with the reporter volume's date range. |
 | `multisource_diff` | CLI/lib | Multi-source diff audit (also exports `jaccard`, `shingles`, `normalize_words`). |
+| `triage/shingle_selfsim_*` | script | Body-duplication detector (audit check #6): word-8-shingle self-similarity; catches markerless stored-twice bodies. Re-run after merge concatenations. |
+| `triage/digit_compare_*` + `digit_flip_candidates_*` + `render_flip_crops_*` | scripts | The print-verified digit-flip pipeline: per-¶ DB-vs-PDF digit compare → context-matched candidates → **render the printed glyphs** (never apply from the PDF text layer alone — 3/693 candidates were text-layer ToUnicode errors). |
 
 ## Citation graph
 | Tool | Kind | Purpose |
 |------|------|---------|
-| `cite_extract` | CLI | Extract citations from opinion text → build forward (`text_citations`) + reverse (`cited_by`) graph. Needs jetcite ≥2.1.0 editable-installed (see `reference_jetcite_coupling` memory). |
+| `cite_extract` | CLI | Extract citations from opinion text → build forward (`text_citations`) + reverse (`cited_by`) graph. Applies `print_anomalies` overrides on every cited_by rebuild (typo'd-in-print cites resolve to the intended case — SCHEMA.md Contract 3). Needs jetcite ≥2.1.0 editable-installed (see `reference_jetcite_coupling` memory). |
 | `detect_cite_swap` | CLI | Detect adjacent-cite content swaps. |
 
 ## Corrections, schema & one-offs
