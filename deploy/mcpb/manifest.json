@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "ndlaw",
   "display_name": "North Dakota Law (primary law)",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Search North Dakota primary law — Supreme Court & Court of Appeals opinions (1889–present), the Constitution, N.D.C.C. statutes, court rules, and the Administrative Code — via a remote MCP server.",
-  "long_description": "Connects Claude Desktop to a self-hosted ndlaw endpoint over Streamable HTTP with HTTP Basic Auth. The bundle ships `mcp-remote` inside the extension and invokes it with an absolute path, so it works regardless of whether `npx` is on the spawned Node process's PATH. Prompts for the server URL and credentials at install time.\n\nProvides 26 tools across ND opinions and primary law (Constitution, N.D.C.C. statutes, court rules, Administrative Code): citation/authority lookup, point-in-time provision text, full-text search, citation tracing, citing-opinion lists, and more.\n\nNote: the password field is stored as plaintext in the Claude Extensions Settings file (mode 0600, user-only readable). This is a workaround for a Claude Desktop bug where `sensitive: true` fields are stored encrypted but passed to env vars without decryption.",
+  "long_description": "Connects Claude Desktop to a self-hosted ndlaw endpoint over Streamable HTTP. The bundle ships `mcp-remote` inside the extension and invokes it with an absolute path, so it works regardless of whether `npx` is on the spawned Node process's PATH. Prompts for the server URL at install time — the URL itself (a capability URL containing an unguessable path segment) is the access credential; there is no separate username or password.\n\nProvides 26 tools across ND opinions and primary law (Constitution, N.D.C.C. statutes, court rules, Administrative Code): citation/authority lookup, point-in-time provision text, full-text search, citation tracing, citing-opinion lists, and more.",
   "author": {
     "name": "JET"
   },
@@ -21,9 +21,7 @@
       "command": "node",
       "args": ["${__dirname}/server/wrapper.js"],
       "env": {
-        "MCP_URL": "${user_config.url}",
-        "MCP_USERNAME": "${user_config.username}",
-        "MCP_PASSWORD": "${user_config.password}"
+        "MCP_URL": "${user_config.url}"
       }
     }
   },
@@ -31,20 +29,8 @@
     "url": {
       "type": "string",
       "title": "Server URL",
-      "description": "The full URL of the ndlaw MCP endpoint, ending in /mcp.",
-      "default": "https://mcp.example.com/mcp",
-      "required": true
-    },
-    "username": {
-      "type": "string",
-      "title": "Username",
-      "description": "Username assigned by the admin.",
-      "required": true
-    },
-    "password": {
-      "type": "string",
-      "title": "Password",
-      "description": "Password shared via secure channel. (Stored in plaintext in the user-only-readable settings file — workaround for a Claude Desktop bug with sensitive fields.)",
+      "description": "The full URL the admin sent you, ending in /mcp. Treat it like a password — the unguessable path segment is what grants access.",
+      "default": "https://mcp.example.com/REPLACE-TOKEN/mcp",
       "required": true
     }
   },

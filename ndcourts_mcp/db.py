@@ -28,17 +28,30 @@ DEFAULT_DB_PATH = resolve_db_path()
 
 
 def get_connection(
-    db_path: Path = DEFAULT_DB_PATH, *, must_exist: bool = True
+    db_path: Path = DEFAULT_DB_PATH, *, must_exist: bool = True, read_only: bool = False
 ) -> sqlite3.Connection:
+    """Open the opinions DB.
+
+    read_only=True opens with SQLite's mode=ro (URI filename), so the engine
+    itself rejects any write — the MCP server uses this so that even a bug in
+    the serving stack cannot alter the corpus. Ingest and fix scripts keep the
+    default read-write connection.
+    """
     if must_exist and not Path(db_path).exists():
         raise FileNotFoundError(
             f"opinions.db not found at {db_path}. Download the database release "
             f"asset or set NDCOURTS_DB to its location (see the README 'Quick "
             f"start'). Pass must_exist=False to create a new database."
         )
-    conn = sqlite3.connect(str(db_path))
+    if read_only:
+        # uri=True also makes ATTACH on this connection honor URI filenames,
+        # which corpus.attach_corpora() relies on to attach corpora read-only.
+        conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    else:
+        conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
+    if not read_only:
+        conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
     return conn
 

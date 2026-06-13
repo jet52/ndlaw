@@ -1,88 +1,87 @@
 # Connecting Claude clients to a remote ndcourts-mcp
 
-The server (see [SETUP.md](SETUP.md)) speaks Streamable HTTP behind
-TLS + HTTP Basic Auth. You'll need from the admin:
+The server (see [SETUP.md](SETUP.md)) speaks Streamable HTTP behind TLS.
+Access is by **capability URL**: the URL the admin sends you contains an
+unguessable path segment, and that segment is the only credential. You
+need exactly one thing from the admin:
 
-- **URL** — `https://mcp.example.com/mcp`
-- **Username** — assigned to you
-- **Password** — shared via a secure channel
+- **URL** — `https://mcp.example.com/<token>/mcp`
+
+Treat the URL like a password: don't post it publicly, don't commit it
+to a repository. (The underlying data is public CC0 — the token exists
+to keep bots and scrapers off a small shared server, not to protect the
+content.)
 
 ## Compatibility
 
 | Client | Supported | How |
 |---|---|---|
 | Claude Code (CLI, any OS) | yes | `claude mcp add --transport http` |
-| Claude Desktop (macOS, Linux, Windows) | yes | `mcp-remote` stdio→HTTP bridge |
-| claude.ai web | no | requires OAuth, not Basic Auth |
-| Claude iOS / iPad / Android | no | same as web |
-
-The web/mobile clients use Anthropic's Custom Connectors, which speak
-MCP-over-OAuth. This server uses Basic Auth, so those clients can't
-talk to it today. Adding OAuth is a future-work item.
+| Claude Desktop (macOS, Linux, Windows) | yes | `.mcpb` bundle or `mcp-remote` bridge |
+| claude.ai web | yes | Settings → Connectors → Add custom connector (paste URL) |
+| Claude iOS / iPad / Android | yes | connectors added on web are available on mobile |
 
 ---
 
 ## Claude Code (CLI)
 
-One command — replace the placeholders:
+One command — paste the URL the admin sent:
 
 ```bash
-claude mcp add --transport http ndlaw https://mcp.example.com/mcp \
-  --header "Authorization: Basic $(printf '<username>:<password>' | base64)"
+claude mcp add --transport http ndlaw https://mcp.example.com/<token>/mcp
 ```
 
-The base64 is computed locally before being saved. Verify with
-`claude mcp list`. Tools appear as `mcp__ndcourts__*` after a session
-restart.
+Verify with `claude mcp list`. Tools appear as `mcp__ndlaw__*` after a
+session restart.
 
 **Project-scoped alternative.** If a repo's collaborators should all
-use this MCP, add it to a project's `.mcp.json` instead of the user-
-level config:
+use this MCP, add it to the project's `.mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "ndlaw": {
       "type": "http",
-      "url": "https://mcp.example.com/mcp",
-      "headers": {
-        "Authorization": "Basic <base64-of-user:pass>"
-      }
+      "url": "https://mcp.example.com/<token>/mcp"
     }
   }
 }
 ```
 
-⚠ Don't commit `.mcp.json` with real credentials. Either commit a
-template and have each user add their own header locally, or keep the
-file untracked.
+⚠ Only commit `.mcp.json` with the real URL to a **private** repo —
+the URL is the credential.
+
+---
+
+## claude.ai web (and mobile)
+
+Settings → **Connectors** → **Add custom connector** → paste the URL →
+Add. The connector then shows up in the tools menu in chats, and on the
+mobile apps as well. No OAuth flow appears because the server doesn't
+require one.
 
 ---
 
 ## Claude Desktop — easiest path (.mcpb bundle, any OS)
 
 A pre-built **MCP Bundle** is in the repo at
-[`deploy/ndlaw.mcpb`](ndlaw.mcpb) (~2 KB). It contains a
-manifest and a tiny Node wrapper that proxies to the remote server.
-Works on macOS, Linux, and Windows with one set of instructions.
+[`deploy/ndlaw.mcpb`](ndlaw.mcpb). It contains a manifest and a tiny
+Node wrapper that proxies to the remote server. Works on macOS, Linux,
+and Windows with one set of instructions.
 
 **For colleagues:**
 
 1. Download the bundle:
    <https://github.com/jet52/ndlaw/raw/main/deploy/ndlaw.mcpb>
-2. Double-click it. Claude Desktop opens the install dialog showing
-   the extension name and asking for three fields:
+2. Double-click it. Claude Desktop opens the install dialog asking for
+   one field:
    - **Server URL** — paste what the admin sent you
-   - **Username** — from the admin
-   - **Password** — from the admin (input is masked, stored in the OS
-     keychain)
 3. Click **Install**. Restart Claude Desktop if it doesn't auto-pick
    the new extension up. Confirm in Settings → Extensions that
-   "ND Courts (Supreme Court Opinions)" is enabled.
+   "North Dakota Law (primary law)" is enabled.
 
-**Requirements:** Node.js (any recent version). The bundle calls
-`npx -y mcp-remote` under the hood, which auto-installs the remote
-proxy on first use. If you don't have Node, install via
+**Requirements:** Node.js (any recent version). The bundle ships
+`mcp-remote` inside it. If you don't have Node, install via
 `brew install node` (macOS) or `winget install OpenJS.NodeJS.LTS`
 (Windows).
 
@@ -123,48 +122,46 @@ Add the following inside `mcpServers` (preserve anything already there):
   "args": [
     "-y",
     "mcp-remote",
-    "https://mcp.example.com/mcp",
-    "--header",
-    "Authorization: Basic <base64-of-user:pass>"
+    "https://mcp.example.com/<token>/mcp"
   ]
 }
 ```
 
-Generate the base64 once:
-
-- **macOS / Linux:** `printf '<username>:<password>' | base64`
-- **Windows PowerShell:** `[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('<username>:<password>'))`
-
 Save, fully quit Claude Desktop (⌘Q on macOS, right-click tray → **Quit**
 on Windows — a window-close isn't enough), reopen. Settings → Developer
-→ MCP servers should show `ndcourts` connected.
+→ MCP servers should show `ndlaw` connected.
 
 ---
 
 ## Troubleshooting
 
+- **403 Forbidden** on every request: the token segment of the URL is
+  missing or mistyped. Re-copy the exact URL from the admin — every
+  character of the path matters.
 - **"Some MCP servers could not be loaded"** on Desktop start: the
   entry shape is wrong. Use the stdio shape above (`command` + `args`).
   `{"type": "http", ...}` is accepted by Claude Code but rejected by
   Claude Desktop.
-- **401 Unauthorized** on first request: bad credentials. The base64
-  of `<username>:` (empty password) starts with `dXNlcjo=`-style; a
-  real cred is longer. Recompute and replace.
 - **Hanging on "Connecting…"** for 30+ seconds on first launch: the
   one-time `npx -y mcp-remote` download. Wait it out. If it persists,
   run the command manually in a terminal to see errors:
   ```bash
-  npx -y mcp-remote https://mcp.example.com/mcp --header "Authorization: Basic <base64>"
+  npx -y mcp-remote https://mcp.example.com/<token>/mcp
   ```
-- **Reachability check** (any OS): `curl -I https://mcp.example.com/mcp`
-  should return `401 Unauthorized` with a `WWW-Authenticate: Basic`
-  header. Connection refused or timeout = DNS/networking issue, not
-  the MCP config.
+- **Reachability check** (any OS): `curl -I https://mcp.example.com/`
+  should return `403 Forbidden` (the server is up; you're outside the
+  token path — that's expected). Connection refused or timeout = DNS/
+  networking issue, not the MCP config.
+- **Suddenly banned?** Repeated requests to wrong paths (or more than
+  ~100 requests/minute from one IP) trigger a temporary fail2ban ban
+  (10 minutes for rate, 6 hours for wrong-path junk). Fix the URL,
+  wait it out, or ask the admin to `fail2ban-client set <jail> unbanip <IP>`.
 
 ---
 
 ## Revoking access
 
-The admin removes your line from `/etc/apache2/mcp.htpasswd` on the
-server and reloads Apache. Your client will start getting 401s on its
-next request; remove the entry from your local config when convenient.
+There are no per-user credentials. To revoke, the admin changes the
+token in the Apache vhost, reloads Apache, and re-shares the new URL
+with everyone who should still have access. Old URLs start returning
+403 immediately.

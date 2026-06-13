@@ -1,9 +1,17 @@
 # Public VPS deployment (Ubuntu)
 
 Serve `ndcourts-mcp` over Streamable HTTP from an Ubuntu server on the open
-internet, with **TLS + HTTP Basic Auth + rate limiting + fail2ban**. The
-opinion data is public (CC0), so auth here is access control and abuse
-prevention, not secrecy.
+internet. The opinion data is public (CC0), so access control here is abuse
+prevention, not secrecy. Two access models:
+
+- **Capability URL (recommended)** — no credentials; the endpoint lives at
+  an unguessable path (`https://mcp.example.com/<token>/mcp`) and the URL
+  itself is what you share. Works with every client including claude.ai
+  custom connectors (which don't support Basic Auth). The Apache variant
+  below implements this; pair it with the `apache-mcp-*` fail2ban jails
+  (junk-ban + per-IP rate cap). See [CLIENTS.md](CLIENTS.md).
+- **HTTP Basic Auth** — per-user credentials at the proxy. The Caddy
+  walk-through below implements this; claude.ai connectors can't use it.
 
 ```
 Internet ──TLS──▶ Caddy :443 ──localhost──▶ ndcourts-mcp 127.0.0.1:8000
@@ -309,11 +317,15 @@ reverse-proxy it.
 
 **Front-end side — Apache.** A drop-in vhost template lives at
 [`deploy/mcp-apache.conf`](mcp-apache.conf); its header comments cover
-the full install (enable modules, create htpasswd, render the file with
-`sed`, issue the cert with `certbot certonly --apache`). The template
-guards its `:443` block with `<IfFile>` so Apache starts cleanly before
-the cert exists. It runs as an independent vhost on a dedicated
-subdomain, so your existing site is untouched.
+the full install (generate the token, render the file with `sed`,
+enable modules, issue the cert with `certbot certonly --apache`). It
+uses the capability-URL model: only `/<token>/…` proxies to the app,
+everything else is denied at Apache. Install the matching fail2ban
+jails from [`deploy/fail2ban/jail.d/apache-mcp.conf`](fail2ban/jail.d/apache-mcp.conf)
+(junk-ban for scanners + a per-IP rate cap on real traffic). The
+template guards its `:443` block with `<IfFile>` so Apache starts
+cleanly before the cert exists. It runs as an independent vhost on a
+dedicated subdomain, so your existing site is untouched.
 
 **Front-end side — nginx.** The same idea with nginx is roughly:
 

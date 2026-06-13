@@ -41,9 +41,9 @@ def _conn_with_corpora() -> sqlite3.Connection:
 
     Missing corpus DBs are skipped, so this works on a chambers install that
     has only some corpora (or none — then it behaves like get_connection)."""
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
-        corpus.attach_corpora(conn)
+        corpus.attach_corpora(conn, read_only=True)
     except Exception:
         pass
     return conn
@@ -218,7 +218,7 @@ def lookup_opinion(citation: str, include_text: bool = False, text_limit: int = 
         include_text: Include opinion text in the response (default False).
         text_limit: Max characters of text to include (default 5000). Use get_opinion_text for full text.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row = conn.execute(
             """SELECT o.* FROM opinions o
@@ -262,7 +262,7 @@ def get_opinion_text(citation: str, offset: int = 0, limit: int = 10000) -> dict
         limit: Maximum characters to return (default 10000, max 50000).
     """
     limit = min(limit, 50000)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row = conn.execute(
             """SELECT o.text_content FROM opinions o
@@ -310,7 +310,7 @@ def search_opinions(
         limit: Maximum results to return (default 20, max 50).
     """
     limit = min(limit, 50)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         sql = """
             SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) as snippet,
@@ -367,7 +367,7 @@ def list_opinions_by_date(
         limit: Maximum results (default 50, max 200).
     """
     limit = min(limit, 200)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         sql = """SELECT * FROM opinions
                  WHERE date_filed >= ? AND date_filed <= ?"""
@@ -399,7 +399,7 @@ def get_database_stats() -> dict:
 
     Returns counts, date range, and top authors.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         total = conn.execute("SELECT COUNT(*) as n FROM opinions").fetchone()["n"]
         date_range = conn.execute(
@@ -507,7 +507,7 @@ def justice_info(
     """
     import json as _json
 
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         # Single-opinion voting record
         if citation:
@@ -609,7 +609,7 @@ def search_by_case_type(
         limit: Maximum results (default 30, max 100).
     """
     limit = min(limit, 100)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         sql = "SELECT * FROM opinions WHERE case_type LIKE ?"
         params: list = [f"%{case_type}%"]
@@ -648,7 +648,7 @@ def get_citing_opinions(citation: str, limit: int = 20) -> list[dict]:
         limit: Maximum results (default 20, max 100).
     """
     limit = min(limit, 100)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         # Find the cited opinion
         row = conn.execute(
@@ -696,7 +696,7 @@ def verify_citation(query: str, expected_case_name: str | None = None) -> dict:
         expected_case_name: Optional — the case name as it appears in the draft,
             to check against the canonical name for drift.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, query)
         if row is None:
@@ -736,7 +736,7 @@ def get_parallel_citations(citation: str) -> dict:
     Args:
         citation: Any citation ("44 N.W. 301", "1 N.D. 1") or a case name.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, _matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -768,7 +768,7 @@ def verify_quotation(citation: str, quote: str) -> dict:
         citation: A citation or case name identifying the opinion.
         quote: The quoted passage attributed to the case.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -819,7 +819,7 @@ def get_pinpoint(
     if (paragraph is None) == (quote is None):
         return {"error": "Provide exactly one of `paragraph` or `quote`."}
 
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -935,7 +935,7 @@ def check_treatment(citation: str, limit: int = 50, scan_limit: int = 300) -> di
             (default 300) — counts are reported over the scanned set.
     """
     limit = min(limit, 200)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -987,7 +987,7 @@ def get_cited_authorities(citation: str) -> dict:
     Args:
         citation: A citation or case name identifying the opinion.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -1106,7 +1106,7 @@ def case_summary(citation: str) -> dict:
     """
     import json as _json
 
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -1182,7 +1182,7 @@ def get_subsequent_history(citation: str) -> dict:
     Args:
         citation: A citation or case name identifying the opinion.
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -1261,7 +1261,7 @@ def authoring_justice_on_issue(
         limit: Max results (default 15, max 50).
     """
     limit = min(limit, 50)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         rows = conn.execute(
             """SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) AS snippet
@@ -1332,7 +1332,7 @@ def search_boolean(
         return {"error": "Query is empty after translation.",
                 "translated_query": fts, "notes": notes}
 
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         sql = """
             SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) AS snippet
@@ -1409,7 +1409,7 @@ def search_faceted(
         limit: Maximum results (default 30, max 100).
     """
     limit = min(limit, 100)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         params: list = []
         if query:
@@ -1488,7 +1488,7 @@ def find_opinions_construing(authority: str, limit: int = 50) -> dict:
     limit = min(limit, 200)
     spec = research.normalize_authority(authority)
 
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         matched: list[dict] = []
         if spec["kind"] in ("constitution", "admin"):
@@ -1952,7 +1952,7 @@ def more_like_this(citation: str, limit: int = 10) -> list[dict]:
         limit: Maximum related opinions (default 10, max 30).
     """
     limit = min(limit, 30)
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         row, _matched_by, candidates = _resolve_opinion(conn, citation)
         if row is None:
@@ -2053,7 +2053,7 @@ def detect_overruled_in_draft(
         scan_limit: Max citing opinions to scan per cited case (default 200).
         max_cases: Max distinct cited cases to check (default 60).
     """
-    conn = get_connection(DB_PATH)
+    conn = get_connection(DB_PATH, read_only=True)
     try:
         cites = research.extract_case_cites(draft_text)
         resolved: dict[int, str] = {}

@@ -83,11 +83,15 @@ def cite_key(citation: str) -> str:
 
 
 def get_corpus_connection(
-    db_path: Path, *, must_exist: bool = True
+    db_path: Path, *, must_exist: bool = True, read_only: bool = False
 ) -> sqlite3.Connection:
-    conn = sqlite3.connect(str(db_path))
+    if read_only:
+        conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    else:
+        conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
+    if not read_only:
+        conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
     if must_exist:
         # quick existence probe: the schema must have been created
@@ -256,12 +260,16 @@ def lookup_provision_version(
     return conn.execute(sql, (key, as_of_date, OPEN_ENDED, as_of_date)).fetchone()
 
 
-def attach_corpora(conn: sqlite3.Connection) -> list[str]:
+def attach_corpora(conn: sqlite3.Connection, *, read_only: bool = False) -> list[str]:
     """ATTACH every available corpus DB onto an existing connection.
 
     Returns the list of corpus names successfully attached. Missing corpus
     files are skipped silently (a chambers install may have only some corpora).
     Safe to call repeatedly: re-attaching an already-attached alias is ignored.
+
+    read_only=True attaches each corpus with mode=ro; this requires the main
+    connection to have been opened with URI filenames enabled (uri=True), as
+    db.get_connection(read_only=True) does.
     """
     attached: list[str] = []
     existing = {r["name"] for r in conn.execute("PRAGMA database_list")}
@@ -273,6 +281,7 @@ def attach_corpora(conn: sqlite3.Connection) -> list[str]:
         path = resolve_corpus_db_path(name)
         if not path.exists():
             continue
-        conn.execute(f"ATTACH DATABASE ? AS {alias}", (str(path),))
+        target = f"file:{path}?mode=ro" if read_only else str(path)
+        conn.execute(f"ATTACH DATABASE ? AS {alias}", (target,))
         attached.append(name)
     return attached
