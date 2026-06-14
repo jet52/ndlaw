@@ -1,0 +1,57 @@
+[
+  {
+    "citation": "N.D. Const. art. IV, § 1",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["pdftext-hint-mismatch"],
+    "notes": "Measure 119 is Chapter 706 'LEGISLATIVE ASSEMBLY MEMBERS' (1985 sl CAA p03-06, Chapter 706 pp.2300-2303), NOT the Chapter 705 county-officer amendment shown in the pdftext_hint. The intent paragraph: 'This amendment creates eight new sections to article IV ... and repeals sections 1 through 13 and sections 16 through 18, and sections 22 through 24 of article IV.' SECTION 1 reads 'A new section to article IV of the Constitution of the State of North Dakota is hereby created and enacted to read as follows:' The senate-composition text appears as a new section with no struck/underlined markup. Because the prior art. IV section-1 numbering was repealed (SECTION 9 REPEAL) and these are freshly created/renumbered sections, there is no prior text for this section number. Approved June 12, 1984; effective December 1, 1986."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 2",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["pdftext-hint-mismatch"],
+    "notes": "Chapter 706 'LEGISLATIVE ASSEMBLY MEMBERS' (1985 sl CAA p04). SECTION 2: 'A new section to article IV of the Constitution of the State of North Dakota is hereby created and enacted to read as follows:' Apportionment/redistricting text presented as a newly created section (no redline markup). Old art. IV sections 1-13 repealed by SECTION 9. No prior text for this section number."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 7",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["pdftext-hint-mismatch"],
+    "notes": "Chapter 706 'LEGISLATIVE ASSEMBLY MEMBERS' (1985 sl CAA p05, Chapter 706 p.2302). SECTION 7: 'A new section to article IV of the Constitution of the State of North Dakota is hereby created and enacted to read as follows:' Terms-of-members / eighty-natural-days session text presented as a newly created section (no redline markup). Old art. IV sections 1-13, 16-18, 22-24 repealed by SECTION 9. No prior text for this section number."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 8",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["pdftext-hint-mismatch"],
+    "notes": "Chapter 706 'LEGISLATIVE ASSEMBLY MEMBERS' (1985 sl CAA p05, Chapter 706 p.2302). SECTION 8: 'A new section to article IV of the Constitution of the State of North Dakota is hereby created and enacted to read as follows:' House-elects-presiding-officer text presented as a newly created section (no redline markup). No prior text for this section number."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 27",
+    "amendment_date": "2014-12-04",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["pdftext-hint-mismatch"],
+    "notes": "Measure 157 is Chapter 495 'MORTGAGE TAXES PROHIBITED' (2015 sl caa p03), NOT the Chapter 494 art. III initiated-measure amendment in the pdftext_hint. Resolution 'to create and enact a new section to article X.' SECTION 1: 'A new section to article X of the Constitution of North Dakota is created and enacted as follows:' The entire mortgage-taxes text is rendered underlined (newly added) with no struck text. Brand-new section -- no prior text. Approved November 4, 2014."
+  }
+]

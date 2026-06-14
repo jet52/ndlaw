@@ -1,0 +1,57 @@
+[
+  {
+    "citation": "N.D. Const. art. IV, § 12",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["created-section"],
+    "notes": "Created by Chapter 707 (Legislative Assembly Procedures), 1985 Session Laws, SECTION 1: 'A new section to article IV of the Constitution of the State of North Dakota is hereby created and enacted to read as follows:' followed by the quorum/judge-of-qualifications/coin-toss/rules-of-procedure/expel-a-member text matching current_text exactly. No redline markup; no prior text. The renderer mis-targeted the wrong measure on the named PNGs, but text confirmed from source PDF (CAA.pdf, page 2304-2305) and visually on 1985slCAA-p07/p08."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 14",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["created-section"],
+    "notes": "Created by Chapter 707, 1985 Session Laws, SECTION 3: 'A new section to article IV ... is hereby created and enacted to read as follows: All sessions of the legislative assembly, including the committee of the whole and meetings of legislative committees, must be open and public.' Matches current_text. No redline markup; no prior text. Confirmed visually on 1985slCAA-p09 (page 2306) and in source PDF text layer."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 15",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["created-section"],
+    "notes": "Created by Chapter 707, 1985 Session Laws, SECTION 4: 'A new section to article IV ... created and enacted to read as follows: Members of the legislative assembly are immune from arrest during their attendance at the sessions ... except in cases of felony. Members ... may not be questioned in any other place for any words used in any speech or debate in legislative proceedings.' Matches current_text. No redline markup; no prior text. Confirmed visually on 1985slCAA-p09 (page 2306)."
+  },
+  {
+    "citation": "N.D. Const. art. IV, § 16",
+    "amendment_date": "1986-12-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["created-section", "current-text-has-codifier-note"],
+    "notes": "Created by Chapter 707, 1985 Session Laws, SECTION 5: 'A new section to article IV ... created and enacted to read as follows: Any amendment to this constitution may be proposed in either house of the legislative assembly, and if agreed to upon a roll call by a majority of the members elected to each house, must be submitted to the electors and if a majority of the votes cast thereon are in the affirmative, the amendment is a part of this constitution.' Matches current_text up to the created language. The trailing 'Sections 17 and 18. Repealed.' in current_text is a codifier note, not part of the enacted section. No redline markup; no prior text. Confirmed visually on 1985slCAA-p09 (page 2306)."
+  },
+  {
+    "citation": "N.D. Const. art. XI, § 26",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["created-section", "source-spelling-variant"],
+    "notes": "Created by Chapter 720, 1983 Session Laws (page 2223), SECTION 1: 'A new section of the Constitution of the State of North Dakota is hereby created to read as follows:' followed by the legislative/executive/judicial co-equal branches and compensation text. No redline markup; no prior text. Source prints 'co-equal' (hyphenated); DB current_text has 'coequal' (codifier normalization) -- irrelevant to prior-text reconstruction. Text confirmed from source PDF (CAA.pdf 1983, text layer); the named PNGs rendered an adjacent measure (Chapter 718 / Chapter 720 institutions amendment), not this page, but create-section classification is unambiguous from the 'created to read as follows' language and does not depend on visible markup."
+  }
+]

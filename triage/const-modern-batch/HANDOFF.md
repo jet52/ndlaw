@@ -22,9 +22,16 @@ could adopt as authoritative. A provision is "versioned" when its
 - **Modern layer (1981–present): IN PROGRESS.** ndconst.org gives only *current*
   text, so each modern provision shipped as a single flat version. We are
   reconstructing prior versions from the session-law **redline** PDFs. 96 modern
-  provisions have post-1981 amendments; **19 are reconstructed so far (on scratch
+  provisions have post-1981 amendments; **22 are reconstructed so far (on scratch
   only)**; the live DB's modern layer is still flat (no regression, no live modern
   reconstructions yet).
+  - **Wave 2 DONE 2026-06-14 (`RESULTS-wave2.md`):** prep v2 recovered the 51
+    skips; the **single-amendment set is now essentially complete** — 13 redline-
+    reconstructed, **34 confirmed CREATE_SECTION (single version is correct, no
+    reconstruction needed)**, 12 `needs-base-source` (deferred). All 10 Wave-1
+    `needs-2nd-read` provisions were independently re-read and adjudicated (9 stand
+    on Wave-1 text; art XII §2 corrected). Remaining: ~22 multi-amendment, 7 giants
+    (create), the heavy multi-subsection class, and the 12 needs-base-source.
 
 ## 2. THE TWO DATABASES — critical
 - **LIVE: `constitution.db` + `constitution_history.db`** (repo root). Historical
@@ -107,28 +114,33 @@ attached — actually CREATE_SECTION). Integrity 0/0. Agents were reliable: 3/3
 BB-checkable passed (vs 40% solo error).
 
 ## 5. WHAT TO DO NEXT (in order)
-1. **Re-prep with the fixes.** `prep.py` render is fixed (mutool). Still TODO in
-   `prep.py`/`resolve_pdf`: (a) glob `*IMA*.pdf` for initiated measures (art I §1,
-   XI §25 sources); (b) harden `find_pages` (it mis-mapped pages in multi-chapter
-   PDFs — match article AND the "Section N." reprint, verify the preamble names the
-   right section, and skip "DISAPPROVED" chapters); (c) the 7 giant whole-session
-   PDFs (`sl2021/2023/2025.pdf`, 2400pp) need a bounded locator (don't scan all
-   pages). Re-run prep to recover the ~50 currently in `skipped.json`.
-2. **Run the next 8–10-agent wave** over the newly-prepped batches PLUS confirming
-   second-reads of Wave 1's 10 `needs-2nd-read` provisions (assign each to a
-   different agent than implied; accept only on agreement).
-3. **Verify every result yourself** (mechanical + BB + structural), splice to
-   scratch. Repeat waves until single-amendment provisions are exhausted (~74 total,
-   19 done).
-4. **Multi-amendment provisions (22):** these need each intermediate version's
-   reprint, not just one redline — chain them (see art X §21 in `transcriptions.json`
-   for a clean 3-version example, and the art LIV trio for forward-splice). Later
-   waves.
-5. **Heavy multi-subsection (~4):** leave for native source (PL-SOURCE-FILES).
-6. **Promote to live ONLY when:** every spliced modern provision has either a BB
-   witness or a confirming second read, AND the snapshot-diff (extended to modern /
-   current-ndconst.org) is green. Then propagate prior versions upstream and rebuild
-   (do NOT hand-edit live). Until then, modern stays scratch-only.
+~~Steps 1-3 (re-prep + wave + verify single-amendment set)~~ **DONE in Wave 2
+(2026-06-14)** — prep v2 fixes landed (resolve_pdf filename-honoring, anchor /
+render-all locator, render-slug collision fix); single-amendment set complete.
+See `RESULTS-wave2.md`. What remains:
+
+1. **Multi-amendment provisions (~22):** the next wave. Each needs every
+   intermediate version's reprint, chained — NOT one redline. Pattern: art X §21
+   in `transcriptions.json` (clean 3-version), and the art LIV trio (forward-splice).
+   Prep these with a per-amendment page set (each amendment date → its own measure
+   page); one agent per provision reads the full chain. `reconstruct_modern_versions.py`
+   already loads the full amendment list per provision (`load_scope`).
+2. **7 giants** (art XV §1-6 = new 2022 ethics/term-limits article; art IX §12 =
+   2023) — `skipped-wave2.json` reason `giant-no-anchor`. Almost certainly
+   CREATE_SECTION; download the whole-session PDF, render the measure pages, confirm.
+3. **12 needs-base-source + heavy multi-subsection (art VIII §6 class):** native
+   session-law text from Legislative Council (PL-SOURCE-FILES). art V §2-11 is the
+   1997 executive-article replacement — its pre-1997 prior is a full-article rewrite
+   (crosswalk/native-source, not a redline read).
+4. **Second reads still owed before live:** the 3 new Wave-2 redlines (art II §1,
+   IX §7, XII §1, all `needs-2nd-read`) + art IX §10 (3rd-read flagged). Run a
+   confirming read on each before any live cutover.
+5. **Data-quality cleanup (separate):** art VII §10 current_text is a DokuWiki 404
+   page; art XI §29 "ranchers" vs source "farmers and ranches"; art XI §26
+   "coequal" vs "co-equal"; art IV §16 codifier note; art VI §13 " ])]" artifact.
+6. **Promote to live ONLY when:** every spliced modern provision has a BB witness
+   or a confirming second read, AND the modern snapshot-diff is green. Then
+   propagate upstream and rebuild (do NOT hand-edit live). Modern stays scratch-only.
 
 ## 6. Key files
 - `TODO-const-history-validation.md` — standing plan (read the 2026-06-14 progress block).

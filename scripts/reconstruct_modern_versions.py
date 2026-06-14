@@ -45,10 +45,19 @@ def resolve_pdf(source_url: str) -> Path | None:
     base = source_url.split("#")[0]
     m = re.search(r"(19|20)\d{2}", base)
     year = m.group(0) if m else None
+    fname = base.rsplit("/", 1)[-1] if base else ""   # CAA.pdf, IMA.pdf, SL7CNSTM.pdf, ...
     if year:
         d = REFS / f"{year}_sl"
         if d.is_dir():
-            # CAA (amendments approved) preferred; CNSTM/CMA for odd years.
+            # Exact filename first (case-insensitive): a session dir holds many
+            # measure files (CAA vs IMA vs INITM/CNSTM), and the source_url names
+            # the right one. Blind CAA-glob mis-resolved initiated-measure cites.
+            if fname:
+                exact = [h for h in d.iterdir()
+                         if h.is_file() and h.name.lower() == fname.lower()]
+                if exact:
+                    return exact[0]
+            # Fallback glob: CAA (amendments approved) preferred; CNSTM/CMA odd years.
             for pat in ("*CAA*.pdf", "*CNSTM*.pdf", "*CMA*.pdf"):
                 hits = [h for h in sorted(d.glob(pat)) if "CAP" not in h.name.upper()]
                 if hits:

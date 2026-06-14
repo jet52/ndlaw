@@ -1,0 +1,64 @@
+[
+  {
+    "citation": "N.D. Const. art. II, § 1",
+    "amendment_date": "2018-12-06",
+    "classification": "REDLINE",
+    "prior_text": "The general election of the state shall be held biennially as provided by law. Every citizen of the United States, who has attained the age of eighteen years and who is a North Dakota resident, shall be a qualified elector. When an elector moves within the state, he shall be entitled to vote in the precinct from which he moves until he establishes voting residence in another precinct. The legislative assembly shall provide by law for the determination of residence for voting eligibility, other than physical presence. No elector shall lose his residency for voting eligibility solely by reason of his absence from the state. The legislative assembly shall provide by law for secrecy in voting, for absentee voting, for administration of elections and for the nomination of candidates.",
+    "edit_list": [
+      ["Only a citizen of the United States", "Every citizen of the United States"]
+    ],
+    "n_changes": 1,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 535 'Citizenship Requirements for Voting' (measure no. 2), p4. Sole change to art. II sec. 1: struck 'Every', added 'Only a' before 'citizen of the United States'. Reversed for prior. Rest of section reprinted clean (no markup)."
+  },
+  {
+    "citation": "N.D. Const. art. II, § 3",
+    "amendment_date": "2018-12-06",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 535, p4. Section 3 is reprinted entirely underlined (newly added: 'Section 3. Only a qualified elector may vote in any general, special, or primary election...'). No prior text existed. (Same measure SECTION 1 'AMENDMENT' header, but sec. 3 is wholly new text.)"
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 7",
+    "amendment_date": "1982-12-02",
+    "classification": "REDLINE",
+    "prior_text": "All lands mentioned in the preceding section for any specific educational or charitable institution shall be appraised and sold in the same manner and under the same limitations and subject to all the conditions as to price and sale as provided above for the appraisal and sale of lands for the benefit of common schools, but a distinct and separate account shall be kept by the proper officers of each of said funds; provided, that the limitations as to the time in which school land may be sold shall apply only to lands granted for the support of common schools.",
+    "edit_list": [
+      ["All lands received by the state for any specific educational or charitable institution", "All lands mentioned in the preceding section for any specific educational or charitable institution"],
+      ["as provided in this constitution for the appraisal", "as provided above for the appraisal"],
+      ["common schools. However, a distinct", "common schools, but a distinct"],
+      ["said funds and the limitations", "said funds; provided, that the limitations"]
+    ],
+    "n_changes": 4,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 722 'Obsolete Constitutional References', SECTION 1 AMENDMENT, pp8-9. Four changes reversed: (1) struck 'mentioned in the preceding section' / added 'received by the state'; (2) struck 'above' / added 'in this constitution'; (3) struck '; but' (after 'common schools') / added '. However' — prior is 'common schools, but a distinct'; (4) struck '; provided, that' / added 'and' after 'said funds'."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 23",
+    "amendment_date": "1992-07-09",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 658 'Veterans' Compensation', p1. 'SECTION 1. A new section of the Constitution of North Dakota is created and enacted as follows' — entirely new, no markup, no prior text."
+  },
+  {
+    "citation": "N.D. Const. art. XI, § 28",
+    "amendment_date": "2004-12-02",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 619 'Definition of Marriage' (initiated measure no. 1), p1. 'SECTION 1. A new section to Article XI ... is created and enacted as follows' — entirely new, no markup, no prior text."
+  }
+]

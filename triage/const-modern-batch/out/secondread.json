@@ -1,0 +1,236 @@
+[
+  {
+    "citation": "N.D. Const. art. III, § 5",
+    "amendment_date": "2015-01-01",
+    "classification": "REDLINE",
+    "prior_text": "An initiative petition shall be submitted not less than ninety days before the statewide election at which the measure is to be voted upon. A referendum petition may be submitted only within ninety days after the filing of the measure with the secretary of state. The submission of a petition shall suspend the operation of any measure enacted by the legislative assembly except emergency measures and appropriation measures for the support and maintenance of state departments and institutions. The submission of a petition against one or more items or parts of any measure shall not prevent the remainder from going into effect. A referred measure may be voted upon at a statewide election or at a special election called by the governor.",
+    "edit_list": [
+      [
+        "one hundred twenty days",
+        "ninety days"
+      ]
+    ],
+    "n_changes": 1,
+    "confidence": "high",
+    "flags": [],
+    "notes": "struck 'ninety', added 'one hundred twenty' in 'submitted not less than ___ days'."
+  },
+  {
+    "citation": "N.D. Const. art. III, § 6",
+    "amendment_date": "2015-01-01",
+    "classification": "REDLINE",
+    "prior_text": "The secretary of state shall pass upon each petition, and if he finds it insufficient, he shall notify the \"committee for the petitioners\" and allow twenty days for correction or amendment. All decisions of the secretary of state in regard to any such petition shall be subject to review by the supreme court. But if the sufficiency of such petition is being reviewed at the time the ballot is prepared, the secretary of state shall place the measure on the ballot and no subsequent decision shall invalidate such measure if it is at such election approved by a majority of the votes cast thereon. If proceedings are brought against any petition upon any ground, the burden of proof shall be upon the party attacking it.",
+    "edit_list": [
+      [
+        "and if the secretary of state finds it insufficient",
+        "and if he finds it insufficient"
+      ],
+      [
+        "insufficient, the secretary of state shall notify",
+        "insufficient, he shall notify"
+      ],
+      [
+        "allow twenty days for correction.",
+        "allow twenty days for correction or amendment."
+      ],
+      [
+        "in regard to any petition are subject to review",
+        "in regard to any such petition shall be subject to review"
+      ],
+      [
+        "if the sufficiency of the petition is being reviewed",
+        "if the sufficiency of such petition is being reviewed"
+      ],
+      [
+        "shall invalidate the measure if it is at the election approved",
+        "shall invalidate such measure if it is at such election approved"
+      ],
+      [
+        "the burden of proof is upon the party attacking it and the proceedings must be filed with the supreme court no later than seventy-five days before the date of the statewide election at which the measure is to be voted upon.",
+        "the burden of proof shall be upon the party attacking it."
+      ]
+    ],
+    "n_changes": 7,
+    "confidence": "high",
+    "flags": [],
+    "notes": "he->the secretary of state (x2); struck 'or amendment'; such->the and shall be->are; such->the (x2 in sufficiency/invalidate/election); added trailing 75-day filing clause."
+  },
+  {
+    "citation": "N.D. Const. art. III, § 7",
+    "amendment_date": "2015-01-01",
+    "classification": "REDLINE",
+    "prior_text": "All decisions of the secretary of state in the petition process are subject to review by the supreme court in the exercise of original jurisdiction. If his decision is being reviewed at the time the ballot is prepared, he shall place the measure on the ballot and no court action shall invalidate the measure if it is approved at the election by a majority of the votes cast thereon.",
+    "edit_list": [
+      [
+        "original jurisdiction. A proceeding to review a decision of the secretary of state must be filed with the supreme court no later than seventy- five days before the date of the statewide election at which the measure is to be voted upon. If the decision of the secretary of state is being reviewed",
+        "original jurisdiction. If his decision is being reviewed"
+      ],
+      [
+        "the ballot is prepared, the secretary of state shall place",
+        "the ballot is prepared, he shall place"
+      ]
+    ],
+    "n_changes": 2,
+    "confidence": "high",
+    "flags": [],
+    "notes": "added second sentence (75-day proceeding-to-review); his->the + added 'of the secretary of state'; he->the secretary of state. Note current_text has 'seventy- five' with a space (preserved verbatim)."
+  },
+  {
+    "citation": "N.D. Const. art. VI, § 13",
+    "amendment_date": "1998-07-09",
+    "classification": "REDLINE",
+    "prior_text": "1. A judicial nominating committee shall be established by law. Any vacancy in the office of supreme court justice or district court judge shall be filled by appointment by the governor from a list of candidates nominated by the committee, unless the governor calls a special election to fill the vacancy for the remainder of the term. An appointment shall continue until the next general election, when the office shall be filled by election for the remainder of the term.",
+    "edit_list": [
+      [
+        "1. A judicial nominating committee must be established by law.",
+        "1. A judicial nominating committee shall be established by law."
+      ],
+      [
+        "The governor shall fill any vacancy in the office of supreme court justice or district court judge by appointment from a list",
+        "Any vacancy in the office of supreme court justice or district court judge shall be filled by appointment by the governor from a list"
+      ],
+      [
+        "Except as provided in subsection 2, an appointment must continue until the next general election, when the office must be filled by election for the remainder of the term.",
+        "An appointment shall continue until the next general election, when the office shall be filled by election for the remainder of the term."
+      ],
+      [
+        " 2. An appointment must continue for at least two years. If the term of the appointed judgeship expires before the judge has served at least two years, the judge shall continue in the position until the next general election immediately following the service of at least two years. 3. Notwithstanding sections 7 and 9 of this article, the term of the judge elected at the subsequent general election provided for in subsection 2 is reduced to the number of years remaining in the subsequent term after the appointee has served at least two years. ])]",
+        ""
+      ]
+    ],
+    "n_changes": 4,
+    "confidence": "high",
+    "flags": [
+      "create-subsections"
+    ],
+    "notes": "Subsections 2 and 3 wholly added (underlined incl. their numbers). Sub 1 redline: shall->must; 'Any...shall be filled by appointment by the governor' -> 'The governor shall fill any...by appointment'; 'An appointment shall...office shall be' -> 'Except as provided in subsection 2, an appointment must...office must be'. current_text trailing ' ])]' is a DB artifact within the (added) subsection 3 tail; dropped with sub 3."
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 4",
+    "amendment_date": "1984-07-12",
+    "classification": "REDLINE",
+    "prior_text": "The county superintendent of common schools, the chairman of the county board, and the county auditor shall constitute boards of appraisal and under the authority of the state board of university and school lands shall appraise all school lands within their respective counties which they may from time to time recommend for sale at their actual value under the prescribed terms and shall first select and designate for sale the most valuable lands.",
+    "edit_list": [
+      [
+        "public officers designated by law",
+        "county superintendent of common schools, the chairman of the county board, and the county auditor"
+      ]
+    ],
+    "n_changes": 1,
+    "confidence": "high",
+    "flags": [],
+    "notes": "struck 'county superintendent of common schools, the chairman of the county board, and the county auditor'; added 'public officers designated by law'."
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 6",
+    "amendment_date": "1986-07-10",
+    "classification": "REDLINE",
+    "prior_text": "No original grant school or institutional land shall be sold for less than the fair market value thereof, and in no case for less than ten dollars ($10.00) per acre, provided that when lands have been sold on contract and the contract has been canceled, such lands may be resold without reappraisement by the board of appraisal. The purchaser shall pay twenty (20) percent of the purchase price at the time the contract is executed; thereafter annual payments shall be made of not less than six (6) percent of the original purchase price. An amount equal to not less than three (3) percent per annum of the unpaid principal shall be credited to interest and the balance shall be applied as payment on principal as credit on purchase price. The purchaser may pay all or any installment or installments not yet due to any interest paying date. If the purchaser so desires, he may pay the entire balance due on his contract with interest to date of payment at any time and he will then be entitled to proper conveyance. All sales shall be held at the county seat of the county in which the land to be sold is situated, and shall be at public auction and to the highest bidder, and notice of such sale shall be published once each week for a period of three weeks prior to the day of sale in a legal newspaper published nearest the land and in the newspaper designated for the publication of the official proceedings and legal notices within the county in which said land is situated. No grant or patent for such lands shall issue until payment is made for the same; provided that the land contracted to be sold by the state shall be subject to taxation from the date of the contract. In case the taxes assessed against any of said lands for any year remain unpaid until the first Monday in October of the following year, the contract of sale for such land shall, if the board of university and school lands so determine, by it, be declared null and void. No contract of sale heretofore made under the provisions of this section of the constitution as then providing shall be affected by this amendment, except prepayment of principal may be made as herein provided. Any of said lands that may be required for townsite purposes, schoolhouse sites, church sites, cemetery sites, sites for other educational or charitable institutions, public parks, airplane landing fields, fairgrounds, public highways, railroad right of way, or other railroad uses and purposes, reservoirs for the storage of water for irrigation, irrigation canals, and ditches, drainage ditches, or for any of the purposes for which private lands may be taken under the right of eminent domain under the constitution and laws of this state, may be sold under the provisions of this article, and shall be paid for in full at the time of sale, or at any time thereafter as herein provided. Any of said lands and any other lands controlled by the board of university and school lands, may, with the approval of said board, be exchanged for lands of the United States, the state of North Dakota or any county or municipality thereof as the legislature may provide, and the lands so acquired shall be subject to the trust to which the lands exchanged therefor were subject, and the state shall reserve all mineral and water power rights in land so transferred. When any of said lands have been heretofore or may be hereafter sold on contract, and the purchaser or his heirs or assigns is unable to pay in full for the land purchased within twenty years after the date of purchase and such contract is in default and subject to being declared null and void as by law provided, the board of university and school lands may, after declaring such contract null and void, resell the land described in such contract to such purchaser, his heirs or assigns, for the amount of the unpaid principal, together with interest thereon reckoned to the date of such resale at the rate of not less than three (3%) percent, but in no case shall the resale price be more than the original sale price; such contract of resale shall be upon the terms herein provided, provided this section shall be deemed self-executing insofar as the provisions for resale herein made are concerned.",
+    "edit_list": [
+      [
+        "school lands, including state coal mineral interests, may, with the approval",
+        "school lands, may, with the approval"
+      ],
+      [
+        "be exchanged for lands and coal mineral interests of the United States",
+        "be exchanged for lands of the United States"
+      ],
+      [
+        "all mineral and water power rights in land so transferred, except coal mineral interests approved for exchange by the board of university and school lands under this section.",
+        "all mineral and water power rights in land so transferred."
+      ]
+    ],
+    "n_changes": 3,
+    "confidence": "high",
+    "flags": [],
+    "notes": "three additions in the land-exchange clause: 'including state coal mineral interests'; 'and coal mineral interests'; 'except coal mineral interests approved for exchange by the board of university and school lands under this section'. No struck text elsewhere in section."
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 10",
+    "amendment_date": "1982-12-02",
+    "classification": "REDLINE",
+    "prior_text": "The legislative assembly shall have authority to provide by law for the sale or disposal of all public lands that have been heretofore, or may hereafter be granted by the United States to the state for purposes other than set forth and named in article IX, section 1, and section 159. And the legislative assembly in providing for the appraisement, sale, rental, and disposal of the same shall not be subject to the provisions and limitations of this article.",
+    "edit_list": [
+      [
+        "The legislative assembly may provide by law for the sale or disposal of all public lands that have been, or may hereafter be granted by the United States to the state for purposes other than set forth in article IX, section 1.",
+        "The legislative assembly shall have authority to provide by law for the sale or disposal of all public lands that have been heretofore, or may hereafter be granted by the United States to the state for purposes other than set forth and named in article IX, section 1, and section 159."
+      ],
+      [
+        "The legislative assembly in providing for the appraisal, sale, rental, and disposal of the same shall not be subject to the provisions and limitations of article IX, sections 1 through 11.",
+        "And the legislative assembly in providing for the appraisement, sale, rental, and disposal of the same shall not be subject to the provisions and limitations of this article."
+      ]
+    ],
+    "n_changes": 2,
+    "confidence": "high",
+    "flags": [],
+    "notes": "shall have authority to->may; struck 'heretofore'; struck 'and named'; struck ', and section 159' (after 'section 1'); struck 'And the.' replaced by 'The' before 'legislative'; appraisement->appraisal; struck 'this' -> 'article IX, sections 1 through 11'. Reconstructed prior keeps 'section 1, and section 159. And the legislative...this article.'"
+  },
+  {
+    "citation": "N.D. Const. art. XII, § 2",
+    "amendment_date": "2006-07-01",
+    "classification": "REDLINE",
+    "prior_text": "No charter of incorporation shall be granted, changed or amended by special law, except in the case of such municipal, charitable, educational, penal or reformatory corporations as may be under the control of the state; but the legislative assembly shall provide by general laws for the organization of all corporations hereafter to be created, and any such law, so passed, shall be subject to future repeal or alteration.",
+    "edit_list": [
+      [
+        "All corporations existing or hereafter chartered hold the charter subject to the provisions of this constitution. The legislative assembly may provide by general laws for the organization and regulation of corporations, and any law, so enacted, is subject to future repeal or amendment.",
+        "No charter of incorporation shall be granted, changed or amended by special law, except in the case of such municipal, charitable, educational, penal or reformatory corporations as may be under the control of the state; but the legislative assembly shall provide by general laws for the organization of all corporations hereafter to be created, and any such law, so passed, shall be subject to future repeal or alteration."
+      ]
+    ],
+    "n_changes": 1,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Whole section rewritten. Struck opening 'No charter of incorporation...but the'; added 'All corporations existing or hereafter chartered hold the charter subject to the provisions of this constitution. The'. shall->may; added 'and regulation'; struck 'all' and 'hereafter to be created'; struck 'such'; passed->enacted; shall be->is; alteration->amendment."
+  },
+  {
+    "citation": "N.D. Const. art. XII, § 6",
+    "amendment_date": "2006-07-01",
+    "classification": "REDLINE",
+    "prior_text": "In all elections for directors or managers of a corporation, each member or shareholder may cast the whole number of his votes for one candidate, or distribute them upon two or more candidates, as he may prefer, provided, any cooperative corporation may adopt bylaws limiting the voting power of its stockholders.",
+    "edit_list": [
+      [
+        "Unless otherwise provided in the articles of incorporation, in all elections for directors",
+        "In all elections for directors"
+      ],
+      [
+        "may cast the whole number of the member's or shareholder's votes",
+        "may cast the whole number of his votes"
+      ],
+      [
+        "upon two or more candidates, as the member or shareholder may prefer",
+        "upon two or more candidates, as he may prefer"
+      ]
+    ],
+    "n_changes": 3,
+    "confidence": "high",
+    "flags": [],
+    "notes": "struck 'In'->added 'Unless otherwise provided in the articles of incorporation, in'; his->the member's or shareholder's; he->the member or shareholder."
+  },
+  {
+    "citation": "N.D. Const. art. XIII, § 2",
+    "amendment_date": "1996-07-11",
+    "classification": "REDLINE",
+    "prior_text": "Jurisdiction is ceded to the United States over the military reservations of Fort Abraham Lincoln, Fort Buford, Fort Pembina and Fort Totten, heretofore declared by the president of the United States; provided, legal process, civil and criminal, of this state, shall extend over such reservations in all cases in which exclusive jurisdiction is not vested in the United States, or of crimes not committed within the limits of such reservations.",
+    "edit_list": [
+      [
+        "Fort Pembina, and Fort Totten",
+        "Fort Pembina and Fort Totten"
+      ],
+      [
+        "of this state, extends over those reservations in all cases",
+        "of this state, shall extend over such reservations in all cases"
+      ],
+      [
+        "within the limits of those reservations.",
+        "within the limits of such reservations."
+      ],
+      [
+        " The legislative assembly may provide, upon the terms and conditions it adopts, for the acceptance of any jurisdiction as may be delegated to the state by act of Congress.",
+        ""
+      ]
+    ],
+    "n_changes": 4,
+    "confidence": "high",
+    "flags": [],
+    "notes": "added comma after 'Fort Pembina'; shall extend->extends and such->those (x2); added final sentence 'The legislative assembly may provide...by act of Congress.'"
+  }
+]

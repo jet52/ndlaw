@@ -1,0 +1,112 @@
+[
+  {
+    "citation": "N.D. Const. art. VII, § 1",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "Measure (1983 SL ch. 718, SCR 4002) preamble: 'creating a new article VII to the Constitution... and to repeal the present article VII... relating to municipal corporations...'. Operative clause: 'SECTION 1. A new article VII to the Constitution of the State of North Dakota is hereby created to read as follows'. SECTION 2 REPEAL repeals the old article VII. Section 1 ('The purpose of this article is to provide for maximum local self-government...') is newly enacted clean text with no strike/underline markup. No point-in-time predecessor of this section."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 2",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718 (approved June 8, 1982). Section 2 ('The legislative assembly shall provide by law for the establishment and the government of all political subdivisions...') is newly enacted clean text, no redline markup. Old article VII repealed by SECTION 2 REPEAL."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 3",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 3 ('The several counties of the state of North Dakota as they now exist are hereby declared to be counties...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 4",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 4 ('The legislative assembly shall provide by law for relocating county seats...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 5",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 5 ('Methods and standards by which all or any portion of a county or counties may be annexed, merged, consolidated...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 6",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 6 ('The legislative assembly shall provide by law for the establishment and exercise of home rule in counties and cities...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 7",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 7 ('The legislative assembly shall also provide by law for optional forms of government for counties...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 9",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 9 ('Questions of the form of government to be adopted by any county or on the elimination or reinstatement of elective county offices...') is newly enacted clean text, no redline markup."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 10",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article", "current-text-is-html-404"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 10 ('Agreements, including those for cooperative or joint administration of any powers or functions, may be made by any political subdivision with any other political subdivision...') is newly enacted clean text on the measure (pp. 2219-2220), no redline markup. NOTE: the provided current_text field for this section is a DokuWiki 404 HTML page ('This topic does not exist yet'), not the provision text -- flag for DB review. Classification is unaffected: this section is created here with no prior version."
+  },
+  {
+    "citation": "N.D. Const. art. VII, § 11",
+    "amendment_date": "1982-07-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["new-article"],
+    "notes": "New article VII created by 1983 SL ch. 718. Section 11 ('The power of the governing board of a city to franchise the construction and operation of any public utility or similar service within the city shall not be abridged by the legislative assembly.') is newly enacted clean text, no redline markup. Followed by SECTION 2 REPEAL of old article VII; approved June 8, 1982."
+  }
+]

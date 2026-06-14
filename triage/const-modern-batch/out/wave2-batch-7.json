@@ -1,0 +1,57 @@
+[
+  {
+    "citation": "N.D. Const. art. XIII, § 1",
+    "amendment_date": "1996-07-11",
+    "classification": "REDLINE",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 5,
+    "confidence": "low",
+    "flags": ["needs-base-source", "structural-deletion"],
+    "notes": "Section 1 reprinted on p.1-5 with redline. Within current subsection-1 text, the wording changes are legible and high-confidence: 'shall' struck / 'must' added ('shall must be secured'); 'shall' struck / 'may' added ('shall may ever be molested'); 'his or her' struck / 'that person's' added. Reversed, prior subsection-1 reads: 'Perfect toleration of religious sentiment shall be secured, and no inhabitant of this state shall ever be molested in person or property on account of his or her mode of religious worship.' BUT the amendment ALSO struck the ENTIRE original subsections 2 and 3 of section 1 (the 'people inhabiting this state do agree and declare... disclaim all right and title to the unappropriated public lands...' compact-of-admission paragraphs, struck through across p.1-5). Those deleted subsections are NOT present in current_text, so full prior_text cannot be built by an edit_list against current_text alone, and the ~4 pages of struck original-1889 text cannot be transcribed verbatim to the authoritative-text bar from strikethrough OCR. prior_text set null; restore deleted subsections 2-3 from the authoritative pre-1996 base text of art. XIII, sec. 1."
+  },
+  {
+    "citation": "N.D. Const. art. XIII, § 4",
+    "amendment_date": "1996-07-11",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Measure SECTION 3 (p.5): 'A new section to article XIII of the Constitution of North Dakota is created and enacted as follows:' Entire 'All other provisions of the Enabling Act of Congress approved on February 22, 1889...' text is underlined (new). This new section became art. XIII, sec. 4. No prior text."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 6",
+    "amendment_date": "2012-12-06",
+    "classification": "CLEAN_REPRINT",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["needs-base-source", "repeal"],
+    "notes": "Chapter 516 (caa p.2): 'SECTION 1. REPEAL. Section 6 of article X of the Constitution of North Dakota is repealed.' Current_text is 'Repealed.' The repeal measure does NOT reprint the prior poll-tax provision, so the pre-repeal text is not visible in the measure pages. Restore prior text (the legislative-assembly annual poll-tax authority) from the authoritative pre-2012 base text of art. X, sec. 6."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 25",
+    "amendment_date": "1996-12-05",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 560 (SL7INITM p.3): 'An initiated measure to create and enact a new section to article X... SECTION 1. A new section to article X of the Constitution of the state of North Dakota is created and enacted as follows:' Veterans' postwar trust fund text reprinted with no markup as new section. No prior text."
+  },
+  {
+    "citation": "N.D. Const. art. XI, § 29",
+    "amendment_date": "2012-12-06",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "Chapter 509 (ima p.1): 'SECTION 1. AMENDMENT. Section 29 of article XI of the North Dakota Constitution is created and enacted as follows:' Entire 'Section 29. The right of farmers and ranches to engage in modern farming...' text is underlined (new). Note measure prints 'ranches' (twice) where current DB text reads 'ranchers'; this is the enacted-text source, but it is a CREATE so no prior. No prior text."
+  }
+]

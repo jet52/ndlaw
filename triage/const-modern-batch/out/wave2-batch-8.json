@@ -1,0 +1,61 @@
+[
+  {
+    "citation": "N.D. Const. art. I, § 1",
+    "amendment_date": "1984-12-06",
+    "classification": "CLEAN_REPRINT",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": ["needs-base-source"],
+    "notes": "1985 SL Chapter 702 (Initiated Measure, RIGHT TO BEAR ARMS) reprints Section 1 of article I amended and reenacted with NO redline markup (no struck/underlined text). The added 'right to keep and bear arms' clause is present in the reprint but prior text is not shown. Prior text not visible; needs base source."
+  },
+  {
+    "citation": "N.D. Const. art. I, § 25",
+    "amendment_date": "2016-12-08",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "2017 SL Chapter 458 (CRIME VICTIM RIGHTS, Marsy's Law): 'a new Section to Article I of the North Dakota Constitution is created and enacted as follows'. Entire text underlined (all-new); no struck text. No prior text exists."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 22",
+    "amendment_date": "1991-07-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "1991 SL Chapter 747 (RESOURCES TRUST FUND): 'A new section to article X of the Constitution of North Dakota is hereby created and enacted to read as follows'. New section, no prior text exists."
+  },
+  {
+    "citation": "N.D. Const. art. X, § 26",
+    "amendment_date": "2011-07-01",
+    "classification": "CREATE_SECTION",
+    "prior_text": null,
+    "edit_list": [],
+    "n_changes": 0,
+    "confidence": "high",
+    "flags": [],
+    "notes": "2011 SL Chapter 518 (NORTH DAKOTA LEGACY FUND): 'A new section to article X of the Constitution of North Dakota is created and enacted as follows'. Entire text underlined (all-new). No prior text exists. (current_text reflects a later 2016 amendment, not this 2011 original, but this task's amendment is the creating one.)"
+  },
+  {
+    "citation": "N.D. Const. art. XII, § 1",
+    "amendment_date": "2006-07-01",
+    "classification": "REDLINE",
+    "prior_text": "The term \"corporation\", as used in this article, shall not be understood as embracing municipalities or political divisions of the state unless otherwise expressly stated, but it shall be held and construed to include all associations and joint stock companies having any of the powers or privileges of corporations not possessed by individuals or partnerships.",
+    "edit_list": [
+      ["does not embrace", "shall not be understood as embracing"],
+      ["political subdivisions", "political divisions"],
+      ["expressly stated.", "expressly stated, but it shall be held and construed to include all associations and joint stock companies having any of the powers or privileges of corporations not possessed by individuals or partnerships."]
+    ],
+    "n_changes": 3,
+    "confidence": "high",
+    "flags": [],
+    "notes": "2007 SL Chapter 581 (CORPORATION VOTING AND REGULATION), Section 1 of article XII. Struck (prior): 'shall not be understood as embracing' (replaced by underlined 'does not embrace'); struck 'divisions' (replaced by underlined 'subdivisions'); struck tail 'but it shall be held and construed to include all associations and joint stock companies having any of the powers or privileges of corporations not possessed by individuals or partnerships.' Verified apply(edit_list, current_text)==prior_text."
+  }
+]
