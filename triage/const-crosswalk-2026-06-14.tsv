@@ -1,0 +1,266 @@
+old_cite	new_cite	jaccard	status	alternates
+N.D. Const. § 2	N.D. Const. art. I, § 2	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 3	N.D. Const. art. I, § 23	1.0	CONFIDENT	N.D. Const. art. XI, § 4=0.03; N.D. Const. art. VII, § 3=0.03
+N.D. Const. § 4	N.D. Const. art. I, § 3	1.0	CONFIDENT	N.D. Const. art. XI, § 29=0.03; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 5	N.D. Const. art. I, § 14	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 6	N.D. Const. art. I, § 11	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 8	N.D. Const. art. I, § 10	1.0	CONFIDENT	N.D. Const. art. X, § 13=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 9	N.D. Const. art. I, § 4	1.0	CONFIDENT	N.D. Const. art. I, § 12=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 10	N.D. Const. art. I, § 5	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 11	N.D. Const. art. I, § 22	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 12	N.D. Const. art. I, § 19	1.0	CONFIDENT	N.D. Const. art. V, § 3=0.01; N.D. Const. art. IX, § 11=0.01
+N.D. Const. § 13	N.D. Const. art. I, § 12	1.0	CONFIDENT	N.D. Const. art. I, § 4=0.01; N.D. Const. art. I, § 25=0.00
+N.D. Const. § 15	N.D. Const. art. I, § 15	1.0	CONFIDENT	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 16	N.D. Const. art. I, § 18	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 17	N.D. Const. art. I, § 6	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 18	N.D. Const. art. I, § 8	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 19	N.D. Const. art. I, § 17	1.0	CONFIDENT	N.D. Const. art. XI, § 9=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 20	N.D. Const. art. I, § 21	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 21	N.D. Const. art. I, § 24	1.0	CONFIDENT	N.D. Const. art. XII, § 2=0.02; N.D. Const. art. IV, § 13=0.00
+N.D. Const. § 22	N.D. Const. art. I, § 9	1.0	CONFIDENT	N.D. Const. art. V, § 2=0.01; N.D. Const. art. X, § 5=0.01
+N.D. Const. § 23	N.D. Const. art. I, § 7	1.0	CONFIDENT	N.D. Const. art. III, § 1=0.01; N.D. Const. art. XI, § 1=0.01
+N.D. Const. § 24	N.D. Const. art. I, § 20	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 38	N.D. Const. art. IV, § 10	1.0	CONFIDENT	N.D. Const. art. IV, § 6=0.02; N.D. Const. art. IV, § 9=0.01
+N.D. Const. § 134	N.D. Const. art. XII, § 5	1.0	CONFIDENT	N.D. Const. art. XI, § 19=0.01; N.D. Const. art. XI, § 17=0.01
+N.D. Const. § 139	N.D. Const. art. XII, § 10	1.0	CONFIDENT	N.D. Const. art. IX, § 9=0.02; N.D. Const. art. IX, § 3=0.02
+N.D. Const. § 147	N.D. Const. art. VIII, § 1	1.0	CONFIDENT	N.D. Const. art. XIII, § 4=0.05; N.D. Const. art. XI, § 4=0.02
+N.D. Const. § 149	N.D. Const. art. VIII, § 3	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 152	N.D. Const. art. VIII, § 5	1.0	CONFIDENT	N.D. Const. art. II, § 1=0.01; N.D. Const. art. IX, § 5=0.00
+N.D. Const. § 155	N.D. Const. art. IX, § 5	1.0	CONFIDENT	N.D. Const. art. IX, § 3=0.02; N.D. Const. art. IX, § 1=0.01
+N.D. Const. § 163	N.D. Const. art. IX, § 9	1.0	CONFIDENT	N.D. Const. art. XII, § 10=0.02; N.D. Const. art. IX, § 3=0.01
+N.D. Const. § 178	N.D. Const. art. X, § 2	1.0	CONFIDENT	N.D. Const. art. X, § 12=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 179	N.D. Const. art. X, § 4	1.0	CONFIDENT	N.D. Const. art. VI, § 6=0.01; N.D. Const. art. VI, § 1=0.01
+N.D. Const. § 181	N.D. Const. art. X, § 8	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.01; N.D. Const. art. XV, § 6=0.01
+N.D. Const. § 184	N.D. Const. art. X, § 16	1.0	CONFIDENT	N.D. Const. art. X, § 15=0.03; N.D. Const. art. X, § 27=0.01
+N.D. Const. § 186	N.D. Const. art. X, § 12	1.0	CONFIDENT	N.D. Const. art. X, § 21=0.01; N.D. Const. art. X, § 2=0.01
+N.D. Const. § 190	N.D. Const. art. XI, § 18	1.0	CONFIDENT	N.D. Const. art. VII, § 2=0.08; N.D. Const. art. VII, § 4=0.05
+N.D. Const. § 191	N.D. Const. art. XI, § 19	1.0	CONFIDENT	N.D. Const. art. X, § 20=0.03; N.D. Const. art. VII, § 4=0.03
+N.D. Const. § 192	N.D. Const. art. XI, § 20	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 193	N.D. Const. art. XI, § 21	1.0	CONFIDENT	N.D. Const. art. IV, § 15=0.02; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 194	N.D. Const. art. XI, § 8	1.0	CONFIDENT	N.D. Const. art. IV, § 8=0.03; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 196	N.D. Const. art. XI, § 10	1.0	CONFIDENT	N.D. Const. art. XI, § 15=0.01; N.D. Const. art. V, § 10=0.00
+N.D. Const. § 197	N.D. Const. art. XI, § 11	1.0	CONFIDENT	N.D. Const. art. VI, § 6=0.05; N.D. Const. art. VI, § 1=0.04
+N.D. Const. § 198	N.D. Const. art. XI, § 12	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 199	N.D. Const. art. XI, § 13	1.0	CONFIDENT	N.D. Const. art. XV, § 1=0.01; N.D. Const. art. XV, § 3=0.01
+N.D. Const. § 200	N.D. Const. art. XI, § 14	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 201	N.D. Const. art. XI, § 15	1.0	CONFIDENT	N.D. Const. art. XI, § 10=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 208	N.D. Const. art. XI, § 22	1.0	CONFIDENT	N.D. Const. art. XI, § 11=0.02; N.D. Const. art. VI, § 10=0.01
+N.D. Const. § 209	N.D. Const. art. XI, § 24	1.0	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 213	N.D. Const. art. XI, § 23	1.0	CONFIDENT	N.D. Const. art. X, § 13=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. amend. art. XIV	N.D. Const. art. X, § 19	1.0	CONFIDENT	N.D. Const. art. X, § 20=0.73; N.D. Const. art. XI, § 19=0.03
+N.D. Const. amend. art. XIX	N.D. Const. art. X, § 20	1.0	CONFIDENT	N.D. Const. art. X, § 19=0.73; N.D. Const. art. XI, § 19=0.03
+N.D. Const. amend. art. XCII	N.D. Const. art. XI, § 5	1.0	CONFIDENT	N.D. Const. art. XI, § 6=0.60; N.D. Const. art. X, § 27=0.01
+N.D. Const. amend. art. CIII	N.D. Const. art. XI, § 6	1.0	CONFIDENT	N.D. Const. art. XI, § 5=0.60; N.D. Const. art. X, § 27=0.01
+N.D. Const. § 182	N.D. Const. art. X, § 13	0.991	CONFIDENT	N.D. Const. art. XI, § 23=0.00; N.D. Const. art. X, § 16=0.00
+N.D. Const. § 94	N.D. Const. art. VI, § 10	0.988	CONFIDENT	N.D. Const. art. XI, § 22=0.01; N.D. Const. art. IV, § 7=0.01
+N.D. Const. amend. art. LVI	N.D. Const. art. X, § 11	0.987	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 87	N.D. Const. art. VI, § 3	0.984	CONFIDENT	N.D. Const. art. XI, § 5=0.01; N.D. Const. art. VI, § 8=0.01
+N.D. Const. § 175	N.D. Const. art. X, § 3	0.983	CONFIDENT	N.D. Const. art. XII, § 2=0.02; N.D. Const. art. XI, § 16=0.01
+N.D. Const. § 93	N.D. Const. art. VI, § 9	0.975	CONFIDENT	N.D. Const. art. VI, § 7=0.10; N.D. Const. art. XI, § 22=0.01
+N.D. Const. § 161	N.D. Const. art. IX, § 8	0.972	CONFIDENT	N.D. Const. art. IX, § 3=0.01; N.D. Const. art. X, § 21=0.01
+N.D. Const. § 7	N.D. Const. art. I, § 13	0.971	CONFIDENT	N.D. Const. art. IX, § 13=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 86	N.D. Const. art. VI, § 2	0.968	CONFIDENT	N.D. Const. art. VIII, § 4=0.01; N.D. Const. art. VI, § 4=0.01
+N.D. Const. § 91	N.D. Const. art. VI, § 7	0.967	CONFIDENT	N.D. Const. art. VI, § 9=0.10; N.D. Const. art. VI, § 4=0.02
+N.D. Const. § 89	N.D. Const. art. VI, § 5	0.966	CONFIDENT	N.D. Const. art. VI, § 12=0.01; N.D. Const. art. VI, § 3=0.01
+N.D. Const. § 148	N.D. Const. art. VIII, § 2	0.963	CONFIDENT	N.D. Const. art. XI, § 19=0.01; N.D. Const. art. VII, § 4=0.01
+N.D. Const. § 92	N.D. Const. art. VI, § 8	0.96	CONFIDENT	N.D. Const. art. VI, § 6=0.03; N.D. Const. art. VI, § 1=0.03
+N.D. Const. § 95	N.D. Const. art. VI, § 11	0.959	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 122	N.D. Const. art. II, § 2	0.956	CONFIDENT	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 88	N.D. Const. art. VI, § 4	0.95	CONFIDENT	N.D. Const. art. VI, § 7=0.02; N.D. Const. art. IV, § 3=0.01
+N.D. Const. § 165	N.D. Const. art. IX, § 11	0.949	CONFIDENT	N.D. Const. art. I, § 19=0.01; N.D. Const. art. VII, § 3=0.01
+N.D. Const. § 151	N.D. Const. art. VIII, § 4	0.933	CONFIDENT	N.D. Const. art. VI, § 2=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 85	N.D. Const. art. VI, § 1	0.931	CONFIDENT	N.D. Const. art. VI, § 6=0.05; N.D. Const. art. XI, § 11=0.03
+N.D. Const. § 174	N.D. Const. art. X, § 1	0.931	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 206	N.D. Const. art. XI, § 1	0.922	CONFIDENT	N.D. Const. art. VII, § 3=0.01; N.D. Const. art. I, § 23=0.01
+N.D. Const. amend. art. LX	N.D. Const. art. X, § 10	0.914	CONFIDENT	N.D. Const. art. XI, § 4=0.02; N.D. Const. art. VII, § 3=0.02
+N.D. Const. § 40	N.D. Const. art. IV, § 9	0.909	CONFIDENT	N.D. Const. art. V, § 10=0.02; N.D. Const. art. IV, § 10=0.01
+N.D. Const. § 205	N.D. Const. art. XIII, § 3	0.909	CONFIDENT	N.D. Const. art. IX, § 10=0.02; N.D. Const. art. VIII, § 1=0.01
+N.D. Const. § 121	N.D. Const. art. II, § 1	0.899	CONFIDENT	N.D. Const. art. VII, § 2=0.03; N.D. Const. art. XI, § 18=0.03
+N.D. Const. § 90	N.D. Const. art. VI, § 6	0.882	CONFIDENT	N.D. Const. art. VI, § 1=0.05; N.D. Const. art. XI, § 11=0.04
+N.D. Const. § 183	N.D. Const. art. X, § 15	0.878	CONFIDENT	N.D. Const. art. X, § 16=0.03; N.D. Const. art. X, § 27=0.00
+N.D. Const. § 207	N.D. Const. art. XI, § 2	0.877	CONFIDENT	N.D. Const. art. VII, § 3=0.01; N.D. Const. art. XI, § 25=0.01
+N.D. Const. amend. art. LXXVI	N.D. Const. art. X, § 14	0.876	CONFIDENT	N.D. Const. art. VIII, § 5=0.00; N.D. Const. art. X, § 16=0.00
+N.D. Const. § 185	N.D. Const. art. X, § 18	0.873	CONFIDENT	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 189	N.D. Const. art. XI, § 17	0.862	CONFIDENT	N.D. Const. art. XI, § 19=0.03; N.D. Const. art. XII, § 5=0.01
+N.D. Const. amend. art. LXXV	N.D. Const. art. XI, § 7	0.858	CONFIDENT	N.D. Const. art. IV, § 14=0.00; N.D. Const. art. V, § 2=0.00
+N.D. Const. § 195	N.D. Const. art. XI, § 9	0.844	CONFIDENT	N.D. Const. art. IV, § 12=0.01; N.D. Const. art. VI, § 4=0.01
+N.D. Const. § 158	N.D. Const. art. IX, § 6	0.823	CONFIDENT	N.D. Const. art. IX, § 3=0.01; N.D. Const. art. X, § 21=0.01
+N.D. Const. § 215	N.D. Const. art. IX, § 12	0.774	CONFIDENT	N.D. Const. art. IX, § 13=0.02; N.D. Const. art. X, § 20=0.01
+N.D. Const. § 146	N.D. Const. art. XII, § 16	0.772	CONFIDENT	N.D. Const. art. V, § 10=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. amend. art. I	N.D. Const. art. XI, § 25	0.745	CONFIDENT	N.D. Const. art. VIII, § 2=0.01; N.D. Const. art. XV, § 4=0.01
+N.D. Const. § 177	N.D. Const. art. X, § 7	0.729	CONFIDENT	N.D. Const. art. X, § 9=0.01; N.D. Const. art. V, § 2=0.01
+N.D. Const. § 157	N.D. Const. art. IX, § 4	0.707	CONFIDENT	N.D. Const. art. IX, § 3=0.01; N.D. Const. art. IX, § 8=0.01
+N.D. Const. § 211	N.D. Const. art. XI, § 4	0.63	CONFIDENT	N.D. Const. art. I, § 23=0.03; N.D. Const. art. VIII, § 1=0.02
+N.D. Const. § 160	N.D. Const. art. IX, § 7	0.555	CONFIDENT	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 204	N.D. Const. art. XIII, § 2	0.538	REVIEW	N.D. Const. art. X, § 23=0.02; N.D. Const. art. XI, § 16=0.01
+N.D. Const. § 187	N.D. Const. art. X, § 17	0.536	REVIEW	N.D. Const. art. VIII, § 5=0.01; N.D. Const. art. II, § 1=0.00
+N.D. Const. amend. art. XCIV	N.D. Const. art. VI, § 12	0.523	REVIEW	N.D. Const. art. X, § 9=0.02; N.D. Const. art. IV, § 11=0.02
+N.D. Const. § 156	N.D. Const. art. IX, § 3	0.519	REVIEW	N.D. Const. art. XII, § 2=0.02; N.D. Const. art. XII, § 10=0.02
+N.D. Const. § 176	N.D. Const. art. X, § 5	0.51	REVIEW	N.D. Const. art. X, § 7=0.00; N.D. Const. art. XIII, § 4=0.00
+N.D. Const. § 14	N.D. Const. art. I, § 16	0.502	REVIEW	N.D. Const. art. VI, § 2=0.01; N.D. Const. art. X, § 21=0.00
+N.D. Const. § 50	N.D. Const. art. IV, § 14	0.5	REVIEW	N.D. Const. art. XI, § 5=0.03; N.D. Const. art. V, § 7=0.01
+N.D. Const. § 210	N.D. Const. art. XI, § 3	0.5	REVIEW	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. amend. art. LIV	N.D. Const. art. VIII, § 6	0.479	REVIEW	N.D. Const. art. XIV, § 3=0.01; N.D. Const. art. IX, § 8=0.00
+N.D. Const. § 81	N.D. Const. art. V, § 10	0.467	REVIEW	N.D. Const. art. IV, § 9=0.01; N.D. Const. art. IV, § 10=0.00
+N.D. Const. § 153	N.D. Const. art. IX, § 1	0.452	REVIEW	N.D. Const. art. IX, § 10=0.02; N.D. Const. art. IX, § 5=0.01
+N.D. Const. § 216	N.D. Const. art. IX, § 13	0.417	REVIEW	N.D. Const. art. IX, § 12=0.02; N.D. Const. art. IX, § 5=0.00
+N.D. Const. § 135	N.D. Const. art. XII, § 6	0.405	REVIEW	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 164	N.D. Const. art. IX, § 10	0.398	REVIEW	N.D. Const. art. IX, § 8=0.04; N.D. Const. art. XIII, § 3=0.02
+N.D. Const. § 1	N.D. Const. art. I, § 1	0.389	REVIEW	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 96	N.D. Const. art. VI, § 12	0.384	REVIEW	N.D. Const. art. X, § 9=0.02; N.D. Const. art. IV, § 11=0.02
+N.D. Const. § 166	N.D. Const. art. VII, § 3	0.364	REVIEW	N.D. Const. art. IV, § 1=0.03; N.D. Const. art. I, § 23=0.02
+N.D. Const. amend. art. XXIV	N.D. Const. art. X, § 9	0.351	REVIEW	N.D. Const. art. X, § 7=0.03; N.D. Const. art. V, § 2=0.02
+N.D. Const. § 169	N.D. Const. art. VII, § 4	0.324	REVIEW	N.D. Const. art. VII, § 2=0.04; N.D. Const. art. XI, § 19=0.03
+N.D. Const. § 68	N.D. Const. art. X, § 8	0.316	REVIEW	N.D. Const. art. I, § 24=0.04; N.D. Const. art. XII, § 2=0.02
+N.D. Const. § 36	N.D. Const. art. IV, § 8	0.3	REVIEW	N.D. Const. art. XI, § 8=0.03; N.D. Const. art. VIII, § 6=0.00
+N.D. Const. § 53	N.D. Const. art. IV, § 7	0.3	REVIEW	N.D. Const. art. XI, § 22=0.01; N.D. Const. art. VI, § 10=0.01
+N.D. Const. § 56	N.D. Const. art. IV, § 7	0.284	REVIEW	N.D. Const. art. XI, § 25=0.01; N.D. Const. art. VIII, § 2=0.01
+N.D. Const. § 101	N.D. Const. art. VI, § 5	0.255	REVIEW	N.D. Const. art. VI, § 12=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. amend. art. CV		0.202	NOMATCH	N.D. Const. art. III, § 5=0.12; N.D. Const. art. III, § 8=0.11
+N.D. Const. § 97		0.197	NOMATCH	N.D. Const. art. III, § 10=0.01; N.D. Const. art. V, § 11=0.01
+N.D. Const. § 144		0.19	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 42		0.165	NOMATCH	N.D. Const. art. XI, § 21=0.10; N.D. Const. art. V, § 2=0.01
+N.D. Const. § 188		0.142	NOMATCH	N.D. Const. art. X, § 3=0.01; N.D. Const. art. XI, § 17=0.01
+N.D. Const. § 154		0.139	NOMATCH	N.D. Const. art. IX, § 1=0.01; N.D. Const. art. XI, § 25=0.00
+N.D. Const. § 28		0.136	NOMATCH	N.D. Const. art. V, § 4=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 34		0.136	NOMATCH	N.D. Const. art. V, § 4=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 52		0.132	NOMATCH	N.D. Const. art. VII, § 3=0.06; N.D. Const. art. I, § 23=0.03
+N.D. Const. § 74		0.12	NOMATCH	N.D. Const. art. I, § 15=0.03; N.D. Const. art. V, § 5=0.02
+N.D. Const. § 202		0.117	NOMATCH	N.D. Const. art. IV, § 12=0.02; N.D. Const. art. III, § 7=0.01
+N.D. Const. § 71		0.106	NOMATCH	N.D. Const. art. III, § 1=0.01; N.D. Const. art. IV, § 7=0.00
+N.D. Const. § 170		0.104	NOMATCH	N.D. Const. art. VII, § 6=0.03; N.D. Const. art. VII, § 4=0.02
+N.D. Const. § 44		0.1	NOMATCH	N.D. Const. art. IV, § 16=0.04; N.D. Const. art. V, § 10=0.01
+N.D. Const. § 118		0.095	NOMATCH	N.D. Const. art. VII, § 2=0.09; N.D. Const. art. XI, § 18=0.05
+N.D. Const. § 77		0.09	NOMATCH	N.D. Const. art. V, § 12=0.06; N.D. Const. art. V, § 2=0.01
+N.D. Const. § 59		0.086	NOMATCH	N.D. Const. art. VII, § 3=0.06; N.D. Const. art. I, § 23=0.02
+N.D. Const. § 82		0.079	NOMATCH	N.D. Const. art. V, § 1=0.01; N.D. Const. art. I, § 9=0.01
+N.D. Const. § 41		0.068	NOMATCH	N.D. Const. art. XV, § 5=0.02; N.D. Const. art. XI, § 22=0.02
+N.D. Const. § 46		0.068	NOMATCH	N.D. Const. art. XI, § 22=0.02; N.D. Const. art. IV, § 9=0.01
+N.D. Const. § 113		0.068	NOMATCH	N.D. Const. art. VII, § 4=0.06; N.D. Const. art. XI, § 18=0.05
+N.D. Const. § 173		0.062	NOMATCH	N.D. Const. art. XI, § 4=0.02; N.D. Const. art. VII, § 3=0.01
+N.D. Const. § 172		0.06	NOMATCH	N.D. Const. art. XI, § 17=0.02; N.D. Const. art. I, § 15=0.01
+N.D. Const. § 48		0.057	NOMATCH	N.D. Const. art. XI, § 9=0.01; N.D. Const. art. VIII, § 6=0.00
+N.D. Const. § 103		0.057	NOMATCH	N.D. Const. art. IV, § 13=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 32		0.053	NOMATCH	N.D. Const. art. IV, § 8=0.03; N.D. Const. art. XI, § 8=0.03
+N.D. Const. § 141		0.052	NOMATCH	N.D. Const. art. VI, § 6=0.02; N.D. Const. art. VI, § 1=0.02
+N.D. Const. § 27		0.047	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 133		0.047	NOMATCH	N.D. Const. art. IX, § 3=0.02; N.D. Const. art. I, § 24=0.02
+N.D. Const. § 130		0.041	NOMATCH	N.D. Const. art. XI, § 18=0.03; N.D. Const. art. VII, § 2=0.03
+N.D. Const. § 131		0.04	NOMATCH	N.D. Const. art. VII, § 4=0.02; N.D. Const. art. VII, § 2=0.02
+N.D. Const. § 45		0.039	NOMATCH	N.D. Const. art. IV, § 10=0.01; N.D. Const. art. IV, § 6=0.01
+N.D. Const. § 31		0.036	NOMATCH	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 116		0.036	NOMATCH	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 180		0.031	NOMATCH	N.D. Const. art. VI, § 12=0.03; N.D. Const. art. X, § 23=0.02
+N.D. Const. § 114		0.029	NOMATCH	N.D. Const. art. XI, § 22=0.02; N.D. Const. art. VI, § 10=0.01
+N.D. Const. § 120		0.028	NOMATCH	N.D. Const. art. VII, § 4=0.01; N.D. Const. art. XI, § 7=0.01
+N.D. Const. § 49		0.027	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 98		0.027	NOMATCH	N.D. Const. art. VI, § 7=0.02; N.D. Const. art. XI, § 9=0.02
+N.D. Const. § 112		0.027	NOMATCH	N.D. Const. art. XI, § 18=0.02; N.D. Const. art. VII, § 6=0.02
+N.D. Const. § 100		0.026	NOMATCH	N.D. Const. art. VI, § 7=0.02; N.D. Const. art. XI, § 9=0.02
+N.D. Const. § 107		0.026	NOMATCH	N.D. Const. art. II, § 1=0.01; N.D. Const. art. IV, § 10=0.01
+N.D. Const. § 75		0.025	NOMATCH	N.D. Const. art. XIII, § 4=0.00; N.D. Const. art. VIII, § 1=0.00
+N.D. Const. § 83		0.025	NOMATCH	N.D. Const. art. IV, § 3=0.01; N.D. Const. art. I, § 15=0.01
+N.D. Const. § 109		0.025	NOMATCH	N.D. Const. art. XI, § 22=0.02; N.D. Const. art. VI, § 10=0.01
+N.D. Const. § 143		0.025	NOMATCH	N.D. Const. art. I, § 12=0.01; N.D. Const. art. I, § 4=0.01
+N.D. Const. amend. art. LI		0.025	NOMATCH	N.D. Const. art. IV, § 10=0.02; N.D. Const. art. III, § 10=0.01
+N.D. Const. § 70		0.024	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 150		0.024	NOMATCH	N.D. Const. art. VI, § 9=0.01; N.D. Const. art. XI, § 22=0.01
+N.D. Const. § 203		0.023	NOMATCH	N.D. Const. art. IV, § 1=0.01; N.D. Const. art. VIII, § 1=0.01
+N.D. Const. § 39		0.022	NOMATCH	N.D. Const. art. IV, § 10=0.02; N.D. Const. art. III, § 10=0.02
+N.D. Const. § 104		0.022	NOMATCH	N.D. Const. art. III, § 10=0.02; N.D. Const. art. VI, § 6=0.01
+N.D. Const. § 115		0.022	NOMATCH	N.D. Const. art. IX, § 12=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. Schedule, § 26		0.021	NOMATCH	N.D. Const. art. I, § 23=0.02; N.D. Const. art. VIII, § 2=0.02
+N.D. Const. § 73		0.02	NOMATCH	N.D. Const. art. II, § 1=0.01; N.D. Const. art. IV, § 10=0.01
+N.D. Const. § 35		0.019	NOMATCH	N.D. Const. art. IV, § 2=0.01; N.D. Const. art. IX, § 3=0.01
+N.D. Const. § 64		0.019	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 84		0.019	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 29		0.018	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XIV, § 1=0.00
+N.D. Const. § 65		0.018	NOMATCH	N.D. Const. art. XI, § 8=0.01; N.D. Const. art. IV, § 13=0.00
+N.D. Const. § 110		0.018	NOMATCH	N.D. Const. art. VI, § 7=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 99		0.017	NOMATCH	N.D. Const. art. VI, § 10=0.01; N.D. Const. art. IV, § 6=0.01
+N.D. Const. § 72		0.016	NOMATCH	N.D. Const. art. V, § 2=0.01; N.D. Const. art. XI, § 7=0.00
+N.D. Const. § 119		0.016	NOMATCH	N.D. Const. art. XVI, § 1=0.01; N.D. Const. art. XI, § 9=0.01
+N.D. Const. § 79		0.015	NOMATCH	N.D. Const. art. VI, § 5=0.00; N.D. Const. art. XI, § 9=0.00
+N.D. Const. § 108		0.015	NOMATCH	N.D. Const. art. VI, § 10=0.01; N.D. Const. art. IV, § 7=0.01
+N.D. Const. § 58		0.013	NOMATCH	N.D. Const. art. IV, § 13=0.01; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 66		0.013	NOMATCH	N.D. Const. art. XII, § 10=0.01; N.D. Const. art. IX, § 9=0.01
+N.D. Const. § 67		0.013	NOMATCH	N.D. Const. art. IV, § 13=0.01; N.D. Const. art. VIII, § 4=0.01
+N.D. Const. § 167		0.013	NOMATCH	N.D. Const. art. VII, § 4=0.01; N.D. Const. art. VII, § 2=0.01
+N.D. Const. § 51		0.012	NOMATCH	N.D. Const. art. IV, § 7=0.01; N.D. Const. art. XIII, § 4=0.01
+N.D. Const. § 140		0.012	NOMATCH	N.D. Const. art. XI, § 22=0.01; N.D. Const. art. VI, § 10=0.01
+N.D. Const. § 43		0.011	NOMATCH	N.D. Const. art. XIII, § 4=0.01; N.D. Const. art. VIII, § 1=0.01
+N.D. Const. § 61		0.011	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 76		0.01	NOMATCH	N.D. Const. art. XI, § 25=0.01; N.D. Const. art. X, § 10=0.01
+N.D. Const. § 102		0.01	NOMATCH	N.D. Const. art. III, § 7=0.01; N.D. Const. art. III, § 6=0.01
+N.D. Const. pmbl.		0.009	NOMATCH	N.D. Const. art. XIII, § 3=0.01; N.D. Const. art. XIV, § 3=0.01
+N.D. Const. § 138		0.009	NOMATCH	N.D. Const. art. XIII, § 4=0.01; N.D. Const. art. VIII, § 1=0.01
+N.D. Const. § 37		0.008	NOMATCH	N.D. Const. art. V, § 10=0.00; N.D. Const. art. IV, § 9=0.00
+N.D. Const. § 106		0.008	NOMATCH	N.D. Const. art. XI, § 9=0.01; N.D. Const. art. IV, § 6=0.01
+N.D. Const. § 111		0.008	NOMATCH	N.D. Const. art. VI, § 1=0.01; N.D. Const. art. XI, § 11=0.01
+N.D. Const. § 168		0.007	NOMATCH	N.D. Const. art. VIII, § 6=0.00; N.D. Const. art. XVI, § 5=0.00
+N.D. Const. § 105		0.005	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 142		0.005	NOMATCH	N.D. Const. art. IX, § 8=0.00; N.D. Const. art. V, § 10=0.00
+N.D. Const. § 60		0.004	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 63		0.004	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 80		0.003	NOMATCH	N.D. Const. art. XVI, § 5=0.00; N.D. Const. art. XVI, § 4=0.00
+N.D. Const. § 25		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 26		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 30		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 33		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 47		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 54		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 55		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 57		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 62		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 69		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 78		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 117		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 123		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 124		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 125		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 126		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 127		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 128		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 129		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 132		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 136		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 137		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 145		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 159		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 162		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 171		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 212		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 214		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. § 217		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 1		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 2		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 3		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 4		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 5		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 6		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 7		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 8		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 9		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 10		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 11		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 12		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 13		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 14		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 15		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 16		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 17		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 18		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 19		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 20		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 21		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 22		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 23		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 24		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. Schedule, § 25		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. XXXIII		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. XXXVI		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. XL		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. LIX		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. LXV		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. LXXXVII		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00
+N.D. Const. amend. art. LXXXVIII		0.0	NOMATCH	N.D. Const. art. XVI, § 4=0.00; N.D. Const. art. XVI, § 3=0.00

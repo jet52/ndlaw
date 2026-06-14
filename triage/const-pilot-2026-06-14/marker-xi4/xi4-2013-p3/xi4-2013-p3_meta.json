@@ -1,0 +1,156 @@
+{
+  "table_of_contents": [
+    {
+      "title": "CHAPTER 517",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          166.166015625,
+          48.6025390625
+        ],
+        [
+          247.8719940185547,
+          48.6025390625
+        ],
+        [
+          247.8719940185547,
+          60.8687744140625
+        ],
+        [
+          166.166015625,
+          60.8687744140625
+        ]
+      ]
+    },
+    {
+      "title": "HOUSE CONCURRENT RESOLUTION NO. 3009",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          72.7734375,
+          77.268798828125
+        ],
+        [
+          341.0720520019531,
+          77.268798828125
+        ],
+        [
+          341.0720520019531,
+          89.268798828125
+        ],
+        [
+          72.7734375,
+          89.268798828125
+        ]
+      ]
+    },
+    {
+      "title": "OATHS OF OFFICE",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          152.82421875,
+          123.5185546875
+        ],
+        [
+          261.2959899902344,
+          123.5185546875
+        ],
+        [
+          261.2959899902344,
+          135.6688232421875
+        ],
+        [
+          152.82421875,
+          135.6688232421875
+        ]
+      ]
+    },
+    {
+      "title": "STATEMENT OF INTENT",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          154.845703125,
+          183.265625
+        ],
+        [
+          258.8900146484375,
+          183.265625
+        ],
+        [
+          258.8900146484375,
+          192.80160522460938
+        ],
+        [
+          154.845703125,
+          192.80160522460938
+        ]
+      ]
+    },
+    {
+      "title": "BE IT RESOLVED BY THE HOUSE OF REPRESENTATIVES OF NORTH DAKOTA,\nTHE SENATE CONCURRING THEREIN:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          36.099998474121094,
+          231.10159301757812
+        ],
+        [
+          376.1200866699219,
+          231.10159301757812
+        ],
+        [
+          376.1200866699219,
+          250.5015869140625
+        ],
+        [
+          36.099998474121094,
+          250.5015869140625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          84
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/xi4-2013-p3"
+}

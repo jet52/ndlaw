@@ -227,7 +227,7 @@ def apply_amendments(conn, *, batch: str) -> dict:
     if not AMENDMENTS_JSON.exists():
         return {"amendments_applied": 0}
     records = json.loads(AMENDMENTS_JSON.read_text()).get("amendments", [])
-    n_add = n_mod = n_rep = n_skipped = n_warn = n_future = 0
+    n_add = n_mod = n_rep = n_skipped = n_warn = n_future = n_event = 0
 
     def find(cite):
         return conn.execute(
@@ -238,6 +238,26 @@ def apply_amendments(conn, *, batch: str) -> dict:
     for r in records:
         if r.get("status") == "pending":
             n_skipped += 1
+            continue
+        if r.get("type") == "event":
+            # Event-only record: the provision's text+timeline are already correct
+            # in the base layer; record just the ratification/adoption event (no
+            # version change). E.g. Amendment I = the 1889 Prohibition Article (§217).
+            cite = r.get("affected") or r.get("citation")
+            ev = conn.execute("SELECT id FROM provisions WHERE cite_key=?",
+                              (corpus.cite_key(cite),)).fetchone()
+            if not ev:
+                print(f"  WARN event {cite} ({r.get('number')}): provision not found", file=sys.stderr)
+                n_warn += 1
+                continue
+            conn.execute(
+                "INSERT OR IGNORE INTO amendments (provision_id, action, effective_date, "
+                " raw_date, election_date, affected, amendment_number, authority, source_url, raw) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (ev["id"], r.get("action") or "adopted", r["effective_date"],
+                 r.get("raw_date"), r.get("election_date"), cite, r.get("number"),
+                 r.get("authority"), (r.get("source_urls") or [None])[0], r.get("raw") or ""))
+            n_event += 1
             continue
         eff = r["effective_date"]
         auth = r.get("authority")
@@ -312,8 +332,8 @@ def apply_amendments(conn, *, batch: str) -> dict:
                     (ev["id"] if ev else None, action, eff, r.get("election_date"),
                      r.get("affected") or cite, r.get("number"), auth, url, ch.get("heading") or ""))
     conn.commit()
-    return {"adds": n_add, "amends": n_mod, "repeals": n_rep, "future_skipped": n_future,
-            "pending_skipped": n_skipped, "unresolved": n_warn}
+    return {"adds": n_add, "amends": n_mod, "repeals": n_rep, "events": n_event,
+            "future_skipped": n_future, "pending_skipped": n_skipped, "unresolved": n_warn}
 
 
 def main() -> None:

@@ -1,0 +1,167 @@
+number	roman	eff_date	election_date	action	in_history	in_served	text_applied	affected	subject_raw
+2	II	1898-12-08	1898-11-08	amend	Y	Y	Y	121, 127 | N.D. Const. § 121 | N.D. Const. § 127	Qualifications of voters
+3	III	1900-12-06	1900-11-06	amend	Y	Y	Y	76 | N.D. Const. § 76	Board of pardons
+4	IV	1900-12-06	1900-11-06	amend	Y	Y	Y	179 | N.D. Const. § 179	Assessment of railroads, express, telegraph, etc. by state board of equalization
+5	V	1904-12-08	1904-11-08	amend	Y	Y	Y	215 | N.D. Const. § 215	State institutions (deaf-and-dumb school; insane hospital / feeble-minded institution)
+6	VI	1904-12-08	1904-11-08	amend	Y	Y	Y	215 | N.D. Const. § 215	State institutions (deaf-and-dumb school; insane hospital / feeble-minded institution)
+7	VII	1904-12-08	1904-11-08	amend	Y	Y	Y	176 | N.D. Const. § 176	Taxation; grain in elevators
+8	VIII	1908-12-03	1908-11-03	amend	Y	Y	Y	162 | N.D. Const. § 162	Investment of permanent school and educational funds
+9	IX	1908-12-03	1908-11-03	amend	Y	Y	Y	158 | N.D. Const. § 158	Minimum price of state lands
+10	X	1908-12-03	1908-11-03	amend	Y	Y	Y	89 | N.D. Const. § 89	Number of judges of the supreme court
+11	XI	1910-12-08	1910-11-08	amend	Y	Y	Y	158 | N.D. Const. § 158	Sale of public lands; interest reduced to five per cent; notice at county seat
+12	XII	1910-12-08	1910-11-08	amend	Y	Y	Y	216 | N.D. Const. § 216	Add state normal school at Minot to list of state institutions
+13	XIII	1912-12-05	1912-11-05	amend	Y	Y	Y	158 | N.D. Const. § 158	Sale of school and public lands; minimum price; sale for public purposes
+14	XIV	1912-12-05	1912-11-05	amended		Y	?	Art. XIV	Authorizes the Legislative Assembly to operate grain elevators in Minnesota or Wisconsin. (S.L. 1913 - not listed; S.L. 
+15	XV	1914-12-03	1914-11-03	amend	Y	Y	Y	25 | N.D. Const. § 25	Legislative authority; initiative and referendum
+16	XVI	1914-12-03	1914-11-03	amend	Y	Y	Y	202 | N.D. Const. § 202	Initiative petitions for constitutional amendments (Article 16; amends § 202)
+17	XVII	1914-12-03	1914-11-03	amend	Y	Y	Y	216 | N.D. Const. § 216	State institutions (Blind at Bathgate, Forestry at Bottineau)
+18	XVIII	1914-12-03	1914-11-03	amend	Y	Y	Y	185 | N.D. Const. § 185	Internal improvements; state aid; appropriations for public highways
+19	XIX	1914-12-03	1914-11-03	amended		Y	?	Art. XIX	Authorizes the Legislative Assembly to construct and operate terminal elevators in North Dakota. (S.L. 1915, p. 403; S.L
+20	XX	1914-12-03	1914-11-03	amend	Y	Y	Y	176, 179 | N.D. Const. § 176 | N.D. Const. § 179	Uniformity of taxation; exemptions
+21	XXI	1916-12-07	1916-11-07	amend	Y	Y	Y	216 | N.D. Const. § 216	State institutions (Dickinson normal school; state hospital for the insane)
+22	XXII	1916-12-07	1916-11-07	amend	Y	Y	Y	216 | N.D. Const. § 216	State institutions (Dickinson normal school; state hospital for the insane)
+23	XXIII	1918-12-05	1918-11-05	amend	Y	Y	Y	135 | N.D. Const. § 135	Cumulative voting; cooperative corporations may limit voting power
+24	XXIV	1918-12-05	1918-11-05	amended		Y	?	XXIV	Authorizes the Legislative Assembly to impose a tax for state hail insurance. (S.L. 1919, p. 502; S.L. 1917, ch. 91) (SB
+25	XXV	1918-12-05	1918-11-05	amend	Y	Y	Y	89 | N.D. Const. § 89	Supreme Court; number of judges; quorum; four required to declare an act unconstitutional
+26	XXVI	1918-12-05	1918-11-05	amend	Y	Y	Y	25 | N.D. Const. § 25	Legislative power; reservation of initiative and referendum
+27	XXVII	1918-12-05	1918-11-05	amend	Y	Y	Y	67 | N.D. Const. § 67	Section 67 in Article 2 — Emergency measures; no franchise or special privilege
+28	XXVIII	1918-12-05	1918-11-05	amend	Y	Y	Y	202 | N.D. Const. § 202	Submission of constitutional amendments; initiated amendments
+29	XXIX	1918-12-05	1918-11-05	amend	Y	Y	Y	176 | N.D. Const. § 176	Taxation — classification and exemption of personal property
+30	XXX	1918-12-05	1918-11-05	amend	Y	Y	Y	177 | N.D. Const. § 177	Acreage tax for hail crop insurance
+31	XXXI	1918-12-05	1918-11-05	amend	Y	Y	Y	182 | N.D. Const. § 182	Section 182 in Article 12 (state bonding limit; mortgages of state industries)
+32	XXXII	1918-12-05	1918-11-05	amend	Y	Y	Y	185 | N.D. Const. § 185	Authorizes the state, counties, and cities to engage in business activities
+33	XXXIII	1920-04-15	1920-03-16	amended		Y	?	XXXIII	Provides for the recall of any elective congressional, state, county, judicial, or legislative officials upon petition o
+34	XXXIV	1920-04-15	1920-03-16	amend	Y	Y	Y	161 | N.D. Const. § 161	Leasing of state lands and coal lands for agricultural purposes up to five years
+35	XXXV	1920-04-15	1920-03-16	amend	Y	Y	Y	183 | N.D. Const. § 183	Limitations on public indebtedness; school district 5 percent increase; county and city utility bonds
+36	XXXVI	1920-04-15	1920-03-16	amended		Y	?	XXXVI	Reduces voting residence requirements for county from six months to 90 days; reduces precinct requirements from 90 days 
+37	XXXVII	1920-12-02	1920-11-02	amend	Y	Y	Y	121 | N.D. Const. § 121	Qualifications of electors (woman suffrage)
+38	XXXVIII	1920-12-02	1920-11-02	amend	Y	Y	Y	215 | N.D. Const. § 215	Permanent location of state institutions; State Reform School renamed State Training School
+39	XXXIX	1920-12-02	1920-11-02	amend	Y	Y	Y	162 | N.D. Const. § 162	Investment of permanent school fund and other educational funds; loans on farm lands up to one-half appraised value
+40	XL	1922-07-28	1922-06-28	amended		Y	?	XL	Permits a qualified elector to vote in his old precinct until qualified to vote in a new precinct if the move has been m
+41	XLI	1924-04-17	1924-03-18	amend	Y	Y	Y	173 | N.D. Const. § 173	Consolidation of county judge and clerk of district court in counties of six thousand or less
+42	XLII	1924-04-17	1924-03-18	amend	Y	Y	Y	182 | N.D. Const. § 182	Public debt; state bonds; payment within thirty years from date of issue
+43	XLIII	1926-07-30	1926-06-30	amend	Y	Y	Y	82 | N.D. Const. § 82	Term of office of railroad commissioners (six years, staggered)
+44	XLIV	1928-04-20	1928-03-20	amend	Y	Y	Y	179 | N.D. Const. § 179	Property assessed by the State Board of Equalization; light, heat, and power companies included
+45	XLV	1930-07-25	1930-06-25	amend	Y	Y	Y	104 | N.D. Const. § 104	Election and terms of judges of district court
+46	XLVI	1930-07-25	1930-06-25	amend	Y	Y	Y	90 | N.D. Const. § 90	Election, Terms and Compensation of Judges of the Supreme Court
+47	XLVII	1932-12-08	1932-11-08	repeal	Y	Y	Y	217 | N.D. Const. § 217	Prohibition
+48	XLVIII	1933-10-22		amend	Y	Y	Y	173 | N.D. Const. § 173	County Officers
+49	XLIX	1933-10-22		amend	Y	Y	Y	63 | N.D. Const. § 63	Reading of Legislative Bills
+50	L	1938-07-28	1938-06-28	amend	Y	Y	Y	158 | N.D. Const. § 158	Sale of school and public lands; interest rate reduced to three per cent; refinancing
+51	LI	1938-07-28	1938-06-28	amended		Y	?	LI	Prohibits members of the Legislative Assembly from accepting state employment during their term of office. (S.L. 1939, p
+52	LII	1938-07-28	1938-06-28	amend	Y	Y	Y	82 | N.D. Const. § 82	
+53	LIII	1939-07-01	1938-06-28	amend	Y	Y	Y	186 | N.D. Const. § 186	Public moneys paid into state treasury; appropriation required; exceptions
+54	LIV	1938-07-28	1938-06-28	amended		Y	?	LIV	Creates a State Board of Higher Education to replace the Board of Administration as administrator of institutions of hig
+55	LV	1940-07-25	1940-06-25	amend	Y	Y	Y	167, 170, 171, 172, 173 | N.D. Const. § 167 | N.D. Const. § 170 | N.D. Const. § 171 | N.D. Const. § 172 | N.D. Const. § 173	Organization, consolidation, and dissolution of counties
+56	LVI	1940-07-25	1940-06-25	amended		Y	?	LVI	Dedicates highway user taxes to defray cost of construction and maintenance of highways. (S.L. 1941, p. 589)
+57	LVII	1940-07-25	1940-06-25	amend	Y	Y	Y	82 | N.D. Const. § 82	Board of Railroad Commissioners renamed Public Service Commission
+58	LVIII	1944-07-27	1944-06-27	amend	Y	Y	Y	158 | N.D. Const. § 158	Sale of school and public lands
+59	LIX	1948-07-29	1948-06-29	amended		Y	?	LIX	Provides for bonding the state up to $27 million for a state bonus for World War II veterans. (S.L. 1949, p. 510; S.L. 1
+60	LX	1948-12-02	1948-11-02	amended		Y	?	LX	Authorizes a property tax levy of one mill to finance state medical center at the University of North Dakota. (S.L. 1949
+61	LXI	1952-07-24	1952-06-24	amend	Y	Y	Y	162 | N.D. Const. § 162	Investment of moneys of the permanent school and educational funds
+62	LXII	1952-07-24	1952-06-24	amend	Y	Y	Y	173 | N.D. Const. § 173	Election of county officers; treasurer four-year limit
+63	LXIII	1952-07-24	1952-06-24	amend	Y	Y	Y	216 | N.D. Const. § 216	State institutions (remaining grant)
+64	LXIV	1954-07-29	1954-06-29	amend	Y	Y	Y	138 | N.D. Const. § 138	Corporate issuance of stock and bonds
+65	LXV	1956-07-26	1956-06-26	amended		Y	?	LXV	Provides for bonding the state up to $9 million to provide a state bonus for veterans of the Korean conflict. (S.L. 1957
+66	LXVI	1956-07-26		amend	Y	Y	Y	14 | N.D. Const. § 14	Article 66 — Compensation for Public Taking Private Property
+67	LXVII	1956-07-26		amend	Y	Y	Y	173 | N.D. Const. § 173	SECTION 173.
+68	LXVIII	1958-07-24		amend	Y	Y	Y	203 | N.D. Const. § 203	"JURISDICTION OF UNITED STATES AND INDIAN LANDS (paragraph 2 ""Second."")"
+69	LXIX	1958-07-24		amend	Y	Y	Y	121 | N.D. Const. § 121	ELECTIVE FRANCHISE
+70	LXX	1960-07-28		amend	Y	Y	Y	82, 83, 84 | N.D. Const. § 82 | N.D. Const. § 83 | N.D. Const. § 84	Authorizing Department of Labor
+71	LXXI	1960-07-28		amend	Y	Y	Y	155 | N.D. Const. § 155	SALE OF COAL LANDS AND RESERVATION OF MINERALS
+72	LXXII	1960-07-28		amend	Y	Y	Y	26, 29, 35 | N.D. Const. § 26 | N.D. Const. § 29 | N.D. Const. § 35	Legislative Districts and Reapportionment
+73	LXXIII	1960-07-28	1960-06-28	amend	Y	Y	Y	Art. LVI | N.D. Const. amend. art. LVI	Article 56 re-enacted — aviation fuel taxes excluded from highway revenue
+74	LXXIV	1960-12-08	1960-11-08	amend	Y	Y	Y	215 | N.D. Const. § 215	State institutions (ND State University of Agriculture)
+75	LXXV	1962-07-26	1962-06-26	amended		Y	?	LXXV	Assures continuity of state and local government during emergencies caused by enemy attack. (S.L. 1963, ch. 445; S.L. 19
+76	LXXVI	1962-12-06	1962-11-06	amended		Y	?	LXXVI	Allows the state to bond itself to make loans to companies desiring to establish power generating facilities. (S.L. 1963
+77	LXXVII	1962-12-06		amend	Y	Y	Y	173 | N.D. Const. § 173	County Officials' Terms
+78	LXXVIII	1964-07-30	1964-06-30	amended		Y	?	Art. LIV	Amends Article 54 to permit separation of the budgets for the agriculture experiment stations and the Extension Division
+79	LXXIX	1964-07-30	1964-06-30	amend	Y	Y	Y	113 | N.D. Const. § 113	Municipal Judges
+80	LXXX	1964-07-30		amend	Y	Y	Y	71, 82, 150 | N.D. Const. § 150 | N.D. Const. § 71 | N.D. Const. § 82	Terms of office for state officials and superintendent of schools for each county
+81	LXXXI	1964-12-03	1964-11-03	repealed		Y	N	25	Repeals requirements that Secretary of State mail every elector a publicity pamphlet setting forth all measures to be vo
+82	LXXXII	1966-10-06		amend	Y	Y	Y	175 | N.D. Const. § 175	Tax Levies
+83	LXXXIII	1966-10-06		amend	Y	Y	Y	150 | N.D. Const. § 150	Office of County Superintendent of Schools
+84	LXXXIV	1966-12-08		amend	Y	Y	Y	130 | N.D. Const. § 130	HOME RULE FOR CITIES AND VILLAGES
+85	LXXXV	1968-10-03		amend	Y	Y	Y	148 | N.D. Const. § 148	Uniform System of Free Public Schools
+86	LXXXVI	1968-10-03		amend	Y	Y	Y	41, 53, 56 | N.D. Const. § 41 | N.D. Const. § 53 | N.D. Const. § 56	SECTION 41.
+87	LXXXVII	1970-10-01	1970-09-01	amended		Y	?	LXXXVII	Issues bonds for Vietnam veterans. (S.L. 1971, ch. 616; S.L. 1969, ch. 592) (SCR 17)
+88	LXXXVIII	1970-10-01	1970-09-01	amended		Y	?	LXXXVIII	Calls for a constitutional convention. (S.L. 1971, ch. 617; S.L. 1969, ch. 595) (HCR 16)
+89	LXXXIX	1970-10-01		amend	Y	Y	Y	153, 156, 159, 162 | N.D. Const. § 153 | N.D. Const. § 156 | N.D. Const. § 159 | N.D. Const. § 162	INVESTMENT OF INSTITUTIONAL TRUST FUNDS
+90	XC	1972-10-05	1972-09-05	amend	Y	Y	Y	216, Art. LIV | N.D. Const. § 216	State institutions (Ellendale removed)
+91	XCI	1975-07-01		amend	Y	Y	Y	7 | N.D. Const. § 7	Size of Trial Juries
+92	XCII	1975-07-01		amend	Y	Y	Y	N.D. Const. § 50 | XCII, 50	Open Meetings of the Legislative Assembly
+93	XCIII	1974-12-05	1974-11-05	amend	Y	Y	Y	74, 77 | N.D. Const. § 74 | N.D. Const. § 77	JOINT BALLOT FOR GOVERNOR AND LIEUTENANT GOVERNOR
+94	XCIV	1974-12-05	1974-11-05	amended		Y	?	XCIV	Authorizes the Legislative Assembly to provide for the retirement, discipline, and removal of judges. (S.L. 1975, ch. 60
+95	XCV	1976-10-07		amend	Y	Y	Y	53, 55, 56 | N.D. Const. § 53 | N.D. Const. § 55 | N.D. Const. § 56	Section 53 (organizational/orientation meeting; recess until January session)
+96	XCVI	1976-12-02	1976-11-02	amended		Y	?	Art. LIV	Amends qualifications for serving on the Board of Higher Education and removes compensation limit on board members. (S.L
+97	XCVII	1976-10-07		amend	Y	Y	Y	28, 34 | N.D. Const. § 28 | N.D. Const. § 34	Qualifications of Legislators (Senators)
+98	XCVIII	1976-10-07		add	Y	Y	Y	85-97 | N.D. Const. § 85 | N.D. Const. § 86 | N.D. Const. § 87 | N.D. Const. § 88 | N.D. Const. § 89 | N.D. Const. § 90 | N.D. Const. § 91 | N.D. Const. § 92 | N.D. Const. § 93 | N.D. Const. § 94 | N.D. Const. § 95 | N.D. Const. § 97	Section 85
+99	XCIX	1976-10-07		amend	Y	Y	Y	Art. I | N.D. Const. amend. art. I	ARTICLE I — Lotteries and Gift Enterprises
+100	C	1978-10-05	1978-09-05	repeal	Y	Y	Y	214, Sched. Sec. 1-25 | N.D. Const. Schedule, § 1 | N.D. Const. Schedule, § 10 | N.D. Const. Schedule, § 11 | N.D. Const. Schedule, § 12 | N.D. Const. Schedule, § 13 | N.D. Const. Schedule, § 14 | N.D. Const. Schedule, § 15 | N.D. Const. Schedule, § 16 | N.D. Const. Schedule, § 17 | N.D. Const. Sche	Original State Apportionment and Transition Schedule
+101	CI	1978-10-05		amend	Y	Y	Y	65, 77 | N.D. Const. § 65 | N.D. Const. § 77	POWERS AND DUTIES OF LIEUTENANT GOVERNOR
+102	CII	1978-10-05		repeal	Y	Y	Y	59, 65, 87, 88 | N.D. Const. amend. art. LIX | N.D. Const. amend. art. LXV | N.D. Const. amend. art. LXXXVII | N.D. Const. amend. art. LXXXVIII	Veteran Bonus Bonds and Constitutional Convention
+103	CIII	1978-12-07	1978-11-07	amended		Y	?	CIII	Provides that records of governmental bodies be open to the public unless otherwise provided by law. (S.L. 1979, ch. 694
+104	CIV	1978-12-07	1978-11-07	amend	Y	Y	Y	121, 122, 123-129, Art. XXVI, XL | N.D. Const. amend. art. XL | N.D. Const. amend. art. XXXVI | N.D. Const. § 121 | N.D. Const. § 122 | N.D. Const. § 123 | N.D. Const. § 124 | N.D. Const. § 125 | N.D. Const. § 126 | N.D. Const. § 127 | N.D. Const. § 128 | N.D. Const. § 129	Elective Franchise
+105	CV	1979-01-01	1978-11-07	repeal	Y	Y	Y	CV, 25, Art. XXXIII | N.D. Const. amend. art. XXXIII | N.D. Const. § 25	
+106	CVI	1980-10-02		amend	Y	Y	Y	174 | N.D. Const. § 174	STATE PROPERTY TAX AUTHORITY
+107	CVII	1980-10-02	1980-09-02	repeal	Y	Y	Y	69, 173 | N.D. Const. § 69	Repeal of subsection 6 of section 69 (jurisdiction of police magistrates, constables, and justices of the peace)
+108	CVIII	1980-12-04		amend	Y	Y	Y	182 | N.D. Const. § 182	STATE BOND SECURITY
+109	CIX	1981-01-01	1980-11-04	amended		Y	N	art. X, §21	Requires that at least 15 percent of the coal severance tax be placed in a permanent trust fund. (S.L. 1981, ch. 657; S.
+110	CX	1982-07-08	1982-06-08	amended		Y	N	art. VII, § 1; art. VII, § 2; art. VII, § 3; art. VII, § 4; art. VII, § 5; art. VII, § 6; art. VII, § 7; art. VII, § 8; art. VII, § 9; art. VII, § 10; art. VII, § 11	Provides for home rule by cities and counties. (S.L. 1983, ch. 718; S.L. 1981, ch. 665) (SCR 4002)
+111	CXI	1982-07-08	1982-06-08	amended		Y	N	art. IX, § 1; art. IX, § 2	Provides for mineral lease bonuses on state lands to be deposited into and payment from appropriate trust funds. (S.L. 1
+112	CXII	1982-07-08	1982-06-08	amended		Y	N	art. XI, § 26; art. IV, § 46; art. V, § 14	Separation of powers. Provides for payment to state officials for services in amounts set by law. (S.L. 1983, ch. 720; S
+113	CXIII	1982-12-02	1982-11-02	amended		Y	N	art. I, § 16	Allows for annual payments of eminent domain. (S.L. 1983, ch. 721; S.L. 1981, ch. 670) (SCR 4027)
+114	CXIV	1982-12-02	1982-11-02	amended		Y	N	art. IX, § 7; art. IX, § 10; art. IX, § 13; art. X, § 9	Removes obsolete constitutional references. (S.L. 1983, ch. 722; S.L. 1981, ch. 671) (SCR 4004)
+115	CXV	1984-07-12	1984-06-12	amended		Y	N	art. IX, § 4; art. X, § 17	Deletes obsolete references to county officers no longer constitutionally mandated. (S.L. 1985, ch. 705; S.L. 1983, ch. 
+116	CXVI	1984-12-06	1984-11-06	amended		Y	N	art. I, § 1	Establishes the right to bear arms as a state right. (S.L. 1985, ch. 702)
+117	CXVII	1986-07-10	1986-06-10	amended		Y	N	art. IX, § 6	Authorizes the Board of University and School Lands to exchange mineral interests with the United States. (S.L 1987, ch.
+118	CXVIII	1986-07-10	1986-06-10	amended		Y	N	art. IX, § 3	Replaces State Auditor with the State Treasurer as a member of the Board of University and School Lands. (S.L. 1987, ch.
+119	CXIX	1986-12-01	1984-06-12	amended		Y	N	art. IV, § 1; art. IV, § 2; art. IV, § 3; art. IV, § 4; art. IV, § 5; art. IV, § 6; art. IV, § 7; art. IV, § 8	Deletes obsolete sections and modernizes language of the legislative article. (S.L. 1985, ch. 706; S.L. 1983, ch. 728) (
+120	CXX	1986-12-01	1984-11-06	amended		Y	N	art. IV, § 12; art. IV, § 13; art. IV, § 14; art. IV, § 15; art. IV, § 16	Partially revises legislative procedures article. (S.L. 1985, ch. 707; S.L. 1983, ch. 730) (HCR 3029)
+121	CXXI	1986-12-04	1986-11-04	amended		Y	N	art. V, § 1	Governor and Lieutenant Governor term of office begins December 15 following election. (S.L. 1987, ch. 776; S.L. 1985, c
+122	CXXII	1986-12-04	1986-11-04	amended		Y	N	art. V, § 12	Places Tax Commissioner on party ballot. (S.L. 1987, ch. 777; S.L. 1985, ch. 713) (SCR 4022)
+123	CXXIII	1987-04-17	1987-03-18	amended		Y	N	art. IV, § 13	Makes July 1 effective date for appropriations measures. (S.L. 1987, ch. 778; S.L. 1987, ch. 780) (SCR 4024)
+124	CXXIV	1988-12-08	1988-11-08	amended		Y	N	art. X, § 5	Provides for property taxes on federal, state, and local lands if approved by the governmental entities. (S.L. 1989, ch.
+125	CXXV	1990-07-01	1990-06-12	amended		Y	N	art. X, § 21	Relates to use of coal severance taxes deposited in permanent coal development trust fund. (S.L. 1991, ch. 748; S.L. 198
+126	CXXVI	1991-07-01	1990-06-12	amended		Y	N	art. X, § 22	Provides that resources trust fund is a constitutional trust fund and provide for transfer of funds to resources trust f
+127	CXXVII	1992-07-09	1992-06-09	amended		Y	N	art. X, § 23	Payment of adjusted compensation to North Dakota veterans of Persian Gulf and other foreign theatres by appropriation or
+128	CXXVIII	1992-12-03	1992-11-03	amended		Y	N	art. IV, § 13	Provides that bills passed by the Legislative Assembly become effective on August 1 after passage, or 90 days after fili
+129	CXXIX	1994-07-14	1994-06-14	amended		Y	N	art. X, § 21	Provides that funds may be expended from the permanent coal trust fund for clean coal demonstration projects. (S.L. 1995
+130	CXXX	1994-12-08	1994-11-08	amended		Y	N	art. VIII, § 6	Provides for gubernatorial appointment of a student member to the State Board of Higher Education. (S.L. 1995, ch. 642; 
+131	CXXXI	1995-07-01	1994-11-08	amended		Y	N	art. X, § 24	Requires equal portion of oil extraction tax revenues to be deposited in common schools trust fund and foundation aid st
+132	CXXXII	1996-07-11	1996-06-11	amended		Y	N	art. XIII, § 1; art. XIII, § 2; art. XIII, § 4	Eliminates outdated language in the constitution, including the settling of territorial debts. (S.L. 1997, ch. 567; S.L.
+133	CXXXIII	1996-12-05	1996-11-05	amended		Y	N	art. VIII, § 6	Reduces terms of members of State Board of Higher Education from seven years to four years with a two-term limit. (S.L. 
+134	CXXXIV	1996-12-05	1996-11-05	amended		Y	N	art. X, § 25	Protects the veterans' postwar trust fund. (S.L. 1997, ch. 560)
+135	CXXXV	1997-07-01	1996-06-11	amended		Y	N	art. V, § 1; art. V, § 2; art. V, § 3; art. V, § 4; art. V, § 5; art. V, § 6; art. V, § 7; art. V, § 8; art. V, § 9; art. V, § 10; art. V, § 11; art. V, § 12	Replaces the executive branch article, removes the restriction on two-year term limit for State Treasurer, requires the 
+136	CXXXVI	1997-07-01	1996-11-05	amended		Y	N	art. IV, § 3; art. IV, § 4	Lengthens the term of North Dakota House members from two years to four years. (S.L. 1997, ch. 570; S.L. 1995, ch. 649) 
+137	CXXXVII	1998-07-09	1998-06-09	amended		Y	N	art. VI, § 13	Filling of judicial vacancies. (S.L. 1999, ch. 566; S.L. 1997, ch. 574) (SCR 4005)
+138	CXXXVIII	1998-12-03	1998-11-03	amended		Y	N	art. VII, § 8	Election of county sheriff. (S.L. 1999, ch. 565)
+139	CXXXIX	2000-07-13	2000-06-13	amended		Y	N	art. VIII, § 6	Relates to the membership of the State Board of Higher Education. (S.L. 2001, ch. 590; S.L. 1999, ch. 568) (SCR 4016)
+140	CXL	2000-07-13	2000-06-13	amended		Y	N	art. V, § 5	Relates to the election of executive branch officers. (S.L. 2001, ch, 591; S.L. 1999, ch. 569) (SCR 4017)
+141	CXLI	2000-07-13	2000-06-13	amended		Y	N	art. IV, § 11	Relates to filling vacancies in Legislative Assembly. (S.L. 2001, ch. 592; S.L. 1999, ch. 571) (SCR 4023)
+142	CXLII	2000-12-07	2000-11-07	amended		Y	N	art. XI, § 27	Relates to the rights to hunt, trap, and fish. (S.L. 2001, ch. 593; S.L. 1999, ch. 572) (HCR 3018)
+143	CXLIII	2002-07-11	2002-06-11	amended		Y	N	art. VII, § 8	Relates to election of county officers serving in more than one county. (S.L. 2003, ch. 576; S.L. 2001, ch. 595) (SCR 40
+144	CXLIV	2002-12-05	2002-11-05	amended		Y	N	art. XI, § 25	Relates to authorizing state to join a multi-state lottery. (S.L. 2003, ch. 573)
+145	CXLV	2003-01-01	2002-11-05	amended		Y	N	art. X, § 5	Relates to the taxable status of land held for conservation or wildlife purposes. (S.L. 2003, ch. 577; S.L. 2001, ch. 59
+146	CXLVI	2004-07-08	2004-06-08	amended		Y	N	art. III, § 2	Relates to granting Legislative Assembly the authority to provide a procedure for determining fiscal impact of initiativ
+147	CXLVII	2004-12-02	2004-11-02	amended		Y	N	art. XI, § 28	Defines marriage as a legal union between a man and a woman. (S.L. 2005, ch. 619)
+148	CXLVIII	2006-07-01	2006-06-13	amended		Y	N	art. XII, § 1; art. XII, § 2; art. XII, § 6	Relates to regulation of corporations and business corporations. (S.L. 2007, ch. 581; S.L. 2005, ch. 623) (HCR 3055)
+149	CXLIX	2006-08-01	2006-06-13	amended		Y	N	art. XI, § 16	Relates to definition of militia. (S.L. 2007, ch. 580; S.L. 2005, ch. 622) (SCR 4012)
+150	CL	2006-12-07	2006-11-07	amended		Y	N	art. I, § 16	The taking of private property for public use. (S.L. 2007, ch. 578)
+151	CLI	2009-07-01	2006-11-07	amended		Y	N	art. IX, § 1; art. IX, § 2	Relates to distribution from and management of common schools trust fund and other educational or charitable institution
+152	CLII	2011-07-01	2010-11-02	amended		Y	N	art. X, § 26	Establishment and use of a North Dakota legacy fund. (S.L. 2011, ch. 518; S.L. 2009, ch. 641) (HCR 3054)
+153	CLIII	2012-07-12	2012-06-12	amended		Y	N	art. IV, § 6	Legislative Assembly appointments. (S.L. 2013, ch. 515; S.L. 2011, ch. 519) (HCR 3047)
+154	CLIV	2012-12-06	2012-11-06	amended		Y	N	art. X, § 6	Elimination of annual poll tax. (S.L. 2013, ch. 516; S.L. 2011, ch. 520) (SCR 4006)
+155	CLV	2012-12-06	2012-11-06	amended		Y	N	art. XI, § 4	Oath of office for elected and appointed officials. (S.L. 2013, ch. 517; S.L. 2011, ch. 521) (HCR 3009)
+156	CLVI	2012-12-06	2012-11-06	amended		Y	N	art. XI, § 29	Practices of farming and ranching. (S.L. 2013, ch. 509)
+157	CLVII	2014-12-04	2014-11-04	amended		Y	N	art. X, § 27	Prohibition of the imposition of mortgage taxes or any sales or transfer taxes on the mortgage or transfer of real prope
+158	CLVIII	2015-01-01	2014-06-10	amended		Y	N	art. III, § 5; art. III, § 6; art. III, § 7	Adjustment of deadlines for initiated measure petitions. (S.L. 2013, ch. 518) (HCR 3034)
+159	CLIX	2016-12-08	2016-11-08	amended		Y	N	art. IV, § 5	Required a member of the Legislative Assembly to be a resident of the district from which selected and prohibited an ind
+160	CLX	2016-12-08	2016-11-08	amended		Y	N	art. X, § 24	Expanded the educational purposes for which the Foundation Aid Stabilization Fund may be used. (S.L. 2017, ch. 457; S.L.
+161	CLXI	2016-12-08	2016-11-08	amended		Y	N	art. I, § 25	Provided certain rights to victims of crime in this state. (S.L. 2017, ch. 458)
+162	CLXII	2018-12-06	2018-11-06	amended		Y	N	art. II, § 1; art. II, § 3	Provided only a citizen of the United States may vote in federal, state, and local elections.  (S.L. 2019, ch. 535)
+163	CLXIII	2019-01-05	2018-11-06	amended		Y	N	art. XIV, § 1; art. XIV, § 2; art. XIV, § 3; art. XIV, § 4	Created an ethics commission of five members and established public disclosure requirements of the source of funds spent
+164	CLXIV	2022-11-08	2022-11-08	amended		Y	N	art. XV, §§ 1-6	Term limits for Legislative Assembly and Governor. (S.L. 2023, ch. ___)
+165	CLXV	2024-06-11	2024-06-11	amended		Y	N	art. XVI, §§ 1-5	Congressional Age Limits. (Initiated Measure)
+166	CLXVI	2024-12-05	2024-11-05	amended		Y	N	art. IX, §§ 12&13	Updated Terminology. (2023 SCR 4001)
+167	CLXVII	2024-12-05	2024-11-05	amended		Y	N	art. XVI, §§ 1-5	Legacy Fund. (2023 HCR 3033)

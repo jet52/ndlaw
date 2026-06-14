@@ -59,3 +59,4 @@ triage/cite-audit-2026-05-29/para-markers/
 
 # court field-validation source (large binary; kept local, see TODO #5)
 input-data/court-opinions-report-*.xlsx
+*.json.bak-*

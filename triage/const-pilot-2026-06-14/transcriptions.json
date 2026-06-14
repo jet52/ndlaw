@@ -1,0 +1,64 @@
+{
+  "N.D. Const. art. X, § 21": {
+    "_note": "Clean 3-version chain (additions only). Created by CIX eff 1981-01-01; CXXV(1990) + CXXIX(1994) each appended one sentence. base=[1981 creation]=1981 BB §21. Texts from pilot (clean pdftotext, gate 172/172).",
+    "1990-07-01": {
+      "edits": [[" Up to fifty percent of the taxes collected and deposited in the permanent trust fund during a biennium may be appropriated by the legislative assembly for lignite research, development, and marketing as provided by law.", ""]]
+    },
+    "1994-07-14": {
+      "edits": [[" An additional twenty percent of the taxes collected and deposited in the permanent trust fund during a biennium may be appropriated by the legislative assembly for clean coal demonstration projects approved by the industrial commission.", ""]]
+    }
+  },
+  "N.D. Const. art. XI, § 4": {
+    "2012-12-06": {
+      "_read": "2013 CAA ch.517 p3 (Oaths of Office); struck=del, underline=add. Corrected vs 1981 BB: 'the executive and' was ADDED in 2012.",
+      "edits": [
+        ["and the executive and judicial branches,", "and judicial department,"],
+        ["law exempted, before they enter", "law exempted shall, before they enter"],
+        ["respective offices, shall take and subscribe", "respective offices, take and subscribe"],
+        ["affirmation, and any other oath", "affirmation, and no other oath"],
+        ["or test may not be required", "or test shall be required"]
+      ]
+    }
+  },
+  "N.D. Const. art. IV, § 11": {
+    "2000-07-13": {
+      "_read": "2001 CAA ch.592 p4 (Legislative Assembly Vacancy Filling).",
+      "edits": [
+        ["legislative assembly may provide by law a procedure to fill vacancies occurring", "governor shall issue writs of election to fill such vacancies as may occur"]
+      ]
+    }
+  },
+  "N.D. Const. art. III, § 2": {
+    "2004-07-08": {
+      "_read": "2005 CAA ch.620 p? (Initiative Measure Fiscal Impact); 3x shall->must, new final para added.",
+      "edits": [
+        ["measure must be presented", "measure shall be presented"],
+        ["approval must be presented", "approval shall be presented"],
+        ["whom must be designated", "whom shall be designated"],
+        [" The legislative assembly may provide by law for a procedure through which the legislative council may establish an appropriate method for determining the fiscal impact of an initiative measure and for making the information regarding the fiscal impact of the measure available to the public.", ""]
+      ]
+    }
+  },
+  "N.D. Const. art. IX, § 3": {
+    "1986-07-10": {
+      "_read": "1987 CAA ch.775 (Board of University and School Lands Membership); auditor->treasurer + grammar.",
+      "edits": [
+        ["state treasurer comprise a board", "state auditor shall constitute a board"],
+        ["commissioners, to be denominated", "commissioners, which shall be denominated"],
+        ["school lands\". Subject to the provisions", "school lands\", and, subject to the provisions"],
+        ["assembly, the board has control", "assembly, said board shall have control"]
+      ]
+    }
+  },
+  "N.D. Const. art. XI, § 16": {
+    "2006-08-01": {
+      "_read": "2006 CAA ch.580 (State Militia); reserve/active split. Corrected vs 1981 BB: 'individuals eighteen years of age and older' was ADDED in 2006 (not in prior).",
+      "edits": [
+        ["The reserve militia of this state consists of all able-bodied individuals eighteen years of age and older residing in the state, unless exempted", "The militia of this state shall consist of all able-bodied male persons residing in the state, between the ages of eighteen and forty-five years, except such as may be exempted"],
+        ["this state. The active militia is the national guard of this state and consists of individuals who volunteer and are accepted unless exempted by the laws of the United States or of this state. An individual whose religious tenets", "this state. Persons whose religious tenets"],
+        ["forbid that individual to bear arms may not be compelled", "forbid them to bear arms shall not be compelled"],
+        ["peace, but that individual shall pay", "peace, but shall pay"]
+      ]
+    }
+  }
+}
