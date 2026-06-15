@@ -225,3 +225,32 @@ Built the full chain across the three modern amendments:
 Redlines read by subagent (1995 CAA p5 / 1997 SL7CNSTM p10 / 2001 CAA p1, rendered 450 dpi; the subagent verified base+#130+#133+#139==current forward, ratio 1.0). Intermediates rebuilt HERE by reverse-applying the localized #139 then #133 edits to the whitespace-normalized clean current text (so unchanged ~90% stays byte-identical), then independently gated: (a) v1996 vs current differs by exactly the one↔two-persons cap; (b) v1994 vs v1996 overlap 0.996 (the #133 bundle); (c) v1994's #130-untouched subsections (3,5) match the 1989 BB base verbatim. PIT verified across all three boundaries (1990: 7 members/7yr/no student; 1995: 8/+student; 1998: 4yr terms; 2005: two-persons cap). Integrity 0; build REPRODUCIBLE (sig 55b6b2f2e77a1b0f, 711 versions).
 
 **Group B COMPLETE** (art XIII §1, art V §§1-12, art VIII §6). Remaining modern-layer tails are orphans only (art IV §§17-46, art V §13, art IV §§2/5/11 unconstitutional stubs — no/orphan modern citation). **Scratch only.**
+
+
+## Batch `modern-artiv-stubs-1981-1986-2026-06-15` — art IV §§2/5/11 "[Unconstitutional.]" stubs (ORPHAN TAILS) (SCRATCH)
+
+`constitution.db` (scratch) · 3 provisions · +3 prior versions
+
+The 1981 Blue Book retained three legislative-apportionment sections (1960-amended frozen-district scheme, struck down in the 1960s reapportionment litigation) only as renumbered placeholders, printing each `Section N. [Unconstitutional.]` with no text (BB editorial note: "sections that have been declared unconstitutional have been retained and renumbered"). Those are new §§2, 5, 11. Per **user decision (2026-06-15): original text + void note** (not the bare marker, not an uncovered gap).
+
+Prepended a `[1981-01-01, 1986-11-30]` version to each = a bracketed void note (resting on the BB's own "[Unconstitutional.]" designation + the 1986-12-01 recreation/repeal — no unverified case named) followed by the verbatim 1960 text from the validated historical layer. Crosswalk pinned positionally by the surrounding clean sections (1981 BB §3→1889 §27, §4→§28, [§5→§29], §6→§30 … [§11→§35] … §13→§37; §2→§26 before §3): **§2→1889 §26** (senate composition), **§5→§29** (senatorial districts), **§11→§35** (house apportionment); 1981 BB confirmed to print exactly §2/§5/§11 as "[Unconstitutional.]" at those positions. PIT verified: §2 as of 1983 → void note + apportionment text; as of 1990 → recreated text. Integrity 0; build REPRODUCIBLE. **Scratch only.**
+
+
+## Batch `modern-artiv-dropped-1981-2026-06-15` — art IV §§17-46 dropped-section orphans (ORPHAN TAILS) (SCRATCH)
+
+`constitution.db` (scratch) · 27 provisions created · +54 versions
+
+art IV was repealed-and-recreated 1986-12-01 with a SHORTER article (§§1-16); old §§17-46 were repealed and not recreated, so no modern citation resolves to "art IV § N" for N in 17-46. Created each as a repealed provision (heading 'Repealed', status 'repealed', a final "Repealed." sentinel as current_version_id — matching the art X §6 / art XII §3-9 convention) with one content version covering the [1981-01-01, 1986-11-30] window it actually denoted. Text from the validated historical layer (1889 numbering) via the ARTIV-CROSSWALK-PLAN crosswalk, confirmed per section against the 1981 Blue Book (despaced ratio; 25 at ≥0.94, §25/§46 at 0.80/0.94 verified clean).
+
+Created 27: old §§17,19-25,27-46. **§19 included** (its content survived by renumbering to new §11, but the *citation* "art IV §19" held the writs text only [1981,1986) and resolves to nothing today — parallel to §17/§18/§20+; §14/§15 citations are already covered via existing crosswalk prepends). Special cases: **§45** sourced from 1889 §202 ¶1 ONLY (the 1981 renumbering split §202 — its initiative-petition paragraph went elsewhere; full §202 ratio 0.49, ¶1 ratio 0.985); **§46** (member compensation, "five dollars per day") content window [1981-01-01, 1982-07-07] (repealed 1982, S.L. 1981 ch. 668; content moved to art XI §26). **§26 skipped** (did not exist at 1981 — the 1981 art IV jumps 25→27).
+
+**DEFERRED (not created, documented in splice_artiv_dropped_1981.py):** §18 (governor/officer/manager interest in contracts — no clean 1889 §M carryover; likely a post-1889 addition whose only source is heavily space-garbled 1981 BB OCR) and §43 (enumerated special-legislation prohibition — its apparent 1889 source §69 was REPEALED effective 1980-10-02 per SCR 4006/1979 SL, so it may not have been in force at [1981,1986) at all; needs a clean witness to resolve). Deferred rather than risk fabricated/incorrect text in an authoritative DB. PIT verified (§25 as of 1983 → quorum; §46 as of 1981 → compensation, as of 1983 → Repealed; §17 as of 2020 → Repealed). Integrity 0; build REPRODUCIBLE. **Scratch only.**
+
+
+## Batch `modern-artv13-orphan-2026-06-15` — art V §13 dropped-section orphan (ORPHAN TAILS) (SCRATCH)
+
+`constitution.db` (scratch) · 1 provision · +2 versions
+
+art V was repealed-and-recreated effective 1997-07-01 (measure #135); the recreated article has no §13. Created art V §13 (heading 'Repealed', status 'repealed') with a content version [1981-01-01, 1997-06-30] = the pre-1997 executive-officers powers/duties section ("The powers and duties of the secretary of state, auditor, treasurer … shall be prescribed by law …"), then "Repealed." [1997-07-01, open). Text from the validated historical layer 1889 §83 (clean; in force at the 1980 boundary), confirmed against the marker 1989 Blue Book executive §13 (despaced ratio 0.982 — the 1989 BB OCR has noise like "tudUor" for auditor). Integrity 0; build REPRODUCIBLE. **Scratch only.**
+
+**Orphan tails COMPLETE** (art IV §§2/5/11 stubs, art IV §§17-46 dropped [27/29; §18/§43 deferred], art V §13). art VII §§1-11 + art XI §26 investigated: no [1981,1982) predecessor exists (data-confirmed — no art VII before the 1982 home-rule recreation), so genuinely new, no work. Modern point-in-time layer substantively complete: 494 provisions, 770 versions, integrity 0, quick_check ok, REPRODUCIBLE (sig 4970c645647d97cd). Snapshot-diff 1989 = 96.0% match-or-near (the marker-OCR witness); residual mismatches VI§12/X§5 (1989) and I§1/IV§1/IV§4/XIII§1 (1981) are PRE-EXISTING harness artifacts (correct DB text vs letter-spaced/mis-keyed comp — A/B verified zero new mismatches from this work). Also fixed snapshot_diff_modern.py to recognize the modern "Repealed." sentinel (REPEALED_OK 0→27 at 1989). **Scratch only — nothing promoted to live constitution.db.**

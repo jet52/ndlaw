@@ -135,7 +135,10 @@ def run(year):
            "NOT_IN_COMP": 0, "BEYOND_COVERAGE": 0}
     mism, missing = [], []
     for key, dbtext in sorted(db.items()):
-        repealed = dbtext.strip().lower().startswith("[repealed")
+        # repealed sentinel in either convention: historical "[Repealed effective …]"
+        # or the modern "Repealed." current-version stub (cf. art X §6, XII §3, the
+        # art IV §§17-46 / art V §13 dropped-section orphans out of their content window).
+        repealed = dbtext.strip().lower().lstrip("[").startswith("repealed")
         if key not in comp:
             if key[0] not in comp_articles:
                 cls["BEYOND_COVERAGE"] += 1          # article absent from witness — not an error
