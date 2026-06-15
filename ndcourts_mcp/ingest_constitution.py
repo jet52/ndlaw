@@ -308,6 +308,18 @@ AMENDMENT_SOURCE_URL_CORRECTIONS = {
     "164": "https://www.legis.nd.gov/assembly/68-2023/session-laws/documents/ima.pdf",
 }
 
+# Effective-date corrections. The default for an approved measure is "the thirtieth
+# day after the election, unless otherwise specified in the measure" (N.D. Const.
+# art. III § 8; rule established 1918 — before 1918 it was the date of the official
+# canvass). A measure that states its own effective date controls. ndconst.org's
+# effective-date column is correct for nearly all rows; corrected exceptions:
+#   164: art. XV (term limits) Section 5 states "effective on the first day of
+#        January immediately following approval" -> 2023-01-01. ndconst.org used the
+#        2022-11-08 election date.
+AMENDMENT_EFFECTIVE_DATE_CORRECTIONS = {
+    "164": "2023-01-01",
+}
+
 
 def amendment_targets(affected: str) -> list[str]:
     """Current-numbering citations an amendment touches, expanding §§ ranges.
@@ -349,6 +361,9 @@ def ingest_amendments(conn, prov_index: dict, *, batch: str) -> tuple[int, int]:
         url_fix = AMENDMENT_SOURCE_URL_CORRECTIONS.get(num)
         if url_fix:
             r["source_url"] = url_fix
+        eff_fix = AMENDMENT_EFFECTIVE_DATE_CORRECTIONS.get(num)
+        if eff_fix:
+            r["effective_date"] = eff_fix  # provision effective_start follows via the latest-date recompute
         action = "repealed" if "repeal" in r["subject"].lower() else "amended"
         targets = amendment_targets(r["affected"])
         linked_pids = []

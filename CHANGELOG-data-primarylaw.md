@@ -2,6 +2,12 @@
 
 Changes applied to the primary-law databases (`constitution.db`, `constitution_history.db`, `statutes.db`, `rules.db`, `admincode.db`) after import. All corrections are also recorded in each corpus DB's `changelog` table.
 
+## Batch `fix-amend164-effdate-2026-06-14` — art. XV effective date (measure states it)
+
+Investigation of approval-vs-effective dating (full writeup: `triage/const-amendment-effective-dates-2026-06-14.md`). The default for an approved measure is **"the thirtieth day after the election, unless otherwise specified in the measure"** (N.D. Const. art. III § 8; rule established 1918 — before 1918 it was the date of the official canvass, per the § 25 history). A measure stating its own effective date controls. Confirmed the DB's effective dates all match the (user-reviewed) ndconst.org column and follow this rule; audited all 59 modern amendments.
+
+**One error:** amendment **164** (art. XV term limits) was stamped at the **election date 2022-11-08**, but the measure's **Section 5** states it is "effective on the first day of January immediately following approval" → **2023-01-01**. Corrected amendment 164's `effective_date` and art. XV §§ 1-6 `effective_start` to 2023-01-01 (live + scratch, integrity 0/0). Reproducible via `AMENDMENT_EFFECTIVE_DATE_CORRECTIONS` in `ingest_constitution.py`. (163 ethics = 60-days-after-approval per art. XIV § 4, and 165 age limits = immediate, were verified correct.)
+
 ## Batch `fix-amend164-source-2026-06-14` — correct art. XV (term limits) source_url (initiated measure → IMA, not CAA)
 
 art. XV §§ 1-6 (2022 term limits for the Legislative Assembly and Governor) is an **initiated** constitutional measure. ndconst.org pointed amendment **164**'s `source_url` at `…/68-2023/session-laws/documents/caa.pdf` — wrong file (CAA = legislative *referrals*) and a 404. The measure is **S.L. 2023 ch. 594, "INITIATED MEASURES APPROVED"** — public file `…/68-2023/session-laws/documents/ima.pdf` (IMA = Initiated Measures Approved; also in the on-disk `~/refs/nd/sess/sl2023.pdf` p. 2279). Verified the measure: "A new article … is created and enacted as follows: Section 1. Term limits for legislators…" — a **CREATE**, so art. XV §§ 1-6 are correct single-version provisions (no point-in-time reconstruction needed).
