@@ -1,6 +1,8 @@
 # art IV [1981,1986) crosswalk — scope, model, and plan
 
-Status: STARTED 2026-06-15 (characterization + model decided; splice pending).
+Status: **§§1-16 SHARED SET DONE 2026-06-15** (13 spliced, batch
+`modern-artiv-crosswalk-1981-1986-2026-06-15`; reproducible, integrity 0). Remaining:
+§§2/5/11 stubs + §§17-46 repealed-only (see end). Original characterization below.
 Goal: make point-in-time correct for `N.D. Const. art. IV, § N` in the **[1981-01-01,
 1986-12-01)** window. Today the modern art IV provisions serve only post-recreation
 content, so that whole window returns the wrong text (or nothing) for old citations.

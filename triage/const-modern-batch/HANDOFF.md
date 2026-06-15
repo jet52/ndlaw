@@ -78,9 +78,12 @@ The 96 amended modern provisions break down:
    *renumber*, not a repeal: former §§ 14/15/19 → §§ 9/10/11 eff. 1986-12-01 (codifier
    note + 1981 BB). §9/§10 were falsely stamped 1889-10-01, §11 at 1981-01-01; all three
    moved to 1986-12-01 (`fix_artiv_renumber_1986.py`, row 7). Pre-1986 those citations
-   correctly return nothing. **Companion left open:** the [1981,1986) *old* art IV (former
-   §§ 1-46 under the old modern-numbering) is not reconstructed — that's PL-CONST-CROSSWALK,
-   bigger than §9-11. §§ 1-8, 12-16 were already correctly dated 1986-12-01.
+   correctly return nothing. **Companion (the [1981,1986) old art IV crosswalk): §§1-16 DONE
+   2026-06-15** (`splice_artiv_crosswalk_1981.py`, `ARTIV-CROSSWALK-PLAN.md`) — prepended the
+   old §N content (sourced from the validated historical layer via the derived art IV→1889 map,
+   38/45 at ratio≥0.92; no Replacement Vol 13 needed) to each shared §1-16. Renumber crux
+   verified (bribery §14→§9 across 1986). **Still open:** §§2/5/11 "[Unconstitutional.]" stubs +
+   §§17-46 repealed-only (no modern citation). Reproducible (sig 26c3f13b1e907899, 691 versions).
 4. ~~**Second-read pass (required before live).**~~ **DONE 2026-06-15.** All 10 owed items
    independently witnessed (`second_read_check.py` + the changelog batch
    `modern-ix7-secondread-2026-06-15`): 8 BB-witnessed (I §16, II §1, IX §1, IX §2, IX §10,
