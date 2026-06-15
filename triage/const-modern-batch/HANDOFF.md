@@ -126,9 +126,11 @@ integrity 0/0, scratch-only. What remains:
    §26**. Reproducible overlay (`AMENDMENT_AFFECTED_CORRECTIONS` in
    `ingest_constitution.py`) + applied to scratch+live (`scripts/fix_amend167_legacyfund_2024.py`).
    165 (art XVI, age limits) and 166 (art IX §§12-13, terminology) were correct.
-   **Now ready:** art X §26 is a 2-amendment provision (2011 create + 2024 amend,
-   bill 23-3092 cached) → reconstruct its chain next pass. art XVI §1-5 are correct
-   single-version creates. art IX §13 + art XV giants still pending.
+   art XVI §1-5 are correct single-version creates. **art X §26 RECONSTRUCTED**
+   2026-06-14 (`splice_x26_2011.py`): created 2011 (HCR 3054) → amended 2024
+   (HCR 3033); [2011,2024) head = the 2011-enacted text transcribed verbatim from
+   the creation measure (gate: unchanged subsec-3 byte-identical to current; every
+   2024 change cross-validated vs the redline). art IX §13 + art XV giants pending.
 2. **2 discontinuities — art V §1, §12:** current = single create-1997 version;
    their pre-1997 old §1/§12 is the REPEALED-predecessor lineage. needs-base-source
    (native 1979-80 / 1981 BB) + a lineage decision (old §1/§12 belong to a different

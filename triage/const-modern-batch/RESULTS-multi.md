@@ -48,6 +48,18 @@ HEAD-BB (carried heads vs 1981 BB where the article is clean) · DISCONTINUITY g
   Downloaded bill PDFs are cached (`caa-cache/billdoc_23-30{15,92}-0*.pdf`).
 - **art VIII §6** — heavy multi-subsection; native source (PL-SOURCE-FILES).
 
+## Addendum 2026-06-14 — art X §26 (Legacy Fund) reconstructed
+After the 2024 amendment-data fix made art X §26 a proper 2-amendment provision
+(created 2011 HCR 3054, amended 2024 HCR 3033), it was reconstructed via
+`splice_x26_2011.py`. Because §26 is a *created* provision, the [2011,2024) head =
+the 2011-enacted text transcribed verbatim from the on-disk creation measure (a
+clean CREATE reprint — no redline reversal). Gate: the unchanged subsection 3
+("Statutory programs…") is byte-identical between the 2011 text and current, and
+every 2024 change was cross-validated against the 2024 redline (fifteen→five
+percent; "may not be expended until after June 30, 2017"→"may be expended, but";
+"principal of the North Dakota legacy fund"→"moneys in the legacy fund"; subsec
+4./5. numbers added 2024). 2 versions, integrity 0. **Modern reconstructed 34 → 35.**
+
 ## Still owed before live
 Carried heads without a BB witness (art I §16, IX §1, IX §2) and all single-read
 chain intervals want a confirming second read; then a modern snapshot-diff. The
