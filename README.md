@@ -13,8 +13,8 @@ apparent typo, the text is preserved verbatim and the case is recorded in a
 shipped `print_anomalies` table (with the apparent intended reading and
 evidence); the citation graph resolves those cites to the intended case.
 
-It also serves North Dakota **primary law** — the Constitution (including a
-1889–1980 historical point-in-time layer), N.D.C.C. statutes, court rules, and
+It also serves North Dakota **primary law** — the Constitution (a point-in-time
+layer spanning 1889–present), N.D.C.C. statutes, court rules, and
 the Administrative Code — from separate per-corpus databases. See
 [Primary law](#primary-law-constitution-court-rules-ndcc-statutes-admin-code)
 below for what each database contains.
@@ -65,18 +65,20 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | ~20,200 opinions, 108,000+ citation links, 1890–present |
-| `constitution.db` | ND Constitution | ~200 current provisions (modern article/§ numbering) + amendment chronology, **plus** a ~265-provision historical point-in-time layer in the original 1889 numbering (§§ 1–217 + Schedule), in force 1889–1980 |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | ~19,800 opinions, 114,000+ citation links, 1890–present |
+| `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
 | `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
 | `rules.db`        | ND court rules | ~650 rule provisions |
 | `admincode.db`    | ND Administrative Code | ~13,800 provisions |
 
 Each ships as its own GitHub release asset (`<name>.db.zip` + `.sha256`) — see
 [Quick start](#quick-start) to install them locally and `deploy/SETUP.md` for the
-server-side multi-corpus delivery. The historical constitutional layer is queried
-by its original 1889 citation (e.g. `lookup_authority("N.D. Const. § 82",
-as_of_date="1945-01-01")`); it is not yet cross-linked to the modern numbering.
-The primary-law corpora are newer and less validated than the opinions corpus —
+server-side multi-corpus delivery. Both constitutional layers are
+`as_of_date`-queryable: the modern layer by its article/§ citation (e.g.
+`lookup_authority("N.D. Const. art. VIII, § 6", as_of_date="1990-01-01")`) and the
+historical layer by its original 1889 citation (e.g. `lookup_authority("N.D.
+Const. § 82", as_of_date="1945-01-01")`); the two numbering schemes are not yet
+cross-linked. The primary-law corpora are newer and less validated than the opinions corpus —
 see [`TODO-primarylaw.md`](TODO-primarylaw.md).
 
 | Tool                  | Purpose                                                                         |
@@ -231,9 +233,9 @@ uv sync
 Confirm the database is wired correctly:
 
 ```bash
-sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # ~20,200
+sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # ~19,800
 # Primary-law corpora (if you downloaded them):
-sqlite3 constitution.db "SELECT COUNT(*) FROM provisions"    # ~466
+sqlite3 constitution.db "SELECT COUNT(*) FROM provisions"    # ~496
 sqlite3 statutes.db     "SELECT COUNT(*) FROM provisions"    # ~29,100
 ```
 
