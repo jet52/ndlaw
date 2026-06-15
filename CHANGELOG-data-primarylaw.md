@@ -181,3 +181,14 @@ The "needs-base-source" bucket was classified before the 1989 Blue Book was acqu
 - **art X § 6** (poll tax): #154 (eff 2012-12-06, "Elimination of annual poll tax") repealed it. Prepended prior [1981-01-01, 2012-12-05] = historical § 180 (poll tax) with the editorial "($1.50)" dropped to match BOTH modern BB witnesses (modern witnesses govern the modern-era version, cf. art XII §12/§14). Verified: 1990→poll tax, 2015→Repealed.
 
 Clean source = validated historical layer (1889 numbering, in force 1980 = the [1981, change) content), each confirmed present (despaced) in the modern-scheme Blue Book. Integrity 0 gaps; build re-verified REPRODUCIBLE (sig b90148005a643b3a, 693 versions). **Deferred to Group B: art XIII § 1** (turns out to be a 3-subsection 1996 drop, not trivial). **Scratch only.**
+
+
+## Batch `modern-artxiii1-compact-1996-2026-06-15` — art XIII §1 pre-1996 Compact (Group B) (SCRATCH)
+
+`constitution.db` (scratch) · 1 provision · +1 prior version (~11.4 KB, 3 subsections)
+
+Amendment #132 (eff 1996-07-11, "eliminates outdated language … settling of territorial debts") kept only subsection 1 (modernized) and DELETED subsections 2 (federal public-lands disclaimer) and 3 (the 1889 territorial-debt settlement). Prepended the full pre-1996 text [1981-01-01, 1996-07-10].
+
+Reconciled (subagent + gated): sub1 (toleration) identical across 1895/1913/1925/1989 BB; sub2 (disclaimer) = the POST-1958 version with the "provided, however … acceptance of such jurisdiction" clause, **verified == historical § 203** (ratio 0.998); sub3 (debt settlement, ~7.6 KB obsolete bond-list) transcribed from the 1913 official, all 14 dollar amounts cross-verified across 1895/1913/1925.
+
+**Verification caught a witness trap:** the 1989 BB processed file is TRUNCATED mid-sub3 at a page break ("…discharge and exempt the"), so it can't witness sub3's full extent. Re-gated against the COMPLETE 1913 official compact: s1+s3 overlap 0.976, the only gap being the 189-char 1958 clause (legitimately in s2). Point-in-time verified: 1990 → full 3-subsection Compact; 2000 → toleration only. Integrity 0; build REPRODUCIBLE (sig 29a93c557d500027, 694 versions). **Scratch only.**
