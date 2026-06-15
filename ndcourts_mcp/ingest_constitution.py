@@ -299,6 +299,15 @@ AMENDMENT_AFFECTED_CORRECTIONS = {
     "167": "art. X, § 26",
 }
 
+# ndconst.org links some INITIATED-measure rows to the wrong session-law file
+# (CAA = Constitutional Amendments Approved = legislative referrals; IMA = Initiated
+# Measures Approved = citizen initiatives). Corrected source_url keyed by amendment #.
+#   164: art. XV (2022 term limits) is an INITIATED measure — ndconst.org points to
+#        .../68-2023/.../caa.pdf (404); the measure is in .../ima.pdf (S.L. 2023 ch. 594).
+AMENDMENT_SOURCE_URL_CORRECTIONS = {
+    "164": "https://www.legis.nd.gov/assembly/68-2023/session-laws/documents/ima.pdf",
+}
+
 
 def amendment_targets(affected: str) -> list[str]:
     """Current-numbering citations an amendment touches, expanding §§ ranges.
@@ -333,9 +342,13 @@ def ingest_amendments(conn, prov_index: dict, *, batch: str) -> tuple[int, int]:
     latest: dict[int, str] = {}  # pid -> latest linked effective_date
     for r in rows:
         n_rows += 1
-        corrected = AMENDMENT_AFFECTED_CORRECTIONS.get((r["number"] or "").strip())
+        num = (r["number"] or "").strip()
+        corrected = AMENDMENT_AFFECTED_CORRECTIONS.get(num)
         if corrected:
             r["affected"] = corrected
+        url_fix = AMENDMENT_SOURCE_URL_CORRECTIONS.get(num)
+        if url_fix:
+            r["source_url"] = url_fix
         action = "repealed" if "repeal" in r["subject"].lower() else "amended"
         targets = amendment_targets(r["affected"])
         linked_pids = []

@@ -135,9 +135,14 @@ integrity 0/0, scratch-only. What remains:
    their pre-1997 old §1/§12 is the REPEALED-predecessor lineage. needs-base-source
    (native 1979-80 / 1981 BB) + a lineage decision (old §1/§12 belong to a different
    cite). See `RESULTS-multi.md`.
-3. **7 giants** (art XV §1-6 = new 2022 article; art IX §12 = 2023) —
-   `skipped-wave2.json` reason `giant-no-anchor`. Almost certainly CREATE_SECTION;
-   download the whole-session PDF, render the measure pages, confirm.
+3. ~~7 giants~~ **art XV §1-6 RESOLVED 2026-06-14:** source found — it's an
+   INITIATED measure (S.L. 2023 ch. 594, `…/68-2023/.../ima.pdf`, on-disk
+   `sl2023.pdf` p.2279), NOT caa.pdf. Confirmed CREATE → single-version correct, no
+   recon. Fixed amend 164's broken source_url (`AMENDMENT_SOURCE_URL_CORRECTIONS`).
+   **OPEN:** art XV effective_start is 2022-11-08 (approval) but the measure says
+   2023-01-01 (Section 5) — possible systemic approval-vs-effective date issue in the
+   modern chronology; decide before live. Remaining giant: art IX §12 chain (2024,
+   bill 23-3015 — but §12 already reconstructed via the IX §12/§13 stale-text pass).
 3. **12 needs-base-source + heavy multi-subsection (art VIII §6 class):** native
    session-law text from Legislative Council (PL-SOURCE-FILES). art V §2-11 is the
    1997 executive-article replacement — its pre-1997 prior is a full-article rewrite

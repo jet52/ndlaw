@@ -2,6 +2,13 @@
 
 Changes applied to the primary-law databases (`constitution.db`, `constitution_history.db`, `statutes.db`, `rules.db`, `admincode.db`) after import. All corrections are also recorded in each corpus DB's `changelog` table.
 
+## Batch `fix-amend164-source-2026-06-14` — correct art. XV (term limits) source_url (initiated measure → IMA, not CAA)
+
+art. XV §§ 1-6 (2022 term limits for the Legislative Assembly and Governor) is an **initiated** constitutional measure. ndconst.org pointed amendment **164**'s `source_url` at `…/68-2023/session-laws/documents/caa.pdf` — wrong file (CAA = legislative *referrals*) and a 404. The measure is **S.L. 2023 ch. 594, "INITIATED MEASURES APPROVED"** — public file `…/68-2023/session-laws/documents/ima.pdf` (IMA = Initiated Measures Approved; also in the on-disk `~/refs/nd/sess/sl2023.pdf` p. 2279). Verified the measure: "A new article … is created and enacted as follows: Section 1. Term limits for legislators…" — a **CREATE**, so art. XV §§ 1-6 are correct single-version provisions (no point-in-time reconstruction needed).
+
+- **Reproducible:** `AMENDMENT_SOURCE_URL_CORRECTIONS` in `ingest_constitution.py` overrides amendment 164's source_url to the IMA file. Applied to live + scratch; `affected` (art. XV §§ 1-6) was already correct.
+- **OPEN — effective-date discrepancy (not yet changed):** the DB stamps art. XV at **2022-11-08** (election/approval date), but the measure's Section 5 makes it effective **2023-01-01** ("the first day of January immediately following approval"). ndconst.org's modern chronology appears to use approval/election dates as effective dates; this may be systemic across the modern layer and affects point-in-time boundary accuracy. Flagged for a decision before live promotion.
+
 ## Batch `modern-ix-stale-text-2026-06-14` — correct stale CURRENT text for art. IX §§ 12-13 (ndconst.org didn't apply amend. 166)
 
 **Served-law correctness fix.** ndconst.org's current snapshot for **art. IX § 12 and § 13** still carries **pre-2024 terminology** ("deaf and dumb", "an institution for the feebleminded", "insane", "mentally ill"), even though the const DB records **amendment 166** (2023 SCR 4001, "Updated Terminology", approved 2024-11-05, effective 2024-12-05) as applied. So the stored "current" text was actually the *pre-2024* version — `lookup_authority` returned outdated text. The enacted modern terminology ("hard of hearing", "a facility for individuals with developmental disabilities", "care of individuals with mental illness") was verified against the enacting measure (bill 23-3015) at 450 dpi.
