@@ -1,5 +1,9 @@
 # HANDOFF — ND Constitution point-in-time reconstruction
 
+> **▶ NEXT TASKS (2026-06-15): see `HANDOFF-NEXT-orphans-and-live.md`** — the modern layer is
+> substantively complete; remaining work is (1) the orphan tails, then (2) live promotion. This
+> file is the campaign background/method reference.
+
 Last updated 2026-06-15. Read this fully before acting. Standing plan:
 `TODO-const-history-validation.md`. Design + decisions:
 `data/design-modern-const-versions-2026-06-14.md`.
