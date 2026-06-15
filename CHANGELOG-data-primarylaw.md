@@ -192,3 +192,12 @@ Amendment #132 (eff 1996-07-11, "eliminates outdated language … settling of te
 Reconciled (subagent + gated): sub1 (toleration) identical across 1895/1913/1925/1989 BB; sub2 (disclaimer) = the POST-1958 version with the "provided, however … acceptance of such jurisdiction" clause, **verified == historical § 203** (ratio 0.998); sub3 (debt settlement, ~7.6 KB obsolete bond-list) transcribed from the 1913 official, all 14 dollar amounts cross-verified across 1895/1913/1925.
 
 **Verification caught a witness trap:** the 1989 BB processed file is TRUNCATED mid-sub3 at a page break ("…discharge and exempt the"), so it can't witness sub3's full extent. Re-gated against the COMPLETE 1913 official compact: s1+s3 overlap 0.976, the only gap being the 189-char 1958 clause (legitimately in s2). Point-in-time verified: 1990 → full 3-subsection Compact; 2000 → toleration only. Integrity 0; build REPRODUCIBLE (sig 29a93c557d500027, 694 versions). **Scratch only.**
+
+
+## Batch `modern-artv-pre1997-2026-06-15` — art V [1981,1997) crosswalk, 10 single-step sections (Group B) (SCRATCH)
+
+`constitution.db` (scratch) · 10 provisions · +10 prior versions
+
+The 1997 measure (#135) replaced/reorganized the executive article, reusing §-numbers for new content (a renumbering, like art IV). Prepended the pre-1997 ("old") content [1981-01-01, 1996-06-30] to the 10 single-step shared sections (§§ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11). Pre-1997 text transcribed+reconciled from the 1989 Blue Book (the [1981,1997) witness) cross-checked vs the 1973 BB (subagent), gated here by overlap ≥0.97 against the 1989 BB section + old≠new. Verified: §3 1990→eligibility (governor age 30) / 2010→election of governor; §7 1990→lt-governor president of senate / 2010→powers of governor.
+
+NOT in this batch: **§1, §12** (also carry a 1986 amendment → 3-version chains, next) and **§13** (pre-1997 only — no post-1997 citation; orphan). Integrity 0; build REPRODUCIBLE (sig 4a38f787cdea9c96, 704 versions). **Scratch only.**
