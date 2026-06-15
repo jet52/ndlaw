@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 import time
@@ -386,6 +387,42 @@ def prov_index_by_pid(prov_index: dict, pid: int) -> int | None:
     return None
 
 
+# --- stale-current-text corrections ----------------------------------------
+
+TEXT_CORRECTIONS_JSON = Path(__file__).resolve().parent.parent / "data" / "const_modern_text_corrections.json"
+
+
+def apply_text_corrections(conn, prov_index: dict) -> int:
+    """Override the current-version text where the ndconst.org snapshot is STALE
+    (recorded an amendment but never applied its text). Data + provenance live in
+    data/const_modern_text_corrections.json; each correction's text is the enacted
+    post-amendment text verified against the session-law measure. Remove an entry
+    once ndconst.org reflects the amendment."""
+    if not TEXT_CORRECTIONS_JSON.exists():
+        return 0
+    data = json.loads(TEXT_CORRECTIONS_JSON.read_text())
+    n = 0
+    for c in data.get("corrections", []):
+        hit = prov_index.get(corpus.cite_key(c["citation"]))
+        if not hit:
+            print(f"  WARN text-correction: {c['citation']} not found", file=sys.stderr)
+            continue
+        pid, vid = hit
+        old = conn.execute("SELECT text_content FROM provision_versions WHERE id=?", (vid,)).fetchone()[0]
+        head = conn.execute("SELECT heading FROM provisions WHERE id=?", (pid,)).fetchone()
+        head = (head[0] if head else None) or ""
+        # provisions_fts is external-content FTS5 (manually managed): remove the old
+        # row with the 'delete' command (needs the originally-indexed values).
+        conn.execute("INSERT INTO provisions_fts(provisions_fts, rowid, citation, heading, text_content) "
+                     "VALUES('delete', ?, ?, ?, ?)", (vid, c["citation"], head, old))
+        conn.execute("UPDATE provision_versions SET text_content=?, source_authority=? WHERE id=?",
+                     (c["text"], f"current text (ndconst.org, corrected for amend {c.get('applies_amendment')})", vid))
+        corpus.index_version_fts(conn, vid, c["citation"], head, c["text"])
+        n += 1
+    conn.commit()
+    return n
+
+
 # --- DB build --------------------------------------------------------------
 
 def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict:
@@ -440,6 +477,10 @@ def build(db_path: Path, *, limit: int | None, delay: float, batch: str) -> dict
     # Authoritative amendment chronology (ndconst.org :amendments — 167 rows).
     n_amend, n_linked = ingest_amendments(conn, prov_index, batch=batch)
     print(f"  amendments: {n_amend} rows ({n_linked} linked to current provisions)")
+
+    n_textfix = apply_text_corrections(conn, prov_index)
+    if n_textfix:
+        print(f"  stale-current-text corrections applied: {n_textfix}")
 
     conn.execute(
         "INSERT INTO provenance (operation, command, source_paths, rows_affected, notes) "
