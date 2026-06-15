@@ -47,6 +47,7 @@ run $PY scripts/apply_modern_text_corrections.py "$SCRATCH" --apply
 run $PY triage/const-modern-batch/splice_xii_corporations_2006.py --apply
 run $PY triage/const-modern-batch/fix_artiv_renumber_1986.py --apply
 run $PY triage/const-modern-batch/splice_artiv_crosswalk_1981.py --apply
+run $PY triage/const-modern-batch/splice_groupa_clean_2026.py --apply
 run $PY triage/const-modern-batch/fix_ix7_head_secondread.py --apply
 
 echo

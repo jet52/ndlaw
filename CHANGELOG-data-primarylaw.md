@@ -169,3 +169,15 @@ Art IV was repealed-and-recreated 1986-12-01, REUSING the §1-16 citation number
 **DEFERRED:** §§2, 5, 11 — "[Unconstitutional.]" stubs in the 1981 BB (judicially void, not textually repealed — representation is a separate judgment call). §§17-46 — repealed-only, no modern citation (optional pass).
 
 **Validation:** integrity 0 gaps, quick_check ok, 691 versions. Snapshot-diff 1989 unchanged at 95.6% (prior versions not in force at 1989 → no regression); 1981 picked up the art IV [1981,1986) content (MATCH 48→49) but the harness flags 2 false MISMATCHes (art IV §1/§4) — these are `parse_comp` mis-attributing the garbled 1981-BB microfilm OCR across an undetected article header, NOT data errors (§1 DB text = "The Senate and House of Representatives jointly shall be designated…", which the codifier note quotes verbatim as "Former Article IV, § 1, as originally adopted"). Build reproducibility re-verified (REPRODUCIBLE YES, sig 26c3f13b1e907899) with the splice folded into `scripts/rebuild_const_modern.sh`. **Scratch only.**
+
+
+## Batch `modern-groupa-clean-2026-06-15` — needs-base-source Group A (clean single-amendment) (SCRATCH)
+
+`constitution.db` (scratch) · 2 provisions · +2 prior versions
+
+The "needs-base-source" bucket was classified before the 1989 Blue Book was acquired; most of it is reconstructable from the 1981/1989 BBs + the validated historical layer. Group A = the two trivial single-amendment members:
+
+- **art I § 1** (inalienable rights): #116 (eff 1984-12-06, "Establishes the right to bear arms") was a full restatement adding the keep-and-bear-arms clause and modernizing "men"→"individuals". Prepended prior [1981-01-01, 1984-12-05] = historical § 1 ("All men are by nature equally free…"; == 1981 BB, contained). Verified: 1982→"men", 1990→"individuals".
+- **art X § 6** (poll tax): #154 (eff 2012-12-06, "Elimination of annual poll tax") repealed it. Prepended prior [1981-01-01, 2012-12-05] = historical § 180 (poll tax) with the editorial "($1.50)" dropped to match BOTH modern BB witnesses (modern witnesses govern the modern-era version, cf. art XII §12/§14). Verified: 1990→poll tax, 2015→Repealed.
+
+Clean source = validated historical layer (1889 numbering, in force 1980 = the [1981, change) content), each confirmed present (despaced) in the modern-scheme Blue Book. Integrity 0 gaps; build re-verified REPRODUCIBLE (sig b90148005a643b3a, 693 versions). **Deferred to Group B: art XIII § 1** (turns out to be a 3-subsection 1996 drop, not trivial). **Scratch only.**
