@@ -2,6 +2,15 @@
 
 Changes applied to the primary-law databases (`constitution.db`, `constitution_history.db`, `statutes.db`, `rules.db`, `admincode.db`) after import. All corrections are also recorded in each corpus DB's `changelog` table.
 
+## Batch `fix-amend167-legacyfund-2024-06-14` — correct the 2024 Legacy Fund amendment mis-mapping (amend. 167)
+
+ndconst.org's `:amendments` table lists amendment **167** (Legacy Fund, 2023 HCR 3033, ballot measure approved 2024-11-05, effective 2024-12-05) as affecting **`art. XVI, §§ 1-5`** — that cell was copied from amendment 165 (the June-2024 initiated measure that *created* art. XVI, "Congressional Age Limits"). The enacted measure (bill 23-3092) **amends section 26 of article X** (legacy-fund spending/transfers). Verified against the bill text and against amendment 166 (SCR 4001, "Updated Terminology") which correctly targets art. IX §§ 12-13.
+
+Effect of the upstream error: amendment 167 was spliced onto art. XVI §§ 1-5 (5 spurious rows; those provisions' `effective_start` stamped 2024-12-05 instead of the 2024-06-11 create date), and **art. X § 26 lost its 2024 amendment event** (left stamped at its 2011 creation).
+
+- **Reproducible fix:** `AMENDMENT_AFFECTED_CORRECTIONS` in `ndcourts_mcp/ingest_constitution.py` overrides amendment 167's `affected` to `art. X, § 26` before linking, so a clean rebuild reproduces the correction (we cannot edit ndconst.org).
+- **Applied to built DBs** (`constitution.db` live + the modern-reconstruction scratch) via `scripts/fix_amend167_legacyfund_2024.py` (idempotent): deleted the 5 wrong amendment-167 rows, inserted one correct row on art. X § 26, reset art. XVI §§ 1-5 `effective_start` → 2024-06-11, set art. X § 26 → 2024-12-05. Integrity 0/0/0 on both. art. X § 26 is now correctly a two-amendment provision (2011 create + 2024 amend) queued for point-in-time reconstruction; art. XVI §§ 1-5 are correct single-version creates. Live server picks this up on the next release rebuild.
+
 ## Batch `const-struct-2026-06-14` — close the 4 structural constitutional amendments + Amendment I; build & validate the historical point-in-time layer
 
 Closed the long-standing PL-CONST-STRUCTURAL gap: four amendments that the whole-provision ingest could not apply because they touch **sub-provisions** are now applied as whole-provision version splices (the ratified "splice, don't subdivide" decision), reconstructed from session-law text and propagated into the canonical `data/constitution_amendments.json`.

@@ -120,11 +120,15 @@ BB-checkable passed (vs 40% solo error).
 (`RESULTS-wave2.md`, `RESULTS-multi.md`). Modern reconstructed = **34 provisions**,
 integrity 0/0, scratch-only. What remains:
 
-1. **art XVI §1-5 + art IX §13 (2024 amendments) — needs a DATA FIX FIRST.** The
-   2024 `source_url`/`affected` mappings are wrong: bill-doc 23-3092 (DB amend 167,
-   linked to art XVI) actually amends art X §26 (legacy fund). Audit the 2024
-   amendment rows (165/166/167) vs the real ndlegis measures, fix the amendments
-   table, then reconstruct (bill PDFs cached in `caa-cache/billdoc_*`).
+1. **2024 amendment data — FIXED 2026-06-14** (`fix-amend167-legacyfund-2024-06-14`).
+   Audited 165/166/167 vs the enacted measures: only **167** (Legacy Fund) was wrong
+   — ndconst.org mislabeled it `art. XVI §§1-5` (copied from 165); it amends **art X
+   §26**. Reproducible overlay (`AMENDMENT_AFFECTED_CORRECTIONS` in
+   `ingest_constitution.py`) + applied to scratch+live (`scripts/fix_amend167_legacyfund_2024.py`).
+   165 (art XVI, age limits) and 166 (art IX §§12-13, terminology) were correct.
+   **Now ready:** art X §26 is a 2-amendment provision (2011 create + 2024 amend,
+   bill 23-3092 cached) → reconstruct its chain next pass. art XVI §1-5 are correct
+   single-version creates. art IX §13 + art XV giants still pending.
 2. **2 discontinuities — art V §1, §12:** current = single create-1997 version;
    their pre-1997 old §1/§12 is the REPEALED-predecessor lineage. needs-base-source
    (native 1979-80 / 1981 BB) + a lineage decision (old §1/§12 belong to a different

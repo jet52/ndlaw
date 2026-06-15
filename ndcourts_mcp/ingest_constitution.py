@@ -286,6 +286,19 @@ def parse_amendment_rows(raw: str) -> list[dict]:
     return rows
 
 
+# ndconst.org :amendments source-data errors, corrected here (we can't edit
+# ndconst.org) so a clean rebuild reproduces the fix. Keyed by amendment number ->
+# corrected `affected` cell. Each correction is verified against the enacted measure.
+#   167: ndconst.org lists "art. XVI, §§ 1-5" for the Legacy Fund measure (2023
+#        HCR 3033, bill 23-3092) — that cell was copied from amend 165 (the age-limit
+#        measure that created art. XVI). HCR 3033 amends section 26 of article X
+#        (verified against the enacted bill text). Without this, the Legacy Fund
+#        amendment is mislinked to art. XVI §§1-5 and art. X §26 loses its 2024 event.
+AMENDMENT_AFFECTED_CORRECTIONS = {
+    "167": "art. X, § 26",
+}
+
+
 def amendment_targets(affected: str) -> list[str]:
     """Current-numbering citations an amendment touches, expanding §§ ranges.
     Returns [] for pre-1996 rows that use only historical section numbers."""
@@ -319,6 +332,9 @@ def ingest_amendments(conn, prov_index: dict, *, batch: str) -> tuple[int, int]:
     latest: dict[int, str] = {}  # pid -> latest linked effective_date
     for r in rows:
         n_rows += 1
+        corrected = AMENDMENT_AFFECTED_CORRECTIONS.get((r["number"] or "").strip())
+        if corrected:
+            r["affected"] = corrected
         action = "repealed" if "repeal" in r["subject"].lower() else "amended"
         targets = amendment_targets(r["affected"])
         linked_pids = []
