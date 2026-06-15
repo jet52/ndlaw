@@ -269,3 +269,28 @@ Resolved the two sections deferred from `modern-artiv-dropped-1981-2026-06-15`, 
 **⚠ Pre-existing historical-layer error found (flagged, NOT fixed here):** 1889 § 69's version [1980-10-02, 1980-12-31] is stored as "[Repealed effective 1980-10-02 …]" (FULL repeal) — overstating SCR 4006, which repealed only subsection 6. The correct post-1980 § 69 = the 34-item list (minus sub 6). This is in the LIVE/validated 1889 layer and wants a history-pipeline correction (ingest_constitution_history / const_history overlay), separate from this scratch modern-orphan work.
 
 **art IV dropped sections now COMPLETE: 29/29** (old §§17-46 except §26, which did not exist at 1981). Modern point-in-time layer: 496 provisions, 774 versions, integrity 0, quick_check ok, REPRODUCIBLE (sig 9b62a5ece45a882c). Snapshot-diff 1989 = 96.1% match-or-near. **Scratch only — nothing promoted.**
+
+
+## Fix `fix-s69-partial-repeal-2026-06-15` — 1889 § 69 was wrongly recorded as fully repealed (HISTORICAL LAYER)
+
+`data/constitution_amendments.json` (source) + `constitution_history.db` + served `constitution.db`
+
+Surfaced while sourcing art IV § 43 (above). Amendment CVII (SCR 4006, eff 1980-10-02) was coded in
+constitution_amendments.json as a FULL repeal of § 69 (`action:"repeal"`, text `"[Repealed effective
+1980-10-02]"`). The session law (S.L. 1981 ch. 655, SECTION 2) repealed only **subsection 6** of § 69
+(jurisdiction of justices of the peace, police magistrates, constables), collateral to abolishing
+county judges (§ 173). The other 34 enumerated special-law cases survived until the 1986 art IV
+recreation.
+
+Fix (canonical, at source): changed the CVII § 69 change to `action:"amend"` with text = the surviving
+34-item list (subsections 1-5, 7-35; sub 6 removed, remaining numbers unchanged → gap at 6).
+Regenerated constitution_history.db (`rm` + ingest_constitution_history --apply); a content diff vs the
+backup confirmed ONLY § 69 changed (status repealed→active; the [1980-10-02,1980-12-31] version text).
+Forward-synced the served constitution.db with `scripts/fix_s69_partial_repeal_2026-06-15.py` (avoids
+re-fetching ndconst.org / a full re-merge; one provision, FTS reindexed; idempotent) — exactly what a
+clean re-merge produces. A future full canonical rebuild reproduces it from the corrected JSON.
+
+Verified: § 69 as of 1980-11-01 = the 34-item list (active); art IV § 43 as of 1983 = the same list;
+despaced bodies equal — the 1889-numbering and 1981-numbering views now AGREE. § 69 as of 1950 still
+has all 35 items (sub 6 present pre-repeal). Modern rebuild REPRODUCIBLE (sig 35528bd7c98f1cc9, 774
+versions), integrity 0, quick_check ok.
