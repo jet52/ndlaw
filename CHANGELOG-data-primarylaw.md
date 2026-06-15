@@ -112,3 +112,47 @@ Merged the point-in-time historical layer (`constitution_history.db`, original 1
 Effect: `lookup_authority` now answers point-in-time historical queries by original citation, e.g. `lookup_authority("N.D. Const. § 82", as_of_date="1945-01-01")` → the 1940 Art. 57 (LVII) text; modern queries unchanged; `search_authority` FTS indexes the historical text. Integrity: quick_check ok, FTS integrity-check ok.
 
 This is Approach B (additive). NOT yet connected across the 1981 reorganization — see TODO-primarylaw.md PL-CONST-CROSSWALK (renumbering crosswalk), PL-CONST-AMEND-RECONCILE, PL-CONST-STRUCTURAL, and the BUILD-ORDER note (ingest_constitution → ingest_constitution_history → merge_const_history → make_release).
+
+## Batch `modern-xii-corp-repeal-2006-2026-06-15` — recover pre-repeal text for 7 art. XII corporations sections (SCRATCH)
+
+`constitution.db` (scratch `/tmp/const-scratch.db`) · 7 provisions · +7 prior-text versions, 7 repeal-tail effective-date corrections
+
+ndconst.org served art. XII §§ 3, 7, 8, 12, 14, 15, 17 (Corporations Other than Municipal) as a bare "Repealed." stamped with the ingest-default effective date **1889-10-01** — i.e. the DB served "Repealed." across the *entire* 1889→present timeline, losing the pre-repeal text and mis-dating the repeal. Both the **1981 Blue Book** and the **1989 Centennial Blue Book** print full text for all seven; they were repealed only in **2006**.
+
+**Repeal date** = 2006-07-01. Authority: the ND Legislative Council's official codified history note for art. XII ("The repeal of this section, effective July 1, 2006, was approved at the primary election in 2006"). Same cleanup measure (S.L. 2005, ch. 623) amended surviving §§ 1, 2, 6 (approved June 13, 2006 primary). Residual: whether the measure stated July 1 vs. the 30-day default — a 12-day mid-2006 window, immaterial to point-in-time correctness; confirm against the measure before live promotion.
+
+**Pre-repeal text** triangulated across three independent witnesses: PRIMARY 1981 Blue Book (high-res ndbb scan, modern art. XII numbering, clean); WITNESS 1989 Blue Book (same words; OCR spacing garble; dropped "be" in §15, corrected); CROSS the 1925 official constitution orig. Art. VII (= same content, renumbered by the reorg) — word-level ratio 1.000 for five sections. Two modern-era variants where **both** Blue Books govern over the 1925 reading: §12 "franchises" (1925 sing.) + "...this section, by..." comma; §14 "...cross any other, and..." (1925 semicolon).
+
+**Model:** each section's existing "Repealed." version moved 1889-10-01 → 2006-07-01; new prior full-text version inserted [1981-01-01 → 2006-06-30] (modern-layer head convention). Integrity 0 gaps. FTS untouched (current text unchanged). Per-version changelog rows written; idempotent (batch-scoped).
+
+**Validation:** modern snapshot-diff flipped all 7 from MISMATCH to MATCH at both witnesses — **1981 MISMATCH 7→0**; **1989 MISMATCH 10→3** (residual 3 = pre-existing art IV §16 / VI §12 / X §5 formatting NEAR-misses, unrelated), match-or-near **91.2% → 95.6%**. Point-in-time spot-checked across the boundary (full text through 2006-06-30; "Repealed." from 2006-07-01). **Scratch only** — not promoted to live (campaign doctrine: promote via upstream rebuild once witnessed + green).
+
+
+## Batch `modern-artiv-renumber-1986-2026-06-15` — correct art. IV §§ 9-11 false citation origin (SCRATCH)
+
+`constitution.db` (scratch `/tmp/const-scratch.db`) · 3 provisions · 3 effective-start corrections (no text change)
+
+Article IV (Legislative Branch) was repealed-and-recreated effective **1986-12-01** (approved at the June 12 & Nov 6, 1984 elections; S.L. 1983 ch. 728/730, 1985 ch. 706/707). Per the ND Legislative Council codified note at the beginning of art. IV: "Sections 14, 15 and 19 of Article IV, which were not repealed, have been renumbered as sections 9 to 11, inclusive." So former § 14 (bribery) → § 9, former § 15 (disqualification) → § 10, former § 19 (writs/vacancy) → § 11; the §9/§10/§11 *citations* began 1986-12-01 (former §§ 9-13 were repealed).
+
+**The bug:** ingest stamped § 9 and § 10 at the default 1889-10-01 (claiming statehood origin) and the earlier §11 markup reconstruction used the modern floor 1981-01-01 — all three falsely placed the citation before its 1986-12-01 renumber origin. **Fix:** moved each section's earliest version effective_start → 1986-12-01. No text change (the renumber preserved text; current text matches the 1981 BB former §§ 14/15/19). §11 retains its 2000 amendment split ([1986-12-01→2000-07-12] writs; [2000-07-13→] "provide by law a procedure").
+
+**Witness:** dual-source — codifier note + 1981 Blue Book, where former § 14 = bribery/solicitation, § 15 = "expelled for corruption … convicted of bribery, perjury or other infamous crime", § 19 = "governor shall issue writs of election" (despaced-substring match against the microfilm OCR).
+
+**Validation:** point-in-time now truthful — §§ 9-11 return nothing before 1986-12-01 (citation did not exist), full text from 1986-12-01, §11's 2000 amendment fires correctly. Snapshot-diff 1981 NOT_IN_COMP 59→56 (the 3 correctly drop from "DB provisions in force at T", matching the 1981 BB which has no §9-11); 1989 unchanged at 95.6% (no regression). Integrity 0 gaps.
+
+**Scope note:** this removes the false pre-1986 claims; it does NOT add a [1981,1986) layer for the old art IV numbering. "art IV § 9 as of 1983" correctly returns nothing (the text was former § 14). Full pre-1986 art IV coverage under old numbers = the separate PL-CONST-CROSSWALK task. **Scratch only.**
+
+
+## Batch `modern-ix7-secondread-2026-06-15` — second-read pass over the modern reconstructions (SCRATCH)
+
+`constitution.db` (scratch `/tmp/const-scratch.db`) · 1 text correction (art. IX § 7 head) + validation of 9 others
+
+Ran the pre-promotion second-read pass: every reconstructed modern version owed an independent witness (a BB distinct from the redline PDF + 1981 BB the agents originally used, or — for created/short-lived versions — the originating measure). Checker: `triage/const-modern-batch/second_read_check.py` (reuses the snapshot-diff BB parser).
+
+**10 owed items → all now validated:**
+- **BB-witnessed (8):** art I §16 (both chain versions ✓ vs 1981 & 1989 BB), II §1 (1989 ✓), IX §1 (both ✓), IX §2 (head contained in 1925 official; later ver contained @1989), **IX §10 (1981 BB 0.992 — resolves the prior "3rd-read flag")**, IX §12 (both ✓), IX §13 (head 0.981 vs 1981 BB + later @1989), XII §1 (both ✓1.0).
+- **Measure-witnessed (1):** art X §26 [2011,2024) head — created provision, no BB witness; re-extracted the 2011 CAA.PDF (ch. 518) via mutool, head matches at overlap 1.0; the measure's own EFFECTIVE DATE clause ("effective for oil and gas produced after June 30, 2011") independently confirms the 2011-07-01 start.
+
+**Real error caught and fixed — art IX § 7 [1981-01-01,1982-12-01) head** (`fix_ix7_head_secondread.py`): the wave-2 reversal of the 1982 amendment kept an ADDED span (the "#1 read error"). 1982 changed "All lands MENTIONED IN THE PRECEDING SECTION shall be appraised" → "All lands RECEIVED BY THE STATE FOR ANY SPECIFIC EDUCATIONAL OR CHARITABLE INSTITUTION shall be appraised"; the agent restored the struck phrase but failed to drop "for any specific educational or charitable institution", and wrote a comma for the original semicolon. Flagged because the head scored 0.859 vs the 1981 BB (every other head ≥0.971). Corrected to the pre-1982 text — **quadruple witness**: 1981 BB + 1925 official (orig § 160) + 1954 BB + 1973 BB, all identical. Text-only change to a non-current version; FTS untouched.
+
+**After this pass:** all modern reconstructions (44 provisions) carry an independent second witness or measure confirmation → §3.4 of the campaign HANDOFF is cleared. Snapshot-diff unchanged (1981 MISMATCH 0; 1989 95.6%); integrity 0 gaps; quick_check ok. **Scratch only.**

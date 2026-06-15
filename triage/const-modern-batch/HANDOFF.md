@@ -20,7 +20,7 @@ form a gap-free point-in-time timeline reflecting every amendment.
   1925 = 99.5%, 1973 = 97%. **Do not redo.**
 - **Modern layer (1981–present): IN PROGRESS, SCRATCH-ONLY.** ndconst.org gives only
   *current* text, so each modern provision shipped as one flat version. We reconstruct
-  prior versions from the session-law **redline** PDFs. **37 of 96** amended modern
+  prior versions from the session-law **redline** PDFs. **44 of 96** amended modern
   provisions reconstructed (in `/tmp/const-scratch.db`); **integrity 0 gaps**. The
   **live DB's modern layer is still flat** — no modern version-chains are live yet.
   (Live HAS received: the historical fixes, the amendment-chronology corrections, and
@@ -41,6 +41,7 @@ form a gap-free point-in-time timeline reflecting every amendment.
      - `triage/const-modern-batch/splice_multichain.py --apply` (12 chains)
      - `triage/const-modern-batch/splice_x26_2011.py --apply` (art X §26)
      - `triage/const-modern-batch/reconstruct_ix_stale.py --db /tmp/const-scratch.db --chain --apply` (art IX §12/§13)
+     - `triage/const-modern-batch/splice_xii_corporations_2006.py --apply` (7 art XII corp repeals)
      - then `scripts/fix_amend167_legacyfund_2024.py /tmp/const-scratch.db --apply`,
        `scripts/apply_modern_text_corrections.py /tmp/const-scratch.db --apply`
   Use the project venv: `.venv/bin/python`.
@@ -63,18 +64,28 @@ The 96 amended modern provisions break down:
      pre-1997 compilation).
    - art VIII §6 — heavy multi-subsection; both the redline and 1981 BB are OCR-degraded.
    - art I §1, art X §6, art XIII §1 — clean-reprint / bare-repeal (prior not visible).
-2. **art XII §§ 3/7/8/12/14/15/17** (corporations) — DB marks "Repealed." but the 1981
-   AND 1989 Blue Books print full text → repealed *later*, pre-repeal text lost. Recover
-   from the BBs (now archived, §6) + date the repeal. (`ndconst-org-errors.md` S2.)
-3. **art IV §§ 9-11 — the 1985 art IV recreation gap.** At T=1981 the DB serves
-   post-1986 content (stamped 1889-10-01 "unchanged"); the 1985 measure renumbered
-   art IV. Point-in-time for art IV in [1981,1986) is wrong. Reconstruct the pre-1986
-   art IV from the 1985 measure + 1981 BB. (Confirmed by the snapshot-diff: art IV
-   matches at 1989, post-recreation; the gap is the [1981,1986) window.)
-4. **Second-read pass (required before live):** every spliced provision needs a 1981-BB
-   witness OR a confirming independent second read. Still owed: the 3 Wave-2 redlines
-   (art II §1, IX §7, XII §1), the carried chain heads without a clean-BB witness
-   (art I §16, IX §1, IX §2), art IX §10 (3rd-read flagged), art X §26, IX §12/§13.
+2. ~~**art XII §§ 3/7/8/12/14/15/17** (corporations)~~ — **DONE 2026-06-15.** Pre-repeal
+   text recovered (1981+1989 BB dual witness + 1925 cross-check), repealed eff. 2006-07-01
+   (Legislative Council codified note; S.L. 2005 ch. 623). `splice_xii_corporations_2006.py`.
+   Flipped all 7 MISMATCH→MATCH at both witnesses (1989 91.2%→95.6%). `ndconst-org-errors.md`
+   row 6. Residual: confirm the measure's stated effective date (July 1 vs 30-day default)
+   before live.
+3. ~~**art IV §§ 9-11 — the 1985 art IV recreation gap.**~~ **DONE 2026-06-15.** It was a
+   *renumber*, not a repeal: former §§ 14/15/19 → §§ 9/10/11 eff. 1986-12-01 (codifier
+   note + 1981 BB). §9/§10 were falsely stamped 1889-10-01, §11 at 1981-01-01; all three
+   moved to 1986-12-01 (`fix_artiv_renumber_1986.py`, row 7). Pre-1986 those citations
+   correctly return nothing. **Companion left open:** the [1981,1986) *old* art IV (former
+   §§ 1-46 under the old modern-numbering) is not reconstructed — that's PL-CONST-CROSSWALK,
+   bigger than §9-11. §§ 1-8, 12-16 were already correctly dated 1986-12-01.
+4. ~~**Second-read pass (required before live).**~~ **DONE 2026-06-15.** All 10 owed items
+   independently witnessed (`second_read_check.py` + the changelog batch
+   `modern-ix7-secondread-2026-06-15`): 8 BB-witnessed (I §16, II §1, IX §1, IX §2, IX §10,
+   IX §12, IX §13, XII §1), 1 measure-witnessed (X §26 vs 2011 CAA, overlap 1.0). **One real
+   error found + fixed:** art IX §7 head kept an un-reversed 1982 addition ("for any specific
+   educational or charitable institution") — corrected vs a quadruple witness (1981 BB + 1925
+   §160 + 1954/1973 BB), `fix_ix7_head_secondread.py`. With §3.4 cleared, the gate to live is
+   now only #1/#2 (the needs-base-source bucket + the art IV crosswalk companion) plus a
+   clean snapshot-diff — see §7.
 
 ## 4. The reconstruction method (how it works)
 
@@ -131,7 +142,9 @@ The reconstruction gates double as a data-quality audit of ndconst.org. **Runnin
 - **Modern:** `triage/const-modern-batch/snapshot_diff_modern.py` — reconstruct each
   modern provision as of T, diff vs a modern-scheme Blue Book. **Run: `.venv/bin/python
   triage/const-modern-batch/snapshot_diff_modern.py`. Re-run after every splice.**
-  - **1989 (T=1989-07-01): 90.6% match-or-near** — the dependable interior witness.
+  - **1989 (T=1989-07-01): 95.6% match-or-near** (was 90.6%; +art XII corp recon) — the
+    dependable interior witness. Residual MISMATCH 3 = art IV §16 / VI §12 / X §5 (pre-existing
+    formatting NEAR-misses). 1981: art XII MISMATCH 7→0.
   - 1981 (T=1981-01-01): the scan's microfilm OCR under-parses arts I/III/VI/IX, so its
     rate looks low (~50%); what parses matches. A cleaner 1981 text would raise it.
 - **Blue Book scans archived this session** (`~/refs/nd/const/`):
