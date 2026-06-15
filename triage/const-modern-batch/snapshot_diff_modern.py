@@ -35,7 +35,10 @@ DB = Path("/tmp/const-scratch.db")
 # carry but whose section is missing are NOT_IN_COMP (parse miss or real gap).
 COMPS = {
     "1981": ("1981_blue-book-ndbb_constitution.md", "1981-01-01"),
-    "1989": ("1989_blue-book_constitution.md", "1989-07-01"),
+    # 1989: the marker-OCR re-extraction (2026-06-15) — complete (the older
+    # 1989_blue-book_constitution.md dropped art XIII §1's sub-3 tail at a page break)
+    # and far cleaner (no letter-spacing). Repointing here lifted MATCH 77->114.
+    "1989": ("1989_blue-book-marker_constitution.md", "1989-07-01"),
 }
 
 ROMAN = "IVXLCM"

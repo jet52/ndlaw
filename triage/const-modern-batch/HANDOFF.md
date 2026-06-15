@@ -154,6 +154,12 @@ The reconstruction gates double as a data-quality audit of ndconst.org. **Runnin
     formatting NEAR-misses). 1981: art XII MISMATCH 7→0.
   - 1981 (T=1981-01-01): the scan's microfilm OCR under-parses arts I/III/VI/IX, so its
     rate looks low (~50%); what parses matches. A cleaner 1981 text would raise it.
+- **1989 BB re-extracted via marker OCR 2026-06-15** — `~/refs/nd/const/processed/1989_blue-book-marker_constitution.md`
+  is the reliable 1989 witness now (the older `1989_blue-book_constitution.md` dropped art XIII §1's
+  sub-3 tail at a page break and has letter-spacing garble). marker is complete + clean (MATCH 77→114).
+  Regenerate: `~/.local/bin/marker_single ~/refs/nd/const/raw/1989_blue-book_ndbb-6361.pdf
+  --page_range "66-97" --disable_image_extraction --output_dir <dir>` (0-indexed; PDF pages 67-98 =
+  the constitution). The snapshot-diff harness points 1989 at this file.
 - **Blue Book scans archived this session** (`~/refs/nd/const/`):
   `raw/{1981,1989,1973}_blue-book_ndbb-*.pdf`; extracted constitutions
   `processed/{1981_blue-book-ndbb,1989_blue-book}_constitution.md`. (1973 is pre-reorg
