@@ -28,28 +28,15 @@ from pathlib import Path
 PROC = Path.home() / "refs/nd/const/processed"
 DB = Path("/tmp/const-scratch.db")
 
-# year -> (filename, T, coverage_ceiling). The 1981 BB markdown on disk is TRUNCATED
-# at art. XII § 1 — provisions past that point have no witness (not reconstruction
-# errors). coverage_ceiling = (article_roman, last_section) the compilation reaches.
+# year -> (filename, T). Modern-scheme Blue Books extracted from the ndbb scans.
+# A DB provision whose ARTICLE is absent from the compilation is "beyond coverage"
+# (e.g. art. XIV/XV/XVI created after the BB's date; or art. VII home-rule which the
+# 1981 BB predates) — no witness, not an error. Provisions in an article the BB DOES
+# carry but whose section is missing are NOT_IN_COMP (parse miss or real gap).
 COMPS = {
-    "1981": ("1981_blue-book_constitution.md", "1981-01-01", ("XII", 1)),
+    "1981": ("1981_blue-book-ndbb_constitution.md", "1981-01-01"),
+    "1989": ("1989_blue-book_constitution.md", "1989-07-01"),
 }
-
-ART_ORDER = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI",
-             "XII", "XIII", "XIV", "XV", "XVI"]
-
-
-def beyond_ceiling(key, ceiling):
-    """True if provision (art, sec) is past the compilation's coverage ceiling."""
-    art, sec = key
-    cart, csec = ceiling
-    if art not in ART_ORDER:
-        return True
-    if ART_ORDER.index(art) > ART_ORDER.index(cart):
-        return True
-    if art == cart and sec > csec:
-        return True
-    return False
 
 ROMAN = "IVXLCM"
 
@@ -67,12 +54,20 @@ def section_num(line):
     return int(m.group(1)) if m else None
 
 
-def article_of(heading_line):
-    """Return the article roman from a heading line, or None. OCR letter-spaces
-    'ARTICLE' ('ARTICL E I V'), so squish to letters and match the trailing roman."""
-    squished = re.sub(r"[^A-Za-z]", "", heading_line.upper())
-    m = re.search(rf"ARTICLE([{ROMAN}]+)$", squished)
-    return m.group(1) if m else None
+def article_of(line):
+    """Return the article roman if this line is an ARTICLE header, else None.
+    Handles both a standalone centered ALL-CAPS 'ARTICLE <ROMAN>' line (raw
+    pdftotext) and a markdown '## ARTICLE ...' heading. OCR letter-spacing
+    ('ARTICL E I V') is collapsed by squishing to letters first; the full-line
+    match avoids catching mid-sentence 'article X, section 1' references."""
+    squished = re.sub(r"[^A-Za-z]", "", line.upper())
+    m = re.fullmatch(rf"ARTICLE([{ROMAN}]+)", squished)
+    if m:
+        return m.group(1)
+    if line.lstrip().startswith("#"):
+        m = re.search(rf"ARTICLE([{ROMAN}]+)$", squished)
+        return m.group(1) if m else None
+    return None
 
 
 def parse_comp(fname):
@@ -85,12 +80,11 @@ def parse_comp(fname):
             secs.setdefault((art, cur), " ".join(buf).strip())
 
     for line in (PROC / fname).read_text().splitlines():
-        if line.lstrip().startswith("#"):
-            a = article_of(line)
-            if a:
-                flush(); cur, buf = None, []
-                art = a
-                continue
+        a = article_of(line)
+        if a:
+            flush(); cur, buf = None, []
+            art = a
+            continue
         n = section_num(line)
         if n is not None:
             flush()
@@ -128,8 +122,9 @@ def best_ratio(dn, cn):
 
 
 def run(year):
-    fname, T, ceiling = COMPS[year]
+    fname, T = COMPS[year]
     comp = parse_comp(fname)
+    comp_articles = {a for (a, _) in comp}
     con = sqlite3.connect(DB)
     db = db_at(con, T)
     con.close()
@@ -139,8 +134,8 @@ def run(year):
     for key, dbtext in sorted(db.items()):
         repealed = dbtext.strip().lower().startswith("[repealed")
         if key not in comp:
-            if beyond_ceiling(key, ceiling):
-                cls["BEYOND_COVERAGE"] += 1          # truncated witness — not an error
+            if key[0] not in comp_articles:
+                cls["BEYOND_COVERAGE"] += 1          # article absent from witness — not an error
             elif repealed:
                 cls["REPEALED_OK"] += 1
             else:
@@ -168,8 +163,7 @@ if __name__ == "__main__":
     for year in years:
         comp, db, cls, mism, missing = run(year)
         print(f"\n===== MODERN SNAPSHOT-DIFF {year} (T={COMPS[year][1]}) =====")
-        print(f"  compilation (art,§) parsed: {len(comp)} (ceiling {COMPS[year][2][0]} §{COMPS[year][2][1]} — BB truncated);"
-              f"  DB modern provisions at T: {len(db)}")
+        print(f"  compilation (art,§) parsed: {len(comp)};  DB modern provisions at T: {len(db)}")
         ok = cls["MATCH"] + cls["NEAR"] + cls["REPEALED_OK"]
         witnessed = ok + cls["MISMATCH"] + cls["NOT_IN_COMP"]   # exclude beyond-coverage
         for k in ("MATCH", "NEAR", "REPEALED_OK", "MISMATCH", "NOT_IN_COMP", "BEYOND_COVERAGE"):

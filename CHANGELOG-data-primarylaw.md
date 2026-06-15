@@ -2,6 +2,10 @@
 
 Changes applied to the primary-law databases (`constitution.db`, `constitution_history.db`, `statutes.db`, `rules.db`, `admincode.db`) after import. All corrections are also recorded in each corpus DB's `changelog` table.
 
+## Batch `modern-text-corrections-2026-06-15` — fix art. VII §10 (ndconst.org served a 404 page)
+
+The DB's current text for **art. VII § 10** (intergovernmental agreements) was a DokuWiki "topic does not exist" **404 HTML page** (`<!DOCTYPE html>…`, ~14 KB) — ndconst.org served a broken page and the scrape stored it. art. VII §10 was created 1983 (S.L. 1983 ch. 718, home-rule article) and is unchanged since; the verbatim text was taken from the 1983 creation measure's clean text layer and corroborated against the newly-acquired 1989 Blue Book. Corrected (482 chars) in live `constitution.db` + scratch via `scripts/apply_modern_text_corrections.py`; reproducible through `data/const_modern_text_corrections.json` + `ingest_constitution.apply_text_corrections`. Surfaced by the modern snapshot-diff (art. VII §10 was a hard mismatch vs the 1989 BB). New Blue Book scans archived for future witnesses: `~/refs/nd/const/raw/{1981,1989,1973}_blue-book_ndbb-*.pdf` (+ extracted constitution `processed/{1981_blue-book-ndbb,1989_blue-book}_constitution.md`).
+
 ## Batch `fix-amend164-effdate-2026-06-14` — art. XV effective date (measure states it)
 
 Investigation of approval-vs-effective dating (full writeup: `triage/const-amendment-effective-dates-2026-06-14.md`). The default for an approved measure is **"the thirtieth day after the election, unless otherwise specified in the measure"** (N.D. Const. art. III § 8; rule established 1918 — before 1918 it was the date of the official canvass, per the § 25 history). A measure stating its own effective date controls. Confirmed the DB's effective dates all match the (user-reviewed) ndconst.org column and follow this rule; audited all 59 modern amendments.

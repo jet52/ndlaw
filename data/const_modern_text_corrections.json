@@ -1,6 +1,11 @@
 {
-  "_README": "Corrected CURRENT text for modern constitution provisions where the ndconst.org snapshot is STALE (did not apply a recorded amendment). Applied by ingest_constitution after the modern mirror is built. Each entry's text = the enacted post-amendment text, verified against the session-law measure. Remove an entry once ndconst.org's snapshot reflects the amendment.",
+  "_README": "Corrected CURRENT text for modern constitution provisions where the ndconst.org snapshot is wrong (stale — did not apply a recorded amendment) or corrupt (served a non-text page). Applied by ingest_constitution after the modern mirror is built. Each entry's text is verified against a primary source (session-law measure / Blue Book). Remove an entry once ndconst.org's snapshot is correct.",
   "corrections": [
+    {
+      "citation": "N.D. Const. art. VII, § 10",
+      "reason": "ndconst.org served a DokuWiki 'topic does not exist' 404 HTML page instead of the section text. art. VII §10 (intergovernmental agreements) was created 1983 (S.L. 1983 ch. 718, home-rule article) and is unchanged since. Verbatim text from the 1983 creation measure (clean text layer), corroborated by the 1989 Blue Book.",
+      "text": "Agreements, including those for cooperative or joint administration of any powers or functions, may be made by any political subdivision with any other political subdivision, with the state, or with the United States, unless otherwise provided by law or home rule charter. A political subdivision may by mutual agreement transfer to the county in which it is located any of its powers or functions as provided by law or home rule charter, and may in like manner revoke the transfer."
+    },
     {
       "citation": "N.D. Const. art. IX, § 12",
       "applies_amendment": "166",

@@ -443,8 +443,10 @@ def apply_text_corrections(conn, prov_index: dict) -> int:
         # row with the 'delete' command (needs the originally-indexed values).
         conn.execute("INSERT INTO provisions_fts(provisions_fts, rowid, citation, heading, text_content) "
                      "VALUES('delete', ?, ?, ?, ?)", (vid, c["citation"], head, old))
+        auth = (f"current text (ndconst.org, corrected for amend {c['applies_amendment']})"
+                if c.get("applies_amendment") else "current text (corrected — ndconst.org source defect)")
         conn.execute("UPDATE provision_versions SET text_content=?, source_authority=? WHERE id=?",
-                     (c["text"], f"current text (ndconst.org, corrected for amend {c.get('applies_amendment')})", vid))
+                     (c["text"], auth, vid))
         corpus.index_version_fts(conn, vid, c["citation"], head, c["text"])
         n += 1
     conn.commit()
