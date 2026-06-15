@@ -210,3 +210,18 @@ NOT in this batch: **§1, §12** (also carry a 1986 amendment → 3-version chai
 §1 and §12 changed twice in the modern era (1986 amendment #121/#122, then the 1997 replacement #135). Built each chain: [1981-01-01,1986-12-03] pre-1986 (validated historical layer §1←§71, §12←§82); [1986-12-04,1997-06-30] post-1986 (1989 BB, overlap 1.000/0.999); [1997-07-01,) current. 1986 transitions confirmed (§1 "year 1965"→"1988" + Dec-15 commencement sentence; §12 drops the "tax commissioner … no party ballot" sentence). pre≠post and post≠current both verified. Integrity 0; build REPRODUCIBLE (sig 1f9e987822580f9c, 708 versions).
 
 **art V §§1-12 now fully covered for [1981,present).** Remaining: §13 (pre-1997 executive-officers section with no post-1997 citation — orphan, deferred like art IV §§17-46). **Scratch only.**
+
+
+## Batch `modern-artviii6-chain-2026-06-15` — art VIII §6 Board of Higher Ed 4-version chain (Group B, FINAL) (SCRATCH)
+
+`constitution.db` (scratch) · 1 provision · +3 versions (was a single [2000-07-13,open); all of [1981,2000) had been uncovered)
+
+Built the full chain across the three modern amendments:
+- [1981-01-01, 1994-12-07] base — marker-OCR 1989 Blue Book (the clean complete re-extraction)
+- [1994-12-08, 1996-12-04] after #130 (1994 student member: 7→8 board, rewrote subsec 2 + 4)
+- [1996-12-05, 2000-07-12] after #133 (1996: one-graduate→one bachelor's; 3→5 nominating committee; 7yr→4yr terms + two-term limit; "balanced and representative" sentence)
+- [2000-07-13, open) current (#139: bachelor's cap one person→two persons)
+
+Redlines read by subagent (1995 CAA p5 / 1997 SL7CNSTM p10 / 2001 CAA p1, rendered 450 dpi; the subagent verified base+#130+#133+#139==current forward, ratio 1.0). Intermediates rebuilt HERE by reverse-applying the localized #139 then #133 edits to the whitespace-normalized clean current text (so unchanged ~90% stays byte-identical), then independently gated: (a) v1996 vs current differs by exactly the one↔two-persons cap; (b) v1994 vs v1996 overlap 0.996 (the #133 bundle); (c) v1994's #130-untouched subsections (3,5) match the 1989 BB base verbatim. PIT verified across all three boundaries (1990: 7 members/7yr/no student; 1995: 8/+student; 1998: 4yr terms; 2005: two-persons cap). Integrity 0; build REPRODUCIBLE (sig 55b6b2f2e77a1b0f, 711 versions).
+
+**Group B COMPLETE** (art XIII §1, art V §§1-12, art VIII §6). Remaining modern-layer tails are orphans only (art IV §§17-46, art V §13, art IV §§2/5/11 unconstitutional stubs — no/orphan modern citation). **Scratch only.**
