@@ -113,7 +113,8 @@ def main(apply=False):
         plan.append((cite, n, m, oldtext, r_bb, c_end, r_start))
         print(f"{cite:26} <- 1889 §{m:<3} BB={r_bb:.2f}  content[1981->{c_end}] repealed[{r_start}->]  {len(sq(oldtext))}c")
 
-    print(f"\nDEFERRED (not created): art IV §18 (no clean 1889 source), §43 (source §69 repealed 1980-10-02).")
+    print(f"\nSEPARATE (created by splice_artiv_dropped_special.py): art IV §18 (= amend. art. LI, 1938) "
+          f"and §43 (= 1889 §69 minus subsection 6 — SCR 4006 repealed only sub 6, not the whole list).")
     if problems:
         print("\nGATE FAIL:")
         for p in problems:

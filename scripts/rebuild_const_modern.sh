@@ -49,6 +49,7 @@ run $PY triage/const-modern-batch/fix_artiv_renumber_1986.py --apply
 run $PY triage/const-modern-batch/splice_artiv_crosswalk_1981.py --apply
 run $PY triage/const-modern-batch/splice_artiv_stubs_1981.py --apply
 run $PY triage/const-modern-batch/splice_artiv_dropped_1981.py --apply
+run $PY triage/const-modern-batch/splice_artiv_dropped_special.py --apply
 run $PY triage/const-modern-batch/splice_groupa_clean_2026.py --apply
 run $PY triage/const-modern-batch/splice_artxiii_1_1996.py --apply
 run $PY triage/const-modern-batch/splice_artv_pre1997.py --apply
