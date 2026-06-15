@@ -153,7 +153,16 @@ integrity 0/0, scratch-only. What remains:
 5. **Data-quality cleanup (separate):** art VII §10 current_text is a DokuWiki 404
    page; art XI §29 "ranchers" vs source "farmers and ranches"; art XI §26
    "coequal" vs "co-equal"; art IV §16 codifier note; art VI §13 " ])]" artifact.
-6. **Promote to live ONLY when:** every spliced modern provision has a BB witness
+6. **Modern snapshot-diff BUILT 2026-06-15** (`snapshot_diff_modern.py`,
+   `RESULTS-snapshot-diff.md`): reconstruct-as-of-1981 vs the 1981 Blue Book =
+   **89.6% match-or-near within BB coverage** (the BB markdown is truncated at art.
+   XII §1 — 18 provisions beyond have no witness). One real finding: **art. IV §§9-11
+   carry post-1986 content at T=1981 — the 1985 art. IV recreation/renumbering isn't
+   modeled for these carried sections** (point-in-time wrong for art. IV in
+   [1981,1986); reconstruct from the 1985 measure + 1981 BB, like the art. V case).
+   Other non-matches are BB OCR / parse-misses / truncation. To strengthen: acquire a
+   COMPLETE 1981 BB + a mid-era (1990s/2000s) modern compilation. Re-run after splices.
+7. **Promote to live ONLY when:** every spliced modern provision has a BB witness
    or a confirming second read, AND the modern snapshot-diff is green. Then
    propagate upstream and rebuild (do NOT hand-edit live). Modern stays scratch-only.
 
