@@ -8,7 +8,14 @@ missing-files blocker**. Group A done; Group B sourced below.
 - **art I § 1** ✓ — prior [1981,1984-12-05] = historical § 1 ("All men…"); #116 (1984) added bear-arms.
 - **art X § 6** ✓ — prior [1981,2012-12-05] = historical § 180 (poll tax, "($1.50)" dropped per modern BBs); #154 (2012) repealed.
 
-## Group B — sourced, splice pending (heavier)
+## Group B — STATUS 2026-06-15
+- **art XIII § 1 — DONE** (`splice_artxiii_1_1996.py`, batch `modern-artxiii1-compact-1996`).
+  3-subsection Compact; sub2 == historical §203, sub1+sub3 vs 1913 (overlap 0.976), all 14 $ amounts cross-verified.
+- **art V §§ 1-12 — DONE** (`splice_artv_pre1997.py` 10 sections + `splice_artv_chains_1986.py` §1/§12).
+  Reorganization crosswalk + the 1986 chains for §1/§12. §13 = pre-1997 orphan (deferred).
+- **art VIII § 6 — REMAINING** (the one heavy item). See below.
+
+## Group B detail (original sourcing notes)
 
 ### art XIII § 1 — 3-subsection 1996 drop (#132 "eliminates outdated language", eff 1996-07-11)
 The pre-1996 §1 had THREE subsections; 1996 kept only subsection 1 (modernized: shall→must,
@@ -34,11 +41,18 @@ post-1997 §N? spot-check content alignment — if renumbered, use the art-IV cr
 (b) §1 and §12 also carry a 1986 amendment (#121/#122, CAA 1987) → they need [1981,1986)+[1986,1997)
 layers (1981 BB + 1989 BB + the 1986 redline); §2–11 are single-step ([pre-1997]=1989 BB, [1997,)=current).
 
-### art VIII § 6 — Board of Higher Education, 3-amendment chain (1994 #130, 1996 #133, 2000 #139)
-10,630-char multi-subsection section. The **1989 BB has the clean pre-1994 base** (subsections 1–6
-with a/b subparts) — resolves the "redline + 1981 BB both OCR-degraded" worry. Build the chain:
-[1981,1994)=1989 BB base; then apply the 1994/1996/2000 CAA redlines (fetchable) for the intervening
-versions; [2000,)=current. Most work in the bucket (heavy section × 3 amendments).
+### art VIII § 6 — Board of Higher Education, 3-amendment chain (REMAINING)
+10,630-char multi-subsection section; current DB has ONLY [2000-07-13, open) → all of [1981,2000)
+is uncovered. Needs the FULL 4-version chain (no partial splice — would leave an integrity gap):
+- [1981-01-01, 1994-12-07]  base      — 1989 BB clean pre-1994 base (subsections 1-6 + a/b subparts)
+- [1994-12-08, 1996-12-04]  after #130 — 1994 student-member add (CAA 1995 p5)
+- [1996-12-05, 2000-07-12]  after #133 — 1996 terms 7yr->4yr (SL7CNSTM 1997 p10)
+- [2000-07-13, open)        current    — already in DB (#139)
+METHOD: the two intermediates require READING the 1994 & 1996 session-law REDLINES (render the
+AcroForm CAA/CNSTM PDFs via `mutool draw` at 400-500 dpi; struck=deleted, underlined=added) — the
+campaign's redline method (prep_multi.py -> agent -> verify), OR reverse-walk from current using
+the redline edit-lists. Gate: mech (apply(edits,after)==before), chain continuity, 1989 BB base
+witness. This is a focused pass, not a quick splice — deferred to its own session.
 
 ## Recommendation
 Each Group B item is a focused pass (multi-source assembly / chain reconstruction), best done
