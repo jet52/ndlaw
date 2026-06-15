@@ -1,0 +1,74 @@
+[
+  {
+    "citation": "N.D. Const. art. IV, § 3",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "119",
+        "effective_date": "1986-12-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "The legislative assembly shall establish by law a procedure whereby one-half of the members of the senate, as nearly as is practicable, are elected biennially.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1985 sl Chapter 706 (HCR 3028), Statement of Intent: 'This amendment creates eight new sections to article IV.' SECTION 3 reads 'A new section to article IV ... is hereby created and enacted to read as follows:' with text fully new (no strike/underline). Chain HEAD for the current provision — created the senate-half-elected-biennially procedure. Text verbatim from p4 of 1985_sl/CAA.pdf (printed pg 2301)."
+      },
+      {
+        "amendment_number": "136",
+        "effective_date": "1997-07-01",
+        "classification": "REDLINE",
+        "version_after_text": "The legislative assembly shall establish by law a procedure whereby one-half of the members of the senate and one-half of the members of the house of representatives, as nearly as is practicable, are elected biennially.",
+        "version_before_text": "The legislative assembly shall establish by law a procedure whereby one-half of the members of the senate, as nearly as is practicable, are elected biennially.",
+        "reverse_edit_list": [
+          [
+            " and one-half of the members of the house of representatives",
+            ""
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1997 sl Chapter 570 (HCR 3010), SECTION 1 AMENDMENT of Section 3 of article IV. Underlined (ADDED): 'and one-half of the members of the house of representatives' inserted after 'senate' and before ', as nearly as is practicable'. Nothing struck. version_after equals current_text (verified). Reverse removes the added span (incl. leading space) to restore the 1986 created text."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. V, § 12",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "122",
+        "effective_date": "1986-12-04",
+        "classification": "REDLINE",
+        "version_after_text": "There shall be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, a secretary of state, auditor, treasurer, superintendent of public instruction, commissioner of insurance, an attorney general, a commissioner of agriculture and labor, and a tax commissioner, who shall have attained the age of twenty-five years and shall have the qualifications of state electors. They shall severally hold their offices at the seat of government for the term of four years beginning with the year 1965, and until their successors are elected and duly qualified; but no person shall be eligible for the office of treasurer for more than two consecutive terms.\n\nThe board of railroad commissioners shall hereafter be known as the public service commission and the members of the board of railroad commissioners as public service commissioners and the powers and duties now or hereafter granted to and conferred upon the board of railroad commissioners are hereby transferred to the public service commission.\n\nThe public service commissioners shall have the qualifications of state electors, have attained the age of twenty-five years, be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, hold office at the seat of government and until their successors are elected and duly qualified. As each of the three public service commissioners now holding office completes his term, his successor shall be elected for a term of six years.\n\nThe legislative assembly may by law provide for a department of labor, which, if provided for, shall be separate and distinct from the department of agriculture, and shall be administered by a public official who may be either elected or appointed, whichever the legislative assembly shall declare; and if such a department is established the commissioner of agriculture and labor provided for above shall become the commissioner of agriculture.",
+        "version_before_text": "There shall be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, a secretary of state, auditor, treasurer, superintendent of public instruction, commissioner of insurance, an attorney general, a commissioner of agriculture and labor, and a tax commissioner, who shall have attained the age of twenty-five years and shall have the qualifications of state electors. They shall severally hold their offices at the seat of government for the term of four years beginning with the year 1965, and until their successors are elected and duly qualified; but no person shall be eligible for the office of treasurer for more than two consecutive terms.\n\nThe tax commissioner shall be elected on a no-party ballot and he shall be nominated and elected in the manner now provided for the nomination and election of the superintendent of public instruction.\n\nThe board of railroad commissioners shall hereafter be known as the public service commission and the members of the board of railroad commissioners as public service commissioners and the powers and duties now or hereafter granted to and conferred upon the board of railroad commissioners are hereby transferred to the public service commission.\n\nThe public service commissioners shall have the qualifications of state electors, have attained the age of twenty-five years, be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, hold office at the seat of government and until their successors are elected and duly qualified. As each of the three public service commissioners now holding office completes his term, his successor shall be elected for a term of six years.\n\nThe legislative assembly may by law provide for a department of labor, which, if provided for, shall be separate and distinct from the department of agriculture, and shall be administered by a public official who may be either elected or appointed, whichever the legislative assembly shall declare; and if such a department is established the commissioner of agriculture and labor provided for above shall become the commissioner of agriculture.",
+        "reverse_edit_list": [
+          [
+            "There shall be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, a secretary of state, auditor, treasurer, superintendent of public instruction, commissioner of insurance, an attorney general, a commissioner of agriculture and labor, and a tax commissioner, who shall have attained the age of twenty-five years and shall have the qualifications of state electors. They shall severally hold their offices at the seat of government for the term of four years beginning with the year 1965, and until their successors are elected and duly qualified; but no person shall be eligible for the office of treasurer for more than two consecutive terms.\n\nThe board of railroad commissioners shall hereafter be known as the public service commission and the members of the board of railroad commissioners as public service commissioners and the powers and duties now or hereafter granted to and conferred upon the board of railroad commissioners are hereby transferred to the public service commission.",
+            "There shall be chosen by the qualified electors of the state at the times and places of choosing members of the legislative assembly, a secretary of state, auditor, treasurer, superintendent of public instruction, commissioner of insurance, an attorney general, a commissioner of agriculture and labor, and a tax commissioner, who shall have attained the age of twenty-five years and shall have the qualifications of state electors. They shall severally hold their offices at the seat of government for the term of four years beginning with the year 1965, and until their successors are elected and duly qualified; but no person shall be eligible for the office of treasurer for more than two consecutive terms.\n\nThe tax commissioner shall be elected on a no-party ballot and he shall be nominated and elected in the manner now provided for the nomination and election of the superintendent of public instruction.\n\nThe board of railroad commissioners shall hereafter be known as the public service commission and the members of the board of railroad commissioners as public service commissioners and the powers and duties now or hereafter granted to and conferred upon the board of railroad commissioners are hereby transferred to the public service commission."
+          ]
+        ],
+        "confidence": "high",
+        "flags": [
+          "predecessor-not-in-current-lineage",
+          "different-subject",
+          "later-repealed"
+        ],
+        "notes": "CAUTION: This amendment amended the OLD art V sec 12, a DIFFERENT provision (election/terms/eligibility of executive officers, public service commission, dept of labor) than today's art V sec 12 (lieutenant governor as president of senate). 1987 sl Chapter 777 (SCR 4022), SECTION 1 AMENDMENT of Section 12 of article V. The ONLY change was STRIKING the second paragraph (no-party-ballot tax commissioner): 'The tax commissioner shall be elected on a no-party ballot and he shall be nominated and elected in the manner now provided for the nomination and election of the superintendent of public instruction.' This entire old sec 12 was REPEALED by the 1997 executive-branch-article measure (SECTION 13 REPEAL, Ch 568). It is NOT the substantive antecedent of the current sec 12; the current sec 12 was CREATED fresh in 1997. Text verbatim from pp7-8 of 1987_sl/CAA.pdf (printed pp1850-1851)."
+      },
+      {
+        "amendment_number": "135",
+        "effective_date": "1997-07-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "The lieutenant governor shall serve as president of the senate. If the senate is equally divided on a question, the lieutenant governor may vote on procedural matters and on substantive matters if the lieutenant governor's vote would be decisive.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [
+          "chain-head-distinct-from-prior-citation-history"
+        ],
+        "notes": "1997 sl Chapter 568 (HCR 3009), 'EXECUTIVE BRANCH ARTICLE' — created and enacted a NEW article V and (SECTION 13) repealed the present article V. SECTION 12: 'A new section to a new article V ... is created and enacted to read as follows:' (subject to the HCR-4013 contingency clause, which did not affect the enacted text). Text fully new (no strike/underline). version_after equals current_text (verified). This is the CHAIN HEAD for the current provision; the 1986 amendment above governed an unrelated, now-repealed predecessor sec 12. Text verbatim from p9 of 1997_sl/SL7CNSTM.pdf (printed pg 9)."
+      }
+    ]
+  }
+]

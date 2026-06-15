@@ -1,0 +1,115 @@
+[
+  {
+    "citation": "N.D. Const. art. VII, § 8",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "110",
+        "effective_date": "1982-07-08",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "Each county shall provide for law enforcement, administrative and fiscal services, recording and registration services, educational services, and any other governmental services or functions as may be provided by law. Any elective county office shall be for a term of four years.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1982 measure (S.C.R. 4002, ch. 718, Political Subdivision Article) created art VII with the rest of article VII; entirely new text, nothing struck. This is the chain HEAD. Section 8 reads as a two-sentence provision; the operative term-of-office clause is 'Any elective county office shall be for a term of four years.'"
+      },
+      {
+        "amendment_number": "138",
+        "effective_date": "1998-12-03",
+        "classification": "REDLINE",
+        "version_after_text": "Each county shall provide for law enforcement, administrative and fiscal services, recording and registration services, educational services, and any other governmental services or functions as may be provided by law. Any elective office provided for by the counties shall be for a term of four years. Elective officers shall be elected by the electors in the jurisdiction in which the elected officer is to serve. A candidate for election must be a resident in the jurisdiction in which they are to serve at the time of the election. The office of sheriff shall be elected.",
+        "version_before_text": "Each county shall provide for law enforcement, administrative and fiscal services, recording and registration services, educational services, and any other governmental services or functions as may be provided by law. Any elective county office shall be for a term of four years.",
+        "reverse_edit_list": [
+          ["Any elective office provided for by the counties shall be for a term of four years. Elective officers shall be elected by the electors in the jurisdiction in which the elected officer is to serve. A candidate for election must be a resident in the jurisdiction in which they are to serve at the time of the election. The office of sheriff shall be elected.", "Any elective county office shall be for a term of four years."]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "Initiated Measure (ch. 565, measure No. 2 on 1998 general ballot). Struck 'county' in 'Any elective county office'; added underlined 'provided for by the counties' so the clause becomes 'Any elective office provided for by the counties shall be for a term of four years.' Added three new underlined sentences: 'Elective officers shall be elected by the electors in the jurisdiction in which the elected officer is to serve.', 'A candidate for election must be a resident in the jurisdiction in which they are to serve at the time of the election.', and 'The office of sheriff shall be elected.' version_before == 1982 create text."
+      },
+      {
+        "amendment_number": "143",
+        "effective_date": "2002-07-11",
+        "classification": "REDLINE",
+        "version_after_text": "Each county shall provide for law enforcement, administrative and fiscal services, recording and registration services, educational services, and any other governmental services or functions as may be provided by law. Any elective office provided for by the counties shall be for a term of four years. Elective officers shall be elected by the electors in the jurisdiction in which the elected officer is to serve. A candidate for election for sheriff must be a resident in the jurisdiction in which the candidate is to serve at the time of the election. The office of sheriff shall be elected. The legislative assembly may provide by law for the election of any county elective officer, other than the sheriff, to serve one or more counties provided the affected counties agree to the arrangement and any candidate elected to the office is a qualified elector of one of the affected counties.",
+        "version_before_text": "Each county shall provide for law enforcement, administrative and fiscal services, recording and registration services, educational services, and any other governmental services or functions as may be provided by law. Any elective office provided for by the counties shall be for a term of four years. Elective officers shall be elected by the electors in the jurisdiction in which the elected officer is to serve. A candidate for election must be a resident in the jurisdiction in which they are to serve at the time of the election. The office of sheriff shall be elected.",
+        "reverse_edit_list": [
+          ["for election for sheriff must be", "for election must be"],
+          ["in which the candidate is to serve at the time", "in which they are to serve at the time"],
+          [" The legislative assembly may provide by law for the election of any county elective officer, other than the sheriff, to serve one or more counties provided the affected counties agree to the arrangement and any candidate elected to the office is a qualified elector of one of the affected counties.", ""]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "S.C.R. 4052 (ch. 576, measure No. 1 on 2002 primary ballot). Added underlined 'for sheriff' to 'A candidate for election for sheriff must be a resident'; struck 'they are' and added 'the candidate is' ('in which the candidate is to serve'); added the final underlined sentence beginning 'The legislative assembly may provide by law for the election of any county elective officer, other than the sheriff...'. version_after == current_text (verified). version_before == 1998 version_after."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. V, § 1",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "121",
+        "effective_date": "1986-12-04",
+        "classification": "REDLINE",
+        "version_after_text": "The executive power shall be vested in a governor, who shall reside at the seat of government and shall hold office for the term of four years beginning in the year 1988, and until a successor is elected and duly qualified. The term begins on December fifteenth following the governor's election.",
+        "version_before_text": "The executive power shall be vested in a governor, who shall reside at the seat of government and shall hold his office for the term of four years beginning in the year 1965, and until his successor is elected and duly qualified.",
+        "reverse_edit_list": [
+          ["shall hold office", "shall hold his office"],
+          ["in the year 1988, and", "in the year 1965, and"],
+          ["and until a successor is elected", "and until his successor is elected"],
+          [" The term begins on December fifteenth following the governor's election.", ""]
+        ],
+        "confidence": "high",
+        "flags": ["chain-discontinuity", "amends-repealed-predecessor"],
+        "notes": "S.C.R. 4021 (ch. 776, 'Governor and Lt. Governor Term of Office', measure No. 1 on 1986 general ballot). This measure amended SECTION 1 of the THEN-EXISTING (pre-1997) article V. Redline: struck 'his' in 'shall hold his office'; '1965' to '1988' ('beginning in the year 1988'); struck 'his' and added 'a' in 'until a successor'; added underlined sentence 'The term begins on December fifteenth following the governor's election.' version_before is the carried-from-1981 old art V sec 1. CAUTION: the measure was contingent (it contained alternative text if H.C.R. 3003's new-article-V proposal passed); the version reconstructed here is the operative amendment to the OLD article V sec 1. This amendment does NOT chain into the current provision: the 1997 measure (amd 135) repealed the old article V and created a wholly new article V, so the 1986 version_after does not feed the 1997 create."
+      },
+      {
+        "amendment_number": "135",
+        "effective_date": "1997-07-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "The executive power is vested in the governor, who shall reside in the state capital and shall hold the office for the term of four years beginning in the year 2000, and until a successor is elected and qualified.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": ["needs-base-source"],
+        "notes": "H.C.R. 3009 (ch. 568, 'Executive Branch Article', measure No. 1 on 1996 general ballot, effective July 1, 1997). Statement of intent: 'creates a new executive branch article... The amendment also repeals the present article V.' SECTION 1: 'A new section to a new article V of the Constitution of North Dakota is created and enacted as follows:' followed by fully-set (un-redlined, all-new) text. This is the chain HEAD of the CURRENT art V sec 1. version_after == current_text (verified). version_before is null/not-derivable from the measure (the prior article V sec 1 was repealed, not redlined); needs-base-source if the repealed predecessor text is wanted (it is the 1986 version_after, but provenance is a distinct, repealed article)."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. X, § 24",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "131",
+        "effective_date": "1995-07-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "Twenty percent of the revenue from oil extraction taxes from taxable oil produced in this state must be allocated as follows: 1. Fifty percent must be deposited in the common schools trust fund. 2. Fifty percent must be deposited in the foundation aid stabilization fund in the state treasury, the interest income of which must be transferred to the state general fund on July first of each year. The principal of the foundation aid stabilization fund may be expended only upon order of the governor, who may direct such a transfer only to offset foundation aid reductions that were made by executive action pursuant to law due to a revenue shortage.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "S.C.R. 4011 (ch. 641, 'Oil Extraction Tax Revenues', measure No. 1 on 1994 general ballot, eff. for oil/gas produced after June 30, 1995). 'A new section to article X of the Constitution of North Dakota is created and enacted as follows:' followed by all-new text. Chain HEAD. Note: at creation the two subsections each took 'Fifty percent' of a 'Twenty percent' allocation; the 2016 amendment restructured this into two independent 'Ten percent' deposits."
+      },
+      {
+        "amendment_number": "160",
+        "effective_date": "2016-12-08",
+        "classification": "REDLINE",
+        "version_after_text": "1. Ten percent of the revenue from oil extraction taxes from taxable oil produced in this state must be deposited in the common schools trust fund. 2. Ten percent of the revenue from oil extraction taxes from taxable oil produced in this state must be deposited in the foundation aid stabilization fund in the state treasury, the interest of which must be transferred to the state general fund on July first of each year. a. Except as otherwise provided, the principal of the foundation aid stabilization fund may be expended upon order of the governor, who may direct such a transfer only to offset reductions in state aid to school districts, which were made by executive action, pursuant to law, due to a revenue shortage. b. Whenever the principal balance of the foundation aid stabilization fund exceeds fifteen percent of the general fund appropriation for state aid to school districts, for the most recently completed biennium, as determined by the office of management and budget, the legislative assembly may appropriate or transfer any excess principal balance. Such amount may be used for education-related purposes, as provided by law.",
+        "version_before_text": "Twenty percent of the revenue from oil extraction taxes from taxable oil produced in this state must be allocated as follows: 1. Fifty percent must be deposited in the common schools trust fund. 2. Fifty percent must be deposited in the foundation aid stabilization fund in the state treasury, the interest income of which must be transferred to the state general fund on July first of each year. The principal of the foundation aid stabilization fund may be expended only upon order of the governor, who may direct such a transfer only to offset foundation aid reductions that were made by executive action pursuant to law due to a revenue shortage.",
+        "reverse_edit_list": [
+          ["1. Ten percent of the revenue from oil extraction taxes from taxable oil produced in this state must be deposited in the common schools trust fund.", "Twenty percent of the revenue from oil extraction taxes from taxable oil produced in this state must be allocated as follows: 1. Fifty percent must be deposited in the common schools trust fund."],
+          ["2. Ten percent of the revenue from oil extraction taxes from taxable oil produced in this state must be deposited", "2. Fifty percent must be deposited"],
+          ["the interest of which", "the interest income of which"],
+          [" a. Except as otherwise provided, the principal", " The principal"],
+          ["may be expended upon order", "may be expended only upon order"],
+          ["to offset reductions in state aid to school districts, which were made by executive action, pursuant to law, due to a revenue shortage. b. Whenever the principal balance of the foundation aid stabilization fund exceeds fifteen percent of the general fund appropriation for state aid to school districts, for the most recently completed biennium, as determined by the office of management and budget, the legislative assembly may appropriate or transfer any excess principal balance. Such amount may be used for education-related purposes, as provided by law.", "to offset foundation aid reductions that were made by executive action pursuant to law due to a revenue shortage."]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "S.C.R. 4003 (ch. 457, 'Oil Extraction Tax Distribution', measure No. 1 on 2016 general ballot). Redline: intro 'Twenty' to 'Ten', struck 'allocated as follows:'; struck 'Fifty percent must be' in old item 1, merging the intro percent-clause into item 1 ('1. Ten percent... must be deposited in the common schools trust fund.'). Item 2: struck 'Fifty', added 'Ten' plus underlined 'of the revenue from oil extraction taxes from taxable oil produced in this state'; struck 'income' in 'the interest income of which'; struck 'The' before 'principal', re-lettering as subsection a with added 'Except as otherwise provided, the'; struck 'only' in 'expended only upon order'; struck 'foundation aid' before 'reductions' and 'that', added 'in state aid to school districts, which'; added commas after 'executive action' and 'pursuant to law'. Added wholly-new underlined subsection b ('Whenever the principal balance... as provided by law.'). version_after == current_text (WRAP/])] markers are structural, not text; verified). version_before == 1995 create text (verified)."
+      }
+    ]
+  }
+]

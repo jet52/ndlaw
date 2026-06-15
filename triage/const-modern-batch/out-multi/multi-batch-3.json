@@ -1,0 +1,89 @@
+[
+  {
+    "citation": "N.D. Const. art. I, § 16",
+    "head_type": "carried-from-1981",
+    "amendments": [
+      {
+        "amendment_number": "113",
+        "effective_date": "1982-12-02",
+        "classification": "REDLINE",
+        "version_after_text": "Private property shall not be taken or damaged for public use without just compensation having been first made to, or paid into court for the owner, unless the owner chooses to accept annual payments as may be provided for by law. No right of way shall be appropriated to the use of any corporation until full compensation therefor be first made in money or ascertained and paid into court for the owner, unless the owner chooses annual payments as may be provided by law, irrespective of any benefit from any improvement proposed by such corporation. Compensation shall be ascertained by a jury, unless a jury be waived. When the state or any of its departments, agencies or political subdivisions seeks to acquire right of way, it may take possession upon making an offer to purchase and by depositing the amount of such offer with the clerk of the district court of the county wherein the right of way is located. The clerk shall immediately notify the owner of such deposit. The owner may thereupon appeal to the court in the manner provided by law, and may have a jury trial, unless a jury be waived, to determine the damages, which damages the owner may choose to accept in annual payments as may be provided for by law. Annual payments shall not be subject to escalator clauses but may be supplemented by interest earned.",
+        "version_before_text": "Private property shall not be taken or damaged for public use without just compensation having been first made to, or paid into court for the owner. No right of way shall be appropriated to the use of any corporation until full compensation therefor be first made in money or ascertained and paid into court for the owner, irrespective of any benefit from any improvement proposed by such corporation, which compensation shall be ascertained by a jury, unless a jury be waived, provided however, that when the state or any of its departments, agencies or political subdivisions seeks to acquire right of way, it may take possession upon making an offer to purchase and by depositing the amount of such offer with the clerk of the district court of the county wherein the right of way is located. The clerk shall immediately notify the owner of such deposit. The owner may thereupon appeal to the court in the manner provided by law, and may have a jury trial, unless a jury be waived, to determine the damages.",
+        "reverse_edit_list": [
+          [
+            ", unless the owner chooses to accept annual payments as may be provided for by law.",
+            "."
+          ],
+          [
+            "owner, unless the owner chooses annual payments as may be provided by law, irrespective",
+            "owner, irrespective"
+          ],
+          [
+            "such corporation. Compensation shall be ascertained",
+            "such corporation, which compensation shall be ascertained"
+          ],
+          [
+            "unless a jury be waived. When the state",
+            "unless a jury be waived, provided however, that when the state"
+          ],
+          [
+            "to determine the damages, which damages the owner may choose to accept in annual payments as may be provided for by law. Annual payments shall not be subject to escalator clauses but may be supplemented by interest earned.",
+            "to determine the damages."
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1983 SL ch. 721 (S.C.R. 4027, measure No. 2, approved Nov. 2, 1982). Five additive/structural edits, all read at 500 dpi. Added (underlined): (1) ', unless the owner chooses to accept annual payments as may be provided for by law' after first 'owner' (replacing the sentence-ending period before 'No right of way'); (2) 'unless the owner chooses annual payments as may be provided by law,' inserted after second 'owner,' before 'irrespective'; (3) struck ', which' and the lowercase 'which compensation', added '. Compensation' -> turns 'corporation, which compensation shall' into 'corporation. Compensation shall'; (4) struck ', provided however, that when', added '. When' -> 'waived, provided however, that when the state' becomes 'waived. When the state'; (5) added ', which damages the owner may choose to accept in annual payments as may be provided for by law. Annual payments shall not be subject to escalator clauses but may be supplemented by interest earned.' after 'to determine the damages' (replacing the period). Comma after second 'owner' was pre-existing (not underlined). version_before == [1981, #113) head (first amendment after the 1981 reorg, normal amendment not a create)."
+      },
+      {
+        "amendment_number": "150",
+        "effective_date": "2006-12-07",
+        "classification": "REDLINE",
+        "version_after_text": "Private property shall not be taken or damaged for public use without just compensation having been first made to, or paid into court for the owner, unless the owner chooses to accept annual payments as may be provided for by law. No right of way shall be appropriated to the use of any corporation until full compensation therefor be first made in money or ascertained and paid into court for the owner, unless the owner chooses annual payments as may be provided by law, irrespective of any benefit from any improvement proposed by such corporation. Compensation shall be ascertained by a jury, unless a jury be waived. When the state or any of its departments, agencies or political subdivisions seeks to acquire right of way, it may take possession upon making an offer to purchase and by depositing the amount of such offer with the clerk of the district court of the county wherein the right of way is located. The clerk shall immediately notify the owner of such deposit. The owner may thereupon appeal to the court in the manner provided by law, and may have a jury trial, unless a jury be waived, to determine the damages, which damages the owner may choose to accept in annual payments as may be provided for by law. Annual payments shall not be subject to escalator clauses but may be supplemented by interest earned. For purposes of this section, a public use or a public purpose does not include public benefits of economic development, including an increase in tax base, tax revenues, employment, or general economic health. Private property shall not be taken for the use of, or ownership by, any private individual or entity, unless that property is necessary for conducting a common carrier or utility business.",
+        "version_before_text": "Private property shall not be taken or damaged for public use without just compensation having been first made to, or paid into court for the owner, unless the owner chooses to accept annual payments as may be provided for by law. No right of way shall be appropriated to the use of any corporation until full compensation therefor be first made in money or ascertained and paid into court for the owner, unless the owner chooses annual payments as may be provided by law, irrespective of any benefit from any improvement proposed by such corporation. Compensation shall be ascertained by a jury, unless a jury be waived. When the state or any of its departments, agencies or political subdivisions seeks to acquire right of way, it may take possession upon making an offer to purchase and by depositing the amount of such offer with the clerk of the district court of the county wherein the right of way is located. The clerk shall immediately notify the owner of such deposit. The owner may thereupon appeal to the court in the manner provided by law, and may have a jury trial, unless a jury be waived, to determine the damages, which damages the owner may choose to accept in annual payments as may be provided for by law. Annual payments shall not be subject to escalator clauses but may be supplemented by interest earned.",
+        "reverse_edit_list": [
+          [
+            " For purposes of this section, a public use or a public purpose does not include public benefits of economic development, including an increase in tax base, tax revenues, employment, or general economic health. Private property shall not be taken for the use of, or ownership by, any private individual or entity, unless that property is necessary for conducting a common carrier or utility business.",
+            ""
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "2007 SL (Initiated Measure Approved) ch. 578, measure No. 2, approved Nov. 7, 2006. Purely additive: appended two new sentences (underlined, nothing struck): 'For purposes of this section, a public use or a public purpose does not include public benefits of economic development, including an increase in tax base, tax revenues, employment, or general economic health. Private property shall not be taken for the use of, or ownership by, any private individual or entity, unless that property is necessary for conducting a common carrier or utility business.' version_after == current_text (the trailing ' ])]' in the source current_text field is a junk artifact and was dropped)."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. V, § 5",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "135",
+        "effective_date": "1997-07-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "The qualified electors shall choose the elected state officials at a time designated by the legislative assembly. The elected state officials shall serve until their successors are duly qualified. Terms of office are four years, except that terms of the public service commissioners are six years, so arranged that one of them is elected every two years. The terms of the governor and lieutenant governor begin on December fifteenth following their election. If two or more candidates for any executive office other than for governor and lieutenant governor receive an equal and highest number of votes, the legislative assembly in joint session shall choose one of them for the office.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1997 SL ch. 568 (H.C.R. 3009), the Executive Branch Article: 'to create and enact a new article V ... and to repeal the present article V.' SECTION 5 reads 'A new section to a new article V of the Constitution of North Dakota is created and enacted as follows:' -- a clean enactment, no redline markup. This is the chain HEAD; version_before is null (the prior article V section 5 was a wholly different provision that was repealed). Verbatim note: '... Terms of office are four years, except that terms of the public service commissioners are six years' (no 'the' before the second 'terms'). This created text exactly equals the reverse-derived version_before of the 2000 (#140) amendment, confirming the chain link."
+      },
+      {
+        "amendment_number": "140",
+        "effective_date": "2000-07-13",
+        "classification": "REDLINE",
+        "version_after_text": "The qualified electors shall choose the elected state officials at a time designated by the legislative assembly. The elected state officials shall serve until their successors are duly qualified. Terms of office of the elected officials except the public service commissioners are four years, except that in 2004 the agriculture commissioner, attorney general, secretary of state, and tax commissioner are elected to a term of two years. The terms of the public service commissioners are six years, so arranged that one of them is elected every two years. The terms of the governor and lieutenant governor begin on December fifteenth following their election. If two or more candidates for any executive office other than for governor and lieutenant governor receive an equal and highest number of votes, the legislative assembly in joint session shall choose one of them for the office.",
+        "version_before_text": "The qualified electors shall choose the elected state officials at a time designated by the legislative assembly. The elected state officials shall serve until their successors are duly qualified. Terms of office are four years, except that terms of the public service commissioners are six years, so arranged that one of them is elected every two years. The terms of the governor and lieutenant governor begin on December fifteenth following their election. If two or more candidates for any executive office other than for governor and lieutenant governor receive an equal and highest number of votes, the legislative assembly in joint session shall choose one of them for the office.",
+        "reverse_edit_list": [
+          [
+            "Terms of office of the elected officials except the public service commissioners are four years, except that in 2004 the agriculture commissioner, attorney general, secretary of state, and tax commissioner are elected to a term of two years. The terms of the public service commissioners",
+            "Terms of office are four years, except that terms of the public service commissioners"
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "2001 SL ch. 591 (S.C.R. 4017, measure No. 2, approved June 13, 2000), 'Executive Branch Officer Election.' Purely additive (nothing struck), read at 500 dpi. Added spans (underlined): 'of the elected officials', 'except the public service commissioners', and 'in 2004 the agriculture commissioner, attorney general, secretary of state, and tax commissioner are elected to a term of two years. The' (inserted before the retained 'terms of the public service commissioners are six years'). Net effect captured by one consolidated reverse edit; 'terms of the public service commissioners are six years' is retained original text (not underlined), so version_before reads 'except that terms of the public service commissioners are six years' (no 'the')."
+      }
+    ]
+  }
+]

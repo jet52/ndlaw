@@ -1,0 +1,97 @@
+[
+  {
+    "citation": "N.D. Const. art. IV, § 4",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "119",
+        "effective_date": "1986-12-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "Senators must be elected for terms of four years and representatives for terms of two years.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1985 S.L. ch. 706 (HCR 3028), SECTION 4: 'A new section to article IV ... is hereby created and enacted to read as follows: Senators must be elected for terms of four years and representatives for terms of two years.' Part of the legislative-article recreation (eight new sections to art. IV; old sections repealed). Entire text newly enacted, no strike-through; head of the chain. Read at 450 dpi (/Users/jerod/refs/nd/sess/1985_sl/CAA.pdf p.4)."
+      },
+      {
+        "amendment_number": "136",
+        "effective_date": "1997-07-01",
+        "classification": "REDLINE",
+        "version_after_text": "Senators and representatives must be elected for terms of four years.",
+        "version_before_text": "Senators must be elected for terms of four years and representatives for terms of two years.",
+        "reverse_edit_list": [
+          [
+            "Senators and representatives must be elected for terms of four years.",
+            "Senators must be elected for terms of four years and representatives for terms of two years."
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1997 S.L. ch. 570 (HCR 3010), SECTION 2 amending art. IV § 4. Added (underlined) 'and representatives' after 'Senators'; struck 'and representatives for terms of two years' at end. version_after equals current_text exactly. Read at 450 dpi (/Users/jerod/refs/nd/sess/1997_sl/SL7CNSTM.pdf p.12)."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 1",
+    "head_type": "carried-from-1981",
+    "amendments": [
+      {
+        "amendment_number": "111",
+        "effective_date": "1982-07-08",
+        "classification": "REDLINE",
+        "version_after_text": "All proceeds of the public lands that have heretofore been, or may hereafter be granted by the United States for the support of the common schools in this state; all such per centum as may be granted by the United States on the sale of public lands; the proceeds of property that shall fall to the state by escheat; all gifts, donations, or the proceeds thereof that come to the state for support of the common schools, or not otherwise appropriated by the terms of the gift, and all other property otherwise acquired for common schools, shall be and remain a perpetual trust fund for the maintenance of the common schools of the state. Only the interest and income of the fund may be expended and the principal shall be retained and devoted to the trust purpose. All property, real or personal, received by the state from whatever source, for any specific educational or charitable institution, unless otherwise designated by the donor, shall be and remain a perpetual trust fund for the creation and maintenance of such institution, and may be commingled only with similar funds for the same institution. Should a gift be made to an institution for a specific purpose, without designating a trustee, such gift may be placed in the institution's fund; provided that such a donation may be expended as the terms of the gift provide. The interest and income of each institutional trust fund held by the state shall, unless otherwise specified by the donor, be appropriated by the legislative assembly to the exclusive use of the institution for which the funds were given. The proceeds of all bonuses, or similar payments, made upon the leasing of coal, gas, oil, or any other mineral interests under, or reserved after sale of, grant lands for the common schools or institutional lands shall be deposited in the appropriate permanent trust fund as created by this section.",
+        "version_before_text": "All proceeds of the public lands that have heretofore been, or may hereafter be granted by the United States for the support of the common schools in this state; all such per centum as may be granted by the United States on the sale of public lands; the proceeds of property that shall fall to the state by escheat; all gifts, donations, or the proceeds thereof that come to the state for support of the common schools, or not otherwise appropriated by the terms of the gift, and all other property otherwise acquired for common schools, shall be and remain a perpetual trust fund for the maintenance of the common schools of the state. Only the interest and income of the fund may be expended and the principal shall be retained and devoted to the trust purpose. All property, real or personal, received by the state from whatever source, for any specific educational or charitable institution, unless otherwise designated by the donor, shall be and remain a perpetual trust fund for the creation and maintenance of such institution, and may be commingled only with similar funds for the same institution. Should a gift be made to an institution for a specific purpose, without designating a trustee, such gift may be placed in the institution's fund; provided that such a donation may be expended as the terms of the gift provide. The interest and income of each institutional trust fund held by the state shall, unless otherwise specified by the donor, be appropriated by the legislative assembly to the exclusive use of the institution for which the funds were given.",
+        "reverse_edit_list": [
+          [
+            " The proceeds of all bonuses, or similar payments, made upon the leasing of coal, gas, oil, or any other mineral interests under, or reserved after sale of, grant lands for the common schools or institutional lands shall be deposited in the appropriate permanent trust fund as created by this section.",
+            ""
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1982 S.L. 1983 ch. 719 (HCR 3069), SECTION 1 amending art. IX § 1. Sole change to § 1: appended one wholly-underlined (added) paragraph beginning 'The proceeds of all bonuses, or similar payments, made upon the leasing of coal, gas, oil ...'. No strike-throughs in § 1; the rest of the section is reprinted unchanged. version_before is the [1981 reorg, 1982) head text. Read at 500 dpi (/Users/jerod/refs/nd/sess/1983_sl/CAA.pdf pp.4-5)."
+      },
+      {
+        "amendment_number": "151",
+        "effective_date": "2009-07-01",
+        "classification": "REDLINE",
+        "version_after_text": "All proceeds of the public lands that have been, or may be granted by the United States for the support of the common schools in this state; all such per centum as may be granted by the United States on the sale of public lands; the proceeds of property that fall to the state by escheat; all gifts, donations, or the proceeds thereof that come to the state for support of the common schools, or not otherwise appropriated by the terms of the gift, and all other property otherwise acquired for common schools, must be and remain a perpetual trust fund for the maintenance of the common schools of the state. All property, real or personal, received by the state from whatever source, for any specific educational or charitable institution, unless otherwise designated by the donor, must be and remain a perpetual trust fund for the creation and maintenance of such institution, and may be commingled only with similar funds for the same institution. If a gift is made to an institution for a specific purpose, without designating a trustee, the gift may be placed in the institution's fund; provided that such a donation may be expended as the terms of the gift provide. Revenues earned by a perpetual trust fund must be deposited in the fund. The costs of administering a perpetual trust fund may be paid out of the fund. The perpetual trust funds must be managed to preserve their purchasing power and to maintain stable distributions to fund beneficiaries.",
+        "version_before_text": "All proceeds of the public lands that have heretofore been, or may hereafter be granted by the United States for the support of the common schools in this state; all such per centum as may be granted by the United States on the sale of public lands; the proceeds of property that shall fall to the state by escheat; all gifts, donations, or the proceeds thereof that come to the state for support of the common schools, or not otherwise appropriated by the terms of the gift, and all other property otherwise acquired for common schools, shall be and remain a perpetual trust fund for the maintenance of the common schools of the state. Only the interest and income of the fund may be expended and the principal shall be retained and devoted to the trust purpose. All property, real or personal, received by the state from whatever source, for any specific educational or charitable institution, unless otherwise designated by the donor, shall be and remain a perpetual trust fund for the creation and maintenance of such institution, and may be commingled only with similar funds for the same institution. Should a gift be made to an institution for a specific purpose, without designating a trustee, such gift may be placed in the institution's fund; provided that such a donation may be expended as the terms of the gift provide. The interest and income of each institutional trust fund held by the state shall, unless otherwise specified by the donor, be appropriated by the legislative assembly to the exclusive use of the institution for which the funds were given. The proceeds of all bonuses, or similar payments, made upon the leasing of coal, gas, oil, or any other mineral interests under, or reserved after sale of, grant lands for the common schools or institutional lands shall be deposited in the appropriate permanent trust fund as created by this section.",
+        "reverse_edit_list": [
+          [
+            "that have been, or may be granted",
+            "that have heretofore been, or may hereafter be granted"
+          ],
+          [
+            "the proceeds of property that fall to the state",
+            "the proceeds of property that shall fall to the state"
+          ],
+          [
+            "acquired for common schools, must be and remain a perpetual trust fund for the maintenance",
+            "acquired for common schools, shall be and remain a perpetual trust fund for the maintenance"
+          ],
+          [
+            "maintenance of the common schools of the state. All property, real or personal,",
+            "maintenance of the common schools of the state. Only the interest and income of the fund may be expended and the principal shall be retained and devoted to the trust purpose. All property, real or personal,"
+          ],
+          [
+            "designated by the donor, must be and remain a perpetual trust fund for the creation",
+            "designated by the donor, shall be and remain a perpetual trust fund for the creation"
+          ],
+          [
+            "same institution. If a gift is made to an institution for a specific purpose, without designating a trustee, the gift may be placed",
+            "same institution. Should a gift be made to an institution for a specific purpose, without designating a trustee, such gift may be placed"
+          ],
+          [
+            " Revenues earned by a perpetual trust fund must be deposited in the fund. The costs of administering a perpetual trust fund may be paid out of the fund. The perpetual trust funds must be managed to preserve their purchasing power and to maintain stable distributions to fund beneficiaries.",
+            " The interest and income of each institutional trust fund held by the state shall, unless otherwise specified by the donor, be appropriated by the legislative assembly to the exclusive use of the institution for which the funds were given. The proceeds of all bonuses, or similar payments, made upon the leasing of coal, gas, oil, or any other mineral interests under, or reserved after sale of, grant lands for the common schools or institutional lands shall be deposited in the appropriate permanent trust fund as created by this section."
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "2009 S.L. 2007 ch. 582 (HCR 3037), SECTION 1 amending art. IX § 1. Strikes: 'heretofore'/'hereafter'; 'shall'→'must' (escheat clause: 'shall' struck, no replacement there); 'shall'→'must' before 'be and remain' (twice); deletes sentence 'Only the interest and income of the fund may be expended and the principal shall be retained and devoted to the trust purpose.'; 'Should'→'If', 'be'→'is', 'such'→'the' (gift clause); struck the two trailing paragraphs ('The interest and income of each institutional trust fund ...' and the 1982-added 'The proceeds of all bonuses ...'); added (underlined) the closing block 'Revenues earned ... distributions to fund beneficiaries.'. version_after equals current_text exactly (verified). Two struck trailing paragraphs appear at top of p.5. Read at 500 dpi (/Users/jerod/refs/nd/sess/2007_sl/CAA.PDF pp.4-5)."
+      }
+    ]
+  }
+]

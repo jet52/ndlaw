@@ -1,0 +1,109 @@
+[
+  {
+    "citation": "N.D. Const. art. IV, § 5",
+    "head_type": "created",
+    "amendments": [
+      {
+        "amendment_number": "119",
+        "effective_date": "1986-12-01",
+        "classification": "CREATE_SECTION",
+        "version_after_text": "Each person elected to the legislative assembly must be, on the day of the election, a qualified elector in the district from which the member was chosen and must have been a resident of the state for one year immediately prior to that election.",
+        "version_before_text": null,
+        "reverse_edit_list": [],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1985 sl Chapter 706 (HCR 3028) created eight new sections to art IV; SECTION 5 of the measure ('A new section to article IV ... is hereby created and enacted') is fully new text, nothing struck. version_after matches the 2016 measure's version_before exactly."
+      },
+      {
+        "amendment_number": "159",
+        "effective_date": "2016-12-08",
+        "classification": "REDLINE",
+        "version_after_text": "Each individual elected or appointed to the legislative assembly must be, on the day of the election or appointment, a qualified elector in the district from which the member was selected and must have been a resident of the state for one year immediately prior to that election. An individual may not serve in the legislative assembly unless the individual lives in the district from which selected.",
+        "version_before_text": "Each person elected to the legislative assembly must be, on the day of the election, a qualified elector in the district from which the member was chosen and must have been a resident of the state for one year immediately prior to that election.",
+        "reverse_edit_list": [
+          [
+            "Each individual elected or appointed to",
+            "Each person elected to"
+          ],
+          [
+            "the day of the election or appointment, a qualified",
+            "the day of the election, a qualified"
+          ],
+          [
+            "the member was selected and",
+            "the member was chosen and"
+          ],
+          [
+            " An individual may not serve in the legislative assembly unless the individual lives in the district from which selected.",
+            ""
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "2017 sl Chapter 456 (SCR 4010). Struck 'person'->added 'individual'; added 'or appointed' after 'elected'; added 'or appointment' after 'election'; struck 'chosen'->added 'selected'; added final sentence 'An individual may not serve in the legislative assembly unless the individual lives in the district from which selected.' version_after == current_text (verified)."
+      }
+    ]
+  },
+  {
+    "citation": "N.D. Const. art. IX, § 2",
+    "head_type": "carried-from-1981",
+    "amendments": [
+      {
+        "amendment_number": "111",
+        "effective_date": "1982-07-08",
+        "classification": "REDLINE",
+        "version_after_text": "The interest and income of this fund together with the net proceeds of all fines for violation of state laws and all other sums which may be added thereto by law, shall be faithfully used and applied each year for the benefit of the common schools of the state and no part of the fund shall ever be diverted, even temporarily, from this purpose or used for any other purpose whatever than the maintenance of common schools as provided by law.",
+        "version_before_text": "The interest and income of this fund together with the net proceeds of all fines for violation of state laws and all other sums which may be added thereto by law, shall be faithfully used and applied each year for the benefit of the common schools of the state, and shall be for this purpose apportioned among and between all the several common school corporations of the state in proportion to the number of children in each of school age, as may be fixed by law, and no part of the fund shall ever be diverted, even temporarily, from this purpose or used for any other purpose whatever than the maintenance of common schools for the equal benefit of all the people of the state; provided however, that if any portion of the interest or income aforesaid be not expended during any year, said portion shall be added to and become a part of the school fund.",
+        "reverse_edit_list": [
+          [
+            "the common schools of the state and no part of the fund",
+            "the common schools of the state, and shall be for this purpose apportioned among and between all the several common school corporations of the state in proportion to the number of children in each of school age, as may be fixed by law, and no part of the fund"
+          ],
+          [
+            "the maintenance of common schools as provided by law.",
+            "the maintenance of common schools for the equal benefit of all the people of the state; provided however, that if any portion of the interest or income aforesaid be not expended during any year, said portion shall be added to and become a part of the school fund."
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "1983 sl Chapter 719 (HCR 3069), SECTION 2, 'Section 2 ... is hereby amended and reenacted'. Struck the apportionment clause ', and shall be for this purpose apportioned among and between all the several common school corporations of the state in proportion to the number of children in each of school age, as may be fixed by law,'; struck 'for the equal benefit of all the people of the state; provided however, that if any portion of the interest or income aforesaid be not expended during any year, said portion shall be added to and become a part of the school fund' and added underlined 'as provided by law'. version_after == 2009 measure's version_before exactly."
+      },
+      {
+        "amendment_number": "151",
+        "effective_date": "2009-07-01",
+        "classification": "REDLINE",
+        "version_after_text": "Distributions from the common schools trust fund, together with the net proceeds of all fines for violation of state laws and all other sums which may be added by law, must be faithfully used and applied each year for the benefit of the common schools of the state and no part of the fund must ever be diverted, even temporarily, from this purpose or used for any purpose other than the maintenance of common schools as provided by law. Distributions from an educational or charitable institution's trust fund must be faithfully used and applied each year for the benefit of the institution and no part of the fund may ever be diverted, even temporarily, from this purpose or used for any purpose other than the maintenance of the institution, as provided by law. For the biennium during which this amendment takes effect, distributions from the perpetual trust funds must be the greater of the amount distributed in the preceding biennium or ten percent of the five-year average value of trust assets, excluding the value of lands and minerals. Thereafter, biennial distributions from the perpetual trust funds must be ten percent of the five-year average value of trust assets, excluding the value of lands and minerals. The average value of trust assets is determined by using the assets' ending value for the fiscal year that ends one year before the beginning of the biennium and the assets' ending value for the four preceding fiscal years. Equal amounts must be distributed during each year of the biennium.",
+        "version_before_text": "The interest and income of this fund together with the net proceeds of all fines for violation of state laws and all other sums which may be added thereto by law, shall be faithfully used and applied each year for the benefit of the common schools of the state and no part of the fund shall ever be diverted, even temporarily, from this purpose or used for any other purpose whatever than the maintenance of common schools as provided by law.",
+        "reverse_edit_list": [
+          [
+            "Distributions from the common schools trust fund, together with",
+            "The interest and income of this fund together with"
+          ],
+          [
+            "which may be added by law, must be faithfully",
+            "which may be added thereto by law, shall be faithfully"
+          ],
+          [
+            "the fund must ever be diverted",
+            "the fund shall ever be diverted"
+          ],
+          [
+            "used for any purpose other than the maintenance of common schools as provided by law.",
+            "used for any other purpose whatever than the maintenance of common schools as provided by law."
+          ],
+          [
+            " Distributions from an educational or charitable institution's trust fund must be faithfully used and applied each year for the benefit of the institution and no part of the fund may ever be diverted, even temporarily, from this purpose or used for any purpose other than the maintenance of the institution, as provided by law.",
+            ""
+          ],
+          [
+            " For the biennium during which this amendment takes effect, distributions from the perpetual trust funds must be the greater of the amount distributed in the preceding biennium or ten percent of the five-year average value of trust assets, excluding the value of lands and minerals. Thereafter, biennial distributions from the perpetual trust funds must be ten percent of the five-year average value of trust assets, excluding the value of lands and minerals. The average value of trust assets is determined by using the assets' ending value for the fiscal year that ends one year before the beginning of the biennium and the assets' ending value for the four preceding fiscal years. Equal amounts must be distributed during each year of the biennium.",
+            ""
+          ]
+        ],
+        "confidence": "high",
+        "flags": [],
+        "notes": "2007 sl Chapter 582 (HCR 3037), SECTION 2. Struck 'The interest and income of this fund'->added 'Distributions from the common schools trust fund,'; struck 'thereto' (leaving pre-existing 'by law'); struck 'shall'->'must' (x2: faithfully used; diverted); struck 'other' before 'purpose' and struck 'whatever', added 'other' after (=> 'any purpose other than'); added the educational/charitable institution sentence; added the entire perpetual-trust-fund biennium paragraph. NOTE: 'by law' after 'thereto' is plain (not underlined) in the measure — verified at 450dpi; only 'thereto' was struck. version_after == current_text (verified)."
+      }
+    ]
+  }
+]

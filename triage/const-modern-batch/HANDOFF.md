@@ -22,16 +22,18 @@ could adopt as authoritative. A provision is "versioned" when its
 - **Modern layer (1981–present): IN PROGRESS.** ndconst.org gives only *current*
   text, so each modern provision shipped as a single flat version. We are
   reconstructing prior versions from the session-law **redline** PDFs. 96 modern
-  provisions have post-1981 amendments; **22 are reconstructed so far (on scratch
+  provisions have post-1981 amendments; **34 are reconstructed so far (on scratch
   only)**; the live DB's modern layer is still flat (no regression, no live modern
   reconstructions yet).
-  - **Wave 2 DONE 2026-06-14 (`RESULTS-wave2.md`):** prep v2 recovered the 51
-    skips; the **single-amendment set is now essentially complete** — 13 redline-
-    reconstructed, **34 confirmed CREATE_SECTION (single version is correct, no
-    reconstruction needed)**, 12 `needs-base-source` (deferred). All 10 Wave-1
-    `needs-2nd-read` provisions were independently re-read and adjudicated (9 stand
-    on Wave-1 text; art XII §2 corrected). Remaining: ~22 multi-amendment, 7 giants
-    (create), the heavy multi-subsection class, and the 12 needs-base-source.
+  - **Wave 2 + multi-amendment chains DONE 2026-06-14 (`RESULTS-wave2.md`,
+    `RESULTS-multi.md`):** prep v2 recovered the 51 skips. Single-amendment set
+    complete (13 redline-reconstructed, 34 confirmed CREATE_SECTION = single version
+    correct, 12 needs-base-source); all 10 Wave-1 `needs-2nd-read` adjudicated.
+    Then the 14 multi-amendment chains: **12 spliced** (8 created-head, 4 carried-
+    from-1981; art X §5 head BB-NEAR 0.99), 2 discontinuities skipped (art V §1/§12).
+    Reconstructed total 22 → 34. Remaining: art XVI §1-5 + IX §13 (2024 data fix
+    needed), art V §1/§12 + needs-base-source set, art VIII §6 (native source),
+    7 create giants.
 
 ## 2. THE TWO DATABASES — critical
 - **LIVE: `constitution.db` + `constitution_history.db`** (repo root). Historical
@@ -114,20 +116,22 @@ attached — actually CREATE_SECTION). Integrity 0/0. Agents were reliable: 3/3
 BB-checkable passed (vs 40% solo error).
 
 ## 5. WHAT TO DO NEXT (in order)
-~~Steps 1-3 (re-prep + wave + verify single-amendment set)~~ **DONE in Wave 2
-(2026-06-14)** — prep v2 fixes landed (resolve_pdf filename-honoring, anchor /
-render-all locator, render-slug collision fix); single-amendment set complete.
-See `RESULTS-wave2.md`. What remains:
+~~Single-amendment set (Wave 2)~~ and ~~multi-amendment chains~~ **DONE 2026-06-14**
+(`RESULTS-wave2.md`, `RESULTS-multi.md`). Modern reconstructed = **34 provisions**,
+integrity 0/0, scratch-only. What remains:
 
-1. **Multi-amendment provisions (~22):** the next wave. Each needs every
-   intermediate version's reprint, chained — NOT one redline. Pattern: art X §21
-   in `transcriptions.json` (clean 3-version), and the art LIV trio (forward-splice).
-   Prep these with a per-amendment page set (each amendment date → its own measure
-   page); one agent per provision reads the full chain. `reconstruct_modern_versions.py`
-   already loads the full amendment list per provision (`load_scope`).
-2. **7 giants** (art XV §1-6 = new 2022 ethics/term-limits article; art IX §12 =
-   2023) — `skipped-wave2.json` reason `giant-no-anchor`. Almost certainly
-   CREATE_SECTION; download the whole-session PDF, render the measure pages, confirm.
+1. **art XVI §1-5 + art IX §13 (2024 amendments) — needs a DATA FIX FIRST.** The
+   2024 `source_url`/`affected` mappings are wrong: bill-doc 23-3092 (DB amend 167,
+   linked to art XVI) actually amends art X §26 (legacy fund). Audit the 2024
+   amendment rows (165/166/167) vs the real ndlegis measures, fix the amendments
+   table, then reconstruct (bill PDFs cached in `caa-cache/billdoc_*`).
+2. **2 discontinuities — art V §1, §12:** current = single create-1997 version;
+   their pre-1997 old §1/§12 is the REPEALED-predecessor lineage. needs-base-source
+   (native 1979-80 / 1981 BB) + a lineage decision (old §1/§12 belong to a different
+   cite). See `RESULTS-multi.md`.
+3. **7 giants** (art XV §1-6 = new 2022 article; art IX §12 = 2023) —
+   `skipped-wave2.json` reason `giant-no-anchor`. Almost certainly CREATE_SECTION;
+   download the whole-session PDF, render the measure pages, confirm.
 3. **12 needs-base-source + heavy multi-subsection (art VIII §6 class):** native
    session-law text from Legislative Council (PL-SOURCE-FILES). art V §2-11 is the
    1997 executive-article replacement — its pre-1997 prior is a full-article rewrite
