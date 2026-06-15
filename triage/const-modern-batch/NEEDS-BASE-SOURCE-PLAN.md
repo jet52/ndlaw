@@ -13,7 +13,13 @@ missing-files blocker**. Group A done; Group B sourced below.
   3-subsection Compact; sub2 == historical §203, sub1+sub3 vs 1913 (overlap 0.976), all 14 $ amounts cross-verified.
 - **art V §§ 1-12 — DONE** (`splice_artv_pre1997.py` 10 sections + `splice_artv_chains_1986.py` §1/§12).
   Reorganization crosswalk + the 1986 chains for §1/§12. §13 = pre-1997 orphan (deferred).
-- **art VIII § 6 — REMAINING** (the one heavy item). See below.
+- **art VIII § 6 — DONE** (`splice_artviii6_chain.py`, batch `modern-artviii6-chain-2026-06-15`).
+  4-version chain (base 1989 BB + #130/#133/#139); redlines read by subagent, intermediates
+  rebuilt by reverse-edit on clean current text + gated; PIT verified across all 3 boundaries.
+
+## GROUP B COMPLETE 2026-06-15. needs-base-source bucket fully reconstructed (Group A + B).
+Remaining modern-layer tails are orphans only (no/orphan modern citation): art IV §§17-46,
+art V §13, art IV §§2/5/11 "[Unconstitutional.]" stubs.
 
 ## Group B detail (original sourcing notes)
 
