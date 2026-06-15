@@ -201,3 +201,12 @@ Reconciled (subagent + gated): sub1 (toleration) identical across 1895/1913/1925
 The 1997 measure (#135) replaced/reorganized the executive article, reusing §-numbers for new content (a renumbering, like art IV). Prepended the pre-1997 ("old") content [1981-01-01, 1996-06-30] to the 10 single-step shared sections (§§ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11). Pre-1997 text transcribed+reconciled from the 1989 Blue Book (the [1981,1997) witness) cross-checked vs the 1973 BB (subagent), gated here by overlap ≥0.97 against the 1989 BB section + old≠new. Verified: §3 1990→eligibility (governor age 30) / 2010→election of governor; §7 1990→lt-governor president of senate / 2010→powers of governor.
 
 NOT in this batch: **§1, §12** (also carry a 1986 amendment → 3-version chains, next) and **§13** (pre-1997 only — no post-1997 citation; orphan). Integrity 0; build REPRODUCIBLE (sig 4a38f787cdea9c96, 704 versions). **Scratch only.**
+
+
+## Batch `modern-artv-chains-1986-2026-06-15` — art V §1 & §12 3-version chains (Group B) (SCRATCH)
+
+`constitution.db` (scratch) · 2 provisions · +4 versions
+
+§1 and §12 changed twice in the modern era (1986 amendment #121/#122, then the 1997 replacement #135). Built each chain: [1981-01-01,1986-12-03] pre-1986 (validated historical layer §1←§71, §12←§82); [1986-12-04,1997-06-30] post-1986 (1989 BB, overlap 1.000/0.999); [1997-07-01,) current. 1986 transitions confirmed (§1 "year 1965"→"1988" + Dec-15 commencement sentence; §12 drops the "tax commissioner … no party ballot" sentence). pre≠post and post≠current both verified. Integrity 0; build REPRODUCIBLE (sig 1f9e987822580f9c, 708 versions).
+
+**art V §§1-12 now fully covered for [1981,present).** Remaining: §13 (pre-1997 executive-officers section with no post-1997 citation — orphan, deferred like art IV §§17-46). **Scratch only.**

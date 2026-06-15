@@ -50,6 +50,7 @@ run $PY triage/const-modern-batch/splice_artiv_crosswalk_1981.py --apply
 run $PY triage/const-modern-batch/splice_groupa_clean_2026.py --apply
 run $PY triage/const-modern-batch/splice_artxiii_1_1996.py --apply
 run $PY triage/const-modern-batch/splice_artv_pre1997.py --apply
+run $PY triage/const-modern-batch/splice_artv_chains_1986.py --apply
 run $PY triage/const-modern-batch/fix_ix7_head_secondread.py --apply
 
 echo
