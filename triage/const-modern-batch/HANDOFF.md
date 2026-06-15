@@ -31,20 +31,24 @@ form a gap-free point-in-time timeline reflecting every amendment.
   the served data. This session corrected its amendment chronology + 3 current texts
   (§5) but its modern layer is still single-version-per-provision.
 - **SCRATCH: `/tmp/const-scratch.db`** — the working copy with ALL modern
-  reconstructions (37 provisions). **⚠️ `/tmp` is ephemeral.** If gone, rebuild:
-  1. `cp constitution.db /tmp/const-scratch.db`
-  2. Re-apply the reconstructions (source of truth = the edit-lists in code + `out*/`,
-     never the scratch DB):
-     - `triage/const-pilot-2026-06-14/apply_markup.py --apply` (6 pilot)
-     - `triage/const-modern-batch/verify_and_splice.py --apply` (13 wave-1)
-     - `triage/const-modern-batch/splice_wave2.py` (XII §2 fix + 3 new)
-     - `triage/const-modern-batch/splice_multichain.py --apply` (12 chains)
-     - `triage/const-modern-batch/splice_x26_2011.py --apply` (art X §26)
-     - `triage/const-modern-batch/reconstruct_ix_stale.py --db /tmp/const-scratch.db --chain --apply` (art IX §12/§13)
-     - `triage/const-modern-batch/splice_xii_corporations_2006.py --apply` (7 art XII corp repeals)
-     - then `scripts/fix_amend167_legacyfund_2024.py /tmp/const-scratch.db --apply`,
-       `scripts/apply_modern_text_corrections.py /tmp/const-scratch.db --apply`
+  reconstructions (44 provisions / +52 versions + in-place fixes). **⚠️ `/tmp` is ephemeral.**
+- **ONE-COMMAND REBUILD (verified reproducible 2026-06-15):**
+  `bash scripts/rebuild_const_modern.sh` — backs up any current scratch, copies
+  `constitution.db` → scratch, replays every splice script in order, and asserts the
+  rebuilt version-content signature == the validated scratch. Last run: **REPRODUCIBLE YES**
+  (sig `4e37129438f0549d`, 678 versions, integrity 0). It does NOT re-fetch ndconst.org and
+  does NOT promote (no write to `constitution.db`). The individual scripts (for reference):
+  apply_markup → verify_and_splice → splice_wave2 → splice_multichain → splice_x26_2011 →
+  reconstruct_ix_stale(--chain) → fix_amend167 → apply_modern_text_corrections →
+  splice_xii_corporations_2006 → fix_artiv_renumber_1986 → fix_ix7_head_secondread.
+  (`reconstruct_ix_stale.py` was hardened 2026-06-15 to accept an already-corrected base.)
   Use the project venv: `.venv/bin/python`.
+- **NOTE (at promotion time):** the script-replay reproduces the layer today, but it is
+  base-state-sensitive (the ix_stale fix was needed when base absorbed a correction). Before
+  the eventual live promotion, snapshot the final layer declaratively
+  (`data/const_modern_versions.json` + idempotent applier, mirroring
+  `const_modern_text_corrections.json`) so the build is robust to base drift; keep the splice
+  scripts as provenance. Deferred until the modern layer is COMPLETE (decision below).
 
 ## 3. What's been reconstructed (37) and what hasn't (the work left)
 
@@ -154,12 +158,22 @@ The reconstruction gates double as a data-quality audit of ndconst.org. **Runnin
   1990s/2000s modern compilation for more interior witnesses.
 
 ## 7. Path to live (do NOT hand-edit live)
-Promote the modern layer to live ONLY when: (a) every spliced provision has a BB
-witness or a confirming second read (§3.4), AND (b) the modern snapshot-diff is green.
-Then propagate the reconstructions UPSTREAM (into the ingest/data, like the corrections
-overlays) and REBUILD — never hand-edit live. Build sequence (NOT idempotent for
-history): `ingest_constitution --apply` → `rm constitution_history.db;
-ingest_constitution_history --apply` → `merge_const_history --apply` → `make_release.sh`.
+**DECISION 2026-06-15 (user): HOLD until the modern layer is COMPLETE; do not promote the
+44 validated reconstructions incrementally. Local build + verify only — nothing outward-facing
+(no GitHub release, no server deploy) until then.**
+
+Gating conditions to promote: (a) every spliced provision has a BB witness or a confirming
+second read — **§3.4 DONE**; (b) the modern snapshot-diff is green — currently 1989 95.6%,
+1981 MISMATCH 0 (residual = OCR/parse, not data); (c) the remaining buckets are reconstructed:
+**#1 needs-base-source (BLOCKED on native source files — PL-SOURCE-FILES) and the art IV
+[1981,1986) crosswalk companion.** Build reproducibility is already PROVEN (§2,
+`scripts/rebuild_const_modern.sh`, REPRODUCIBLE YES).
+
+When promoting (all conditions met): snapshot the final layer to `data/const_modern_versions.json`
++ idempotent applier, fold into the build, REBUILD — never hand-edit live. Full build sequence
+(NOT idempotent for history): `ingest_constitution --apply` → `rm constitution_history.db;
+ingest_constitution_history --apply` → `merge_const_history --apply` →
+`rebuild_const_modern.sh` (or the JSON applier) → `make_release.sh`.
 
 ## 8. Key files
 - Plan/design: `TODO-const-history-validation.md`, `data/design-modern-const-versions-2026-06-14.md`.

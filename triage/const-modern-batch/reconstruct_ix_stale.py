@@ -12,8 +12,10 @@ Modes:
                            current (flat modern layer; e.g. live constitution.db).
   --db <path> --chain     : correct current text AND splice prior versions
                            (the scratch reconstruction).
-Gate (re-asserted): am166.version_before == the DB's stored (stale) current text;
-each reverse_edit_list applies; chain continuity holds.
+Gate: the DB's stored current text == am166.version_before (stale, fresh pull) OR ==
+am166.version_after (base already corrected — replay against an evolved base); the
+text-correction step runs only in the stale case. Each reverse_edit_list applies;
+chain continuity holds.
 Idempotent (batch-scoped). Run after fix_amend167 (which set §12/§13 start 2024-12-05).
 """
 import argparse, json, re, sqlite3, sys
@@ -89,8 +91,13 @@ def main():
         true_current = norm(amds[-1]["version_after_text"])
         # gates
         probs = []
-        if kn(amds[-1]["version_before_text"]) != kn(stale):
-            probs.append("latest.version_before != stored(stale) current text")
+        # The DB current may be the STALE ndconst.org text (a fresh pull) OR already the
+        # corrected version_after (base absorbed the correction in a prior build). Accept
+        # either; only the stale case needs the text-correction step below.
+        cur_kn = kn(stale)
+        already_corrected = cur_kn == kn(true_current)
+        if cur_kn != kn(amds[-1]["version_before_text"]) and not already_corrected:
+            probs.append("stored current matches neither version_before (stale) nor version_after (corrected)")
         for a in amds:
             try:
                 got = apply_edits(norm(a["version_after_text"]), [tuple(e) for e in a["reverse_edit_list"]])
@@ -101,12 +108,13 @@ def main():
         for e, l in zip(amds, amds[1:]):
             if kn(l["version_before_text"]) != kn(e["version_after_text"]):
                 probs.append(f"continuity {e['amendment_number']}->{l['amendment_number']}")
-        plans.append((cite, pid, vid, stale, true_current, amds, probs))
+        plans.append((cite, pid, vid, stale, true_current, amds, probs, already_corrected))
 
     print(f"DB: {args.db}  mode={'chain' if args.chain else 'live-text-only'}")
     ok = True
-    for cite, pid, vid, stale, tc, amds, probs in plans:
-        print(f"  {cite:26} stale={len(stale)}c -> true_current={len(tc)}c  gates={'OK' if not probs else probs}")
+    for cite, pid, vid, stale, tc, amds, probs, already_corrected in plans:
+        state = "already-corrected" if already_corrected else "stale->correct"
+        print(f"  {cite:26} {state}; cur={len(stale)}c true={len(tc)}c  gates={'OK' if not probs else probs}")
         if probs:
             ok = False
     if not ok:
@@ -114,15 +122,16 @@ def main():
     if not args.apply:
         print("(dry run) re-run with --apply"); con.close(); return
 
-    for cite, pid, vid, stale, tc, amds, probs in plans:
-        # 1. correct the current version text (both modes)
-        fts_replace(con, vid, cite, stale, tc)
-        con.execute("UPDATE provision_versions SET text_content=?, "
-                    "source_authority='current text (ndconst.org, corrected for amend 166)' WHERE id=?", (tc, vid))
-        con.execute("INSERT INTO changelog (batch, provision_id, version_id, field, old_value, new_value, authority) "
-                    "VALUES (?,?,?,?,?,?,?)", (BATCH, pid, vid, "stale_current_text_corrected",
-                    "pre-2024 terminology (ndconst.org stale)", "amend 166 enacted text (bill 23-3015)",
-                    "2023 SCR 4001"))
+    for cite, pid, vid, stale, tc, amds, probs, already_corrected in plans:
+        # 1. correct the current version text — only if the DB still holds the stale text
+        if not already_corrected:
+            fts_replace(con, vid, cite, stale, tc)
+            con.execute("UPDATE provision_versions SET text_content=?, "
+                        "source_authority='current text (ndconst.org, corrected for amend 166)' WHERE id=?", (tc, vid))
+            con.execute("INSERT INTO changelog (batch, provision_id, version_id, field, old_value, new_value, authority) "
+                        "VALUES (?,?,?,?,?,?,?)", (BATCH, pid, vid, "stale_current_text_corrected",
+                        "pre-2024 terminology (ndconst.org stale)", "amend 166 enacted text (bill 23-3015)",
+                        "2023 SCR 4001"))
         # 2. chain mode: splice priors
         if args.chain:
             con.execute("DELETE FROM provision_versions WHERE provision_id=? AND batch=?", (pid, BATCH))
