@@ -1,12 +1,13 @@
 # NOTICE — Sources, Redistribution Scope, and Authorization
 
-*Last updated: 2026-05-13*
+*Last updated: 2026-06-15*
 
 This file describes what this project redistributes, where the underlying
 material comes from, and the basis for its use of each source. The code in
 this repository is released under the CC0 1.0 Universal dedication in
-[`LICENSE`](LICENSE). The data files in the bundled `opinions.db` are
-described below.
+[`LICENSE`](LICENSE). The data files in the bundled `opinions.db` — and in
+the four primary-law databases (`constitution.db`, `statutes.db`, `rules.db`,
+`admincode.db`) — are described below.
 
 ## Redistribution scope
 
@@ -77,6 +78,52 @@ Posture" lines removed — has been extracted and is included in
 `opinions.db`. No automated retrieval from Westlaw is performed by any
 code in this repository; the `ingest_westlaw.py` and `receive_westlaw.py`
 tools only read files that the user has placed on disk.
+
+## Primary law: Constitution, statutes, court rules, administrative code
+
+Beyond the opinions corpus, the project ships four primary-law databases —
+`constitution.db`, `statutes.db` (N.D.C.C.), `rules.db` (North Dakota court
+rules), and `admincode.db` (N.D. Administrative Code). Their
+`provision_versions.text_content` holds the text of North Dakota's government
+edicts, with effective-date metadata for point-in-time (`as_of_date`) queries.
+
+**Redistribution scope.** Edicts of government — constitutions, statutes,
+regulations, and court rules — carry the force of law and are not protected by
+copyright, regardless of who compiled or published them. See *Banks v.
+Manchester*, 128 U.S. 244 (1888), and *Georgia v. Public.Resource.Org, Inc.*,
+590 U.S. 255 (2020). These databases redistribute only that official edict
+text together with its amendment/effective-date metadata. They do **not**
+include commercial-publisher annotations, case notes, headnotes, or other
+editorial apparatus from any annotated edition.
+
+**Sources.**
+
+- **Constitution** (`constitution.db`) — the current article/section text and
+  the amendment chronology are from [ndconst.org](https://ndconst.org), a
+  DokuWiki edition of the North Dakota Constitution dedicated to the public
+  domain (CC0). The point-in-time layers — the original 1889 numbering in
+  force 1889–1980, and the modern 1981–present reconstruction across the
+  1981/1986/1997 reorganizations and later amendments — were built from
+  official North Dakota primary sources: the *Constitutional Amendments
+  Approved* compilations and Session Laws of the North Dakota Legislative
+  Branch ([legis.nd.gov](https://www.legis.nd.gov)), the *North Dakota Blue
+  Book* compilations (Office of the Secretary of State), the 1889/1895/1913/1925
+  official printings, and a public-domain 1889 base transcription (validated
+  against the official 1889 publication and the State Constitutions Project).
+- **Statutes** (`statutes.db`) — the official North Dakota Century Code
+  (N.D.C.C.), published by the North Dakota Legislative Branch at
+  [ndlegis.gov](https://ndlegis.gov) (current text as of 2025-07-01).
+- **Court rules** (`rules.db`) — the North Dakota court rules, published by the
+  North Dakota Supreme Court at [ndcourts.gov](https://www.ndcourts.gov),
+  including the court's own explanatory notes and amendment history.
+- **Administrative Code** (`admincode.db`) — the North Dakota Administrative
+  Code (N.D.A.C.), published by the North Dakota Legislative Branch at
+  [ndlegis.gov](https://ndlegis.gov) (current text as of 2025-07-01).
+
+As with the opinions corpus, these are offered as a working tool, not an
+authoritative or official text; consult the official publications above for
+authoritative text. The primary-law corpora are newer and less validated than
+the opinions corpus (see [`TODO-primarylaw.md`](TODO-primarylaw.md)).
 
 ## Citation format
 
