@@ -70,6 +70,11 @@ def cite_key(citation: str) -> str:
     map to the same key only if they differ solely in cosmetic punctuation.
     """
     s = citation.lower().replace("§", " ")
+    # Normalize the spelled-out "article(s)" to the stored "art." abbreviation so
+    # "N.D. Const. article I" keys the same as the canonical "art. I". No stored
+    # citation uses the full word, so this only ever maps query input onto the
+    # existing key, never shifts a stored key.
+    s = re.sub(r"\barticles?\b", "art", s)
     # Drop abbreviation dots ("n.d." -> "nd", "art." -> "art") but keep decimal
     # dots inside ND numbering ("12.1-20-03"): only remove a dot that follows a
     # letter, never one between digits.
@@ -80,6 +85,37 @@ def cite_key(citation: str) -> str:
     s = re.sub(r"[^a-z0-9.\- ]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
+
+def resolve_cite_key(
+    conn: sqlite3.Connection, corpus_alias: str, citation: str
+) -> str | None:
+    """Return the *stored* ``cite_key`` for ``citation``, or None if no provision
+    matches.
+
+    Two-tier so the common path stays index-backed: first an exact
+    ``cite_key = ?`` equality (an index hit — covers Constitution, N.D.C.C.,
+    admin code, and the compact-dotted rule sets), then a whitespace-insensitive
+    fallback for citations whose *stored* form spaces its abbreviations
+    differently from the query (e.g. stored "N.D. Sup. Ct. Admin. R. 22" vs a
+    compact "N.D.Sup.Ct.Admin.R. 22"). ``cite_key`` itself is whitespace-
+    *sensitive*, so the fallback compares both sides with spaces removed; a
+    corpus-wide check confirmed this collapses no two distinct provisions
+    together. Returning the canonical stored key lets callers re-query by
+    indexed equality.
+    """
+    q = f"{corpus_alias}." if corpus_alias and corpus_alias != "main" else ""
+    key = cite_key(citation)
+    hit = conn.execute(
+        f"SELECT cite_key FROM {q}provisions WHERE cite_key = ? LIMIT 1", (key,)
+    ).fetchone()
+    if hit:
+        return hit["cite_key"]
+    hit = conn.execute(
+        f"SELECT cite_key FROM {q}provisions WHERE REPLACE(cite_key, ' ', '') = ? LIMIT 1",
+        (key.replace(" ", ""),),
+    ).fetchone()
+    return hit["cite_key"] if hit else None
 
 
 def get_corpus_connection(
@@ -239,7 +275,9 @@ def lookup_provision_version(
     ISO date; None means the current version (effective_end IS NULL).
     """
     q = f"{corpus_alias}." if corpus_alias and corpus_alias != "main" else ""
-    key = cite_key(citation)
+    key = resolve_cite_key(conn, corpus_alias, citation)
+    if key is None:
+        return None
     if as_of_date is None:
         sql = (
             f"SELECT p.citation, p.heading, p.status, v.* "

@@ -118,17 +118,62 @@ def translate_boolean(query: str) -> tuple[str, list[str]]:
 # --- statutory / court-rule authority normalization ------------------------
 
 # Court-rule abbreviation aliases → canonical normalized prefix in the corpus.
+# Keys are the input collapsed to lowercase with spaces and dots stripped (see
+# ``low`` in normalize_authority), so both the compact dotted form
+# ("N.D.R.Civ.P.") and the spaced form ("N.D. Sup. Ct. Admin. R.") of a rule
+# set map to the one canonical citation prefix actually stored in rules.db.
 _RULE_ALIASES = {
+    # Core rule sets (stored compact-dotted).
     "ndrcivp": "N.D.R.Civ.P.", "ndrcrimp": "N.D.R.Crim.P.",
     "ndrev": "N.D.R.Ev.", "ndrappp": "N.D.R.App.P.",
-    "ndrctp": "N.D.R.Ct.", "ndrprofconduct": "N.D.R. Prof. Conduct",
+    "ndrjuvp": "N.D.R.Juv.P.", "ndrct": "N.D.R.Ct.",
+    "ndrctp": "N.D.R.Ct.",
+    # ND Supreme Court rule sets (stored spaced). Longer keys are listed before
+    # the shorter ones they contain so the most specific alias wins, but every
+    # alias for a set maps to the same canonical prefix, so order is not
+    # load-bearing for correctness.
+    "ndsupctadminorder": "N.D. Sup. Ct. Admin. Order",
+    "supctadminorder": "N.D. Sup. Ct. Admin. Order",
+    "administrativeorder": "N.D. Sup. Ct. Admin. Order",
+    "adminorder": "N.D. Sup. Ct. Admin. Order",
+    "ndsupctadminr": "N.D. Sup. Ct. Admin. R.",
+    "supctadminr": "N.D. Sup. Ct. Admin. R.",
+    "administrativerule": "N.D. Sup. Ct. Admin. R.",
+    "adminr": "N.D. Sup. Ct. Admin. R.",
+    "admissiontopracticer": "Admission to Practice R.",
+    "ndrprofconduct": "N.D.R. Prof. Conduct",
+    "ndrlawyerdiscipl": "N.D.R. Lawyer Discipl.",
+    "ndrlocalctpr": "N.D.R. Local Ct. Pr.",
+    "ndrcontinuinglegaleduc": "N.D.R. Continuing Legal Educ.",
+    "ndrprocr": "N.D.R. Proc. R.",
+    "ndcodejudconduct": "N.D. Code Jud. Conduct",
+    "ndstdsimposinglawyersanctions": "N.D. Stds. Imposing Lawyer Sanctions",
+    "rjudconductcomm": "R. Jud. Conduct Comm.",
+    "ltdpracticeoflawbylawstudentsr": "Ltd. Practice of Law by Law Students R.",
+    # Federal rule sets (no corpus, but classify so we don't misread as statute).
     "frcivp": "Fed. R. Civ. P.", "frcrimp": "Fed. R. Crim. P.",
     "frevid": "Fed. R. Evid.", "frev": "Fed. R. Evid.",
     "frapp": "Fed. R. App. P.",
 }
 
-_SECTION_RE = re.compile(r"\b(\d+(?:\.\d+)?-\d+(?:-\d+(?:\.\d+)?)?)\b")
-_RULE_NUM_RE = re.compile(r"\b(\d+(?:\.\d+)?)\b")
+# Order alias probing by descending key length so a specific prefix
+# ("ndsupctadminorder") is tried before a generic substring of it ("adminr").
+_RULE_ALIAS_ORDER = sorted(_RULE_ALIASES, key=len, reverse=True)
+
+# "AR 22" / "A.R. 22" — the bare shorthand for the Supreme Court Admin. Rules.
+_AR_SHORTHAND_RE = re.compile(r"^\s*a\.?\s*r\.?\s+\d", re.I)
+
+# A dash-numbered section/chapter id: a leading number then ONE OR MORE
+# "-NN" segments. The unbounded tail is load-bearing for N.D. Admin. Code,
+# whose cites are four segments deep (title-article-chapter-section, e.g.
+# "10-01-01-01"); a fixed 3-segment cap silently truncated the 4th, so the
+# parser's canonical form pointed at a non-existent provision. N.D.C.C. (≤3
+# segments) is unaffected.
+_SECTION_RE = re.compile(r"\b(\d+(?:\.\d+)?(?:-\d+(?:\.\d+)?)+)\b")
+# A rule "number" may be an int (56), a decimal (2.1), multi-segment (8.3.1),
+# hyphenated (22-1), or carry a trailing letter (5A). Anchored to the first
+# digit-led token so a trailing pinpoint (", § 3(c)") is not absorbed.
+_RULE_NUM_RE = re.compile(r"\b(\d+(?:[.-]\d+)*[A-Za-z]?)\b")
 
 
 # --- case-citation extraction (for draft proofreading) ----------------------
@@ -181,23 +226,34 @@ def normalize_authority(query: str) -> dict:
         exact = f"N.D.A.C. § {sec}" if sec else None
         return {"kind": "admin", "token": sec, "exact": exact}
 
-    # Court rule? (contains "r." rule-set or an alias, or the word "rule")
+    # Court rule? Recognize via (a) a known rule-set alias — covering both the
+    # compact dotted prefixes (N.D.R.Civ.P.) and the spaced ND Supreme Court
+    # sets (N.D. Sup. Ct. Admin. R.); (b) the "AR 22" shorthand; (c) a bare
+    # rule-set marker — the word "rule" or an "R." token, spaced or not.
     rule_prefix = None
-    for alias, canon in _RULE_ALIASES.items():
+    for alias in _RULE_ALIAS_ORDER:
         if alias in low:
-            rule_prefix = canon
+            rule_prefix = _RULE_ALIASES[alias]
             break
-    if rule_prefix or re.search(r"\brule\b", q, re.I) or re.search(r"\.R\.", q):
+    if rule_prefix is None and _AR_SHORTHAND_RE.match(q):
+        rule_prefix = "N.D. Sup. Ct. Admin. R."
+    if rule_prefix or re.search(r"\brule\b", q, re.I) or re.search(r"\.\s*R\.", q):
         m = _RULE_NUM_RE.search(q)
         token = m.group(1) if m else None
         exact = f"{rule_prefix} {token}" if rule_prefix and token else None
         return {"kind": "court_rule", "token": token, "exact": exact}
 
-    # Statute (N.D.C.C.)?
+    # Bare dash-numbered cite with no corpus prefix — disambiguate by depth.
+    # N.D. Admin. Code cites are four segments (title-article-chapter-section);
+    # N.D.C.C. is at most three (chapter is two, section is three). So a
+    # four-segment bare number can only be admin code, and a two-segment one is
+    # an N.D.C.C. chapter.
     m = _SECTION_RE.search(q)
     if m:
         sec = m.group(1)
         groups = sec.split("-")
+        if len(groups) >= 4:
+            return {"kind": "admin", "token": sec, "exact": f"N.D.A.C. § {sec}"}
         if len(groups) == 2:  # title-chapter → chapter cite
             exact = f"N.D.C.C. ch. {sec}"
         else:

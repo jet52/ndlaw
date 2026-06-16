@@ -1,6 +1,7 @@
 """MCP server for North Dakota Supreme Court opinions."""
 
 import os
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -26,6 +27,63 @@ mcp = FastMCP(
 DB_PATH = DEFAULT_DB_PATH
 
 COURTLISTENER_BASE = "https://www.courtlistener.com"
+
+# A subsection pinpoint trailing a court-rule citation, e.g. "§ 3(c)", "(c)",
+# "subsec. 2" — used to tell the caller we returned the whole rule, not the cited
+# subsection (rules are stored whole-rule).
+_PINPOINT_RE = re.compile(r"\(\s*[0-9a-zA-Z]{1,4}\s*\)|§|\bsubsec|\bsubdiv", re.I)
+
+# A trailing subsection pinpoint on a *court-rule* cite, to be stripped so the
+# whole rule resolves: a "§ …"/"subsec."/"subdiv." clause, or a parenthesized
+# "(c)" group, at the end of the string. Rule-only — N.D.C.C./const use "§" for
+# the section identifier itself, so this must never run against those corpora.
+_RULE_PINPOINT_TAIL_RE = re.compile(
+    r"\s*(?:,\s*)?(?:(?:§|subsec\.?|subdiv\.?|subdivision)\s*[\w.()\-]*|\([0-9a-zA-Z]{1,4}\))\s*$",
+    re.I,
+)
+
+
+def _strip_rule_pinpoint(citation: str) -> str:
+    """Drop a trailing subsection pinpoint from a court-rule citation.
+
+    "N.D. Sup. Ct. Admin. R. 22, § 3(c)" -> "N.D. Sup. Ct. Admin. R. 22";
+    "N.D. Code Jud. Conduct canon 1, § 3(c)" -> "...canon 1" (the parser's
+    prefix+number canonical would drop the "canon" word, so stripping the
+    pinpoint off the *raw* cite and resolving that is what makes pinpoints work
+    for every rule set, not just the clean "prefix number" ones)."""
+    prev = None
+    out = citation
+    while out != prev:
+        prev = out
+        out = _RULE_PINPOINT_TAIL_RE.sub("", out).rstrip()
+    return out
+
+
+def _best_cite(conn, alias: str, spec: dict, citation: str) -> str:
+    """The citation string to resolve a provision by: raw first, then fallbacks.
+
+    Try the caller's raw citation first — ``corpus.resolve_cite_key`` matches it
+    space-insensitively, which already handles the common forms and, crucially,
+    any provision whose *stored* citation has idiosyncratic formatting (a 4th
+    admin segment like ``10-01-01-01``, a stray space, …) that a regex-rebuilt
+    canonical can't reproduce. On a miss, for court rules drop a trailing
+    subsection pinpoint and retry (rules are stored whole-rule). Finally fall
+    back to the parser's ``exact`` canonical, which rescues alias/word-order
+    variants the raw form can't match ("AR 22", "Rule 56 NDRCivP"). Preferring
+    canonical first would regress the raw/idiosyncratic class; raw first costs
+    at most a couple of extra indexed lookups.
+    """
+    if corpus.resolve_cite_key(conn, alias, citation):
+        return citation
+    if spec.get("kind") == "court_rule":
+        stripped = _strip_rule_pinpoint(citation)
+        if stripped != citation and corpus.resolve_cite_key(conn, alias, stripped):
+            return stripped
+    exact = spec.get("exact")
+    if exact and corpus.resolve_cite_key(conn, alias, exact):
+        return exact
+    return citation
+
 
 # Map a normalize_authority() kind to a versioned-law corpus name (corpus.CORPORA).
 KIND_TO_CORPUS = {
@@ -1586,7 +1644,8 @@ def find_opinions_construing(authority: str, limit: int = 50) -> dict:
             try:
                 alias = _attached_corpora(ccorp).get(ckind)
                 if alias:
-                    prov = corpus.lookup_provision_version(ccorp, alias, authority)
+                    prov = corpus.lookup_provision_version(
+                        ccorp, alias, _best_cite(ccorp, alias, spec, authority))
                     if prov:
                         result["provision"] = {
                             "citation": prov["citation"],
@@ -1636,7 +1695,8 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 "corpus": ckind,
                 "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed on this server.",
             }
-        row = corpus.lookup_provision_version(conn, alias, citation, as_of_date)
+        lookup_cite = _best_cite(conn, alias, spec, citation)
+        row = corpus.lookup_provision_version(conn, alias, lookup_cite, as_of_date)
         warning = None
         if not row and as_of_date:
             # No captured version covers as_of_date. If the provision exists,
@@ -1644,10 +1704,11 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
             # than nothing — full historical text before that date may not yet
             # be captured (the amendment chronology is in get_authority_history).
             q = f"{alias}."
+            stored_key = corpus.resolve_cite_key(conn, alias, lookup_cite)
             prov = conn.execute(
                 f"SELECT id FROM {q}provisions WHERE cite_key = ?",
-                (corpus.cite_key(citation),),
-            ).fetchone()
+                (stored_key,),
+            ).fetchone() if stored_key else None
             if prov:
                 row = conn.execute(
                     f"SELECT p.citation, p.heading, p.status, v.* "
@@ -1691,6 +1752,15 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
         }
         if warning:
             result["warning"] = warning
+        # Rules are stored whole-rule; subsection pinpoints are not separately
+        # retrievable. If the caller asked for one, return the full rule but say
+        # so rather than silently dropping the pinpoint. (Statutes/const use "§"
+        # for the section itself, so only flag the court-rule corpus.)
+        if ckind == "rule" and _PINPOINT_RE.search(citation):
+            result["note"] = (
+                "Subsection-level retrieval is not supported; returning the full "
+                f"text of {row['citation']}. Read the relevant subsection within it."
+            )
         return result
     finally:
         conn.close()
@@ -1781,10 +1851,11 @@ def get_authority_history(citation: str) -> dict:
             return {"found": False, "citation": citation, "corpus": ckind,
                     "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed."}
         q = f"{alias}."
+        stored_key = corpus.resolve_cite_key(conn, alias, _best_cite(conn, alias, spec, citation))
         prov = conn.execute(
             f"SELECT id, citation, heading, status FROM {q}provisions WHERE cite_key = ?",
-            (corpus.cite_key(citation),),
-        ).fetchone()
+            (stored_key,),
+        ).fetchone() if stored_key else None
         if not prov:
             return {"found": False, "citation": citation, "corpus": ckind,
                     "error": f"No provision matching {citation!r}."}
