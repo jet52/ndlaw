@@ -198,6 +198,16 @@ installed package resolves it, so the server serves it with no unit/env change.
 Publishing is the deliberate editorial gate; everything downstream is mechanical
 and gated (sha256 verify, `quick_check`, count floor, live `/mcp` probe, rollback).
 
+**Code-only releases.** A release that ships **no** DB assets (a patch that
+changes only server code) deploys without re-uploading the ~600 MB of DBs.
+`self-update.sh` detects the absent `opinions.db.zip`, skips `update-db.sh`
+entirely, and instead restarts the service to load the reinstalled code and
+health-probes it — rolling the *code* back to the previously-deployed tag if the
+probe fails (the DBs are never touched). Note the bootstrap: the **running**
+updater is what processes the next release, so this behavior applies to releases
+made *after* the version that introduced it; the introducing release itself must
+still carry the DB assets.
+
 **One command, from the repo on your build machine:**
 
 ```bash
