@@ -2,6 +2,29 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `cite-spacing-review-2026-06-20` — the 21 held cite-spacing spots, adjudicated individually
+
+The needs-review spots `cite-spacing-rejoin` correctly held back, each verified against the slip PDF (`scripts/fix_cite_spacing_review_2026-06-20.py`; every pattern requires internal whitespace so it can't touch a clean copy of the same cite). **19 fix-entries / 21 occurrences across 18 opinions:**
+
+- **8 N.D.C.C. — slip page number injected mid-citation across a page break.** The section number straddled a page boundary and the PDF→markdown extraction dropped the page number into the middle of it (`§ 65-01-`·`5`·`02(5)(c)` → the print reads `§ 65-01-02(5)(c)`). Reconstructed the true cite, dropping the stray page digit: 16049 `59-12-15`, 16230 `25-03.3-01`, 16672 `32-03.2-02`, 16784 `28-34-01`, 17747 `34-03-01`, 17898 `19-03.4-01`, 18109 `14-02.4-02`, 18192 `65-01-02`. All 8 now resolve in the graph.
+- **1 N.D.A.C.** (19426) de-spaced to the court's predominant print form `§ 33-15-07-2(1)`; the authority is already in the graph via the canonical `§ 33-15-07-02` occurrence in the same opinion.
+- **1 range** (17642) `§§ 28-32-42-49`: closed the page-wrap but **kept a space before the range hyphen** — `28-32-42 -49` — so the first cite stays a complete 3-part section and isn't mistakable for a 4-part N.D.A.C. number (court convention; the `28-32-42` head now resolves).
+- **9 historical / out-of-jurisdiction** de-spaced to true form (won't enter the ND graph): 16462 `47-1901` (**1943 N.D. Revised Code — ND primary law**, the NDCC's predecessor; no corpus yet), 17539 `59-6a201` (Kan.), 18998/19992×3/20117 (Fargo Municipal Code), 19841 `2-117`/`2-115` (U.P.C.), 19912 `13-3101` (Ariz.), 20075 `19-4902` (Idaho).
+
+**Left as-is:** 11715 (`§§ 27-20-30 -32`, 1994, no PDF) — a range that already carries the disambiguating space before the range hyphen, by the same convention applied to 17642. Invariants 23/2/0.
+
+## Batch `cite-spacing-rejoin-2026-06-20` — stray whitespace inside N.D.C.C./N.D.A.C. section numbers
+
+Surfaced by a new DB-vs-`~/refs` integrity audit (`refs_diff citespaces`): **1,222 spots in 645 opinions** where a section number carried a stray space or newline around a hyphen (`§ 28-32- 46`, `§ 12.1-16-\n01`). Root cause confirmed against the slip PDFs — the court's print **wraps the section number across a line**; the PDF→markdown derivation rendered the wrap as whitespace inside the number. Not the court's text, a typesetting artifact.
+
+Effect on the citation graph: of the 1,222, **1,067 (87%) had still extracted correctly** (jetcite tolerated the space); **155 were lost** — that exact section was absent from the opinion's `text_citations`. jetcite's gap was positional (it tolerated a space after the first group but not before the final group, and broke on any newline).
+
+Two-layer fix:
+1. **jetcite hardened to ≥2.5.4** (`patterns/states/nd.py`): inter-group separators in the NDCC/NDAC section + chapter patterns changed from the loose `[^.\w]{1,2}` / single `[^.\w]` to a shared `_SEP = \s*[dash]\s*` that absorbs surrounding whitespace/newlines and *requires* an actual dash — which also drops a latent comma false positive. 478 existing tests pass + 3 new regressions.
+2. **Text cleaned** (`fix_cite_spacing`, this batch): **1,201 high-confidence rejoins across 639 opinions** — whitespace removed only inside a number matching a strict N.D.C.C./N.D.A.C. grammar (title 1-2 digits, every later group exactly 2 digits + optional decimal); no digit ever altered. The dry-run's strict grammar correctly **held 21 needs-review** spots that would have corrupted: foreign statutes caught by a bare `§` (Kan./Ariz./U.P.C./Fargo Municipal Code/1943 Revised Code), true ranges (`27-20-30 to -32`), and numbers the extractor truncated. Those 21 are left verbatim for manual adjudication (`triage/cite-spacing-rejoin.md`).
+
+Re-extracted the 639 changed opinions: **130 of the 155 previously-lost section cites recovered**; statute cites 38,914 → **39,052**. The remaining 25 absent = the 21 held cases + a handful of well-formed *bare-`§`* cites whose text is now clean but which jetcite declines to extract without a nearby "N.D.C.C."/"section" cue (a separate signal-scope question, not spacing). Snapshot `opinions.db.bak-pre-cite-spacing-2026-06-20`; `cited_by` rebuilt (print_anomalies overrides applied); invariants 23/2/0.
+
 ## Batches `docket-cite-shaped-2026-06-10` + `parallel-backfill-witnessed-2026-06-10` — docket queue closed; 8 witnessed parallels
 
 **Dockets:** all **198 cite-shaped `docket_number` values** (`1997ND155`-style, the Herrick-class systemic sibling; 158 from 1997) fixed, plus 2 side-catches → **200 corrections, 0 cite-shaped remain**. Sources, in priority: the court's own cTrack report (36 unique joins by neutral/N.W. cite incl. the consolidated Beylund/Wojahn pair `20140133, 20140315`), opinion frontmatter/caption file numbers for the 1997 cohort (`Civil 960144` → `19960144`, ranges expanded per the Herrick comma-join convention), and caption `No. 20230123` for the 2023 NECJD chambering. Side-catches: **17035 carried its neighbor's docket** (Vacancy No. 3 NECJD is 20170270 per the report; it had 17046's 20170327) and 17046's `No. ` prefix stripped.

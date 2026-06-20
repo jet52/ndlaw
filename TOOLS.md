@@ -51,6 +51,7 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 | `audit` / `audit_sources` | CLI | Audit for missing opinions / data anomalies / source completeness. |
 | `volume_date_check` | CLI | Flag opinions whose `date_filed` is inconsistent with the reporter volume's date range. |
 | `multisource_diff` | CLI/lib | Multi-source diff audit (also exports `jaccard`, `shingles`, `normalize_words`). |
+| `refs_diff` | CLI | **DB-vs-`~/refs` text integrity audit.** `compare`: for every opinion, diff `text_content` against its *primary* `~/refs` source file (frontmatter/HTML-nav/whitespace/case/punctuation normalized away), banded by difflib similarity → `identical`/`near`(boilerplate)/`moderate`(mostly caption-format)/`major`(truncation/swap/stub). Skips westlaw `.doc` + page-image sources (non-comparable). `citespaces`: scan `text_content` for stray spaces inside N.D.C.C./N.D.A.C. section numbers (e.g. `12.1-20- 03`). Read-only; writes md+csv to `triage/`. |
 | `triage/shingle_selfsim_*` | script | Body-duplication detector (audit check #6): word-8-shingle self-similarity; catches markerless stored-twice bodies. Re-run after merge concatenations. |
 | `triage/digit_compare_*` + `digit_flip_candidates_*` + `render_flip_crops_*` | scripts | The print-verified digit-flip pipeline: per-¶ DB-vs-PDF digit compare → context-matched candidates → **render the printed glyphs** (never apply from the PDF text layer alone — 3/693 candidates were text-layer ToUnicode errors). |
 
@@ -71,6 +72,7 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 | `recompute_is_primary` | CLI | One-off: recompute `citations.is_primary` (Contract 2 / SCHEMA.md). |
 | `migrate_reporter_taxonomy` / `migrate_changelog_cl` | CLI | One-off schema migrations (reporter taxonomy; CL-diff-ready changelog). |
 | `fix_*` (feldmann_2017, kitchen_kleinsmith_2013, westlaw_pairings[_round2], archive_pairings, type_y_archive_pairings, cl_metadata_contamination) | CLI | Targeted one-off contamination/pairing fixes (kept for revert/audit). |
+| `fix_cite_spacing` | CLI | Rejoin stray whitespace/newlines inside N.D.C.C./N.D.A.C. section numbers (PDF line-wrap artifacts, e.g. `§ 28-32- 46`). Dry-run default; `--apply` logs `text_content.cite_spacing` to changelog. Only de-spaces numbers matching a strict NDCC/NDAC grammar; foreign-statute/range/truncated spots routed to a needs-review report. Pairs with the jetcite ≥2.5.4 `_SEP` hardening. Re-extract affected opinions after applying. |
 
 ## Server & UI
 | Tool | Kind | Purpose |
