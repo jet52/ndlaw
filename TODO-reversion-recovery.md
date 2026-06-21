@@ -24,11 +24,23 @@ running list of everything still open.
 - [ ] **188 cite-shaped docket placeholders** remaining (148×1997) — the precise fingerprint of the reverted/contaminated cohort; reconcile against body "No." line + court file numbers.
 - [ ] **Source fix** — correct `1997_opinions.json` case_name/docket + rename misfiled `markdown/1997/*.md` so re-ingest is clean. Lower urgency now the guard protects the DB.
 
-## OPEN — opinion BODY text (`text_content`) re-validation  ← the main initiative
-We never reconciled body text. The reconciliation method doesn't apply (changelog
-stores *descriptions*, not literal text). Probe 2026-06-21: OCR artifacts 0 (held),
-but **26 opinions have garbled `[IF`/`[I¶` markers** the marker batches had fixed →
-proof some body work reverted. Plan below.
+## opinion BODY text (`text_content`) — QA CONFIRMATION (downgraded 2026-06-21)
+**Re-framed after checking the ingest path:** body corrections were most likely
+NOT silently reverted. Why:
+- The weekly pipeline runs `ingest --incremental`, which is **year-gated**
+  (`since_year` = latest opinion's year; skips all older files) — so it only
+  adds the current year's new opinions and **never touches an old body**.
+- `merge_nd_metadata` (the confirmed metadata reverter) **does not write
+  `text_content`** at all.
+- The "26 garbled `[IF`/`[I¶` markers" are **residue, not reversions** — 0 of the
+  26 ever had a logged marker fix (1976–2024, scattered misses).
+- The only path that could overwrite an old body is a **full (non-incremental)
+  ingest**, and only the narrow `ingest.py` line-346 case (source has `[¶`,
+  current lacks it) — which the **Phase 0 guard now blocks** regardless.
+
+So this is QA verification (confirm bodies held + clean genuine residue), not
+urgent recovery. Run the detector sweep below to confirm; expect mostly clean +
+a small residue list (the 26 markers, the 5 ambiguous digit-flips).
 
 ### Phase 0 — Stop the bleeding (protect `text_content`)  — CORE DONE 2026-06-21
 - [x] Map every write path to `text_content`. **Silent auto-writer (the weekly-pipeline mechanism):** `ingest._ingest_nd_opinions` line ~346 (conditional marker-gated update, NO changelog log). **Logged/deliberate writers (tracked, recoverable, not silent):** `ingest_nwcite` (309/466, court-archive promotion — logs), `merge_westlaw_text`/`receive_westlaw` (westlaw promotion — logs), `strip_*`/`fix_*`/`webapp` (these ARE corrections).
@@ -44,7 +56,7 @@ baseline = reverted or new work.
 | validation | detector to re-run | documented baseline |
 |---|---|---|
 | OCR artifacts (`¡¿■£„`) | `quality_scan --rescan` | 0 corpus-wide ✓ (re-probed clean) |
-| garbled/OCR paragraph markers | grep `[IF`/`[I¶`/dotted `[¶ N.]` + `para_continuity` | 0 garbled (⚠ **26 found 2026-06-21**) |
+| garbled/OCR paragraph markers | grep `[IF`/`[I¶`/dotted `[¶ N.]` + `para_continuity` | 26 found 2026-06-21 — RESIDUE (0 ever marker-fixed), not reversions; clean up as QA |
 | digit-flips (3↔8/5↔6 etc.) | `triage/digit_compare_*` (DB ¶ digits vs court PDF) | 0 after sweep (1,021 fixed) |
 | body stored twice / dedup | `triage/shingle_selfsim_*` | pre-1997 clean, 2 known |
 | substantive missing ¶ | `text-missing-measured` / substantive-missing detector | 219 spliced, 7 held |
@@ -69,6 +81,6 @@ baseline = reverted or new work.
 - [ ] Promote the cheap detectors to invariants (garbled-marker count, ocr_artifact count, shingle-self-sim count) so any future body reversion fails the dashboard.
 - [ ] Per-opinion post-correction `content_hash` provenance for fast future reconciliation.
 
-## Immediate leads (found while probing)
-- 26 opinions: `text_content LIKE '%[IF %' OR '%[I¶%'` — start Phase 1 here.
-- 5/12 digit-flip sample "ambiguous" — motivates the ¶-anchored Phase-2 detector.
+## Immediate leads / residue (found while probing)
+- 26 opinions: `text_content LIKE '%[IF %' OR '%[I¶%'` — RESIDUE (never marker-fixed), QA cleanup.
+- 5/12 digit-flip sample "ambiguous" — bare substring isn't enough; motivates the ¶-anchored Phase-2 detector (for QA confirmation, not recovery).

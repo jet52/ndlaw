@@ -6,7 +6,7 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 
 ## ★★ CRITICAL — silent reversion recovery (set 2026-06-21)
 
-**The DB is the source of truth, but re-ingest/merge was silently overwriting validated corrections from the contaminated `~/refs` source.** 418 scalar corrections were found reverted; 309 restored + a `merge` write-guard + the `corrections_not_reverted` invariant now in place. **The opinion BODY text was never reconciled and some body work HAS reverted (26 garbled markers re-found).** Full plan + running checklist: **`TODO-reversion-recovery.md`** (Phase 0 protect `text_content` → Phase 1 re-run all body detectors vs documented baselines → Phase 2 token-level body reconciliation → Phase 3 re-apply/verify-vs-PDF → Phase 4 durable invariants). This gates the authoritative-text goal — corrections that don't stick aren't corrections.
+**The DB is the source of truth, but `merge_nd_metadata` (not year-gated) was silently overwriting validated scalar corrections from the contaminated `~/refs` source on every weekly run.** 418 scalar corrections found reverted; 309 restored + a `merge` write-guard + the `corrections_not_reverted` invariant now in place. **BODY text was NOT an active leak** — the weekly ingest is incremental/year-gated (only adds the current year, never touches old bodies) and merge doesn't write `text_content`; the "26 garbled markers" are residue, not reversions. Phase 0 body write-guard added anyway as insurance against a full ingest. Full plan + running checklist: **`TODO-reversion-recovery.md`** (body re-validation is now QA confirmation, not urgent recovery). This gates the authoritative-text goal — corrections that don't stick aren't corrections.
 
 ## ★ PRIORITY TODO (set 2026-05-27 PM)
 
