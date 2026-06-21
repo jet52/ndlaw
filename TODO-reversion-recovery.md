@@ -30,9 +30,11 @@ stores *descriptions*, not literal text). Probe 2026-06-21: OCR artifacts 0 (hel
 but **26 opinions have garbled `[IF`/`[I¶` markers** the marker batches had fixed →
 proof some body work reverted. Plan below.
 
-### Phase 0 — Stop the bleeding (protect `text_content`)
-- [ ] Map every write path to `text_content`: `ingest._ingest_nd_opinions` (conditional marker-gated update at ~line 344), `_ingest_nw_opinions`, `receive_westlaw`, `merge_westlaw_text`, `scrape_archive`, the `weekly_scrape.sh` pipeline.
-- [ ] Add a **text_content write-guard**: never overwrite the body of an opinion that has any `text_content.*` changelog entry (a corrected body) from a source re-read, unless `--force`. Mirror the `corrected_values()` pattern. Optionally store a post-correction `content_hash` per opinion as provenance.
+### Phase 0 — Stop the bleeding (protect `text_content`)  — CORE DONE 2026-06-21
+- [x] Map every write path to `text_content`. **Silent auto-writer (the weekly-pipeline mechanism):** `ingest._ingest_nd_opinions` line ~346 (conditional marker-gated update, NO changelog log). **Logged/deliberate writers (tracked, recoverable, not silent):** `ingest_nwcite` (309/466, court-archive promotion — logs), `merge_westlaw_text`/`receive_westlaw` (westlaw promotion — logs), `strip_*`/`fix_*`/`webapp` (these ARE corrections).
+- [x] **Guard the silent writer:** `reconcile_corrections.corrected_text_opinion_ids()` + `ingest._body_is_protected()` — the ND ingest now skips overwriting any body with a logged `text_content.*` correction and reports `body_protected`. **15,166 corrected bodies protected.** Tested; invariants 23/2/0.
+- [ ] Decide whether to also guard the deliberate promoters (`ingest_nwcite`, westlaw merge): they LOG and are run manually, so they are not the silent culprit, but they CAN downgrade a corrected body — add a `--force`-gated guard or a pre-run protected-body warning.
+- [ ] Optional: store a post-correction `content_hash` per opinion as durable provenance (enables value-level body reconciliation later).
 
 ### Phase 1 — Detect body reversions: re-run detectors vs documented baselines
 Most body validation was done by **re-runnable detectors** with a documented

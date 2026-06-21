@@ -12,6 +12,20 @@ from pathlib import Path
 
 from .db import DEFAULT_DB_PATH, create_schema, get_connection
 
+# Phase-0 body write-guard (see reconcile_corrections / TODO-reversion-recovery):
+# a source re-read must never silently overwrite an opinion body that carries a
+# logged text_content correction. Loaded once per process; lazy import avoids an
+# import cycle (invariants imports both ingest and reconcile_corrections).
+_protected_body_ids: set[int] | None = None
+
+
+def _body_is_protected(conn, opinion_id: int) -> bool:
+    global _protected_body_ids
+    if _protected_body_ids is None:
+        from .reconcile_corrections import corrected_text_opinion_ids
+        _protected_body_ids = corrected_text_opinion_ids(conn)
+    return opinion_id in _protected_body_ids
+
 REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 
 # Reporters to ingest, in order. NW/NW2d first because they have JSON metadata.
@@ -340,12 +354,16 @@ def _ingest_nd_opinions(conn, reporter: str, reporter_dir: Path,
                     (str(md_path.relative_to(refs_dir)), opinion_id),
                 )
 
-            # ND opinions have [¶N] markers — prefer those
+            # ND opinions have [¶N] markers — prefer those, UNLESS this body
+            # carries a logged correction (never silently clobber our work).
             if "[¶" in text and "[¶" not in op_row["text_content"]:
-                conn.execute(
-                    "UPDATE opinions SET text_content = ?, source_path = ? WHERE id = ?",
-                    (text, str(md_path.relative_to(refs_dir)), opinion_id),
-                )
+                if _body_is_protected(conn, opinion_id):
+                    stats["body_protected"] = stats.get("body_protected", 0) + 1
+                else:
+                    conn.execute(
+                        "UPDATE opinions SET text_content = ?, source_path = ? WHERE id = ?",
+                        (text, str(md_path.relative_to(refs_dir)), opinion_id),
+                    )
 
             stats["deduped"] += 1
             continue
@@ -526,7 +544,8 @@ def main():
     conn.execute("PRAGMA cache_size=-20000")
     create_schema(conn)
 
-    stats = {"ingested": 0, "deduped": 0, "no_text": 0, "errors": 0}
+    stats = {"ingested": 0, "deduped": 0, "no_text": 0, "errors": 0,
+             "body_protected": 0}
 
     reporters = REPORTERS
     since_year = None
@@ -570,6 +589,9 @@ def main():
     print(f"  {total_opinions} opinions ({date_range[0]} to {date_range[1]})")
     print(f"  {total_citations} citation records")
     print(f"  {stats['deduped']} duplicates merged")
+    if stats.get("body_protected"):
+        print(f"  {stats['body_protected']} corrected bodies PROTECTED from source "
+              f"overwrite (logged text_content corrections kept)")
     if stats["errors"]:
         print(f"  {stats['errors']} errors")
 

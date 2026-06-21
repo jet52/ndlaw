@@ -102,6 +102,19 @@ def reconcile(conn: sqlite3.Connection):
     return reverted, diverged
 
 
+def corrected_text_opinion_ids(conn: sqlite3.Connection) -> set[int]:
+    """opinion_ids whose BODY (text_content) carries a logged correction.
+
+    The Phase-0 body write-guard: an automated source re-read (ingest /
+    ingest_nwcite) must not silently overwrite these — that is how OCR / digit /
+    marker / dedup / splice work was being reverted. text_content can't be
+    reconciled value-for-value (its changelog rows are descriptions), so the
+    presence of any ``text_content.*`` correction is the protection signal.
+    """
+    return {r[0] for r in conn.execute(
+        "SELECT DISTINCT opinion_id FROM changelog WHERE field LIKE 'text_content%'")}
+
+
 def find_reverted(conn: sqlite3.Connection):
     return reconcile(conn)[0]
 
