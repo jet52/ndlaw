@@ -31,6 +31,7 @@ from pathlib import Path
 
 from .db import DEFAULT_DB_PATH
 from .ingest import REPORTER_TAXONOMY, SECONDARY_REPORTERS, SYNTHETIC_REPORTERS
+from .reconcile_corrections import find_reverted
 
 _SYNTH_FMT = re.compile(r"^\d{4} ND \d+$")
 
@@ -43,6 +44,7 @@ DEFAULT_REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 BASELINES: dict[str, int] = {
     "neutral_cite_uniqueness":     258,      # 258 known dup pairs (§6 queue)
     "nd_modern_paragraph_markers": 18,       # 18 short orders w/o markers (was 85; 57 full opinions re-OCR'd via marker 2026-05-30, §14 TODO #4)
+    "corrections_not_reverted":    109,      # was 418; 309 content corrections surgically restored 2026-06-21 (restore-reverted-corrections batch). Remaining 109 are source_reporter (provenance, coupled to opinion_sources) — restore via align_primary_source. Any INCREASE = a new silent reversion.
 }
 
 SAMPLE_LIMIT = 5
@@ -393,6 +395,16 @@ def _nd_modern_para(conn, refs):
         "  AND date_filed >= '1997-01-01' "
         "  AND text_content NOT LIKE '%[¶%'"
     ).fetchall()
+
+
+@_check("corrections_not_reverted",
+        "no logged correction has been silently overwritten back to its "
+        "pre-correction value (DB is the source of truth — see reconcile_corrections)")
+def _corrections_not_reverted(conn, refs):
+    # current DB value == the field's latest changelog new_value, for every
+    # corrected scalar field. A revert (current == the original old_value) means
+    # a re-ingest/merge clobbered human-verified work without logging.
+    return find_reverted(conn)
 
 
 # -----------------------------------------------------------------------------

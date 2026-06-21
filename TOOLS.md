@@ -43,7 +43,8 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 ## Quality, validation & health
 | Tool | Kind | Purpose |
 |------|------|---------|
-| `invariants` | CLI | **Read-only health dashboard** (23 checks + known-baseline tracking). Run after every mutation. |
+| `invariants` | CLI | **Read-only health dashboard** (24 checks + known-baseline tracking, incl. `corrections_not_reverted`). Run after every mutation. |
+| `reconcile_corrections` | CLI/lib | **Detect + heal silent reversions of logged corrections.** Compares each `changelog` field-correction's intended value (latest `new_value`) to the live DB → INTACT/REVERTED/DIVERGED; `--restore --apply` re-applies reverted content corrections. Exports `corrected_values()` (the write-guard interface used by `merge_nd_metadata`/ingest to never clobber a corrected field). Backs the `corrections_not_reverted` invariant. |
 | `audit_corpus` | CLI | **Cross-corpus systematic-error triage** (TODO-audit.md Tier 1): cite-graph temporal sanity, pinpoint-vs-¶-range, [¶N] continuity, opinion↔statute/rule/const/admin xref resolution, provision-version intervals, changelog↔CHANGELOG-data sync. Writes TSVs to `triage/`. |
 | `quality_scan` | CLI | Scan opinion text for quality signals (`ocr_artifacts` = count of `¡¿■£„`, garbage chars, etc.); `--rescan` recomputes all. |
 | `validate` | CLI | Validation orchestrator + the `/goal` completion gate. |

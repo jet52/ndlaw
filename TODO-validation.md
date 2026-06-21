@@ -4,6 +4,10 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 
 **End goal:** a corpus accurate enough to be offered to the ND Supreme Court as the authoritative text of its opinions, or at least a reliable proxy. That bar is higher than "useful research tool" — it drives the provenance, reversibility, and verification standards below.
 
+## ★★ CRITICAL — silent reversion recovery (set 2026-06-21)
+
+**The DB is the source of truth, but re-ingest/merge was silently overwriting validated corrections from the contaminated `~/refs` source.** 418 scalar corrections were found reverted; 309 restored + a `merge` write-guard + the `corrections_not_reverted` invariant now in place. **The opinion BODY text was never reconciled and some body work HAS reverted (26 garbled markers re-found).** Full plan + running checklist: **`TODO-reversion-recovery.md`** (Phase 0 protect `text_content` → Phase 1 re-run all body detectors vs documented baselines → Phase 2 token-level body reconciliation → Phase 3 re-apply/verify-vs-PDF → Phase 4 durable invariants). This gates the authoritative-text goal — corrections that don't stick aren't corrections.
+
 ## ★ PRIORITY TODO (set 2026-05-27 PM)
 
 1. ~~**Docket completeness — recover empty `docket_number` fields.**~~ **DONE 2026-05-27** (batch `recover-dockets-2026-05-27`). Recovered **465/465 modern** (1997+) from the `ND-neutral` markdown caption (`No./Nos. YYYYNNNN`, year-validated; 16 consolidated comma-joined) and **56/67 gap-era** (1953–96, court-archive filename docket == body `Civ./Cr.` number, comma-tolerant; stored native `Civ. NNNN`); **11 deferred** (Westlaw admin orders, likely genuinely docketless). **Normalized 4,910 blank-string → NULL.** Final empties 5,083, all NULL (pre-1953 5,072 + 11 gap; **1997+ now 0**). 5,431 changelog rows; invariants 22/2/0. Detail in CHANGELOG-data.md.

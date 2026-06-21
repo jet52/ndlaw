@@ -410,6 +410,168 @@ def run_citespaces(args) -> None:
 
 
 # --------------------------------------------------------------------------- #
+# selfcheck mode — triage the `major` bucket by DB self-consistency
+# --------------------------------------------------------------------------- #
+#
+# `compare` flags DB-vs-markdown divergence, but the markdown source is a poor
+# oracle: it gets renamed/misfiled, regenerated stale, or bloated with duplicate
+# CL copies. This mode re-judges each major-bucket opinion by signals that point
+# at the DB itself rather than at the disk file:
+#
+#   * does the DB body state its OWN neutral cite? (1997+)        — swap/contam
+#   * do the case_name's distinctive party surnames appear in it? — contamination
+#   * the PDF as authoritative oracle (where one exists), but only after
+#     confirming the PDF is not itself misfiled (its in-body cite == label).
+#   * does the source_path FILE actually contain this opinion?    — crossed ptr
+#
+# Categories (priority order): DB_CONTENT_BUG > DB_TRUNCATED > DISK_PDF_MISFILED
+# > DISK_SOURCE_MISFILED > DISK_SOURCE_NOISE > REVIEW.
+
+_NEUTRAL_RE = re.compile(r"\b(?:18|19|20)\d{2} ND \d+\b")
+_CAPTION_STOP = {
+    "state", "north", "dakota", "interest", "matter", "estate", "city",
+    "county", "disciplinary", "board", "application", "reinstatement", "the",
+    "and", "et", "al", "inc", "co", "company", "corp", "llc", "llp", "ltd",
+    "life", "insurance", "group", "trust", "bank", "department", "commission",
+    "petition", "discipline", "against", "member", "bar", "supreme", "court",
+}
+
+
+def _distinctive_surnames(case_name: str) -> list[str]:
+    toks = re.findall(r"[A-Z][A-Za-z'’-]{3,}", case_name or "")
+    return [t for t in toks if t.lower() not in _CAPTION_STOP]
+
+
+def _pdf_text(year: str, num: str, cache: dict, refs: Path) -> str | None:
+    key = (year, num)
+    if key in cache:
+        return cache[key]
+    import subprocess
+    pdf = refs / "pdfs" / year / f"{year}ND{num}.pdf"
+    txt = None
+    if pdf.exists():
+        try:
+            txt = subprocess.run(["pdftotext", str(pdf), "-"],
+                                 capture_output=True, text=True, timeout=60).stdout
+        except (OSError, subprocess.SubprocessError):
+            txt = None
+    cache[key] = txt
+    return txt
+
+
+def run_selfcheck(args) -> None:
+    # major-bucket oids come from a prior `compare` CSV
+    rows = [r for r in csv.DictReader(open(args.in_csv))
+            if r["status"] in (args.bucket.split(","))]
+    conn = sqlite3.connect(str(args.db))
+    conn.row_factory = sqlite3.Row
+    refs = args.refs
+    pdfcache: dict = {}
+    out = []
+    for r in rows:
+        oid = int(r["opinion_id"])
+        op = conn.execute(
+            "SELECT case_name, date_filed, source_path, text_content FROM opinions WHERE id=?",
+            (oid,)).fetchone()
+        neutral = conn.execute(
+            "SELECT citation FROM citations WHERE opinion_id=? AND reporter='ND-neutral' LIMIT 1",
+            (oid,)).fetchone()
+        label = neutral["citation"] if neutral else None  # native neutral (1997+)
+        body = strip_frontmatter(op["text_content"] or "")
+        body_cites = set(_NEUTRAL_RE.findall(body))
+
+        # --- DB self-consistency ---
+        db_states_own = (label in body_cites) if label else None
+        surnames = _distinctive_surnames(op["case_name"])
+        name_in_body = (any(s.lower() in body.lower() for s in surnames)
+                        if surnames else None)
+
+        # --- source_path file identity (1997+) ---
+        src = load_source_text(r["reporter"], op["source_path"], refs)
+        src_states_label = (label in set(_NEUTRAL_RE.findall(src))) if (src and label) else None
+
+        # --- PDF oracle (1997+) ---
+        pdf_words = pdf_states_label = db_pdf_ratio = None
+        if label:
+            m = re.match(r"(\d{4}) ND (\d+)", label)
+            if m:
+                pt = _pdf_text(m.group(1), m.group(2), pdfcache, refs)
+                if pt is not None:
+                    pdf_words = len(normalize_words(pt))
+                    pdf_states_label = label in set(_NEUTRAL_RE.findall(pt))
+                    dbw = int(r["db_words"]) or 1
+                    db_pdf_ratio = round(dbw / pdf_words, 3) if pdf_words else None
+
+        # --- categorize ---
+        if (db_states_own is False) or (name_in_body is False):
+            cat = "DB_CONTENT_BUG"          # DB text is the wrong/contaminated opinion
+        elif pdf_states_label and db_pdf_ratio is not None and db_pdf_ratio < 0.7:
+            cat = "DB_TRUNCATED"            # PDF is the right case; DB is much shorter
+        elif pdf_states_label is False:
+            cat = "DISK_PDF_MISFILED"       # PDF on disk is a different opinion
+        elif src_states_label is False:
+            cat = "DISK_SOURCE_MISFILED"    # source_path points at the wrong file
+        elif label is None:
+            cat = "PRE1997_NO_NEUTRAL"      # can't cite-check; mostly CL-fulltext/dedup noise
+        else:
+            cat = "DISK_SOURCE_NOISE"       # DB self-consistent; markdown stale/bloated
+        out.append(dict(
+            oid=oid, label=label or r["citation"], case_name=op["case_name"][:42],
+            cat=cat, db_states_own=db_states_own, name_in_body=name_in_body,
+            src_states_label=src_states_label, pdf_states_label=pdf_states_label,
+            db_words=r["db_words"], pdf_words=pdf_words, db_pdf_ratio=db_pdf_ratio,
+            sim=r["similarity"], source_path=op["source_path"]))
+    conn.close()
+
+    from collections import Counter
+    order = ["DB_CONTENT_BUG", "DB_TRUNCATED", "DISK_PDF_MISFILED",
+             "DISK_SOURCE_MISFILED", "PRE1997_NO_NEUTRAL", "DISK_SOURCE_NOISE", "REVIEW"]
+    counts = Counter(o["cat"] for o in out)
+    out.sort(key=lambda o: (order.index(o["cat"]) if o["cat"] in order else 99, str(o["label"])))
+
+    # CSV
+    args.csv.parent.mkdir(parents=True, exist_ok=True)
+    with args.csv.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
+        w.writeheader(); w.writerows(out)
+
+    # report
+    L = [f"# Major-bucket self-consistency triage ({len(out)} opinions)\n",
+         "Re-judged by DB self-consistency + PDF oracle, not the markdown source.\n"]
+    for c in order:
+        if counts.get(c):
+            L.append(f"- **{c}**: {counts[c]}")
+    L.append("")
+    real = [o for o in out if o["cat"] in ("DB_CONTENT_BUG", "DB_TRUNCATED")]
+    if real:
+        L.append(f"## Genuine DB bugs ({len(real)})\n")
+        L.append("| oid | label | case_name | category | db/pdf words | ratio | states own cite | name in body |")
+        L.append("|--|--|--|--|--|--|--|--|")
+        for o in real:
+            L.append(f"| {o['oid']} | {o['label']} | {o['case_name']} | {o['cat']} | "
+                     f"{o['db_words']}/{o['pdf_words']} | {o['db_pdf_ratio']} | "
+                     f"{o['db_states_own']} | {o['name_in_body']} |")
+        L.append("")
+    for c in ("DISK_PDF_MISFILED", "DISK_SOURCE_MISFILED"):
+        items = [o for o in out if o["cat"] == c]
+        if items:
+            L.append(f"## {c} ({len(items)}) — DB is correct; ~/refs file is wrong\n")
+            L.append("| oid | label | case_name | source_path |")
+            L.append("|--|--|--|--|")
+            for o in items:
+                L.append(f"| {o['oid']} | {o['label']} | {o['case_name']} | `{o['source_path']}` |")
+            L.append("")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text("\n".join(L), encoding="utf-8")
+
+    print(f"Self-consistency triage of {len(out)} opinions:")
+    for c in order:
+        if counts.get(c):
+            print(f"  {c:24} {counts[c]}")
+    print(f"\nReport: {args.out}\nCSV:    {args.csv}")
+
+
+# --------------------------------------------------------------------------- #
 # CLI
 # --------------------------------------------------------------------------- #
 
@@ -435,6 +597,18 @@ def main(argv=None):
     ps.add_argument("--out", type=Path, default=Path("triage") / "cite-spaces.md")
     ps.add_argument("--csv", type=Path, default=Path("triage") / "cite-spaces.csv")
     ps.set_defaults(func=run_citespaces)
+
+    pk = sub.add_parser("selfcheck",
+                        help="re-triage compare's major bucket by DB self-consistency + PDF oracle")
+    pk.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    pk.add_argument("--refs", type=Path, default=DEFAULT_REFS_DIR)
+    pk.add_argument("--in-csv", type=Path, default=Path("triage") / "refs-diff.csv",
+                    help="a prior `compare` CSV to draw bucket oids from")
+    pk.add_argument("--bucket", default="major",
+                    help="comma-separated statuses to triage (default: major)")
+    pk.add_argument("--out", type=Path, default=Path("triage") / "refs-diff-selfcheck.md")
+    pk.add_argument("--csv", type=Path, default=Path("triage") / "refs-diff-selfcheck.csv")
+    pk.set_defaults(func=run_selfcheck)
 
     args = p.parse_args(argv)
     args.func(args)

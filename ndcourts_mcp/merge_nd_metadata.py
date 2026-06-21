@@ -14,7 +14,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from .db import DEFAULT_DB_PATH, get_connection
+from .db import DEFAULT_DB_PATH, get_connection, log_change
 
 REFS_ND_DIR = Path.home() / "refs" / "nd" / "opin"
 
@@ -77,7 +77,34 @@ def merge(db_path: Path, refs_dir: Path, dry_run: bool = False):
         except Exception:
             pass  # Column already exists
 
-    stats = {"updated": 0, "not_found": 0, "skipped": 0}
+    stats = {"updated": 0, "not_found": 0, "skipped": 0,
+             "protected": 0, "restored": 0}
+
+    # Write-guard: the DB is the source of truth. Never clobber a field that has
+    # a logged correction with a different value from the incoming JSON — keep
+    # (and, if the DB has drifted, restore) the corrected value instead. This is
+    # why prior corrections kept silently reverting on every merge.
+    from .reconcile_corrections import corrected_values
+    GUARDED = {"case_name", "date_filed", "author", "docket_number",
+               "per_curiam", "judges", "opinion_url", "case_type", "unanimous"}
+    corrections = corrected_values(conn, only_fields=GUARDED)
+    BATCH = "merge-guard-restore"
+
+    def guard(oid, fieldname, proposed, current):
+        """Return the value to write; protect/restore a corrected field."""
+        key = (oid, fieldname)
+        if key not in corrections:
+            return proposed
+        intended = corrections[key]
+        if str(proposed if proposed is not None else "") == str(intended if intended is not None else ""):
+            return proposed  # source already agrees with the correction
+        stats["protected"] += 1
+        if str(current if current is not None else "") != str(intended if intended is not None else ""):
+            stats["restored"] += 1
+            if not dry_run:
+                log_change(conn, BATCH, oid, fieldname, current, intended,
+                           authority="merge write-guard: restored logged correction")
+        return intended
 
     for rec in records:
         citation = rec.get("citation", "").strip()
@@ -88,7 +115,8 @@ def merge(db_path: Path, refs_dir: Path, dry_run: bool = False):
         # Find the opinion by citation
         row = conn.execute(
             """SELECT o.id, o.case_name, o.date_filed, o.author, o.docket_number,
-                      o.case_name_full, o.per_curiam
+                      o.case_name_full, o.per_curiam, o.judges, o.opinion_url,
+                      o.case_type, o.unanimous
                FROM opinions o
                JOIN citations c ON c.opinion_id = o.id
                WHERE c.citation = ?""",
@@ -127,6 +155,17 @@ def merge(db_path: Path, refs_dir: Path, dry_run: bool = False):
 
         voting_record = json.dumps(rec["voting_record"]) if rec.get("voting_record") else None
         all_justices_json = json.dumps(all_justices) if all_justices else None
+
+        # Write-guard: defer to logged corrections over the source value.
+        case_name = guard(opinion_id, "case_name", case_name, row["case_name"])
+        date_filed = guard(opinion_id, "date_filed", date_filed, row["date_filed"])
+        author = guard(opinion_id, "author", author, row["author"])
+        docket_number = guard(opinion_id, "docket_number", docket_number, row["docket_number"])
+        per_curiam = guard(opinion_id, "per_curiam", per_curiam, row["per_curiam"])
+        judges = guard(opinion_id, "judges", judges, row["judges"])
+        opinion_url = guard(opinion_id, "opinion_url", opinion_url, row["opinion_url"])
+        case_type = guard(opinion_id, "case_type", case_type, row["case_type"])
+        unanimous = guard(opinion_id, "unanimous", unanimous, row["unanimous"])
 
         if not dry_run:
             conn.execute(
@@ -171,6 +210,8 @@ def merge(db_path: Path, refs_dir: Path, dry_run: bool = False):
     print(f"  {stats['updated']} opinions updated")
     print(f"  {stats['not_found']} citations not found in database")
     print(f"  {stats['skipped']} records skipped (no citation)")
+    print(f"  {stats['protected']} field writes guarded (logged correction kept over source)")
+    print(f"  {stats['restored']} corrected fields restored (DB had drifted) — logged to changelog")
 
 
 def main():

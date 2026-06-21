@@ -2,6 +2,41 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-reverted-corrections-2026-06-21` — recover work lost to silent re-ingest reversions
+
+Tracing why the `casename-docket-decontam` dockets had reverted revealed the systemic cause: **the DB is the source of truth, but `merge_nd_metadata` (run by the weekly pipeline) re-read the `~/refs` JSON and blindly overwrote corrected fields with the source value, without logging** — silently undoing prior corrections on every merge. (The `1997_opinions.json` source is itself contaminated for a 1997 batch — misfiled content, e.g. `1997ND16.md` holds 1997 ND 15 — so the overwrite re-applied *wrong* values.)
+
+New tooling to make corrections durable:
+- **`reconcile_corrections.py`** — reconstructs each correction's intended value from `changelog` (latest `new_value` per opinion×field) and compares to the live DB: INTACT / REVERTED (back at the pre-correction value) / DIVERGED. Found **418 silently-reverted** scalar corrections + 337 diverged (`text_content` excluded — its changelog rows are descriptions, not literal values).
+- **invariant `corrections_not_reverted`** — counts REVERTED; any increase = a new silent reversion surfaces on the dashboard.
+- **merge write-guard** — `merge_nd_metadata` now consults `corrected_values()` and keeps/restores a logged correction instead of clobbering it (a dry-run guards 517 writes / restores 495). Closes the leak for all future merges.
+
+**Restored 309 reverted content corrections** (this batch): docket_number 189, case_name 47, author 20, date_filed 20, judges 16, opinion_url 14, per_curiam 3 — each rewritten to its changelog-intended value and re-logged. `corrections_not_reverted` 418 → **109**; the remaining 109 are `source_reporter` (provenance, coupled to opinion_sources/`source_reporter_matches_primary`) and are deferred to the `align_primary_source` path. Invariants 23/2/0. The 337 DIVERGED stay queued for human review (some intentional). NB: several restores re-fixed case_name contaminations that had a prior logged correction (e.g. 12438 *Symington*→**Edwards v. Edwards**).
+
+## Batch `casename-docket-decontam-1997-2026-06-20` — 11 mislabeled 1997 opinions
+
+Surfaced by a new `refs_diff selfcheck` triage of the major text-divergence bucket (DB self-consistency: does the body state its own neutral cite + party surnames?) and **narrowed by cross-checking the court's own opinion-report spreadsheet** (`input-data/court-opinions-report-2026-05-30.xlsx`): of 25 self-check candidates, the court Title **confirmed 14 "Interest of X (CONFIDENTIAL)" cases were correctly named** (classifier false positives on anonymized captions — no body surname to match), leaving **11 genuine contaminations**. Each carried a *neighbor's* case_name (e.g. 1997 ND 16 *Frafjord v. Ell* was labeled "State v. Ertelt", the real name of 1997 ND 15) plus a cite-shaped docket placeholder (`1997ND16`).
+
+Every correct name is **triple-sourced** — the court's own published caption in the opinion body, CourtListener, and the body's in-body neutral cite matching its label. Dockets are the real court file numbers from the opinion body in 8-digit `19YYNNNN` form (matching the **reverted** `docket-cite-shaped-2026-06-10` values — see process note), Herrick's consolidated range comma-joined:
+
+| cite | was | now | docket |
+|---|---|---|---|
+| 1997 ND 16 | State v. Ertelt | Frafjord v. Ell | 19960097 |
+| 1997 ND 30 | Wishnatsky v. Huey | Borr v. McKenzie County Public School District No. 1 | 19960157 |
+| 1997 ND 33 | Orgaard v. Orgaard | Huesers v. Huesers | 19960218 |
+| 1997 ND 40 | Ingalls v. Paul Revere Life Insurance Group | Sickler v. Kirkwood | 19960226 |
+| 1997 ND 50 | In the Matter of the Estate of Ruben J. Peterson | Owan v. Owan | 19960235 |
+| 1997 ND 59 | Traynor v. Leclerc | Austin v. Towne | 19960215 |
+| 1997 ND 62 | City of Williston v. Hegstad | Sumra v. Sumra | 19960129 |
+| 1997 ND 71 | Disciplinary Board v. Leier | State v. Breiner | 19960298 |
+| 1997 ND 72 | Joseph D. Moch, Personal Representative… | Mosbrucker v. Mosbrucker | 19960329 |
+| 1997 ND 138 | McCabe v. North Dakota Workers Compensation Bureau | Reimche v. Reimche | 19960239 |
+| 1997 ND 155 | Longtine v. Yeado | State v. Herrick | 19970019, 19970020, 19970021 |
+
+22 changelog rows (case_name + docket_number), revertible via `cleanup revert`. Invariants 23/2/0.
+
+**Process note (open):** the canonical dockets for these were already computed by `docket-cite-shaped-2026-06-10` (e.g. 12346 → `19960097` in that batch's changelog) but the current values had **reverted to cite-shaped placeholders**, and the case_names were scrambled — evidence that a later re-ingest/scraper pass **overwrote prior corrections** for a swath of the 1997 cohort. The contamination almost certainly extends **beyond these 11** (a wrong case_name doesn't cause text divergence, so most won't appear in the major bucket); a corpus-wide caption-vs-`case_name` audit is queued.
+
 ## Batch `cite-spacing-review-2026-06-20` — the 21 held cite-spacing spots, adjudicated individually
 
 The needs-review spots `cite-spacing-rejoin` correctly held back, each verified against the slip PDF (`scripts/fix_cite_spacing_review_2026-06-20.py`; every pattern requires internal whitespace so it can't touch a clean copy of the same cite). **19 fix-entries / 21 occurrences across 18 opinions:**

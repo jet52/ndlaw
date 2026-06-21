@@ -1,0 +1,225 @@
+oid,label,case_name,cat,db_states_own,name_in_body,src_states_label,pdf_states_label,db_words,pdf_words,db_pdf_ratio,sim,source_path
+12486,1997 ND 138,McCabe v. North Dakota Workers Compensatio,DB_CONTENT_BUG,True,False,False,,6824,,,0.5568,markdown/1997/1997ND138.md
+12500,1997 ND 155,Longtine v. Yeado,DB_CONTENT_BUG,True,False,False,,4099,,,0.6243,markdown/1997/1997ND155.md
+12346,1997 ND 16,State v. Ertelt,DB_CONTENT_BUG,True,False,False,,2348,,,0.7740,markdown/1997/1997ND16.md
+12388,1997 ND 30,Wishnatsky v. Huey,DB_CONTENT_BUG,True,False,False,,4148,,,0.7529,markdown/1997/1997ND30.md
+12389,1997 ND 33,Orgaard v. Orgaard,DB_CONTENT_BUG,True,False,False,,3054,,,0.4626,markdown/1997/1997ND33.md
+12392,1997 ND 40,Ingalls v. Paul Revere Life Insurance Grou,DB_CONTENT_BUG,True,False,False,,1077,,,0.0747,markdown/1997/1997ND40.md
+12398,1997 ND 50,In the Matter of the Estate of Ruben J. Pe,DB_CONTENT_BUG,True,False,False,,1344,,,0.3956,markdown/1997/1997ND50.md
+12397,1997 ND 59,Traynor v. Leclerc,DB_CONTENT_BUG,True,False,False,,2513,,,0.5292,markdown/1997/1997ND59.md
+12403,1997 ND 62,City of Williston v. Hegstad,DB_CONTENT_BUG,True,False,False,,3641,,,0.7476,markdown/1997/1997ND62.md
+12418,1997 ND 71,Disciplinary Board v. Leier,DB_CONTENT_BUG,True,False,False,,3497,,,0.8064,markdown/1997/1997ND71.md
+12415,1997 ND 72,"Joseph D. Moch, Personal Representative of",DB_CONTENT_BUG,True,False,False,,1960,,,0.5825,markdown/1997/1997ND72.md
+13234,2000 ND 174,Interest of E.T.         (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,1119,1190,0.94,0.8179,markdown/2000/2000ND174.md
+16971,2017 ND 164,Interest of A.F.L. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,141,203,0.695,0.6880,markdown/2017/2017ND164.md
+16974,2017 ND 166,Interest of M.M.C. (CONFIDENTIAL)(consolid,DB_CONTENT_BUG,True,False,True,True,405,526,0.77,0.8163,markdown/2017/2017ND166.md
+17088,2017 ND 281,Interest of M.R. (CONFIDENTIAL) (consolida,DB_CONTENT_BUG,True,False,True,True,303,408,0.743,0.7961,markdown/2017/2017ND281.md
+17163,2018 ND 105,Interest of A.H. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,186,249,0.747,0.7880,markdown/2018/2018ND105.md
+17160,2018 ND 106,Interest of R.C. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,177,252,0.702,0.7523,markdown/2018/2018ND106.md
+17159,2018 ND 107,Interest of F.M.G. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,145,205,0.707,0.7335,markdown/2018/2018ND107.md
+17175,2018 ND 126,Interest of K.B. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,200,271,0.738,0.7660,markdown/2018/2018ND126.md
+17238,2018 ND 190,Interest of A.T. (Confidential),DB_CONTENT_BUG,True,False,True,True,238,299,0.796,0.8358,markdown/2018/2018ND190.md
+17241,2018 ND 193,Interest of E.P. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,180,241,0.747,0.7857,markdown/2018/2018ND193.md
+17258,2018 ND 207,Interest of I.N. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,173,241,0.718,0.7700,markdown/2018/2018ND207.md
+17275,2018 ND 222,Interest of S.R. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,162,221,0.733,0.7592,markdown/2018/2018ND222.md
+17319,2018 ND 250,Interest of D.V.A. (Confidential),DB_CONTENT_BUG,True,False,True,True,163,224,0.728,0.7720,markdown/2018/2018ND250.md
+17791,2021 ND 65,Interest of F.M.G. (CONFIDENTIAL),DB_CONTENT_BUG,True,False,True,True,196,175,1.12,0.8486,markdown/2021/2021ND65.md
+13321,2000 ND 211,"Syvertson v. Malaktaris, et al.",DB_TRUNCATED,True,True,True,True,175,285,0.614,0.6318,markdown/2000/2000ND211.md
+13176,2000 ND 99,Peterson v. ND Workers Comp. Bureau,DB_TRUNCATED,True,True,True,True,107,174,0.615,0.6143,markdown/2000/2000ND99.md
+13359,2001 ND 39,Runge v. Runge,DB_TRUNCATED,True,True,True,True,139,218,0.638,0.6218,markdown/2001/2001ND39.md
+13691,2002 ND 195,Greybull v. Harlan,DB_TRUNCATED,True,True,True,True,124,178,0.697,0.6179,markdown/2002/2002ND195.md
+14163,2004 ND 220,City of Mandan v. Cordova,DB_TRUNCATED,True,True,True,True,153,224,0.683,0.6649,markdown/2004/2004ND220.md
+14161,2004 ND 222,State v. Bates,DB_TRUNCATED,True,True,True,True,119,183,0.65,0.5914,markdown/2004/2004ND222.md
+16935,2017 ND 114,Buresh v. State,DB_TRUNCATED,True,True,True,True,110,175,0.629,0.5986,markdown/2017/2017ND114.md
+16936,2017 ND 129,State v. Smith,DB_TRUNCATED,True,True,True,True,102,171,0.596,0.6103,markdown/2017/2017ND129.md
+16938,2017 ND 131,State v. Raphael,DB_TRUNCATED,True,True,True,True,97,166,0.584,0.5802,markdown/2017/2017ND131.md
+16962,2017 ND 150,Jasmann v. State,DB_TRUNCATED,True,True,True,True,133,197,0.675,0.6505,markdown/2017/2017ND150.md
+16965,2017 ND 151,Brown v. WSI,DB_TRUNCATED,True,True,True,True,138,212,0.651,0.6533,markdown/2017/2017ND151.md
+17044,2017 ND 224,State v. Duchaine,DB_TRUNCATED,True,True,True,True,102,162,0.63,0.6084,markdown/2017/2017ND224.md
+17037,2017 ND 228,Interest of Jane Doe (CONFIDENTIAL),DB_TRUNCATED,True,True,True,True,124,189,0.656,0.6346,markdown/2017/2017ND228.md
+17057,2017 ND 237,State v. Whetsel,DB_TRUNCATED,True,True,True,True,89,153,0.582,0.5643,markdown/2017/2017ND237.md
+17079,2017 ND 268,State v. Montgomery,DB_TRUNCATED,True,True,True,True,115,171,0.673,0.6737,markdown/2017/2017ND268.md
+17097,2017 ND 273,State v. Palacio (consolidated w/20170181),DB_TRUNCATED,True,True,True,True,146,231,0.632,0.7021,markdown/2017/2017ND273.md
+17098,2017 ND 275,State v. Vann,DB_TRUNCATED,True,True,True,True,163,242,0.674,0.7228,markdown/2017/2017ND275.md
+17101,2017 ND 276,State v. De La Cruz,DB_TRUNCATED,True,True,True,True,103,185,0.557,0.6132,markdown/2017/2017ND276.md
+17095,2017 ND 277,Interest of Jane Doe (CONFIDENTIAL),DB_TRUNCATED,True,True,True,True,118,191,0.618,0.6558,markdown/2017/2017ND277.md
+17091,2017 ND 279,Coppage v. State,DB_TRUNCATED,True,True,True,True,93,166,0.56,0.5969,markdown/2017/2017ND279.md
+17100,2017 ND 280,State v. Sabot,DB_TRUNCATED,True,True,True,True,87,161,0.54,0.5668,markdown/2017/2017ND280.md
+17155,2018 ND 104,State v. Parks,DB_TRUNCATED,True,True,True,True,149,217,0.687,0.7397,markdown/2018/2018ND104.md
+17185,2018 ND 125,State v. Ashford,DB_TRUNCATED,True,True,True,True,100,161,0.621,0.6615,markdown/2018/2018ND125.md
+17205,2018 ND 148,"RAD Development-Main Street, LLC v. Leungu",DB_TRUNCATED,True,True,True,True,147,212,0.693,0.7430,markdown/2018/2018ND148.md
+17254,2018 ND 208,State v. Kibble,DB_TRUNCATED,True,True,True,True,137,200,0.685,0.7321,markdown/2018/2018ND208.md
+17266,2018 ND 209,State v. Hussein,DB_TRUNCATED,True,True,True,True,180,258,0.698,0.7506,markdown/2018/2018ND209.md
+17107,2018 ND 65,Carroll v. Carroll (cross-reference w/2016,DB_TRUNCATED,True,True,True,True,143,207,0.691,0.7163,markdown/2018/2018ND65.md
+17124,2018 ND 73,State v. Mbulu,DB_TRUNCATED,True,True,True,True,127,189,0.672,0.7175,markdown/2018/2018ND73.md
+17118,2018 ND 74,State v. Redtomahawk,DB_TRUNCATED,True,True,True,True,96,157,0.611,0.6508,markdown/2018/2018ND74.md
+17368,2019 ND 34,State v. Brakke,DB_TRUNCATED,True,True,True,True,122,177,0.689,0.7181,markdown/2019/2019ND34.md
+17373,2019 ND 38,State v. Cody,DB_TRUNCATED,True,True,True,True,134,199,0.673,0.7229,markdown/2019/2019ND38.md
+12532,1997 ND 191,Fuhrman v. ND Workers Comp.,DISK_PDF_MISFILED,True,True,False,False,1789,1882,0.951,0.8404,markdown/1997/1997ND191.md
+12581,1997 ND 215,Disciplinary Board v. Neset,DISK_PDF_MISFILED,True,True,False,False,555,266,2.086,0.1998,markdown/1997/1997ND215.md
+12569,1997 ND 234,Disciplinary Board v. Fisher (Consolidated,DISK_PDF_MISFILED,True,True,False,False,850,0,,0.4190,markdown/1997/1997ND234.md
+14123,2004 ND 198,"Rott v. Connecticut General Life Ins. Co.,",DISK_PDF_MISFILED,True,True,False,False,576,0,,0.7603,markdown/2004/2004ND198.md
+14851,2007 ND 185,In the Matter of the Application for Reins,DISK_PDF_MISFILED,True,True,False,False,1115,1497,0.745,0.8284,markdown/2007/2007ND185.md
+16397,2015 ND 15,Nemec v. Disciplinary Board,DISK_PDF_MISFILED,True,True,False,False,670,1158,0.579,0.3244,markdown/2015/2015ND15.md
+18142,2023 ND 32,"Queen v. Martel, et al.",DISK_PDF_MISFILED,True,True,False,False,467,1299,0.36,0.2100,markdown/2023/2023ND32.md
+12360,1997 ND 1,State v. Kenner,DISK_SOURCE_MISFILED,True,True,False,,2934,,,0.6779,markdown/1997/1997ND1.md
+12455,1997 ND 102,State of North Dakota v. Shawn Allen Ostaf,DISK_SOURCE_MISFILED,True,True,False,,4593,,,0.5139,markdown/1997/1997ND102.md
+12487,1997 ND 133,Sowatzki v. North Dakota Workers Compensat,DISK_SOURCE_MISFILED,True,True,False,,2912,,,0.6222,markdown/1997/1997ND133.md
+12514,1997 ND 156,State v. Sisson and Miekels v. Hallock,DISK_SOURCE_MISFILED,True,True,False,,1655,,,0.1925,markdown/1997/1997ND156.md
+12368,1997 ND 28,Monge v. Goter,DISK_SOURCE_MISFILED,True,True,False,,2051,,,0.7090,markdown/1997/1997ND28.md
+12391,1997 ND 37,"Continental Resources, Inc. v. Farrar Oil ",DISK_SOURCE_MISFILED,True,True,False,,4075,,,0.4450,markdown/1997/1997ND37.md
+12399,1997 ND 61,Stout v. Stout,DISK_SOURCE_MISFILED,True,True,False,,10527,,,0.2331,markdown/1997/1997ND61.md
+12435,1997 ND 88,Van Klootwyk v. Van Klootwyk; Bauch v. Bau,DISK_SOURCE_MISFILED,True,True,False,,4461,,,0.7061,markdown/1997/1997ND88.md
+12438,1997 ND 94,Symington v. Walle Mutual Insurance Co.,DISK_SOURCE_MISFILED,True,True,False,,3421,,,0.7082,markdown/1997/1997ND94.md
+12436,1997 ND 95,Hovland v. City of Grand Forks,DISK_SOURCE_MISFILED,True,True,False,,4471,,,0.7885,markdown/1997/1997ND95.md
+12747,1998 ND 171,"Albert 'Rusty' Kouba v. Febco, Inc., Rober",DISK_SOURCE_MISFILED,True,True,False,True,1201,1557,0.771,0.1786,markdown/1998/1998ND171.md
+19652,2023 ND 1,"Norberg v. Norberg, et al.",DISK_SOURCE_MISFILED,True,True,False,True,1040,1050,0.99,0.1488,markdown/2022/2022ND139.md
+19833,2023 ND 140,Legacie-Lowe v. Lowe,DISK_SOURCE_MISFILED,True,True,False,True,2872,2879,0.998,0.4231,markdown/2023/2023ND88.md
+11430,501 N.W.2d 733,Disciplinary Board of the Supreme Court v.,PRE1997_NO_NEUTRAL,,True,,,647,,,0.4918,court-archive/501/930148.htm
+11456,502 N.W.2d 99,Disciplinary Board v. Heustis,PRE1997_NO_NEUTRAL,,True,,,645,,,0.4191,court-archive/502/930147.htm
+11493,506 N.W.2d 714,Disciplinary Board v. Robb,PRE1997_NO_NEUTRAL,,True,,,679,,,0.4355,court-archive/506/930218.htm
+20473,514 N.W.2d 691,Brakke v. Kensrud,PRE1997_NO_NEUTRAL,,True,,,1022,,,0.8253,court-archive/514/930288.htm
+11690,519 N.W.2d 286,Disciplinary Board of the Supreme Court of,PRE1997_NO_NEUTRAL,,True,,,538,,,0.1886,court-archive/519/940182.htm
+11797,524 N.W.2d 89,Disciplinary Board of the Supreme Court v.,PRE1997_NO_NEUTRAL,,True,,,1040,,,0.6387,court-archive/524/940308.htm
+11932,533 N.W.2d 145,Disciplinary Board of the Supreme Court of,PRE1997_NO_NEUTRAL,,True,,,614,,,0.7495,court-archive/533/950138.htm
+11987,536 N.W.2d 709,Western Life Trust v. State,PRE1997_NO_NEUTRAL,,True,,,2280,,,0.8467,court-archive/536/940340.htm
+12004,538 N.W.2d 778,Disciplinary Board v. Swanson,PRE1997_NO_NEUTRAL,,True,,,693,,,0.5532,court-archive/538/950282.htm
+12344,1997 ND 10,Milton A. Olson v. Souris River Telecommun,DISK_SOURCE_NOISE,True,True,True,,3368,,,0.6683,markdown/1997/1997ND10.md
+12473,1997 ND 128,Little v. Traynor,DISK_SOURCE_NOISE,True,True,True,,9412,,,0.6638,markdown/1997/1997ND128.md
+12538,1997 ND 202,"Braaten v, Deere and Co., et al.   (CROSS ",DISK_SOURCE_NOISE,True,True,True,True,2411,2562,0.941,0.8140,markdown/1997/1997ND202.md
+12552,1997 ND 203,Zimmerman v. Valdak Corp.                 ,DISK_SOURCE_NOISE,True,True,True,True,5241,5174,1.013,0.7189,markdown/1997/1997ND203.md
+12557,1997 ND 214,Whitmire v. Whitmire,DISK_SOURCE_NOISE,True,True,True,True,2521,2602,0.969,0.8202,markdown/1997/1997ND214.md
+12567,1997 ND 231,Miller v. MedCenter One,DISK_SOURCE_NOISE,True,True,True,True,2765,2755,1.004,0.5588,markdown/1997/1997ND231.md
+12579,1997 ND 243,"Hausauer v. ND Workers Comp. Bureau, et al",DISK_SOURCE_NOISE,True,True,True,True,2524,2634,0.958,0.7944,markdown/1997/1997ND243.md
+12674,1998 ND 101,City of Mandan v. Richard B. Baer,DISK_SOURCE_NOISE,True,True,True,True,3834,3842,0.998,0.7530,markdown/1998/1998ND101.md
+12602,1998 ND 11,Flink v. North Dakota Workers Compensation,DISK_SOURCE_NOISE,True,True,True,True,3726,3818,0.976,0.8367,markdown/1998/1998ND11.md
+12681,1998 ND 112,Ash v. Traynor,DISK_SOURCE_NOISE,True,True,True,True,1872,1906,0.982,0.8369,markdown/1998/1998ND112.md
+12706,1998 ND 113,1st Summit Bank v. Samuelson,DISK_SOURCE_NOISE,True,True,True,True,4825,4864,0.992,0.8329,markdown/1998/1998ND113.md
+12712,1998 ND 132,Albrecht v. Metro Area Ambulance and Kent ,DISK_SOURCE_NOISE,True,True,True,True,1831,1900,0.964,0.8090,markdown/1998/1998ND132.md
+12751,1998 ND 154,Eagle v. North Dakota Workers Compensation,DISK_SOURCE_NOISE,True,True,True,True,3049,3116,0.978,0.7779,markdown/1998/1998ND154.md
+12741,1998 ND 159,"Peterson v. Dougherty Dawkins, Inc.",DISK_SOURCE_NOISE,True,True,True,True,2807,2908,0.965,0.8273,markdown/1998/1998ND159.md
+12742,1998 ND 160,Rydberg v. Johnson,DISK_SOURCE_NOISE,True,True,True,True,1744,1841,0.947,0.7684,markdown/1998/1998ND160.md
+12753,1998 ND 173,State of North Dakota v. Dean T. Garrett,DISK_SOURCE_NOISE,True,True,True,True,4382,4356,1.006,0.7945,markdown/1998/1998ND173.md
+12762,1998 ND 180,Maragos v. Union Oil Company of California,DISK_SOURCE_NOISE,True,True,True,True,1036,1102,0.94,0.8339,markdown/1998/1998ND180.md
+12769,1998 ND 189,"Ag Services of America, Inc. v. Midwest In",DISK_SOURCE_NOISE,True,True,True,True,3110,3176,0.979,0.7955,markdown/1998/1998ND189.md
+12771,1998 ND 191,James Ness v. Ward County Water Resource D,DISK_SOURCE_NOISE,True,True,True,True,2940,3023,0.973,0.8450,markdown/1998/1998ND191.md
+12777,1998 ND 197,State of North Dakota v. Jerric Ballensky,DISK_SOURCE_NOISE,True,True,True,True,2838,2912,0.975,0.8392,markdown/1998/1998ND197.md
+12776,1998 ND 202,Pic v. City of Grafton,DISK_SOURCE_NOISE,True,True,True,True,2166,2253,0.961,0.8299,markdown/1998/1998ND202.md
+12622,1998 ND 21,State of North Dakota v. Mark Edward McCle,DISK_SOURCE_NOISE,True,True,True,True,1694,1764,0.96,0.8064,markdown/1998/1998ND21.md
+12595,1998 ND 23,Frank Freezon v. North Dakota Workers Comp,DISK_SOURCE_NOISE,True,True,True,True,1414,1489,0.95,0.8090,markdown/1998/1998ND23.md
+12625,1998 ND 35,Kyle Kenneth Bell v. State of North Dakota,DISK_SOURCE_NOISE,True,True,True,True,4263,4288,0.994,0.8229,markdown/1998/1998ND35.md
+12593,1998 ND 4,Kasprowicz v. Finck,DISK_SOURCE_NOISE,True,True,True,True,2728,2802,0.974,0.8373,markdown/1998/1998ND4.md
+12639,1998 ND 50,State of North Dakota v. Brian Olander,DISK_SOURCE_NOISE,True,True,True,True,5331,5242,1.017,0.8318,markdown/1998/1998ND50.md
+12627,1998 ND 64,Loberg v. North Dakota Workers Compensatio,DISK_SOURCE_NOISE,True,True,True,True,1472,1572,0.936,0.7027,markdown/1998/1998ND64.md
+12652,1998 ND 74,Berg v. Ullman,DISK_SOURCE_NOISE,True,True,True,True,8003,7991,1.002,0.8280,markdown/1998/1998ND74.md
+12659,1998 ND 94,Laverne Gregory v. North Dakota Workers Co,DISK_SOURCE_NOISE,True,True,True,True,5625,5639,0.998,0.7784,markdown/1998/1998ND94.md
+12945,1999 ND 156,Henderson v. Henderson,DISK_SOURCE_NOISE,True,True,True,True,1821,1885,0.966,0.7200,markdown/1999/1999ND156.md
+12968,1999 ND 167,"Grynberg, et al. v. Dome Petroleum et al. ",DISK_SOURCE_NOISE,True,True,True,True,3688,3740,0.986,0.8134,markdown/1999/1999ND167.md
+12817,1999 ND 17,Midwest Medical Insurance Company v. Jane ,DISK_SOURCE_NOISE,True,True,True,True,1376,1465,0.939,0.8438,markdown/1999/1999ND17.md
+13004,1999 ND 198,Department of Transportation v. Central Pe,DISK_SOURCE_NOISE,True,True,True,True,3887,3953,0.983,0.8194,markdown/1999/1999ND198.md
+13055,1999 ND 242,State v. Marshall (consol. w/990152; cross,DISK_SOURCE_NOISE,True,True,True,True,1675,1747,0.959,0.8449,markdown/1999/1999ND242.md
+12852,1999 ND 46,State of North Dakota v. Nevada Joe Berger,DISK_SOURCE_NOISE,True,True,True,True,1990,2079,0.957,0.8455,markdown/1999/1999ND46.md
+12854,1999 ND 49,City of Bismarck v. Tony Towne,DISK_SOURCE_NOISE,True,True,True,True,1093,1162,0.941,0.7714,markdown/1999/1999ND49.md
+12856,1999 ND 51,"Norwest Mortgage, Inc. v. Jerry Nevland, M",DISK_SOURCE_NOISE,True,True,True,True,1599,1686,0.948,0.5530,markdown/1999/1999ND51.md
+12894,1999 ND 87,"Walter S. Olsen, III v. Allen Koppy, State",DISK_SOURCE_NOISE,True,True,True,True,3675,3729,0.986,0.7359,markdown/1999/1999ND87.md
+12893,1999 ND 90,State of North Dakota v. Scott Thomas Mund,DISK_SOURCE_NOISE,True,True,True,True,1379,1387,0.994,0.8441,markdown/1999/1999ND90.md
+13071,2000 ND 17,"Wanstrom v. ND Workers Comp. Bureau, et al",DISK_SOURCE_NOISE,True,True,True,True,1325,1415,0.936,0.8207,markdown/2000/2000ND17.md
+13283,2000 ND 185,Syvertson v. State,DISK_SOURCE_NOISE,True,True,True,True,5576,4782,1.166,0.8037,markdown/2000/2000ND185.md
+13407,2000 ND 189,"Farstveet, et al. v. Rudolph, et al.",DISK_SOURCE_NOISE,True,True,True,True,9089,6889,1.319,0.8115,markdown/2000/2000ND189.md
+13077,2000 ND 19,Strom-Sell v. Council for Concerned Citize,DISK_SOURCE_NOISE,True,True,True,True,317,387,0.819,0.8137,markdown/2000/2000ND19.md
+13262,2000 ND 205,State v. Gleeson,DISK_SOURCE_NOISE,True,True,True,True,2496,2465,1.013,0.8175,markdown/2000/2000ND205.md
+13141,2000 ND 72,Follman v. Upper Valley Special Education ,DISK_SOURCE_NOISE,True,True,True,True,2407,2476,0.972,0.7911,markdown/2000/2000ND72.md
+13065,2000 ND 8,GreyBull v. State   (Cross-reference w/970,DISK_SOURCE_NOISE,True,True,True,True,350,427,0.82,0.8288,markdown/2000/2000ND8.md
+13125,2000 ND 80,"Olvera, et al. v. Johnson, et al. (CON. w/",DISK_SOURCE_NOISE,True,True,True,True,2327,2464,0.944,0.7509,markdown/2000/2000ND80.md
+13126,2000 ND 81,State v. Reamann,DISK_SOURCE_NOISE,True,True,True,True,313,375,0.835,0.8210,markdown/2000/2000ND81.md
+13132,2000 ND 84,Bank Center First v. Kostelecky,DISK_SOURCE_NOISE,True,True,True,True,381,460,0.828,0.8272,markdown/2000/2000ND84.md
+13069,2000 ND 9,T.F. James Co. v. Vakoch,DISK_SOURCE_NOISE,True,True,True,True,2062,2137,0.965,0.8331,markdown/2000/2000ND9.md
+13289,2001 ND 1,Petition for Change of Designation of Judg,DISK_SOURCE_NOISE,True,True,True,True,496,622,0.797,0.8329,markdown/2001/2001ND1.md
+13384,2001 ND 101,"Triple Quest, Inc. v. Cleveland Gear Co., ",DISK_SOURCE_NOISE,True,True,True,True,3553,3599,0.987,0.8271,markdown/2001/2001ND101.md
+13423,2001 ND 134,Name Change of State Bar Board to Board of,DISK_SOURCE_NOISE,True,True,True,True,204,290,0.703,0.7071,markdown/2001/2001ND134.md
+13441,2001 ND 153,State v. Bouck   (CONSOLIDATED W/20000347-,DISK_SOURCE_NOISE,True,True,True,True,1634,1704,0.959,0.8330,markdown/2001/2001ND153.md
+13472,2001 ND 180,Chadwick v. N.D. Dept. of Transportation,DISK_SOURCE_NOISE,True,True,True,True,299,365,0.819,0.7994,markdown/2001/2001ND180.md
+13485,2001 ND 199,Judicial Vacancy in the Northwest Judicial,DISK_SOURCE_NOISE,True,True,True,True,4889,4840,1.01,0.8023,markdown/2001/2001ND199.md
+13477,2001 ND 200,Heick v. Erickson,DISK_SOURCE_NOISE,True,True,True,True,1682,1745,0.964,0.8422,markdown/2001/2001ND200.md
+13357,2001 ND 73,"Dahlberg v. Lutheran Social Services, et a",DISK_SOURCE_NOISE,True,True,True,True,7496,7538,0.994,0.8284,markdown/2001/2001ND73.md
+13587,2002 ND 105,State v. Jackson    (Consolidated w/200102,DISK_SOURCE_NOISE,True,True,True,True,256,331,0.773,0.7679,markdown/2002/2002ND105.md
+13523,2002 ND 21,"Mau, et al. v. National Union Fire Ins. Co",DISK_SOURCE_NOISE,True,True,True,True,276,351,0.786,0.7380,markdown/2002/2002ND21.md
+13496,2002 ND 5,State v. Palmer    (CONSOLIDATED W/2001012,DISK_SOURCE_NOISE,True,True,True,True,1736,1824,0.952,0.8242,markdown/2002/2002ND5.md
+13562,2002 ND 54,Petition to Change Resident Chambers from ,DISK_SOURCE_NOISE,True,True,True,True,1467,1784,0.822,0.8424,markdown/2002/2002ND54.md
+13561,2002 ND 71,State v. Norby,DISK_SOURCE_NOISE,True,True,True,True,1847,1922,0.961,0.6693,markdown/2002/2002ND71.md
+13505,2002 ND 8,City of Fargo v. Tipler,DISK_SOURCE_NOISE,True,True,True,True,293,367,0.798,0.7830,markdown/2002/2002ND8.md
+14159,2004 ND 209,State v. Whitetail,DISK_SOURCE_NOISE,True,True,True,True,178,233,0.764,0.7317,markdown/2004/2004ND209.md
+14160,2004 ND 219,Engwicht v. Lako,DISK_SOURCE_NOISE,True,True,True,True,208,271,0.768,0.7657,markdown/2004/2004ND219.md
+14162,2004 ND 221,State v. Ernst,DISK_SOURCE_NOISE,True,True,True,True,309,370,0.835,0.8348,markdown/2004/2004ND221.md
+14017,2004 ND 88,State v. Helm,DISK_SOURCE_NOISE,True,True,True,True,171,244,0.701,0.7181,markdown/2004/2004ND88.md
+14338,2005 ND 158,Guardianship/Conservatorship of Onstad,DISK_SOURCE_NOISE,True,True,True,True,2913,3012,0.967,0.8093,markdown/2005/2005ND158.md
+14413,2005 ND 170,City of Bismarck v. Witzke,DISK_SOURCE_NOISE,True,True,True,True,240,248,0.968,0.8255,markdown/2005/2005ND170.md
+14246,2005 ND 94,Glasow v. E.I. Dupont De Nemours and Compa,DISK_SOURCE_NOISE,True,True,True,True,947,1246,0.76,0.8113,markdown/2005/2005ND94.md
+14580,2006 ND 168,State v. Campbell  (Consolidated w/2005033,DISK_SOURCE_NOISE,True,True,True,True,2764,2808,0.984,0.6630,markdown/2006/2006ND168.md
+15657,2011 ND 58,Nelson v. State,DISK_SOURCE_NOISE,True,True,True,True,285,346,0.824,0.7968,markdown/2011/2011ND58.md
+16518,2015 ND 175,Gonzalez v. State (consolidated w/20150051,DISK_SOURCE_NOISE,True,True,True,True,404,493,0.819,0.8272,markdown/2015/2015ND175.md
+16788,2016 ND 182,State v. Birchfield,DISK_SOURCE_NOISE,True,True,True,True,446,526,0.848,0.8454,markdown/2016/2016ND182.md
+16787,2016 ND 183,State v. Kordonowy,DISK_SOURCE_NOISE,True,True,True,True,402,479,0.839,0.8282,markdown/2016/2016ND183.md
+16792,2016 ND 185,State v. Beylund,DISK_SOURCE_NOISE,True,True,True,True,451,500,0.902,0.8493,markdown/2016/2016ND185.md
+16786,2016 ND 186,State v. Washburn,DISK_SOURCE_NOISE,True,True,True,True,349,486,0.718,0.7491,markdown/2016/2016ND186.md
+16929,2017 ND 115,Jessop v. Levi,DISK_SOURCE_NOISE,True,True,True,True,139,198,0.702,0.6845,markdown/2017/2017ND115.md
+16930,2017 ND 116,State v. Cox,DISK_SOURCE_NOISE,True,,True,True,188,255,0.737,0.7421,markdown/2017/2017ND116.md
+16937,2017 ND 130,Junas v.  N.D. Dep't of Transportation,DISK_SOURCE_NOISE,True,True,True,True,203,260,0.781,0.7532,markdown/2017/2017ND130.md
+16987,2017 ND 180,Ritter v. Ritter (Cross-reference w/201502,DISK_SOURCE_NOISE,True,True,True,True,199,256,0.777,0.7797,markdown/2017/2017ND180.md
+17040,2017 ND 223,Phillips v. State (cross-reference w/20130,DISK_SOURCE_NOISE,True,True,True,True,203,270,0.752,0.7542,markdown/2017/2017ND223.md
+17041,2017 ND 225,State v. Wagner,DISK_SOURCE_NOISE,True,True,True,True,199,268,0.743,0.7597,markdown/2017/2017ND225.md
+17043,2017 ND 226,State v. Doornek (Consolidated w/20170027),DISK_SOURCE_NOISE,True,True,True,True,255,355,0.718,0.7849,markdown/2017/2017ND226.md
+17042,2017 ND 227,State v. Osier (consolidated w/20170042)(c,DISK_SOURCE_NOISE,True,True,True,True,204,285,0.716,0.7418,markdown/2017/2017ND227.md
+17072,2017 ND 235,Wisham v. State,DISK_SOURCE_NOISE,True,True,True,True,164,218,0.752,0.7034,markdown/2017/2017ND235.md
+17073,2017 ND 236,Wisham v. State,DISK_SOURCE_NOISE,True,True,True,True,174,241,0.722,0.7391,markdown/2017/2017ND236.md
+17058,2017 ND 238,Clark v. State,DISK_SOURCE_NOISE,True,True,True,True,163,228,0.715,0.7179,markdown/2017/2017ND238.md
+17048,2017 ND 239,State of North Dakota v. Abdirahman Pashir,DISK_SOURCE_NOISE,True,True,True,True,260,329,0.79,0.8061,markdown/2017/2017ND239.md
+17064,2017 ND 257,State v. Hojian,DISK_SOURCE_NOISE,True,True,True,True,162,231,0.701,0.7194,markdown/2017/2017ND257.md
+17063,2017 ND 258,State v. Toure (consolidated w/20170039 & ,DISK_SOURCE_NOISE,True,True,True,True,298,368,0.81,0.8391,markdown/2017/2017ND258.md
+17094,2017 ND 274,State v. Anderson,DISK_SOURCE_NOISE,True,True,True,True,264,342,0.772,0.8264,markdown/2017/2017ND274.md
+17096,2017 ND 278,State v. Todd,DISK_SOURCE_NOISE,True,True,True,True,235,307,0.765,0.8170,markdown/2017/2017ND278.md
+17183,2018 ND 127,Interest of Hoff,DISK_SOURCE_NOISE,True,True,True,True,140,200,0.7,0.7434,markdown/2018/2018ND127.md
+17176,2018 ND 129,Beeter v. State,DISK_SOURCE_NOISE,True,True,True,True,178,240,0.742,0.7818,markdown/2018/2018ND129.md
+17202,2018 ND 150,Oien v. State,DISK_SOURCE_NOISE,True,True,True,True,220,297,0.741,0.7984,markdown/2018/2018ND150.md
+17201,2018 ND 159,Adoption of B.A.T. (CONFIDENTIAL),DISK_SOURCE_NOISE,True,True,True,True,140,192,0.729,0.7492,markdown/2018/2018ND159.md
+17203,2018 ND 161,Butts v. State,DISK_SOURCE_NOISE,True,True,True,True,145,204,0.711,0.7414,markdown/2018/2018ND161.md
+17210,2018 ND 163,Odom v. State,DISK_SOURCE_NOISE,True,True,True,True,164,225,0.729,0.7732,markdown/2018/2018ND163.md
+17280,2018 ND 220,Tamba v. State,DISK_SOURCE_NOISE,True,True,True,True,189,260,0.727,0.7411,markdown/2018/2018ND220.md
+17271,2018 ND 230,State v. Schlieve,DISK_SOURCE_NOISE,True,True,True,True,175,236,0.742,0.7756,markdown/2018/2018ND230.md
+17296,2018 ND 248,Sorlie v. Sorlie,DISK_SOURCE_NOISE,True,True,True,True,203,252,0.806,0.8238,markdown/2018/2018ND248.md
+17297,2018 ND 249,State v. Mejia,DISK_SOURCE_NOISE,True,True,True,True,167,223,0.749,0.7866,markdown/2018/2018ND249.md
+17311,2018 ND 251,Sabot v. State,DISK_SOURCE_NOISE,True,True,True,True,238,295,0.807,0.8383,markdown/2018/2018ND251.md
+17314,2018 ND 252,State v. Hebert,DISK_SOURCE_NOISE,True,True,True,True,196,279,0.703,0.7679,markdown/2018/2018ND252.md
+17111,2018 ND 66,Yahnke v. State,DISK_SOURCE_NOISE,True,True,True,True,215,270,0.796,0.8140,markdown/2018/2018ND66.md
+17450,2019 ND 116,Keller v. State,DISK_SOURCE_NOISE,True,True,True,True,187,247,0.757,0.7898,markdown/2019/2019ND116.md
+17453,2019 ND 119,Lavallie v. State,DISK_SOURCE_NOISE,True,True,True,True,218,269,0.81,0.7860,markdown/2019/2019ND119.md
+17452,2019 ND 120,Curtiss v. State,DISK_SOURCE_NOISE,True,True,True,True,221,283,0.781,0.8231,markdown/2019/2019ND120.md
+17451,2019 ND 121,Ali v. State,DISK_SOURCE_NOISE,True,,True,True,257,314,0.818,0.8491,markdown/2019/2019ND121.md
+17484,2019 ND 148,Blackcloud v. State,DISK_SOURCE_NOISE,True,True,True,True,199,259,0.768,0.8053,markdown/2019/2019ND148.md
+17346,2019 ND 15,Kieson v. Kieson,DISK_SOURCE_NOISE,True,True,True,True,244,300,0.813,0.8361,markdown/2019/2019ND15.md
+17483,2019 ND 150,Schatz v. N.D. Dep't of Transportation,DISK_SOURCE_NOISE,True,True,True,True,193,255,0.757,0.8054,markdown/2019/2019ND150.md
+17485,2019 ND 152,State v. Taylor,DISK_SOURCE_NOISE,True,True,True,True,215,270,0.796,0.8099,markdown/2019/2019ND152.md
+17339,2019 ND 2,"DeLong v. Shields, et al.",DISK_SOURCE_NOISE,True,True,True,True,180,243,0.741,0.7773,markdown/2019/2019ND2.md
+17573,2019 ND 232,Interest of Hoff,DISK_SOURCE_NOISE,True,True,True,True,172,227,0.758,0.7476,markdown/2019/2019ND232.md
+17380,2019 ND 33,Smith v. State,DISK_SOURCE_NOISE,True,True,True,True,146,206,0.709,0.7521,markdown/2019/2019ND33.md
+17375,2019 ND 40,State v. Christie,DISK_SOURCE_NOISE,True,True,True,True,154,213,0.723,0.7650,markdown/2019/2019ND40.md
+17340,2019 ND 5,Lunde v. Paulson,DISK_SOURCE_NOISE,True,True,True,True,242,292,0.829,0.8443,markdown/2019/2019ND5.md
+17390,2019 ND 55,In the Matter of Aaron J. Kulink,DISK_SOURCE_NOISE,True,True,True,True,241,289,0.834,0.8242,markdown/2019/2019ND55.md
+17337,2019 ND 6,State v. Simundson,DISK_SOURCE_NOISE,True,True,True,True,255,316,0.807,0.8456,markdown/2019/2019ND6.md
+17393,2019 ND 60,"Miles v. Holznagel, et al.",DISK_SOURCE_NOISE,True,True,True,True,158,218,0.725,0.7467,markdown/2019/2019ND60.md
+17401,2019 ND 62,White v. State,DISK_SOURCE_NOISE,True,True,True,True,261,325,0.803,0.8376,markdown/2019/2019ND62.md
+17399,2019 ND 63,Gonzales v. WSI,DISK_SOURCE_NOISE,True,True,True,True,175,225,0.778,0.7970,markdown/2019/2019ND63.md
+17426,2019 ND 91,State v. Johnson,DISK_SOURCE_NOISE,True,True,True,True,158,212,0.745,0.7805,markdown/2019/2019ND91.md
+17431,2019 ND 93,Horst v. Horst,DISK_SOURCE_NOISE,True,True,True,True,173,224,0.772,0.7727,markdown/2019/2019ND93.md
+17840,2021 ND 122,Dietzler v. Dietzler,DISK_SOURCE_NOISE,True,True,True,True,210,191,1.099,0.8471,markdown/2021/2021ND122.md
+17750,2021 ND 13,Matter of Didier,DISK_SOURCE_NOISE,True,True,True,True,220,201,1.095,0.8476,markdown/2021/2021ND13.md
+17918,2021 ND 221,"Narloch v. Narloch, et al.",DISK_SOURCE_NOISE,True,True,True,True,179,160,1.119,0.8249,markdown/2021/2021ND221.md
+19711,2022 ND 139,"Norberg v. Norberg, et al.",DISK_SOURCE_NOISE,True,True,True,True,3342,3354,0.996,0.1438,markdown/2023/2023ND1.md
+18077,2022 ND 178,"Queen v. Martel, et al.",DISK_SOURCE_NOISE,True,True,True,True,1318,447,2.949,0.2140,markdown/2022/2022ND178.md
+17989,2022 ND 60,Fourth v. State,DISK_SOURCE_NOISE,True,True,True,True,239,219,1.091,0.8490,markdown/2022/2022ND60.md
+17996,2022 ND 73,Schauer v. Peterson,DISK_SOURCE_NOISE,True,True,True,True,168,149,1.128,0.8101,markdown/2022/2022ND73.md
+18002,2022 ND 75,Schultz v. DeClusin,DISK_SOURCE_NOISE,True,True,True,True,204,185,1.103,0.8454,markdown/2022/2022ND75.md
+17994,2022 ND 79,Solberg v. Hennessy,DISK_SOURCE_NOISE,True,True,True,True,179,160,1.119,0.7929,markdown/2022/2022ND79.md
+18016,2022 ND 92,Matter of Rose Henderson Peterson Mineral ,DISK_SOURCE_NOISE,True,True,True,True,4388,620,7.077,0.1154,markdown/2022/2022ND92.md
+18227,2023 ND 218,Matter of Didier,DISK_SOURCE_NOISE,True,True,True,True,1214,879,1.381,0.8052,markdown/2023/2023ND218.md
+19736,2023 ND 88,Legacie-Lowe v. Lowe,DISK_SOURCE_NOISE,True,True,True,True,1274,1279,0.996,0.4380,markdown/2023/2023ND140.md
