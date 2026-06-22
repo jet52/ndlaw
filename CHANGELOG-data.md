@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `lyon-ocr-2026-06-22` — 9 surgical OCR fixes, Lyon v. Ford Motor Co., 2000 ND 12 (id 13068)
+
+Character-level OCR garbles in the CL/West-OCR body, each verified against the
+clean Westlaw `.doc` (604 N.W.2d 453) and each a unique single occurrence:
+`satisfaclion`→satisfaction, `aecrudble`→accruable, `supersede-as`→supersedeas,
+`Scholl-meyer`→Schollmeyer, `Cla'rys`→Clarys, `N.D.RApp.P.`→N.D.R.App.P.,
+`$10,-360.84`→$10,360.84, `be- enforced`→be enforced, and the section heading
+`Ill`→`III`. Script: `scripts/fix_lyon_ocr_2026-06-22.py`. The standalone ` 1`
+footnote-call line was deliberately left intact so the pinpoint parser still
+resolves footnote 1 to `¶ 7 n.1`. Surfaced by the Cowan v. Slann citation review;
+chosen over a full Westlaw re-merge, which would have dropped footnote 1's body
+(`_parse_westlaw_doc` cuts at "All Citations" — see TODO-validation).
+
 ## Batch `restore-source-reporter-westlaw-2026-06-22` — final 109 provenance reversions
 
 The last reverted-correction class: 109 opinions where the `westlaw-text-merge` /
