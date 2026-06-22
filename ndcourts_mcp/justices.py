@@ -74,7 +74,7 @@ JUSTICES = [
     ("Crothers", "Daniel J. Crothers", 2005, 2026),
     ("McEvers", "Lisa K. Fair McEvers", 2014, None),
     ("Tufte", "Jerod E. Tufte", 2017, None),
-    ("Jensen", "Jon J. Jensen", 2019, None),
+    ("Jensen", "Jon J. Jensen", 2017, None),
     ("Bahr", "Douglas A. Bahr", 2023, None),
     ("Friese", "Mark A. Friese", 2026, None),
 ]

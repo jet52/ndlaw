@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-sig-truncation-phase2-2026-06-21` — append dropped separate-writing signatures (multi-opinion)
+
+Phase 2 of the signature-truncation repair, covering the TRUE_TRUNCATION cases Phase 1 skipped as multi-opinion. These split into (A) **append-safe** — the DB body ends with a concurrence/dissent's prose and is missing only that separate writer's trailing signature — and (B) **positional** — the dropped paragraph is the *majority* panel, which belongs before a separate writing the DB already carries.
+
+`fix_sig_truncation_phase2_2026-06-21.py` applies only (A), gated to a **single-justice** dropped signature (a lone separate-writer signing after their opinion), with no name overlap with the DB tail and every name PDF-corroborated; the dropped paragraph is appended in source order.
+
+**6 appended** (e.g. 1997 ND 6 → `[¶ 29] Gerald W. VandeWalle, C.J.`; 2003 ND 200 → `[¶ 32] Mary Muehlen Maring` after a dissent). Invariants 23/3/0.
+
+**Deliberately NOT auto-fixed (92, manual worklist in `triage/sig-drops-classified.csv`):** 74 multi-name majority panels needing positional insertion, 15 unparseable (spelled-out "Chief Justice", embedded section markers), 3 dateline/surrogate. The single-signature guard caught 2014 ND 148 (oid 16311), whose dropped paragraph is the majority panel AND whose DB body **substantively diverges** from the current source (DB: "Sandstrom concurs in the result"; source: "Crothers concurs") — proof these older multi-opinion bodies require per-case PDF arbitration, not a bulk rule.
+
 ## Batch `fix-marker-garbled-2026-06-21` — repair OCR-garbled signature paragraph markers
 
 The MARKER_GARBLED class from the sigscan triage (see next batch): the signature panel is **complete** in the DB body, but its `[¶N]` marker is OCR-garbled (`[IT 29]`, `[¶ 21J`, `[1111]`, `[f 13]`, `(¶ 8]`, `[UlO]`, `[VIS]`) or absent — so the marker regex undercounts the paragraph sequence.
