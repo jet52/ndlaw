@@ -49,9 +49,17 @@ _TRAILING = re.compile(
 
 def justices_in(text: str) -> set[str]:
     nt = sig1._norm(text)
-    found = {s for s in sig1.MODERN_SURNAMES if sig1._fuzzy_in(nt, sig1._norm(s))}
-    # drop a surname subsumed by a longer matched one (normalization erases word
-    # boundaries, so "Sand" matches inside "Sandstrom"); keep only the longest.
+    found = set()
+    for s in sig1.MODERN_SURNAMES:
+        ns = sig1._norm(s)
+        # short surnames (Sand, Bahr, Goss...) only by EXACT substring — an
+        # edit-distance window spuriously matches "Sand" inside "VANDeWalle".
+        if len(ns) < 5:
+            if ns in nt:
+                found.add(s)
+        elif sig1._fuzzy_in(nt, ns):
+            found.add(s)
+    # drop a surname subsumed by a longer matched one ("Sand" inside "Sandstrom")
     return {s for s in found
             if not any(s != o and sig1._norm(s) in sig1._norm(o) for o in found)}
 
@@ -74,12 +82,20 @@ def main():
         src = (Path(sp) if sp.startswith("/") else REFS / sp).read_text(errors="replace")
         db_max, src_max = int(r["db_max"]), int(r["src_max"])
 
-        # DB trailing element = last paragraph; must be a signature/notation
+        # DB trailing element = last paragraph; must be a signature/notation.
+        # It may span TWO paragraphs when a "I concur in the result." notation and
+        # its signing justice's name landed in separate paragraphs.
         paras = re.split(r"\n\s*\n", body.rstrip())
         db_last = paras[-1].strip()
-        if not _TRAILING.search(db_last):
+        anchor = db_last                       # paragraph the panel is inserted before
+        elem = db_last
+        if (len(paras) >= 2 and re.search(r"concur|dissent", paras[-2], re.I)
+                and len(db_last.split()) <= 5 and not _TRAILING.search(db_last)):
+            anchor = paras[-2].strip()
+            elem = anchor + " " + db_last
+        if not _TRAILING.search(elem):
             skipped.append((oid, label, "DB tail is prose, not a trailing notation")); continue
-        db_just = justices_in(db_last)
+        db_just = justices_in(elem)
         if not db_just:
             skipped.append((oid, label, "no justice in DB trailing element")); continue
 
@@ -97,6 +113,7 @@ def main():
         if not ok:
             skipped.append((oid, label, "dropped paragraphs not locatable")); continue
         combined = " ".join(drop_text)
+        combined = re.sub(r"\s+[IVX]{1,4}\s*$", "", combined)   # trailing section divider
         # skip datelines/footnotes, or a standalone roman-numeral section divider
         # (a dropped paragraph that is JUST "VI" etc. — NOT a "V." middle initial)
         if (re.search(r"Dated at|§|N\.D\.C\.C\.|footnote", combined)
@@ -127,13 +144,14 @@ def main():
         if not all(sig1._fuzzy_in(pn, sig1._norm(s)) for ln, s in parsed if ln in panel):
             skipped.append((oid, label, "PDF name mismatch")); continue
 
-        # surgical positional insert: before the DB's last paragraph
+        # surgical positional insert: before the trailing element's first paragraph
         insert = f"[¶ {db_max + 1}] " + "\n".join(panel)
-        start_last = body.rstrip().rfind(db_last)
-        head = body[:start_last].rstrip("\n")
-        new_body = head + "\n\n" + insert + "\n\n" + db_last + ("\n" if body.endswith("\n") else "")
+        start = body.rstrip().rfind(anchor)
+        head = body[:start].rstrip("\n")
+        rest = body[start:].rstrip("\n")        # anchor + any following (db_last)
+        new_body = head + "\n\n" + insert + "\n\n" + rest + ("\n" if body.endswith("\n") else "")
         new_tc = (tc[:fm.end()] if fm else "") + new_body
-        planned.append(dict(oid=oid, label=label, insert=insert, db_last=db_last[:80],
+        planned.append(dict(oid=oid, label=label, insert=insert, db_last=elem[:90],
                             old_tc=tc, new_tc=new_tc))
 
     from collections import Counter
