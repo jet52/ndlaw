@@ -27,7 +27,22 @@ running list of everything still open.
   corpus-wide**; invariant baseline lowered to 0 (now an `OK`, not `known`). Reversion-recovery
   scalar arc for this field complete.
 - [ ] **337 DIVERGED scalar fields** — current value ≠ both original and intended; review for intentional-vs-lost (case_name 183, source_path 98, author 31, source_reporter 19, judges 6). (`triage/changelog-reconcile.csv`)
-- [ ] **Broader case_name contamination beyond the 11** — no prior correction to restore, so these need NEW corrections: the **18248–18280 cluster** (~13, e.g. 18248 body=Wittmayer not "Burr v. Kulas"; 18278↔18279 Rieger↔Hintz swap), plus 12391→Heitkamp, 12438 done, 12511→State v. Sisson, 19242="Case 2018ND1" placeholder. Build body-caption-arbitrated worklist (court spreadsheet + CL + body caption). (`triage/casename-audit.csv` raw)
+- [x] **Broader case_name contamination — worked down 2026-06-22.** The 18248–80 cluster
+  (18248/18278/18279) was already fixed in a prior session (this note was stale). The named
+  singletons are now done: **12391** → "State ex rel. Heitkamp v. Family Life Services, Inc."
+  (CourtListener 1997 ND 37 + body; DB had the unrelated "Continental Resources v. Farrar Oil"),
+  **12511** → "State v. Sisson" (body "David George SISSON" — DB mangled the first name into the
+  surname), **19242** → "Disciplinary Board v. Foster" (court report Title + body; DB was the
+  "Case 2018ND1" placeholder). Batch `fix-casename-contamination-2026-06-22`.
+  **Finding: case_name is NOT a clean-batch problem and the DB is in good shape.** A systematic
+  diff of DB case_name vs the court report Title (`scripts/court_report_diff.py` logic; 11,526
+  matched) yields ~409 "mismatches" that are overwhelmingly LEGITIMATE: caption-convention variance
+  ("Matter of X" vs "Board v. X", "Adoption of X" vs "X v. Y"), OCR spelling, abbreviations
+  (Bros/Brothers), anonymized juvenile initials, and shared-cite **collisions** (the report row is a
+  different case on the same N.W. page — DB is correct). The 9 highest-confidence candidates (both
+  "X v. Y", no shared surname, unique cite, non-convention) contained **zero** real DB
+  contaminations. Genuine ones are rare singletons best caught by DB-case_name-vs-body-title
+  mismatch, not the report.
 - [x] **Cite-shaped docket placeholders — DONE.** The bulk (≈200) were fixed in batch
   `docket-cite-shaped-2026-06-10`; this TODO line was stale. A 2026-06-22 corpus scan found only
   **2** residual contaminations (2005 Herold, 3498 Meidinger — an N.W. parallel cite leaked into
