@@ -143,10 +143,17 @@ Metadata cross-field consistency:
   e.g. Burice→Bruce ×117, Bueke→Burke, Sature→Sathre, concentrated in the OCR'd judges
   field of 1890s–1930s opinions; 281 at d2 needing review — some are real surrogates
   (Anderson, Geiger) or field junk (Hearing, Having)). Detail TSV
-  `triage/audit-roster-fuzzy-<date>.tsv`. **Follow-on (separate cleanup batch, not the
-  detector): normalize the confirmed d1 garbles to canonical surnames** — fiddly because
-  the judges field is comma-joined panels and some garbles tie between two Burkes/Bruce
-  by tenure; verify each against era before applying.
+  `triage/audit-roster-fuzzy-<date>.tsv`. **Follow-on cleanup DONE 2026-06-22**
+  (`scripts/fix_roster_garbles_2026-06-22.py`, batch `fix-roster-garbles-2026-06-22`):
+  normalized **622 garbles across 613 fields** to canonical surnames, era-verified — a
+  garble is fixed only when exactly ONE roster surname at min edit distance is
+  tenure-consistent with the opinion's year (this auto-excludes the false positives:
+  real surrogates near a roster name in the wrong era like Zane Anderson~Pederson,
+  Benson~Bronson, Buhr~Bahr, Geiger~Teigen, plus junk words in old junk-panels) AND it
+  isn't a dup of a name already in the panel. Excluded for manual review: the
+  equidistant short garbles Bure/Burk (d1 from both Burke AND Burr), plausible real
+  alt-spellings (Pedersen, Spaulding, Gross), and d2 English/Latin words. Detector
+  **975→353** (the 353 residue are exactly those exclusions). invariants 24/2/0.
 - [ ] **12. case_name lint** — digits, unbalanced parens/quotes, double spaces,
   trailing connectors, residual ALL-CAPS, artifact chars.
 - [ ] **13. Frontmatter-vs-citations sync** — measure the known cosmetic lag.
