@@ -119,8 +119,9 @@ Text integrity:
   ingest run) normalized, 12825 ¶10–11 spliced
   (`dedup-ramstad-12824` / `marker-style-dotted-2026-06-10`). Re-run the
   detector after any future merge concatenation.
-- [ ] **7. Truncation heuristics** — body ends w/o terminal punctuation or signature
-  block; short body vs PDF page count.
+- [~] **7. Truncation heuristics — PARTIAL/BUILT (audited 2026-06-22).** Both heuristics
+  shipped as `refs_diff` subcommands: `sigscan` (trailing-`[¶N]` drop) and `truncscan`
+  (corpus-wide DB-vs-PDF word-ratio). Not yet folded into the `audit_corpus` dashboard.
 - [ ] **8. Char-histogram regression scan, all 5 DBs** — non-ASCII inventory per
   corpus; alarm on new entrants (statutes/rules/admin/const never had one).
 - [ ] **9. Two-column interleave detector** — Neset-style mis-extraction (another
@@ -130,7 +131,9 @@ Metadata cross-field consistency:
 - [ ] **10. Reporter-volume↔date window invariant** — derive each N.W./N.W.2d/N.W.3d
   volume's window from corpus medians; flag >60d outliers. Plus: neutral-cite year ==
   year(date_filed); docket YYYYNNNN prefix vs filing year; synthetic ordering
-  monotonic vs (date, page). *Partially exists as `volume_date_check` — extend.*
+  monotonic vs (date, page). *PARTIAL (audited 2026-06-22): `volume_date_check` exists AND the
+  neutral-cite-year==date-year extension is already built (`neutral_year()`); only the
+  docket-YYYYNNNN-prefix and synthetic-ordering-monotonic checks remain.*
 - [ ] **11. Roster fuzzy-match** — author/judges within edit distance 1–2 of a known
   justice but not equal = probable OCR typo (per the surrogate-judges rule: hunt
   near-miss names, don't tenure-validate).
@@ -216,7 +219,7 @@ Process integrity:
   witnesses each); parallel_pair 597→556. Remaining 556 = single-witness holds,
   the shared-table-page family (multiple summary affirmances on one N.W.2d
   page), and the ~25 clusters above.
-- [ ] **242 `OTHER` mismatch rows** (`triage/parallel-pair-classified-2026-06-09.tsv`)
+- [ ] **`OTHER` mismatch rows — now 271** (audited 2026-06-22; drifted up from 242) (`triage/parallel-pair-classified-2026-06-09.tsv`)
   — sample & classify (regex artifacts vs deeper tangles vs >1-digit corruption).
 - [x] **Cite-shaped `docket_number` values — DONE 2026-06-10**
   (`docket-cite-shaped-2026-06-10`): all 198 fixed + 2 side-catches (17035 had

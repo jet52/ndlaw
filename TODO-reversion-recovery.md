@@ -26,7 +26,7 @@ running list of everything still open.
   and the `opinion_sources` row). `corrections_not_reverted` 109→**0** — **zero known reversions
   corpus-wide**; invariant baseline lowered to 0 (now an `OK`, not `known`). Reversion-recovery
   scalar arc for this field complete.
-- [ ] **337 DIVERGED scalar fields** — current value ≠ both original and intended; review for intentional-vs-lost (case_name 183, source_path 98, author 31, source_reporter 19, judges 6). (`triage/changelog-reconcile.csv`)
+- [ ] **DIVERGED scalar fields — now 295** (audited 2026-06-22; was 337, the 2026-06-22 source_reporter realignment cut source_path 98→56): case_name 183, source_path 56, author 31, source_reporter 19, judges 6. Review intentional-vs-lost. NOTE: the author (31) and case_name (183) overlap the court-report audit — most are legitimate (per-curiam internal-author, caption-convention variance, cite collisions), NOT a clean batch; the genuine singletons are best caught vs the opinion body, not the changelog. (`triage/changelog-reconcile.csv` is stale — regenerate via `reconcile_corrections`.)
 - [x] **Broader case_name contamination — worked down 2026-06-22.** The 18248–80 cluster
   (18248/18278/18279) was already fixed in a prior session (this note was stale). The named
   singletons are now done: **12391** → "State ex rel. Heitkamp v. Family Life Services, Inc."
@@ -177,7 +177,7 @@ stripped (they already live in the body); `justices.py` Jensen start 2019→2017
   defect is fixed. Ready to promote the sigscan max-`[¶N]`-gap to an invariant with these 24
   baselined.
 - [ ] justice-name OCR garbles WITHIN restored panels (NEU-MANN, MAKING, YANDE WALLE, McEYERS) — separate cleanup batch.
-- [ ] **Phase 4 (durability):** promote the `sigscan` max-`[¶N]`-gap to an invariant once the cohort is worked down.
+- [~] **Phase 4 (durability): sigscan invariant — DOWNGRADED 2026-06-22, likely close as superseded.** Re-audited: the signature cohort is worked to zero genuine defects; sigscan's 24 remaining flags are all non-defects (22 CONTENT_LOSS source-tree contamination where `~/refs` is the bad copy + DB correct, + 2 numbering false positives 17858/13291). A raw max-`[¶N]`-gap invariant would (a) bake in 24 baselined non-defects and (b) fire on the *source* being wrong, not the DB — wrong target. Meanwhile `corrections_not_reverted` (now 0, an `OK`) already guards every changelog-logged sig fix, and the Phase-0 body-protection guard blocks the silent writer from overwriting corrected bodies. Marginal benefit = a tripwire only for a brand-new, never-logged truncation in a *future* ingest. Recommend closing unless that specific tripwire is wanted.
 - NOTE: phase3 was built then REMOVED (unsafe — it append-duplicated participation notes); do not resurrect.
 
 ### Phase 2 — Token-level body reconciliation (surgical text fixes)

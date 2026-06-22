@@ -1,5 +1,18 @@
 # TODO — Database Distribution & Update System
 
+> **⚠️ SUPERSEDED (audited 2026-06-22).** This entire base+patch+`meta`+auto-updater
+> plan was never built and has been replaced by a simpler **full-DB-zip-per-release**
+> model that is live and shipping: `scripts/make_release.sh` builds each `gh release`
+> with `opinions.db.zip` + `.sha256` (gated on invariants, redistribution-scope,
+> git-clean, quick_check, row-floor), and the live server pulls it via
+> `deploy/update-db.sh` (sha256 verify, quick_check, atomic swap + `.bak` rollback +
+> health probe). 16 releases shipped (v0.1.0→v1.0.1). None of the items below exist
+> (no `ndcourts_mcp/release/`, no `updater.py`, no `meta` table, no manifest, no
+> Actions workflow, no `update` CLI), and the ~800 MB patch-delta motivation is moot
+> (the zip ships full each time). **Action: retire or rewrite this file to the shipped
+> model; do not treat the checklist below as live work** — it's kept only as a record
+> of the abandoned design.
+
 How to ship `opinions.db` (~800 MB, growing) to end users and keep it current with monthly updates. Build after data validation work stabilizes (TODO-validation.md §5 in particular — scraper fix and new-opinions pipeline).
 
 ## Design decision
