@@ -34,6 +34,19 @@ SYNTHETIC_REPORTER = "ND-neutral-synthetic"
 
 _PARA_RE = re.compile(r"\[¶\s*(\d+)\]")
 
+# A footnote-body opener: a small integer alone on its own line. The reporter's
+# footnote bodies are stored detached from their call site (at the page-bottom
+# or opinion tail), so an offset inside one must not map to the body's
+# preceding [¶] marker.
+_STANDALONE_NUM = re.compile(r"(?m)^[ \t]*(\d{1,3})[ \t]*$")
+# Structural boundary that ends a footnote body: the next paragraph marker or a
+# reporter star-page marker.
+_BODY_BOUNDARY = re.compile(r"\[¶\s*\d+\]|(?<!\d)\*\d{2,4}\b")
+# Reporter star-page marker (e.g. ``*458`` = start of N.W.2d page 458).
+_STAR_PAGE = re.compile(r"(?<!\d)\*(\d{2,4})\b")
+# Volume + reporter prefix of a regional/official cite, for page pinpoints.
+_REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+\d+")
+
 # Citation-string shapes used to pull a cite out of a free-text query.
 _CITE_PATTERNS = [
     re.compile(r"\d{4}\s+ND\s+\d+"),                 # neutral / synthetic
@@ -136,10 +149,11 @@ def paragraph_markers(text: str) -> list[tuple[int, int]]:
     return [(int(m.group(1)), m.start()) for m in _PARA_RE.finditer(text)]
 
 
-def find_paragraph(text: str, char_offset: int) -> int | None:
+def find_paragraph(text: str, char_offset: int,
+                   markers: list[tuple[int, int]] | None = None) -> int | None:
     """Paragraph number containing ``char_offset`` (last marker at or before it)."""
     para = None
-    for num, pos in paragraph_markers(text):
+    for num, pos in (markers if markers is not None else paragraph_markers(text)):
         if pos <= char_offset:
             para = num
         else:
@@ -160,6 +174,118 @@ def extract_paragraph(text: str, n: int, cap: int = 6000) -> tuple[str, bool] | 
             if len(chunk) > cap:
                 return chunk[:cap], True
             return chunk, False
+    return None
+
+
+# --- footnotes & star pages --------------------------------------------------
+
+def footnote_structure(text: str) -> dict:
+    """Map an opinion's footnotes: body spans and each footnote's call ¶.
+
+    Footnote bodies are stored in the linear text at the page-bottom/tail
+    position where the reporter printed them, detached from the ``[¶]``
+    paragraph that carries the call marker. Two body renderings are recognized:
+
+    * West/CL-OCR period form ``\\n N\\n\\n. text`` — the printed "N." split by
+      OCR. The dominant form; high precision (call markers are never followed
+      by a lone period).
+    * Any standalone-number block sitting **after the final ``[¶]`` marker**,
+      where only footnotes (and the signature/citation lines) can appear.
+
+    Each body links back to its call paragraph — the paragraph holding the
+    earliest standalone occurrence of that footnote number that is not itself a
+    body opener. Returns ``{"bodies": [(num, start, end), ...],
+    "call_para": {num: paragraph_or_None}}``, bodies sorted by position. The
+    call paragraph is ``None`` when the call marker did not survive OCR as a
+    standalone token (e.g. an attached superscript)."""
+    occ = []  # (num, line_start, after_line, is_period_form)
+    for m in _STANDALONE_NUM.finditer(text):
+        num = int(m.group(1))
+        if 1 <= num <= 60:
+            period = bool(re.match(r"\s*\.\s", text[m.end():m.end() + 12]))
+            occ.append((num, m.start(), m.end(), period))
+    if not occ:
+        return {"bodies": [], "call_para": {}}
+
+    markers = paragraph_markers(text)
+    last_para = markers[-1][1] if markers else -1
+
+    body_at = {}  # line_start -> num, for occurrences that open a footnote body
+    for num, ls, after, period in occ:
+        if period or (markers and ls > last_para):
+            body_at[ls] = num
+
+    body_lines = sorted(body_at)
+    bodies = []
+    for k, ls in enumerate(body_lines):
+        after = next(a for n, l, a, p in occ if l == ls)
+        end = body_lines[k + 1] if k + 1 < len(body_lines) else len(text)
+        boundary = _BODY_BOUNDARY.search(text, after, end)
+        if boundary:
+            end = boundary.start()
+        bodies.append((body_at[ls], ls, end))
+
+    body_nums = {n for n, _, _ in bodies}
+    call_para = {}
+    for num, ls, after, period in occ:
+        if ls in body_at:
+            continue
+        if num in body_nums and num not in call_para:
+            call_para[num] = find_paragraph(text, ls, markers)
+    return {"bodies": bodies, "call_para": call_para}
+
+
+def star_page_before(text: str, offset: int) -> int | None:
+    """Reporter page number for ``offset`` — the last ``*NNN`` star-page marker
+    at or before it. ``None`` when the opinion carries no star pages."""
+    page = None
+    for m in _STAR_PAGE.finditer(text):
+        if m.start() <= offset:
+            page = int(m.group(1))
+        else:
+            break
+    return page
+
+
+def locate_structure(text: str, offset: int, struct: dict | None = None) -> dict:
+    """Resolve ``offset`` to its structural pinpoint fields.
+
+    Returns ``{"paragraph", "footnote", "in_footnote", "reporter_page"}``. When
+    the offset lands inside a footnote body, ``paragraph`` is the footnote's
+    *call* paragraph (not the body's preceding marker) and ``footnote`` is its
+    number; ``paragraph`` may be ``None`` if the call site is unrecoverable."""
+    struct = struct if struct is not None else footnote_structure(text)
+    for num, start, end in struct["bodies"]:
+        if start <= offset < end:
+            return {"paragraph": struct["call_para"].get(num), "footnote": num,
+                    "in_footnote": True,
+                    "reporter_page": star_page_before(text, offset)}
+    return {"paragraph": find_paragraph(text, offset), "footnote": None,
+            "in_footnote": False, "reporter_page": star_page_before(text, offset)}
+
+
+def pinpoint_suffix(located: dict) -> str | None:
+    """Bluebook pinpoint tail for a located quote: ``¶ 7 n.1``, ``¶ 18``,
+    ``n.1``, or ``None`` when neither paragraph nor footnote is known."""
+    para, fn = located.get("paragraph"), located.get("footnote")
+    if para is not None and fn is not None:
+        return f"¶ {para} n.{fn}"
+    if fn is not None:
+        return f"n.{fn}"
+    if para is not None:
+        return f"¶ {para}"
+    return None
+
+
+def reporter_pinpoint(cite_rows: list[dict], page: int | None) -> str | None:
+    """``604 N.W.2d at 458`` from an opinion's parallel cites and a star page.
+    Prefers the regional N.W. reporter; ``None`` if no page or no page cite."""
+    if page is None:
+        return None
+    for r in cite_rows:
+        m = _REPORTER_CITE.match(r.get("citation", ""))
+        if m:
+            return f"{m.group(1)} {m.group(2)} at {page}"
     return None
 
 
@@ -204,35 +330,37 @@ def locate_quote(text: str, quote: str) -> dict:
     if not quote:
         return {"found": False, "verbatim": False, "error": "empty quote"}
 
+    struct = footnote_structure(text)
     pattern = _build_quote_regex(quote)
 
     m = re.search(pattern, text)
     if m:
-        return _hit(text, m, verbatim=True)
+        return _hit(text, m, True, struct)
 
     m = re.search(pattern, text, re.IGNORECASE)
     if m:
-        res = _hit(text, m, verbatim=False)
+        res = _hit(text, m, False, struct)
         res["case_mismatch"] = True
         res["note"] = "Matches except for capitalization."
         return res
 
-    return _fuzzy(text, quote)
+    return _fuzzy(text, quote, struct)
 
 
-def _hit(text: str, m: re.Match, verbatim: bool) -> dict:
+def _hit(text: str, m: re.Match, verbatim: bool, struct: dict) -> dict:
     start = m.start()
-    return {
+    res = {
         "found": True,
         "verbatim": verbatim,
         "char_start": start,
         "char_end": m.end(),
-        "paragraph": find_paragraph(text, start),
         "matched_text": m.group(0),
     }
+    res.update(locate_structure(text, start, struct))
+    return res
 
 
-def _fuzzy(text: str, quote: str) -> dict:
+def _fuzzy(text: str, quote: str, struct: dict | None = None) -> dict:
     """Word-level near-match search anchored on the quote's most distinctive
     words, so a dropped/changed word surfaces with the actual text + ¶."""
     words = [(mt.group(0), mt.start(), mt.end()) for mt in re.finditer(r"\S+", text)]
@@ -277,13 +405,38 @@ def _fuzzy(text: str, quote: str) -> dict:
     closest = text[char_start:char_end]
     diff = [d for d in difflib.ndiff(qwords, [w for w, _, _ in words[start:end]])
             if d[0] in "+-"]
-    return {
+    res = {
         "found": False,
         "verbatim": False,
         "similarity": round(ratio, 3),
-        "paragraph": find_paragraph(text, char_start),
         "closest_text": closest,
         "differences": diff,
         "note": "Not found verbatim; closest passage shown with word-level diff "
                 "(- quote, + opinion).",
     }
+    res.update(locate_structure(text, char_start, struct))
+    # Tier 3: a very high word-similarity miss whose only divergence is an
+    # intra-word character substitution (or soft-hyphen line break) is almost
+    # certainly an OCR artifact in the stored text, not a misquote. Flag it so
+    # reviewers verify against the reporter instead of "correcting" a correct
+    # quotation. Compares the two sides char-by-char modulo typography/spacing.
+    if ratio >= 0.97 and _ocr_artifact_only(quote, closest):
+        res["likely_ocr_artifact"] = True
+        res["note"] += (" The sole difference is an intra-word substitution "
+                        "consistent with an OCR artifact in the stored text; "
+                        "verify against the reporter before treating as a misquote.")
+    return res
+
+
+def _ocr_artifact_only(quote: str, closest: str) -> bool:
+    """True when ``quote`` and ``closest`` differ only by a tiny char-level edit
+    (an OCR substitution like ti↔cl or a soft-hyphen break), not a real word
+    change. Normalizes typography, hyphenation, and whitespace first."""
+    def norm(s):
+        s = "".join(_norm_words(s))            # strip whitespace, fold quotes/dashes
+        return s.replace("-", "").lower()      # drop hyphens (soft line breaks)
+    a, b = norm(quote), norm(closest)
+    if not a or not b:
+        return False
+    r = difflib.SequenceMatcher(None, a, b).ratio()
+    return r >= 0.94

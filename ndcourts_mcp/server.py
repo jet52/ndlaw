@@ -839,14 +839,28 @@ def verify_quotation(citation: str, quote: str) -> dict:
             return result
 
         located = proofread.locate_quote(row["text_content"], quote)
+        cite_rows = _citation_rows(conn, row["id"])
+        primary = proofread.primary_cite(cite_rows)
         result = {
             "found_opinion": True,
             "matched_by": matched_by,
             "case_name": row["case_name"],
-            "primary_citation": proofread.primary_cite(_citation_rows(conn, row["id"])),
+            "primary_citation": primary,
         }
         result.update(located)
-        if located.get("paragraph") is None and "paragraph" in located:
+        suffix = proofread.pinpoint_suffix(located)
+        if suffix and primary:
+            result["pinpoint"] = f"{primary}, {suffix}"
+        rep = proofread.reporter_pinpoint(cite_rows, located.get("reporter_page"))
+        if rep:
+            result["reporter_pinpoint"] = rep
+        if located.get("in_footnote") and located.get("paragraph") is None:
+            result["paragraph_note"] = (
+                f"Quote is in footnote {located['footnote']}, whose call site "
+                "could not be recovered from the stored text; cite n."
+                f"{located['footnote']} (paragraph unavailable)."
+            )
+        elif located.get("paragraph") is None and not located.get("in_footnote"):
             result["paragraph_note"] = (
                 "No paragraph markers in this opinion (typical of pre-1997 "
                 "text); pinpoint by ¶ is unavailable."
@@ -890,7 +904,8 @@ def get_pinpoint(
             return result
 
         text = row["text_content"]
-        primary = proofread.primary_cite(_citation_rows(conn, row["id"]))
+        cite_rows = _citation_rows(conn, row["id"])
+        primary = proofread.primary_cite(cite_rows)
         base = {
             "found_opinion": True,
             "matched_by": matched_by,
@@ -920,9 +935,13 @@ def get_pinpoint(
 
         located = proofread.locate_quote(text, quote)
         base.update(located)
+        suffix = proofread.pinpoint_suffix(located)
+        if suffix and primary:
+            base["pinpoint"] = f"{primary}, {suffix}"
+        rep = proofread.reporter_pinpoint(cite_rows, located.get("reporter_page"))
+        if rep:
+            base["reporter_pinpoint"] = rep
         para = located.get("paragraph")
-        if para is not None and primary:
-            base["pinpoint"] = f"{primary}, ¶ {para}"
         if para is not None:
             extracted = proofread.extract_paragraph(text, para)
             if extracted is not None:
