@@ -28,7 +28,16 @@ running list of everything still open.
   scalar arc for this field complete.
 - [ ] **337 DIVERGED scalar fields** — current value ≠ both original and intended; review for intentional-vs-lost (case_name 183, source_path 98, author 31, source_reporter 19, judges 6). (`triage/changelog-reconcile.csv`)
 - [ ] **Broader case_name contamination beyond the 11** — no prior correction to restore, so these need NEW corrections: the **18248–18280 cluster** (~13, e.g. 18248 body=Wittmayer not "Burr v. Kulas"; 18278↔18279 Rieger↔Hintz swap), plus 12391→Heitkamp, 12438 done, 12511→State v. Sisson, 19242="Case 2018ND1" placeholder. Build body-caption-arbitrated worklist (court spreadsheet + CL + body caption). (`triage/casename-audit.csv` raw)
-- [ ] **188 cite-shaped docket placeholders** remaining (148×1997) — the precise fingerprint of the reverted/contaminated cohort; reconcile against body "No." line + court file numbers.
+- [x] **Cite-shaped docket placeholders — DONE.** The bulk (≈200) were fixed in batch
+  `docket-cite-shaped-2026-06-10`; this TODO line was stale. A 2026-06-22 corpus scan found only
+  **2** residual contaminations (2005 Herold, 3498 Meidinger — an N.W. parallel cite leaked into
+  the docket field of pre-1931 cases whose whole cohort has empty dockets). Cleared to NULL
+  (cite preserved in `citations`), batch `clear-cite-shaped-docket-2026-06-22`. **Zero cite-shaped
+  dockets corpus-wide.** NB: the 5,086 empty dockets are pre-1931 N.D. Reports opinions that
+  predate modern docket numbers (cited by reporter, not a defect). Small separate follow-ups
+  noted: 8 empty-docket 2026 opinions (recent-ingest gap, docket-backfill workstream) and the
+  `Case 2018ND1` case_name placeholder (19242, case_name workstream; `Case Credit Corp.` 14313 is
+  a real company, not a placeholder).
 - [ ] **Source fix** — correct `1997_opinions.json` case_name/docket + rename misfiled `markdown/1997/*.md` so re-ingest is clean. Lower urgency now the guard protects the DB.
 
 ## opinion BODY text (`text_content`) — QA CONFIRMATION (downgraded 2026-06-21)
