@@ -118,6 +118,10 @@ def main():
         # single "I" (the "I concur" notation) and "V." middle initials (the
         # period defeats the trailing \s lookahead).
         combined = re.sub(r"\s+(?:VI{0,3}|I{2,3}|IV|IX|X)(?=\s|$)", " ", combined).strip()
+        # a DANGLING trailing notation/digit after the last named justice (the
+        # concurring justice's name sits in the DB trailing element, not here)
+        combined = re.sub(r"\s+\d+$", "", combined)                          # footnote/page digit
+        combined = re.sub(r",?\s*I concur in the result\.?\s*$", "", combined, flags=re.I)
         if re.search(r"Dated at|§|N\.D\.C\.C\.|footnote", combined):
             skipped.append((oid, label, "dateline/footnote in source")); continue
 

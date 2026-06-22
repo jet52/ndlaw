@@ -8,7 +8,7 @@ The bulk of the multi-opinion truncations share one shape: the **majority panel 
 
 `fix_sig_truncation_phase4_2026-06-21.py` does the surgical insert, gated by a **divergence guard**: every justice named in the DB's trailing element must also appear in the dropped source signature region. This is load-bearing — it rejected 2014 ND 148 (oid 16311), where the DB says "Sandstrom concurs in the result" but the source panel has Crothers concurring (factually different texts). The inserted panel is the source signature lines whose justice the DB does not already render (so a notation already present is never duplicated), every name corroborated against the court PDF. A subsumed-surname fix (don't let "Sand" match inside "Sandstrom") cleared ~43 false divergences without weakening the 16311 catch.
 
-**75 majority panels inserted** (e.g. 1997 ND 204 → `[¶ 17]` Maring/Neumann/Sandstrom/VandeWalle before "MESCHKE, J., concurs in the result."). TRUE_TRUNCATION 92 → 12. Invariants 23/3/0.
+**77 majority panels inserted** (e.g. 1997 ND 204 → `[¶ 17]` Maring/Neumann/Sandstrom/VandeWalle before "MESCHKE, J., concurs in the result."). TRUE_TRUNCATION 92 → 10. (Two more via a trailing dangling-notation/footnote-digit strip: 1998 ND 55, 2013 ND 13.) Invariants 23/3/0.
 
 Rescue passes (added 19 to this batch): a **short-surname fix** (exact-substring match for surnames <5 chars — an edit-distance window had matched "Sand" inside "**VAND**eWalle") cleared 9 false "Sandstrom" divergences; a **two-paragraph trailing element** handler (when "I concur in the result." and the signing name land in separate paragraphs) plus stripping a trailing roman-numeral section divider cleared 5 more; a third pass stripped roman-numeral SECTION HEADINGS that OCR floated into the signature run (PDF-confirmed via 2017 ND 265 / 2012 ND 58) for 5 more + 1 orphan. The genuine 16311 divergence stays excluded.
 
@@ -16,7 +16,11 @@ Rescue passes (added 19 to this batch): a **short-surname fix** (exact-substring
 
 The original Whetsel pattern in the prose-tail remainder: the DB kept ONLY the panel's last justice name as a bare trailing line. Phase 1 skipped these because the source panel ends with a footnote-reference digit ("... Jerod E. Tufte 1") that broke the parser. `fix_sig_truncation_phase5_2026-06-21.py` strips the trailing digit and replaces the orphan with the full `[¶N]` panel, guarded so the orphan must equal the panel's last member and no other member already sits in the DB tail (a preceding-paragraph-concurrence check routes split positional cases to phase 4 instead). **5 replaced** (2017 ND 165/166/190/265/281; the 265 panel followed a stray trailing “III” section heading). Invariants 23/3/0.
 
-**Still NOT auto-fixed (manual worklist, `triage/sig-drops-classified.csv`):** 12 TRUE_TRUNCATION (3 datelines, 6 surrogate/participation notes, 2 concur-unparseable, 1 genuine divergence = 16311) + 22 CONTENT_LOSS + 7 MARKER_GARBLED + 20 REVIEW.
+**Still NOT auto-fixed (manual worklist, `triage/sig-drops-classified.csv`):** 8 TRUE_TRUNCATION (3 datelines, 2 surrogate-in-panel, 2 complex intertwined, 1 genuine divergence = 16311) + 22 CONTENT_LOSS + 7 MARKER_GARBLED + 20 REVIEW.
+
+## Batch `restore-sig-truncation-phase6-2026-06-21` — participation-note truncations
+
+The clean shapes among the surrogate/participation cases: a panel dropped before a participation note (insert the panel before the note — 2009 ND 111), or the note dropped after an existing panel (append it — 2003 ND 9). `fix_sig_truncation_phase6_2026-06-21.py` handles only panels that parse to >=3 KNOWN justices (surrogate-in-panel cases like 2000 ND 225 / 2014 ND 201 left to manual), PDF-corroborated. **2 fixed.** Invariants 23/3/0.
 
 ## Batch `restore-sig-truncation-phase2-2026-06-21` — append dropped separate-writing signatures (multi-opinion)
 
