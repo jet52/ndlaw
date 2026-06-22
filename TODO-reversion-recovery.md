@@ -77,7 +77,8 @@ a single trailing name. Current `~/refs` markdown is complete (matches PDFs).
 - Built `refs_diff sigscan` (max-`[¶N]` gap; replaces the 73%-false-positive word-ratio `truncscan`) + `scripts/classify_sig_drops_2026-06-21.py`.
 - 273 flagged → MARKER_GARBLED 31 / TRUE_TRUNCATION 200 / CONTENT_LOSS 22 / REVIEW 20.
 - **Applied `restore-sig-truncation-2026-06-21`: 102 PDF-verified splices** (safe TRUE_TRUNCATION subset). Invariants 23/3/0.
-- OPEN: [ ] MARKER_GARBLED 31 (marker-repair batch — text already complete). [ ] remaining TRUE_TRUNCATION 98 (multi-opinion → positional insert; 7 unusual formats). [ ] CONTENT_LOSS 22 (substantive loss; overlaps 1997 contamination — manual, verify vs PDF/bound vol). [ ] REVIEW 20. [ ] promote sigscan gap to an invariant (Phase 4).
+- **Applied `fix-marker-garbled-2026-06-21`: 24 garbled `[¶N]` markers repaired** (text was already complete; surgical marker-only swap, PDF-corroborated). MARKER_GARBLED 31 → 7.
+- OPEN: [ ] MARKER_GARBLED 7 (surrogate-note valid-marker / dissent / split-panel — manual). [ ] remaining TRUE_TRUNCATION 98 (multi-opinion → positional insert; 7 unusual formats). [ ] CONTENT_LOSS 22 (substantive loss; overlaps 1997 contamination — manual, verify vs PDF/bound vol). [ ] REVIEW 20. [ ] justice-name OCR garbles in panels (NEU-MANN/MAKING/YANDE WALLE) — separate cleanup. [ ] promote sigscan gap to an invariant (Phase 4).
 
 ### Phase 2 — Token-level body reconciliation (surgical text fixes)
 - [ ] Extend reconciliation to structured `text_content.*` batches where old/new are tokens: `digit_flip`, `citefix`, `cite_token`, `marker`, `pincite`, `header_cite`, `cite_spacing`, `splice_para`. Parse the changed token, ¶-anchor it (don't bare-substring — the 12-sample had 5 ambiguous), and classify INTACT/REVERTED. Catches surgical reverts the aggregate detectors miss.

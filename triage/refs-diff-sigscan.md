@@ -1,37 +1,26 @@
-# Signature / trailing-paragraph drop sweep (171 flagged)
+# Signature / trailing-paragraph drop sweep (147 flagged)
 
 DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still has. `db_max` < `src_max` = the gap.
 
-- by class: **SIGNATURE** 150, **CONTENT** 19, **SIGNATURE?** 2
-- by gap: gap1=151, gap2=7, gap3=3, gap5=1, gap7=2, gap12=1, gap15=1, gap21=1, gap26=1, gap40=1, gap44=1, gap430=1
+- by class: **SIGNATURE** 126, **CONTENT** 19, **SIGNATURE?** 2
+- by gap: gap1=127, gap2=7, gap3=3, gap5=1, gap7=2, gap12=1, gap15=1, gap21=1, gap26=1, gap40=1, gap44=1, gap430=1
 
-## SIGNATURE (150)
+## SIGNATURE (126)
 
 | oid | label | case_name | db→src ¶ | gap | dropped text |
 |--|--|--|--|--|--|
 | 12351 | 1997 ND 6 | Anderson v. A.P.I. Company, et al. | 28→29 | 1 | [¶29] Gerald W. VandeWalle, C.J. |
-| 12537 | 1997 ND 188 | State v. Hart | 28→29 | 1 | [¶29] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Herbert L. Meschke Gerald W. VandeWalle, C.J. 1155 |
 | 12559 | 1997 ND 204 | City of Fargo v. Sivertson | 16→17 | 1 | [¶17] Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Gerald W. VandeWalle, C.J. I concur in the result. Herbert L. Meschke |
 | 12600 | 1998 ND 58 | In the Matter of the Judicial Vacancy in Distr | 15→16 | 1 | [¶16] Dated at Bismarck, North Dakota, this 10th day of March, 1998. Gerald W. VandeWalle, C.J. Herbert L. Meschke William A. Neumann Dale V. Sandstrom Mary Muehlen Maring |
-| 12607 | 1998 ND 20 | Kevin Hust v. North Dakota Workers Compensatio | 20→21 | 1 | [¶21] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Herbert L. Meschke Gerald W. VandeWalle, C.J. |
 | 12618 | 1998 ND 55 | Linrud v. Linrud | 18→19 | 1 | [¶19] William A. Neumann Mary Muehlen Maring Herbert L. Meschke Dale V. Sandstrom Gerald W. VandeWalle, C.J., I concur in the result |
-| 12623 | 1998 ND 13 | State of North Dakota v. Angel Esparza | 22→23 | 1 | [¶23] Herbert L. Meschke Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Gerald W. VandeWalle, C.J. |
-| 12630 | 1998 ND 16 | Estate of Euvagh Wenzel-Mosset v. Grace Nickel | 39→40 | 1 | [¶40] William A. Neumann Mary Muehlen Maring Herbert L. Meschke Dale V. Sandstrom Gerald W. VandeWalle, C.J. 1155 |
-| 12646 | 1998 ND 67 | State of North Dakota v. Timothy Boline | 39→40 | 1 | [¶40] Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Herbert L. Meschke 1133 |
-| 12651 | 1998 ND 75 | Nastrom v. Nastrom | 12→13 | 1 | [¶13] Herbert L. Meschke Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Gerald W. VandeWalle, C.J. |
 | 12657 | 1998 ND 98 | In the Matter of the Judicial Vacancy in Distr | 12→13 | 1 | [¶13] Dated at Bismarck, North Dakota, this 29th day of April, 1998. Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Herbert L. Meschke |
-| 12667 | 1998 ND 97 | Sherman v. North Dakota Workers Compensation B | 7→8 | 1 | [¶8] Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Herbert L. Meschke Gerald W. VandeWalle, C.J. |
 | 12722 | 1998 ND 136 | In the Matter of the Petition for Change of De | 8→9 | 1 | [¶9] Gerald W. VandeWalle, Chief Justice Herbert L. Meschke, Justice Mary Muehlen Maring, Justice William A. Neumann, Justice Dale V. Sandstrom, Justice |
 | 12726 | 1998 ND 143 | LaRocque v. LaRocque | 9→10 | 1 | [¶10] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Richard W. Grosz, D.J. Gerald W. VandeWalle, C.J. Richard W. Grosz, D.J., sitting in place of Meschke, J., disqualified. |
 | 12743 | 1998 ND 161 | Moen v. Meidinger | 11→12 | 1 | [¶12] Mary Muehlen Maring Herbert L. Meschke Georgia Dawson, D.J. Gerald W. VandeWalle, C.J. Georgia Dawson, D.J., sitting in place of Sandstrom, J., disqualified. Immediately prior to oral argument Neumann, J., disqualified himself. |
-| 12806 | 1999 ND 8 | Darling v. Gosselin | 10→11 | 1 | [¶11] Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
 | 13109 | 2000 ND 49 | Mountrail County v. Hoffman | 11→12 | 1 | [¶12] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
 | 13127 | 2000 ND 79 | Buchmann v. North Dakota Workers Compensation  | 26→27 | 1 | [¶27] Gerald W. VandeWalle, C.J. VI Dale V. Sandstrom William A. Neumann Mary Muehlen Maring The Honorable Carol Ronning Kapsner disqualified herself subsequent to oral argument and did not participate in this decision. |
 | 13182 | 2000 ND 121 | State v. Martin | 10→11 | 1 | [¶11] Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner |
-| 13207 | 2000 ND 147 | Tulintseff v. Jacobsen | 21→22 | 1 | [¶22] Carol Ronning Kapsner Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Gerald W. VandeWalle, C.J. |
-| 13277 | 2000 ND 221 | Disciplinary Board v. Keller | 11→12 | 1 | [¶12] Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
 | 13495 | 2002 ND 2 | Terry v. Terry | 25→26 | 1 | [¶26] Mary Muehlen Maring |
-| 13549 | 2002 ND 49 | Peters-Riemers v. Riemers                      | 10→11 | 1 | [¶11] Mary Muehlen Maring William A. Neumann Dale V. Sandstrom Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
 | 13557 | 2002 ND 66 | DesLauriers v. DesLauriers | 24→25 | 1 | [¶25] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring William A. Neumann I concur in the result. Dale V. Sandstrom |
 | 13570 | 2002 ND 78 | Interest of J.R. and L.R.   (CONFIDENTIAL) | 20→21 | 1 | [¶21] William A. Neumann |
 | 13580 | 2002 ND 86 | Matrix v. TAG Investments                  (Cr | 40→41 | 1 | [¶41] The Honorable William F. Hodny, S.J., sitting in place of Kapsner, J., disqualified. |
@@ -45,30 +34,24 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 13833 | 2003 ND 114 | Interest of K.P. | 29→30 | 1 | [¶30] Carol Ronning Kapsner |
 | 13852 | 2003 ND 127 | Interest of D.P.O.(CONFIDENTIAL) (Consolidated | 23→24 | 1 | [¶24] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring William A. Neumann I concur in the result. Dale V. Sandstrom |
 | 13859 | 2003 ND 139 | Volz v. Peterson | 16→17 | 1 | [¶17] Mary Muehlen Maring William A. Neumann Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom 1We express no opinion on the ultimate merits of the motion. We conclude only that LeAnn presented a prima facie case sufficient to trigger her right to an evidenti |
-| 13860 | 2003 ND 138 | Interest of J.S.        (CONFIDENTIAL)         | 7→8 | 1 | [¶8] William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Dale V. Sandstrom Gerald W. VandeWalle, C.J. |
 | 13881 | 2003 ND 156 | Grewal v. ND Association of Counties, et al. | 22→23 | 1 | [¶23] William A. Neumann Carol Ronning Kapsner William A. Neumann Mary Muehlen Maring Gerald W. VandeWalle, C.J. |
 | 13898 | 2003 ND 166 | Damron v. Damron | 15→16 | 1 | [¶16] William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 13922 | 2003 ND 199 | Eberhardt v. Eberhardt | 21→22 | 1 | [¶22] Mary Muehlen Maring William A. Neumann Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 13924 | 2003 ND 200 | Gratech Co., Ltd. v. Wold Engineering, P.C. | 31→32 | 1 | [¶32] Mary Muehlen Maring |
 | 14033 | 2004 ND 106 | State v. Nordahl | 28→29 | 1 | [¶29] Carol Ronning Kapsner Dale V. Sandstrom William A. Neumann Mary Muehlen Maring I concur in the result Gerald W. VandeWalle, C.J. |
-| 14043 | 2004 ND 115 | State v. Higgins | 18→19 | 1 | [¶19] Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner |
 | 14152 | 2004 ND 226 | Foster v. Foster | 19→20 | 1 | [¶20] Carol Ronning Kapsner Mary Muehlen Maring William A. Neumann Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom V. |
 | 14200 | 2005 ND 53 | Frieze v. Frieze | 21→22 | 1 | [¶22] William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
-| 14246 | 2005 ND 94 | Glasow v. E.I. Dupont De Nemours and Company,  | 9→10 | 1 | [¶10] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Dale V. Sandstrom Mary Muehlen Maring 3 |
 | 14350 | 2005 ND 178 | Bjerklie v. Workforce Safety and Insurance | 18→19 | 1 | [¶19] Dale V. Sandstrom Daniel J. Crothers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Mary Muehlen Maring |
 | 14352 | 2005 ND 177 | Interest of L.D.M.   (CONFIDENTIAL) | 8→9 | 1 | [¶9] Mary Muehlen Maring Carol Ronning Kapsner Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 14378 | 2005 ND 217 | Wright v. State | 18→19 | 1 | [¶19] Dale V. Sandstrom Carol Ronning Kapsner Mary Muehlen Maring Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
 | 14522 | 2006 ND 101 | Lausen v. Hertz | 12→13 | 1 | [¶13] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom III |
 | 14543 | 2006 ND 134 | State v. Blue | 32→33 | 1 | [¶33] Carol Ronning Kapsner Dale V. Sandstrom Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Mary Muehlen Maring |
 | 14578 | 2006 ND 173 | State v. Bjerklie | 8→9 | 1 | [¶9] Daniel J. Crothers Dale V. Sandstrom Carol Ronning Kapsner Mary Muehlen Maring I concur in the result. Gerald W. VandeWalle, C.J. |
-| 14659 | 2006 ND 245 | Harshberger v. Harshberger | 27→28 | 1 | [¶28] Dale V. Sandstrom Carol Ronning Kapsner Daniel J. Crothers Mary Muehlen Maring Gerald W. VandeWalle, C.J. |
 | 14734 | 2007 ND 52 | State v. Westmiller | 16→17 | 1 | [¶17] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers I concur in the result. Dale V. Sandstrom |
-| 14736 | 2007 ND 51 | Odden v. Rath | 25→26 | 1 | [¶26] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Dale V. Sandstrom |
 | 14749 | 2007 ND 82 | State v. Noack | 10→11 | 1 | [¶11] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Dale V. Sandstrom I concur in the result Gerald W. VandeWalle, C.J. |
 | 14755 | 2007 ND 84 | Dietz v. Dietz | 25→26 | 1 | [¶26] Mary Muehlen Maring Carol Ronning Kapsner Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 14816 | 2007 ND 139 | Graner v. Graner | 35→36 | 1 | [¶36] Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. We concur in the result. Dale V. Sandstrom Daniel J. Crothers |
 | 14890 | 2008 ND 3 | State v. Emery | 9→10 | 1 | [¶10] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers I concur in the result. Dale V. Sandstrom |
-| 14898 | 2008 ND 15 | Judicial Vacancy in Judgeship No. 1, East Cent | 7→8 | 1 | [¶8] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Dale V. Sandstrom |
 | 14912 | 2008 ND 36 | Matter of Hehn | 25→26 | 1 | [¶26] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 15002 | 2008 ND 129 | Laib v. Laib | 23→24 | 1 | [¶24] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 15060 | 2008 ND 184 | Public Service Commission v. Minnesota Grain | 26→27 | 1 | [¶27] Daniel J. Crothers Mary Muehlen Maring Dale V. Sandstrom Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
@@ -86,7 +69,6 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 15475 | 2010 ND 142 | Reciprocal Discipline of Kenny | 6→7 | 1 | [¶7] Gerald W. VandeWalle, C.J. Mary Muehlen Maring Carol Ronning Kapsner Dale V. Sandstrom Daniel J. Crothers |
 | 15486 | 2010 ND 140 | Melchior v. Lystad, et al. | 16→17 | 1 | [¶17] Dale V. Sandstrom Daniel J. Crothers Mary Muehlen Maring Carol Ronning Kapsner I concur in the result. Gerald W. VandeWalle, C.J. |
 | 15527 | 2010 ND 197 | Hoggarth, et al. v. Kropp | 24→25 | 1 | [¶25] Dale V. Sandstrom Carol Ronning Kapsner Mary Muehlen Maring Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
-| 15541 | 2010 ND 230 | State v. Zink | 12→13 | 1 | [¶13] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Dale V. Sandstrom |
 | 15550 | 2010 ND 236 | Cavendish Farms v. Mathiason Farms (consolidat | 32→33 | 1 | [¶33] The Honorable Donovan John Foughty, D.J., and Richard L. Hagar, D.J., sitting in place of Sandstrom, J., and Kapsner, J., disqualified. |
 | 15570 | 2011 ND 20 | State v. Carpenter | 28→29 | 1 | [¶29] Carol Ronning Kapsner Mary Muehlen Maring Gerald W. VandeWalle, C.J. We concur in the result. Dale V. Sandstrom Daniel J. Crothers |
 | 15579 | 2011 ND 24 | Doll v. Doll | 33→34 | 1 | [¶34] Mary Muehlen Maring Carol Ronning Kapsner Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
@@ -118,10 +100,8 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 16072 | 2013 ND 130 | State v. Dieterle | 14→15 | 1 | [¶15] Daniel J. Crothers Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 16075 | 2013 ND 124 | Wilson v. State (consolidated w/ 20120426-2012 | 29→30 | 1 | [¶30] Dale V. Sandstrom Carol Ronning Kapsner Mary Muehlen Maring Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
 | 16081 | 2013 ND 125 | Swearingen v. State | 18→19 | 1 | [¶19] Dale V. Sandstrom Daniel J. Crothers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Mary Muehlen Maring |
-| 16082 | 2013 ND 131 | Yellowbird v. N.D. Dep't of Transportation | 18→19 | 1 | [¶19] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Dale V. Sandstrom Gerald W. VandeWalle, C.J. |
 | 16092 | 2013 ND 156 | Brash v. Gulleson | 26→27 | 1 | [¶27] Gerald W. VandeWalle, C.J. Dale V. Sandstrom Carol Ronning Kapsner Mary Muehlen Maring I concur in the result. Daniel J. Crothers |
 | 16143 | 2013 ND 211 | Adoption of I.R.R. (CONFIDENTIAL) | 15→16 | 1 | [¶16] Carol Ronning Kapsner Mary Muehlen Maring Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
-| 16249 | 2014 ND 61 | Anderson v. Lyons, et al. | 19→20 | 1 | [¶20] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Lisa Fair McEvers Daniel J. Crothers Dale V. Sandstrom |
 | 16256 | 2014 ND 89 | Interest of Thill | 19→20 | 1 | [¶20] Lisa Fair McEvers Daniel J. Crothers Dale V. Sandstrom Gerald W. VandeWalle, C.J. I concur in the result. Carol Ronning Kapsner |
 | 16281 | 2014 ND 130 | State v. Cone | 24→25 | 1 | [¶25] Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 16311 | 2014 ND 148 | Rustad v. Rustad (cross-reference w/20130105) | 26→27 | 1 | [¶27] Lisa Fair McEvers Daniel J. Crothers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
@@ -133,18 +113,14 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 16418 | 2015 ND 43 | State v. Gasal | 20→21 | 1 | [¶21] Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 16461 | 2015 ND 93 | Moe v. State | 15→16 | 1 | [¶16] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Lisa Fair McEvers Daniel J. Crothers I concur in the result. Dale V. Sandstrom |
 | 16465 | 2015 ND 106 | State v. Gonzalez (cross-ref. w/20110051) | 31→32 | 1 | [¶32] Dale V. Sandstrom Daniel J. Crothers Lisa Fair McEvers Gerald W. VandeWalle, C.J. I concur in the result. Carol Ronning Kapsner |
-| 16473 | 2015 ND 103 | State v. Williams | 26→27 | 1 | [¶27] Carol Ronning Kapsner Lisa Fair McEvers Daniel J. Crothers Dale V. Sandstrom Gerald W. VandeWalle, C.J. |
 | 16493 | 2015 ND 125 | Estate of Hogen | 52→53 | 1 | [¶53] Carol Ronning Kapsner Lisa Fair McEvers Daniel J. Crothers Dale V. Sandstrom I concur in the result. Gerald W. VandeWalle, C.J. |
 | 16514 | 2015 ND 156 | Peterka v. State | 33→34 | 1 | [¶34] Daniel J. Crothers Dale V. Sandstrom Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Lisa Fair McEvers |
 | 16544 | 2015 ND 197 | State v. Kordonowy | 28→29 | 1 | [¶29] Lisa Fair McEvers Carol Ronning Kapsner Dale V. Sandstrom Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers VI |
-| 16546 | 2015 ND 199 | BAHA Petroleum Consulting Corp. v. Job Service | 28→29 | 1 | [¶29] Lisa Fair McEvers Carol Ronning Kapsner Dale V. Sandstrom Daniel J. Crothers Gerald W. VandeWalle, C.J. |
 | 16557 | 2015 ND 218 | Matter of Hehn (cross-reference 20110053; 2012 | 28→29 | 1 | [¶29] Carol Ronning Kapsner V Lisa Fair McEvers Daniel J. Crothers Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
 | 16558 | 2015 ND 219 | State v. Weight | 24→25 | 1 | [¶25] Carol Ronning Kapsner Lisa Fair McEvers Dale V. Sandstrom Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
 | 16574 | 2015 ND 229 | Grigg v. Grigg | 20→21 | 1 | [¶21] Dale V. Sandstrom Lisa Fair McEvers Gerald W. VandeWalle, C.J. We concur in the result. Carol Ronning Kapsner Daniel J. Crothers |
 | 16599 | 2015 ND 252 | Poppe v. Stockert, et al. | 19→20 | 1 | [¶20] Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner Dale V. Sandstrom I concur in the result. Gerald W. VandeWalle, C.J. |
 | 16600 | 2015 ND 249 | City of Jamestown v. Hanson | 19→20 | 1 | [¶20] Carol Ronning Kapsner Lisa Fair McEvers Dale V. Sandstrom Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
-| 16643 | 2016 ND 13 | State v. Atkins | 10→11 | 1 | [¶11] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Lisa Fair McEvers Daniel J. Crothers Dale V. Sandstrom |
-| 16701 | 2016 ND 74 | Lumley, et al. v. Kapusta | 11→12 | 1 | [¶12] Gerald W. VandeWalle, C.J. Dale V. Sandstrom Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner |
 | 16901 | 2017 ND 107 | Greene v. Matthys | 16→17 | 1 | [¶17] Lisa Fair McEvers Daniel J. Crothers Jerod E. Tufte Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
 | 16916 | 2017 ND 103 | Crawford v. N.D. Dep't of Transportation | 11→12 | 1 | [¶12] Gerald W. VandeWalle, C.J. Carol Ronning Kapsner Lisa Fair McEvers Jerod E. Tufte I concur in the result. Daniel J. Crothers V |
 | 16927 | 2017 ND 119 | Keller v. Keller | 17→18 | 1 | [¶18] Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner Jerod E. Tufte Gerald W. VandeWalle, C.J. |

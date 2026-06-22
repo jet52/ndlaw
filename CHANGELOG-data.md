@@ -2,6 +2,14 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-marker-garbled-2026-06-21` — repair OCR-garbled signature paragraph markers
+
+The MARKER_GARBLED class from the sigscan triage (see next batch): the signature panel is **complete** in the DB body, but its `[¶N]` marker is OCR-garbled (`[IT 29]`, `[¶ 21J`, `[1111]`, `[f 13]`, `(¶ 8]`, `[UlO]`, `[VIS]`) or absent — so the marker regex undercounts the paragraph sequence.
+
+`fix_marker_garbled_2026-06-21.py` repairs the marker only: in the trailing signature paragraph it strips the leading garbled-marker token via a bounded regex (so a justice name can never be consumed — an early name-anchored approach was caught dropping "VANDE WALLE, C.J." in dry-run, because the space-split surname didn't match) and substitutes `[¶ {src_max}]`, the number the complete source carries. The replacement is a **surgical in-place substring swap** (deltas −1…+7 chars; no whitespace renormalization), and every panel name is corroborated against the court PDF.
+
+**24 markers repaired.** 7 skipped to manual review: 4 already carry a valid `[¶N]` marker (surrogate-judge notes / wrong-but-present number), 2 single-name dissent tails, 1 panel split across a `*NNN` page-break artifact. MARKER_GARBLED 31 → 7. Invariants 23/3/0. NB: justice-name OCR garbles in the panels themselves (NEU-MANN, MAKING, YANDE WALLE, McEYERS) are left as-is — a separate cleanup, not this marker fix.
+
 ## Batch `restore-sig-truncation-2026-06-21` — restore signature blocks dropped from modern opinion bodies
 
 A corpus-wide body-integrity sweep found that the modern DB `text_content` was ingested *verbatim* (`ingest.py`) from an **older clean-format markdown** whose analyzer had collapsed the final `[¶N]` signature paragraph down to a single trailing justice name (e.g. *State v. Whetsel*, 2017 ND 237, ended `Jon J. Jensen` where the panel is VandeWalle C.J. + four). The current `~/refs` markdown is a newer, complete regeneration that matches the court PDF, but re-ingest would regress formatting — so the fix is a surgical splice, not re-extraction.
