@@ -69,19 +69,49 @@ baseline = reverted or new work.
 
 - [x] Run the full suite; build a diff table (current vs baseline) → the reverted-body worklist.
 
-### Phase 1 RESULT — signature-block truncation (2026-06-21)
+### Phase 1 RESULT — signature-block truncation (2026-06-21) — 216 fixes, COHORT 273 → 58
 The body sweep surfaced a NEW defect class (not a reversion): the modern DB body
 was ingested verbatim from an **older clean-format markdown** whose analyzer
-**dropped the final `[¶N]` signature paragraph**, collapsing the justice panel to
-a single trailing name. Current `~/refs` markdown is complete (matches PDFs).
-- Built `refs_diff sigscan` (max-`[¶N]` gap; replaces the 73%-false-positive word-ratio `truncscan`) + `scripts/classify_sig_drops_2026-06-21.py`.
-- 273 flagged → MARKER_GARBLED 31 / TRUE_TRUNCATION 200 / CONTENT_LOSS 22 / REVIEW 20.
-- **Applied `restore-sig-truncation-2026-06-21`: 102 PDF-verified splices** (safe TRUE_TRUNCATION subset). Invariants 23/3/0.
-- **Applied `fix-marker-garbled-2026-06-21`: 24 garbled `[¶N]` markers repaired** (text was already complete; surgical marker-only swap, PDF-corroborated). MARKER_GARBLED 31 → 7.
-- **Applied `restore-sig-truncation-phase2-2026-06-21`: 6 multi-opinion appends** (single-justice separate-writing signatures appended after concurrence/dissent prose). TRUE_TRUNCATION 98 → 92. Fixed `justices.py` Jensen start year 2019→2017 (he signed Aug 2017+).
-- **Applied `restore-sig-truncation-phase4-2026-06-21`: 70 POSITIONAL majority-panel inserts** (`fix_sig_truncation_phase4_2026-06-21.py`) — panel inserted before the surviving trailing notation/note; divergence guard (DB trailing justice must be in source panel) rejected 16311; every panel PDF-corroborated. Incl. rescue pass: short-surname exact-match fix (Sand⊂VANDeWalle) cleared 9 false divergences, two-paragraph-trailing-element + roman-numeral-strip cleared 5. TRUE_TRUNCATION 92 → 18.
-- **Applied `restore-sig-truncation-phase5-2026-06-21`: 4 orphan-name replacements** (`fix_sig_truncation_phase5_2026-06-21.py`) — Whetsel-pattern, footnote-digit tolerant; 2017 ND 165/166/190/281.
-- OPEN (manual worklist = `triage/sig-drops-classified.csv`): [ ] **TRUE_TRUNCATION 18** — 3 datelines, ~8 unparseable formats, 5 inline roman-numeral section markers, 1 genuine divergence (16311), 1 other. [ ] CONTENT_LOSS 22 (substantive loss; overlaps 1997 contamination — verify vs PDF/bound vol). [ ] MARKER_GARBLED 7 + REVIEW 20. [ ] justice-name OCR garbles in panels (NEU-MANN/MAKING/YANDE WALLE) — separate cleanup. [ ] promote sigscan gap to an invariant.
+**dropped the final `[¶N]` signature paragraph(s)**, collapsing the justice panel
+to a single trailing name (or dropping it entirely). Current `~/refs` markdown is
+complete (matches the court PDFs); re-ingest would regress formatting, so the fix
+is a surgical splice/insert, not re-extraction.
+
+**Detection (reproducible):** `refs_diff sigscan` (max-`[¶N]` gap; replaces the
+73%-false-positive word-ratio `refs_diff truncscan`) → `scripts/classify_sig_drops_2026-06-21.py`
+(OCR-tolerant, date-agnostic name matching) → `triage/sig-drops-classified.csv`.
+Initial: 273 flagged = MARKER_GARBLED 31 / TRUE_TRUNCATION 200 / CONTENT_LOSS 22 / REVIEW 20.
+
+**Applied batches (all PDF-corroborated, changelog-logged & revertible, invariants 23/3/0):**
+| batch | n | what |
+|---|---|---|
+| `restore-sig-truncation-2026-06-21` | 102 | single-opinion splice (orphan→full panel) |
+| `fix-marker-garbled-2026-06-21` | 24 | repair garbled `[¶N]` marker (text already complete) |
+| `restore-sig-truncation-phase2-2026-06-21` | 6 | append single-justice separate-writing signature |
+| `restore-sig-truncation-phase4-2026-06-21` | 77 | **positional** majority-panel insert before trailing notation |
+| `restore-sig-truncation-phase5-2026-06-21` | 5 | orphan-name replace (footnote/roman-tolerant) |
+| `restore-sig-truncation-phase6-2026-06-21` | 2 | participation-note insert/append |
+
+Key methods/guards (see `scripts/fix_sig_truncation_phase*.py`): **divergence guard**
+(every justice in the DB's trailing element must be in the source panel — rejected
+16311); **short-surname exact-match** (edit-distance matched "Sand" inside "VANDeWalle");
+roman numerals in a signature run are **SECTION HEADINGS** (part III/VI), PDF-confirmed,
+stripped (they already live in the body); `justices.py` Jensen start 2019→2017 fixed.
+
+**OPEN — manual worklist (`triage/sig-drops-classified.csv`); best done by hand w/ the court PDF:**
+- [ ] **TRUE_TRUNCATION 8 (one-offs):** 3 datelines (12600/12657/12722 — "Dated at Bismarck" judgeship
+  orders; dateline duplicated in source + spelled-out "Chief Justice"/"Justice" roles); 2 surrogate-in-panel
+  (13288/16366 — Grosz/Graff in panel; need a `, S.J./D.J.` line-break in the panel formatter); 2 complex
+  intertwined (12726/13127 — note+panel fused, OCR'd); 1 GENUINE divergence (16311 — DB "Sandstrom concurs"
+  vs source "Crothers concurs"; needs a human read on which is right, then targeted fix).
+- [ ] **MARKER_GARBLED 8:** surrogate-note valid-marker / single-name dissent / split-panel + 15214's note now
+  lacks its `[¶8]` marker (cosmetic — panel restored). Add the missing markers.
+- [ ] **CONTENT_LOSS 22:** real substantive paragraph loss; overlaps the 1997 contamination (12392/12398/12455).
+  Verify each vs PDF / bound volume — do NOT auto-fix.
+- [ ] **REVIEW 20:** ambiguous multi-opinion 2-3/5-name panels.
+- [ ] justice-name OCR garbles WITHIN restored panels (NEU-MANN, MAKING, YANDE WALLE, McEYERS) — separate cleanup batch.
+- [ ] **Phase 4 (durability):** promote the `sigscan` max-`[¶N]`-gap to an invariant once the cohort is worked down.
+- NOTE: phase3 was built then REMOVED (unsafe — it append-duplicated participation notes); do not resurrect.
 
 ### Phase 2 — Token-level body reconciliation (surgical text fixes)
 - [ ] Extend reconciliation to structured `text_content.*` batches where old/new are tokens: `digit_flip`, `citefix`, `cite_token`, `marker`, `pincite`, `header_cite`, `cite_spacing`, `splice_para`. Parse the changed token, ¶-anchor it (don't bare-substring — the 12-sample had 5 ambiguous), and classify INTACT/REVERTED. Catches surgical reverts the aggregate detectors miss.
