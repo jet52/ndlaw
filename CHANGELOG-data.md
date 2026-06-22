@@ -2,6 +2,16 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-sig-truncation-phase4-2026-06-21` — positional insertion of dropped majority panels
+
+The bulk of the multi-opinion truncations share one shape: the **majority panel was dropped while a trailing element survived** in the DB — a "X, J., concurs in the result" notation, a participation note, or a separate-writing signature. The panel belongs BEFORE that trailing element. Because the dropped span is the opinion's consecutive tail (panel + trailing element) and the DB's last paragraph IS that element, inserting the panel immediately before it reconstructs source order.
+
+`fix_sig_truncation_phase4_2026-06-21.py` does the surgical insert, gated by a **divergence guard**: every justice named in the DB's trailing element must also appear in the dropped source signature region. This is load-bearing — it rejected 2014 ND 148 (oid 16311), where the DB says "Sandstrom concurs in the result" but the source panel has Crothers concurring (factually different texts). The inserted panel is the source signature lines whose justice the DB does not already render (so a notation already present is never duplicated), every name corroborated against the court PDF. A subsumed-surname fix (don't let "Sand" match inside "Sandstrom") cleared ~43 false divergences without weakening the 16311 catch.
+
+**56 majority panels inserted** (e.g. 1997 ND 204 → `[¶ 17]` Maring/Neumann/Sandstrom/VandeWalle before "MESCHKE, J., concurs in the result."). TRUE_TRUNCATION 92 → 36. Invariants 23/3/0.
+
+**Still NOT auto-fixed (manual worklist, `triage/sig-drops-classified.csv`):** 36 TRUE_TRUNCATION (11 unparseable formats, 10 prose-tail append-ambiguous, ~9 OCR-divergent "Sandstrom" names, 5 inline roman-numeral section markers, 1 genuine divergence = 16311) + 22 CONTENT_LOSS + 7 MARKER_GARBLED + 20 REVIEW.
+
 ## Batch `restore-sig-truncation-phase2-2026-06-21` — append dropped separate-writing signatures (multi-opinion)
 
 Phase 2 of the signature-truncation repair, covering the TRUE_TRUNCATION cases Phase 1 skipped as multi-opinion. These split into (A) **append-safe** — the DB body ends with a concurrence/dissent's prose and is missing only that separate writer's trailing signature — and (B) **positional** — the dropped paragraph is the *majority* panel, which belongs before a separate writing the DB already carries.
