@@ -268,6 +268,16 @@ the intended case on every rebuild; audit baselines must stay in sync).
   corrected page) — if West prints the corrected cite, the court may have
   approved a correction our slip-PDF text misses. Work from
   `SELECT * FROM print_anomalies` (each row carries the followup note).
+- [x] **Obtain correct official PDFs (misfiled primary source) — Priority A DONE 2026-06-22.**
+  Log at `triage/missing-primary-source.md`. Both filed (C-Track originals kept over
+  BitMiracle re-renders): **20110136 / 2015 ND 15** (Nemec) and
+  **20220121 / 2023 ND 32** (Queen; the 2022 ND 178 ⇄ 2023 ND 32 pair was transposed in
+  the tree — both paths corrected). DB bodies were already correct; no `changelog`.
+- [ ] **Priority B/C source-tree backfill (optional):** 7 1997 opinions with no PDF
+  (archive `.htm` present — primary source already covered): 19960070–79 (1997 ND 1),
+  19960226 (1997 ND 40), 19960215 (1997 ND 59), 19960235 (1997 ND 50), 19960329 (1997 ND 72),
+  19960243 (1997 ND 102), 19970039 (1997 ND 156). C = 1998 ND 171 (19980094) PDF text-layer
+  scrambled (optional re-OCR). Source-tree only — DB bodies correct.
 
 ### Dashboard as of v0.12.1 (2026-06-10)
 

@@ -2,6 +2,37 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-sig-truncation-oneoffs-2026-06-22` — final 8 TRUE_TRUNCATION one-offs
+
+The TRUE_TRUNCATION cohort's irreducible tail — the 8 the general fixers correctly
+skipped (dateline-in-source, surrogate D.J./S.J. outside the modern-surname roster,
+roman-numeral section heading fused into the panel, and the 16311 divergence).
+Hand-built, each justice name verified against the court PDF
+(`scripts/fix_sig_truncation_oneoffs_2026-06-22.py`):
+
+- **3 datelines appended** (1998 ND 58 / 98 / 136 — judgeship-vacancy orders): the
+  `[¶N+1]` panel followed the `[¶N] Dated at Bismarck…` line; 1998 ND 136 uses
+  spelled-out roles ("Chief Justice"/"Justice").
+- **4 panel-before-note inserts** (1998 ND 143, 2000 ND 79, 2000 ND 225, 2014 ND 201):
+  disposition text was present; only the `[¶N]` majority panel dropped while a
+  surrogate/participation note survived. 2014 ND 201 also had its garbled note marker
+  `[1126]→[¶26]` and `KAPS-NER→KAPSNER` repaired; 2000 ND 225 also needed its
+  trailing-note `[¶28]` marker restored.
+- **16311 (2014 ND 148, Rustad) RESOLVED — the DB was correct.** The phase-4 divergence
+  guard had flagged this (DB "Sandstrom concurs in the result" vs the `~/refs` source's
+  "Crothers concurs"). Independent authority settles it: **West 849 N.W.2d 607 /
+  CourtListener op 2684722**, both sourced from the court's own `.wpd`
+  (`ndcourts.gov/wp/20140014.wpd`), read "GERALD W. VANDE WALLE, C.J., DANIEL J.
+  CROTHERS and CAROL RONNING KAPSNER, JJ., concur. DALE V. SANDSTROM, J., concurs in
+  the result." (McEvers authored.) The C-Track slip PDF's text layer erroneously
+  duplicated "Daniel J. Crothers" for the concurrence and dropped Sandstrom — a
+  PDF-generation artifact, **not** a court typo to preserve. Inserted the authoritative
+  `[¶27]` majority line before the DB's (correct) Sandstrom concurrence.
+
+sigscan TRUE_TRUNCATION 8→0; invariants 23/3/0. Remaining sig cohort: MARKER_GARBLED 8
+(cosmetic), CONTENT_LOSS 22 (dispositioned — not DB defects; see
+`triage/missing-primary-source.md`), REVIEW 20.
+
 ## Batch `restore-sig-truncation-phase4-2026-06-21` — positional insertion of dropped majority panels
 
 The bulk of the multi-opinion truncations share one shape: the **majority panel was dropped while a trailing element survived** in the DB — a "X, J., concurs in the result" notation, a participation note, or a separate-writing signature. The panel belongs BEFORE that trailing element. Because the dropped span is the opinion's consecutive tail (panel + trailing element) and the DB's last paragraph IS that element, inserting the panel immediately before it reconstructs source order.

@@ -1,21 +1,16 @@
-# Signature / trailing-paragraph drop sweep (58 flagged)
+# Signature / trailing-paragraph drop sweep (50 flagged)
 
 DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still has. `db_max` < `src_max` = the gap.
 
-- by class: **SIGNATURE** 37, **CONTENT** 19, **SIGNATURE?** 2
-- by gap: gap1=39, gap2=6, gap3=3, gap5=1, gap7=2, gap12=1, gap15=1, gap21=1, gap26=1, gap40=1, gap44=1, gap430=1
+- by class: **SIGNATURE** 29, **CONTENT** 19, **SIGNATURE?** 2
+- by gap: gap1=33, gap2=4, gap3=3, gap5=1, gap7=2, gap12=1, gap15=1, gap21=1, gap26=1, gap40=1, gap44=1, gap430=1
 
-## SIGNATURE (37)
+## SIGNATURE (29)
 
 | oid | label | case_name | db→src ¶ | gap | dropped text |
 |--|--|--|--|--|--|
-| 12600 | 1998 ND 58 | In the Matter of the Judicial Vacancy in Distr | 15→16 | 1 | [¶16] Dated at Bismarck, North Dakota, this 10th day of March, 1998. Gerald W. VandeWalle, C.J. Herbert L. Meschke William A. Neumann Dale V. Sandstrom Mary Muehlen Maring |
-| 12657 | 1998 ND 98 | In the Matter of the Judicial Vacancy in Distr | 12→13 | 1 | [¶13] Dated at Bismarck, North Dakota, this 29th day of April, 1998. Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Herbert L. Meschke |
-| 12722 | 1998 ND 136 | In the Matter of the Petition for Change of De | 8→9 | 1 | [¶9] Gerald W. VandeWalle, Chief Justice Herbert L. Meschke, Justice Mary Muehlen Maring, Justice William A. Neumann, Justice Dale V. Sandstrom, Justice |
-| 12726 | 1998 ND 143 | LaRocque v. LaRocque | 9→10 | 1 | [¶10] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Richard W. Grosz, D.J. Gerald W. VandeWalle, C.J. Richard W. Grosz, D.J., sitting in place of Meschke, J., disqualified. |
 | 12743 | 1998 ND 161 | Moen v. Meidinger | 11→12 | 1 | [¶12] Mary Muehlen Maring Herbert L. Meschke Georgia Dawson, D.J. Gerald W. VandeWalle, C.J. Georgia Dawson, D.J., sitting in place of Sandstrom, J., disqualified. Immediately prior to oral argument Neumann, J., disqualified himself. |
 | 13109 | 2000 ND 49 | Mountrail County v. Hoffman | 11→12 | 1 | [¶12] Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
-| 13127 | 2000 ND 79 | Buchmann v. North Dakota Workers Compensation  | 26→27 | 1 | [¶27] Gerald W. VandeWalle, C.J. VI Dale V. Sandstrom William A. Neumann Mary Muehlen Maring The Honorable Carol Ronning Kapsner disqualified herself subsequent to oral argument and did not participate in this decision. |
 | 13182 | 2000 ND 121 | State v. Martin | 10→11 | 1 | [¶11] Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner |
 | 13580 | 2002 ND 86 | Matrix v. TAG Investments                  (Cr | 40→41 | 1 | [¶41] The Honorable William F. Hodny, S.J., sitting in place of Kapsner, J., disqualified. |
 | 13665 | 2002 ND 170 | State v. Fitterer | 13→14 | 1 | [¶14] William A. Neumann Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
@@ -36,7 +31,6 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 15911 | 2012 ND 167 | Rudnick v. Rode | 29→30 | 1 | [¶30] Mary Muehlen Maring V Carol Ronning Kapsner Gerald W. VandeWalle, C.J. We concur in the result. Dale V. Sandstrom Daniel J. Crothers |
 | 15913 | 2012 ND 168 | Matter of S.E. (Confidential) | 17→18 | 1 | [¶18] Mary Muehlen Maring Carol Ronning Kapsner Gerald W. VandeWalle, C.J. We concur in the result. Dale V. Sandstrom Daniel J. Crothers |
 | 15951 | 2012 ND 228 | Fonder v. Fonder | 32→33 | 1 | [¶33] Mary Muehlen Maring Daniel J. Crothers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Dale V. Sandstrom |
-| 16311 | 2014 ND 148 | Rustad v. Rustad (cross-reference w/20130105) | 26→27 | 1 | [¶27] Lisa Fair McEvers Daniel J. Crothers Carol Ronning Kapsner Gerald W. VandeWalle, C.J. I concur in the result. Daniel J. Crothers |
 | 16377 | 2014 ND 229 | Frey v. Frey (cross-reference w/20120378) | 27→28 | 1 | [¶28] Lisa Fair McEvers Daniel J. Crothers Carol Ronning Kapsner We concur in the result. Dale Sandstrom 10 Gerald W. VandeWalle, C.J. 11 |
 | 16574 | 2015 ND 229 | Grigg v. Grigg | 20→21 | 1 | [¶21] Dale V. Sandstrom Lisa Fair McEvers Gerald W. VandeWalle, C.J. We concur in the result. Carol Ronning Kapsner Daniel J. Crothers |
 | 16901 | 2017 ND 107 | Greene v. Matthys | 16→17 | 1 | [¶17] Lisa Fair McEvers Daniel J. Crothers Jerod E. Tufte Carol Ronning Kapsner Gerald W. VandeWalle, C.J. |
@@ -44,8 +38,6 @@ DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source still
 | 16938 | 2017 ND 131 | State v. Raphael | 1→2 | 1 | [¶2] Gerald W. VandeWalle, C.J. Jerod E. Tufte Daniel J. Crothers Lisa Fair McEvers Carol Ronning Kapsner |
 | 17102 | 2017 ND 289 | Interest of K.S.D. (CONFIDENTIAL) (consolidate | 35→36 | 1 | [¶36] Gerald W. VandeWalle, C.J. Lisa Fair McEvers |
 | 17858 | 2021 ND 144 | Bilger v. Bilger | 14→15 | 1 | [¶15] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte IV Filed by Clerk of Supreme Court 10/06/21 |
-| 13288 | 2000 ND 225 | Jacobson v. ND Workers Comp. Bureau | 26→28 | 2 | [¶27] Gerald W. VandeWalle, C.J. Dale V. Sandstrom William A. Neumann Mary Muehlen Maring Richard W. Grosz, D.J.  ⏎  [¶28] The Honorable Richard W. Grosz, D. J., sitting in place of Kapsner, J., disqualified. |
-| 16366 | 2014 ND 201 | Capps, et al. v. Weflen, et al. (cross-ref. w/ | 24→26 | 2 | [¶25] Dale V. Sandstrom Daniel J. Crothers Lisa Fair McEvers Benny A. Graff, S.J. Gerald W. VandeWalle, C.J.  ⏎  [¶26] The Honorable Benny A. Graff, S.J., sitting in place of Kapsner, J., disqualified. |
 
 ## SIGNATURE? (2)
 

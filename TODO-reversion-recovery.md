@@ -99,15 +99,30 @@ roman numerals in a signature run are **SECTION HEADINGS** (part III/VI), PDF-co
 stripped (they already live in the body); `justices.py` Jensen start 2019→2017 fixed.
 
 **OPEN — manual worklist (`triage/sig-drops-classified.csv`); best done by hand w/ the court PDF:**
-- [ ] **TRUE_TRUNCATION 8 (one-offs):** 3 datelines (12600/12657/12722 — "Dated at Bismarck" judgeship
-  orders; dateline duplicated in source + spelled-out "Chief Justice"/"Justice" roles); 2 surrogate-in-panel
-  (13288/16366 — Grosz/Graff in panel; need a `, S.J./D.J.` line-break in the panel formatter); 2 complex
-  intertwined (12726/13127 — note+panel fused, OCR'd); 1 GENUINE divergence (16311 — DB "Sandstrom concurs"
-  vs source "Crothers concurs"; needs a human read on which is right, then targeted fix).
+- [x] **TRUE_TRUNCATION 8 — DONE 2026-06-22** (`scripts/fix_sig_truncation_oneoffs_2026-06-22.py`,
+  batch `restore-sig-truncation-oneoffs-2026-06-22`). 3 datelines (12600/12657/12722) appended;
+  4 panel-before-note inserts (12726/13127/13288/16366; 16366 also had `[1126]→[¶26]`/`KAPS-NER`
+  repaired; 13288 also needed its trailing-note `[¶28]` marker). The "complex intertwined" worry was
+  unfounded — disposition text was present, only the `[¶N]` panel dropped. **16311 RESOLVED: the DB was
+  right.** West 849 N.W.2d 607 / CourtListener op 2684722 (court `.wpd` 20140014.wpd) confirm
+  "DALE V. SANDSTROM, J., concurs in the result"; the C-Track PDF text layer erroneously duplicated
+  "Daniel J. Crothers" for the concurrence (a PDF-generation artifact, not a court typo). Inserted the
+  authoritative `[¶27]` majority line (VandeWalle C.J., Crothers, Kapsner concur). sigscan
+  TRUE_TRUNCATION 8→0; invariants 23/3/0.
 - [ ] **MARKER_GARBLED 8:** surrogate-note valid-marker / single-name dissent / split-panel + 15214's note now
   lacks its `[¶8]` marker (cosmetic — panel restored). Add the missing markers.
-- [ ] **CONTENT_LOSS 22:** real substantive paragraph loss; overlaps the 1997 contamination (12392/12398/12455).
-  Verify each vs PDF / bound volume — do NOT auto-fix.
+- [x] **CONTENT_LOSS 22 — DISPOSITIONED 2026-06-22: NOT DB defects.** Verified the
+  full bucket: every DB body is correct & complete; the `~/refs` *source* file is the
+  contaminated/bloated/misfiled copy (the diff direction is backwards from the rest of
+  the sweep). Evidence: (a) 5 modern cases vs the authoritative court PDF — 19652/19736
+  DB matches PDF word-for-word at the panel; 18142 (2023 ND 32) & 16397 (2015 ND 15) the
+  on-disk PDF is the *earlier same-docket* opinion (2022 ND 178 / 2011 ND 128), DB body is
+  the correct later opinion; 12747 PDF text-layer scrambled, DB clean. (b) 7 1997 cases vs
+  the court's archive `.htm` — htm word count tracks DB within a few %, while `src` is 2–8×
+  bloated duplicated OCR (12360=Kenner 960071.htm 2877w ≈ DB 2796w; src 5232 merged sibling
+  cases). (c) the 10 moderate/near rows are db≈src trailing-marker noise. **No DB fix; no
+  `changelog`.** Source-tree side (missing/misfiled official PDFs) logged at
+  `triage/missing-primary-source.md` + `TODO-audit.md` (2 actionable PDF fetches).
 - [ ] **REVIEW 20:** ambiguous multi-opinion 2-3/5-name panels.
 - [ ] justice-name OCR garbles WITHIN restored panels (NEU-MANN, MAKING, YANDE WALLE, McEYERS) — separate cleanup batch.
 - [ ] **Phase 4 (durability):** promote the `sigscan` max-`[¶N]`-gap to an invariant once the cohort is worked down.
