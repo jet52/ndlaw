@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `fix-marker-garbled-2026-06-22` — final MARKER_GARBLED cohort (7)
+
+Heterogeneous despite the shared label; each verified against the court PDF (and,
+where the PDF text layer was wrong/ambiguous, West / CourtListener from the court
+`.wpd`):
+- **2 true marker garbles** (text complete): 2000 ND 121 `[¶ *11]*`→`[¶ 11]` (two stray
+  page-break asterisks); 2003 ND 156 `[1123]`→`[¶ 23]` (the double "WILLIAM A. NEUMANN"
+  is in the source — preserved).
+- **2 missing markers**: 2009 ND 111 add `[¶ 8]` to the Sandstrom "unavoidably absent"
+  participation note; 2017 ND 289 the dissent signature dropped "Gerald W. VandeWalle,
+  C.J." and its `[¶36]` marker — prepended.
+- **3 dropped panels** (genuine truncations the label hid): 2002 ND 86 and 2010 ND 236
+  dropped the `[¶N]` majority panel and mislabeled the trailing surrogate note one number
+  early — inserted the panel, renumbered the note; 2008 ND 184 dropped the `[¶27]` majority
+  block while keeping a separate `[¶15]` concur block (West/CL op 898372: "[¶27] VANDE
+  WALLE, C.J., MARING, SANDSTROM and KAPSNER, JJ., concur").
+
+Remaining: **1 false positive — 2021 ND 144** (oid 17858): the DB carries the complete
+`[¶14]` panel; its paragraph numbering merely runs one behind the official PDF (`[¶15]`).
+No signature missing; to be baselined when the sigscan gap is promoted to an invariant.
+sigscan MARKER_GARBLED 8→1 (the false positive); invariants 23/3/0.
+
 ## Batch `restore-sig-truncation-oneoffs-2026-06-22` — final 8 TRUE_TRUNCATION one-offs
 
 The TRUE_TRUNCATION cohort's irreducible tail — the 8 the general fixers correctly

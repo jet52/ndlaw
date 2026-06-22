@@ -109,8 +109,13 @@ stripped (they already live in the body); `justices.py` Jensen start 2019→2017
   "Daniel J. Crothers" for the concurrence (a PDF-generation artifact, not a court typo). Inserted the
   authoritative `[¶27]` majority line (VandeWalle C.J., Crothers, Kapsner concur). sigscan
   TRUE_TRUNCATION 8→0; invariants 23/3/0.
-- [ ] **MARKER_GARBLED 8:** surrogate-note valid-marker / single-name dissent / split-panel + 15214's note now
-  lacks its `[¶8]` marker (cosmetic — panel restored). Add the missing markers.
+- [x] **MARKER_GARBLED 8 — DONE 2026-06-22** (`scripts/fix_marker_garbled_2026-06-22.py`, batch
+  `fix-marker-garbled-2026-06-22`). Heterogeneous despite the label: 2 true marker garbles (13182
+  `[¶ *11]*`→`[¶ 11]`; 13881 `[1123]`→`[¶ 23]`); 2 missing markers (15214 `[¶8]`; 17102 dissent sig
+  dropped "VandeWalle, C.J."+`[¶36]`); 3 dropped panels (13580/15550 panel + note-renumber; 15060
+  dropped the `[¶27]` majority block, kept the separate `[¶15]` block — West/CL op 898372 verified).
+  Remaining = **1 false positive, 17858 (2021 ND 144)**: DB has the complete `[¶14]` panel, its
+  numbering just runs one behind the PDF (`[¶15]`); baseline it when promoting the invariant.
 - [x] **CONTENT_LOSS 22 — DISPOSITIONED 2026-06-22: NOT DB defects.** Verified the
   full bucket: every DB body is correct & complete; the `~/refs` *source* file is the
   contaminated/bloated/misfiled copy (the diff direction is backwards from the rest of
