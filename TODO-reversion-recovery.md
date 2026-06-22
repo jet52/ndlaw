@@ -128,7 +128,22 @@ stripped (they already live in the body); `justices.py` Jensen start 2019→2017
   cases). (c) the 10 moderate/near rows are db≈src trailing-marker noise. **No DB fix; no
   `changelog`.** Source-tree side (missing/misfiled official PDFs) logged at
   `triage/missing-primary-source.md` + `TODO-audit.md` (2 actionable PDF fetches).
-- [ ] **REVIEW 20:** ambiguous multi-opinion 2-3/5-name panels.
+- [x] **REVIEW 20 — DONE 2026-06-22** (`scripts/fix_sig_review_2026-06-22.py` +2 inline,
+  batch `restore-sig-review-2026-06-22`, 19 fixes). All multi-opinion: the DB kept a
+  SEPARATE writing (a "concur in the result" notation or an orphan name) and dropped the
+  `[¶N]` majority panel that precedes it — concurring justices disjoint from the majority,
+  which is why phase-4's guard refused them. 13 majority-panel inserts before the surviving
+  concurrence + 3 orphan-last-name panel restorations + 1 surrogate-note (12743), each
+  PDF-name-verified. The 2 "partial-panel anomalies" (13109/15475) turned out to be
+  head-dropped West concur lines (DB kept the tail) — prepended the dropped head,
+  West/CL-verified (op 896526 / 898762, court `.wpd`). Remaining REVIEW = **1 false
+  positive, 13291 (2000 ND 203)**: DB has the complete `[¶48]` panel; source `[¶478]` is an
+  OCR-garbled duplicate marker. Baseline it.
+
+  **Milestone:** sigscan now flags **24, all non-defects** — 22 CONTENT_LOSS (source-tree
+  contamination, not DB), + 2 false positives (17858, 13291). Every genuine DB signature
+  defect is fixed. Ready to promote the sigscan max-`[¶N]`-gap to an invariant with these 24
+  baselined.
 - [ ] justice-name OCR garbles WITHIN restored panels (NEU-MANN, MAKING, YANDE WALLE, McEYERS) — separate cleanup batch.
 - [ ] **Phase 4 (durability):** promote the `sigscan` max-`[¶N]`-gap to an invariant once the cohort is worked down.
 - NOTE: phase3 was built then REMOVED (unsafe — it append-duplicated participation notes); do not resurrect.

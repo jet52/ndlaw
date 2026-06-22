@@ -2,6 +2,38 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-sig-review-2026-06-22` — REVIEW cohort (multi-opinion, 19)
+
+The REVIEW cases were held back because each is multi-opinion: the DB kept a
+SEPARATE writing (a "concur in the result" notation or an orphan signature) while
+dropping the `[¶N]` MAJORITY panel that precedes it. Phase-4's divergence guard
+(DB-trailing-justice ⊆ source-panel) correctly refused them — here the surviving
+concurring justices are DISJOINT from the dropped majority. With every court PDF
+signature block in hand the structure is unambiguous; `fix_sig_review_2026-06-22.py`
+inserts the majority panel before the surviving concurrence (or restores a full
+panel over an orphan last name), with a guard that every inserted surname appears
+in the court PDF.
+
+- **13 majority-panel inserts** before a separate concurrence (e.g. 2002 ND 170 →
+  `[¶14]` Neumann/Maring/Kapsner/VandeWalle before "I concur in the result. Dale V.
+  Sandstrom"; 2014 ND 229, 2015 ND 229 similar with "We concur in the result").
+- **3 orphan last-name restorations** (2017 ND 107/119/131): the DB kept only the
+  panel's final name — replaced with the full `[¶N]` panel (also fixed OCR
+  "Gerald'W."→"Gerald W.").
+- **1 surrogate-note** (1998 ND 161): inserted `[¶12]` panel (incl. Georgia Dawson,
+  D.J.) before the Dawson disqualification note.
+- **2 head-dropped West concur lines** (2000 ND 49, 2010 ND 142): the DB kept the
+  *tail* of the concur line; prepended the dropped head + `[¶N]` marker, verified
+  against West / CourtListener (op 896526 / 898762, court `.wpd`).
+
+Remaining REVIEW = **1 false positive, 2000 ND 203** (oid 13291): DB already carries
+the complete `[¶48]` panel; the source `[¶478]` is an OCR-garbled duplicate marker.
+
+**Signature cohort milestone:** sigscan now flags 24, all non-defects — 22
+CONTENT_LOSS (source-tree contamination, DB bodies correct) + 2 false positives
+(17858 numbering, 13291 garbled-dup). Every genuine DB signature defect is fixed;
+invariants 23/3/0.
+
 ## Batch `fix-marker-garbled-2026-06-22` — final MARKER_GARBLED cohort (7)
 
 Heterogeneous despite the shared label; each verified against the court PDF (and,
