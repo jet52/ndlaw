@@ -572,6 +572,308 @@ def run_selfcheck(args) -> None:
 
 
 # --------------------------------------------------------------------------- #
+# truncscan mode — corpus-wide PDF-oracle truncation sweep (1997+)
+# --------------------------------------------------------------------------- #
+#
+# `selfcheck` only PDF-checks opinions that landed in `compare`'s markdown
+# `major` bucket, so a body truncated to its signature block whose markdown
+# source is *also* truncated never reaches the PDF check. This mode runs the
+# DB-vs-PDF ratio check over EVERY modern (1997+) native-neutral opinion that
+# has a PDF on disk, independent of the markdown compare.
+#
+# The PDF text carries a filing header, page numbers, and a repeated caption
+# that the DB body omits, so even a complete body scores ratio < 1.0. The cutoff
+# is therefore calibrated from the distribution, not assumed; we report ratio AND
+# the absolute missing-word count (a dropped 5-justice signature block is ~40-70
+# words regardless of opinion length, which a pure ratio misses on long opinions).
+#
+# Categories: PDF_MISFILED (PDF is a different case — unusable oracle) >
+# DB_CONTENT_BUG (DB body is the wrong/contaminated case) > DB_TRUNCATED
+# (right case, body much shorter than PDF) > OK.
+
+def _truncscan_one(work: tuple):
+    db_path, refs_str, oid, ratio_cut = work
+    refs = Path(refs_str)
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    op = conn.execute(
+        "SELECT case_name, date_filed, source_path, text_content FROM opinions WHERE id=?",
+        (oid,)).fetchone()
+    neutral = conn.execute(
+        "SELECT citation FROM citations WHERE opinion_id=? AND reporter='ND-neutral' LIMIT 1",
+        (oid,)).fetchone()
+    conn.close()
+    label = neutral["citation"] if neutral else None
+    m = re.match(r"(\d{4}) ND (\d+)", label or "")
+    if not m:
+        return None
+    year, num = m.group(1), m.group(2)
+    pdf = refs / "pdfs" / year / f"{year}ND{num}.pdf"
+    if not pdf.exists():
+        return dict(oid=oid, label=label, case_name=(op["case_name"] or "")[:46],
+                    cat="PDF_MISSING", db_words=0, pdf_words=0, ratio=None,
+                    missing=0, label_in_body=None, label_in_pdf=None,
+                    source_path=op["source_path"])
+
+    import subprocess
+    try:
+        pdf_text = subprocess.run(["pdftotext", str(pdf), "-"],
+                                  capture_output=True, text=True, timeout=60).stdout
+    except (OSError, subprocess.SubprocessError):
+        pdf_text = ""
+
+    body = strip_frontmatter(op["text_content"] or "")
+    db_words = normalize_words(body)
+    pdf_words = normalize_words(pdf_text)
+    label_in_body = label in set(_NEUTRAL_RE.findall(body))
+    label_in_pdf = label in set(_NEUTRAL_RE.findall(pdf_text))
+    surnames = _distinctive_surnames(op["case_name"])
+    name_in_body = (any(s.lower() in body.lower() for s in surnames)
+                    if surnames else None)
+
+    nd, npdf = len(db_words), len(pdf_words)
+    ratio = round(nd / npdf, 3) if npdf else None
+    missing = npdf - nd
+
+    if not npdf:
+        cat = "PDF_UNREADABLE"
+    elif not label_in_pdf:
+        cat = "PDF_MISFILED"          # PDF on disk is a different opinion
+    elif (label_in_body is False) or (name_in_body is False):
+        cat = "DB_CONTENT_BUG"        # DB body is the wrong/contaminated case
+    elif ratio is not None and ratio < ratio_cut:
+        cat = "DB_TRUNCATED"          # right case, body much shorter than PDF
+    else:
+        cat = "OK"
+    return dict(oid=oid, label=label, case_name=(op["case_name"] or "")[:46],
+                cat=cat, db_words=nd, pdf_words=npdf, ratio=ratio, missing=missing,
+                label_in_body=label_in_body, label_in_pdf=label_in_pdf,
+                source_path=op["source_path"])
+
+
+def run_truncscan(args) -> None:
+    conn = sqlite3.connect(str(args.db))
+    oids = [r[0] for r in conn.execute(
+        "SELECT DISTINCT o.id FROM opinions o JOIN citations c ON c.opinion_id=o.id "
+        "WHERE c.reporter='ND-neutral' AND o.date_filed >= '1997-01-01' "
+        "ORDER BY o.id").fetchall()]
+    conn.close()
+    if args.limit:
+        oids = oids[:args.limit]
+    print(f"Modern neutral opinions to PDF-scan: {len(oids)}  (workers={args.workers})")
+
+    work = [(str(args.db), str(args.refs), oid, args.ratio_cut) for oid in oids]
+    start = time.time()
+    out = []
+    if args.workers > 1:
+        with mp.Pool(args.workers) as pool:
+            for i, r in enumerate(pool.imap_unordered(_truncscan_one, work, chunksize=20), 1):
+                if r is not None:
+                    out.append(r)
+                if i % 1000 == 0:
+                    el = time.time() - start
+                    print(f"  {i}/{len(oids)} ({i/el:.0f}/s)")
+    else:
+        for w in work:
+            r = _truncscan_one(w)
+            if r is not None:
+                out.append(r)
+
+    from collections import Counter
+    counts = Counter(o["cat"] for o in out)
+    order = ["DB_CONTENT_BUG", "DB_TRUNCATED", "PDF_MISFILED", "PDF_MISSING",
+             "PDF_UNREADABLE", "OK"]
+    # primary sort: category priority, then worst ratio first
+    out.sort(key=lambda o: (order.index(o["cat"]) if o["cat"] in order else 99,
+                            o["ratio"] if o["ratio"] is not None else 9))
+
+    args.csv.parent.mkdir(parents=True, exist_ok=True)
+    with args.csv.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
+        w.writeheader(); w.writerows(out)
+
+    # ratio histogram over the OK+truncated comparable set (oracle usable)
+    usable = [o for o in out if o["ratio"] is not None and o["cat"] in ("OK", "DB_TRUNCATED")]
+    bins = Counter()
+    for o in usable:
+        bins[min(int(o["ratio"] * 10), 10)] += 1
+
+    L = [f"# Corpus-wide PDF-oracle truncation sweep ({len(out)} modern neutral opinions)\n",
+         f"DB body vs `pdftotext` of the court PDF. Cutoff ratio < **{args.ratio_cut}** → DB_TRUNCATED.\n"]
+    for c in order:
+        if counts.get(c):
+            L.append(f"- **{c}**: {counts[c]}")
+    L.append("\n## Ratio histogram (oracle-usable opinions)\n")
+    L.append("| db/pdf ratio | count |")
+    L.append("|--|--|")
+    for b in range(11):
+        if bins.get(b):
+            lo = b / 10
+            L.append(f"| {lo:.1f}–{lo+0.1:.1f} | {bins[b]} |")
+    L.append("")
+    trunc = [o for o in out if o["cat"] == "DB_TRUNCATED"]
+    if trunc:
+        L.append(f"## DB_TRUNCATED ({len(trunc)}) — worst ratio first\n")
+        L.append("| oid | label | case_name | db/pdf words | missing | ratio |")
+        L.append("|--|--|--|--|--|--|")
+        for o in trunc:
+            L.append(f"| {o['oid']} | {o['label']} | {o['case_name']} | "
+                     f"{o['db_words']}/{o['pdf_words']} | {o['missing']} | {o['ratio']} |")
+        L.append("")
+    bug = [o for o in out if o["cat"] == "DB_CONTENT_BUG"]
+    if bug:
+        L.append(f"## DB_CONTENT_BUG ({len(bug)}) — DB body is the wrong/contaminated case\n")
+        L.append("| oid | label | case_name | label_in_body | db/pdf words |")
+        L.append("|--|--|--|--|--|")
+        for o in bug:
+            L.append(f"| {o['oid']} | {o['label']} | {o['case_name']} | "
+                     f"{o['label_in_body']} | {o['db_words']}/{o['pdf_words']} |")
+        L.append("")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text("\n".join(L), encoding="utf-8")
+
+    print(f"\nDone in {(time.time()-start)/60:.1f}m.  {len(out)} opinions.")
+    for c in order:
+        if counts.get(c):
+            print(f"  {c:16} {counts[c]}")
+    print(f"\nReport: {args.out}\nCSV:    {args.csv}")
+
+
+# --------------------------------------------------------------------------- #
+# sigscan mode — trailing-[¶N]-paragraph drop detector (signature truncation)
+# --------------------------------------------------------------------------- #
+#
+# The modern DB body was ingested from an OLDER clean-format markdown whose
+# analyzer dropped the final `[¶N]` signature paragraph, collapsing the justice
+# panel down to a single trailing name. The CURRENT ~/refs markdown (a newer raw
+# regeneration) is complete. This is detected precisely and length-independently
+# by comparing the MAX `[¶N]` marker in the DB body vs the source: when the DB's
+# max paragraph number is below the source's, the DB dropped trailing
+# paragraph(s) — almost always the signature block.
+#
+# This is the correct instrument for the defect; the word-ratio `truncscan` both
+# misses long-opinion signature drops (small word fraction) and false-flags
+# complete bodies that merely omit the PDF's caption/attorney chrome.
+#
+# gap == 1 (typical): the dropped paragraph is the signature block (SIGNATURE).
+# gap >= ~5: genuine content loss / contamination (CONTENT) — a different class,
+# overlapping the known 1997 contamination cohort; reported but NOT auto-fixed.
+
+_PARA_MARK_RE = re.compile(r"\[¶\s*(\d+)\]")
+# justice + common ND-bench surnames/given-names that mark a signature paragraph
+_SIG_NAMES = set((
+    "VandeWalle VandeWalle, Vande Walle Sandstrom Neumann Maring Kapsner "
+    "Crothers McEvers Tufte Jensen Bahr Levine Meschke Erickson "
+    "Gerald Dale William Mary Carol Daniel Lisa Jerod Jon Herbert Beryl"
+).split())
+
+
+def _max_para(text: str) -> int:
+    nums = [int(x) for x in _PARA_MARK_RE.findall(text)]
+    return max(nums) if nums else 0
+
+
+def _missing_para_text(src: str, lo: int, hi: int) -> str:
+    """Text of source paragraphs numbered (lo, hi] — i.e. what the DB dropped."""
+    marks = list(_PARA_MARK_RE.finditer(src))
+    by_num = {int(m.group(1)): m for m in marks}
+    out = []
+    for n in range(lo + 1, hi + 1):
+        m = by_num.get(n)
+        if not m:
+            continue
+        # paragraph text runs to the next marker (any number) or EOF
+        nxt = [mm.start() for mm in marks if mm.start() > m.end()]
+        end = min(nxt) if nxt else len(src)
+        out.append(re.sub(r"\s+", " ", src[m.start():end]).strip())
+    return "  ⏎  ".join(out)
+
+
+def _looks_like_signature(missing: str) -> bool:
+    toks = re.findall(r"[A-Za-z']+", missing)
+    if not toks:
+        return False
+    hits = sum(1 for t in toks if t in _SIG_NAMES)
+    has_role = bool(re.search(r"\b(C\.J\.|J\.|JJ\.|S\.J\.|D\.J\.|concur|sitting in place)\b", missing))
+    return (hits >= 1 or has_role) and len(missing) < 400
+
+
+def run_sigscan(args) -> None:
+    conn = sqlite3.connect(str(args.db))
+    conn.row_factory = sqlite3.Row
+    refs = args.refs
+    rows = conn.execute(
+        "SELECT DISTINCT o.id AS id, o.source_path AS sp, o.text_content AS tc "
+        "FROM opinions o JOIN citations c ON c.opinion_id=o.id "
+        "WHERE c.reporter='ND-neutral' AND o.date_filed >= '1997-01-01' "
+        "ORDER BY o.id").fetchall()
+    out = []
+    for r in rows:
+        sp = r["sp"]
+        if not sp:
+            continue
+        full = Path(sp) if os.path.isabs(sp) else refs / sp
+        if not full.exists():
+            continue
+        try:
+            src = full.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        db_max = _max_para(strip_frontmatter(r["tc"] or ""))
+        src_max = _max_para(src)
+        if not db_max or not src_max or db_max >= src_max:
+            continue
+        gap = src_max - db_max
+        missing = _missing_para_text(src, db_max, src_max)
+        klass = "SIGNATURE" if (gap <= 2 and _looks_like_signature(missing)) else (
+            "SIGNATURE?" if _looks_like_signature(missing) else "CONTENT")
+        label = conn.execute(
+            "SELECT citation FROM citations WHERE opinion_id=? AND reporter='ND-neutral' LIMIT 1",
+            (r["id"],)).fetchone()
+        cn = conn.execute("SELECT case_name FROM opinions WHERE id=?", (r["id"],)).fetchone()
+        out.append(dict(oid=r["id"], label=label[0] if label else "",
+                        case_name=(cn[0] or "")[:46], db_max=db_max, src_max=src_max,
+                        gap=gap, klass=klass, missing=missing[:300], source_path=sp))
+    conn.close()
+
+    from collections import Counter
+    out.sort(key=lambda o: (o["klass"] != "SIGNATURE", o["gap"], o["oid"]))
+    kc = Counter(o["klass"] for o in out)
+    gc = Counter(o["gap"] for o in out)
+
+    args.csv.parent.mkdir(parents=True, exist_ok=True)
+    with args.csv.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
+        w.writeheader(); w.writerows(out)
+
+    L = [f"# Signature / trailing-paragraph drop sweep ({len(out)} flagged)\n",
+         "DB body dropped trailing `[¶N]` paragraph(s) the complete `~/refs` source "
+         "still has. `db_max` < `src_max` = the gap.\n",
+         f"- by class: " + ", ".join(f"**{k}** {v}" for k, v in kc.most_common()),
+         f"- by gap: " + ", ".join(f"gap{g}={n}" for g, n in sorted(gc.items())),
+         ""]
+    for klass in ("SIGNATURE", "SIGNATURE?", "CONTENT"):
+        items = [o for o in out if o["klass"] == klass]
+        if not items:
+            continue
+        L.append(f"## {klass} ({len(items)})\n")
+        L.append("| oid | label | case_name | db→src ¶ | gap | dropped text |")
+        L.append("|--|--|--|--|--|--|")
+        for o in items:
+            mt = o["missing"].replace("|", "\\|")
+            L.append(f"| {o['oid']} | {o['label']} | {o['case_name']} | "
+                     f"{o['db_max']}→{o['src_max']} | {o['gap']} | {mt} |")
+        L.append("")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text("\n".join(L), encoding="utf-8")
+
+    print(f"Signature/trailing-paragraph drops: {len(out)}")
+    for k, v in kc.most_common():
+        print(f"  {k:12} {v}")
+    print(f"\nReport: {args.out}\nCSV:    {args.csv}")
+
+
+# --------------------------------------------------------------------------- #
 # CLI
 # --------------------------------------------------------------------------- #
 
@@ -609,6 +911,26 @@ def main(argv=None):
     pk.add_argument("--out", type=Path, default=Path("triage") / "refs-diff-selfcheck.md")
     pk.add_argument("--csv", type=Path, default=Path("triage") / "refs-diff-selfcheck.csv")
     pk.set_defaults(func=run_selfcheck)
+
+    pt = sub.add_parser("truncscan",
+                        help="corpus-wide PDF-oracle truncation sweep (all 1997+ neutral opinions)")
+    pt.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    pt.add_argument("--refs", type=Path, default=DEFAULT_REFS_DIR)
+    pt.add_argument("--workers", type=int, default=max(1, mp.cpu_count() - 1))
+    pt.add_argument("--limit", type=int)
+    pt.add_argument("--ratio-cut", type=float, default=0.85,
+                    help="db/pdf word ratio below this → DB_TRUNCATED (default 0.85)")
+    pt.add_argument("--out", type=Path, default=Path("triage") / "refs-diff-truncscan.md")
+    pt.add_argument("--csv", type=Path, default=Path("triage") / "refs-diff-truncscan.csv")
+    pt.set_defaults(func=run_truncscan)
+
+    pg = sub.add_parser("sigscan",
+                        help="trailing-[¶N]-paragraph drop detector (signature truncation; precise)")
+    pg.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    pg.add_argument("--refs", type=Path, default=DEFAULT_REFS_DIR)
+    pg.add_argument("--out", type=Path, default=Path("triage") / "refs-diff-sigscan.md")
+    pg.add_argument("--csv", type=Path, default=Path("triage") / "refs-diff-sigscan.csv")
+    pg.set_defaults(func=run_sigscan)
 
     args = p.parse_args(argv)
     args.func(args)

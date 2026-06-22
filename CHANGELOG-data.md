@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-sig-truncation-2026-06-21` — restore signature blocks dropped from modern opinion bodies
+
+A corpus-wide body-integrity sweep found that the modern DB `text_content` was ingested *verbatim* (`ingest.py`) from an **older clean-format markdown** whose analyzer had collapsed the final `[¶N]` signature paragraph down to a single trailing justice name (e.g. *State v. Whetsel*, 2017 ND 237, ended `Jon J. Jensen` where the panel is VandeWalle C.J. + four). The current `~/refs` markdown is a newer, complete regeneration that matches the court PDF, but re-ingest would regress formatting — so the fix is a surgical splice, not re-extraction.
+
+Detection method (the prior word-ratio detector was 73% false-positive and missed 242 real cases):
+- **`refs_diff sigscan`** (new) — flags opinions where the DB body's max `[¶N]` marker is below the complete source's (length-independent; 273 flagged).
+- **`classify_sig_drops_2026-06-21.py`** — segments the 273 with OCR-tolerant, date-agnostic justice-name matching (hard tenure dates in `justices.py` are unreliable — Jensen's start year is wrong and justices sit as surrogates): **MARKER_GARBLED 31** (signature present, only the `[¶N]` marker OCR-garbled — *not* truncation), **TRUE_TRUNCATION 200** (panel genuinely absent), **CONTENT_LOSS 22** (substantive paragraphs lost; overlaps the 1997 contamination), **REVIEW 20**.
+
+This batch fixes the **safe subset of TRUE_TRUNCATION** (`fix_sig_truncation_2026-06-21.py`, strict guards): gap == 1, single-signature opinion (multi-opinion concurrence/dissent cases need positional insertion → manual), plain-panel source (no concurrence/dateline/footnote mixed in), and **every restored justice name corroborated against the court PDF**. The orphan name fragment is replaced with `[¶ M+1] <panel, one justice per line>` rebuilt verbatim from the source (or appended when the signature was dropped whole, preserving any `Dated at…` dateline paragraph).
+
+**102 bodies restored** (median +81 chars, all signature-sized; zero anomalies). 95 skipped to manual review (74 multi-opinion, 14 non-plain-panel, 7 unusual formats). 102 changelog rows (`text_content`), revertible via `cleanup revert`; these bodies are now protected from future silent re-ingest by the Phase 0 guard. TRUE_TRUNCATION 200 → 98 remaining. Invariants 23/3/0.
+
+**Still open:** MARKER_GARBLED (31, marker-repair batch), remaining TRUE_TRUNCATION (98, multi-opinion/positional), CONTENT_LOSS + REVIEW (42, manual triage).
+
 ## Batch `restore-reverted-corrections-2026-06-21` — recover work lost to silent re-ingest reversions
 
 Tracing why the `casename-docket-decontam` dockets had reverted revealed the systemic cause: **the DB is the source of truth, but `merge_nd_metadata` (run by the weekly pipeline) re-read the `~/refs` JSON and blindly overwrote corrected fields with the source value, without logging** — silently undoing prior corrections on every merge. (The `1997_opinions.json` source is itself contaminated for a 1997 batch — misfiled content, e.g. `1997ND16.md` holds 1997 ND 15 — so the overwrite re-applied *wrong* values.)

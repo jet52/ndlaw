@@ -1,0 +1,801 @@
+opinion_id,citation,case_name,date_filed,reporter,status,db_words,src_words,diff_words,similarity,source_path
+767,21 N.D. 348,Heard v. Holbrook,1911-03-28,NW,minor,2344,2345,2,0.9994,NW/131/251.md
+1,13 N.D. 359,Barnum v. Gorham Land Co.,1904-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0359-Barnum-v-Gorham-Land-Co.doc
+2,13 N.D. 305,Simensen v. Simensen,1904-07-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0305-Simensen-v-Simensen.doc
+3,13 N.D. 406,State ex rel. Fisk v. Porter,1904-10-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0406-State-ex-rel-Fisk-v-Porter.doc
+4,13 N.D. 344,Braseth v. County of Bottineau,1904-08-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0344-Braseth-v-Bottineau-County.doc
+5,13 N.D. 361,Hanson v. Carlblom,1904-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0361-Hanson-v-Carlblom.doc
+6,13 N.D. 387,Lough v. White,1904-10-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0387-Lough-v-White.doc
+7,13 N.D. 396,Marshall-Wells Hardware Co. v. New Era Coal Co.,1904-10-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0396-Marshall-Wells-Hardware-Co-v-New-Era-Coal-Co.doc
+8,13 N.D. 373,Cughan v. Larson,1904-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0373-Cughan-v-Larson.doc
+9,13 N.D. 391,State v. Mattison,1904-10-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0391-State-v-Mattison.doc
+10,13 N.D. 363,Nelson v. Grondahl,1904-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0363-Nelson-v-Grondahl.doc
+11,13 N.D. 357,Regan v. Sorenson,1904-09-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0357-Regan-v-Sorenson.doc
+12,13 N.D. 176,Clements v. Miller,1904-06-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0176-Clements-v-Miller.doc
+13,13 N.D. 157,Reeves & Co. v. Bruening,1904-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0157-Reeves-And-Co-v-Bruening.doc
+14,13 N.D. 167,Helgebye v. Dammen,1904-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0167-Helgebye-v-Dammen.doc
+15,13 N.D. 211,State ex rel. Attorney General v. District Court of Fourth Judicial District,1904-06-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0211-State-ex-rel-Frich-v-District-Court-of-Fourth-Judicial-Dist.doc
+16,13 N.D. 204,Hayes v. Cooley,1904-06-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0204-Hayes-v-Cooley.doc
+17,13 N.D. 153,Ward v. McQueen,1904-05-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0153-Ward-And-Murray-v-McQueen.doc
+18,13 N.D. 221,West v. Northern Pacific Railway Co.,1904-06-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0221-West-v-Northern-Pac-R-Co.doc
+19,13 N.D. 149,Burton v. Walker,1904-05-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0149-Burton-v-Walker.doc
+20,13 N.D. 232,Kennedy v. Stonehouse,1904-06-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0232-Kennedy-v-Stonehouse.doc
+21,13 N.D. 337,State v. Cruikshank,1904-08-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0337-State-v-Cruikshank.doc
+22,13 N.D. 327,Purcell v. Farm Land Co.,1904-08-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0327-Purcell-v-Farm-Land-Co.doc
+23,13 N.D. 312,Josephson v. Sigfusson,1904-08-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0312-Josephson-v-Sigfusson.doc
+24,13 N.D. 267,Wrege v. Jones,1904-07-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0267-Wrege-v-Jones.doc
+25,13 N.D. 242,Picton v. County of Cass,1904-06-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0242-Picton-v-Cass-County.doc
+26,13 N.D. 257,Dowagiac Manufacturing Co. v. Hellekson,1904-07-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0257-Dowagiac-Mfg-Co-v-Hellekson.doc
+27,13 N.D. 284,Cruser v. Williams,1904-07-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0284-Cruser-v-Williams.doc
+28,13 N.D. 199,Conrad v. Adler,1904-03-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0199-Conrad-v-Adler.doc
+29,13 N.D. 277,Van Dusen v. Bigelow,1904-07-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0277-Van-Dusen-v-Bigelow.doc
+30,13 N.D. 288,Darling v. Purcell,1904-07-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0288-Darling-v-Purcell.doc
+31,13 N.D. 356,State v. Hartzell,1904-09-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0356-State-v-Hartzell.doc
+32,13 N.D. 319,Hogen v. Klabo,1904-08-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0319-Hogen-v-Klabo.doc
+33,13 N.D. 513,In re Smith's Estate,1904-12-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0513-In-re-Smith's-Estate.doc
+34,13 N.D. 432,Meehan v. Great Northern Railway Co.,1904-11-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0432-Meehan-v-Great-Northern-Ry-Co.doc
+35,13 N.D. 411,Halloran v. Holmes,1904-10-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0411-Halloran-v-Holmes.doc
+36,13 N.D. 430,Davis v. Dinnie,1904-11-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0430-Davis-v-Dinnie.doc
+37,13 N.D. 420,State ex rel. Mitchell v. Larson,1904-10-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0420-State-ex-rel-Mitchell-v-Larson.doc
+38,13 N.D. 383,State v. Carroll,1904-10-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0383-State-v-Carroll.doc
+39,13 N.D. 426,Johnson v. Twichell,1904-11-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0426-Johnson-v-Twichell.doc
+40,13 N.D. 182,Salemonson v. Thompson,1904-02-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0182-Salemonson-v-Thompson.doc
+41,13 N.D. 494,State v. Fordham,1904-11-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0494-State-v-Fordham.doc
+42,13 N.D. 508,Thurston v. Osborne-McMillan Elevator Co.,1904-12-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0508-Thurston-v-Osborne-McMillan-Elevator-Co.doc
+43,13 N.D. 502,Teigen v. Drake,1904-12-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0502-Teigen-v-Drake.doc
+44,13 N.D. 458,Carroll v. Township of Rye,1904-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0458-Carroll-v-Rye-Tp.doc
+45,13 N.D. 387,Cairncross v. Omlie,1904-10-10,NW,identical,801,801,0,1.0000,NW/101/897.md
+46,13 N.D. 453,Gussner v. Hawks,1904-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0453-Gussner-v-Hawks.doc
+47,13 N.D. 444,Thompson v. Travelers Insurance,1904-11-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0444-Thompson-v-Travelers'-Ins-Co.doc
+48,13 N.D. 516,Dowagiac Manufacturing Co. v. Mahon,1904-12-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0516-Dowagiac-Mfg-Co-v-Mahon.doc
+49,13 N.D. 577,Tracy v. Scott,1904-11-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0577-Tracy-v-Scott.doc
+50,13 N.D. 525,Lauder v. Jones,1904-02-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0525-Lauder-v-Jones.doc
+51,13 N.D. 467,Douglas v. City of Fargo,1904-11-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0467-Douglas-v-City-of-Fargo.doc
+52,13 N.D. 638,Loomis v. Lewis,1904-09-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0638-Loomis-v-Lewis.doc
+53,13 N.D. 601,Northwestern Fire & Marine Insurance v. Lough,1904-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0601-Northwestern-Fire-And-Marine-Ins-Co-v-Lough.doc
+54,13 N.D. 610,Fox v. Jones,1905-01-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0610-Fox-v-Jones.doc
+55,13 N.D. 574,Moore v. Weston,1904-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0574-Moore-v-Weston.doc
+56,13 N.D. 587,Bosard v. City of Grand Forks,1904-12-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0587-Bosard-v-City-of-Grand-Forks.doc
+57,13 N.D. 559,Puls v. Grand Lodge of the Ancient Order of United Workmen,1904-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0559-Puls-v-Grand-Lodge-A-O-U-W.doc
+58,13 N.D. 604,Waldner v. Bowden State Bank,1904-12-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0604-Waldner-v-Bowdon-State-Bank.doc
+59,13 N.D. 580,Brown v. Smith,1904-12-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0580-Brown-v-Smith.doc
+60,13 N.D. 351,Patton v. County of Cass,1904-09-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0351-Patton-v-Cass-County.doc
+61,13 N.D. 591,Morrison v. Lee,1904-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0591-Morrison-v-Lee.doc
+62,13 N.D. 629,Leonard v. Fleming,1905-01-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0629-Leonard-v-Fleming.doc
+63,13 N.D. 616,Haugen v. Skjervheim,1905-01-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0616-Hougen-v-Skjervheim.doc
+64,13 N.D. 622,Canfield v. Orange,1905-01-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0622-Canfield-v-Orange.doc
+65,13 N.D. 368,State ex rel. Poul v. McLain,1905-02-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0368-State-v-McLain.doc
+66,13 N.D. 655,State v. Currie,1905-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0655-State-v-Currie.doc
+67,13 N.D. 664,State v. Scholfield,1905-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0664-State-v-Scholfield.doc
+68,13 N.D. 639,Beidler & Robinson Lumber Co. v. Coe Commission Co.,1905-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0639-Beidler-And-Robinson-Lumber-Co-v-Coe-Commission-Co.doc
+69,13 N.D. 649,State v. Wisnewski,1905-03-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0649-State-v-Wisnewski.doc
+70,14 N.D. 139,State v. Erickson,1905-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0139-State-v-Erickson.doc
+71,14 N.D. 88,Red River Valley National Bank v. City of Fargo,1905-02-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0088-Red-River-Valley-Nat-Bank-v-City-of-Fargo.doc
+72,14 N.D. 95,Freeman v. Wood,1905-02-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0095-Freeman-v-Wood.doc
+73,14 N.D. 19,Welch v. Northern Pacific Railway Co.,1904-12-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0019-Welch-v-Northern-Pac-Ry-Co.doc
+74,14 N.D. 46,Green v. Tenold,1905-01-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0046-Green-v-Tenold.doc
+75,14 N.D. 116,Clemens v. Royal Neighbors of America,1905-02-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0116-Clemens-v-Royal-Neighbors-of-America.doc
+76,14 N.D. 39,Benesh v. Travelers' Insurance,1905-01-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0039-Benesh-v-Travelers'-Ins-Co.doc
+77,14 N.D. 110,Jewett Bros. v. Huffman,1905-02-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0110-Jewett-Bros-v-Huffman.doc
+78,14 N.D. 57,Avery Mfg. Co. v. Smith,1905-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0057-Avery-Mfg-Co-v-Smith.doc
+79,14 N.D. 69,Harshman v. Northern Pacific Railway Co.,1905-01-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0069-Harshman-v-Northern-Pac-R-Co.doc
+80,14 N.D. 10,Torgrinson v. Norwich School District No. 31,1904-10-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0010-Torgrinson-v-Norwich-School-District-No-31.doc
+81,14 N.D. 81,Becker v. Lough,1905-02-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0081-Becker-v-Lough.doc
+82,14 N.D. 203,State v. Sanders,1905-05-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0203-State-v-Sanders.doc
+83,14 N.D. 200,State v. O'Malley,1905-05-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0200-State-v-O'Malley.doc
+84,14 N.D. 77,County of Dickey v. Denning,1905-02-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0077-Dickey-County-v-Denning.doc
+85,14 N.D. 73,County of Dickey v. Hicks,1905-02-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0073-Dickey-County-v-Hicks.doc
+86,14 N.D. 66,Carter v. Carter,1905-01-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0066-Carter-v-Carter.doc
+87,14 N.D. 127,Logan v. Freerks,1905-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0127-Logan-v-Freerks.doc
+88,14 N.D. 288,State v. Johnson,1905-05-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0288-State-v-Johnson.doc
+89,14 N.D. 291,State v. Momberg,1905-05-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0291-State-v-Momberg.doc
+90,14 N.D. 297,State v. Nelson,1905-05-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0297-State-v-Nelson.doc
+91,14 N.D. 293,State v. Virgo,1905-05-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0293-State-v-Virgo.doc
+92,14 N.D. 335,State v. Forrester,1905-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0335-State-v-Forrester.doc
+93,14 N.D. 213,Parsons v. McCumber,1905-05-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0213-Parsons-v-McCumber.doc
+94,14 N.D. 209,Hulet v. Gates,1905-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0209-Hulet-v-Gates.doc
+95,14 N.D. 218,Hagler v. Kelly,1905-05-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0218-Hagler-v-Kelly.doc
+96,14 N.D. 26,Beare v. J.A. Wright,1905-01-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0026-Beare-v-Wright.doc
+97,14 N.D. 316,State v. Barry,1905-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0316-State-v-Barry.doc
+98,14 N.D. 236,De Foe v. Zenith Coal Co.,1905-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0236-De-Foe-v-Zenith-Coal-Co.doc
+99,14 N.D. 1,Berry v. Evendon,1904-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0001-Berry-v-Evendon.doc
+100,14 N.D. 232,Jones v. Hoefs,1905-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0232-Jones-v-Hoefs.doc
+101,14 N.D. 282,Milburn-Stoddard Co. v. Stickney,1905-05-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0282-Milburn-Stoddard-Co-v-Stickney.doc
+102,14 N.D. 278,Weicker v. Stavely,1905-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0278-Weicker-v-Stavely.doc
+103,14 N.D. 228,Robbins v. Maher,1905-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0228-Robbins-v-Maher.doc
+104,14 N.D. 287,Clark v. Beck,1905-05-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0287-Clark-v-Beck.doc
+105,14 N.D. 344,Petersburg School District v. Peterson,1905-06-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0344-Petersburg-School-Dist-of-Nelson-County-v-Peterson.doc
+106,14 N.D. 238,Merchants State Bank v. Tufts,1905-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0238-Merchants'-State-Bank-of-Fargo-v-Tufts.doc
+107,13 N.D. 663,State v. Gerhart,1905-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./13/0663-State-v-Gearhart.doc
+108,14 N.D. 368,State ex rel. Frich v. Stark County,1905-06-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0368-State-ex-rel-Frich-v-Stark-County.doc
+109,14 N.D. 147,Colonial & United States Mortgage Co. v. Northwest Thresher Co.,1905-04-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0147-Colonial-And-United-States-Mortg-Co-v-Northwest-Thresher-Co.doc
+110,14 N.D. 181,Colonial & United States Mortgage Co. v. Flemington,1905-05-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0181-Colonial-And-United-States-Mortg-Co-v-Flemington.doc
+111,14 N.D. 189,Paine v. Dodds,1905-05-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0189-Paine-v-Dodds.doc
+112,14 N.D. 311,Roberts v. Bope,1905-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0311-Roberts-v-Bope.doc
+113,14 N.D. 301,Martinson v. Marzolf,1905-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0301-Martinson-v-Marzolf.doc
+114,14 N.D. 340,Knight v. Board of County Commissioners,1905-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0340-Knight-v-Board-of-Com'rs-of-Cass-County.doc
+115,14 N.D. 361,Couch v. State,1905-06-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0361-Couch-v-State.doc
+116,14 N.D. 248,Sonnesyn v. Akin,1905-05-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0248-Sonnesyn-v-Akin.doc
+117,14 N.D. 430,Morgridge v. Stoeffer,1905-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0430-Morgridge-v-Stoefer.doc
+118,14 N.D. 529,State v. Brown,1905-11-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0529-State-v-Brown.doc
+119,14 N.D. 390,Weisbecker v. Cahn,1905-06-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0390-Weisbocker-v-Cahn.doc
+120,14 N.D. 417,Simonson v. Jenson,1905-07-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0417-Simonson-v-Jenson.doc
+121,14 N.D. 355,O'Keefe v. Leistikow,1905-06-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0355-O'Keefe-v-Leistikow.doc
+122,14 N.D. 331,Houghton Implement Co. v. Doughty,1905-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0331-Houghton-Implement-Co-v-Doughty.doc
+123,14 N.D. 353,Lough v. White,1905-06-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0353-Lough-v-White.doc
+124,14 N.D. 143,Bank of Park River v. Town of Norton,1905-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0143-Bank-of-Park-River-v-Town-of-Norton.doc
+125,14 N.D. 405,Thompson v. Fargo Heating & Plumbing Co.,1905-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0405-Thompson-v-Fargo-Plumbing-And-Heating-Co.doc
+126,14 N.D. 393,Friedlander v. Taintor,1905-06-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0393-Friedlander-v-Taintor.doc
+127,14 N.D. 407,Scott & Barrett Mercantile Co. v. Nelson County,1905-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0407-Scott-And-Barrett-Mercantile-Co-v-Nelson-County.doc
+128,14 N.D. 398,Stevens v. Meyers,1905-06-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0398-Stevens-v-Myers.doc
+129,14 N.D. 411,State v. Williams,1905-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0411-State-v-Williams.doc
+130,14 N.D. 380,Spoonheim v. Spoonheim,1905-06-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0380-Spoonheim-v-Spoonheim.doc
+131,14 N.D. 375,Schwoebel v. Fugina,1905-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0375-Schwoebel-v-Fugina.doc
+132,14 N.D. 414,Johnson v. Erickson,1905-11-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0414-Johnson-v-Erickson.doc
+133,15 N.D. 34,Orvik v. Casselman,1905-12-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0034-Orvik-v-Casselman.doc
+134,15 N.D. 86,"Marck v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0086-Marck-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+135,15 N.D. 69,Jacobson v. Ransom County,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0069-Jacobson-v-Ransom-County.doc
+136,14 N.D. 561,State v. Foster,1905-11-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0561-State-v-Foster.doc
+137,15 N.D. 144,Continental Hose Co. No. 1 v. Mitchell,1906-02-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0144-Continental-Hose-Co-No-1-v-Mitchell.doc
+138,14 N.D. 435,John Miller Co. v. Klovstad,1905-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0435-John-Miller-Co-v-Klovstad.doc
+139,14 N.D. 487,In re Whittemore,1905-10-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0487-In-re-Whittemore.doc
+140,14 N.D. 449,Healey v. Forman,1905-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0449-Healey-v-Forman.doc
+141,14 N.D. 460,Mills v. Fortune,1905-10-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0460-Mills-v-Fortune.doc
+142,14 N.D. 591,Regan v. Jones,1905-11-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0591-Regan-v-Jones.doc
+143,14 N.D. 523,State v. Malmberg,1905-11-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0523-State-v-Malmberg.doc
+144,14 N.D. 490,State v. Hazlett,1905-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0490-State-v-Hazlett.doc
+145,14 N.D. 501,State v. Harris,1905-10-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0501-State-v-Harris.doc
+146,14 N.D. 557,State v. Poull,1905-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0557-State-v-Poull.doc
+147,14 N.D. 511,Robertson Lumber Co. v. State Bank,1905-11-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0511-Robertson-Lumber-Co-v-State-Bank-of-Edinburg.doc
+148,14 N.D. 507,"Rae v. Chicago, Milwaukee & St. Paul Railway Co.",1905-11-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0507-Rae-v-Chicago-M-And-St-P-Ry-Co.doc
+149,14 N.D. 518,Johnson v. Erlandson,1905-11-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0518-Johnson-v-Erlandson.doc
+150,14 N.D. 542,Murphy v. District Court of the Eighth Judicial District,1905-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0542-Murphy-v-District-Court-of-Eighth-Judicial-Dist.doc
+151,14 N.D. 532,State ex rel. Rusk v. Budge,1905-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0532-State-ex-rel-Rusk-v-Budge.doc
+152,14 N.D. 557,Murphy v. District Court of the Eighth Judicial District,1905-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0557-Murphy-v-District-Court-of-Eighth-Judicial-Dist.doc
+153,14 N.D. 445,Hanson v. Skogman,1905-10-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0445-Hanson-v-Skogman.doc
+154,14 N.D. 419,Keeney v. City of Fargo,1905-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0419-Keeney-v-City-of-Fargo.doc
+155,14 N.D. 423,Keeney v. City of Fargo,1905-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0423-Keeney-v-City-of-Fargo.doc
+156,14 N.D. 614,Bessie v. Northern Pacific Railway Co.,1905-12-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0614-Bessie-v-Northern-Pac-Ry-Co.doc
+157,15 N.D. 1,Brown v. Hodgson,1905-12-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0001-Brown-v-Hodgson.doc
+158,14 N.D. 570,Hart v. Evanson,1895-11-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0570-Hart-v-Evanson.doc
+159,14 N.D. 587,Schmidt v. Beiseker,1905-11-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0587-Schmidt-v-Beiseker.doc
+160,15 N.D. 230,State v. Moody,1906-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0230-State-ex-rel-Frich-v-Moody.doc
+161,15 N.D. 132,McCormick Harvesting Mach. Co. v. Citizens' Bank of Drayton,1906-02-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0132-McCormick-Harvesting-Mach-Co-v-Citizens'-Bank-of-Drayton.doc
+162,15 N.D. 79,Zimmerman v. McCurdy,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0079-Zimmerman-v-McCurdy.doc
+163,14 N.D. 580,Vallely v. First National Bank,1905-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0580-Vallely-v-First-Nat-Bank-of-Grafton.doc
+164,14 N.D. 454,Bacon v. Mitchell,1905-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0454-Bacon-v-Mitchell.doc
+165,14 N.D. 482,Currie v. Look,1905-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0482-Currie-v-Look.doc
+166,15 N.D. 130,"Aultman, Miller Co. v. Jones",1906-02-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0130-Aultman-Miller-And-Co-v-Jones.doc
+167,14 N.D. 465,Cotton v. Butterfield,1905-10-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0465-Cotton-v-Butterfield.doc
+168,15 N.D. 71,Marshall-McCartney Co. v. Halloran,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0071-Marshall-McCartney-Co-v-Halloran.doc
+169,15 N.D. 205,State ex rel. Rusk v. Budge,1906-02-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0205-State-ex-rel-Rusk-v-Budge.doc
+170,15 N.D. 63,Walker v. Maronda,1906-01-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0063-Walker-v-Maronda.doc
+171,15 N.D. 51,Viets v. Silver,1905-12-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0051-Viets-v-Silver.doc
+172,15 N.D. 38,Holton v. Schmarback,1905-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0038-Holton-v-Schmarback.doc
+173,15 N.D. 43,Wisner v. Field,1905-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0043-Wisner-v-Field.doc
+174,15 N.D. 112,Buckingham v. Flummerfelt,1906-01-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0112-Buckingham-v-Flummerfelt.doc
+175,14 N.D. 608,Walker v. Rein,1905-12-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0608-Walker-v-Rein.doc
+176,15 N.D. 55,State ex rel. Hart-Parr Co. v. Robb-Lawrence Co.,1906-01-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0055-State-to-use-of-Hart-Parr-Co-v-Robb-Lawrence-Co.doc
+177,14 N.D. 601,St. Anthony & Dakota Elevator Co. v. County of Cass,1905-12-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0601-St-Anthony-And-D-Elevator-Co-v-Cass-County.doc
+178,15 N.D. 21,Kinney v. Brotherhood of American Yeomen,1905-12-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0021-Kinney-v-Brotherhood-of-American-Yeomen.doc
+179,14 N.D. 596,Alsterberg v. Bennett,1905-12-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0596-Alsterberg-v-Bennett.doc
+180,14 N.D. 476,Larson v. Christianson,1905-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./14/0476-Larson-v-Christiansen.doc
+181,50 N.D. 487,Engen v. Matthys,1923-11-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./50/0487-Engen-v-Matthys.doc
+182,15 N.D. 92,Satterlee v. Modern Brotherhood of America,1906-01-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0092-Satterlee-v-Modern-Brotherhood-of-America.doc
+183,15 N.D. 116,Acme Harvester Co. v. Magill,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0116-Acme-Harvester-Co-v-Magill.doc
+184,15 N.D. 87,Siebolt v. Konatz Saddlery Co.,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0087-Siebolt-v-Konatz-Saddlery-Co.doc
+185,15 N.D. 5,Blakemore v. Cooper,1905-12-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0005-Blakemore-v-Cooper.doc
+186,15 N.D. 100,Patnode v. Deschenes,1905-11-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0100-Patnode-v-Deschenes.doc
+187,15 N.D. 120,Calmer v. Calmer,1906-01-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0120-Calmer-v-Calmer.doc
+188,15 N.D. 477,Hooven & Allison Co. v. Wirtz,1906-05-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0477-Hooven-And-Allison-Co-v-Wirtz.doc
+189,15 N.D. 488,Tamlyn v. Peterson,1906-05-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0488-Tamlyn-v-Peterson.doc
+190,15 N.D. 484,Walker v. Stimmel,1906-05-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0484-Walker-v-Stimmel.doc
+191,15 N.D. 501,S. J. Vidger Co. v. Great Northern Railway Co.,1906-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0501-SJ-Vidger-Co-v-Great-Northern-Ry-Co.doc
+192,15 N.D. 495,Mitchell v. Monarch Elevator Co.,1906-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0495-Mitchell-v-Monarch-Elevator-Co.doc
+193,15 N.D. 490,"Hatch v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1906-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0490-Hatch-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+194,15 N.D. 508,Larson v. Walker,1906-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0508-Larson-v-Walker.doc
+195,15 N.D. 219,State ex rel. Dorgan v. Fisk,1906-03-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0219-State-v-Fisk.doc
+196,15 N.D. 231,Raymond v. Edelbrock,1906-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0231-Raymond-v-Edelbrock.doc
+197,15 N.D. 294,Kerr v. City of Grand Forks,1906-01-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0294-Kerr-v-City-of-Grand-Forks.doc
+198,15 N.D. 345,More v. Burger,1906-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0345-More-v-Burger.doc
+199,15 N.D. 157,Pyke v. City of Jamestown,1906-02-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0157-Pyke-v-City-of-Jamestown.doc
+200,15 N.D. 312,Mathie v. Lemery,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0312-In-re-Lemery's-Estate.doc
+201,16 N.D. 16,Connolly v. Luros,1906-01-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0016-Connolly-v-Luros.doc
+202,15 N.D. 174,Pillsbury v. Streeter,1906-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0174-Pillsbury-v-JB-Streeter-Jr-Co.doc
+203,15 N.D. 150,Edwards v. Eagles,1906-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0150-Edwards-v-Eagles.doc
+204,15 N.D. 146,Olson v. County of Sargent,1906-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0146-Olson-v-Sargent-County.doc
+205,15 N.D. 239,Bennett v. Glaspell,1906-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0239-Bennett-v-Glaspell.doc
+206,15 N.D. 151,Rapp v. Hansen,1906-02-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0151-Rapp-v-Hansen.doc
+207,15 N.D. 152,Gilbreath v. Teufel,1906-02-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0152-Gilbreath-v-Teufel.doc
+208,15 N.D. 182,Miller v. Shelburn,1906-02-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0182-Miller-v-Shelburn.doc
+209,15 N.D. 275,State v. Lonne,1906-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0275-State-v-Lonne.doc
+210,15 N.D. 210,Cosgriff v. Tri-State Telephone & Telegraph Co.,1906-02-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0210-Cosgriff-v-Tri-State-Telephone-And-Telegraph-Co.doc
+211,15 N.D. 198,Peterson v. Hansen,1906-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0198-Peterson-v-Hansen.doc
+212,15 N.D. 188,Mickels v. Fennell,1906-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0188-Michels-v-Fennell.doc
+213,15 N.D. 195,Smith v. Great Northern Railway Co.,1906-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0195-Smith-v-Great-Northern-R-Co.doc
+214,15 N.D. 206,J. I. Case Threshing Machine Co. v. Balke,1906-02-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0206-JI-Case-Threshing-Mach-Co-v-Balke.doc
+215,15 N.D. 360,Leu v. Commercial Mutual Fire Insurance,1906-02-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0360-Leu-v-Commercial-Mut-Fire-Ins-Co.doc
+216,15 N.D. 259,Scott v. District Court of the Fifth Judicial District,1906-04-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0259-Scott-v-District-Court-of-Fifth-Judicial-Dist.doc
+217,15 N.D. 248,Tracy v. Wheeler,1906-04-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0248-Tracy-v-Wheeler.doc
+218,15 N.D. 279,A. G. Becker & Co. v. First National Bank,1906-05-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0279-AG-Becker-And-Co-v-First-Nat-Bank-of-Harvey.doc
+219,15 N.D. 282,Laffy v. Gordon,1906-05-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0282-Laffey-v-Gordon.doc
+220,15 N.D. 284,Marin v. Potter,1906-05-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0284-Marin-v-Potter.doc
+221,15 N.D. 290,"Doughty v. Minneapolis, St. Paul & Sault Sainte Marie Ry. Co.",1906-05-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0290-Doughty-v-Minneapolis-St-P-And-SSMR-Co.doc
+222,15 N.D. 286,Libby v. Barry,1906-05-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0286-Libby-v-Barry.doc
+223,15 N.D. 533,Jackson v. Ellerson,1906-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0533-Jackson-v-Ellerson.doc
+224,15 N.D. 535,Dean & Co. v. Collins,1906-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0535-Dean-And-Co-v-Collins.doc
+225,15 N.D. 525,Johnson v. City of Fargo,1906-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0525-Johnson-v-City-of-Fargo.doc
+226,15 N.D. 318,Beleal ex rel. Beleal v. Northern Pacific Railway Co.,1906-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0318-Beleal-v-Northern-Pac-Ry-Co.doc
+227,15 N.D. 506,Schomberg v. Long,1906-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0506-Schomberg-v-Long.doc
+228,15 N.D. 327,State ex rel. Mitchell v. Mayo,1906-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0327-State-v-Mayo.doc
+229,15 N.D. 515,Dedrick v. Charrier,1906-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0515-Dedrick-v-Charrier.doc
+230,15 N.D. 509,Gorthy v. Jarvis,1906-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0509-Gorthy-v-Jarvis.doc
+231,15 N.D. 512,Hunt v. Swenson,1906-05-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0512-Hunt-v-Swenson.doc
+232,15 N.D. 518,Shoemaker v. Sonju,1906-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0518-Shoemaker-v-Sonju.doc
+233,15 N.D. 548,Garland v. Keeler,1906-06-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0548-Garland-v-Keeler.doc
+234,15 N.D. 589,State v. Fisk,1906-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0589-State-v-Fisk.doc
+235,15 N.D. 539,Skjelbred v. Southard,1906-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0539-Skjelbred-v-Southard.doc
+236,15 N.D. 542,Rasmussen v. Hagler,1906-06-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0542-Rasmussen-v-Hagler.doc
+237,15 N.D. 552,Silander v. Gronna,1906-06-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0552-Silander-v-Gronna.doc
+238,15 N.D. 557,P. J. Bowlin Liquor Co. v. Beaudoin,1906-06-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0557-PJ-Bowlin-Liquor-Co-v-Beaudoin.doc
+239,15 N.D. 299,First National Bank v. Bank of Wyndmere,1906-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0299-First-Nat-Bank-v-Bank-of-Wyndmere.doc
+240,15 N.D. 577,Annis v. Burnham,1906-06-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0577-Annis-v-Burnham.doc
+241,15 N.D. 351,Robertson v. Moses,1906-02-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0351-Robertson-v-Moses.doc
+242,15 N.D. 566,Nash v. Northwest Land Co.,1906-06-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0566-Nash-v-Northwest-Land-Co.doc
+243,15 N.D. 606,Emerson-Newton Implement Co. v. Cupps,1906-07-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0606-Emerson-Newton-Implement-Co-v-Cupps.doc
+244,15 N.D. 584,Hanson v. Lindstrom,1906-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0584-Hanson-v-Lindstrom.doc
+245,15 N.D. 611,Cumming v. Great Northern Railway Co.,1906-07-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0611-Cumming-v-Great-Northern-R-Co.doc
+246,15 N.D. 471,Martinson v. Marzolf,1906-05-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0471-Martinson-v-Marzolf.doc
+247,15 N.D. 560,"Gessner v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1906-06-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0560-Gessner-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+248,15 N.D. 308,Houghton Implement Co. v. Vavrosky,1906-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0308-Houghton-Implement-Co-v-Vavrousky.doc
+249,16 N.D. 1,State v. Richardson,1906-11-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0001-State-v-Richardson.doc
+250,15 N.D. 556,Murphy v. Foster,1906-06-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0556-Murphy-v-Foster.doc
+251,15 N.D. 604,Cranmer v. Dinsmore,1906-07-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0604-Cranmer-v-Dinsmore.doc
+252,15 N.D. 339,Higbee v. Daeley,1906-02-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0339-Higbee-v-Daeley.doc
+253,15 N.D. 332,Brynjolfson v. Dagner,1906-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0332-Brynjolfson-v-Dagner.doc
+254,15 N.D. 436,Beggs v. Paine,1906-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0436-Beggs-v-Paine.doc
+255,15 N.D. 400,Nind v. Myers,1906-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0400-Nind-v-Myers.doc
+256,15 N.D. 386,State Finance Co. v. Mather,1906-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0386-State-Finance-Co-v-Mather.doc
+257,15 N.D. 374,State Finance Co. v. Beck,1906-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0374-State-Finance-Co-v-Beck.doc
+258,15 N.D. 466,Powers v. First National Bank,1906-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0466-Powers-v-First-Nat-Bank-of-Bottineau.doc
+259,15 N.D. 365,Fenton ex rel. Whittemore v. Minnesota Title Insurance & Trust Co.,1906-05-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0365-Fenton-v-Minnesota-Title-Insurance-And-Trust-Co.doc
+260,15 N.D. 613,Franklin v. Jamieson-Wohler,1906-07-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0613-Franklin-v-Jameson-Wohler.doc
+261,15 N.D. 649,Ward v. Gradin,1906-08-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0649-Ward-v-Gradin.doc
+262,15 N.D. 594,First National Bank v. State Bank,1906-05-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0594-First-Nat-Bank-of-Portage-v-State-Bank-of-Northwood.doc
+263,15 N.D. 618,Baird v. Chambers,1906-07-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0618-Baird-v-Chambers.doc
+264,15 N.D. 629,Alstad v. Sim,1906-08-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0629-Alstad-v-Sim.doc
+265,15 N.D. 658,Moline Plow Co. v. Bostwick,1906-10-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0658-Moline-Plow-Co-v-Bostwick.doc
+266,15 N.D. 639,Gates v. Kelley,1906-08-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0639-Gates-v-Kelley.doc
+267,16 N.D. 10,J. L. Owens Co. v. Doughty,1906-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0010-JL-Owens-Co-v-Doughty.doc
+268,15 N.D. 622,"Gaar, Scott & Co. v. Collin",1906-07-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0622-Gaar-Scott-And-Co-v-Collin.doc
+269,15 N.D. 621,"Currie v. Gaar, Scott & Co.",1906-07-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./15/0621-Currie-v-Gaar-Scott-And-Co.doc
+270,16 N.D. 56,Zink v. Lahart,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0056-Zink-v-Lahart.doc
+271,16 N.D. 17,Tonn v. Tonn,1907-02-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0017-Tonn-v-Tonn.doc
+272,16 N.D. 60,Hall v. Northern Pacific Railway Co.,1907-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0060-Hall-v-Northern-Pac-Ry-Co.doc
+273,16 N.D. 68,Strecker v. Railson,1907-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0068-Strecker-v-Railson.doc
+274,16 N.D. 59,Kerr v. Sunstrum,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0059-Kerr-v-Sunstrum.doc
+275,16 N.D. 36,Kerr v. Anderson,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0036-Kerr-v-Anderson.doc
+276,16 N.D. 59,Kerr v. Swanson,1907-02-20,NW,identical,58,58,0,1.0000,NW/111/615.md
+277,16 N.D. 25,Vallelly v. Board of Park Com'rs of Park District of City of Grand Forks,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0025-Vallelly-v-Board-of-Park-Com'rs-of-Park-Dist-of-City-of-Grand-Forks.doc
+278,16 N.D. 59,Kerr v. Herred,1907-02-23,NW,identical,57,57,0,1.0000,NW/111/615_3.md
+279,16 N.D. 50,Kepner v. Ford,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0050-Kepner-v-Ford.doc
+280,16 N.D. 73,Standorf v. Shockley,1907-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0073-Standorf-v-Shockley.doc
+281,16 N.D. 42,Woodward v. McCollum,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0042-Woodward-v-McCollum.doc
+282,16 N.D. 38,Woodward v. Northern Pacific Railway Co.,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0038-Woodward-v-Northern-Pac-Ry-Co.doc
+283,16 N.D. 19,Cook v. Lockerby,1907-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0019-Cook-v-Lockerby.doc
+284,16 N.D. 242,Bremseth v. Olson,1907-08-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0242-Bremseth-v-Olson.doc
+285,16 N.D. 295,Nelson v. Thompson,1907-06-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0295-Nelson-v-Thompson.doc
+286,16 N.D. 306,Smith v. Bradley,1907-08-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0306-Smith-v-Bradley.doc
+287,16 N.D. 174,Anderson & Jorgenson v. Johnson,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0174-Anderson-And-Jorgenson-v-Johnson.doc
+288,16 N.D. 177,State v. Seelig,1907-06-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0177-State-v-Seelig.doc
+289,16 N.D. 168,State ex rel. Frish v. Nohle,1907-06-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0168-State-v-Nohle.doc
+290,17 N.D. 32,"State ex rel. North Dakota State Fair Ass'n of Fargo v. Holmes, State Auditor",1907-06-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0032-State-ex-rel-North-Dakota-State-Fair-Ass'n-of-Fargo-v-Holmes.doc
+291,16 N.D. 144,McLain v. Nurnberg,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0144-McLain-v-Nurnberg.doc
+292,16 N.D. 138,McLain v. Nurnberg,1907-05-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0138-McLain-v-Nurnberg.doc
+293,16 N.D. 77,Sim v. Rosholt,1907-05-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0077-Sim-v-Rosholt.doc
+294,16 N.D. 151,State ex rel. Harvey v. Newton,1907-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0151-State-ex-rel-Harvey-v-Newton.doc
+295,16 N.D. 106,A. B. Farquhar Co. v. Higham,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0106-AB-Farquhar-Co-v-Higham.doc
+296,16 N.D. 106,State ex rel. Harvey v. Davies,1907-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0106-State-v-Davies.doc
+297,16 N.D. 83,State v. Werner,1907-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0083-State-v-Werner.doc
+298,16 N.D. 126,Omlie v. O'Toole,1907-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0126-Omlie-v-O'Toole.doc
+299,16 N.D. 100,Fjone v. Fjone,1907-05-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0100-Fjone-v-Fjone.doc
+300,16 N.D. 180,Sheets v. Prosser,1907-05-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0180-Sheets-v-Prosser.doc
+301,16 N.D. 94,State ex rel. Bickford v. Fabrick,1907-04-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0094-State-ex-rel-Bickford-v-Fabrick.doc
+302,16 N.D. 193,State Finance Co. v. Myers,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0193-State-Finance-Co-v-Myers.doc
+303,16 N.D. 185,Schlosser v. Moores,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0185-Schlosser-v-Moores.doc
+304,16 N.D. 118,Grand Forks County v. Fredericks,1907-06-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0118-Grand-Forks-County-v-Fredericks.doc
+305,16 N.D. 208,Smith v. Spafford,1907-06-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0208-Smith-v-Spafford.doc
+306,16 N.D. 240,Besancon v. Wegner,1907-07-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0240-Besancon-v-Wegner.doc
+307,16 N.D. 110,Propper v. Wohlwend,1907-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0110-Propper-v-Wohlwend.doc
+308,16 N.D. 204,Harris v. Rolette County,1907-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0204-Harris-v-Rolette-County.doc
+309,16 N.D. 217,"Carr v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1907-07-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0217-Carr-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+310,16 N.D. 199,State Finance Co. v. Trimble,1907-06-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0199-State-Finance-Co-v-Trimble.doc
+311,16 N.D. 214,State Finance Co. v. Mulberger,1907-06-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0214-State-Finance-Co-v-Mulberger.doc
+312,16 N.D. 227,Colean Manufacturing Co. v. Feckler,1907-07-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0227-Colean-Mfg-Co-v-Feckler.doc
+313,16 N.D. 231,Olson v. Mattison,1907-07-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0231-Olson-v-Mattison.doc
+314,16 N.D. 234,Kelly v. Pierce,1907-07-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0234-Kelly-v-Pierce.doc
+315,16 N.D. 277,Barron v. Northern Pacific Railway Co.,1907-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0277-Barron-v-Northern-Pac-Ry-Co.doc
+316,16 N.D. 377,Morrison v. Lee,1907-11-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0377-Morrison-v-Lee.doc
+317,16 N.D. 546,Ruettell v. Greenwich Insurance,1907-11-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0546-Ruettell-v-Greenwich-Ins-Co.doc
+318,16 N.D. 248,Larson v. Calder,1907-09-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0248-Larson-v-Calder.doc
+319,16 N.D. 452,Grady v. Schweinler,1907-11-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0452-Grady-v-Schweinler.doc
+320,16 N.D. 555,Dreveskracht v. First State Bank of Balfour,1907-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0555-Dreveskracht-v-First-State-Bank-of-Balfour.doc
+321,17 N.D. 1,Gray v. O. W. Kerr Land Co.,1907-11-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0001-Gray-v-OW-Kerr-Land-Co.doc
+322,16 N.D. 601,Salzer Lumber Co. v. Claflin,1907-11-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0601-Salzer-Lumber-Co-v-Claflin.doc
+323,16 N.D. 551,Muir v. Chandler,1907-11-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0551-Muir-v-Chandler.doc
+324,16 N.D. 387,Frankel v. Hillier,1907-11-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0387-Frankel-v-Hillier.doc
+325,16 N.D. 363,Johnson v. County of Grand Forks,1907-11-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0363-Johnson-v-Grand-Forks-County.doc
+326,16 N.D. 347,State ex rel. Flaherty v. Hanson,1907-10-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0347-State-ex-rel-Flaherty-v-Hanson.doc
+327,16 N.D. 426,State v. Hazlett,1907-10-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0426-State-v-Hazlett.doc
+328,16 N.D. 313,"City of Grafton v. St. Paul, Minneapolis & Manitoba Railway Co.",1907-08-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0313-City-of-Grafton-v-St-Paul-M-And-M-Ry-Co.doc
+329,16 N.D. 335,Johnson v. Glaspey,1907-09-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0335-Johnson-v-Glaspey.doc
+330,16 N.D. 256,Morrison Manufacturing Co. v. Fargo Storage & Transfer Co.,1907-08-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0256-Morrison-Mfg-Co-v-Fargo-Storage-And-Transfer-Co.doc
+331,16 N.D. 323,Van Gordon v. Goldamer,1907-10-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0323-Van-Gordon-v-Goldamer.doc
+332,16 N.D. 341,Colean Manufacturing Co. v. Blanchett,1907-10-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0341-Colean-Mfg-Co-v-Blanchett.doc
+333,16 N.D. 355,Deardoff v. Thorstenson,1907-10-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0355-Deardoff-v-Thorstenson.doc
+334,16 N.D. 359,Powers Elevator Co. v. Pottner,1907-10-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0359-Powers-Elevator-Co-v-Pottner.doc
+335,16 N.D. 581,State ex rel. Erickson v. Burr,1907-11-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0581-State-ex-rel-Erickson-v-Burr.doc
+336,16 N.D. 569,State ex rel. Bockmeier v. Ely,1907-11-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0569-State-ex-rel-Bockmeier-v-Ely.doc
+337,16 N.D. 290,Bull v. Beiseker,1907-10-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0290-Bull-v-Beiseker.doc
+338,16 N.D. 281,Madson v. Rutten,1907-10-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0281-Madson-v-Rutten.doc
+339,16 N.D. 269,Mosher v. Mosher,1907-09-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0269-Mosher-v-Mosher.doc
+340,17 N.D. 76,First Nat. Bank of Bottineau v. Hilliboe,1908-01-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0076-First-Nat-Bank-v-Hilliboe.doc
+341,17 N.D. 110,Cardiff v. Marquis,1908-02-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0110-Cardiff-v-Marquis.doc
+342,17 N.D. 102,F. Mayer Boot & Shoe Co. v. Ferguson,1908-01-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0102-F-Mayer-Boot-And-Shoe-Co-v-Ferguson.doc
+343,17 N.D. 119,Marquis v. Morris,1908-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0119-Marquis-v-Morris.doc
+344,16 N.D. 408,Smith v. Jensen,1907-12-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0408-Smith-v-Jensen.doc
+345,16 N.D. 403,Haessly v. Thate,1907-12-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0403-Haessly-v-Thate.doc
+346,16 N.D. 398,Reeves & Co. v. Bruening,1907-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0398-Reeves-And-Co-v-Bruening.doc
+347,16 N.D. 457,"State ex rel. McDonald, County Treasurer of Grand Forks County, v. Holmes",1908-01-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0457-State-ex-rel-McDonald-v-Holmes.doc
+348,17 N.D. 16,Harris Bros. v. Reynolds,1907-12-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0016-Harris-Bros-v-Reynolds.doc
+349,17 N.D. 21,Dibble v. Hanson,1907-11-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0021-Dibble-v-Hanson.doc
+350,16 N.D. 462,Ferris v. Jensen,1907-12-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0462-Ferris-v-Jensen.doc
+351,17 N.D. 140,Ex parte Bellamy,1908-01-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0140-Ex-parte-Bellamy.doc
+352,16 N.D. 595,"Aronson v. Oppegard, Sheriff (Northwest Thresher Co., Intervener.)",1907-12-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0595-Aronson-v-Oppegard.doc
+353,17 N.D. 135,Zinn v. District Court in and for Morton County,1908-01-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0135-Zinn-v-District-Court-in-and-for-Morton-County.doc
+354,17 N.D. 128,Zinn v. District Court for Barnes County,1908-01-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0128-Zinn-v-District-Court-for-Barnes-County.doc
+355,16 N.D. 561,Nystrom v. Lee,1907-12-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0561-Nystrom-v-Lee.doc
+356,17 N.D. 13,State v. Nelson,1908-01-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0013-State-v-Nelson.doc
+357,17 N.D. 23,State v. Minneapolis & Northern Elevator Co.,1908-01-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0023-State-v-Minneapolis-And-Northern-Elevator-Co.doc
+358,17 N.D. 31,State v. Minneapolis & Northern Elevator Co.,1908-01-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0031-State-v-Minneapolis-And-Northern-Elevator-Co.doc
+359,16 N.D. 446,"Higgs v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1908-01-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0446-Higgs-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+360,17 N.D. 145,State Finance Co. v. Halstenson,1908-01-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0145-State-Finance-Co-v-Halstenson.doc
+361,17 N.D. 84,Brown v. Comonow,1908-01-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0084-Brown-v-Comonow.doc
+362,17 N.D. 67,"St. Paul, M. & M. Ry. Co. v. Blakemore (Cass County, Intervener)",1908-02-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0067-St-Paul-M-And-M-Ry-Co-v-Blakemore.doc
+363,17 N.D. 5,Continental Hose Co. No. 1 v. City of Fargo,1908-01-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0005-Continental-Hose-Co-v-City-of-Fargo.doc
+364,16 N.D. 470,Ex parte Corliss,1907-10-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0470-Ex-parte-Corliss.doc
+365,16 N.D. 420,State v. Hunskor,1908-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./16/0420-State-v-Hunskor.doc
+366,17 N.D. 99,Pfeifer v. Hatton,1908-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0099-Pfeifer-v-Hatton.doc
+367,17 N.D. 91,Scott v. Northwestern Port Huron Co.,1908-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0091-Scott-v-Northwestern-Port-Huron-Co.doc
+368,17 N.D. 154,Morton v. Holes,1908-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0154-Morton-v-Holes.doc
+369,17 N.D. 161,Schuyler v. Wheelon,1908-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0161-Schuyler-v-Wheelon.doc
+370,17 N.D. 166,Pease v. Magill,1908-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0166-Pease-v-Magill.doc
+371,18 N.D. 45,Walters v. Rock,1908-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0045-Walters-v-Rock.doc
+372,17 N.D. 178,Foster County Implement Co. v. Smith,1908-03-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0178-Foster-County-Implement-Co-v-Smith.doc
+373,17 N.D. 191,Hanson v. Gronlie,1908-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0191-Hanson-v-Gronlie.doc
+374,17 N.D. 173,Wadsworth v. Owens,1908-03-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0173-Wadsworth-v-Owens.doc
+375,17 N.D. 195,Maloney v. Geiser Manufacturing Co.,1908-03-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0195-Maloney-v-Geiser-Mfg-Co.doc
+376,17 N.D. 184,In re Beer,1908-03-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0184-In-re-Beer.doc
+377,17 N.D. 285,State ex rel. Ladd v. District Court in and for Cass County,1908-03-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0285-State-ex-rel-Ladd-v-District-Court-in-and-for-Cass-County.doc
+378,17 N.D. 203,Northern Pac. Ry. Co. v. Kreszeszewski,1908-03-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0203-Northern-Pac-Ry-Co-v-Kreszeszewski.doc
+379,17 N.D. 120,Smith v. Kunert,1907-11-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0120-Smith-v-Kunert.doc
+380,17 N.D. 104,"Mahon v. Fansett (Great Western Bank of Osnabrock, Garnishee)",1907-11-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0104-Mahon-v-Fansett.doc
+381,17 N.D. 40,State v. Dahlquist,1908-02-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0040-State-v-Dahlquist.doc
+382,17 N.D. 266,Ross v. Prante,1908-03-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0266-Ross-v-Prante.doc
+383,17 N.D. 266,Skeffington v. Prante,1908-03-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0266-Skeffington-v-Prante.doc
+384,17 N.D. 243,Pratt v. Beiseker,1908-03-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0243-Pratt-v-Beiseker.doc
+385,17 N.D. 275,Anderson v. Anderson,1908-03-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0275-Anderson-v-Anderson.doc
+386,17 N.D. 247,Larsen v. Walker,1908-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0247-Larsen-v-Walker.doc
+387,17 N.D. 296,Youker v. Hobart,1908-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0296-Youker-v-Hobart.doc
+388,17 N.D. 48,State v. Murphy,1908-02-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0048-State-v-Murphy.doc
+389,17 N.D. 271,Bristol & Sweet Co. v. Skapple,1908-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0271-Bristol-And-Sweet-Co-v-Skapple.doc
+390,17 N.D. 281,Gorder v. Hilliboe,1908-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0281-Gorder-v-Hilliboe.doc
+391,17 N.D. 313,Sucker State Drill Co. v. Wirtz Bros.,1908-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0313-Sucker-State-Drill-Co-v-Wirtz-Bros.doc
+392,17 N.D. 257,State ex rel. Hart-Parr Co. v. Robb-Lawrence Co.,1908-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0257-State-to-Use-of-Hart-Parr-Co-v-Robb-Lawrence-Co.doc
+393,17 N.D. 310,Landis Machine Co. v. Konantz Saddlery Co.,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0310-Landis-Mach-Co-v-Konantz-Saddlery-Co.doc
+394,17 N.D. 343,Buchanan v. Minneapolis Threshing Machine Co.,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0343-Buchanan-v-Minneapolis-Threshing-Mach-Co.doc
+395,17 N.D. 339,Bertleson v. Ehr,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0339-Bertleson-v-Ehr.doc
+396,17 N.D. 375,American Soda Fountain Co. v. Hogue,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0375-American-Soda-Fountain-Co-v-Hogue.doc
+397,17 N.D. 368,J. L. Owens Co. v. Doughty,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0368-JL-Owens-Co-v-Doughty.doc
+398,17 N.D. 326,"First Nat. Bank of Pomeroy, Iowa, v. Buttery",1908-02-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0326-First-Nat-Bank-v-Buttery.doc
+399,17 N.D. 352,Grove v. Great Northern Loan Co.,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0352-Grove-v-Great-Northern-Loan-Co.doc
+400,17 N.D. 340,A. D. Clarke & Co. v. Doyle,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0340-AD-Clarke-And-Co-v-Doyle.doc
+401,17 N.D. 380,Kephart v. Continental Casualty Co.,1908-04-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0380-Kephart-v-Continental-Casualty-Co.doc
+402,17 N.D. 386,Plano Manufacturing Co. v. Doyle,1908-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0386-Plano-Mfg-Co-v-Doyle.doc
+403,17 N.D. 248,Russell v. Waterloo Threshing Machine Co.,1908-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0248-Russell-v-Waterloo-Threshing-Mach-Co.doc
+404,17 N.D. 319,"State ex rel. Kettle River Quarries Co. v. Duis, Mayor",1908-05-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0319-State-ex-rel-Kettle-River-Quarries-Co-v-Duis.doc
+405,17 N.D. 220,Force v. Peterson Machine Co.,1908-04-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0220-Force-v-Peterson-Mach-Co.doc
+406,17 N.D. 235,Hebden v. Bina,1908-04-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0235-Hebden-v-Bina.doc
+407,17 N.D. 210,Lund v. Upham,1908-02-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0210-Lund-v-Upham.doc
+408,17 N.D. 370,"State ex rel. McCue, Atty. Gen., v. Great Northern Ry. Co.",1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0370-State-v-Great-Northern-Ry-Co.doc
+409,17 N.D. 301,"State ex rel. McCue, Atty. Gen., v. Minneapolis, St. P. & S. S. M. Ry. Co.",1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0301-State-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+410,17 N.D. 224,First Nat. Bank of Knox v. Bakken,1908-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0224-First-Nat-Bank-of-Knox-v-Bakken.doc
+411,17 N.D. 223,"State ex rel. McCue, Atty. Gen., v. Northern Pac. Ry. Co.",1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0223-State-v-Northern-Pac-Ry-Co.doc
+412,17 N.D. 215,Beiseker v. Amberson,1908-03-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0215-Beiseker-v-Amberson.doc
+413,17 N.D. 229,Aber v. Twichell,1908-04-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0229-Aber-v-Twichell.doc
+414,17 N.D. 302,Adams & Freese Co. v. Kenoyer,1908-04-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0302-Adams-And-Freese-Co-v-Kenoyer.doc
+415,17 N.D. 393,Soliah v. Cormack,1908-05-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0393-Soliah-v-Cormack.doc
+416,17 N.D. 361,Mariner v. Wasser,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0361-Mariner-v-Wasser.doc
+417,17 N.D. 335,Fulton v. Cretian,1908-07-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0335-Fulton-v-Cretian.doc
+418,17 N.D. 365,Rieck v. Daigle,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0365-Rieck-v-Daigle.doc
+419,17 N.D. 404,O'Keefe v. Beecher,1908-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0404-O'Keefe-v-Beecher.doc
+420,17 N.D. 409,Cole v. Minnesota Loan & Trust Co.,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0409-Cole-v-Minnesota-Loan-And-Trust-Co.doc
+421,17 N.D. 389,Erickson v. Elliott,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0389-Erickson-v-Elliott.doc
+422,17 N.D. 393,Erickson v. Elliott,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0393-Erickson-v-Elliott.doc
+423,17 N.D. 466,North Dakota Horse & Cattle Co. v. Serumgard,1908-07-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0466-North-Dakota-Horse-And-Cattle-Co-v-Serumgard.doc
+424,17 N.D. 463,Nystrom v. Templeton,1908-07-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0463-Nystrom-v-Templeton.doc
+425,17 N.D. 457,Strehlow v. McLeod,1908-07-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0457-Strehlow-v-McLeod.doc
+426,17 N.D. 406,Donovan v. Block,1908-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0406-Donovan-v-Block.doc
+427,17 N.D. 454,State v. Minor,1908-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0454-State-v-Minor.doc
+428,17 N.D. 449,Kaslow v. Chamberlin,1907-12-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0449-Kaslow-v-Chamberlin.doc
+429,17 N.D. 433,Pendroy v. Great Northern Railway Co.,1908-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0433-Pendroy-v-Great-Northern-Ry-Co.doc
+430,17 N.D. 429,State v. Chase,1908-09-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0429-State-v-Chase.doc
+431,17 N.D. 502,Stiles v. Granger,1908-09-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0502-Stiles-v-Granger.doc
+432,17 N.D. 495,McBride v. Wallace,1908-08-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0495-McBride-v-Wallace.doc
+433,17 N.D. 532,State ex rel. Steele v. Fabrick,1908-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0532-State-ex-rel-Steele-v-Fabrick.doc
+434,17 N.D. 543,State ex rel. Murphy v. Gottbreht,1908-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0543-State-ex-rel-Murphy-v-Gottbreht.doc
+435,17 N.D. 542,State ex rel. Cox v. Fabrick,1908-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0542-State-ex-rel-Cox-v-Fabrick.doc
+436,17 N.D. 510,Schouweiler v. Allen,1908-10-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0510-Schouweiler-v-Allen.doc
+437,17 N.D. 519,State v. Denny,1908-10-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0519-State-v-Denny.doc
+438,17 N.D. 546,In re Connolly,1908-10-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0546-In-re-Connolly.doc
+439,17 N.D. 594,Hilliboe v. Warner,1908-10-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0594-Hilliboe-v-Warner.doc
+440,18 N.D. 176,McCarthy Bros. v. McLean County Farmers Elevator Co.,1908-12-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0176-McCarthy-Bros-Co-v-McLean-County-Farmers'-Elevator-Co.doc
+441,18 N.D. 12,Knudtson v. Robinson,1908-11-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0012-Knudtson-v-Robinson.doc
+442,18 N.D. 55,"State ex rel. McCue, Atty. Gen. v. Blaisdell",1908-10-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0055-State-v-Blaisdell.doc
+443,18 N.D. 75,"State ex rel. McCue, Atty. Gen. v. Beery",1908-10-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0075-State-v-Beery.doc
+444,18 N.D. 144,Pfeifer v. Hatton,1908-10-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0144-Pfeifer-v-Hatton.doc
+445,17 N.D. 567,State v. Wesie,1908-10-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0567-State-v-Wesie.doc
+446,18 N.D. 149,State ex rel. Montgomery v. Anderson,1908-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0149-State-v-Anderson.doc
+447,17 N.D. 575,State ex rel. Cooper v. Blaisdell,1908-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0575-State-v-Blaisdell.doc
+448,17 N.D. 572,Probstfield v. Hunt,1908-10-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0572-Probstfield-v-Hunt.doc
+449,17 N.D. 561,Elvick v. Groves,1908-10-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0561-Elvick-v-Groves.doc
+450,17 N.D. 554,State v. Johnson,1908-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0554-State-v-Johnson.doc
+451,17 N.D. 579,State v. Rhoades,1908-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0579-State-v-Rhoades.doc
+452,18 N.D. 88,State v. Laechelt,1908-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0088-State-v-Laechelt.doc
+453,18 N.D. 93,McFadden v. Thorpe Elevator Co.,1908-10-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0093-McFadden-v-Thorpe-Elevator-Co.doc
+454,18 N.D. 147,State ex rel. Purcell v. Anderson,1908-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0147-State-ex-rel-Purcell-v-Anderson.doc
+455,18 N.D. 19,Miller v. Northern Pacific Railway Co.,1907-05-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0019-Miller-v-Northern-Pac-Ry-Co.doc
+456,18 N.D. 8,Sucker State Drill Co. v. Brock,1908-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0008-Sucker-State-Drill-Co-v-Brock.doc
+457,17 N.D. 606,"McDonell v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1908-11-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0606-McDonnell-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+458,18 N.D. 76,State ex rel. City of Minot v. Willis,1908-11-19,westlaw,non-comparable,0,0,0,1.0000,N.W./118/0820-STATE-ex-rel-CITY-OF-MINOT-et-al-v-WILLIS-et-al.doc
+460,18 N.D. 82,Barker v. More,1908-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0082-Barker-v-More.doc
+461,17 N.D. 610,Duncan v. Great Northern Railway Co.,1908-11-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0610-Duncan-v-Great-Northern-Ry-Co.doc
+462,18 N.D. 1,"Minneapolis, St. P. & S. S. M. Ry. Co. v. Oppegard, Sheriff",1908-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0001-Minneapolis-St-P-And-SSM-Ry-Co-v-Oppegard.doc
+463,18 N.D. 125,"State ex rel. McCue, Atty. Gen., v. Lewis, Auditor",1909-01-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0125-State-v-Lewis.doc
+464,18 N.D. 246,Griffin v. Denison Land Co.,1908-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0246-Griffin-v-Denison-Land-Co.doc
+465,18 N.D. 135,Foster County State Bank v. Hester,1909-01-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0135-Foster-County-State-Bank-v-Hester.doc
+466,18 N.D. 253,J. P. Lamb & Co. v. Merchants National Mutual Fire Insurance,1908-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0253-JP-Lamb-And-Co-v-Merchants'-Nat-Mut-Fire-Ins-Co.doc
+467,18 N.D. 166,Young ex rel. Johnson-Bostrom v. Engdahl,1908-11-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0166-Young-to-Use-of-Bostrom-v-Engdahl.doc
+468,18 N.D. 182,Lowe v. Abrahamson,1908-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0182-Lowe-v-Abrahamson.doc
+469,18 N.D. 185,Engholm v. Ekrem,1908-11-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0185-Engholm-v-Ekrem.doc
+470,18 N.D. 214,Siegel v. Marcus,1909-01-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0214-Siegel-v-Marcus.doc
+471,18 N.D. 31,"State ex rel. McCue, Atty. Gen., v. Blaisdell, Secretary of State",1909-01-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0031-State-ex-rel-McCue-v-Blaisdell.doc
+472,18 N.D. 205,Peterson v. Conlan,1909-01-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0205-Peterson-v-Conlan.doc
+473,17 N.D. 600,"Galvin v. Tibbs, Hutchins & Co.",1908-04-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./17/0600-Galvin-v-Tibbs-Hutchins-And-Co.doc
+474,18 N.D. 200,Brandenburg v. Phillips,1909-01-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0200-Brandenburg-v-Phillips.doc
+475,18 N.D. 197,Ransier v. Hyndman,1909-01-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0197-Ransier-v-Hyndman.doc
+476,18 N.D. 233,State ex rel. Poole v. Nuchols,1909-02-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0233-State-ex-rel-Poole-v-Nuchols.doc
+477,18 N.D. 221,Adams v. Hartzell,1909-01-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0221-Adams-v-Hartzell.doc
+478,18 N.D. 242,State ex rel. Minehan v. Wing,1909-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0242-State-ex-rel-Minehan-v-Wing.doc
+479,19 N.D. 10,First International Bank of Portal v. Lee,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0010-First-International-Bank-of-Portal-v-Lee.doc
+480,19 N.D. 8,Emerson Mfg. Co. v. Rustad,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0008-Emerson-Mfg-Co-v-Rustad.doc
+481,19 N.D. 1,Hyde v. Thompson,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0001-Hyde-v-Thompson.doc
+482,19 N.D. 35,Schmidt v. Beiseker,1909-04-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0035-Schmidt-v-Beiseker.doc
+483,18 N.D. 101,State ex rel. Poole v. Peake,1909-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0101-State-ex-rel-Poole-v-Peake.doc
+484,18 N.D. 600,Power v. King,1909-03-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0600-Power-v-King.doc
+485,18 N.D. 603,Queen City Fire Ins. Co. v. First Nat. Bank of Hannaford,1909-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0603-Queen-City-Fire-Ins-Co-v-First-Nat-Bank-of-Hannaford.doc
+486,18 N.D. 561,Holcomb v. Holcomb,1909-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0561-Holcomb-v-Holcomb.doc
+487,18 N.D. 550,Hanson v. Svarverud,1909-03-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0550-Hanson-v-Svarverud.doc
+488,18 N.D. 594,Schnase v. Goetz,1909-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0594-Schnase-v-Goetz.doc
+489,19 N.D. 34,McLaughlin v. Thompson,1909-03-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0034-McLaughlin-v-Thompson.doc
+490,18 N.D. 616,State v. School Dist. No. 50 of Barnes County,1909-03-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0616-State-v-School-Dist-No-50-of-Barnes-County.doc
+491,18 N.D. 556,Poirier Manufacturing Co. v. Kitts,1909-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0556-Poirier-Mfg-Co-v-Kitts.doc
+492,18 N.D. 578,Hemmi v. Grover,1909-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0578-Hemmi-v-Grover.doc
+493,18 N.D. 608,Roberts v. Little,1909-03-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0608-Roberts-v-Little.doc
+494,18 N.D. 587,Landis v. Fyles,1909-03-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0587-Landis-v-Fyles.doc
+495,18 N.D. 598,Sucker State Drill Co. v. Brock,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0598-Sucker-State-Drill-Co-v-Brock.doc
+496,19 N.D. 13,Yerxa v. Ruthruff,1909-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0013-Yerxa-v-Ruthruff.doc
+497,19 N.D. 23,Soules v. Brotherhood of American Yeomen,1909-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0023-Soules-v-Brotherhood-of-American-Yeomen.doc
+498,19 N.D. 45,"State ex rel. McCue, Atty. Gen., v. Northern Pac. Ry. Co.",1909-04-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0045-State-ex-rel-McCue-v-Northern-Pac-Ry-Co.doc
+499,19 N.D. 57,"State ex rel. McCue, Atty. Gen., v. Minneapolis, St. P. & S. S. M. Ry. Co.",1909-04-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0057-State-ex-rel-McCue-v-Minneapolis-St-P-And-SSMR-Co.doc
+500,18 N.D. 570,Comford v. Great Northern Railway Co.,1909-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0570-Comford-v-Great-Northern-Ry-Co.doc
+501,18 N.D. 583,State ex rel. State Farmers Mutual Hail Insurance v. Cooper,1909-04-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0583-State-ex-rel-State-Farmers'-Mut-Hail-Ins-Co-v-Cooper.doc
+502,19 N.D. 268,State v. Longstreth,1909-06-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0268-State-v-Longstreth.doc
+503,19 N.D. 116,Forman v. Healey,1909-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0116-Forman-v-Healey.doc
+504,19 N.D. 144,Chandler v. Starling,1909-04-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0144-Chandler-v-Starling.doc
+505,19 N.D. 153,Larson v. Newman,1909-03-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0153-Larson-v-Newman.doc
+506,19 N.D. 70,Yegen v. Northern Pacific Railway Co.,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0070-Yegen-v-Northern-Pac-Ry-Co.doc
+507,18 N.D. 484,State v. Bednar,1909-05-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0484-State-v-Bednar.doc
+508,18 N.D. 478,Rising v. Dickinson,1909-05-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0478-Rising-v-Dickinson.doc
+509,18 N.D. 507,Bessie v. Northern Pacific Railway Co.,1909-05-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0507-Bessie-v-Northern-Pac-Ry-Co.doc
+510,19 N.D. 4,Flora v. Mathwig,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0004-Flora-v-Mathwig.doc
+511,18 N.D. 483,Aultman-Taylor Machinery Co. v. Clausen,1909-05-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0483-Aultman-Taylor-Machinery-Co-v-Clausen.doc
+512,18 N.D. 402,"State ex rel. Davis, County Judge, v. Fabrick",1909-01-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0402-State-ex-rel-Davis-v-Fabrick.doc
+513,18 N.D. 417,Tronsrud v. Farm Land & Finance Co.,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0417-Tronsrud-v-Farm-Land-And-Finance-Co.doc
+514,19 N.D. 38,"Satterberg v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1909-04-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0038-Satterberg-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+515,19 N.D. 18,Chesley v. Soo Lignite Coal Co.,1909-03-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0018-Chesley-v-Soo-Lignite-Coal-Co.doc
+516,18 N.D. 409,Massey v. Rae,1909-04-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0409-Massey-v-Rae.doc
+517,19 N.D. 58,Columbian Lyceum Bureau v. Sherman,1909-05-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0058-Columbian-Lyceum-Bureau-v-Sherman.doc
+518,19 N.D. 61,Finn v. Walsh,1909-05-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0061-Finn-v-Walsh.doc
+519,18 N.D. 324,Hanson v. Great Northern Railway Co.,1909-03-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0324-Hanson-v-Great-Northern-Ry-Co.doc
+520,18 N.D. 338,Gooler v. Eidness,1909-04-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0338-Gooler-v-Eidness.doc
+521,18 N.D. 367,"Kunkel v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1909-04-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0367-Kunkel-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+522,18 N.D. 390,"First Nat. Bank of Casselton v. Lewis, County Auditor",1909-05-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0390-First-Nat-Bank-of-Casselton-v-Lewis.doc
+523,18 N.D. 500,State Bank of Lisbon v. Cullen,1909-04-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0500-State-Bank-of-Lisbon-v-Cullen.doc
+524,18 N.D. 384,Mears v. Somers Land Co.,1909-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0384-Mears-v-Somers-Land-Co.doc
+525,18 N.D. 357,State v. Russell,1909-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0357-State-v-Russell.doc
+526,18 N.D. 421,Scherer v. Schlaberg,1909-09-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0421-Scherer-v-Schlaberg.doc
+527,19 N.D. 82,Sjoli v. Hogenson,1909-07-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0082-Sjoli-v-Hogenson.doc
+528,18 N.D. 441,Young v. Metcalf Land Co.,1909-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0441-Young-v-Metcalf-Land-Co.doc
+530,19 N.D. 756,"State v. Winchester, District Judge",1909-11-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0534-State-v-Winchester.doc
+531,18 N.D. 397,"Dean v. Dimmick, County Auditor",1908-10-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0397-Dean-v-Dimmick.doc
+532,19 N.D. 112,Western Manufacturing Co. v. Peabody,1909-06-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0112-Western-Mfg-Co-v-Peabody.doc
+533,19 N.D. 134,"St. Paul, Minneapolis & Manitoba Railway Co. v. Blakemore",1909-05-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0134-St-Paul-M-And-MR-Co-v-Blakemore.doc
+534,19 N.D. 139,Hodgson v. State Finance Co.,1909-06-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0139-Hodgson-v-State-Finance-Co.doc
+535,19 N.D. 104,Boschker v. Van Beek,1909-06-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0104-Boschker-v-Van-Beek.doc
+536,18 N.D. 511,Leistikow v. Zuelsdorf,1909-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0511-Leistikow-v-Zuelsdorf.doc
+537,18 N.D. 276,Kidder v. Barnes,1909-06-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0276-Kidder-v-Barnes.doc
+538,18 N.D. 360,Zellmer v. Patterson,1909-06-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0360-Zellmer-v-Patterson.doc
+539,18 N.D. 282,Christianson v. Hughes,1909-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0282-Christianson-v-Hughes.doc
+540,18 N.D. 268,Johnson v. Rickford,1909-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0268-Johnson-v-Rickford.doc
+541,18 N.D. 309,Umsted ex rel. Umsted v. Colgate Farmers Elevator Co.,1909-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0309-Umsted-v-Colgate-Farmers'-Elevator-Co.doc
+542,18 N.D. 343,Taylor-Baldwin Co. v. Northwestern Fire & Marine Insurance,1909-07-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0343-Taylor-Baldwin-Co-v-Northwestern-Fire-And-Marine-Ins-Co.doc
+543,18 N.D. 289,Stern v. City of Fargo,1909-06-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0289-Stern-v-City-of-Fargo.doc
+544,18 N.D. 474,Hughes v. Horsky,1909-06-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0474-Hughes-v-Horsky.doc
+545,19 N.D. 433,Langworthy Lumber Co. v. Hunt,1909-10-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0433-Langworthy-Lumber-Co-v-Hunt.doc
+546,19 N.D. 417,Winterberg v. Van De Vorste,1909-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0417-Winterberg-v-Van-de-Vorste.doc
+547,19 N.D. 438,Hope v. Great Northern Railway Co.,1909-10-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0438-Hope-v-Great-Northern-Ry-Co.doc
+548,18 N.D. 528,Scully Steel & Iron Co. v. Hann,1909-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0528-Scully-Steel-And-Iron-Co-v-Hann.doc
+549,18 N.D. 488,Hedderich v. Hedderich,1909-09-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0488-Hedderich-v-Hedderich.doc
+550,18 N.D. 462,"Anderson v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1909-09-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0462-Anderson-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+551,18 N.D. 525,State ex rel. Hagert v. Templeton,1909-11-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0525-State-v-Templeton.doc
+552,18 N.D. 467,Martinson v. Regan,1909-11-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0467-Martinson-v-Regan.doc
+553,19 N.D. 259,Hanson v. Franklin,1909-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0259-Hanson-v-Franklin.doc
+554,18 N.D. 517,Enderlin Investment Co. v. Nordhagen,1909-11-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0517-Enderlin-Inv-Co-v-Nordhagen.doc
+555,19 N.D. 98,City of Mayville v. Rosing,1909-11-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0098-City-of-Mayville-v-Rosing.doc
+556,19 N.D. 751,Webster v. McLaren,1909-11-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0751-Webster-v-McLaren.doc
+557,19 N.D. 187,Nilson v. Horton,1909-11-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0187-Nilson-v-Horton.doc
+558,19 N.D. 308,Tuttle v. Pollock,1909-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0308-Tuttle-v-Pollock.doc
+559,19 N.D. 160,Hagen v. Sacrison,1909-11-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0160-Hagen-v-Sacrison.doc
+560,18 N.D. 532,Sucker State Drill Co. v. Brock,1909-11-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./18/0532-Sucker-State-Drill-Co-v-Brock.doc
+561,19 N.D. 782,State v. Ball,1909-12-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0782-State-v-Ball.doc
+562,19 N.D. 337,Smith v. Hogue,1909-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0337-Smith-v-Hogue.doc
+563,19 N.D. 191,Johnston v. Spoonheim,1909-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0191-Johnston-v-Spoonheim.doc
+564,19 N.D. 293,City of Grand Forks v. Paulsness,1909-12-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0293-City-of-Grand-Forks-v-Paulsness.doc
+565,19 N.D. 286,State ex rel. McDonald v. Holmes,1909-12-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0286-State-ex-rel-McDonald-v-Holmes.doc
+566,19 N.D. 249,State v. Stevens,1909-12-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0249-State-v-Stevens.doc
+567,19 N.D. 794,Marchand v. Perrin,1910-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0794-Marchand-v-Perrin.doc
+568,20 N.D. 1,Scheer v. Clinton Falls Nursery Co.,1910-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0001-Scheer-v-Clinton-Falls-Nursery-Co.doc
+569,19 N.D. 692,Mathews v. Hanson,1910-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0692-Mathews-v-Hanson.doc
+570,19 N.D. 672,Village of Litchville v. Hanson,1910-01-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0672-Village-of-Litchville-v-Hanson.doc
+571,20 N.D. 281,State v. Noah,1910-02-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0281-State-v-Noah.doc
+572,19 N.D. 801,"Reed v. Heglie, Tri-County Drain Com'rs",1910-02-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0801-Reed-v-Heglie.doc
+573,19 N.D. 203,State v. Kruse,1909-12-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0203-State-v-Kruse.doc
+574,19 N.D. 396,State v. Fargo Bottling Works Co.,1910-01-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0396-State-v-Fargo-Bottling-Works-Co.doc
+575,19 N.D. 344,State v. American Bottling Ass'n,1910-01-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0344-State-v-American-Bottling-Ass'n.doc
+576,19 N.D. 345,"Kermott v. Bagley, County Judge",1910-01-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0345-Kermott-v-Bagley.doc
+577,19 N.D. 819,"State ex rel. Miller, Atty. Gen., v. District Court of Burleigh County",1910-01-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0819-State-ex-rel-Miller-v-District-Court-of-Burleigh-County.doc
+578,19 N.D. 697,Selzler v. Bagley,1910-01-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0697-Selzler-v-Bagley.doc
+579,19 N.D. 709,"Hammond v. Northwestern Const. & Imp. Co. (Wishek, Intervener)",1910-01-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0709-Hammond-v-Northwestern-Const-And-Imp-Co.doc
+580,19 N.D. 748,Tuttle v. Tuttle,1909-12-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0748-Tuttle-v-Tuttle.doc
+581,19 N.D. 317,Sockman v. Keim,1909-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0317-Sockman-v-Keim.doc
+582,19 N.D. 426,State v. O'Neal,1909-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0426-State-v-O'Neal.doc
+583,19 N.D. 645,Campbell v. Coulston,1910-01-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0645-Campbell-v-Coulston.doc
+584,19 N.D. 804,State ex rel. Minehan v. Meyers,1910-01-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0804-State-ex-rel-Minehan-v-Meyers.doc
+585,19 N.D. 209,"State ex rel. Davis v. Willis, County Canvassing Board",1910-01-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0209-State-ex-rel-Davis-v-Willis.doc
+586,19 N.D. 326,State v. Nyhus,1909-12-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0326-State-v-Nyhus.doc
+587,19 N.D. 771,Tri-State Telephone & Telegraph Co. v. Cosgriff,1909-12-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0771-Tri-State-Telephone-And-Telegraph-Co-v-Cosgriff.doc
+588,19 N.D. 227,Burke v. Scharf,1909-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0227-Burke-v-Scharf.doc
+589,19 N.D. 699,Hammond v. Northwestern Construction & Improvement Co.,1910-01-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0699-Hammond-v-Northwestern-Construction-And-Improvement-Co.doc
+590,19 N.D. 736,Mitchell v. Knudtson Land Co.,1910-01-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0736-Mitchell-v-Knudtson-Land-Co.doc
+591,19 N.D. 784,Waterloo Gasoline Engine Co. v. O'Neill,1910-01-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0784-Waterloo-Gasoline-Engine-Co-v-O'Neill.doc
+592,19 N.D. 702,James River Nat. Bank of Jamestown v. Weber,1910-01-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0702-James-River-Nat-Bank-of-Jamestown-v-Weber.doc
+593,19 N.D. 594,Houghton Implement Co. v. Vavrowski,1910-03-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0594-Houghton-Implement-Co-v-Vavrowski.doc
+594,19 N.D. 504,Martin v. Royer,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0504-Martin-v-Royer.doc
+595,19 N.D. 613,Justice v. Souder,1910-03-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0613-Justice-v-Souder.doc
+596,19 N.D. 551,Liland v. Tweto,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0551-Liland-v-Tweto.doc
+597,19 N.D. 538,Braatz v. City of Fargo,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0538-Braatz-v-City-of-Fargo.doc
+598,19 N.D. 574,Casseday ex rel. Kinslow v. Robertson,1910-03-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0574-Casseday-v-Robertson.doc
+599,20 N.D. 5,Holtan v. Beck,1910-02-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0005-Holtan-v-Beck.doc
+600,19 N.D. 450,Corbett v. Great Northern Railway Co.,1910-02-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0450-Corbett-v-Great-Northern-Ry-Co.doc
+601,19 N.D. 531,McKenzie v. Boynton,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0531-McKenzie-v-Boynton.doc
+602,20 N.D. 26,Stubbs ex rel. Batelle v. Hoerr,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0026-Stubbs-v-Hoerr.doc
+603,20 N.D. 27,County of Burleigh v. County of Kidder,1910-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0027-Burleigh-County-v-Kidder-County.doc
+604,19 N.D. 787,Simmons v. McConville,1910-02-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0787-Simmons-v-McConville.doc
+605,19 N.D. 713,O'Brien v. O'Brien,1910-02-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0713-O'Brien-v-O'Brien.doc
+606,19 N.D. 722,Folsom v. Norton,1910-01-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0722-Folsom-v-Norton.doc
+607,19 N.D. 638,Whitney v. Akin,1910-02-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0638-Whitney-v-Akin.doc
+608,19 N.D. 634,Hilde v. Nelson,1910-02-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0634-Hilde-v-Nelson.doc
+609,19 N.D. 621,Downey v. Northern Pacific Railway Co.,1910-02-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0621-Downey-v-Northern-Pac-Ry-Co.doc
+610,19 N.D. 352,Rindlaub v. Rindlaub,1910-01-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0352-Rindlaub-v-Rindlaub.doc
+611,19 N.D. 630,DeLaney v. Western Stock Co.,1910-02-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0630-De-Laney-v-Western-Stock-Co.doc
+612,19 N.D. 688,Schultz v. Schultz,1910-03-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0688-Schultz-v-Schultz.doc
+613,19 N.D. 684,Hilsbish v. Asada,1910-03-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0684-Hilsbish-v-Asada.doc
+614,19 N.D. 679,State v. Lang,1910-03-04,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0679-State-v-Lang.doc
+615,19 N.D. 677,Strecker v. Railson,1910-03-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0677-Strecker-v-Railson.doc
+616,19 N.D. 546,Singer v. Austin,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0546-Singer-v-Austin.doc
+617,19 N.D. 606,Webb v. Wegley,1910-03-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0606-Webb-v-Wegley.doc
+618,19 N.D. 516,North Dakota Lumber Co. v. Bulger,1910-03-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0516-North-Dakota-Lumber-Co-v-Bulger.doc
+619,19 N.D. 599,McGregor v. Harm,1910-03-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0599-McGregor-v-Harm.doc
+620,19 N.D. 509,Northern State Bank of Grand Forks v. Bellamy,1910-03-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0509-Northern-State-Bank-of-Grand-Forks-v-Bellamy.doc
+621,19 N.D. 582,Lang v. Bailes,1910-03-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0582-Lang-v-Bailes.doc
+622,19 N.D. 485,"Second Nat. Bank of Bucyrus, Ohio v. Werner",1910-04-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0485-Second-Nat-Bank-of-Bucyrus-Ohio-v-Werner.doc
+623,20 N.D. 256,Page Farmers' Elevator Co. v. Thompson,1910-05-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0256-Page-Farmers'-Elevator-Co-v-Thompson.doc
+624,20 N.D. 268,Wiemer v. Wiemer,1910-06-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0268-Wiemer-v-Wiemer.doc
+625,20 N.D. 211,Casey v. First Nat. Bank of Nome,1910-05-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0211-Casey-v-First-Nat-Bank-of-Nome.doc
+626,20 N.D. 18,St. Anthony & Dakota Elevator Co. v. Dawson,1910-03-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0018-St-Anthony-And-Dakota-Elevator-Co-v-Dawson-And-Byfield.doc
+627,20 N.D. 247,Northern Pacific Railway Co. v. Aas,1910-05-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0247-Northern-Pac-Ry-Co-v-Aas.doc
+628,20 N.D. 188,Colean Manufacturing Co. v. Feckler,1910-04-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0188-Colean-Mfg-Co-v-Feckler.doc
+629,19 N.D. 489,"Citizens' Nat. Bank of Sisseton, S. D., v. Branden",1910-03-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0489-Citizens'-Nat-Bank-of-Sisseton-SD-v-Branden.doc
+630,20 N.D. 216,State v. Wright,1910-05-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0216-State-v-Wright.doc
+631,19 N.D. 473,Weber v. Lewis,1910-04-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0473-Weber-v-Lewis.doc
+632,19 N.D. 496,F. Mayer Boot & Shoe Co. v. Ferguson,1910-03-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0496-F-Mayer-Boot-And-Shoe-Co-v-Ferguson.doc
+633,19 N.D. 466,Rounseville v. Paulson,1910-04-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0466-Rounseville-v-Paulson.doc
+634,20 N.D. 42,Forszen v. Hurd,1910-04-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0042-Forszen-v-Hurd.doc
+635,19 N.D. 522,Boyle v. Boyle,1910-03-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0522-Boyle-v-Boyle.doc
+636,20 N.D. 197,Northern Pacific Railway Co. v. Barlow,1910-04-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0197-Northern-Pac-Ry-Co-v-Barlow.doc
+637,19 N.D. 445,Viets v. Silver,1910-04-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0445-Viets-v-Silver.doc
+638,20 N.D. 182,"Kenmare Hard Coal, Brick, & Tile Co. v. Riley",1910-04-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0182-Kenmare-Hard-Coal-Brick-And-Tile-Co-v-Riley.doc
+639,20 N.D. 62,State v. Ildvedsen,1910-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0062-State-v-Ildvedsen.doc
+640,20 N.D. 72,Bruegger v. Cartier,1910-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0072-Bruegger-v-Cartier.doc
+641,20 N.D. 55,Bergstrom v. Svenson,1910-04-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0055-Bergstrom-v-Svenson.doc
+642,20 N.D. 96,Miller v. Smith,1910-05-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0096-Miller-v-Smith.doc
+643,20 N.D. 86,Ottow v. Friese,1910-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0086-Ottow-v-Friese.doc
+644,20 N.D. 105,State v. Fleming,1910-05-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0105-State-v-Fleming.doc
+645,20 N.D. 114,State v. Moeller,1910-05-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0114-State-v-Moeller.doc
+646,20 N.D. 66,Beddow v. Flage,1910-04-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0066-Beddow-v-Flage.doc
+647,19 N.D. 463,Johnson v. Soliday,1910-04-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./19/0463-Johnson-v-Soliday.doc
+648,20 N.D. 238,Meighen v. Chandler,1910-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0238-Meighen-v-Chandler.doc
+649,20 N.D. 124,Cleveland School District v. Great Northern Railway Co.,1910-05-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0124-Cleveland-School-Dist-v-Great-Northern-Ry-Co.doc
+650,20 N.D. 634,Bickford v. Ward County,1910-06-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0634-Bickford-v-Ward-County.doc
+651,20 N.D. 225,Borden v. Graves,1910-05-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0225-Borden-v-Graves.doc
+652,21 N.D. 27,State ex rel. Heffron v. Bleth,1910-09-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0027-State-ex-rel-Heffron-v-Bleth.doc
+653,20 N.D. 637,Lowry v. Piper,1910-09-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0637-Lowry-v-Piper.doc
+654,20 N.D. 419,Smith v. Hoff,1910-09-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0419-Smith-v-Hoff.doc
+655,20 N.D. 261,F. A. Patrick & Co. v. Austin,1910-04-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0261-F-A-Patrick-&-Co-v-Austin.doc
+656,20 N.D. 393,Greenfield School District v. Hannaford Special School District,1910-06-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0393-Greenfield-School-Dist-v-Hannaford-Special-School-Dist.doc
+657,20 N.D. 406,Schlosser v. Great Northern Railway Co.,1910-06-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0406-Schlosser-v-Great-Northern-Ry-Co.doc
+658,20 N.D. 405,"State ex rel. Miller v. Burnham, Auditor",1910-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0405-State-ex-rel-Miller-v-Burnham.doc
+659,20 N.D. 151,Blessett v. Turcotte,1910-07-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0151-Blessett-v-Turcotte.doc
+660,20 N.D. 401,Tisdale v. Ward County,1910-06-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0401-Tisdale-v-Ward-County.doc
+661,20 N.D. 142,Yokell v. Elder,1910-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0142-Yokell-v-Elder.doc
+662,20 N.D. 614,School District No. 94 v. King,1910-06-29,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0614-School-Dist-No-94-v-King.doc
+663,20 N.D. 130,Hackney v. Adam,1910-06-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0130-Hackney-v-Adam.doc
+664,20 N.D. 270,Emerado Farmers Elevator Co. v. Farmers Bank,1910-06-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0270-Emerado-Farmers'-Elevator-Co-v-Farmers'-Bank-of-Emerado.doc
+665,20 N.D. 180,"State ex rel. Miller, Atty. Gen. v. Norton",1910-09-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0180-State-ex-rel-Miller-v-Norton.doc
+666,20 N.D. 137,Aneta Mercantile Co. v. Groseth,1910-06-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0137-Aneta-Mercantile-Co-v-Groseth.doc
+667,20 N.D. 357,State v. Heidt,1910-06-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0357-State-v-Heidt.doc
+668,20 N.D. 622,State ex rel. Hagendorf v. Blaisdell,1910-09-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0622-State-v-Blaisdell.doc
+669,20 N.D. 145,State v. Funk,1910-06-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0145-State-v-Funk.doc
+670,20 N.D. 169,Cochrane v. National Elevator Co.,1910-05-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0169-Cochrane-v-National-Elevator-Co.doc
+671,20 N.D. 295,Goss v. Herman,1910-05-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0295-Goss-v-Herman.doc
+672,20 N.D. 372,State v. Andor,1910-06-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0372-State-v-Andor.doc
+673,20 N.D. 371,State v. Messer,1910-06-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0371-State-v-Messer.doc
+674,20 N.D. 370,State v. McAndress,1910-06-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0370-State-v-Koch.doc
+675,20 N.D. 370,State v. Koch,1910-06-03,NW,identical,94,94,0,1.0000,NW/127/78_5.md
+676,20 N.D. 337,State v. Merry,1910-05-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0337-State-v-Merry.doc
+677,20 N.D. 628,State ex rel. Williams v. Meyer,1910-09-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0628-State-ex-rel-Williams-v-Meyer.doc
+678,20 N.D. 316,Leisen v. St. Paul Fire & Marine Insurance,1910-05-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0316-Leisen-v-St-Paul-Fire-And-Marine-Ins-Co.doc
+679,20 N.D. 307,Solberg v. Schlosser,1910-05-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0307-Solberg-v-Schlosser.doc
+680,20 N.D. 372,"Fitzmaurice v. Willis, County Com'rs",1910-06-03,NW,identical,7656,7656,0,1.0000,NW/127/95.md
+681,20 N.D. 635,"Sternberg, Weil, & Co. v. James A. Larson & Co.",1910-09-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0635-Sternberg-Weil-And-Co-v-James-A-Larson-And-Co.doc
+682,20 N.D. 642,"Hollinshead v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1910-09-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0642-Hollinshead-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+683,20 N.D. 412,"Winterer v. Minneapolis, St. P. & S. S. M. Ry. Co.",1910-09-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0412-Winterer-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
+684,21 N.D. 82,Messenger v. Valley City Street,1910-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0082-Messenger-v-Valley-City-Street-And-Interurban-Ry-Co.doc
+685,20 N.D. 461,Auld v. Cathro,1910-09-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0461-Auld-v-Cathro.doc
+686,20 N.D. 509,State v. Miller,1910-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0509-State-v-Miller.doc
+687,20 N.D. 500,Lohr v. Honsinger,1910-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0500-Lohr-v-Honsinger.doc
+688,21 N.D. 125,Murray ex rel. Bull v. Lamson,1910-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0125-Murray-v-Lamson.doc
+689,21 N.D. 128,State v. Empting,1910-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0128-State-v-Empting.doc
+690,20 N.D. 512,State v. Albertson,1910-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0512-State-v-Albertson.doc
+691,20 N.D. 518,State v. Robidou,1910-11-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0518-State-v-Robidou.doc
+692,20 N.D. 412,Stoltze v. Hurd,1910-09-17,NW,identical,1892,1892,0,1.0000,NW/128/115.md
+693,20 N.D. 639,Schwartz v. Hendrickson,1910-09-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0639-Schwartz-v-Hendrickson.doc
+694,20 N.D. 646,Morris v. Bradley,1910-09-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0646-Morris-v-Bradley.doc
+695,21 N.D. 61,Spicer v. Northern Pacific Railway Co.,1910-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0061-Spicer-And-Davis-v-Northern-Pac-Ry-Co.doc
+696,20 N.D. 427,"State ex rel. Bithulitic & Contracting, Limited, v. Murphy, Mayor",1910-10-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0427-State-v-Murphy.doc
+697,21 N.D. 64,Murray v. Davis,1910-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0064-Murray-v-Davis.doc
+698,20 N.D. 432,State v. Gutterman,1910-10-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0432-State-v-Gutterman.doc
+699,21 N.D. 69,Willis v. Weatherwax,1910-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0069-Willis-v-Weatherwax.doc
+700,21 N.D. 34,Wells v. City of Lisbon,1910-10-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0034-Wells-v-City-of-Lisbon.doc
+701,21 N.D. 43,Davy v. Great Northern Railway Co.,1910-10-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0043-Davy-v-Great-Northern-Ry-Co.doc
+702,21 N.D. 55,Advance Thresher Co. v. Beck,1910-10-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0055-Advance-Thresher-Co-v-Beck.doc
+703,21 N.D. 70,State v. Winbauer,1910-11-18,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0070-State-v-Winbauer.doc
+704,21 N.D. 72,State v. Winney,1910-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0072-State-v-Winney.doc
+705,21 N.D. 77,State v. Bloomdale,1910-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0077-State-v-Bloomdale.doc
+706,20 N.D. 484,Dieter v. Fraine,1910-10-12,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0484-Dieter-v-Fraine.doc
+707,20 N.D. 493,Randall v. Johnstone,1910-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0493-Randall-v-Johnstone.doc
+708,21 N.D. 97,Golden Valley Land & Cattle Co. v. Johnstone,1910-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0097-Golden-Valley-Land-And-Cattle-Co-v-Johnstone.doc
+709,21 N.D. 101,Golden Valley Land & Cattle Co. v. Johnstone,1910-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0101-Golden-Valley-Land-And-Cattle-Co-v-Johnstone.doc
+710,21 N.D. 25,Nordhagen v. Enderlin Investment Co.,1911-01-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0025-Nordhagen-v-Enderlin-Inv-Co.doc
+711,21 N.D. 208,Erickson v. Russ,1911-01-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0208-Erickson-v-Russ.doc
+712,21 N.D. 198,Williams v. Fairmount School Dist. of Richland County,1911-01-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0198-Williams-v-Fairmount-School-Dist-of-Richland-County.doc
+713,21 N.D. 211,Erickson v. Russ,1911-01-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0211-Erickson-v-Russ.doc
+714,21 N.D. 212,Fuller v. Board of University & School Lands,1911-01-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0212-Fuller-v-Board-of-University-and-School-Lands.doc
+715,21 N.D. 205,State v. Tracy,1911-01-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0205-State-v-Tracy.doc
+716,20 N.D. 545,State v. Staber,1910-12-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0545-State-v-Staber.doc
+717,20 N.D. 434,Acton v. Fargo & Moorhead Street Railway Co.,1910-09-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0434-Acton-v-Fargo-And-M-St-Ry-Co.doc
+718,21 N.D. 133,State v. Hakon,1910-12-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0133-State-v-Hakon.doc
+719,21 N.D. 150,Jenness v. Clark,1910-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0150-Jenness-v-Clark.doc
+720,20 N.D. 567,Tronsrud v. Farm Land Finance Co.,1910-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0567-Tronsrud-v-Farm-Land-And-Finance-Co.doc
+721,20 N.D. 555,State v. Fujita,1910-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0555-State-v-Fujita.doc
+722,20 N.D. 570,"Lee, Sheriff, v. Charmley",1910-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0570-Lee-v-Charmley.doc
+723,21 N.D. 188,State v. Peltier,1910-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0188-State-v-Peltier.doc
+724,20 N.D. 579,Vallancey v. Hunt,1910-12-31,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0579-Vallancey-v-Hunt.doc
+725,21 N.D. 179,State v. Gottlieb,1910-12-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0179-State-v-Gottlieb.doc
+726,21 N.D. 140,Baker v. City Council of City of La Moure,1910-12-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0140-Baker-v-City-Council-of-La-Moure.doc
+727,21 N.D. 157,In re the Proceeding for Disbarment of Maloney,1910-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0157-In-re-Maloney.doc
+728,21 N.D. 111,Taugher v. Northern Pacific Railway Co.,1910-11-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0111-Taugher-v-Northern-Pac-Ry-Co.doc
+729,20 N.D. 525,Cline v. Duffy,1910-12-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0525-Cline-v-Duffy.doc
+730,20 N.D. 540,"State ex rel. Moore v. Furstenau, County Treasurer",1910-12-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0540-State-v-Furstenau.doc
+731,21 N.D. 1,"Freeman v. Trimble, Drain Com'rs",1910-01-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0001-Freeman-v-Trimble.doc
+732,20 N.D. 592,State ex rel. Dorval v. Hamilton,1910-12-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./20/0592-State-v-Hamilton.doc
+733,21 N.D. 69,State ex rel. Kramer v. Kiefer,1910-10-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0069-State-v-Kiefer.doc
+734,21 N.D. 89,McLean v. News Publishing Co.,1910-11-19,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0089-McLean-v-News-Pub-Co.doc
+735,21 N.D. 161,State v. Winbauer,1910-12-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0161-State-v-Winbauer.doc
+736,21 N.D. 167,American National Bank v. Lundy,1910-12-23,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0167-American-Nat-Bank-v-Lundy.doc
+737,21 N.D. 470,State ex rel. Berndt v. Templeton,1911-04-24,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0470-State-v-Templeton.doc
+738,21 N.D. 357,Wood v. Pehrsson,1911-04-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0357-Wood-v-Pehrsson.doc
+739,21 N.D. 371,Wiemer v. Wiemer,1911-04-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0371-Wiemer-v-Wiemer.doc
+740,21 N.D. 410,Myren v. Larson,1911-04-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0410-Myren-v-Larson.doc
+741,21 N.D. 230,German Mercantile Co. v. Metz,1911-02-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0230-German-Mercantile-Co-v-Metz.doc
+742,21 N.D. 249,Kane v. Sherman,1911-02-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0249-Kane-v-Sherman.doc
+743,21 N.D. 245,Wagar v. Prendeville,1911-02-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0245-Wagar-v-Prendeville.doc
+744,21 N.D. 261,Stockwell v. Crawford,1911-02-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0261-Stockwell-v-Crawford.doc
+745,21 N.D. 222,Racine-Sattley Manufacturing Co. v. Pavlicek,1911-01-30,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0222-Racine-Sattley-Mfg-Co-v-Pavlicek.doc
+746,21 N.D. 235,Paulsen v. Modern Woodmen of America,1911-02-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0235-Paulsen-v-Modern-Woodmen-of-America.doc
+747,21 N.D. 281,May v. Cummings,1911-03-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0281-May-v-Cummings.doc
+748,21 N.D. 287,May ex rel. May v. Cummings,1911-03-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0287-May-v-Cummings.doc
+749,21 N.D. 271,Dickinson v. Carroll,1911-03-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0271-Dickinson-v-Carroll.doc
+750,21 N.D. 267,Jenson v. Frazer,1911-03-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0267-Jenson-v-Frazer.doc
+751,21 N.D. 290,Hanitch ex rel. Lynn v. Beiseker,1911-03-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0290-Hanitch-v-Beiseker.doc
+752,21 N.D. 277,Grunow v. Simonitsch,1911-03-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0277-Grunow-v-Simonitsch.doc
+753,21 N.D. 232,"Heskin, County Board of Drain Com'rs, v. Herbrandson",1911-02-08,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0232-Heskin-v-Herbrandson.doc
+754,21 N.D. 317,Youngman v. Salvage,1911-03-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0317-Youngman-v-Salvage.doc
+755,21 N.D. 255,Wadsworth v. Owens,1911-02-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0255-Wadsworth-v-Owens.doc
+756,21 N.D. 305,Tompkins v. Dinnie,1911-03-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0305-Tompkins-v-Dinnie.doc
+757,21 N.D. 294,Turner v. Crumpton & Crumpton,1911-03-14,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0294-Turner-v-Crumpton-And-Crumpton.doc
+758,21 N.D. 302,Schulz v. Dahl,1911-03-16,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0302-Schulz-v-Dahl.doc
+759,21 N.D. 310,State v. Brandner,1911-03-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0310-State-v-Brandner.doc
+760,21 N.D. 411,Larson v. Hanson,1911-04-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0411-Larson-v-Hanson.doc
+761,21 N.D. 426,"State ex rel. Shaw v. Thompson, City Auditor",1911-04-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0426-State-ex-rel-Shaw-v-Thompson.doc
+762,21 N.D. 476,Schafer v. District Court of First Judicial District,1911-05-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0476-Schafer-v-District-Court-Nelson-County.doc
+763,21 N.D. 540,"State ex rel. Security Bank of Knox v. Buttz, Acting Judge",1911-05-10,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0540-State-v-Buttz.doc
+764,21 N.D. 344,Well v. Quam,1911-03-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0344-Weil-v-Quam.doc
+765,21 N.D. 348,Lanpher-Skinner Co. v. Quam,1911-03-28,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0348-Lanpher-Skinner-Co-v-Quam.doc
+766,21 N.D. 447,Harrington v. Mutual Life Ins. Co. of New York,1911-04-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0447-Harrington-v-Mutual-Life-Ins-Co-of-New-York.doc
+768,21 N.D. 377,F. A. Patrick & Co. v. Nurnberg,1911-04-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0377-FA-Patrick-And-Co-v-Nurnberg.doc
+769,21 N.D. 416,Patterson & Stevenson Co. v. Nurnberg,1911-04-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0416-Patterson-And-Stevenson-Co-v-Nurnberg.doc
+770,21 N.D. 473,State ex rel. Watkins v. Norton,1911-05-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0473-State-v-Norton.doc
+771,21 N.D. 462,Langer v. Goode,1911-04-21,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0462-Langer-v-Goode.doc
+772,21 N.D. 444,State v. White,1911-04-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0444-State-v-White.doc
+773,21 N.D. 417,State ex rel. Pepple v. Banik,1911-04-15,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0417-State-v-Banik.doc
+774,21 N.D. 335,Citizens' Nat. Bank of Jamestown v. OSBORNE-McMILLAN Elevator Co.,1911-04-22,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0335-Citizens'-Nat-Bank-of-Jamestown-v-Osborne-McMillan-Elevator-Co.doc
+775,21 N.D. 478,J. I. Case Threshing Machine Co. v. Erickson,1911-03-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0478-JI-Case-Threshing-Mach-Co-v-Erickson.doc
+776,21 N.D. 383,Hart v. Village of Wyndmere,1911-04-07,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0383-Hart-v-Village-of-Wyndmere.doc
+777,21 N.D. 324,"State ex rel. Miller, Atty. Gen., v. Miller",1911-03-17,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0324-State-v-Miller.doc
+778,21 N.D. 495,"Hedlin v. Lee, Sheriff",1911-03-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0495-Hedlin-v-Lee.doc
+779,21 N.D. 483,Adam v. McClintock,1911-03-09,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0483-Adam-v-McClintock.doc
+780,21 N.D. 509,Williams v. Corey,1911-04-26,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0509-Williams-v-Corey.doc
+781,21 N.D. 503,Tuttle v. Tuttle,1911-04-25,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0503-Tuttle-v-Tuttle.doc
+782,21 N.D. 569,State v. Goetz,1911-05-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0569-State-v-Goetz.doc
+783,21 N.D. 547,"Bismarck Grocery Co. v. Yeager (Springfield Fire & Marine Ins Co., Garnishee)",1911-05-11,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0547-Bismarck-Grocery-Co-v-Yeager.doc
+784,21 N.D. 517,"State ex rel. Johnson v. Clark, Mayor",1911-05-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0517-State-ex-rel-Johnson-v-Clark.doc
+785,21 N.D. 531,Sommers v. Wagner,1911-05-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0531-Sommers-v-Wagner.doc
+786,22 N.D. 132,Pollock v. Jordon,1911-10-02,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0132-Pollock-v-Jordon.doc
+787,22 N.D. 230,State v. Woodell,1911-10-03,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0230-State-v-Woodell.doc
+788,22 N.D. 196,Miller v. Norton,1911-07-20,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0196-Miller-v-Norton.doc
+789,21 N.D. 551,Citizens' Bank of Drayton v. Schultz,1911-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0551-Citizens'-Bank-of-Drayton-v-Schultz.doc
+790,21 N.D. 560,Frost v. Hoellinger,1911-06-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0560-Frost-v-Hoellinger.doc
+791,21 N.D. 575,Westby v. J. I. Case Threshing Machine Co.,1911-05-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0575-Westby-v-JI-Case-Threshing-Mach-Co.doc
+792,21 N.D. 591,State v. Schumacher,1911-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0591-State-v-Schumacher.doc
+793,21 N.D. 594,Roberts v. Enderlin Investment Co.,1911-06-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0594-Roberts-v-Enderlin-Inv-Co.doc
+794,21 N.D. 557,Blue Grass Township v. Morton County,1911-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0557-Blue-Grass-Tp-v-Morton-County.doc
+795,21 N.D. 562,State v. Knudson,1911-06-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0562-State-v-Knudson.doc
+796,21 N.D. 602,Bazal v. St. Stanislaus Church,1911-06-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./21/0602-Bazal-v-St-Stanislaus-Church.doc
+797,22 N.D. 18,State ex rel. Temple v. Barnes,1911-06-06,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0018-State-v-Barnes.doc
+798,22 N.D. 14,Selland v. Nelson,1911-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0014-Selland-v-Nelson.doc
+799,22 N.D. 11,Boos v. Aetna Insurance,1911-06-05,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0011-Boos-v-Aetna-Ins-Co.doc
+800,22 N.D. 5,State v. Kelly,1911-06-01,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0005-State-v-Kelly.doc
+801,22 N.D. 1,Cotton v. Horton,1911-05-27,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0001-Cotton-v-Horton.doc
+802,22 N.D. 29,"Gebus v. Minneapolis, St. Paul & Sault Ste. Marie Railway Co.",1911-06-13,westlaw,non-comparable,0,0,0,1.0000,/Users/jerod/refs/nd/opin/N.D./22/0029-Gebus-v-Minneapolis-St-P-And-SSM-Ry-Co.doc
