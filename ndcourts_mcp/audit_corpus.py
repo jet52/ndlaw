@@ -37,6 +37,7 @@ from pathlib import Path
 
 from . import corpus as corpus_mod
 from .db import DEFAULT_DB_PATH
+from .justices import KNOWN_LAST_NAMES
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -664,6 +665,108 @@ def check_changelog_doc_sync(conn: sqlite3.Connection, tsv_dir: Path, tag: str) 
     )
 
 
+# roster fuzzy-match (catalog #11) ------------------------------------------
+
+# Role/suffix tokens that ride along in author/judges and are not names.
+_ROLE_TOKENS = {"j", "cj", "sj", "dj", "jr", "sr", "ii", "iii", "iv",
+                "chief justice", "justice", "judge", "per curiam"}
+# Surrogate/district-judge tokens already split off by the comma-splitter.
+_ROLE_RE = re.compile(r"\b(C\.?J\.?|S\.?J\.?|D\.?J\.?|J\.?|Jr\.?|Sr\.?|I{2,3})\b", re.I)
+
+
+def _lev(a: str, b: str, maxd: int = 2) -> int:
+    """Levenshtein distance, early-exiting at maxd+1 (cheap for short names)."""
+    if abs(len(a) - len(b)) > maxd:
+        return maxd + 1
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        row_best = i
+        for j, cb in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1,
+                           prev[j - 1] + (0 if ca == cb else 1)))
+            row_best = min(row_best, cur[j])
+        if row_best > maxd:
+            return maxd + 1
+        prev = cur
+    return prev[-1]
+
+
+def _name_tokens(author, judges):
+    """Yield (field, raw_token, norm) for each candidate name in the two fields."""
+    if author and author.strip():
+        yield "author", author.strip(), author.strip().lower()
+    for tok in (judges or "").split(","):
+        raw = tok.strip()
+        norm = _ROLE_RE.sub("", raw).strip(" .,").lower()
+        if norm:
+            yield "judges", raw, norm
+
+
+# Sorted once so tie-breaking (multiple roster names at equal distance) is
+# deterministic across runs — KNOWN_LAST_NAMES is an unordered set.
+_ROSTER_SORTED = sorted(KNOWN_LAST_NAMES)
+
+
+def _nearest_roster(norm: str):
+    """(canonical, distance) of the closest roster surname within edit distance 2.
+    Ties resolve to the alphabetically-first surname (deterministic)."""
+    best, bestd = None, 99
+    for name in _ROSTER_SORTED:
+        d = _lev(norm, name, 2)
+        if d < bestd:
+            best, bestd = name, d
+            if d == 1:
+                break
+    return best, bestd
+
+
+def check_roster_fuzzy(conn: sqlite3.Connection, tsv_dir: Path, tag: str) -> AuditResult:
+    """author/judges names within edit distance 1–2 of a roster justice — probable
+    OCR typo / formatting garble (NEU-MANN, McEYERS, KAPS-NER, YANDE WALLE).
+
+    Per the surrogate-judges rule we hunt NEAR-MISSES, not tenure: an exact roster
+    surname is left alone; a name far from every roster surname is treated as a
+    legitimate non-roster (surrogate/district) judge, not flagged. dist-2 is gated
+    to names >=6 chars to avoid short-surname noise.
+    """
+    rows = []
+    by_garble: dict[tuple, int] = {}
+    for oid, author, judges in conn.execute("SELECT id, author, judges FROM opinions"):
+        for field_name, raw, norm in _name_tokens(author, judges):
+            if len(norm) < 4 or norm in _ROLE_TOKENS or norm in KNOWN_LAST_NAMES:
+                continue
+            cand, dist = _nearest_roster(norm)
+            if cand is None:
+                continue
+            if dist == 1 or (dist == 2 and len(norm) >= 6):
+                rows.append((oid, field_name, raw, cand, dist))
+                by_garble[(norm, cand)] = by_garble.get((norm, cand), 0) + 1
+    detail = _write_tsv(
+        tsv_dir / f"audit-roster-fuzzy-{tag}.tsv",
+        ["opinion_id", "field", "garbled_token", "nearest_roster", "edit_distance"],
+        rows,
+    )
+    top = sorted(by_garble.items(), key=lambda kv: -kv[1])
+    d1 = sum(1 for o in rows if o[4] == 1)
+    d2 = len(rows) - d1
+    return AuditResult(
+        "roster_fuzzy",
+        "author/judges names within edit distance 1-2 of a roster justice (probable typo/garble)",
+        len(rows),
+        detail,
+        notes=[f"{len(by_garble)} distinct garbled spellings over {len(rows)} occurrences "
+               f"({d1} at edit-distance 1, {d2} at distance 2)",
+               "distance-1 hits are almost all genuine OCR garbles (Burice→Bruce, "
+               "Bueke→Burke, Sature→Sathre); distance-2 needs closer review — a "
+               "consistently-spelled name near a roster surname (Anderson, Geiger) may be a "
+               "real surrogate/district judge, and stray words (Hearing, Having) are field junk",
+               "fix path: normalize each confirmed garble to its canonical surname"],
+        samples=[f"{g!r}→{c} (d{_lev(g, c)}, ×{n})"
+                 for (g, c), n in top[:SAMPLE_LIMIT]],
+    )
+
+
 # ---------------------------------------------------------------- driver
 
 CHECKS = {
@@ -672,6 +775,7 @@ CHECKS = {
     "parallel_pair": lambda conn, d, t: check_parallel_pair(conn, d, t),
     "para_continuity": lambda conn, d, t: check_para_continuity(conn, d, t),
     "xref_resolve": lambda conn, d, t: check_xref_resolve(conn, d, t),
+    "roster_fuzzy": lambda conn, d, t: check_roster_fuzzy(conn, d, t),
     "version_intervals": lambda conn, d, t: check_version_intervals(d, t),
     "changelog_doc_sync": lambda conn, d, t: check_changelog_doc_sync(conn, d, t),
 }

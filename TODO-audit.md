@@ -134,9 +134,19 @@ Metadata cross-field consistency:
   monotonic vs (date, page). *PARTIAL (audited 2026-06-22): `volume_date_check` exists AND the
   neutral-cite-year==date-year extension is already built (`neutral_year()`); only the
   docket-YYYYNNNN-prefix and synthetic-ordering-monotonic checks remain.*
-- [ ] **11. Roster fuzzy-match** — author/judges within edit distance 1–2 of a known
-  justice but not equal = probable OCR typo (per the surrogate-judges rule: hunt
-  near-miss names, don't tenure-validate).
+- [x] **11. Roster fuzzy-match — BUILT 2026-06-22.** `audit_corpus.check_roster_fuzzy`
+  (registered check `roster_fuzzy`): author/judges tokens within edit distance 1–2 of a
+  `KNOWN_LAST_NAMES` surname but not equal = probable OCR garble. Hunts near-misses, not
+  tenure (names far from every roster surname are treated as legitimate surrogate/district
+  judges, not flagged); dist-2 gated to len≥6; tie-break deterministic (alphabetical).
+  First run: **975 occurrences / 139 distinct garbles** (694 at d1 — almost all genuine,
+  e.g. Burice→Bruce ×117, Bueke→Burke, Sature→Sathre, concentrated in the OCR'd judges
+  field of 1890s–1930s opinions; 281 at d2 needing review — some are real surrogates
+  (Anderson, Geiger) or field junk (Hearing, Having)). Detail TSV
+  `triage/audit-roster-fuzzy-<date>.tsv`. **Follow-on (separate cleanup batch, not the
+  detector): normalize the confirmed d1 garbles to canonical surnames** — fiddly because
+  the judges field is comma-joined panels and some garbles tie between two Burkes/Bruce
+  by tenure; verify each against era before applying.
 - [ ] **12. case_name lint** — digits, unbalanced parens/quotes, double spaces,
   trailing connectors, residual ALL-CAPS, artifact chars.
 - [ ] **13. Frontmatter-vs-citations sync** — measure the known cosmetic lag.
