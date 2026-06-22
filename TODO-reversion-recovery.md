@@ -33,11 +33,12 @@ running list of everything still open.
   **2** residual contaminations (2005 Herold, 3498 Meidinger — an N.W. parallel cite leaked into
   the docket field of pre-1931 cases whose whole cohort has empty dockets). Cleared to NULL
   (cite preserved in `citations`), batch `clear-cite-shaped-docket-2026-06-22`. **Zero cite-shaped
-  dockets corpus-wide.** NB: the 5,086 empty dockets are pre-1931 N.D. Reports opinions that
-  predate modern docket numbers (cited by reporter, not a defect). Small separate follow-ups
-  noted: 8 empty-docket 2026 opinions (recent-ingest gap, docket-backfill workstream) and the
-  `Case 2018ND1` case_name placeholder (19242, case_name workstream; `Case Credit Corp.` 14313 is
-  a real company, not a placeholder).
+  dockets corpus-wide.** NB: ~5,083 empty dockets remain (mostly pre-1931 N.D. Reports). **Do NOT assume these are
+  docketless** — per user direction 2026-06-22, check the court's spreadsheet
+  (`court-opinions-report-2026-05-30.xlsx`) and other court sources for case/file numbers even
+  for the pre-1931 cohort; tracked as a follow-up under TODO-validation.md #1. Also: 8 empty-docket
+  2026 opinions (recent-ingest gap) and the `Case 2018ND1` case_name placeholder (19242, case_name
+  workstream; `Case Credit Corp.` 14313 is a real company, not a placeholder).
 - [ ] **Source fix** — correct `1997_opinions.json` case_name/docket + rename misfiled `markdown/1997/*.md` so re-ingest is clean. Lower urgency now the guard protects the DB.
 
 ## opinion BODY text (`text_content`) — QA CONFIRMATION (downgraded 2026-06-21)
