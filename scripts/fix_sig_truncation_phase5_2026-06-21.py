@@ -73,6 +73,7 @@ def main():
         end = min([mm.start() for mm in marks if mm.start() > m.end()] + [len(src)])
         panel_text = re.sub(r"\s+", " ", src[m.end():end]).strip()
         panel_text = re.sub(r"\s+\d+$", "", panel_text)          # drop trailing footnote digit
+        panel_text = re.sub(r"\s+(?:VI{0,3}|I{2,3}|IV|IX|X)$", "", panel_text)  # trailing section heading
         parsed = sig1.split_panel(panel_text, year)
         if not parsed or len(parsed) < 2:
             skipped.append((oid, label, "panel unparseable / single-name")); continue

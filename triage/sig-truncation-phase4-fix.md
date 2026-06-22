@@ -1,53 +1,52 @@
 # Signature-truncation Phase 4 (positional panel insert) — APPLY
 
 - planned: **5**
-- skipped: **18**
+- skipped: **13**
 
 ## Planned
 
-### 2003 ND 29 (oid 13741)
+### 2002 ND 115 (oid 13589)
 Insert BEFORE trailing element:
-  [¶ 15] William A. Neumann
+  [¶ 27] William A. Neumann
+  Dale V. Sandstrom
+  Carol Ronning Kapsner
+  Gerald W. VandeWalle, C.J.
+trailing element kept: …'MARY MUEHLEN MARING, J.: I concur in the result.'
+
+### 2012 ND 58 (oid 15812)
+Insert BEFORE trailing element:
+  [¶ 36] Dale V. Sandstrom
   Mary Muehlen Maring
   Carol Ronning Kapsner
   Gerald W. VandeWalle, C.J.
-trailing element kept: …'I concur in the result. DALE V. SANDSTROM.'
+trailing element kept: …'DANIEL J. CROTHERS, J., concurs in the result.'
 
-### 2006 ND 101 (oid 14522)
+### 2012 ND 77 (oid 15828)
 Insert BEFORE trailing element:
-  [¶ 13] Carol Ronning Kapsner
+  [¶ 44] Dale V. Sandstrom
+  Carol Ronning Kapsner
   Mary Muehlen Maring
-  Daniel J. Crothers
   Gerald W. VandeWalle, C.J.
-trailing element kept: …'I concur in the result. DALE V. SANDSTROM, J.'
+trailing element kept: …'DANIEL J. CROTHERS, J., concurs in the result.'
 
-### 2013 ND 48 (oid 16010)
+### 2012 ND 102 (oid 15843)
 Insert BEFORE trailing element:
-  [¶ 29] Mary Muehlen Maring
-  Daniel J. Crothers
+  [¶ 25] Daniel J. Crothers
+  Mary Muehlen Maring
   Carol Ronning Kapsner
   Gerald W. VandeWalle, C.J.
 trailing element kept: …'DALE V. SANDSTROM, J., concurs in the result.'
 
-### 2015 ND 197 (oid 16544)
+### 2015 ND 218 (oid 16557)
 Insert BEFORE trailing element:
-  [¶ 29] Lisa Fair McEvers
-  Carol Ronning Kapsner
-  Dale V. Sandstrom
-  Gerald W. VandeWalle, C.J.
-trailing element kept: …'DANIEL J. CROTHERS, J., concurs in the result.'
-
-### 2017 ND 103 (oid 16916)
-Insert BEFORE trailing element:
-  [¶ 12] Gerald W. VandeWalle, C.J.
-  Carol Ronning Kapsner
+  [¶ 29] Carol Ronning Kapsner
   Lisa Fair McEvers
-  Jerod E. Tufte
-trailing element kept: …'I concur in the result. Daniel J. Crothers'
+  Daniel J. Crothers
+  Gerald W. VandeWalle, C.J.
+trailing element kept: …'DALE V. SANDSTROM, J., concurs in the result,'
 
 ## Skipped
 
 - source signature unparseable: 8
-- roman-numeral section marker in panel: 5
 - DB tail is prose, not a trailing notation: 4
 - divergence: DB has {'Sandstrom'} not in source: 1

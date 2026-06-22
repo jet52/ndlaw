@@ -113,12 +113,13 @@ def main():
         if not ok:
             skipped.append((oid, label, "dropped paragraphs not locatable")); continue
         combined = " ".join(drop_text)
-        combined = re.sub(r"\s+[IVX]{1,4}\s*$", "", combined)   # trailing section divider
-        # skip datelines/footnotes, or a standalone roman-numeral section divider
-        # (a dropped paragraph that is JUST "VI" etc. — NOT a "V." middle initial)
-        if (re.search(r"Dated at|§|N\.D\.C\.C\.|footnote", combined)
-                or any(re.fullmatch(r"[IVX]{1,4}", t.strip()) for t in drop_text)):
-            skipped.append((oid, label, "dateline/section-marker/footnote in source")); continue
+        # strip standalone roman-numeral section dividers fused into the panel
+        # ("Neumann VII Dale", "Kapsner V Lisa", trailing "... C.J. III"). Excludes
+        # single "I" (the "I concur" notation) and "V." middle initials (the
+        # period defeats the trailing \s lookahead).
+        combined = re.sub(r"\s+(?:VI{0,3}|I{2,3}|IV|IX|X)(?=\s|$)", " ", combined).strip()
+        if re.search(r"Dated at|§|N\.D\.C\.C\.|footnote", combined):
+            skipped.append((oid, label, "dateline/footnote in source")); continue
 
         parsed = sig1.split_panel(combined, year)
         if not parsed:
