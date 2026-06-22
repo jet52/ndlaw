@@ -18,7 +18,14 @@ running list of everything still open.
 - Decontaminated 11 mislabeled 1997 opinions (`casename-docket-decontam-1997-2026-06-20`).
 
 ## OPEN — scalar / metadata
-- [ ] **109 `source_reporter` reversions** — provenance, coupled to `opinion_sources` + `source_reporter_matches_primary`. Restore via `align_primary_source`, not blind UPDATE. (in `triage/changelog-reconcile.csv`)
+- [x] **109 `source_reporter` reversions — DONE 2026-06-22.** All restored to `westlaw`
+  (batch `restore-source-reporter-westlaw-2026-06-22` + `align_primary_source`). Verified
+  first that none of the 109 had a body reverted to the pre-Westlaw NW version (so `westlaw`
+  provenance is correct for all). 108 aligned cleanly; **10882** (Weiss v. Stormon = 78 N.D. 10)
+  needed its lost westlaw `.doc` source row re-registered (the re-ingest dropped both the scalar
+  and the `opinion_sources` row). `corrections_not_reverted` 109→**0** — **zero known reversions
+  corpus-wide**; invariant baseline lowered to 0 (now an `OK`, not `known`). Reversion-recovery
+  scalar arc for this field complete.
 - [ ] **337 DIVERGED scalar fields** — current value ≠ both original and intended; review for intentional-vs-lost (case_name 183, source_path 98, author 31, source_reporter 19, judges 6). (`triage/changelog-reconcile.csv`)
 - [ ] **Broader case_name contamination beyond the 11** — no prior correction to restore, so these need NEW corrections: the **18248–18280 cluster** (~13, e.g. 18248 body=Wittmayer not "Burr v. Kulas"; 18278↔18279 Rieger↔Hintz swap), plus 12391→Heitkamp, 12438 done, 12511→State v. Sisson, 19242="Case 2018ND1" placeholder. Build body-caption-arbitrated worklist (court spreadsheet + CL + body caption). (`triage/casename-audit.csv` raw)
 - [ ] **188 cite-shaped docket placeholders** remaining (148×1997) — the precise fingerprint of the reverted/contaminated cohort; reconcile against body "No." line + court file numbers.

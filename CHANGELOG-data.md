@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `restore-source-reporter-westlaw-2026-06-22` — final 109 provenance reversions
+
+The last reverted-correction class: 109 opinions where the `westlaw-text-merge` /
+`westlaw-syllabus-recovery` batches set `source_reporter='westlaw'` (the body now
+derives from the Westlaw `.doc`, which carries the court syllabus) but a later
+re-ingest silently clobbered the scalar back to `'NW'`/`'NW2d'`. The bodies stayed
+at the maintained Westlaw-merged version — verified that none of the 109 had a body
+reverted to its pre-Westlaw NW old_value, so `westlaw` is the correct provenance for
+all. Restored `source_reporter='westlaw'` (changelog-logged), then `align_primary_source`
+flipped `opinion_sources.is_primary` to the westlaw row and rewrote `source_path` to
+the `.doc` (108 path rewrites + 108 flips, then 1 more for 10882).
+
+**10882** (Weiss v. Stormon, 78 N.D. 10 / 47 N.W.2d 527) was the lone edge case: the
+re-ingest dropped not just the scalar but its `opinion_sources` westlaw row. Re-registered
+the row pointing to `N.D./78/0010-In-re-McIntyre's-Estate.doc` (the estate caption of the
+same single opinion — no separate McIntyre record exists), then restored + aligned.
+
+`corrections_not_reverted` **109→0** — zero known silent reversions corpus-wide; the
+invariant baseline is lowered to 0 (now an `OK`). Source invariants
+(`source_reporter_matches_primary`, `source_path_matches_primary`, `primary_source_unique`)
+all clean; 24 ok / 2 known / 0 regressed.
+
 ## Batch `restore-sig-review-2026-06-22` — REVIEW cohort (multi-opinion, 19)
 
 The REVIEW cases were held back because each is multi-opinion: the DB kept a

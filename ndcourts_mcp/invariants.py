@@ -44,7 +44,7 @@ DEFAULT_REFS_DIR = Path.home() / "refs" / "nd" / "opin"
 BASELINES: dict[str, int] = {
     "neutral_cite_uniqueness":     258,      # 258 known dup pairs (§6 queue)
     "nd_modern_paragraph_markers": 18,       # 18 short orders w/o markers (was 85; 57 full opinions re-OCR'd via marker 2026-05-30, §14 TODO #4)
-    "corrections_not_reverted":    109,      # was 418; 309 content corrections surgically restored 2026-06-21 (restore-reverted-corrections batch). Remaining 109 are source_reporter (provenance, coupled to opinion_sources) — restore via align_primary_source. Any INCREASE = a new silent reversion.
+    "corrections_not_reverted":    0,        # was 418→109→0. 309 content corrections restored 2026-06-21; final 109 source_reporter provenance restored 2026-06-22 (restore-source-reporter-westlaw batch + align_primary_source; 10882 needed its lost westlaw .doc source row re-registered). Zero known reversions — any INCREASE = a new silent reversion.
 }
 
 SAMPLE_LIMIT = 5
