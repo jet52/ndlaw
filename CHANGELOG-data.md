@@ -18,7 +18,10 @@ alphabetic-token **multiset**, body verbatim vs the ND PDF; only a non-alphabeti
 digit was wrapped in brackets. Parser change: `_standalone_footnotes` now fills a
 missing `call_para` from a unique inline `[N]` preceding the body (gated: confirmed
 body + uniqueness, so bracketed quote-alterations can't false-positive). Recovered:
-**2024 ND 99** → ¶ 6 n.1 (PDF `pdfs/2024/2024ND99.pdf`). Script:
+**2024 ND 99** → ¶ 6 n.1 (body at paragraph end); **2022 ND 136** → ¶ 6 n.1 (body
+split mid-sentence "…will not reverse unless the [footnote] findings are clearly
+erroneous"; rejoined). The body span is sliced from the DB by ASCII anchors so the
+appended text is byte-identical to the (PDF-derived) stored text. Script:
 `scripts/restore_modern_footnotes_2026-06-23.py`.
 
 ## Batch `footnote-number-restore-2026-06-23` — restore dropped footnote numbers (body present)

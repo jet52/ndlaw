@@ -214,6 +214,7 @@ _ERA_FOOTNOTES = [
     ("1999 ND 134", "See Miranda v. Arizona", 1, 2),    # NOTES[N] format, real opinion
     # inline-[N] standalone recovery (batch modern-footnote-recover-2026-06-23)
     ("2024 ND 99", "was amended effective Aug. 1, 2023, to codify summary disposition", 1, 6),
+    ("2022 ND 136", "was amended effective August 1, 2021, to provide that", 1, 6),
 ]
 
 
