@@ -20,7 +20,11 @@ missing `call_para` from a unique inline `[N]` preceding the body (gated: confir
 body + uniqueness, so bracketed quote-alterations can't false-positive). Recovered:
 **2024 ND 99** → ¶ 6 n.1 (body at paragraph end); **2022 ND 136** → ¶ 6 n.1 (body
 split mid-sentence "…will not reverse unless the [footnote] findings are clearly
-erroneous"; rejoined). The body span is sliced from the DB by ASCII anchors so the
+erroneous"; rejoined); **2024 ND 147** → ¶ 32 n.1 (body interleaved into ¶33; the
+call superscript had merged into the figure — PDF prints "9.9¹ years" but it was
+extracted as "9.91 years", so the duration figure was restored to **9.9 years** with
+the call denoted `[1]`, verified against the rendered PDF page). The body span is
+sliced from the DB by ASCII anchors so the
 appended text is byte-identical to the (PDF-derived) stored text. Script:
 `scripts/restore_modern_footnotes_2026-06-23.py`.
 

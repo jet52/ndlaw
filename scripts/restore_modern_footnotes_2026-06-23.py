@@ -46,6 +46,14 @@ ENTRIES = [
          excise_from=" 1 Section 14-05-24(1)",
          excise_to=" findings are clearly erroneous",
          pdf="pdfs/2022/2022ND136.pdf"),
+    # call superscript merged into the figure: PDF prints "9.9¹ years" (duration
+    # 9.9 yrs + fn call), extracted as "9.91 years" -> restore 9.9 + [1]. Body
+    # interleaved into ¶33 ("...because the court [footnote] considered the …").
+    dict(oid=19893, num=1, call_para=32,
+         call_old="9.91 years", call_new="9.9[1] years",
+         excise_from=" 1 It appears the district court applied",
+         excise_to=" considered the nature of his commission-based",
+         pdf="pdfs/2024/2024ND147.pdf"),
 ]
 
 
