@@ -284,12 +284,21 @@ def _standalone_footnotes(text: str) -> dict:
         bodies.append((body_at[ls], ls, end))
 
     body_nums = {n for n, _, _ in bodies}
+    body_start = {n: ls for n, ls, _ in bodies}
     call_para = {}
     for num, ls, after, period in occ:
         if ls in body_at:
             continue
         if num in body_nums and num not in call_para:
             call_para[num] = find_paragraph(text, ls, markers)
+    # Fallback: an inline ``[N]`` call (ndcourts modern lineage) for a confirmed
+    # footnote whose call did not survive as a bare-line marker. Gated against
+    # bracketed quote-alterations (``[t]he``, a quoted ``[1]``): ``N`` must be a
+    # confirmed body, ``[N]`` must be unique in the opinion, and precede the body.
+    for num in body_nums - call_para.keys():
+        hits = [m for m in _BRACKET_CALL.finditer(text) if int(m.group(1)) == num]
+        if len(hits) == 1 and hits[0].start() < body_start[num]:
+            call_para[num] = find_paragraph(text, hits[0].start(), markers)
     return {"bodies": bodies, "call_para": call_para}
 
 

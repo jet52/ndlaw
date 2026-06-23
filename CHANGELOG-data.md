@@ -2,6 +2,25 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `modern-footnote-recover-2026-06-23` — restore modern footnotes mashed inline (Phase 2c)
+
+Modern (1997+) footnotes the analyzer mashed **inline** into the running text rather
+than detaching them (upstream `pdf_processor` regression; 2024-era opinions lose all
+footnotes — see `TODO-footnotes.md` Phase 2d). Each is citation-graph-confirmed
+(another opinion pincites `<cite>, ¶ X n.N`). The footnote body sat inline in/across
+the call paragraph and the call superscript was OCR'd to an attached ASCII digit.
+Recovery (ratified convention 2026-06-23): the inline call is **denoted by
+bracketing the surviving digit** → `[N]` (kept in the prose where the court placed
+it — the standalone parser resolves `call_para` from a unique inline `[N]`); the
+body is excised from the prose and **appended verbatim at the opinion end** in period
+form (1999 ND 2 convention). Body relocated, not altered — asserted: identical
+alphabetic-token **multiset**, body verbatim vs the ND PDF; only a non-alphabetic
+digit was wrapped in brackets. Parser change: `_standalone_footnotes` now fills a
+missing `call_para` from a unique inline `[N]` preceding the body (gated: confirmed
+body + uniqueness, so bracketed quote-alterations can't false-positive). Recovered:
+**2024 ND 99** → ¶ 6 n.1 (PDF `pdfs/2024/2024ND99.pdf`). Script:
+`scripts/restore_modern_footnotes_2026-06-23.py`.
+
 ## Batch `footnote-number-restore-2026-06-23` — restore dropped footnote numbers (body present)
 
 Citation-graph-confirmed footnotes whose BODY was already present in the text as a

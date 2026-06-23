@@ -119,6 +119,48 @@ def test_footnotes_format_retains_text_no_false_paragraph():
     assert proofread.pinpoint_suffix(loc) == "n.1"
 
 
+# Modern (1997+) inline-[N] call in the standalone lineage: no NOTES/FOOTNOTES
+# header, an inline [1] call in the prose, and the body parked period-form at the
+# end of the opinion (modern-footnote-recover convention). The standalone parser
+# resolves call_para from the unique inline [N].
+SYNTH_INLINE_STANDALONE = (
+    "[¶ 1] Opening paragraph.\n\n"
+    "[¶ 2] The operative statute,[1] which governs the motion, applies here.\n\n"
+    "[¶ 3] THE JUSTICES concur.\n\n"
+    " 1\n\n"
+    ". The statute was amended in 2023 to codify the new procedure.\n"
+)
+
+# Same, but a second bracketed [1] (a quote alteration) makes the inline call
+# ambiguous -> the guard declines to resolve a paragraph (suffix stays n.1).
+SYNTH_INLINE_AMBIG = (
+    "[¶ 1] Opening paragraph.\n\n"
+    "[¶ 2] The operative statute,[1] which governs the motion, applies here.\n\n"
+    "[¶ 3] The court quoted “[1] the first subdivision” of the statute.\n\n"
+    "[¶ 4] THE JUSTICES concur.\n\n"
+    " 1\n\n"
+    ". The statute was amended in 2023 to codify the new procedure.\n"
+)
+
+
+def test_inline_call_standalone_links_to_call_paragraph():
+    loc = proofread.locate_quote(SYNTH_INLINE_STANDALONE, "amended in 2023 to codify")
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == 1
+    assert loc["paragraph"] == 2  # resolved from inline [1], not the body marker
+    assert proofread.pinpoint_suffix(loc) == "¶ 2 n.1"
+
+
+def test_inline_call_ambiguous_bracket_not_resolved():
+    # Two [1] occurrences -> the call paragraph is not inferred (no false hit on
+    # the bracketed quote alteration); the footnote is still recognized.
+    loc = proofread.locate_quote(SYNTH_INLINE_AMBIG, "amended in 2023 to codify")
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == 1
+    assert loc["paragraph"] is None
+    assert proofread.pinpoint_suffix(loc) == "n.1"
+
+
 def test_pinpoint_suffix_forms():
     assert proofread.pinpoint_suffix({"paragraph": 7, "footnote": 1}) == "¶ 7 n.1"
     assert proofread.pinpoint_suffix({"paragraph": None, "footnote": 1}) == "n.1"
@@ -170,6 +212,8 @@ _ERA_FOOTNOTES = [
     ("2016 ND 150", "Kuhn made no argument regarding the ordinances", 1, 7),
     ("2016 ND 249", "The regulations now plainly state", 1, 4),
     ("1999 ND 134", "See Miranda v. Arizona", 1, 2),    # NOTES[N] format, real opinion
+    # inline-[N] standalone recovery (batch modern-footnote-recover-2026-06-23)
+    ("2024 ND 99", "was amended effective Aug. 1, 2023, to codify summary disposition", 1, 6),
 ]
 
 
