@@ -83,6 +83,18 @@ def test_pinpoint_suffix_forms():
 _DB = os.path.expanduser("~/code/ndcourts-mcp/opinions.db")
 
 
+def _text_for_cite(cite):
+    conn = sqlite3.connect(_DB)
+    try:
+        row = conn.execute(
+            "SELECT o.text_content FROM opinions o JOIN citations c "
+            "ON c.opinion_id=o.id WHERE c.citation=?", (cite,)
+        ).fetchone()
+    finally:
+        conn.close()
+    return row[0] if row else None
+
+
 @pytest.mark.skipif(not os.path.exists(_DB), reason="opinions.db not present")
 def test_lyon_acceptance_of_benefits_resolves_to_para7_n1():
     conn = sqlite3.connect(_DB)
@@ -99,3 +111,44 @@ def test_lyon_acceptance_of_benefits_resolves_to_para7_n1():
     assert loc["in_footnote"] is True
     assert loc["footnote"] == 1
     assert loc["paragraph"] == 7  # bug produced 18
+
+
+# Footnote-bearing opinions across eras. 1997+ carry [¶] markers so footnote
+# quotes resolve to ¶ N n.X; pre-1953 (no markers) is a retention check — the
+# footnote text must be present and verbatim, with no false ¶.
+_ERA_FOOTNOTES = [
+    # cite,          quote,                                          fn,  para
+    ("1998 ND 9", "NDCC 28-32-12.1, enacted by N.D. Laws 1991", 1, 5),     # multi-fn
+    ("1998 ND 9", "The requirement of a written specification of issues", 3, 15),
+    ("2010 ND 5", "The Legislature amended N.D.C.C. ch. 14-09", 1, 4),
+    ("2016 ND 150", "Kuhn made no argument regarding the ordinances", 1, 7),
+    ("2016 ND 249", "The regulations now plainly state", 1, 4),
+]
+
+
+@pytest.mark.skipif(not os.path.exists(_DB), reason="opinions.db not present")
+@pytest.mark.parametrize("cite,quote,fn,para", _ERA_FOOTNOTES)
+def test_footnote_pinpoint_across_eras(cite, quote, fn, para):
+    text = _text_for_cite(cite)
+    assert text is not None, f"{cite} not in DB"
+    loc = proofread.locate_quote(text, quote)
+    assert loc["found"] and loc["verbatim"], f"{cite}: {loc}"
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == fn
+    assert loc["paragraph"] == para
+
+
+@pytest.mark.skipif(not os.path.exists(_DB), reason="opinions.db not present")
+@pytest.mark.parametrize("cite,quote", [
+    ("43 N.D. 156", "the original not being here, shows the date May 28, 1905"),
+    ("69 N.D. 290", "the measure was passed by a vote of 95 to 1"),
+])
+def test_pre1953_footnote_text_retained(cite, quote):
+    # Restored Westlaw footnotes (batch westlaw-footnote-restore-2026-06-22).
+    # No [¶] markers pre-1953, so the value is retention: text present, verbatim,
+    # and no false paragraph attribution.
+    text = _text_for_cite(cite)
+    assert text is not None, f"{cite} not in DB"
+    loc = proofread.locate_quote(text, quote)
+    assert loc["found"] and loc["verbatim"]
+    assert loc["paragraph"] is None
