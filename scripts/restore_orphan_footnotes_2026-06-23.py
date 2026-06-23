@@ -36,6 +36,10 @@ ENTRIES = [
          call_new="finding on visitation is not clearly erroneous.[2]",
          orphan_anchor="Ame asserted on appeal the visitation provisions",
          authority="archive/1999/980268.htm (court HTML: call <sup>(2)</sup> at end of ¶32)"),
+    dict(oid=12737, num=2, call_para=21,
+         call_old="32-12.2-04(1)2.", call_new="32-12.2-04(1)[2].",
+         orphan_anchor="The trial court ruled Messiha",
+         authority="archive/1998/980007.htm (court HTML: call <sup>(2)</sup> after § 32-12.2-04(1) in ¶21)"),
 ]
 
 

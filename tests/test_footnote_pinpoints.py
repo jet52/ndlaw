@@ -246,6 +246,7 @@ _ERA_FOOTNOTES = [
     # period-orphan restore w/ inline [N] (batch orphan-footnote-restore-2026-06-23)
     ("1997 ND 9", "A.E. did not raise a due process argument", 2, 17),
     ("1999 ND 103", "Ame asserted on appeal the visitation provisions", 2, 32),
+    ("1998 ND 149", "The trial court ruled Messiha", 2, 21),
 ]
 
 
