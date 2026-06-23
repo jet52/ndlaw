@@ -161,6 +161,33 @@ def test_inline_call_ambiguous_bracket_not_resolved():
     assert proofread.pinpoint_suffix(loc) == "n.1"
 
 
+# Markdown-era opinions use "*Case Name,*511 N.W.2d" italic markers; the closing
+# "*" abuts a reporter volume and must NOT be read as a star page (which would
+# truncate a footnote body / give a bogus reporter page). A real star page is
+# whitespace- or backslash-preceded (" *512" / "\\*512").
+SYNTH_ITALIC_VOL = (
+    "[¶ 1] Opening paragraph at *512 of the reporter.\n\n"
+    "[¶ 2] We affirm.[1] See generally the discussion below.\n\n"
+    "[¶ 3] THE JUSTICES concur.\n\n"
+    " 1\n\n"
+    ". The rule comes from *State v. Bommersbach,*511 N.W.2d 563, 566 "
+    "(N.D. 1994), and applies here in full.\n"
+)
+
+
+def test_italic_volume_not_treated_as_star_page():
+    # The footnote body must extend past the italic "*State...,*511" marker.
+    loc = proofread.locate_quote(SYNTH_ITALIC_VOL, "and applies here in full")
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == 1
+    # The only real star page is the whitespace-preceded "*512" in ¶ 1.
+    off = SYNTH_ITALIC_VOL.find("of the reporter")
+    assert proofread.star_page_before(SYNTH_ITALIC_VOL, off) == 512
+    # A point inside the footnote sees 512 (the last real page), not 511.
+    fn_off = SYNTH_ITALIC_VOL.find("applies here")
+    assert proofread.star_page_before(SYNTH_ITALIC_VOL, fn_off) == 512
+
+
 def test_pinpoint_suffix_forms():
     assert proofread.pinpoint_suffix({"paragraph": 7, "footnote": 1}) == "¶ 7 n.1"
     assert proofread.pinpoint_suffix({"paragraph": None, "footnote": 1}) == "n.1"

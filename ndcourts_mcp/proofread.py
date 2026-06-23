@@ -41,9 +41,13 @@ _PARA_RE = re.compile(r"\[¶\s*(\d+)\]")
 _STANDALONE_NUM = re.compile(r"(?m)^[ \t]*(\d{1,3})[ \t]*$")
 # Structural boundary that ends a footnote body: the next paragraph marker or a
 # reporter star-page marker.
-_BODY_BOUNDARY = re.compile(r"\[¶\s*\d+\]|(?<!\d)\*\d{2,4}\b")
-# Reporter star-page marker (e.g. ``*458`` = start of N.W.2d page 458).
-_STAR_PAGE = re.compile(r"(?<!\d)\*(\d{2,4})\b")
+_BODY_BOUNDARY = re.compile(r"\[¶\s*\d+\]|(?<=[\s\\])\*\d{2,4}\b")
+# Reporter star-page marker (e.g. ``*458`` = start of N.W.2d page 458). The ``*``
+# must be preceded by whitespace or a backslash escape (``\*458``) — this is what
+# distinguishes a real page marker from a markdown italic/bold close that abuts a
+# reporter volume number (``Bommersbach,*511 N.W.2d`` / ``436**,**86 S.Ct.``),
+# which the markdown-era opinions use heavily and which must not count as pages.
+_STAR_PAGE = re.compile(r"(?<=[\s\\])\*(\d{2,4})\b")
 # Volume + reporter prefix of a regional/official cite, for page pinpoints.
 _REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+\d+")
 
