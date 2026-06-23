@@ -1,0 +1,62 @@
+[
+ {
+  "opinion_id": 15574,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".”1 *Patten",
+      "new_exact": ".”[1] *Patten",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. N.D.R.Crim.P. 11(d) on plea withdrawal was transferred to Rule 11 from Rule 32 effective March 1, 2010.",
+      "new_exact": "\n\n1\n\n. N.D.R.Crim.P. 11(d) on plea withdrawal was transferred to Rule 11 from Rule 32 effective March 1, 2010.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15709,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "PASCa),1 provided",
+      "new_exact": "PASCa),[1] provided",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Rule 43, N.D.R.Civ.P., was amended, effective March 1, 2011, in response to revisions in F.R.Civ.P. 43.",
+      "new_exact": "\n\n1\n\n. Rule 43, N.D.R.Civ.P., was amended, effective March 1, 2011, in response to revisions in F.R.Civ.P. 43.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

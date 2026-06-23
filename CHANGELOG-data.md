@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-editpair-apply-2026-06-23` — archive worklist COMPLETE (batch 4)
+
+Closed the archive-backed `SRC_MORE` worklist. Batch 4 ran the final 43 archive
+opinions through propose → heal → gated-apply: **38 repaired** (31 direct + 5
+healed/marker-fixed + a 2-opinion tail whose call markers were lost, where the
+present orphan bodies were numbered so the parser indexes them, `call_para` left
+None — no fabricated calls). The `scripts/heal_footnote_anchors.py` single-glyph
+splice cleared every curly-quote/nbsp anchor miss (0 unhealed).
+
+Two agent over-reaches the gates/▸review caught and I corrected by hand:
+- **2011 ND 166** — agent bundled an OCR fix `N.D.R.Civ.PASCa)` → `P.43(a)` into a
+  call edit; marker_only gate blocked it. Re-did as bracket-only, leaving the
+  scan garble verbatim (preserve-source-typos).
+- **2017 ND 117** — agent's `recover_body_absent` proposed appending a body not
+  confirmable against the source; deferred rather than append unverified text.
+
+**Final archive tally:** 8 opinions remain `SRC_MORE`, all accounted for in
+`triage/footnote-deferred-manual.md` — 7 deferred for manual review (genuinely
+ambiguous multi-footnote / lost-call / OCR-garbled structure; footnotes present,
+not lost) + 1 engine false positive (2016 ND 142, header misread as a footnote).
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `footnote-editpair-apply-2026-06-23` — corpus scaling, archive batches 2-3 (45 opinions)
 
 Scaled the propose -> gated-apply loop across the archive-backed `SRC_MORE`

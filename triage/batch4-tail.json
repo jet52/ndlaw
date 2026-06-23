@@ -1,0 +1,83 @@
+[
+ {
+  "opinion_id": 15967,
+  "cite": "2012 ND 253",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Before August 1, 2011",
+      "new_exact": "\n\n1\n\n. Before August 1, 2011",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16097,
+  "cite": "2013 ND 151",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "fee dispute).1 ",
+      "new_exact": "fee dispute).[1] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The record indicates Wilkinson",
+      "new_exact": "\n\n1\n\n. The record indicates Wilkinson",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16842,
+  "cite": "2017 ND 30",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Bernard1, ",
+      "new_exact": "Bernard[1], ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. See State v. Bernard",
+      "new_exact": "\n\n1\n\n. See State v. Bernard",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

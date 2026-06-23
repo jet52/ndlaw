@@ -1,0 +1,157 @@
+[
+ {
+  "opinion_id": 15866,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "further proceedings.1\n\nI\n\n[¶",
+      "new_exact": "further proceedings.[1]\n\nI\n\n[¶",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Hales named Bea Shaw",
+      "new_exact": "\n\n1\n\n. The Hales named Bea Shaw",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16008,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "settlement.1 That settlement makes decision",
+      "new_exact": "settlement.[1] That settlement makes decision",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Crothers\n\n. The post-settlement warranty",
+      "new_exact": "Crothers\n\n1\n\n. The post-settlement warranty",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16106,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "statute of frauds.\n1\n*Kohanowski**,*at",
+      "new_exact": "statute of frauds.\n[1]\n*Kohanowski**,*at",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "The judgment is affirmed.\n\n. We further note that the transaction at issue in *Delzer**,*an alleged oral agreement to provide a $300,000 line of credit",
+      "new_exact": "The judgment is affirmed.\n\n1\n\n. We further note that the transaction at issue in *Delzer**,*an alleged oral agreement to provide a $300,000 line of credit",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16928,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "implied  consent  advisory.1 \n",
+      "new_exact": "implied  consent  advisory.[1] \n",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null
+   },
+   {
+    "num": 1,
+    "action": "recover_body_absent",
+    "confidence": "high",
+    "body_present_in_db": false,
+    "append_body": "\n1\n\n. The officer's advisory in this case was given prior to Birchfield v. North Dakota. \n",
+    "call_para": null
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "cause or a DUI-related arrest.2\n",
+      "new_exact": "cause or a DUI-related arrest.[2]\n",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "The Long Answer \n\n2 I realize",
+      "new_exact": "The Long Answer \n\n2\n\n. I realize",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null
+   }
+  ]
+ }
+]

@@ -1,0 +1,1441 @@
+[
+ {
+  "opinion_id": 14322,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 23,
+    "edits": [
+     {
+      "old_exact": "authorization from the check writer.1 There is nothing in N.D.C.C. ch. 13-05 that prohibits the procedures used by CybrCollect",
+      "new_exact": "authorization from the check writer.[1] There is nothing in N.D.C.C. ch. 13-05 that prohibits the procedures used by CybrCollect",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "order of the DFI.\n\n. The legislature amended subsection 2 of section 6-08-16, N.D.C.C., effective August 1, 2005, to state:",
+      "new_exact": "order of the DFI.\n\n1\n\n. The legislature amended subsection 2 of section 6-08-16, N.D.C.C., effective August 1, 2005, to state:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15563,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and the conservatorship.1 We conclude M.L. is collaterally",
+      "new_exact": "and the conservatorship.[1] We conclude M.L. is collaterally",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "order.\n\n. Although the notice of appeal states",
+      "new_exact": "order.\n\n1\n\n. Although the notice of appeal states",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15574,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "[11(d)].”1 *Patten v. State,*2008 ND 29, ¶ 14, 745 N.W.2d 626",
+      "new_exact": "[11(d)][1] *Patten v. State,*2008 ND 29, ¶ 14, 745 N.W.2d 626",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. N.D.R.Crim.P. 11(d) on plea withdrawal was transferred to Rule 11 from Rule 32 effective March 1, 2010.",
+      "new_exact": "\n\n1\n\n. N.D.R.Crim.P. 11(d) on plea withdrawal was transferred to Rule 11 from Rule 32 effective March 1, 2010.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15579,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "judgment.1 We conclude",
+      "new_exact": "judgment.[1] We conclude",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 7,
+    "edits": [
+     {
+      "old_exact": "14-09-06.2(1)2 outlined",
+      "new_exact": "14-09-06.2(1)[2] outlined",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Legislative Assembly amended",
+      "new_exact": "\n\n1\n\n. The Legislative Assembly amended",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Legislature amended the factors",
+      "new_exact": "\n\n2\n\n. The Legislature amended the factors",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15580,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "obligation.1 Shapiro cross-appeals",
+      "new_exact": "obligation.[1] Shapiro cross-appeals",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 12,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "06.2(l).2 The district court",
+      "new_exact": "06.2(l).[2] The district court",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 22,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "by the de\\*443 cree.”3 Pember contends",
+      "new_exact": "by the de\\*443 cree.”[3] Pember contends",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Legislature amended N.D.C.C. ch. 14-09 during the 2009 *session.*Effective August ",
+      "new_exact": "\n\n1\n\n. The Legislature amended N.D.C.C. ch. 14-09 during the 2009 *session.*Effective August ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. This is the version of N.D.C.C. § 14-09-06.2(1) existing prior to the 2009 amendments. It is quoted h",
+      "new_exact": "\n\n2\n\n. This is the version of N.D.C.C. § 14-09-06.2(1) existing prior to the 2009 amendments. It is quoted h",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. This is the version of N.D.C.C. § 14-09-07(1) existing prior to the 2009 amendments. It is quote",
+      "new_exact": "\n\n3\n\n. This is the version of N.D.C.C. § 14-09-07(1) existing prior to the 2009 amendments. It is quote",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15591,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "property.1 We affirm,",
+      "new_exact": "property.[1] We affirm,",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "affirmed.\n\n. A judgment",
+      "new_exact": "affirmed.\n\n1\n\n. A judgment",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15595,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 21,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "board1 superseded",
+      "new_exact": "board[1] superseded",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 21,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Tax Appeals Board was later held to be unconstitutional",
+      "new_exact": "\n\n1\n\n. The Tax Appeals Board was later held to be unconstitutional",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15601,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "judgment1 awarding",
+      "new_exact": "judgment[1] awarding",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. All American",
+      "new_exact": "\n\n1\n\n. All American",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15610,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "based upon the incident with the gate on May 23, 2005.1\n\n[¶ 5]",
+      "new_exact": "based upon the incident with the gate on May 23, 2005.[1]\n\n[¶ 5]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and remand for further proceedings.\n\n. For the sake of brevity, we will refer to the May 16th incident as ",
+      "new_exact": "and remand for further proceedings.\n\n1\n\n. For the sake of brevity, we will refer to the May 16th incident as ",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15685,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "obligation.1 We",
+      "new_exact": "obligation.[1] We",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. This case was originally",
+      "new_exact": "\n\n1\n\n. This case was originally",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 15687,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 29,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "34-07-01,\n1\n ",
+      "new_exact": "34-07-01,\n[1]\n ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Although the transcript refers to N.D. Admin. Code ch. 34-07-01",
+      "new_exact": "\n1\n\n. Although the transcript refers to N.D. Admin. Code ch. 34-07-01",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15705,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 17,
+    "edits": [
+     {
+      "old_exact": "purchase a shotgun.1 Pederson did not contest",
+      "new_exact": "purchase a shotgun.[1] Pederson did not contest",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 17,
+    "edits": [
+     {
+      "old_exact": "\n\n. The district court made a finding that there was probable cause",
+      "new_exact": "\n\n1\n\n. The district court made a finding that there was probable cause",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15709,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "trial in this action, N.D.R.Civ.PASCa),1 provided, in part:",
+      "new_exact": "trial in this action, N.D.R.Civ.P.43(a),[1] provided, in part:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Rule 43, N.D.R.Civ.P., was amended, effective March 1, 2011, in response to revisions in F.R.Civ.P. 43.",
+      "new_exact": "\n\n1\n\n. Rule 43, N.D.R.Civ.P., was amended, effective March 1, 2011, in response to revisions in F.R.Civ.P. 43.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15736,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(2009)1 provided, “The agency shall take appropriate measures to make ",
+      "new_exact": "(2009)[1] provided, “The agency shall take appropriate measures to make ",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In 2011 the Legislature amended N.D.C.C. § 28-32-03(5) to read:",
+      "new_exact": "\n\n1\n\n. In 2011 the Legislature amended N.D.C.C. § 28-32-03(5) to read:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15758,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "draft1 in",
+      "new_exact": "draft[1] in",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "is affirmed.\n\n. Beaudoins have not argued that the conditional ",
+      "new_exact": "is affirmed.\n\n1\n\n. Beaudoins have not argued that the conditional ",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15798,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 7,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "spud-ded\n1\n or reentered.",
+      "new_exact": "spud-ded\n[1]\n or reentered.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "further proceedings.\n\n. \"Spudding in” is defined as \"[t]he first boring of the hole in the drilling of an oil well.” 8 P. Martin & B. Kramer, Williams & Meyers *Oil and Gas Law, Manual of Oil & Gas Terms*996 (2011)\n",
+      "new_exact": "further proceedings.\n\n1\n\n. \"Spudding in” is defined as \"[t]he first boring of the hole in the drilling of an oil well.” 8 P. Martin & B. Kramer, Williams & Meyers *Oil and Gas Law, Manual of Oil & Gas Terms*996 (2011)\n",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15844,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 8,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(Supp. 1995).1 The definition",
+      "new_exact": "(Supp. 1995).[1] The definition",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 8,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "February 17, 2012.\n\n. We apply the version",
+      "new_exact": "February 17, 2012.\n\n1\n\n. We apply the version",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15860,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "edits": [
+     {
+      "old_exact": " district court.1\n",
+      "new_exact": " district court.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 21,
+    "edits": [
+     {
+      "old_exact": "ng mining activities,2",
+      "new_exact": "ng mining activities,[2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Because Neighbors United and the individual landowners who appealed the Board",
+      "new_exact": "\n\n1\n\n. Because Neighbors United and the individual landowners who appealed the Board",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties have not argued that the Zoning Ordinance conflicts",
+      "new_exact": "\n\n2\n\n. The parties have not argued that the Zoning Ordinance conflicts",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15866,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "further proceedings.1\n\nI\n\n[¶",
+      "new_exact": "further proceedings.[1]\n\nI\n\n[¶",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Hales named Bea Shaw",
+      "new_exact": "\n\n1\n\n. The Hales named Bea Shaw",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15870,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "costs.1 On",
+      "new_exact": "costs.[1] On",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. In a subsequent order, dated October 24, 2011",
+      "new_exact": "\n\n1\n\n. In a subsequent order, dated October 24, 2011",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15887,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "constructed in 1997 [sic].\n1\n[¶ 44] Johnston",
+      "new_exact": "constructed in 1997 [sic].\n[1]\n[¶ 44] Johnston",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "promotes economic waste.\n\n. To the extent the District argues or the majority concludes estoppel is unavailable",
+      "new_exact": "promotes economic waste.\n\n1\n\n. To the extent the District argues or the majority concludes estoppel is unavailable",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15911,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 8,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "party offering the affidavit makes the affiant available for cross examination.\nN.D.R.Ct. 8.2 (amended effective March 1, 2011).1\n\n",
+      "new_exact": "party offering the affidavit makes the affiant available for cross examination.\nN.D.R.Ct. 8.2 (amended effective March 1, 2011).[1]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Rule 8.2, N.D.R.Ct., was amended, effective March 1, 2011, and currently provides in relevant part:",
+      "new_exact": "\n\n1\n\n. Rule 8.2, N.D.R.Ct., was amended, effective March 1, 2011, and currently provides in relevant part:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15912,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 8,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "conceded a handwritten amount of $1,202.131 looked",
+      "new_exact": "conceded a handwritten amount of $1,202.13[1] looked",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The handwritten dollar amount is referred to as $1,202.13 in the majority of Steven Falkenstein’s deposition, but the amount is listed primarily as $1,202.63 throughout the record.",
+      "new_exact": "\n\n1\n\n. The handwritten dollar amount is referred to as $1,202.13 in the majority of Steven Falkenstein’s deposition, but the amount is listed primarily as $1,202.63 throughout the record.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15920,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 11,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and the court did not abuse its discretion when it ordered him to obtain and maintain the policy.1",
+      "new_exact": "and the court did not abuse its discretion when it ordered him to obtain and maintain the policy.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "is affirmed.\n\n. Darren Seay did not cite *Snyder,*2010 ND 161, 787 N.W.2d 727, in which a majority of this Court reversed and remanded a divorce judgment which required a spousal support obligor to maintain a life insurance policy as security for future spousal support.",
+      "new_exact": "is affirmed.\n\n1\n\n. Darren Seay did not cite *Snyder,*2010 ND 161, 787 N.W.2d 727, in which a majority of this Court reversed and remanded a divorce judgment which required a spousal support obligor to maintain a life insurance policy as security for future spousal support.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15922,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 12,
+    "edits": [
+     {
+      "old_exact": "exemption.1 The Department",
+      "new_exact": "exemption.[1] The Department",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. Although the County at one point",
+      "new_exact": "\n\n1\n\n. Although the County at one point",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 15923,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 13,
+    "edits": [
+     {
+      "old_exact": "to remain in compliance with the judgment.1",
+      "new_exact": "to remain in compliance with the judgment.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 13,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Michiel Nuveen did not argue",
+      "new_exact": "\n\n1\n\n. Michiel Nuveen did not argue",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15947,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 6,
+    "edits": [
+     {
+      "old_exact": "murder,1 not conspiracy",
+      "new_exact": "murder,[1] not conspiracy",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "criminal judgment.\n\n. \"Felony murder” is a murder that occurs during the commission or esc",
+      "new_exact": "criminal judgment.\n\n1\n\n. \"Felony murder” is a murder that occurs during the commission or esc",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15949,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 15,
+    "edits": [
+     {
+      "old_exact": " affect any party’s substantial rights.”).1\n\n[",
+      "new_exact": " affect any party’s substantial rights.”)[1]\n\n[",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Although not at issue in this case, effective March 1, 2012, N.D.R.Ct. 8.13 establish",
+      "new_exact": "\n\n1\n\n. Although not at issue in this case, effective March 1, 2012, N.D.R.Ct. 8.13 establish",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15951,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "responsibility1 of",
+      "new_exact": "responsibility[1] of",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "06.22 to",
+      "new_exact": "06.2[2] to",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "judgment.\n\n. Effective August 1, 2009, the North Dakota Legislative Assembly amended",
+      "new_exact": "judgment.\n\n1\n\n. Effective August 1, 2009, the North Dakota Legislative Assembly amended",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "responsibility.”\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-06.2(1) provides:",
+      "new_exact": "responsibility.”\n\n2\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-06.2(1) provides:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15967,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high"
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "opinion_id": 15984,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "as a service mark1 with the United States Patent",
+      "new_exact": "as a service mark[1] with the United States Patent",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "proceedings.\n\n. A “service mark” means \"any word, name, symbol, or device or any combination thereof used by a person to identify and distinguish the services of one person, including a unique service, from the services of others, and to indicate the source of the services, even if that source is unknown.” N.D.C.C. § 47-22-01(5).\n\n",
+      "new_exact": "proceedings.\n\n1\n\n. A “service mark” means \"any word, name, symbol, or device or any combination thereof used by a person to identify and distinguish the services of one person, including a unique service, from the services of others, and to indicate the source of the services, even if that source is unknown.” N.D.C.C. § 47-22-01(5).\n\n",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15993,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "July 1, 1957).1 Rule",
+      "new_exact": "July 1, 1957).[1] Rule",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 5,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In Table B",
+      "new_exact": "\n\n1\n\n. In Table B",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 16007,
+  "overall_confidence": "high",
+  "cite": "\"Davis v. State\", 2013 ND 34, 827 N.W.2d 8",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "wanted to “revise his statement.”1 Davis’s ",
+      "new_exact": "wanted to “revise his statement.”[1] Davis’s ",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The record is not clear when the information about Price was first presented to the district court.",
+      "new_exact": "\n\n1\n\n. The record is not clear when the information about Price was first presented to the district court.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16008,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 30,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "settlement.1 That settlement makes decision",
+      "new_exact": "settlement.[1] That settlement makes decision",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Crothers\n\n. The post-settlement warranty",
+      "new_exact": "Crothers\n\n1\n\n. The post-settlement warranty",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16040,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "].’ ”1 Upon ",
+      "new_exact": "].’ ”[1] Upon ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. In her deposition, Johnson stated that she does not know what",
+      "new_exact": "\n\n1\n\n. In her deposition, Johnson stated that she does not know what",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 25,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "complaint.2 The district",
+      "new_exact": "complaint.[2] The district",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Because the district court granted summary judgment to the defendants",
+      "new_exact": "\n\n2\n\n. Because the district court granted summary judgment to the defendants",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16106,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 10,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "statute of frauds.\n1\n*Kohanowski**,*at",
+      "new_exact": "statute of frauds.\n[1]\n*Kohanowski**,*at",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 17,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "The judgment is affirmed.\n\n. We further note that the transaction at issue in *Delzer**,*an alleged oral agreement to provide a $300,000 line of credit",
+      "new_exact": "The judgment is affirmed.\n\n1\n\n. We further note that the transaction at issue in *Delzer**,*an alleged oral agreement to provide a $300,000 line of credit",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16360,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "”).1\n",
+      "new_exact": "[1]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "õ    My concern",
+      "new_exact": "õ    1\n\n. My concern",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16634,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 10,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "amended N.D.C.C. § 28-32-061 to require the application of the rules of evidence in administrative proceedings.",
+      "new_exact": "amended N.D.C.C. § 28-32-061[1] to require the application of the rules of evidence in administrative proceedings.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Since our decision in *Madison v. N.D. Dep’t of Transp.,*503 N.W.2d 243 (N.D.1993),",
+      "new_exact": "\n1\n\n. Since our decision in *Madison v. N.D. Dep’t of Transp.,*503 N.W.2d 243 (N.D.1993),",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 16751,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "already_clean",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null
+   }
+  ]
+ },
+ {
+  "opinion_id": 16928,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "implied  consent  advisory.1 \n",
+      "new_exact": "implied  consent  advisory.[1] \n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "recover_body_absent",
+    "confidence": "high",
+    "body_present_in_db": false,
+    "append_body": "\n1\n\n. The officer's advisory in this case was given prior to Birchfield v. North Dakota. \n",
+    "call_para": 8
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "cause or a DUI-related arrest.2\n",
+      "new_exact": "cause or a DUI-related arrest.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "The Long Answer \n\n2 I realize",
+      "new_exact": "The Long Answer \n\n2\n\n. I realize",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
