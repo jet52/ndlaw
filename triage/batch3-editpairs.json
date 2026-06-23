@@ -1,0 +1,1490 @@
+[
+ {
+  "opinion_id": 12501,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "improvements.1\n 1",
+      "new_exact": "improvements.[1]\n 1",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 1\n\nThe firefighters settled",
+      "new_exact": " 1\n\n. The firefighters settled",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12503,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 13,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "dismissal,1 and Dean appealed to this court.\n 1\n\n",
+      "new_exact": "dismissal,[1] and Dean appealed to this court.\n\n1\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 15,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "said:\n 2\n\n",
+      "new_exact": "said:[2]\n\n2\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 21,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "record.3\n 3\n\n",
+      "new_exact": "record.[3]\n\n3\n\n",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12520,
+  "overall_confidence": "high",
+  "cite": "1997 ND 176",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 18,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "We are not persuaded.1\n ",
+      "new_exact": "We are not persuaded.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 1\n\nEven if we were to agree",
+      "new_exact": "\n\n1\n\nEven if we were to agree",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 35,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "if possible.2 *735",
+      "new_exact": "if possible.[2] *735",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 2\n\nUnless tax-free spin-offs",
+      "new_exact": "\n\n2\n\nUnless tax-free spin-offs",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12929,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "self-incrimination.1 Moreover, we \\*649",
+      "new_exact": "self-incrimination.[1] Moreover, we \\*649",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 20,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "are affirmed.\n\n. ",
+      "new_exact": "are affirmed.\n\n1\n\n. ",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   }
+  ],
+  "cite": "1999 ND 137, 597 N.W.2d 644"
+ },
+ {
+  "opinion_id": 12939,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 7,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "violated N.D.C.C. § 65-01-14(7)1 and",
+      "new_exact": "violated N.D.C.C. § 65-01-14(7)[1] and",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 7,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Vernon appealed.2\n\nII",
+      "new_exact": "Vernon appealed.[2]\n\nII",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 11,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "provided:3\n\n*Filing",
+      "new_exact": "provided:[3]\n\n*Filing",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 22,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "notice.4\n\n[¶23]",
+      "new_exact": "notice.[4]\n\n[¶23]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "strip_residual",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [
+     {
+      "old_exact": "\n\n[13][¶ 20]",
+      "new_exact": "\n\n[¶ 20]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "strip_residual",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [
+     {
+      "old_exact": "\n\n[14] [¶ 21] Moreover,",
+      "new_exact": "\n\n[¶ 21] Moreover,",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 7,
+    "action": "strip_residual",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [
+     {
+      "old_exact": "\n\n[15] [¶ 22] The district",
+      "new_exact": "\n\n[¶ 22] The district",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 8,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Section 65-01-14(7), N.D.C.C., provided:",
+      "new_exact": "\n\n1\n\n. Section 65-01-14(7), N.D.C.C., provided:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "6.\n. The Bureau did not cross-appeal.",
+      "new_exact": "6.\n2\n\n. The Bureau did not cross-appeal.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "appeal.\n\n. Section 65-05-33, N.D.C.C., was amended",
+      "new_exact": "appeal.\n\n3\n\n. Section 65-05-33, N.D.C.C., was amended",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "work.\n. Under the rationale of",
+      "new_exact": "work.\n4\n\n. Under the rationale of",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12940,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "129, § 3.1 The last",
+      "new_exact": "129, § 3.[1] The last",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "ex post facto punishment.2\n\n[¶ 9]",
+      "new_exact": "ex post facto punishment.[2]\n\n[¶ 9]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "12.1-32-15(3).3 Burr argues",
+      "new_exact": "12.1-32-15(3).[3] Burr argues",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1995).4 Based",
+      "new_exact": "1995).[4] Based",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "requirements.5\n\n[¶ 32]",
+      "new_exact": "requirements.[5]\n\n[¶ 32]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The 1999 Legislature amended N.D.C.C. § 12.1-32-15 to narrow",
+      "new_exact": "\n\n6\n\n. The 1999 Legislature amended N.D.C.C. § 12.1-32-15 to narrow",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 7,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. These subsections, when originally enacted in 1995, were sub",
+      "new_exact": "\n\n7\n\n. These subsections, when originally enacted in 1995, were sub",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 8,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114",
+      "new_exact": "\n\n8\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The term \"intent-effects\" was coined by the Ninth Circuit Co",
+      "new_exact": "\n\n9\n\n. The term \"intent-effects\" was coined by the Ninth Circuit Co",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The third prong is whether the effect of the statute is so h",
+      "new_exact": "\n\n10\n\n. The third prong is whether the effect of the statute is so h",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual i",
+      "new_exact": "\n\n11\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual i",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "12.1-20-21.12\n\n[¶ 57]",
+      "new_exact": "12.1-20-21.[12]\n\n[¶ 57]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 13,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(1993).13\n\n[¶ 62]",
+      "new_exact": "(1993).[13]\n\n[¶ 62]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 14,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "requirements.14\n\n[¶ 63]",
+      "new_exact": "requirements.[14]\n\n[¶ 63]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 15,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(1995).15 While",
+      "new_exact": "(1995).[15] While",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 16,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "concerns.16 The",
+      "new_exact": "concerns.[16] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 17,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "public.17 In",
+      "new_exact": "public.[17] In",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 18,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1070-71.18 Moreover",
+      "new_exact": "1070-71.[18] Moreover",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 19,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "punishment.19\n\n[¶ 90]",
+      "new_exact": "punishment.[19]\n\n[¶ 90]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 20,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Nonregistration information consists of \"the name of the off",
+      "new_exact": "\n\n20\n\n. Nonregistration information consists of \"the name of the off",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 21,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. In North Dakota this possibility became a reality when, in J",
+      "new_exact": "\n\n21\n\n. In North Dakota this possibility became a reality when, in J",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 22,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15",
+      "new_exact": "\n\n22\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12941,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "maximum medical improvement1 and,",
+      "new_exact": "maximum medical improvement[1] and,",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "injured worker.2 Saari",
+      "new_exact": "injured worker.[2] Saari",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "605, § l.3 Saari",
+      "new_exact": "605, § l.[3] Saari",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Guides.4 Saari",
+      "new_exact": "Guides.[4] Saari",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The date of maximum medical improvement is \"the date after which further recovery from, or lasting improvement to, an injury or disease can no longer reasonably be anticipated based upon reasonable medical probability.\" N.D.C.C. § 65-01-02(13).",
+      "new_exact": "\n\n1\n\n. The date of maximum medical improvement is \"the date after which further recovery from, or lasting improvement to, an injury or disease can no longer reasonably be anticipated based upon reasonable medical probability.\" N.D.C.C. § 65-01-02(13).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. To illustrate this argument, Saari does not actually seek the PPI benefits under the law in effect at the time of his 1987 injury. In 1989, the Legislature amended N.D.C.C. §§ 65-05-12 and 13 to change the benefit rate from \"sixty dollars per week\" to a \"lump sum, calculated by multiplying thirty-three and one-third percent of the average weekly wage in this state rounded to the next highest dollar, on the date the impairment is determined....\" 1989 N.D. Sess Laws ch. 765, §§ 4-5. Saari contends he is entitled to this 1989 increase in benefits under the old PPI law which occurred after the date of his injury-",
+      "new_exact": "\n\n2\n\n. To illustrate this argument, Saari does not actually seek the PPI benefits under the law in effect at the time of his 1987 injury. In 1989, the Legislature amended N.D.C.C. §§ 65-05-12 and 13 to change the benefit rate from \"sixty dollars per week\" to a \"lump sum, calculated by multiplying thirty-three and one-third percent of the average weekly wage in this state rounded to the next highest dollar, on the date the impairment is determined....\" 1989 N.D. Sess Laws ch. 765, §§ 4-5. Saari contends he is entitled to this 1989 increase in benefits under the old PPI law which occurred after the date of his injury-",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The Attorney General has opined whether the Legislature's abrogation of the liberal construction rule can be retroactively applied to claims arising out of injuries occurring before its effective date depends on the statute interpreted and whether vested rights would be altered, and because this Court ruled in *Gregory I*the law in effect when a PPI is determined governs, it would not be an impermissible retroactive application to prohibit use of \\*180 the liberal construction rule to claims arising out of PPI determinations. *See*Attorney General Opinion. 95-08, at pp. 4-5, 7 (1995).",
+      "new_exact": "\n\n3\n\n. The Attorney General has opined whether the Legislature's abrogation of the liberal construction rule can be retroactively applied to claims arising out of injuries occurring before its effective date depends on the statute interpreted and whether vested rights would be altered, and because this Court ruled in *Gregory I*the law in effect when a PPI is determined governs, it would not be an impermissible retroactive application to prohibit use of \\*180 the liberal construction rule to claims arising out of PPI determinations. *See*Attorney General Opinion. 95-08, at pp. 4-5, 7 (1995).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In 1999, the Legislature enacted House Bill 1422 which amended N.D.C.C. § 65-01-02(26) to delete any reference to the AMA Guides and amended N.D.C.C. § 65-05-12.2(6) to read:\n\n. A doctor evaluating permanent impairment shall include a clinical report in sufficient detail to support the percentage ratings assigned. The bureau shall adopt administrative rules governing the evaluation of permanent impairment. These rules must incorporate principles and practices of the American medical association's \"Guides to the Evaluation of Permanent Impairment\" modified to be consistent with North Dakota law, to resolve issues of practice and interpretation, and to address areas not sufficiently covered by the guides. Until rules adopted under this subsection become effective, impairments must be evaluated under the fourth edition, third printing, of the guides.\n1999 N.D. Sess. Laws ch. 551, §§ 1 and 2. These amendments \"apply to all impairment evaluations performed after July 31, 1999, regardless of the date of injury or date of claim filing.\" 1999 N.D. Sess. Laws ch. 551, § 4.",
+      "new_exact": "\n\n4\n\n. In 1999, the Legislature enacted House Bill 1422 which amended N.D.C.C. § 65-01-02(26) to delete any reference to the AMA Guides and amended N.D.C.C. § 65-05-12.2(6) to read:\n\n. A doctor evaluating permanent impairment shall include a clinical report in sufficient detail to support the percentage ratings assigned. The bureau shall adopt administrative rules governing the evaluation of permanent impairment. These rules must incorporate principles and practices of the American medical association's \"Guides to the Evaluation of Permanent Impairment\" modified to be consistent with North Dakota law, to resolve issues of practice and interpretation, and to address areas not sufficiently covered by the guides. Until rules adopted under this subsection become effective, impairments must be evaluated under the fourth edition, third printing, of the guides.\n1999 N.D. Sess. Laws ch. 551, §§ 1 and 2. These amendments \"apply to all impairment evaluations performed after July 31, 1999, regardless of the date of injury or date of claim filing.\" 1999 N.D. Sess. Laws ch. 551, § 4.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12944,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "alternate visitation.\n1\n[¶",
+      "new_exact": "alternate visitation.\n[1]\n[¶",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Subsequent to the trial court's decision in this case, we clarified in",
+      "new_exact": "\n\n1\n\n. Subsequent to the trial court's decision in this case, we clarified in",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "593 N.W.2d 768.2\n",
+      "new_exact": "593 N.W.2d 768.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In fairness to the trial judge, we recognize he did not have the benefit of",
+      "new_exact": "\n\n2\n\n. In fairness to the trial judge, we recognize he did not have the benefit of",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12946,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "at issue.1 The facts",
+      "new_exact": "at issue.[1] The facts",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Utah",
+      "new_exact": "\n\n1\n\n. Utah",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13791,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "discipline.1 The",
+      "new_exact": "discipline.[1] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Rule 4.1(E)",
+      "new_exact": "\n\n1\n\n. Rule 4.1(E)",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14004,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 12,
+    "edits": [
+     {
+      "old_exact": "under N.D.C.C. § 41-09-50(3),1 a secured creditor",
+      "new_exact": "under N.D.C.C. § 41-09-50(3),[1] a secured creditor",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 20,
+    "edits": [
+     {
+      "old_exact": "actual sale price\")*(emphasis added).2\n\n[¶ 21] W",
+      "new_exact": "actual sale price\")*(emphasis added).[2]\n\n[¶ 21] W",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. In 2001, the legislature repealed",
+      "new_exact": "\n\n1\n\n. In 2001, the legislature repealed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. In *Conti Causeway Ford,*276 A.2d",
+      "new_exact": "\n\n2\n\n. In *Conti Causeway Ford,*276 A.2d",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 14046,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "“Ted”)1 appealed",
+      "new_exact": "“Ted”)[1] appealed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n. The names of the parties are pseudonyms.",
+      "new_exact": "\n1\n\n. The names of the parties are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14322,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 23,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "from electronically debiting collection fees without a written authorization from the check writer.1 There",
+      "new_exact": "from electronically debiting collection fees without a written authorization from the check writer.[1] There",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 40,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "reversing the order of the DFI.\n\n. The legislature amended subsection 2",
+      "new_exact": "reversing the order of the DFI.\n\n1\n\n. The legislature amended subsection 2",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14465,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "J.F. (“Jane”)1 appeals",
+      "new_exact": "J.F. (“Jane”)[1] appeals",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The names of the parties are pseudonyms.",
+      "new_exact": "\n\n1\n\n. The names of the parties are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14633,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "” 1) ",
+      "new_exact": "” [1] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "is affirmed.\n\n. The parties",
+      "new_exact": "is affirmed.\n\n1\n\n. The parties",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14647,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 13,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1.7(a), (b), and (c),1 which provide:",
+      "new_exact": "1.7(a), (b), and (c),[1] which provide:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. We apply the North Dakota Rules of Professional Conduct as they existed when the hearing .was held",
+      "new_exact": "\n\n1\n\n. We apply the North Dakota Rules of Professional Conduct as they existed when the hearing .was held",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14708,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(\"Richard\"1) appeals the juven",
+      "new_exact": "(\"Richard\")[1]) appeals the juven",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The party's name is a pseudonym.\n\n[¶ 39] The H",
+      "new_exact": "\n\n1\n\n. The party's name is a pseudonym.\n\n[¶ 39] The H",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14756,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "I.S. (“Irene”)1 appeals the juvenile",
+      "new_exact": "I.S. (“Irene”)[1] appeals the juvenile",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties’ names are pseudonyms.",
+      "new_exact": "\n\n1\n\n. The parties’ names are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14785,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 13,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "proceedings,1 in other contexts",
+      "new_exact": "proceedings,[1] in other contexts",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. This Court's Juvenile Policy",
+      "new_exact": "\n\n1\n\n. This Court's Juvenile Policy",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 14888,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "[¶ 1] J.G. (\"Mother\"1) appeals",
+      "new_exact": "[¶ 1] J.G. (\"Mother\")[1] appeals",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties' names are pseudonyms.",
+      "new_exact": "\n\n1\n\n. The parties' names are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15299,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "§ 14-09-06.1.1\n[¶7] Here, the district court considered all of the best interests factors",
+      "new_exact": "§ 14-09-06.1[1]\n[¶7] Here, the district court considered all of the best interests factors",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n1The version of N.D.C.C. § 14-09-06.1 applicable to this case has since been\n\nrepealed by 2009 N.D. Sess. Laws ch. 149, § 12.",
+      "new_exact": "\n\n1\n\n. The version of N.D.C.C. § 14-09-06.1 applicable to this case has since been\n\nrepealed by 2009 N.D. Sess. Laws ch. 149, § 12.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.C.C. § 14-09-06.2(1)(b).2  Martin contends factor (b)\nshould  have  been  weighed  in  her  favor  because",
+      "new_exact": "N.D.C.C. § 14-09-06.2(1)(b)[2]  Martin contends factor (b)\nshould  have  been  weighed  in  her  favor  because",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n2The version of N.D.C.C. § 14-09-6.2 applicable to this case has since been\n\namended by 2009 N.D. Sess. Laws ch. 149, § 5.",
+      "new_exact": "\n\n2\n\n. The version of N.D.C.C. § 14-09-6.2 applicable to this case has since been\n\namended by 2009 N.D. Sess. Laws ch. 149, § 5.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15490,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Dakota state court1 in February 2009, alleging",
+      "new_exact": "Dakota state court[1] in February 2009, alleging",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The plaintiffs initially sued two members",
+      "new_exact": "\n\n1\n\n. The plaintiffs initially sued two members",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15496,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "K. (“Adam”)1 appealed from",
+      "new_exact": "K. (“Adam”)[1] appealed from",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 1,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".\n\n. All names are pseudonyms",
+      "new_exact": ".\n1\n\n. All names are pseudonyms",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15509,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "marital property.1 We affirm.",
+      "new_exact": "marital property.[1] We affirm.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "property division.\n\n. The legislature amended N.D.C.C. ch. 14-09 during the 2009 session. Effective August 1, 2009, \"custody\" and \"visitation\" are called \"primary residential responsibility\" and \"parenting time.\" 2009 N.D. Sess. Laws ch. 149, § 4. When appropriate, this decision uses terminology of the amended statutes even though this case was filed and tried while the prior version of law was in effect.\n\n[¶ 51]",
+      "new_exact": "property division.\n\n1\n\n. The legislature amended N.D.C.C. ch. 14-09 during the 2009 session. Effective August 1, 2009, \"custody\" and \"visitation\" are called \"primary residential responsibility\" and \"parenting time.\" 2009 N.D. Sess. Laws ch. 149, § 4. When appropriate, this decision uses terminology of the amended statutes even though this case was filed and tried while the prior version of law was in effect.\n\n[¶ 51]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 55,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "N.D.C.C. § 14-09-07 (2009)2 states:",
+      "new_exact": "N.D.C.C. § 14-09-07 (2009)[2] states:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 55,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-07 was amended to provide:\n\n1. A parent with primary residential responsibility",
+      "new_exact": "\n\n2\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-07 was amended to provide:\n\n1. A parent with primary residential responsibility",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15533,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 15,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "was a top-hat plan.1\n\n[¶ 16]",
+      "new_exact": "was a top-hat plan.[1]\n\n[¶ 16]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "The district court judgment is affirmed.\n\n. Because the parties stipulated",
+      "new_exact": "The district court judgment is affirmed.\n\n1\n\n. Because the parties stipulated",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 15536,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "employment with JLY.1 Holmgren stated",
+      "new_exact": "employment with JLY.[1] Holmgren stated",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. This case arose after the enactment of N.D.C.C. § 65-02-22.1. Therefore, this appeal comes from the final decision of the administrative law judge.",
+      "new_exact": "\n\n1\n\n. This case arose after the enactment of N.D.C.C. § 65-02-22.1. Therefore, this appeal comes from the final decision of the administrative law judge.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15558,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 6,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "which provided1",
+      "new_exact": "which provided[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Duff commenced this divorce action",
+      "new_exact": "\n\n1\n\n. Duff commenced this divorce action",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

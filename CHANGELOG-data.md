@@ -2,6 +2,32 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-editpair-apply-2026-06-23` — corpus scaling, archive batches 2-3 (45 opinions)
+
+Scaled the propose -> gated-apply loop across the archive-backed `SRC_MORE`
+worklist (footnotes present-but-malformed in the DB vs the court archive HTML).
+**Batch 2** (30 opinions, 1999 ND 129 -> 2002 ND 188) and **batch 3** (first 15 of
+the next 30) repaired; same atomic gates as Phase 2b (marker-only, word-multiset,
+parser-detects-each-footnote, call_para, false-absent). Logged per footnote.
+
+Reconciliation of gate skips this run (the gates earning their keep):
+- **Curly-quote byte-anchor misses** — agents emitted ASCII `("Name")N` where the
+  DB holds Unicode `(“Name”)N`; a sharpened re-pass (copy curly glyphs byte-exact;
+  treat bodies as already-present unnumbered orphans, not absent) cleared them.
+- **2000 ND 170** — agent proposed `recover_body_absent` for the Andrew Burke
+  footnote claiming the body was missing; it was in fact present as an unnumbered
+  orphan. The false-absent + marker-only gates **blocked the bad re-insertion**;
+  applied manually as 5 numbered orphans incl. a verified `*.*` -> `. ` body marker
+  fix (archive 990353.htm prints "2. A review of case law...").
+- Minor hand-corrections: one agent bracket typo (`)1`->`)[1]` not `)[1`), advisory
+  `call_para` mismatches dropped, apostrophe-glyph anchors shortened.
+- **1999 ND 129** + **2001 ND 137** (no agent return) hand-built; footnote counts
+  cross-checked against archive `FN_N_` anchors (2 and 3 respectively).
+
+Batch-3 residue (12 skips + 3 no-return) pending: bare-line orphan format
+(1997 ND 165/169), West key-number residue interleaved with bodies (1999 ND 137),
+and further byte-anchor misses. Detector 175/0 throughout; invariants 24/2/0.
+
 ## Batch `footnote-stragglers-2026-06-23` — close out the citation-confirmed list (detector 0 missing)
 
 Hand-built exact edit-pairs (gated applier) for the last three confirmed losses the
