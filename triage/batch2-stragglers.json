@@ -1,0 +1,136 @@
+[
+ {
+  "opinion_id": 12964,
+  "cite": "1999 ND 129",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "eligibility.1\n\n",
+      "new_exact": "eligibility.[1]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. During the relevant time",
+      "new_exact": "\n\n1\n\n. During the relevant time",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "65-05-33,2 whi",
+      "new_exact": "65-05-33,[2] whi",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. This statute was amended",
+      "new_exact": "\n\n2\n\n. This statute was amended",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13416,
+  "cite": "2001 ND 137",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "oldest child.1 At",
+      "new_exact": "oldest child.[1] At",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In 1994, the mother",
+      "new_exact": "\n\n1\n\n. In 1994, the mother",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "privacy.2\n\n",
+      "new_exact": "privacy.[2]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The parents have not raised",
+      "new_exact": "\n\n2\n\n. The parents have not raised",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(1)(b)(2),3 whi",
+      "new_exact": "(1)(b)(2),[3] whi",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The father's reply brief",
+      "new_exact": "\n\n3\n\n. The father's reply brief",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
