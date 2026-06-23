@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `west-keynote-strip-2026-06-23` — strip West key-number headnote markers (corpus pass Phase 1)
+
+West/CL-lineage opinions retained West key-number `[N]` headnote markers (runs like
+`[1] [2]` at paragraph starts), which collide with footnote call `[N]` markers.
+Stripped the **case-(a) marker-only** form (line-start `[N]` runs embedded before the
+opinion's own prose / before `[¶N]`) across the **1,092** WEST_HEADNOTE-bucket
+opinions — **8,503 markers** removed. Inline `[N]` footnote calls (after a word/
+punctuation), `[¶N]` paragraph markers, and all prose are untouched: asserted
+corpus-wide that the alphabetic-token multiset and `[¶]` counts are unchanged for
+every opinion. Residual West headnote *topic text* (case-b, e.g. "Topic - Subtopic")
+lives in other buckets and is handled in the source-vs-DB diff phase. Script:
+`scripts/strip_west_keynotes_2026-06-23.py`; one changelog row per opinion (reversible).
+
 ## Batch `footnote-inline-call-retrofit-2026-06-23` — align 1999 ND 2 / 2011 ND 122 to inline [N] (Phase 2c)
 
 The two footnotes restored earlier this arc used a bare-line call marker (Route A).
