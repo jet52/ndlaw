@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-number-restore-2026-06-23` — restore dropped footnote numbers (body present)
+
+Citation-graph-confirmed footnotes whose BODY was already present in the text as a
+number-less orphan (`\n\n. body` — the analyzer kept the body, dropped the `N`).
+Each confirmed by another opinion's pincite (`<cite>, ¶ X n.N`), which establishes
+the footnote exists, its number, and its call paragraph. Restored structure only —
+inserted the number before the body (period form) + a standalone call marker at the
+confirmed call ¶ — so the parser links body → ¶ X. The court's words are unchanged
+(asserted: identical alphabetic-token sequence; only bare-number marker lines added).
+Single-orphan opinions only (unambiguous match): **1999 ND 2** → ¶ 5 n.1,
+**2011 ND 122** → ¶ 1 n.1. Multi-orphan + body-absent cases need per-PDF
+verification (tracked in `triage/footnote-pincite-losses-2026-06-23.tsv`). Script:
+`scripts/restore_footnote_numbers_2026-06-23.py`.
+
 ## Batch `footnote-degarble-2026-06-23` — 8 garbled `FOOTNOTES 0:` markers fixed
 
 The ndcourts markdown analyzer failed to OCR the footnote superscript number in 8
