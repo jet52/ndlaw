@@ -251,6 +251,8 @@ _ERA_FOOTNOTES = [
     # body-marker normalization filling a footnote gap (footnote-body-marker-fix)
     ("1998 ND 94", "In addition to the retirement offset", 6, 18),
     ("1998 ND 225", "The Second Restatement", 4, 14),
+    ("1999 ND 154", "Insofar as Steward", 4, 8),
+    ("1999 ND 154", "Stewart has not marshaled a separate double jeopardy", 8, 25),
 ]
 
 
