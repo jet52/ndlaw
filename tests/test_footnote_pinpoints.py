@@ -254,6 +254,7 @@ _ERA_FOOTNOTES = [
     ("1999 ND 154", "Insofar as Steward", 4, 8),
     ("1999 ND 154", "Stewart has not marshaled a separate double jeopardy", 8, 25),
     ("1999 ND 156", "In 1995, the legislature enacted UIFSA", 1, 8),
+    ("2018 ND 132", "In order to establish obvious error", 1, 9),
 ]
 
 

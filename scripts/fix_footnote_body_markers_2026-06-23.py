@@ -28,6 +28,11 @@ ENTRIES = [
      "archive/1998/970243.htm FN_11_ (body present, space after period dropped)"),
     (12790, 4, "\n\n.The Second Restatement", "\n\n. The Second Restatement",
      "archive/1998/980171.htm FN_4_ (body present, space after period dropped)"),
+    # 2018 ND 132: lone footnote; bare-line call "1" survives in ¶9, body was an
+    # unnumbered " . " orphan (number dropped). Number it + normalize the marker.
+    (17181, 1, "\n\n . In order to establish obvious error",
+     "\n\n1\n\n. In order to establish obvious error",
+     "archive/2018/20170321.htm FN_1_ + bare-line call ¶9 (body present, number dropped)"),
 ]
 
 
