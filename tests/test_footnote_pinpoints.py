@@ -253,6 +253,7 @@ _ERA_FOOTNOTES = [
     ("1998 ND 225", "The Second Restatement", 4, 14),
     ("1999 ND 154", "Insofar as Steward", 4, 8),
     ("1999 ND 154", "Stewart has not marshaled a separate double jeopardy", 8, 25),
+    ("1999 ND 156", "In 1995, the legislature enacted UIFSA", 1, 8),
 ]
 
 

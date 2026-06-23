@@ -79,6 +79,21 @@ ENTRIES = [
          call_old="prosecution of Stewart.8", call_new="prosecution of Stewart.[8]",
          orphan_anchor="Stewart has not marshaled a separate double jeopardy",
          authority="archive/1999/980354.htm FN_8_ (call <sup>(8)</sup> ¶25) [citation-confirmed]"),
+    # 1999 ND 156: 3 number-dropped orphans, call digits attached. orphan-i==fn-i
+    # vs archive FN_N_. fn1 citation-confirmed (call ¶ was unknown -> ¶8 from the
+    # surviving attached digit); fns 2-3 restored for contiguity.
+    dict(oid=12945, num=1, call_para=8,
+         call_old="to enforce the first order.1", call_new="to enforce the first order.[1]",
+         orphan_anchor="In 1995, the legislature enacted UIFSA",
+         authority="archive/1999/990023.htm FN_1_ (call <sup>(1)</sup> ¶8) [citation-confirmed]"),
+    dict(oid=12945, num=2, call_para=8,
+         call_old="§ 14-12.1-312 to", call_new="§ 14-12.1-31[2] to",
+         orphan_anchor="Section 14-12.1-31, N.D.C.C., provided",
+         authority="archive/1999/990023.htm FN_2_ (call <sup>(2)</sup> ¶8)"),
+    dict(oid=12945, num=3, call_para=11,
+         call_old="per month on his arrearages.3", call_new="per month on his arrearages.[3]",
+         orphan_anchor="This record also includes an August 31, 1988, letter",
+         authority="archive/1999/990023.htm FN_3_ (call <sup>(3)</sup> ¶11)"),
 ]
 
 
