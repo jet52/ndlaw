@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-degarble-2026-06-23` — 8 garbled `FOOTNOTES 0:` markers fixed
+
+The ndcourts markdown analyzer failed to OCR the footnote superscript number in 8
+opinions, emitting `FOOTNOTES\n\n0:\n\n<junk glyph>` (CJK / ToUnicode garbage —
+same root cause as the digit-flip class) where the number belongs. The footnote
+**body is intact** (verified present in both stored text and the PDF); only the
+marker was garbage. Replaced each garbage marker with its canonical positional
+number (`1:`, `2:` — footnote numbering is sequential, so a lone footnote is 1 and
+two are 1/2; structural, not a glyph read). Body asserted byte-identical modulo the
+removed marker lines. Now parser-detectable (`in_footnote`, verbatim). Opinions:
+2013 ND 57, 2013 ND 99, 2013 ND 192, 2015 ND 94, 2015 ND 222, 2016 ND 189,
+2017 ND 146, 2017 ND 285. Script: `scripts/fix_garbled_footnotes_2026-06-23.py`.
+
 ## Batch `westlaw-footnote-restore-2026-06-22` — 2 substantive footnotes dropped at Westlaw ingest
 
 `_parse_westlaw_doc` cut opinions at the "All Citations" footer; the Westlaw
