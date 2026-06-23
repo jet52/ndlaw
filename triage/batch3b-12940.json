@@ -1,0 +1,220 @@
+[
+ {
+  "opinion_id": 12940,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Since the 1993 change in definitions, the term \"offenders against children” applies only to nonsexual offenses.",
+      "new_exact": "\n\n1\n\n. Since the 1993 change in definitions, the term \"offenders against children” applies only to nonsexual offenses.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 3,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 4,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 5,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 6,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 7,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 8,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114 S.Ct. 1937, 128 L.Ed.2d 767 (1994)",
+      "new_exact": "\n\n8\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114 S.Ct. 1937, 128 L.Ed.2d 767 (1994)",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The term \"intent-effects” was coined by the Ninth Circuit Court of Appeals in *Russell,*124 F.3d at 1084.",
+      "new_exact": "\n\n9\n\n. The term \"intent-effects” was coined by the Ninth Circuit Court of Appeals in *Russell,*124 F.3d at 1084.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The third prong is whether the effect of the statute is so harsh that “as a matter of degree” it constitutes punishment.",
+      "new_exact": "\n\n10\n\n. The third prong is whether the effect of the statute is so harsh that “as a matter of degree” it constitutes punishment.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual imposition); -04 (sexual imposition); -05",
+      "new_exact": "\n\n11\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual imposition); -04 (sexual imposition); -05",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".12\n\n",
+      "new_exact": ".[12]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 13,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".13\n\n",
+      "new_exact": ".[13]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 14,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 15,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 16,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In *Commonwealth of Pennsylvania v. Gaffney,*733 A.2d 616, the Supreme Court",
+      "new_exact": "\n\n16\n\n. In *Commonwealth of Pennsylvania v. Gaffney,*733 A.2d 616, the Supreme Court",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 17,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. For instance, many states employ risk assessment systems to better serve the statute’s remedial goals.",
+      "new_exact": "\n\n17\n\n. For instance, many states employ risk assessment systems to better serve the statute’s remedial goals.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 18,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The State of Washington has since amended its notification provisions to codify",
+      "new_exact": "\n\n18\n\n. The State of Washington has since amended its notification provisions to codify",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 19,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".19\n\n",
+      "new_exact": ".[19]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 20,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Nonregistration information consists of \"the name of the offender, the last known",
+      "new_exact": "\n\n20\n\n. Nonregistration information consists of \"the name of the offender, the last known",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 21,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In North Dakota this possibility became a reality when, in January 1999, a citizen",
+      "new_exact": "\n\n21\n\n. In North Dakota this possibility became a reality when, in January 1999, a citizen",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 22,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15 registration and notification",
+      "new_exact": "\n\n22\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15 registration and notification",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "medium"
+ }
+]

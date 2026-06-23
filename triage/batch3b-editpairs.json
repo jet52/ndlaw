@@ -1,0 +1,675 @@
+[
+ {
+  "opinion_id": 12520,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 18,
+    "edits": [
+     {
+      "old_exact": "We are not persuaded.1\n",
+      "new_exact": "We are not persuaded.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 18,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nEven if we were to agree",
+      "new_exact": "\n1\n\n. Even if we were to agree",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 35,
+    "edits": [
+     {
+      "old_exact": "if possible.2 ",
+      "new_exact": "if possible.[2] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 35,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nUnless tax-free",
+      "new_exact": "\n2\n\n. Unless tax-free",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12940,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Since the 1993 change in definitions, the term \"offenders against children\" applies only to nonsexual offenses.",
+      "new_exact": "\n\n1\n\n. Since the 1993 change in definitions, the term \"offenders against children\" applies only to nonsexual offenses.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 3,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 4,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 5,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 6,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 7,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 8,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114 S.Ct. 1937, 128 L.Ed.2d 767 (1994)",
+      "new_exact": "\n\n8\n\n. *See Department of Revenue v. Kurth Ranch,*511 U.S. 767, 114 S.Ct. 1937, 128 L.Ed.2d 767 (1994)",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The term \"intent-effects\" was coined by the Ninth Circuit Court of Appeals in *Russell,*124 F.3d at 1084.",
+      "new_exact": "\n\n9\n\n. The term \"intent-effects\" was coined by the Ninth Circuit Court of Appeals in *Russell,*124 F.3d at 1084.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The third prong is whether the effect of the statute is so harsh that \"as a matter of degree\" it constitutes punishment.",
+      "new_exact": "\n\n10\n\n. The third prong is whether the effect of the statute is so harsh that \"as a matter of degree\" it constitutes punishment.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual imposition); -04 (sexual imposition); -05",
+      "new_exact": "\n\n11\n\n. The offenses included N.D.C.C. §§ 12.1-20-03 (gross sexual imposition); -04 (sexual imposition); -05",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".12\n\n",
+      "new_exact": ".[12]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 13,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".13\n\n",
+      "new_exact": ".[13]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 14,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 15,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 16,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In *Commonwealth of Pennsylvania v. Gaffney,*733 A.2d 616, the Supreme Court",
+      "new_exact": "\n\n16\n\n. In *Commonwealth of Pennsylvania v. Gaffney,*733 A.2d 616, the Supreme Court",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 17,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. For instance, many states employ risk assessment systems to better serve the statute's remedial goals.",
+      "new_exact": "\n\n17\n\n. For instance, many states employ risk assessment systems to better serve the statute's remedial goals.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 18,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The State of Washington has since amended its notification provisions to codify",
+      "new_exact": "\n\n18\n\n. The State of Washington has since amended its notification provisions to codify",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 19,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".19\n\n",
+      "new_exact": ".[19]\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 20,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Nonregistration information consists of \"the name of the offender, the last known",
+      "new_exact": "\n\n20\n\n. Nonregistration information consists of \"the name of the offender, the last known",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 21,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. In North Dakota this possibility became a reality when, in January 1999, a citizen",
+      "new_exact": "\n\n21\n\n. In North Dakota this possibility became a reality when, in January 1999, a citizen",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 22,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15 registration and notification",
+      "new_exact": "\n\n22\n\n. Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15 registration and notification",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 23,
+    "action": "recover_body_absent",
+    "confidence": "medium",
+    "append_body": "Senate Bill 2299 narrowed the scope of N.D.C.C. § 12.1-32-15 registration and notification requirements. My conclusions in this opinion apply only to the law as it applied to Burr.",
+    "body_present_in_db": false
+   }
+  ],
+  "overall_confidence": "medium"
+ },
+ {
+  "opinion_id": 12941,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": "improvement1 ",
+      "new_exact": "improvement[1] ",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 15,
+    "edits": [
+     {
+      "old_exact": "worker.2 ",
+      "new_exact": "worker.[2] ",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 16,
+    "edits": [
+     {
+      "old_exact": "§ l.3 ",
+      "new_exact": "§ l.[3] ",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 23,
+    "edits": [
+     {
+      "old_exact": "Guides.4 ",
+      "new_exact": "Guides.[4] ",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. The date of maximum medical improvement is",
+      "new_exact": "\n\n1\n\n. The date of maximum medical improvement is",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. To illustrate this argument,",
+      "new_exact": "\n\n2\n\n. To illustrate this argument,",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. The Attorney General has opined",
+      "new_exact": "\n\n3\n\n. The Attorney General has opined",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. In 1999, the Legislature enacted",
+      "new_exact": "\n\n4\n\n. In 1999, the Legislature enacted",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13716,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Rychart land.\n 1",
+      "new_exact": "Rychart land. [1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 1\n\nThe trial court found",
+      "new_exact": "\n\n1\n\n. The trial court found",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "for that same price.\n 2",
+      "new_exact": "for that same price. [2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 2\n\n“[I]n July 1994",
+      "new_exact": "\n\n2\n\n. “[I]n July 1994",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14004,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 12,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "N.D.C.C. § 41-09-50(3),1 a secured creditor has two obligations",
+      "new_exact": "N.D.C.C. § 41-09-50(3),[1] a secured creditor has two obligations",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 20,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " sale conducted according to law, rather than the actual sale price\")*(emphasis added).2\n\n[¶ 21] We find further su",
+      "new_exact": " sale conducted according to law, rather than the actual sale price\")*(emphasis added).[2]\n\n[¶ 21] We find further su",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. In 2001, the legislature repealed N.D.C.C. ch. 41-09 and created and enacted",
+      "new_exact": "\n\n1\n\n. In 2001, the legislature repealed N.D.C.C. ch. 41-09 and created and enacted",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. In *Conti Causeway Ford,*276 A.2d at 403, the parties agreed to the fair market value of the collateral",
+      "new_exact": "\n\n2\n\n. In *Conti Causeway Ford,*276 A.2d at 403, the parties agreed to the fair market value of the collateral",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14633,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "(\"Brian\" 1)",
+      "new_exact": "(\"Brian\" [1])",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties' names are pseudonyms",
+      "new_exact": "\n\n1\n\n. The parties' names are pseudonyms",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 14708,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(\"Richard\"1) appeals",
+      "new_exact": "(\"Richard\"[1]) appeals",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The party's name is a p",
+      "new_exact": "\n\n1\n\n. The party's name is a p",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 14888,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "J.G. (\"Mother\"1) appeals",
+      "new_exact": "J.G. (\"Mother\"[1]) appeals",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties' names are pseudonyms.",
+      "new_exact": "\n\n1\n\n. The parties' names are pseudonyms.",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 15509,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and dividing the marital property.1 We affirm.",
+      "new_exact": "and dividing the marital property.[1] We affirm.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The legislature amended N.D.C.C. ch. 14-09 during the 2009 session.",
+      "new_exact": "\n\n1\n\n. The legislature amended N.D.C.C. ch. 14-09 during the 2009 session.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 55,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(2009)2 states:",
+      "new_exact": "(2009)[2] states:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 55,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-07 was amended to provide:",
+      "new_exact": "\n\n2\n\n. Effective August 1, 2009, N.D.C.C. § 14-09-07 was amended to provide:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

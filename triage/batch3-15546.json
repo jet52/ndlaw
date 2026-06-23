@@ -1,0 +1,33 @@
+[
+ {
+  "opinion_id": 15546,
+  "cite": "2010 ND 227",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Insurance (“WSI”).1\n",
+      "new_exact": "Insurance (“WSI”).[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. This case predates",
+      "new_exact": "\n\n1\n\n. This case predates",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
