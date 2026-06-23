@@ -14,7 +14,10 @@ citation-confirmed), **fn11** (¶ 27), and **fn1** (body present, call superscri
 not preserved → call_para None) so the sequence is contiguous 1–12. (West N.W.2d
 lineage uses bare-line call markers, kept here for within-opinion consistency.)
 **1998 ND 225**: footnotes run 1–5 but fn4 had `.The` (space dropped) — fixed →
-¶ 14 n.4 (citation-confirmed); sequence now contiguous 1–5. Script:
+¶ 14 n.4 (citation-confirmed); sequence now contiguous 1–5. **2018 ND 132**: lone
+footnote — body was an unnumbered ` . ` orphan amid section-heading/¶-continuation
+look-alikes (`. III`, `. [¶ 18]`) and a block quote, all correctly left untouched;
+numbered fn1 → ¶ 9 n.1 (bare-line call already present in ¶9). Script:
 `scripts/fix_footnote_body_markers_2026-06-23.py`.
 
 ## Batch `orphan-footnote-restore-2026-06-23` — number period-orphan footnotes + inline [N] call (Phase 2c)
