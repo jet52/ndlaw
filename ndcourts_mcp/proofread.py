@@ -47,6 +47,15 @@ _STAR_PAGE = re.compile(r"(?<!\d)\*(\d{2,4})\b")
 # Volume + reporter prefix of a regional/official cite, for page pinpoints.
 _REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+\d+")
 
+# ndcourts-markdown footnote sections (distinct from the West/CL period form):
+#   NOTES form:     "\nNOTES\n[1] body\n\n[2] body"   (calls survive inline as [N])
+#   FOOTNOTES form: "\nFOOTNOTES\n\n1:\n\nbody"        (calls do not survive OCR)
+_NOTES_HEADER = re.compile(r"\n[ \t]*NOTES[ \t]*\n")
+_FOOTNOTES_HEADER = re.compile(r"\n[ \t]*FOOTNOTES[ \t]*\n")
+_BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
+_BRACKET_CALL = re.compile(r"\[(\d{1,3})\]")              # inline [N] call (not [¶ N])
+_COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
+
 # Citation-string shapes used to pull a cite out of a free-text query.
 _CITE_PATTERNS = [
     re.compile(r"\d{4}\s+ND\s+\d+"),                 # neutral / synthetic
@@ -182,22 +191,71 @@ def extract_paragraph(text: str, n: int, cap: int = 6000) -> tuple[str, bool] | 
 def footnote_structure(text: str) -> dict:
     """Map an opinion's footnotes: body spans and each footnote's call ¶.
 
-    Footnote bodies are stored in the linear text at the page-bottom/tail
-    position where the reporter printed them, detached from the ``[¶]``
-    paragraph that carries the call marker. Two body renderings are recognized:
+    Footnote bodies are stored in the linear text detached from the ``[¶]``
+    paragraph that carries the call marker. Storage format varies by source
+    lineage; this dispatches across them, returning a uniform
+    ``{"bodies": [(num, start, end), ...], "call_para": {num: ¶_or_None}}``
+    (bodies sorted by position). ``call_para`` is ``None`` when the call marker
+    did not survive (attached superscript, or a format that drops calls).
 
-    * West/CL-OCR period form ``\\n N\\n\\n. text`` — the printed "N." split by
-      OCR. The dominant form; high precision (call markers are never followed
-      by a lone period).
-    * Any standalone-number block sitting **after the final ``[¶]`` marker**,
-      where only footnotes (and the signature/citation lines) can appear.
+    Formats, in precedence order:
 
-    Each body links back to its call paragraph — the paragraph holding the
-    earliest standalone occurrence of that footnote number that is not itself a
-    body opener. Returns ``{"bodies": [(num, start, end), ...],
-    "call_para": {num: paragraph_or_None}}``, bodies sorted by position. The
-    call paragraph is ``None`` when the call marker did not survive OCR as a
-    standalone token (e.g. an attached superscript)."""
+    * ``FOOTNOTES`` section (ndcourts markdown) — ``FOOTNOTES\\n\\n1:\\n\\nbody``;
+      calls do not survive OCR, so ``call_para`` is ``None``.
+    * ``NOTES`` section (ndcourts markdown) — ``NOTES\\n[1] body``; the call
+      survives inline as ``[N]`` so the body links back to its call ¶.
+    * West/CL-OCR period form ``\\n N\\n\\n. text`` + any standalone-number block
+      after the final ``[¶]`` marker (the tail footnote cluster)."""
+    bodies = _section_footnotes(text)
+    if bodies is not None:
+        return bodies
+    return _standalone_footnotes(text)
+
+
+def _section_footnotes(text: str) -> dict | None:
+    """``FOOTNOTES``/``NOTES`` section footnotes (ndcourts markdown lineage), or
+    ``None`` if neither section is present."""
+    markers = paragraph_markers(text)
+    # FOOTNOTES form: "N:" openers after a FOOTNOTES header; calls don't survive.
+    fh = _FOOTNOTES_HEADER.search(text)
+    if fh:
+        opens = [(int(m.group(1)), fh.end() + m.start())
+                 for m in _COLON_NOTE.finditer(text[fh.end():]) if int(m.group(1)) >= 1]
+        if opens:
+            return {"bodies": _spans(text, opens), "call_para": {}}
+    # NOTES form: line-anchored "[N]" bodies after a NOTES header; the call is
+    # the earliest inline "[N]" before the header.
+    nh = _NOTES_HEADER.search(text)
+    if nh:
+        sec = text[nh.end():]
+        opens = [(int(m.group(1)), nh.end() + m.start())
+                 for m in _BRACKET_NOTE.finditer(sec)]
+        if opens:
+            call_para = {}
+            for num, _ in opens:
+                if num in call_para:
+                    continue
+                cm = next((m for m in _BRACKET_CALL.finditer(text, 0, nh.start())
+                           if int(m.group(1)) == num), None)
+                if cm is not None:
+                    call_para[num] = find_paragraph(text, cm.start(), markers)
+            return {"bodies": _spans(text, opens), "call_para": call_para}
+    return None
+
+
+def _spans(text: str, opens: list) -> list:
+    """``[(num, start)]`` openers -> ``[(num, start, end)]``, each body running to
+    the next opener or end-of-text."""
+    opens = sorted(opens, key=lambda o: o[1])
+    out = []
+    for k, (num, start) in enumerate(opens):
+        end = opens[k + 1][1] if k + 1 < len(opens) else len(text)
+        out.append((num, start, end))
+    return out
+
+
+def _standalone_footnotes(text: str) -> dict:
+    """West/CL-OCR period form + tail-after-last-``[¶]`` standalone bodies."""
     occ = []  # (num, line_start, after_line, is_period_form)
     for m in _STANDALONE_NUM.finditer(text):
         num = int(m.group(1))

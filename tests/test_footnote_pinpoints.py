@@ -73,6 +73,52 @@ def test_ocr_artifact_flagged_not_verbatim_failure():
     assert loc.get("likely_ocr_artifact") is True
 
 
+# ndcourts-markdown NOTES form: inline [N] call + trailing "NOTES\n[N] body".
+SYNTH_NOTES = (
+    "[¶ 1] Opening paragraph.\n\n"
+    "[¶ 2] The defendant was advised of his rights[1] before questioning.\n\n"
+    "[¶ 3] He later waived them.\n\n"
+    "[¶ 4] THE JUSTICES concur.\n\n"
+    "NOTES\n"
+    "[1] See Miranda v. Arizona, 384 U.S. 436 (1966).\n\n"
+    "[2] An uncalled note.\n"
+)
+
+# ndcourts-markdown FOOTNOTES form: "FOOTNOTES\n\nN:\n\nbody" (call doesn't survive).
+SYNTH_FOOTNOTES = (
+    "[¶ 1] Opening paragraph.\n\n"
+    "[¶ 2] We affirm the judgment.\n\n"
+    "[¶ 3] THE JUSTICES concur.\n\n"
+    "FOOTNOTES\n\n"
+    "1:\n\n"
+    "Canon 2 of the Code of Judicial Conduct provides in part as follows.\n"
+)
+
+
+def test_notes_format_links_to_call_paragraph():
+    loc = proofread.locate_quote(SYNTH_NOTES, "See Miranda v. Arizona")
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == 1
+    assert loc["paragraph"] == 2  # the [1] call sits in ¶ 2, not ¶ 4
+    assert proofread.pinpoint_suffix(loc) == "¶ 2 n.1"
+
+
+def test_notes_format_body_not_misattributed():
+    # A quote from ¶ 2 body (not the footnote) stays a plain paragraph hit.
+    loc = proofread.locate_quote(SYNTH_NOTES, "advised of his rights")
+    assert loc["in_footnote"] is False
+    assert loc["paragraph"] == 2
+
+
+def test_footnotes_format_retains_text_no_false_paragraph():
+    loc = proofread.locate_quote(SYNTH_FOOTNOTES, "Canon 2 of the Code of Judicial Conduct")
+    assert loc["found"] and loc["verbatim"]
+    assert loc["in_footnote"] is True
+    assert loc["footnote"] == 1
+    assert loc["paragraph"] is None  # call marker lost in this lineage
+    assert proofread.pinpoint_suffix(loc) == "n.1"
+
+
 def test_pinpoint_suffix_forms():
     assert proofread.pinpoint_suffix({"paragraph": 7, "footnote": 1}) == "¶ 7 n.1"
     assert proofread.pinpoint_suffix({"paragraph": None, "footnote": 1}) == "n.1"
@@ -123,6 +169,7 @@ _ERA_FOOTNOTES = [
     ("2010 ND 5", "The Legislature amended N.D.C.C. ch. 14-09", 1, 4),
     ("2016 ND 150", "Kuhn made no argument regarding the ordinances", 1, 7),
     ("2016 ND 249", "The regulations now plainly state", 1, 4),
+    ("1999 ND 134", "See Miranda v. Arizona", 1, 2),    # NOTES[N] format, real opinion
 ]
 
 
