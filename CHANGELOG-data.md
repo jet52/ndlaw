@@ -2,6 +2,29 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `westlaw-footnote-restore-2026-06-22` — 2 substantive footnotes dropped at Westlaw ingest
+
+`_parse_westlaw_doc` cut opinions at the "All Citations" footer; the Westlaw
+Footnotes section prints *after* it, so footnote bodies were silently dropped
+(`scripts/audit_westlaw_footnotes_2026-06-22.py` →
+`triage/westlaw-footnote-audit.tsv`). The corpus-wide audit of all 7,297
+westlaw-sourced opinions found the loss touched almost entirely **West editorial
+apparatus** ("Reported in full in the New York Supplement…", bare parallel cites,
+"Rehearing pending.") — only **2** genuinely substantive court footnotes were lost:
+
+- **2222** (43 N.D. 156, *Northern Pacific Ry. v. Sargent County*) — fn 1, a
+  record note on a drain-petition filing-date discrepancy.
+- **4906** (69 N.D. 290, *Petters v. Charlson Estate*) — fn 1, legislative
+  history of 1937 Chapter 161 (Senate/House vote tallies).
+
+Both pre-1953 (no `[¶]` markers), restored verbatim from the Westlaw `.doc` and
+appended in ` N\n\n<body>` form (`scripts/add_westlaw_footnotes_2026-06-22.py`).
+Going forward, `_parse_westlaw_doc` now re-attaches substantive numbered footnotes
+and filters editorial ones (`_extract_footnotes`/`_is_editorial_footnote`), so the
+bug cannot recur on new Westlaw ingests. A bulk re-ingest was deliberately NOT
+done (payoff = 2 opinions; would reattach 104 editorial notes and risk reverting
+other corrections).
+
 ## Batch `lyon-ocr-2026-06-22` — 9 surgical OCR fixes, Lyon v. Ford Motor Co., 2000 ND 12 (id 13068)
 
 Character-level OCR garbles in the CL/West-OCR body, each verified against the

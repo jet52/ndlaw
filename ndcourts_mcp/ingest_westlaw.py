@@ -178,6 +178,17 @@ def _parse_westlaw_doc(text: str) -> dict | None:
         bound_text, _, _ = strip_synopsis_editorial(bound_text)
         result["full_bound_text"] = bound_text
 
+    # Re-attach the court's substantive footnotes (printed after "All Citations",
+    # so dropped by the body extractors above). Appended in ` N\n\n<body>` form
+    # so the pinpoint parser links each to its call paragraph.
+    if all_cites_idx:
+        footnotes = _extract_footnotes(lines, all_cites_idx)
+        if footnotes:
+            if result.get("opinion_text"):
+                result["opinion_text"] += footnotes
+            if result.get("full_bound_text"):
+                result["full_bound_text"] += footnotes
+
     return result
 
 
@@ -270,6 +281,65 @@ def _extract_full_bound_text(lines: list[str], all_cites_idx: int) -> str:
         i += 1
 
     return "\n".join(out).strip()
+
+
+# Westlaw footnote bodies that are editorial apparatus, not court text:
+# memorandum-decision reporter notes, bare parallel cites, and
+# rehearing/publication status. Only the court's own substantive numbered
+# footnotes are retained.
+_EDITORIAL_FN = re.compile(
+    r"^(reported in full|not reported in full|reported as a memorandum"
+    r"|memorandum decision|received for publication"
+    r"|rehearing (pending|denied|granted)|petition for rehearing"
+    r"|trial court opinions, not reported|opinion withdrawn"
+    r"|affirmed without opinion)", re.I)
+
+
+def _is_editorial_footnote(body: str) -> bool:
+    """True for a Westlaw editorial/procedural footnote (drop), False for a
+    substantive court footnote (retain)."""
+    b = body.strip()
+    if not b:
+        return True
+    if _EDITORIAL_FN.match(b):
+        return True
+    # A body that is solely citations (e.g. "51 N. W. 379.", "13 Am. Rep. 492.")
+    # with no prose word is a West parallel-cite note.
+    if re.search(r"\d", b) and not re.search(r"[A-Za-z]{4,}", b):
+        return True
+    return False
+
+
+def _extract_footnotes(lines: list[str], all_cites_idx: int) -> str:
+    """Trailing court footnotes in ` N\\n\\n<body>` form, for appending to the
+    opinion body. Westlaw prints the Footnotes section *after* "All Citations",
+    so the body extractors (which stop at that footer) drop it — this was a
+    silent footnote-loss bug. Only substantive NUMBERED footnotes are kept;
+    lettered (a1/A1) notes are West editorial (rehearing daggers etc.) and
+    editorial-bodied numbered notes are filtered by ``_is_editorial_footnote``."""
+    fn_idx = None
+    for j in range(len(lines) - 1, all_cites_idx, -1):
+        if lines[j].strip() == "Footnotes":
+            fn_idx = j
+            break
+    if fn_idx is None:
+        return ""
+    items, cur, buf = [], None, []
+    for l in lines[fn_idx + 1:]:
+        s = l.strip()
+        if s == "End of Document" or s.startswith("©"):
+            break
+        if re.fullmatch(r"[A-Za-z]?\d{1,3}", s):  # a footnote label line
+            if cur is not None:
+                items.append((cur, " ".join(buf).strip()))
+            cur, buf = s, []
+        elif cur is not None and s:
+            buf.append(s)
+    if cur is not None:
+        items.append((cur, " ".join(buf).strip()))
+    kept = [(n, b) for n, b in items
+            if n.isdigit() and not _is_editorial_footnote(b)]
+    return "".join(f"\n\n{n}\n\n{b}" for n, b in kept)
 
 
 def _find_db_opinion(conn, citations: list[str]) -> dict | None:

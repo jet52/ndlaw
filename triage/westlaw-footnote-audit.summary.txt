@@ -1,0 +1,11 @@
+
+Scanned 7297 westlaw-sourced opinions:
+  MISSING_NUM    57
+  MISSING_LETTERED 49
+  PRESENT        0
+  NO_FOOTNOTES   7191
+  NO_DOC         0
+  ERR            0
+
+Wrote triage/westlaw-footnote-audit.tsv
+MISSING rows = footnote bodies dropped at ingest (re-ingest worklist).
