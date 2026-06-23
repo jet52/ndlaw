@@ -94,6 +94,29 @@ ENTRIES = [
          call_old="per month on his arrearages.3", call_new="per month on his arrearages.[3]",
          orphan_anchor="This record also includes an August 31, 1988, letter",
          authority="archive/1999/990023.htm FN_3_ (call <sup>(3)</sup> ¶11)"),
+    # Contiguity pass: sibling fn1/fn2 orphans in opinions where only the cited
+    # footnote was restored earlier (user's "no skipped footnote numbers" rule).
+    # Each call digit survives attached; orphan-i==fn-i by sequence + archive.
+    dict(oid=12353, num=1, call_para=10,
+         call_old="through available programs.1", call_new="through available programs.[1]",
+         orphan_anchor="It should be noted that there was some confusion",
+         authority="archive/1997/960079.htm FN1 (call <sup>(1)</sup> ¶10) [contiguity]"),
+    dict(oid=12955, num=1, call_para=28,
+         call_old="and prior caselaw.1", call_new="and prior caselaw.[1]",
+         orphan_anchor="We recognize the difficulty presented to the trial court",
+         authority="archive/1999/980268.htm FN1 (call <sup>(1)</sup> ¶28) [contiguity]"),
+    dict(oid=12737, num=1, call_para=1,
+         call_old="and Sally Page.1", call_new="and Sally Page.[1]",
+         orphan_anchor="Clifford and Baker each served as UND",
+         authority="archive/1998/980007.htm FN1 (call <sup>(1)</sup> ¶1) [contiguity]"),
+    dict(oid=13029, num=1, call_para=8,
+         call_old="and March 5, 1999.1", call_new="and March 5, 1999.[1]",
+         orphan_anchor="After the proceedings on November 20, 1998",
+         authority="archive/1999/990104.htm FN1 (call <sup>(1)</sup> ¶8) [contiguity]"),
+    dict(oid=13029, num=2, call_para=10,
+         call_old="(1991),2 N.D.C", call_new="(1991),[2] N.D.C",
+         orphan_anchor="The Legislature amended N.D.C.C. ch. 27-20 effective",
+         authority="archive/1999/990104.htm FN2 (call <sup>(2)</sup> ¶10) [contiguity]"),
 ]
 
 

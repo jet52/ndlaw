@@ -45,7 +45,7 @@ for the separate hand-verified backlog pass). Recovered: **1997 ND 9** → ¶ 17
 vs archive FN_N_ bodies; fn4 ¶ 8 n.4 + fn8 ¶ 25 n.8 citation-confirmed, fns 1–3,5–7
 restored for contiguity); **1999 ND 156** → all 3 footnotes (fn1 ¶ 8 n.1
 citation-confirmed — its call ¶ was unknown, recovered ¶8 from the attached digit)
-(each call site confirmed vs the court archive HTML `<sup>(N)</sup>`). Script:
+(each call site confirmed vs the court archive HTML `<sup>(N)</sup>`). Contiguity pass (no skipped footnote numbers): also numbered the sibling fn1 in **1997 ND 9**, **1999 ND 103**, **1998 ND 149**, and fn1+fn2 in **1999 ND 216** (each call digit survived attached; orphan-i==fn-i by sequence + archive). Script:
 `scripts/restore_orphan_footnotes_2026-06-23.py`.
 
 ## Batch `modern-footnote-recover-2026-06-23` — restore modern footnotes mashed inline (Phase 2c)
