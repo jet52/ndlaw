@@ -26,6 +26,8 @@ ENTRIES = [
      "archive/1998/970243.htm FN_6_ (body present, space after period dropped)"),
     (12659, 11, "\n\n.Social security old age insurance", "\n\n. Social security old age insurance",
      "archive/1998/970243.htm FN_11_ (body present, space after period dropped)"),
+    (12790, 4, "\n\n.The Second Restatement", "\n\n. The Second Restatement",
+     "archive/1998/980171.htm FN_4_ (body present, space after period dropped)"),
 ]
 
 

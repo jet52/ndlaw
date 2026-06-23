@@ -13,7 +13,9 @@ footnotes run 1–12 but only 2–5,7–10,12 were detected; fixed **fn6** (¶ 1
 citation-confirmed), **fn11** (¶ 27), and **fn1** (body present, call superscript
 not preserved → call_para None) so the sequence is contiguous 1–12. (West N.W.2d
 lineage uses bare-line call markers, kept here for within-opinion consistency.)
-Script: `scripts/fix_footnote_body_markers_2026-06-23.py`.
+**1998 ND 225**: footnotes run 1–5 but fn4 had `.The` (space dropped) — fixed →
+¶ 14 n.4 (citation-confirmed); sequence now contiguous 1–5. Script:
+`scripts/fix_footnote_body_markers_2026-06-23.py`.
 
 ## Batch `orphan-footnote-restore-2026-06-23` — number period-orphan footnotes + inline [N] call (Phase 2c)
 
