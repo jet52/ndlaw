@@ -1,0 +1,36 @@
+[
+ {
+  "opinion_id": 14322,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 23,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "from electronically debiting collection fees without a written authorization from the check writer.1 There",
+      "new_exact": "from electronically debiting collection fees without a written authorization from the check writer.[1] There",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "reversing the order of the DFI.\n\n. The legislature amended subsection 2",
+      "new_exact": "reversing the order of the DFI.\n\n1\n\n. The legislature amended subsection 2",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

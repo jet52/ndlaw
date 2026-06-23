@@ -1,0 +1,112 @@
+[
+ {
+  "opinion_id": 12501,
+  "cite": "1997 ND 169",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "improvements.1\n",
+      "new_exact": "improvements.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe firefighters settled",
+      "new_exact": "\n\n1\n\n. The firefighters settled",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12503,
+  "cite": "1997 ND 165",
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "dismissal,1 and",
+      "new_exact": "dismissal,[1] and",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe district court originally dismissed",
+      "new_exact": "\n\n1\n\n. The district court originally dismissed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "§ 65–05–332 said:",
+      "new_exact": "§ 65–05–33[2] said:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nN.D.C.C. § 65–05–33 has been amended twice",
+      "new_exact": "\n\n2\n\n. N.D.C.C. § 65–05–33 has been amended twice",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "entire record.3",
+      "new_exact": "entire record.[3]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nRelying on Mountaire",
+      "new_exact": "\n\n3\n\n. Relying on Mountaire",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
