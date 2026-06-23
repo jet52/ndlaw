@@ -107,6 +107,30 @@ Files: `ndcourts_mcp/proofread.py`, `tests/test_footnote_pinpoints.py`.
   and re-ingest under the reconcile/write-guard (`project_silent_reversion_recovery`)
   so other corrections aren't clobbered.
 
+## Pre-1997 footnotes anchor to the star page, not a paragraph
+
+Pre-1997 opinions have no `[¶N]` markers, so `call_para` is always `None`
+(`find_paragraph` over an empty marker list). The locational anchor there is the
+**reporter star page**: the call sits on a `*NNN` page. Confirmed on 43 N.D. 156 —
+0 `[¶]` markers, the call (`…May 28, 1905,1…`) is on `*812`
+(`star_page_before(call) = 812`).
+
+Design consequences:
+
+- The structured contract should expose a **`call_page`** (`star_page_before(call_pos)`)
+  alongside `call_paragraph`; pre-1997 pinpoints become "`<reporter> at <page> n.X`".
+- **`call_page` is N.W., not N.D.** — the Westlaw `.doc` for bound N.D. Reports
+  carries N.W. pagination (`project_bound_nd_reports_volumes`), so star pages are
+  N.W. pages. An N.D.-Reports page pincite is NOT recoverable from this text; only
+  "`<vol> N.W. at <page> n.X`". Don't promise an N.D. page.
+- **Recovery placement (Phase 2c) must preserve page locality.** Appending a
+  recovered footnote at end of text breaks the anchor: on 2222 the call is on
+  `*812` but `star_page_before(end) = 817`. So insert the body at its print
+  position (right after the call's star page) OR record `call_page` explicitly —
+  never append at end. The two already-restored footnotes (batch
+  `westlaw-footnote-restore-2026-06-22`, ids 2222/4906) need redoing under this
+  rule, and aren't currently detected anyway (non-period append, no markers).
+
 ## Open questions
 
 - Phase 2a categorizer: detect "this opinion *should* have footnotes" — rely on
