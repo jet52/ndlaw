@@ -1,0 +1,149 @@
+[
+ {
+  "opinion_id": 13218,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "this case,1 N.D.C.C.",
+      "new_exact": "this case,[1] N.D.C.C.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The parties agree the 1999 amendment to N.D.C.C. § 14-17-14 does not apply in this case. *See*N.D. Sess. Laws ch. 141, § 12.",
+      "new_exact": "\n\n1\n\n. The parties agree the 1999 amendment to N.D.C.C. § 14-17-14 does not apply in this case. *See*N.D. Sess. Laws ch. 141, § 12.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13408,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(“Mary”)1 appealed from orders",
+      "new_exact": "(“Mary”)[1] appealed from orders",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(“Mike”),2 now age 33, has",
+      "new_exact": "(“Mike”),[2] now age 33, has",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "his child.3 In January 2000, Tim",
+      "new_exact": "his child.[3] In January 2000, Tim",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. All names of the parlies, other than the State, are pseudonyms.",
+      "new_exact": "\n\n1\n\n. All names of the parlies, other than the State, are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The juvenile court also terminated",
+      "new_exact": "\n\n2\n\n. The juvenile court also terminated",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Although there is some evidence Mary was involved with another man during this time, the parties assume this is Mike’s child and paternity is not an issue in the case.",
+      "new_exact": "\n\n3\n\n. Although there is some evidence Mary was involved with another man during this time, the parties assume this is Mike’s child and paternity is not an issue in the case.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13592,
+  "overall_confidence": "high",
+  "cite": "ND opinion 2002 ND 111 (DB id 13592) - Ament v. R.K., 646 N.W.2d 699",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "D.K (“Don”)1 appealed from a juvenil",
+      "new_exact": "D.K (“Don”)[1] appealed from a juvenil",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. All names in parentheses following initials are pseudonyms.",
+      "new_exact": "\n\n1\n\n. All names in parentheses following initials are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
