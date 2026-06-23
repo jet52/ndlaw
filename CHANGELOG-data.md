@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-body-marker-fix-2026-06-23` — normalize malformed footnote-body markers (Phase 2c)
+
+Footnotes present in the text but parser-invisible because the period-form body
+marker (`\nN\n\n. body`) was malformed — the space after the period dropped
+(`.In`) or the whole `. ` marker dropped (`\n body`). Inserted only the missing
+punctuation/space (asserted: identical alphabetic-token sequence); each body
+verified verbatim against the court archive HTML. **1998 ND 94**: the opinion's
+footnotes run 1–12 but only 2–5,7–10,12 were detected; fixed **fn6** (¶ 18 n.6,
+citation-confirmed), **fn11** (¶ 27), and **fn1** (body present, call superscript
+not preserved → call_para None) so the sequence is contiguous 1–12. (West N.W.2d
+lineage uses bare-line call markers, kept here for within-opinion consistency.)
+Script: `scripts/fix_footnote_body_markers_2026-06-23.py`.
+
 ## Batch `orphan-footnote-restore-2026-06-23` — number period-orphan footnotes + inline [N] call (Phase 2c)
 
 Citation-graph-confirmed footnotes whose BODY is present as a number-less period

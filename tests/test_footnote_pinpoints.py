@@ -248,6 +248,8 @@ _ERA_FOOTNOTES = [
     ("1999 ND 103", "Ame asserted on appeal the visitation provisions", 2, 32),
     ("1998 ND 149", "The trial court ruled Messiha", 2, 21),
     ("1999 ND 216", "Although not applicable retroactively here", 3, 15),
+    # body-marker normalization filling a footnote gap (footnote-body-marker-fix)
+    ("1998 ND 94", "In addition to the retirement offset", 6, 18),
 ]
 
 
