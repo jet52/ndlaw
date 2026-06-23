@@ -13,7 +13,7 @@ place; the standalone parser links body → ¶ via the unique inline `[N]`. Only
 structure markers added — asserted: identical alphabetic-token sequence. Restores
 ONLY the citation-confirmed footnote per opinion (uncited sibling orphans are left
 for the separate hand-verified backlog pass). Recovered: **1997 ND 9** → ¶ 17 n.2;
-**1999 ND 103** → ¶ 32 n.2; **1998 ND 149** → ¶ 21 n.2 (call after § 32-12.2-04(1))
+**1999 ND 103** → ¶ 32 n.2; **1998 ND 149** → ¶ 21 n.2 (call after § 32-12.2-04(1)); **1999 ND 216** → ¶ 15 n.3
 (each call site confirmed vs the court archive HTML `<sup>(N)</sup>`). Script:
 `scripts/restore_orphan_footnotes_2026-06-23.py`.
 

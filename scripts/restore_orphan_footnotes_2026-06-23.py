@@ -40,6 +40,10 @@ ENTRIES = [
          call_old="32-12.2-04(1)2.", call_new="32-12.2-04(1)[2].",
          orphan_anchor="The trial court ruled Messiha",
          authority="archive/1998/980007.htm (court HTML: call <sup>(2)</sup> after § 32-12.2-04(1) in ¶21)"),
+    dict(oid=13029, num=3, call_para=15,
+         call_old=").3\n\n[¶ 16]", call_new=").[3]\n\n[¶ 16]",
+         orphan_anchor="Although not applicable retroactively here",
+         authority="archive/1999/990104.htm (court HTML: call <sup>(3)</sup> at end of ¶15)"),
 ]
 
 
