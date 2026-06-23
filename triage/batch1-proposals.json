@@ -1,0 +1,1131 @@
+{
+  "summary": "Batch 1: archive-source footnote repair PROPOSALS for 30 opinions (propose-only)",
+  "agentCount": 30,
+  "logs": [
+    "batch1 proposals: 30/30"
+  ],
+  "result": [
+    {
+      "opinion_id": 12355,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "none",
+      "summary": "Opinion 1997 ND 19 (DB id 12355, Mangnall v. Adams) has one footnote. The authoritative source (960133.htm) shows footnote [1] with a numbered period body. The DB stores the body but in two broken ways: (1) the call is bare digit abutting the period ('.1' instead of inline '[1]'), and (2) the body lacks the numbered period marker ('.' instead of '1.'). Two repairs proposed: fix the call marker format and add the number prefix to the body.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "guardianship.1 Although",
+          "evidence": "Source shows <sup>(1)</sup> inline call in [¶12]; DB shows '.1 Although' (bare digit abutting period without brackets). The call site reads 'guardianship.1 Although' in DB but should be 'guardianship.[1] Although'.",
+          "call_para": 12
+        },
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": ". The tension between the obligations imposed",
+          "evidence": "Footnote body present in DB but stored as bareline period body ('. The tension...') with no number marker. Source shows numbered period body ('1. The tension...'). Body needs number prefix and call must be converted from '.1' to inline '[1]'.",
+          "source_body_verbatim": "1. The tension between the obligations imposed by Mangnall's dual capacities is colored by the possible availability of the Trust assets for nursing home care for Mary Adams. See Allen v. Wessman, 542 N.W.2d 748, 754 (N.D.1996) (trust was Medicaid qualifying trust and all trust assets were therefore deemed available for purposes of eligibility for Medicaid benefits). This record shows Mangnall inquired of the Department of Human Services about the availability of the Trust assets for determining Mary Adams' eligibility for Medicaid benefits. However, the trial court did not decide the extent to which trust assets were available to pay for the care of Mary Adams.",
+          "call_para": 12
+        }
+      ],
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12401,
+      "source_footnote_count": 6,
+      "db_detected_count": 6,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "Ingalls v. Paul Revere (1997 ND 43): All 6 footnotes present in DB with bodies intact. Calls use bare numbers (e.g., '.1', '.3', '.4', '.5') at paragraph ends rather than inline [N] format. Bodies are numbered and cleanly separated. Minor formatting variations (hyphen/dash normalization) between source (HTML) and DB. No content recovery needed; all bodies are present and verifiable against source.",
+      "cite": "1997 ND 43, 561 N.W.2d 273",
+      "conflict": "None. DB has all 6 footnotes cleanly stored with matching bodies. Source count (6) = DB count (6). Numbering contiguous 1-6.",
+      "west_residual_present": false,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 9,
+          "db_anchor": "",
+          "evidence": "Call at ¶9 'waived jury trial of that issue.1' is marked with bare superscript 1. Body present and intact: 'Part of N.D.R.Civ.P. 49(a) directs:...' matches source. Formatting uses long dashes (–) which are acceptable modern convention."
+        },
+        {
+          "num": 2,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": null,
+          "db_anchor": "",
+          "evidence": "Body-only footnote (no inline call in text). Content matches exactly: 'Agent Stuhlmiller made this computation error.' Clean marker-free presentation."
+        },
+        {
+          "num": 3,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 21,
+          "db_anchor": "",
+          "evidence": "Call at ¶21 'under NDCC 26.1–26–06,3 Stuhlmiller was...' uses bare superscript 3. Body present: 'NDCC 26.1–26–06 declares:...' with statute text. Matches source."
+        },
+        {
+          "num": 4,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 22,
+          "db_anchor": "",
+          "evidence": "Call at ¶22 'evidenced bad faith.4 An insurer's...' uses bare superscript 4. Body present and intact: 'Revere asserts that the district court's error...' Matches source."
+        },
+        {
+          "num": 5,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 32,
+          "db_anchor": "",
+          "evidence": "Call at ¶32 'listed in the statute5 were...' uses bare superscript 5. Body present: 'NDCC 26.1–04–03 declares:...' with full statute text. Matches source."
+        },
+        {
+          "num": 6,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 37,
+          "db_anchor": "",
+          "evidence": "Call at ¶37 '...not a lawsuit from its insurer.\"6' uses bare superscript 6. Body present: 'Ingalls testified that when he bought this Paul Revere policy...' Matches source."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12427,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "Opinion 1997 ND 83 (Gale v. ND Board of Podiatric Medicine) has 1 footnote. The authoritative HTML source contains footnote [1] with full body text. The DB stores the call marker (\"see fn. 1\") in paragraph 30 but completely omits the footnote body text. Single defect: recover_body_absent.",
+      "conflict": "",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 30,
+          "db_anchor": "",
+          "source_body_verbatim": "The Board rejected the hearing officer's conclusions:\n\n\"3. (Conclusion of law) The term 'ankle,' as it is used in N.D.C.C. § 43–05–01, subsection 5, refers to the joint between the tibia and fibula, and the talus, and, at least for purposes of treatment of bone fractures, defines an anatomical boundary between the foot and the lower leg, beyond which a licensed podiatrist in North Dakota may not practice.\n\n\"4. (Conclusion of law) Brian Gale's treatment of Melvin Keator . . . for fractures of the fibula and/or tibia above the distal part of the fibula or tibia shaft that did not involve injury or damage to the foot constituted the treatment of a malady or defect that is outside the statutory scope of the practice of podiatric medicine.\"",
+          "evidence": "Source HTML (960295.htm) contains complete footnote body starting after <a name=\"N_1_\"></a> anchor. DB text_content ends at ¶48 with no footnote section. The DB call marker \"see fn. 1\" is present and correctly anchored to ¶30 (\"Except for two conclusions of law, see fn. 1\"), but the body is entirely absent."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12430,
+      "source_footnote_count": 3,
+      "db_detected_count": 3,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "1997 ND 84 (Cladding Tech v. State) has three footnotes. SOURCE shows clean structure: [1], [2], [3] with inline calls and numbered bodies. DB has two defect types: (1) call markers are bare digits abutting periods (`.1`, `.2`, `.3`) instead of inline `[1]` brackets; (2) footnote bodies are present but stripped of their numbers, showing as `. In Quill...`, `. Cladding failed...`, `. NDCC 57-39.2-04(12)...` instead of `1. In Quill...`, etc. Proposals: fix call markers to inline brackets, prefix bodies with their numbers. All bodies match source verbatim; no missing content.",
+      "conflict": "null",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "(1992).1",
+          "evidence": "DB has bare superscript '1' abutting period; source shows proper HTML call marker. Call site is [¶5] after 'Heitkamp, 504 U.S. 298 (1992)'. Currently formatted as '(1992).1' should be '(1992).[1]' inline."
+        },
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". In *Quill,*the United States Supreme Court decided that the State of North Dakota could not require an out-of-state vendor to collect a sale tax from a North Dakota purchaser unless the vendor had sufficient nexus with the State to satisfy the Commerce Clause. *Quill,*504 U.S. at 315-18, 112 S.Ct. at 1914-16. Hannu testified he believed *Quill*also applied to Cladding so it would not have to pay use tax. *Clearly, Quill*does not benefit Cladding, an in-state purchaser, not an out-of-state vendor.",
+          "source_body_verbatim": "In Quill, the United States Supreme Court decided that the State of North Dakota could not require an out-of-state vendor to collect a sale tax from a North Dakota purchaser unless the vendor had sufficient nexus with the State to satisfy the Commerce Clause. Quill, 504 U.S. at 315-18. Hannu testified he believed Quill also applied to Cladding so it would not have to pay use tax. Clearly, Quill does not benefit Cladding, an in-state purchaser, not an out-of-state vendor.",
+          "call_para": 5
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "(l).2",
+          "evidence": "DB has bare superscript '2' abutting period; source shows proper HTML call marker. Call site is [¶9] after 'NDCC 57-40.2-02.1(1)'. Currently formatted as '(l).2' should be '(1).[2]' inline."
+        },
+        {
+          "num": 2,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". Cladding failed to cite this governing law in its brief to this Court.",
+          "source_body_verbatim": "Cladding failed to cite this governing law in its brief to this Court.",
+          "call_para": 9
+        },
+        {
+          "num": 3,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "nonresidents.3",
+          "evidence": "DB has bare superscript '3' abutting period; source shows proper HTML call marker. Call site is [¶10] after 'transactions with exempt nonresidents.' Currently formatted as 'nonresidents.3' should be 'nonresidents.[3]' inline."
+        },
+        {
+          "num": 3,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". NDCC 57-39.2-04(12) specifically exempts Gross receipts from a sale otherwise taxable under this chapter made to a person who is a resident of an adjoining state which does not impose or levy a retail sales tax under the following conditions:",
+          "source_body_verbatim": "NDCC 57-39.2-04(12) specifically exempts Gross receipts from a sale otherwise taxable under this chapter made to a person who is a resident of an adjoining state which does not impose or levy a retail sales tax under the following conditions: a. The nonresident is in the state of North Dakota for the express purpose of making a purchase and not as a tourist, b. The nonresident furnishes to the North Dakota retailer a certificate signed by the nonresident in a form as the commissioner may prescribe reciting sufficient facts establishing the exempt status of the sale. Unless the certificate is furnished it must be presumed, until the contrary is shown, that the nonresident was not in the state of North Dakota for the express purpose of making a purchase, c. The sale is fifty dollars or more. NDAC 81-04.1-03-13 extends this specific exemption to sales to Montana residents.",
+          "call_para": 10
+        }
+      ]
+    },
+    {
+      "opinion_id": 12458,
+      "source_footnote_count": 3,
+      "db_detected_count": 3,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Opinion 1997 ND 98 (DB id 12458, Burr v. Kulas) has 3 footnotes with numbered bodies present but broken inline call markers. Footnote 1 has a digit-abutting-text defect (\"Kulas1\"), footnote 2 has a quote-followed-by-digit defect (\"\\\"2\"), and footnote 3 has a non-breaking-space marker defect (\".\\xa03\"). All three bodies are present with proper numbering format; only calls need repair to inline [N] format.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 6,
+          "db_anchor": "Kulas1",
+          "evidence": "Call marker 'Kulas1' found at position ~3943 in DB text, digit abuts text without space or bracket. Source has superscript (1) call. Body is present and numbered (\\n\\xa01\\n\\n. format)."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 10,
+          "db_anchor": "\"2",
+          "evidence": "Call marker '\"2' (quote followed by digit) found in ¶10 at context: 'N.D.C.C.\"2\\n\\xa02\\n\\n'. Source has superscript (2) call after blockquote. Body is present and numbered (\\n\\xa02\\n\\n. format)."
+        },
+        {
+          "num": 3,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 18,
+          "db_anchor": "1997).\\n\\xa03",
+          "evidence": "Call marker '.\\n\\xa03' (period-newline-nbsp-digit) found after citation 'Handeen v. Lemaire, 112 F.3d 1339 (8th Cir.1997).' Source has superscript (3) call. Body is present and numbered (\\n\\xa03\\n\\n. format)."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12467,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": "support.1 Ervin further failed",
+          "evidence": "Call site at [¶24] contains bare '1' marker immediately after 'spousal support.' (\"...spousal support.1 Ervin's...\"). The numbered period body is present in the DB but the call is a bare superscript digit on a line, not an inline [1] marker. The authoritative source shows <sup>(1)</sup> inline in the text at the end of paragraph 24.",
+          "call_para": 24,
+          "source_body_verbatim": "Ervin further failed to note that even if condonation is relevant, N.D.C.C. § 14-05-13 specifically states \"[w]hen the cause of divorce consists of a course of offensive conduct, or arises in cases of cruelty from successive acts of ill treatment, ... cohabitation, or passive endurance, or conjugal kindness shall not be evidence of condonation of any of the acts constituting such cause, unless accompanied by an express agreement to condone.\" Ervin did not show Beverly had expressly agreed to condone the spousal abuse."
+        },
+        {
+          "num": 2,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": "bills,2 and more",
+          "evidence": "Call site at [¶29] contains bare '2' marker immediately after 'bills,' (\"...his monthly bills,2 and more...\"). The numbered period body is present in the DB but the call is a bare superscript digit on a line, not an inline [2] marker. The authoritative source shows <sup>(2)</sup> inline at this location within paragraph 29.",
+          "call_para": 29,
+          "source_body_verbatim": "According to the monthly expenses presented to the district court, Ervin requires $2,734 for monthly expenses including his house payment, telephone, laundry, household repairs, food, automobile, clothing, grooming, hobbies and miscellaneous expenses. Beverly, on the other hand, only requires $1,209 for essentially the same items. This equals a $1,525 disparity."
+        }
+      ],
+      "summary": "Opinion 1997 ND 122 (Ratajczak v. Ratajczak, DB id 12467) has both footnote bodies present and correctly stored as numbered period bodies (\\\"1. body\\\" and \\\"2. body\\\"), but both footnote CALLS are malformed. Footnote 1 appears at the end of [¶24] as a bare '1' marker immediately after the word \\\"support.\\\" (\\\"support.1\\\"), and Footnote 2 appears in [¶29] as a bare '2' immediately after \\\"bills,\\\" (\\\"bills,2\\\"). Both should be converted to inline [N] bracket markers at their respective call sites. No bodies are missing; no orphans detected. Numbering is contiguous and matches the source (1, 2). Both defects are retrofit_bareline_to_bracket operations: change bare superscript digit to [N] format inline at the call location.\"",
+      "west_residual_present": false,
+      "conflict": "false",
+      "cite": "1997 ND 122, 565 N.W.2d 491\""
+    },
+    {
+      "opinion_id": 12492,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "28–32–211",
+          "evidence": "Malformed footnote marker in [¶ 10]. The digit '1' is concatenated to the statute citation, appearing as 'NDCC 28–32–211' instead of 'NDCC 28–32–21[1]'. A bare ' 1' appears orphaned on the following line. The authoritative source (960267.htm) shows the call as a proper <sup>(1)</sup> anchor positioned after '28-32-21'. The footnote body is present and intact, beginning with 'NDCC 28–32–21 provides, in part:' and ending with 'misplaced.'—exact verbatim match to source."
+        }
+      ],
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "null",
+      "summary": "Footnote 1 in 1997 ND 137 (DB id 12492) has a single defect: fix_marker. The footnote number is malformed—appended directly to the statute name as '28–32–211' rather than appearing as an inline marker [1] after '28–32–21'. The body is present and matches the authoritative source. Repair: replace 'NDCC 28–32–211' with 'NDCC 28–32–21[1]' and remove the orphaned bare '1' on the next line.\"",
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12495,
+      "source_footnote_count": 3,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": false,
+      "overall_confidence": "high",
+      "conflict": "Numbering gap: Source has footnotes [1, 2, 3] contiguous; DB has [1, 3] present but [2] missing. This is a recovery_body_absent case, not a numbering conflict. No gap in source; [2] call site present in DB (at ¶7) but body never stored.",
+      "summary": "Audit of ND Supreme Court opinion 1997 ND 145 (DB id 12495) reveals 3 source footnotes. DB contains 2 bodies (FN 1, FN 3) and 3 call sites. FN 2 call is at ¶7 but body is completely absent from DB. FN 1 is clean. FN 3 is clean. Proposed repair: recover FN 2 body (285 characters) from authoritative HTML source.",
+      "cite": "1997 ND 145, 567 N.W.2d 201",
+      "west_residual_present": false,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 6,
+          "db_anchor": "NDCC 65–05–12 was repealed by the 1995",
+          "evidence": "Footnote body present and correctly formatted as '1\\n\\n[body]' in DB. Inline call '[1]' at end of ¶6 (ends with '1994.1'). Verbatim match to source."
+        },
+        {
+          "num": 2,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 7,
+          "db_anchor": "",
+          "source_body_verbatim": "Subsection 26 of NDCC 65-01-02 was amended and reenacted by the 1997 Legislative Assembly. See H.B. 1260, 55th Leg. (N.D. 1997). A separate bill amended and reenacted NDCC 65-01-02 in its entirety, and renumbered subsection 26 as subsection 25. See H.B. 1269, 55th Leg. (N.D. 1997).",
+          "evidence": "Call site confirmed in DB: ¶7 ends with '1991.2' (connects to next sentence 'See 1991 N.D.Sess. Laws ch. 714, § 23'). Grep for unique text 'Subsection 26 of NDCC 65-01-02' returns zero results in DB. Full body extracted verbatim from authoritative source /Users/jerod/refs/nd/opin/archive/1997/960336.htm."
+        },
+        {
+          "num": 3,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 9,
+          "db_anchor": "The distinction between the two models for evaluating spinal injuries",
+          "evidence": "Footnote body present and correctly formatted as '3\\n\\n[body]' in DB. Inline call '[3]' at end of ¶9 (ends with 'impairment.3'). Two-paragraph body intact: ROM Model explanation + DRE Model explanation. Verbatim match to source."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12496,
+      "source_footnote_count": 4,
+      "db_detected_count": 4,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "1997 ND 149 has 4 footnotes (1–4). The authoritative HTML source and the DB both contain all four footnote bodies in full. The defect is formatting: all four are stored with bareline markers (bare \"N\" on separate line) instead of inline [N] brackets. Each has a numbered period body that is cleanly present and complete. Proposals: convert all four from bareline to bracket format.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "call_para": 10,
+          "db_anchor": "monthly income.1\n 1\n\nTim contends",
+          "evidence": "Call appears at end of ¶10 as '.1' marker, then orphaned '1' on blank line before body. Source HTML shows inline call <sup>(1)</sup> in running text with full body following.",
+          "source_body_verbatim": "Tim contends his actual tax liability is lower than his tax adjustment using the tax tables and standard deductions, and the special master overstated his net income by deducting his actual tax lability rather than his tax adjustment when determining his child support obligation. NDAC 75–02–04.1–01(7)(a) and (b) define net income as total gross monthly income less federal and state income taxes based upon application of standard deductions and tax tables. See Steffes v. Steffes, 1997 ND 49, ¶ 32, 560 N.W.2d 888. Actual tax labilities are not the proper measure for calculating net income for child support; rather, the proper measure is what the taxes would have been if the standard deductions and tax tables were used. Schleicher v. Schleicher, 551 N.W.2d 766, 769–770 (N.D.1996). \"The child support guidelines preclude an obligor from withholding an artificially high amount of taxes from gross income in an effort to reduce net income for purposes of calculating a child support obligation.\" Steffes, 1997 ND 49, ¶ 32, 560 N.W.2d 888. In Steffes, we held an obligor, however, is not entitled to an artificial deduction for federal and state income tax obligations that the obligor did not pay on his in-kind income. Id. at ¶ 33.\nTim describes four different ways that his tax adjustment, using the tax tables and standard deductions, exceeds his actual tax liability. First, he says, applying the tax tables to his income without a deduction for retirement contributions increases his tax adjustment over his actual tax liability after a deduction for retirement contributions. Second, he says, using the standard deductions increases his tax adjustment over his actual tax liability after itemized deductions. Third, Tim says, if the trial court's award of two income tax dependency exemptions to Debra is affirmed, his tax adjustment is higher than his actual tax liability after three dependency exemptions. Finally, Tim says, his tax adjustment is higher than his actual tax liability because the guideline definition of \"gross income\" in NDAC 75–02–04.1–01(5) does not allow a deduction for alimony paid, while his actual tax liability is based upon adjusted gross income for tax purposes after a deduction for alimony paid to Debra.",
+          "confidence": "high"
+        },
+        {
+          "num": 2,
+          "action": "retrofit_bareline_to_bracket",
+          "call_para": 18,
+          "db_anchor": "02(7).2\n 2\n\nNDAC 75–02–04.1–02(7)",
+          "evidence": "Call appears at end of ¶18 as '.2' marker, then orphaned '2' on blank line before body. Source HTML shows inline call <sup>(2)</sup> in running text with full body following.",
+          "source_body_verbatim": "NDAC 75–02–04.1–02(7) directs:\nIncome must be documented through the use of tax returns, current wage statements, and other information sufficiently to fully apprise the court of all gross income. Where gross income is subject to fluctuation, particularly in instances involving self-employment, information reflecting and covering a period of time sufficient to reveal the likely extent of fluctuations must be provided.",
+          "confidence": "high"
+        },
+        {
+          "num": 3,
+          "action": "retrofit_bareline_to_bracket",
+          "call_para": 19,
+          "db_anchor": "$299,000.3\n 3\n\nWhen the obligor",
+          "evidence": "Call appears at end of ¶19 as '.3' marker, then orphaned '3' on blank line before body. Source HTML shows inline call <sup>(3)</sup> in running text with full body following.",
+          "source_body_verbatim": "When the obligor is a self-employed farmer, the guidelines use a five-year income average as a predictor of future income. See NDAC 75–02–04.1–05(3). In Clutter, 484 N.W.2d at 848–49, five years were used to figure the obligor's average annual income.",
+          "confidence": "high"
+        },
+        {
+          "num": 4,
+          "action": "retrofit_bareline_to_bracket",
+          "call_para": 37,
+          "db_anchor": "attorney fees.4\n 4\n\nWe have also",
+          "evidence": "Call appears at end of ¶37 as '.4' marker, then orphaned '4' on blank line before body. Source HTML shows inline call <sup>(4)</sup> in running text with full body following.",
+          "source_body_verbatim": "We have also sharply limited the rule that a party who accepts substantial benefits under a divorce decree waives the right to appeal from the decree. Smith v. Smith, 534 N.W.2d 6, 8–9 (N.D.1995) (Accepting monthly spousal support payments does not constitute a waiver of the right to appeal by showing an intention to be bound by the decree; nor is acceptance of spousal support inconsistent with the appellant's claim she should have been awarded more support); Bangen v. Bartelson, 553 N.W.2d 754, 757 (N.D.1996), quoting 4 Am.Jur.2d, Appeal and Error, § 255 (Where the controversy raised by the appeal is confined to the additional amount claimed but not allowed, the appellant is not estopped from taking the appeal by acceptance of the amount allowed).",
+          "confidence": "high"
+        }
+      ],
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12501,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": " 1\n\nThe firefighters",
+          "evidence": "Marker line has leading space (' 1' instead of clean '1'), and body missing '. ' prefix before 'The'. Current malformed format: ' 1\\n\\nThe firefighters...'. Should be: '1\\n\\n. The firefighters...'",
+          "call_para": 3,
+          "source_body_verbatim": "The firefighters settled with Turtle Mountain, and assigned their claims against Ampolex to Turtle Mountain. By order dated January 17, 1997, the trial court substituted Turtle Mountain for the plaintiffs on the plaintiffs' original claim against Ampolex."
+        }
+      ],
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "null",
+      "summary": "Footnote 1 in opinion 12501 (Stanley v. Turtle Mountain Gas & Oil, 1997 ND 169) has a fix_marker defect: the body marker has a leading space and the body text is missing the period+space prefix required for clean storage. The inline call in the text also appears as a bare digit '1' rather than the standard [1] format. Source and DB are aligned in having exactly one footnote; no reconciliation conflict.\"",
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12503,
+      "source_footnote_count": 3,
+      "db_detected_count": 3,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "Opinion 1997 ND 165 (Dean v. ND Workers Compensation Bureau) contains three footnotes. All footnote bodies are present in the DB and verbatim-match the authoritative source. However, all three footnote CALLS have formatting defects: footnotes 1 and 2 use bare line markers instead of inline [N] format, and footnote 3 has a digit abutting text without space or brackets. Repairs are straightforward marker reformatting; no body text changes needed.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 13,
+          "db_anchor": "dismissal,1",
+          "evidence": "Source has <sup>(1)</sup> inline after 'dismissal,' in ¶13. DB has bare '1' abutting comma with no brackets or space. Call site text: 'The district court affirmed the dismissal,1 and' should be 'The district court affirmed the dismissal, [1] and'. Footnote body present and clean."
+        },
+        {
+          "num": 2,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 15,
+          "db_anchor": "said:\n 2",
+          "evidence": "Source has <sup>(2)</sup> inline after '§ 65-05-33' in ¶15. DB has bare marker on separate line ('said:\\n 2'). Call site text: 'At the time of Dean\\'s injury, N.D.C.C. § 65–05–332 said:\\n 2' should be 'At the time of Dean\\'s injury, N.D.C.C. § 65–05–33 [2] said:' (note: DB shows erroneous '332' instead of '33'; that is separate issue). Footnote body present and clean."
+        },
+        {
+          "num": 3,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 21,
+          "db_anchor": "record.3",
+          "evidence": "Source has <sup>(3)</sup> after period following 'entire record' in ¶21. DB has bare '3' directly abutting period without space or brackets: 'record.3'. Call site text: 'from the weight of the evidence on the entire record.3' should be 'from the weight of the evidence on the entire record. [3]'. Footnote body present and clean."
+        }
+      ],
+      "cite": "Dean v. North Dakota Workers Compensation Bureau, 1997 ND 165, 567 N.W.2d 626\"",
+      "conflict": "None. Source and DB agree on all three footnote body texts. Only call marker formatting differs.",
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12510,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "DB FN2 contains parallel citations (69 Cal.2d 408, 71 Cal.Rptr. 697, 703) not present in source archive; likely West Law enrichment. Does not affect footnote call repairs.",
+      "summary": "Two footnotes in 1997 ND 154 have malformed inline calls. Both use bare digits immediately after text (cancer.1, disease.2) instead of bracketed format [1] and [2]. Footnote bodies are present and cleanly stored. Propose retrofit_bareline_to_bracket repairs for both calls to match corpus conventions.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 13,
+          "db_anchor": "cancer.1",
+          "evidence": "Footnote call [¶13] reads 'cancer.1' where '1' is a bare digit abutting period. Should be 'cancer [1]'. Footnote body is properly stored as '1\\n\\nIn 1995, the legislature...' (1768 chars). Source confirms footnote exists and corresponds to [¶13].",
+          "source_body_verbatim": "In 1995, the legislature added NDCC 65-01-15 to confine the occupational-cancer presumption to non-smokers: [A] full-time paid firefighter or law enforcement officer who uses tobacco is not eligible for the benefits provided under subdivision d of subsection 18 of section 65-01-02 unless the full-time paid firefighter or law enforcement officer provides yearly documentation from a physician which indicates that the full-time paid firefighter or law enforcement officer has not used tobacco for the preceding two years. Any full-time paid firefighter or law enforcement officer employed on June 30, 1995, is not subject to this section until July 1, 1997. 1995 N.D. Laws ch. 610, § 2. Because McDaniel filed his claim before July 1, 1997, this new limitation does not apply to him."
+        },
+        {
+          "num": 2,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 14,
+          "db_anchor": "disease.2",
+          "evidence": "Footnote call [¶14] reads 'disease.2' where '2' is a bare digit immediately following period and text. Should be 'disease [2]'. Footnote body is properly stored as '2\\n\\nMcAllister v. Workmen's Comp. Appeals Bd.,...' (393 chars). Source confirms footnote exists and corresponds to [¶14].",
+          "source_body_verbatim": "McAllister v. Workmen's Comp. Appeals Bd., 445 P.2d 313, 319 (Cal. 1968)(\"Although decedent's smoking may have been inadvisable, respondents offer no reason to believe that the likelihood of contracting lung cancer from the smoking was so great that the danger could not have been materially increased by exposure to the smoke produced by burning buildings.\")."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12512,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Opinion 1997 ND 152 (Blessum v. Shelver) contains one footnote. The authoritative HTML source shows footnote [1] with a proper call in paragraph 29 and a complete body explaining the \"in his pocket\" phrase. The database stores the body correctly and numbered, but the inline call marker is malformed: it appears as \".1\" (digit abutting period) rather than the corpus-standard bracket format [1].",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "Lois Burns.1",
+          "call_para": 29,
+          "evidence": "The footnote call in paragraph 29 shows 'Lois Burns.1' with the digit abutting the period, deviating from corpus convention requiring inline [N] format with proper spacing/bracketing. The authoritative HTML source shows the call as <sup>(1)</sup> in the sentence about Lois Burns being 'in his pocket.' The database stores the numbered body correctly (1\\n\\nThe statement...), but the call marker formatting must be corrected to [1]."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12520,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "persuaded.1",
+          "call_para": 18,
+          "evidence": "Source shows footnote 1 called in ¶18 with proper <sup>(1)</sup> marker. DB has the call at end of ¶18 text as bare digit '1' abutting period: 'persuaded.1'. The footnote body is present and correctly stored. The call marker needs conversion from bare digit to inline [1] format."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "possible.2 ",
+          "call_para": 35,
+          "evidence": "Source shows footnote 2 called in ¶35 with proper <sup>(2)</sup> marker after 'if possible.' DB has the call at end of ¶35 text as bare digit '2' abutting period and space: 'possible.2 *735'. The footnote body is present and correctly stored. The call marker needs conversion from bare digit to inline [2] format."
+        }
+      ],
+      "summary": "1997 ND 176 has 2 footnotes, both with present bodies but both with malformed call markers. Footnote 1 (called in ¶18) appears as bare digit abutting text ('persuaded.1'); Footnote 2 (called in ¶35) appears as bare digit abutting text/page marker ('possible.2 *735'). Both should be converted to inline [N] bracket format. No missing bodies; no numbering gaps; no spurious content detected.\"",
+      "cite": "1997 ND 176 (DB id 12520); SOURCE: /Users/jerod/refs/nd/opin/archive/1997/960211.htm",
+      "conflict": "None detected. Source and DB agree on 2 footnotes with identical bodies.\"",
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12623,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "One footnote detected (fn 1). Two defects identified: (1) bare bareline call \"1\" in [¶3] needs retrofit to inline \"[1]\"; (2) footnote body lacks number prefix—currently starts \". Barry...\" but should be numbered \"1. Barry...\". Source and DB agree on single footnote count and content verbatim match.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": "during the shooting.1",
+          "call_para": 3,
+          "evidence": "DB stores footnote 1 call as bare digit at end of [¶3]; source HTML shows <sup>(1)</sup> inline marker. Replace bare '1' with '[1]' in inline position."
+        },
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": ". Barry Garcia was convicted",
+          "call_para": null,
+          "evidence": "Footnote body in DB opens with '. Barry...' (period + space + text) instead of '1. Barry...' (digit + period + space). Add missing '1' prefix before the period."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12728,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Audit of 1998 ND 145 (Ali v. Dakota Hospital, DB id 12728) reveals one footnote defect: the footnote body lacks the leading number. The source HTML shows footnote [1] properly anchored and called in ¶9. The database stores the call marker as a bare digit \"1\" (not `[1]`—a separate retrofit task) and the body text begins with a period instead of \"1.\" This is a fix_marker case for the missing number before the period body.",
+      "cite": "1998 ND 145, 582 N.W.2d 653",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": ". At oral argument on this appeal",
+          "evidence": "Source HTML shows properly formed footnote 1 body with '1. At oral argument...' but DB has '. At oral argument...' (missing the leading '1' digit before the period). The call is in ¶9. The body text is present but the numbered marker is malformed.",
+          "source_body_verbatim": "1. At oral argument on this appeal, Shareef's counsel, who served as co-counsel during trial, conceded the only statement contested is the one referencing Las Vegas and millionaires. At the trial court's hearing on the motion for a new trial, Shareef's counsel had said the statement about Linda Carver was not \"an independent basis for the new trial motion,\" but was mentioned only to show \"the cumulative effect . . . between that Linda Carver comment and this egregious comment concerning Las Vegas.\"",
+          "call_para": 9
+        }
+      ],
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12730,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": ").1 ",
+          "evidence": "Source HTML shows <sup>(1)</sup> call in ¶13; DB shows bare '1' abutting period: '(Emphasis added).1 *See also' instead of '(Emphasis added). [1] *See also' or similar bracket-enclosed format. The digit abuts the period-asterisk junction without proper bracketing."
+        },
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". Despite the broad control discussed in Lawrence,",
+          "source_body_verbatim": "Despite the broad control discussed in Lawrence, 217 N.W.2d at 796, a court does not retain management and control over a stipulation when the case has been dismissed. When a district court dismisses an action, it relinquishes subject-matter jurisdiction over the merits of the case. See Albrecht v. Metro Area Ambulance, 1998 ND 132, ¶¶ 13-14, 580 N.W.2d 583 (holding a district court lost subject-matter jurisdiction over the merits of the case when it issued an order of dismissal without prejudice); cf. Jones v. Brown & Williamson Tobacco Corp., U.S.A., 840 F.2d 11 (4th Cir.1988) (unpublished) (concluding a voluntary dismissal of an action by stipulation completely terminates the litigation and the opportunity to appeal). Consequently, in order to provide a remedy for breach of a stipulation when the action has been dismissed, the district court must reacquire jurisdiction by vacating the final judgment or order of dismissal. See N.D. R. Civ. P. 60(b).",
+          "call_para": 13,
+          "evidence": "Footnote body present at end of DB text_content but starts with bare period ('. Despite...') instead of numbered period ('1. Despite...' or '1\\n\\n. Despite...'). Body must be numbered to match the call site in ¶13 and match corpus convention of 'N\\n\\n. body'."
+        }
+      ],
+      "summary": "Opinion 1998 ND 147 (DB id 12730) contains exactly 1 footnote. The source (authoritative HTML) and DB agree on existence and content, but the DB has two formatting defects: (1) The call marker in ¶13 is a bare '1' abutting text instead of a properly bracketed [1]; (2) The footnote body at the end is present but lacks a number prefix, starting with '. Despite...' instead of '1. Despite...' or similar. Both defects are high-confidence, easy-to-repair propositions that align with corpus conventions.\""
+    },
+    {
+      "opinion_id": 12800,
+      "source_footnote_count": 2,
+      "db_detected_count": 3,
+      "contiguous_1_to_N": false,
+      "overall_confidence": "high",
+      "conflict": "CRITICAL: Source HTML contains exactly 2 footnotes (verified by 2 <sup> markers) with calls in ¶21 and ¶26. DB contains 3 numbered period bodies with calls in ¶21, ¶24, and ¶26. The DB footnote 2 (\"Citing no authority...\") appears in ¶24 and has NO corresponding call marker in the source HTML. This is an extra/spurious footnote that breaks contiguity. The source footnote 2 (the long \"As one author put it...\" block) is stored as footnote 3 in the DB, causing number mismatch.",
+      "summary": "1998 ND 228 (id 12800) has a footnote numbering conflict. Source shows 2 footnotes; DB has 3. Footnote 1 is clean (both sources match). Footnote 2 in DB (\"Citing no authority\") is spurious—not in source HTML at all. DB footnote 3 is actually source footnote 2. Recommend: remove DB footnote 2 entirely (strip_residual), then renumber remaining footnotes 1→1, 3→2 for contiguity. HIGH CONFIDENCE: source HTML verified clean, DB structure is clearly malformed with extraneous middle footnote.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "already_clean",
+          "confidence": "high",
+          "db_anchor": "1Curiously, the majority denies the issue was raised on appeal.",
+          "evidence": "Source HTML footnote 1 call in ¶21 ('judgment.'<sup>(1)</sup>) matches DB marker in ¶21 ('judgment.\"1'). Body text verbatim matches source footnote body. Call paragraph ¶21 matches.",
+          "call_para": 21,
+          "source_body_verbatim": "Curiously, the majority denies the issue was raised on appeal."
+        },
+        {
+          "num": 2,
+          "action": "strip_residual",
+          "confidence": "high",
+          "db_anchor": "2Citing  no  authority,  the  majority  apparently  takes  the\nposition discretion under this statute can never be abused.",
+          "evidence": "This footnote appears in DB in ¶24 with call 'discretion.2' but source HTML ¶24 reads 'abuse of discretion.' with NO footnote marker. No <sup> tag. No corresponding footnote 2 call anywhere in source HTML. This is residual/spurious text not found in authoritative source. Source HTML has only 2 <sup> markers total (verified), appearing in ¶21 and ¶26.",
+          "call_para": null,
+          "source_body_verbatim": ""
+        },
+        {
+          "num": 3,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "db_anchor": "",
+          "evidence": "DB footnote 3 in ¶26 call ('unreasonable.3') does exist but must be renumbered to [2] after footnote 2 removal. Source footnote 2 (the long multi-paragraph 'As one author put it...' block) is present in source HTML but stored as footnote 3 in DB. After strip_residual action on DB footnote 2, this should be renumbered 3→2 for contiguity.",
+          "call_para": 26,
+          "source_body_verbatim": "As one author put it: Prior to judgment, prejudgment interest on future damages is unnecessary because future damages are not yet due. Prejudgment interest is designed to compensate the plaintiff for the lost use of funds to which she is entitled prior to judgment. Since past damages represent the monetary equivalent of the harm suffered from the time of injury to the date of judgment, prejudgment interest is properly awarded on past damages as a means of fully compensating the plaintiff for the lost use of those funds prior to judgment. Future damages, however, represent the monetary equivalent of harm not yet suffered, but which is expected to be suffered \"from the date of judgment forward in time.\" Thus, future damages are not retained by a defendant prior to judgment since such damages do not become due until the date of judgment. Accordingly, an award of prejudgment interest on future damages appears improper, because the defendant is forced to pay interest on funds not yet owed, which results in an apparent over-compensation of the plaintiff. Dean Richard, Note, \"An Award Fit for Alice in Wonderland\"--Texas Allows Prejudgment Interest on Future Damages: C & H Nationwide, Inc. v. Thompson, 25 Tex. Tech. L. Rev. 955, 980 (1994) (citations omitted). Inspiration for this title comes from In re Brooklyn Navy Yard Asbestos Litigation, 971 F.2d 831, 852 (2d Cir. 1992), where the court stated: \"Prejudgment interest on postjudgment losses, an award fit for Alice in Wonderland, was in fact awarded to plaintiffs in district court.\""
+        }
+      ]
+    },
+    {
+      "opinion_id": 12824,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Opinion 1999 ND 23 (Ramstad v. Biewer) has 2 footnotes. Both are present in the DB but exhibit consistent defects: orphan bodies lacking numbers and malformed call markers (bare \"1\" on separate line in [¶9]; \"2\" abutting text in [¶32]). No textual conflict between source and DB. All bodies verbatim-match source.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "call_para": 9,
+          "db_anchor": ". After viewing the findings in their entirety, we believe the district court obviously meant",
+          "source_body_verbatim": "After viewing the findings in their entirety, we believe the district court obviously meant to refer to the plaintiff's continued use of alcohol. In findings 4 and 5 the district court refers to the plaintiff's drinking, and in finding 12 the district court explicitly finds that the defendant does not drink or go out.",
+          "evidence": "Source shows footnote [1] in [¶9] after 'continued use of alcohol,<sup>(1)</sup>'. DB has body starting with period-prefixed text at end-of-document, orphaned (no number). Call marker in [¶9] is bare '1' on separate line instead of inline [1]. Body is present but needs number prepended and call marker needs inline bracket format."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 32,
+          "db_anchor": "continued use of alcohol,2 the Plaintiff",
+          "source_body_verbatim": "I agree with the majority the district court meant to refer here to Ramstad and not Biewer.",
+          "evidence": "Source shows footnote [2] in [¶32] after 'continued use of alcohol,<sup>(2)</sup>'. DB shows 'alcohol,2' (digit abutting text without space or bracket). Body is present and orphaned (starts with period, no number). Call marker needs repair to space before [2] format; body needs number prepended."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12901,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". Two issues argued by R.K.E. concern the alleged discriminatory practice of treating a juvenile with disabilities different than other children",
+          "evidence": "DB stores footnote body as '. Two issues...' at paragraph boundary (after [¶ 20]) with leading period but no numbered prefix. Call site in [¶ 19] has bare '1' instead of bracketed '[1]'. Source HTML shows proper anchor <a name=\"FN_1_\"><a href=\"#N_1_\"><sup>(1)</sup></a> with label '1. ' in footnote section.",
+          "source_body_verbatim": "Two issues argued by R.K.E. concern the alleged discriminatory practice of treating a juvenile with disabilities different than other children, and the inappropriate care of R.K.E., a child with disabilities, while in custody with juvenile services. Both issues are merely attempting to recast the issue of whether R.K.E. was properly found to be delinquent and unruly, and whether proper and effective disposition by the court was originally ordered.",
+          "call_para": 19
+        }
+      ]
+    },
+    {
+      "opinion_id": 12929,
+      "source_footnote_count": 1,
+      "db_detected_count": 2,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "self-incrimination.1 Moreover",
+          "evidence": "Footnote call site in ¶20 shows '1' abutting period with no space: 'self-incrimination.1 Moreover' instead of 'self-incrimination.[1] Moreover'. Source HTML shows proper marker: <sup>(1)</sup> inserted after period.",
+          "call_para": 20
+        },
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". \"Because Syvertson requested",
+          "source_body_verbatim": "1. \"Because Syvertson requested the evaluation, there was no violation of his sixth amendment right to consult with counsel.\" Syvertson, 1999 ND 134, ¶ 37 n.5.",
+          "evidence": "Footnote body begins with '. \"Because...' lacking the '1' number marker that appears in source HTML '<a name=\"N_1_\"></a><a href=\"#FN_1_\"><br>1. </a>'. Body is present and intact but unnumbered.",
+          "call_para": 20
+        }
+      ],
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "cite": "State v. Syvertson, 1999 ND 137, 597 N.W.2d 644",
+      "conflict": "None detected. The source and DB show consistent footnote numbering (1) with clear defects in marker formatting and numbering.",
+      "summary": "One footnote (n.1) detected in opinion 1999 ND 137 (DB id 12929). The source authoritative HTML shows a properly formatted footnote call with <sup>(1)</sup> marker after a period at end of ¶20, and a properly numbered body (1. ...). The DB has two defects: (1) the call marker is malformed ('self-incrimination.1' with no space and bracket), and (2) the body is unnumbered (opens with '. \\\"Because' instead of '1. \\\"Because'). Both issues can be repaired by fixing the call marker to [1] and prepending '1' to the body opening."
+    },
+    {
+      "opinion_id": 12933,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Love v. DeWall (1999 ND 139, DB id 12933) has 2 footnotes with dual defects: (1) both call sites are bare digits (not inline [N]); (2) both bodies are stored as number-less period bodies (missing \"1\" and \"2\" prefixes). Source and DB agree on footnote count and content. All bodies present and verbatim-matching. No gaps in numbering. Both footnotes are cleansable.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "recommendations 1 the",
+          "evidence": "DB shows bare digit '1' abutting 'the' in [¶3]: 'recommendations 1 the trial court ordered' — should be 'recommendations [1] the trial court ordered'. HTML source shows proper <sup>(1)</sup> anchor structure."
+        },
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". Under N.D.R.Ct.",
+          "source_body_verbatim": "Under N.D.R.Ct. 8.6 adopted by this court, to be effective on March 1, 2000, the duties performed by the GAL in this case would be handled by a custody investigator.",
+          "evidence": "Footnote body 1 stored as number-less period body starting with '. Under' instead of '1\\n\\n. Under'. HTML source shows <a name=\"N_1_\"></a><a href=\"#FN_1_\">1. </a> structure with number prefix."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "minor.\"2 In",
+          "evidence": "DB shows bare digit '2' abutting quote+space in [¶7]: 'best interests of the minor.\"2 In' — should be 'best interests of the minor.[2] In'. HTML source shows proper <sup>(2)</sup> anchor structure after the closing quote."
+        },
+        {
+          "num": 2,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". In *Hoff v. Berg*",
+          "source_body_verbatim": "In Hoff v. Berg, 1999 ND 115, ¶ 18, (footnote omitted), we recently concluded \"N.D.C.C. § 14-09-05.1, as amended in 1993, is unconstitutional to the extent it requires courts to grant grandparents visitation rights with an unmarried minor unless visitation is found not to be in the child's best interests, and presumes visitation rights of grandparents are in a child's best interests, because it violates parents' fundamental liberty interest in controlling the persons with whom their children may associate, which is protected by the due process clause of our state and federal constitutions.\" Our decision nullified the part of the 1993 amendment of N.D.C.C. § 14-09-05.1 we declared unconstitutional and left the 1983 statute intact until its valid repeal or amendment. Id. at ¶ 19.",
+          "evidence": "Footnote body 2 stored as number-less period body starting with '. In *Hoff' instead of '2\\n\\n. In *Hoff'. HTML source shows <a name=\"N_2_\"></a><a href=\"#FN_2_\">2. </a> structure with number prefix."
+        }
+      ],
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12934,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": ". A continuance could create problems with the timing",
+          "evidence": "SOURCE: HTML shows footnote 1 body as '1. A continuance could create problems with the timing of the administrative hearing. Under section 39-20-05(1), N.D.C.C., an administrative \"hearing must be held within twenty-five days after the date of issuance of the temporary operator's permit, but the hearing officer may extend the hearing to within thirty days after the issuance of the temporary operator's permit to accommodate the efficient scheduling of hearings.\"; see also Greenwood v. Moore, 545 N.W.2d 790, 795-96 (N.D. 1996) (stating a hearing regarding the suspension of a driver's license must be completed, not merely commenced within the designated time). The temporary operator's permit was issued to Morrell around June 25, 1998. The administrative hearing was completed on July 22, 1998, 27 days after the issuance date. Therefore, the Department had only three days to complete its hearing.' DB: Contains footnote body starting with '. A continuance could...' — the leading '1' digit is missing before the period. CALL_PARA: [¶14] in source HTML (authoritative numbering [¶1]-[¶17]). The call site shows 'penalty.1' indicating a bare digit marker instead of inline [1].",
+          "call_para": 14,
+          "source_body_verbatim": "1. A continuance could create problems with the timing of the administrative hearing. Under section 39-20-05(1), N.D.C.C., an administrative \"hearing must be held within twenty-five days after the date of issuance of the temporary operator's permit, but the hearing officer may extend the hearing to within thirty days after the issuance of the temporary operator's permit to accommodate the efficient scheduling of hearings.\"; see also Greenwood v. Moore, 545 N.W.2d 790, 795-96 (N.D. 1996) (stating a hearing regarding the suspension of a driver's license must be completed, not merely commenced within the designated time). The temporary operator's permit was issued to Morrell around June 25, 1998. The administrative hearing was completed on July 22, 1998, 27 days after the issuance date. Therefore, the Department had only three days to complete its hearing."
+        }
+      ],
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "1999 ND 140 has 1 footnote. SOURCE footnote 1 body is complete and correctly formatted with '1. ' marker at call site [¶14]. DB contains the same footnote body but with defective marker: opens with '. ' instead of '1. '. REPAIR: Change '. A continuance could create problems...' to '1. A continuance could create problems...' to restore the numbered period format.\""
+    },
+    {
+      "opinion_id": 12937,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": "valid.1",
+          "call_para": 13,
+          "evidence": "DB shows bare '1' at end of [¶ 13]: 'was valid.1' — should be 'was valid.[1]'. HTML source shows <sup>(1)</sup> marker at this exact location."
+        },
+        {
+          "num": 2,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "db_anchor": "kind.2",
+          "call_para": 18,
+          "evidence": "DB shows bare '2' at end of [¶ 18]: 'in kind.2' — should be 'in kind.[2]'. HTML source shows <sup>(2)</sup> marker at this exact location."
+        },
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". The Joint Procedure",
+          "source_body_verbatim": "1. The Joint Procedure Committee should consider whether N.D.R.Civ.P. 5 should be changed to require mailing to both the party and the party's last known attorney when motions are made to change a child support obligation.",
+          "evidence": "DB stores footnote body as orphan: '. The Joint Procedure Committee...' instead of numbered period body '1. The Joint Procedure...'. Source clearly shows numbered body."
+        },
+        {
+          "num": 2,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". There is no dispute",
+          "source_body_verbatim": "2. There is no dispute Cleaver had actual notice. N.D.C.C. § 14-09-08.1 requires each party to a child support order to provide residential and mailing addresses to the state disbursement unit, and to immediately notify of any change of address; and requires, in a subsequent child support enforcement action, a diligent effort to ascertain the location of the party.",
+          "evidence": "DB stores footnote body as orphan: '. There is no dispute...' instead of numbered period body '2. There is no dispute...'. Source clearly shows numbered body."
+        }
+      ],
+      "cite": "Rowley v. Cleaver, 1999 ND 158, 598 N.W.2d 125",
+      "conflict": "null",
+      "summary": "Opinion 12937 (Rowley v. Cleaver, 1999 ND 158) has 2 footnotes. Both call markers need bracket retrofit ([N] instead of bare N), and both footnote bodies are orphans lacking numeric prefixes. Source cleanly supplies numbered bodies. All defects are straightforward; no conflicts detected.\"",
+      "west_residual_present": false
+    },
+    {
+      "opinion_id": 12939,
+      "source_footnote_count": 4,
+      "db_detected_count": 4,
+      "contiguous_1_to_N": false,
+      "overall_confidence": "high",
+      "conflict": "Bracket markers [13], [14], [15] appear in the DB text at paragraphs 20-22 but are not footnote markers—they appear to be residual errata markers. All 4 authoritative footnote bodies are present in the DB footnote section. No missing bodies.",
+      "summary": "1999 ND 153 has 4 authoritative footnotes (source shows [1-4]). DB stores all 4 bodies correctly in the footnote section but all 4 call sites have broken markers: (1) footnote 1 embedded as '(7)1', (2) footnote 2 embedded as 'appeal.2', (3) footnote 3 embedded as '.3', (4) footnote 4 embedded as 'notice.4'. Additionally, a stray bracket marker [15] appears at ¶20 (not a footnote). All bodies are present and intact; repairs needed only on inline markers.",
+      "cite": "1999 ND 153, 598 N.W.2d 139",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "65-01-14(7)1",
+          "evidence": "Call site in ¶7: 'N.D.C.C. § 65-01-14(7)1' has digit 1 abutting text. Source shows <sup>(1)</sup> at this location. Body present in DB.",
+          "call_para": 7,
+          "source_body_verbatim": "Section 65-01-14(7), N.D.C.C., provided: \"The bureau shall issue an administrative order under chapter 28-32 when it . . . terminates or denies disability or vocational services.\" Section 65-01-14, N.D.C.C., was repealed by 1997 N.D. Sess. Laws ch. 532, § 6."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "appeal.2",
+          "evidence": "Call site in ¶7: 'Vernon appealed.2' has digit 2 abutting text. Source shows <sup>(2)</sup> after 'appealed'. Body present in DB.",
+          "call_para": 7,
+          "source_body_verbatim": "The Bureau did not cross-appeal."
+        },
+        {
+          "num": 3,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "65-05-33.3",
+          "evidence": "Call site in ¶11: 'N.D.C.C. § 65-05-33.3' where '.3' follows immediately. Source shows <sup>(3)</sup> after § 65-05-33. Body present in DB.",
+          "call_para": 11,
+          "source_body_verbatim": "Section 65-05-33, N.D.C.C., was amended by 1997 N.D. Sess. Laws ch. 534, § 4, and now provides in part:1. A person is guilty of a class A misdemeanor if that person is claiming benefits or payment for services under this title, and that person:a. Willfully files a false claim or makes a false statement.b. Willfully misrepresents that person's physical condition, including deceptive conduct which misrepresents that person's physical ability.c. Has a claim for disability benefits that has been accepted by the bureau and willfully fails to notify the bureau of:(1) Work or other activities as required under subsection 3 of section 65-05-08;(2) The receipt of income from work; or(3) An increase in income from work."
+        },
+        {
+          "num": 4,
+          "action": "fix_marker",
+          "confidence": "high",
+          "db_anchor": "notice.4",
+          "evidence": "Call site in ¶22: 'pre-termination notice.4' has digit 4 abutting text. Source shows <sup>(4)</sup> after 'notice'. Body present in DB.",
+          "call_para": 22,
+          "source_body_verbatim": "Under the rationale of Madison v. North Dakota Dep't of Transp., 503 N.W.2d 243, 246-47 (N.D. 1993), we have imposed more serious sanctions for an agency's systemic disregard of the law. See, e.g., Scott v. North Dakota Workers Comp. Bur., 1998 ND 221, ¶¶ 19-22, 587 N.W.2d 153. The record in this case does not support a more serious sanction."
+        },
+        {
+          "num": 15,
+          "action": "strip_residual",
+          "confidence": "high",
+          "db_anchor": "[15]",
+          "evidence": "Stray bracket marker '[15]' appears before ¶20 ('[[15][¶ 20]'). Not a footnote—appears to be errata/paragraph cross-reference markup. Not in source. Should be removed.",
+          "call_para": 20,
+          "source_body_verbatim": ""
+        }
+      ]
+    },
+    {
+      "opinion_id": 12940,
+      "source_footnote_count": 23,
+      "db_detected_count": 14,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 4
+        },
+        {
+          "num": 2,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 8
+        },
+        {
+          "num": 3,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 10,
+          "db_anchor": "",
+          "source_body_verbatim": "Burr argues requiring him to register under this section violates due process and is an ex post facto law. See U.S. Const. art. 1, sec. 10; N.D. Const. art. I, sec. 18. This Court has defined an ex post facto law: 1. Every law that makes an action done before the passing of the law, and which was innocent when done, criminal; and punishes such action. 2. Every law that aggravates a crime, or makes it greater than it was, when committed. 3. Every law that changes the punishment, and inflicts a greater punishment, than the law annexed to the crime, when committed. 4. Every law that alters the legal rules of evidence and receives less, or different, testimony, than the law required at the time of the commission of the offense, in order to convict the offender. State v. Jensen, 333 N.W.2d 686, 693-94 (N.D. 1983) (quoting State v. Pleason, 218 N.W. 154, 155 (N.D. 1928) (quoting Calder v. Bull, 1 U.S. 269, 273 (1798))). No statute can be an ex post facto law prohibited by the United States Constitution unless it makes previously legal conduct criminal or increases the punishment for an existing crime. Dobbert v. Florida, 432 U.S. 282, 293 (1977) (citing Hopt v. Utah, 110 U.S. 574 (1884)).",
+          "evidence": "Full footnote body absent from DB; source shows extensive legal analysis of ex post facto doctrine from Calder, Jensen, and Dobbert cases"
+        },
+        {
+          "num": 4,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 13
+        },
+        {
+          "num": 5,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 31,
+          "db_anchor": "",
+          "source_body_verbatim": "If the issue were properly before us, and if the dissent's analysis of the dissemination provision were correct, the dissent does not say what it would actually do about it in this case. Would the dissent dismiss the charge of failing to comply with the registration requirements? Burr has admitted, 'I was convicted of a sexual offender crime in Burleigh County, North Dakota in June of 1991. On October 15, 1996, I complied with the registration requirement by registering with the Mandan Police Department. Subsequently, I relocated to Bismarck, North Dakota, but failed to notify the Mandan Police Department of my move.' Without dispute, Burr violated the registration requirements, which the dissent concedes are constitutional.",
+          "evidence": "Full footnote body absent from DB; addresses hypothetical relief in dissent and Burr's undisputed violation of registration requirements"
+        },
+        {
+          "num": 6,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 34
+        },
+        {
+          "num": 7,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 39
+        },
+        {
+          "num": 8,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 48
+        },
+        {
+          "num": 9,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 53,
+          "db_anchor": "",
+          "source_body_verbatim": "test. This test synthesizes the Supreme Court's decisions in Hendricks, Ursery, and Ward. See, e.g., Russell v Gregoire, 124 F.3d 1079, 1084 (9th Cir. 1997); State v. Cook, 700 N.E.2d 570, 580 (Ohio 1998). The intent-effects test provides a two-part test to determine whether the registration and notification requirements of N.D.C.C. section 12.1-32-15 are punitive. Courts examining sexual offender statutes sometimes add a third prong not pertinent to Burr and I believe it decisive in this case to examine our statute under the two-part test.",
+          "evidence": "Full footnote body absent from DB; discusses intent-effects test synthesizing Hendricks, Ursery, and Ward precedents"
+        },
+        {
+          "num": 10,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 53,
+          "db_anchor": "",
+          "source_body_verbatim": "not pertinent to Burr and I believe it decisive in this case to examine our statute under the two-part test.B. Application of Intent-Effects Test to section 12.1-32-151. Intent of Legislation Under the first part of the intent-effects test, a court looks to the legislature's declared purpose as well as the structure and design of the statute for evidence of a punitive intent. Ursery, 518 U.S. at 292. Like the majority, after a careful analysis of the relevant legislative history of section 12.1-32-15 since the statute's enactment in 1991, I recognize the original motivating intent of our legislature included concerns with aiding law enforcement investigation of sex crimes and preventing re-offense. Section 12.1-32-15 had its genesis in 1991 N.D. Sess. Laws ch. 136 (Offense Against Children Registration) and 1991 N.D. Sess. Laws ch. 124 (Sexual Offender Registration), later codified as N.D.C.C. section 12.1-32-15 (1991) and N.D.C.C. sections 12.1-20-18 thru -23 (1991), respectively. The 'sex offender' statute required a person convicted of certain offenses under N.D.C.C. ch. 12.1-20",
+          "evidence": "Full footnote body absent from DB; covers intent-effects test application and legislative history of registration statutes"
+        },
+        {
+          "num": 11,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 56
+        },
+        {
+          "num": 12,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 56,
+          "db_anchor": "",
+          "source_body_verbatim": "To 'broaden the scope' of the sexual offender statute to include 'crimes against children,' the 1991 legislature enacted a second offender registration bill, S.B. 2574, 1991 N.D. Sess. Laws ch. 136, codified at N.D.C.C. section 12.1-32-15 (1991). See Hearing on S.B. 2574 Before Human Services and Veterans Affairs Committee, 52nd N.D. Legis. Sess. (Mar. 12, 1991) (testimony of Sen. Larry Robinson). Registration under section 12.1-32-15 was not mandatory. The sentencing court was given discretion to impose the requirement that the offender register within 30 days after coming into the county in which the offender resides or is temporarily domiciled. N.D.C.C. section 12.1-32-15(2). In other words, registration was mandatory under the sex offender registration statute, while offenders committing certain crimes against a child were required to register only if required to do so by the court. Under the 1991 version of the child sex offender registration statute, the offender's registration information was 'not open to inspection by the public or by any person other than a regularly employed law enforcement officer.' N.D.C.C. section 12.1-32-15(8). While the sex offender registration statute did not contain a similar proscription, the legislative history of N.D.C.C. section 12.1-20-20 indicates the offender's registration information was also to be kept confidential. See Hearing on S.B. 2440 Before Judiciary Committee, 52nd N.D. Legis. Sess. (Mar. 12, 1991) ('this information is still confidential....') (testimony of Sen. Ray Holmberg).",
+          "evidence": "Full footnote body absent from DB; extensive legislative history of two registration statutes and their evolution including discretionary vs. mandatory registration"
+        },
+        {
+          "num": 13,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 61
+        },
+        {
+          "num": 14,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 62,
+          "db_anchor": "",
+          "source_body_verbatim": "Responding to the 1994 Wetterling Act, the 1995 legislature again amended N.D.C.C. section 12.1-32-15. In conformance with the federal amendments to the notification requirements, the 1995 legislature added subsection 10 which provided in part: 10. Relevant and necessary registration information may be disclosed to the public by a law enforcement agency if the agency determines that the individual registered under this section is a public risk and disclosure of the registration information is necessary for public protection. The department, in a timely manner, shall provide law enforcement agencies any information the department determines is relevant concerning individuals required to be registered under this section who are about to be released or placed into the community. This first part of subsection 10 mirrors the federal notification provision in 42 U.S.C. section 14071(d) (1995). See n.8, supra. Although not a part of the federal law, the legislature broadened the notification provision in the second half of subsection 10: Nonregistration information concerning an offender required to register under this section consisting of the name of the offender, the last known address of the offender, the offense or offenses as defined in subsection 1 to which the offender pled guilty or of which the offender was found guilty, the date of the judgment or order imposing a sentence or probation and the court entering the judgment or order, the sentence or probation imposed upon the offender, and any disposition, if known, of a sentence or probation may be disclosed to the public. The attorney general shall compile nonregistration information concerning offenders required to register under this section from criminal history record information maintained pursuant to chapter 12-60 or from an agency or department of another state or the federal government and shall provide the information upon request at no cost. N.D.C.C. section 12.1-32-15(10) (1995). The legislature also immunized law enforcement and related agencies from civil liability with respect to disclosure of registry information. Id. ('A law enforcement agency, its officials, and its employees are not subject to civil or criminal liability for disclosing or for failing to disclose information as permitted by this section.')",
+          "evidence": "Full footnote body absent from DB; detailed legislative history of 1995 amendments including Wetterling Act compliance and notification provisions"
+        },
+        {
+          "num": 15,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 64
+        },
+        {
+          "num": 16,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 69
+        },
+        {
+          "num": 17,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 82,
+          "db_anchor": "",
+          "source_body_verbatim": "In Doe v. Pataki, 120 F.3d 1263, 1281-82 (2nd Cir. 1997), the court rejected a challenger's argument that the excessive sweep of New York's sexual offender notification provisions evidenced the registration statute's primary purpose was punitive. The court in Doe upheld New York's notification scheme, finding that although the law imposed a severe burden upon registered sex offenders, the statute was remedial in nature because it furthered substantial state interests in public protection and law enforcement. Id. at 1277-78. The Second Circuit observed that the law's scope was considerably broader than what was necessary to achieve the state's protective aims. Id. at 1282. The Second Circuit noted: 'If we were certain that the public's safety did not require such sweeping application, we might have serious reservations ... but we cannot fault the legislature's judgment that the present threat of crime is such that even offenders convicted many years ago and long since released from incarceration should remain accountable to the system.' Id. In addressing how far a state can go in publicly disclosing offenders' registry information, the Massachusetts Supreme Court concluded that all offenders with convictions for sex offenses must be assessed on an individual basis. Doe v. Attorney General, 680 N.E.2d 97, 100 (Mass. 1997). Some may pose such a substantial risk that full public disclosure is necessary, while others pose a threat sufficiently limited to permit more limited disclosure--perhaps agency notification only--and only within geographical boundaries commensurate with the risk to the public. Id. at 1070-71.",
+          "evidence": "Full footnote body absent from DB; extensive discussion of Doe v. Pataki and Doe v. Attorney General cases analyzing notification provisions and public safety considerations"
+        },
+        {
+          "num": 18,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 89
+        },
+        {
+          "num": 19,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 89
+        },
+        {
+          "num": 20,
+          "action": "already_clean",
+          "confidence": "high",
+          "call_para": 91
+        },
+        {
+          "num": 21,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 92,
+          "db_anchor": "",
+          "source_body_verbatim": ". . . may be disclosed to the public. The attorney general shall compile nonregistration information . . . and shall provide the information upon request at no cost. Thus, much like the Massachusetts statute, our statute allows for broad public disclosure of registration information. The 'remedy' fashioned by our legislature far exceeds what is necessary to accomplish its stated regulatory and preventive goals. While our statute purports to benefit the public as a whole by making sex offender information available to them, it simultaneously provides no measures or screening to ensure that information is released in a manner that actually protects the public. Instead, under our statute, members of the public may target individual offenders. Burr's contention, supported by the legislative testimony that 'serious problems have developed with the existing registration law,' would permit any member of the public who makes what the attorney general determines will obtain sex offender registry information and reveal it to the plaintiff's detriment.'",
+          "evidence": "Full footnote body absent from DB; addresses statute's broad disclosure provisions and lack of protective screening mechanisms"
+        },
+        {
+          "num": 22,
+          "action": "recover_body_absent",
+          "confidence": "high",
+          "call_para": 92,
+          "db_anchor": "",
+          "source_body_verbatim": "Doe v. Attorney General, 680 N.E.2d at 100 (upholding injunction enjoining enforcement of notification provision which allowed any adult to receive registry information simply by identifying an offender and location). See also Russell, 124 F.3d at 1082 (stating: 'Notification, as now implemented, is unregulated and is disseminated broadly without judicial oversight or statutory limits on distribution and use. Without a compelling governmental interest in disseminating the information broadly to any member of the public requesting it, broad dissemination is punitive. The statute as written permits widespread dissemination to the general public without any mechanism to control the use of the information or prevent a witch hunt'); E.B. v. Verniero, 119 F.3d at 1093 ('We are not satisfied that the statute sufficiently tailors the notification requirements, or gives appropriate deference to the delicate balancing between community safety and the privacy interests of those registered and of their families, especially when some of the individuals registered may not be particularly dangerous, or any longer a present danger to the community'). The dissent notes that in the 1999 Legislative session the North Dakota Legislature began considering changes to its sex offender registration statute. Assistant State's Attorney, Ladd Erickson, when he testified in support of Senate Bill 2299",
+          "evidence": "Full footnote body absent from DB; extensive discussion of Doe v. Attorney General and Russell cases concerning unregulated notification provisions and constitutional concerns"
+        }
+      ],
+      "conflict": "false",
+      "west_residual_present": false,
+      "summary": "Opinion 1999 ND 143 (DB id 12940) contains 23 footnotes with calls [1-23] spanning all paragraphs. The authoritative source (980272.htm) shows all 23 complete footnote bodies with proper anchor structure. The DB stores only 14 of the 23 bodies cleanly (footnotes 1, 2, 4, 6, 7, 8, 11, 13, 15, 16, 18, 19, 20, 23); the other 9 (footnotes 3, 5, 9, 10, 12, 14, 17, 21, 22) are completely absent from the DB. All 23 footnotes are numbered contiguously 1-N with no gaps. The missing 9 footnotes require full body recovery from source with inline [N] call insertion at their respective paragraph sites."
+    },
+    {
+      "opinion_id": 12941,
+      "source_footnote_count": 4,
+      "db_detected_count": 4,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "cite": "1999 ND 144, 598 N.W.2d 174",
+      "conflict": "",
+      "summary": "Four fix_marker defects identified. All footnote bodies present in DB. Call markers have digits abutting adjacent text without spacing/brackets. [¶3] shows \"improvement1 and\", [¶15] shows \"worker.2 Saari\", [¶16] shows \"§ l.3\" (OCR artifact for '1'), [¶23] shows \"Guides.4 Saari\". All require insertion of proper [N] marker and spacing after the period.",
+      "west_residual_present": false,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 3,
+          "db_anchor": "improvement1 and",
+          "evidence": "Source HTML shows <sup>(1)</sup> after 'maximum medical improvement' in [¶3]. DB stores call marker as bare digit abutting text: 'improvement1 and'. Should be 'improvement [1] and' or similar with proper spacing/brackets."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 15,
+          "db_anchor": "worker.2 Saari",
+          "evidence": "Source HTML shows <sup>(2)</sup> after 'injured worker.' in [¶15]. DB stores as 'worker.2 Saari' with digit immediately after period. Should be 'worker. [2] Saari' with proper spacing/bracket notation."
+        },
+        {
+          "num": 3,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 16,
+          "db_anchor": "§ l.3",
+          "evidence": "Source HTML shows <sup>(3)</sup> after statute citation § 1. in [¶16]. DB stores as '§ l.3' (letter 'l' followed by period and digit 3). Should be '§ 1. [3]' with proper bracket notation for footnote call. The 'l' is an OCR artifact for the digit '1' in the statute section number, but the footnote marker should be properly bracketed."
+        },
+        {
+          "num": 4,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 23,
+          "db_anchor": "Guides.4 Saari",
+          "evidence": "Source HTML shows <sup>(4)</sup> after 'Fourth Edition of the AMA Guides.' in [¶23]. DB stores as 'Guides.4 Saari' with digit immediately after period. Should be 'Guides. [4] Saari' with proper spacing/bracket notation."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12943,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "conflict": "",
+      "summary": "Audit of 1999 ND 147 (Richter v. Houser) reveals two footnotes present in both source and DB. Both have correct bodies stored but defective call markers. Footnote 1 is called as bare \"1\" (should be inline [1]) at ¶17. Footnote 2 is called as \"06;2\" (semicolon+digit, should be \"; [2]\") at ¶20. All footnote bodies are present and match source text verbatim.",
+      "west_residual_present": false,
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 17,
+          "evidence": "Source shows <sup>(1)</sup> in ¶17; DB shows bare '1' at end of paragraph. Body present and clean: 'Scott has not raised a statute of limitations or laches issue, and we, therefore, make no determination about the applicability of those doctrines to awards of past child support under these circumstances.'",
+          "db_anchor": "this case.1",
+          "source_body_verbatim": "Scott has not raised a statute of limitations or laches issue, and we, therefore, make no determination about the applicability of those doctrines to awards of past child support under these circumstances."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 20,
+          "evidence": "Source shows <sup>(2)</sup> after '50-09-06'; DB shows bare '2' abutting previous character (semicolon). Malformed: '50-09-06;2' should be '50-09-06; [2]'. Body present: 'This statute provides, in relevant part: ... [full statute text]'",
+          "db_anchor": "50-09-06;2",
+          "source_body_verbatim": "This statute provides, in relevant part:. . . An application for assistance under this chapter is deemed to create and effect an assignment of all rights of support, which exist or may come to exist for the benefit of the child, to the state agency and county agency. The assignment: 1. Is effective as to both current and accrued child support obligations. 2. Takes effect upon a determination of eligibility for assistance under this chapter. 3. Terminates when an applicant ceases to receive assistance under this chapter, except with respect to the amount of any unpaid support obligation accrued under the assignment."
+        }
+      ]
+    },
+    {
+      "opinion_id": 12944,
+      "source_footnote_count": 2,
+      "db_detected_count": 2,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "Opinion 1999 ND 150 (Tibor v. Tibor, DB id 12944) has 2 footnotes in the authoritative source (990020.htm). Both footnote bodies are present in the database, but both have defective markers: Footnote 1 call is a bare line \"1\" (should be inline [1]); Footnote 2 call is \".2\" attached to text (should be inline [2]). Both footnote bodies lack the leading number (stored as \". body\" instead of \"N\\n\\n. body\"). Recommend: (1) retrofit both call sites from bare/attached markers to inline [N] format, and (2) add the missing footnote numbers to both bodies.",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "retrofit_bareline_to_bracket",
+          "confidence": "high",
+          "call_para": 9,
+          "db_anchor": "4. Whether there is a realistic opportunity for visitation which can provide an adequate basis for preserving and fostering the noncustodial parent's relationship with the child if relocation is allowed, and the likelihood that each parent will comply with such alternate visitation.\n1",
+          "evidence": "In source (990020.htm), footnote 1 call appears at end of ¶9 as <sup>(1)</sup>. In DB, the call is a bare line '1' on its own after the four-factor block. Should be inline [1] at the call site in ¶9."
+        },
+        {
+          "num": 2,
+          "action": "fix_marker",
+          "confidence": "high",
+          "call_para": 11,
+          "db_anchor": "Hawkinson, 1999 ND 58, ¶ 12, 591 N.W.2d 144; *Goff,*1999 ND 95, ¶ 13, 593 N.W.2d 768.2",
+          "evidence": "In source (990020.htm), footnote 2 call appears at end of ¶11 as <sup>(2)</sup>. In DB, marker is '.2' abutting the period at end of text (malformed: should be space then [2]). The 2 is attached to the period without separation, violating convention."
+        }
+      ],
+      "cite": "1999 ND 150, 598 N.W.2d 480 (Tibor v. Tibor); authoritative source /Users/jerod/refs/nd/opin/archive/1999/990020.htm; DB excerpt from sqlite3 opinions.db id=12944",
+      "conflict": "No conflict: source and DB agree on 2 footnotes numbered 1–2, contiguous. Both footnote bodies are present in DB. Both footnote call markers are defective (not absent)."
+    },
+    {
+      "opinion_id": 12946,
+      "source_footnote_count": 1,
+      "db_detected_count": 1,
+      "contiguous_1_to_N": true,
+      "overall_confidence": "high",
+      "summary": "1999 ND 151 (Eckman v. Stutsman County) has one footnote. The authoritative source (990050.htm) shows footnote [1] with call in [¶14] and a proper body starting with \"1. Utah's general change of venue statute...\". The DB stores the same body text but missing the leading digit: it shows \". Utah's general change of venue statute...\" Two defects: (1) the call is a bare digit (bare \"1\") instead of bracketed [1], and (2) the body is an orphan—has the period but no number prefix. The footnote body text is otherwise complete and verbatim-matches the source.",
+      "cite": "1999 ND 151, 598 N.W.2d 494 (Eckman v. Stutsman County)",
+      "conflict": "false",
+      "footnotes": [
+        {
+          "num": 1,
+          "action": "number_orphan",
+          "confidence": "high",
+          "db_anchor": ". Utah's general change of venue statute, Utah Code Ann. § 78-13-9,",
+          "source_body_verbatim": "1. Utah's general change of venue statute, Utah Code Ann. § 78-13-9, is similar to N.D.C.C. § 28-04-07 and provides as follows: The court may, on motion, change the place of trial in the following cases: (1) when the county designated in the complaint is not the proper county; (2) when there is reason to believe that an impartial trial cannot be had in the county, city, or precinct designated in the complaint; (3) when the convenience of witnesses and the ends of justice would be promoted by the change; (4) when all the parties to an action, by stipulation or by consent in open court entered in the minutes, agree that the place of trial may be changed to another county. Thereupon the court must order the change as agreed upon. See also Durham v. Duchesne County, 893 P.2d 581, 583 n. 3 (Utah 1995).",
+          "call_para": 14,
+          "evidence": "Footnote call in [¶14] appears as bare '1' after 'the statutory provision at issue.' The source HTML shows call as <sup>(1)</sup> and body starting with '1. Utah's general change...' The DB body starts with period only: '. Utah's general change...' indicating the leading digit is missing from the stored body. The call should be inline [1] and the body should be numbered 1."
+        }
+      ],
+      "west_residual_present": false
+    }
+  ]
+}
