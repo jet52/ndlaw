@@ -5,6 +5,14 @@ arc (see `project_footnote_pinpoints`, `project_westlaw_footnote_loss`). Capture
 the design decision (normalize at *read* time, not in stored bytes) before any
 code. Sequence: **Phase 1 (parser) → Phase 2 (data recovery + analyzer fix)**.
 
+**Status (2026-06-23):** Phase 1 ✅ (parser handles NOTES[N] + FOOTNOTES:N;
+citation-graph scan 198→254 present). Phase 2b ✅ (8 garbled `FOOTNOTES 0:`
+de-garbled, batch `footnote-degarble-2026-06-23`; scan →268 present). **Phase 2c
+in progress** — 19 confirmed true losses remain (16 markdown→recover from PDF,
+3 westlaw→recover from `.doc`); worklist `triage/footnote-pincite-losses-2026-06-23.tsv`.
+Phase 2a (exhaustive PDF sweep) deferred — PDF footnote detection is too fuzzy for
+a blind 7,200-file pass; the citation-graph scan is the working detector.
+
 ## Problem
 
 The footnote-aware pinpoint feature (v1.1.0) resolves footnote quotes to `¶ N
