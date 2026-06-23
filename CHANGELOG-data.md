@@ -2,6 +2,21 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-stragglers-2026-06-23` — close out the citation-confirmed list (detector 0 missing)
+
+Hand-built exact edit-pairs (gated applier) for the last three confirmed losses the
+batch agents missed on exact-string precision:
+- **1997 ND 145** fns 1-3 (fn1 n.1, call ¶6) — nbsp-malformed body markers.
+- **1997 ND 149** fns 1-4 (fn4 citation-confirmed) — nbsp-malformed body markers.
+- **1998 ND 228** fns 1-3 — KEPT ALL THREE per the published N.W.2d reporter
+  (Curiously ¶21 n.1, "Citing no authority" ¶24 n.2, "As one author" ¶26 n.3); the
+  earlier plan to strip "Citing no authority" was reversed on finding it is a
+  coherent footnote (call at ¶24 + on-point body), not OCR noise. Also repaired 3
+  scan page-break artifacts (the scan's own page numbers 1/2/3 dropped at form-feeds,
+  e.g. "466 N.W.2d ⟨1⟩ 141" -> "466 N.W.2d 141"; verified vs archive) that were
+  hijacking the footnote-call detection.
+Citation-graph footnote-loss detector now **0 missing** (was 17 at arc start).
+
 ## Batch `footnote-editpair-apply-2026-06-23` — first automated footnote repairs (Phase 2b)
 
 First end-to-end run of the propose -> validate -> gated-apply pipeline. Agents

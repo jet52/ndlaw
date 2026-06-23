@@ -347,8 +347,8 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12490	1997 ND 139	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/566/819.md | archive:archive/1997/970055.htm | markdown:markdown/1997/1997ND139.md
 12491	1997 ND 150	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/566/822.md | archive:archive/1997/970025.htm | markdown:markdown/1997/1997ND150.md
 12492	1997 ND 137	westlaw_doc	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/189.md | archive:archive/1997/960267.htm | markdown:markdown/1997/1997ND137.md | westlaw_doc:N.W.2d/567/0189-Gary-SOWATZKI-Claimant-and-Appellee-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellant-C.doc
-12495	1997 ND 145	westlaw_doc	MALFORMED	-	-	0	0	2	0	-	nw_scan:NW2d/567/201.md | archive:archive/1997/960336.htm | markdown:markdown/1997/1997ND145.md | westlaw_doc:N.W.2d/567/0201-Kevin-McCABE-Claimant-and-Appellant-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellee-Ci.doc
-12496	1997 ND 149	westlaw_doc	MALFORMED	-	-	0	0	4	0	-	nw_scan:NW2d/567/206.md | archive:archive/1997/970017.htm | markdown:markdown/1997/1997ND149.md | westlaw_doc:N.W.2d/567/0206-Debra-Susan-MAHONEY-Plaintiff-and-Appellee-v-Timothy-James-MAHONEY-Defendant-and-Appellant.doc
+12495	1997 ND 145	westlaw_doc	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/567/201.md | archive:archive/1997/960336.htm | markdown:markdown/1997/1997ND145.md | westlaw_doc:N.W.2d/567/0201-Kevin-McCABE-Claimant-and-Appellant-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellee-Ci.doc
+12496	1997 ND 149	westlaw_doc	CLEAN	1,2,3,4	y	0	0	0	0	-	nw_scan:NW2d/567/206.md | archive:archive/1997/970017.htm | markdown:markdown/1997/1997ND149.md | westlaw_doc:N.W.2d/567/0206-Debra-Susan-MAHONEY-Plaintiff-and-Appellee-v-Timothy-James-MAHONEY-Defendant-and-Appellant.doc
 12497	1997 ND 151	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/216.md | archive:archive/1997/970016.htm | markdown:markdown/1997/1997ND151.md
 12498	1997 ND 144	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/567/330.md | archive:archive/1997/970001.htm | markdown:markdown/1997/1997ND144.md
 12499	1997 ND 160	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/334.md | archive:archive/1997/970087.htm | markdown:markdown/1997/1997ND160.md
@@ -540,7 +540,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12797	1998 ND 218	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/587/423.md | archive:archive/1998/980234.htm | markdown:markdown/1998/1998ND218.md | pdf:pdfs/1998/1998ND218.pdf
 12798	1998 ND 214	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/587/567.md | archive:archive/1998/980197.htm | markdown:markdown/1998/1998ND214.md | pdf:pdfs/1998/1998ND214.pdf
 12799	1998 ND 216	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/587/568.md | archive:archive/1998/980218.htm | markdown:markdown/1998/1998ND216.md | pdf:pdfs/1998/1998ND216.pdf
-12800	1998 ND 228	markdown	MALFORMED	15	n	0	1	0	0	-	nw_scan:NW2d/587/573.md | archive:archive/1998/980102.htm | markdown:markdown/1998/1998ND228.md | pdf:pdfs/1998/1998ND228.pdf
+12800	1998 ND 228	markdown	MALFORMED	1,2,3,15	n	0	1	0	0	-	nw_scan:NW2d/587/573.md | archive:archive/1998/980102.htm | markdown:markdown/1998/1998ND228.md | pdf:pdfs/1998/1998ND228.pdf
 12801	1999 ND 1	markdown	NOTES_SECTION	1	y	0	0	0	0	y	nw_scan:NW2d/588/847.md | archive:archive/1999/980082.htm | markdown:markdown/1999/1999ND1.md | pdf:pdfs/1999/1999ND1.pdf
 12802	1999 ND 6	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/588/857.md | archive:archive/1999/980160.htm | markdown:markdown/1999/1999ND6.md | pdf:pdfs/1999/1999ND6.pdf
 12805	1999 ND 14	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/589/187.md | archive:archive/1999/980267.htm | markdown:markdown/1999/1999ND14.md | pdf:pdfs/1999/1999ND14.pdf
