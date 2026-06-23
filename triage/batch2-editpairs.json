@@ -1,0 +1,1260 @@
+[
+ {
+  "opinion_id": 12958,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 26,
+    "edits": [
+     {
+      "old_exact": ". \"In determining whether the class action should be permitted for the fair and efficient adjudication of the controversy ... the court shall consider, and give appropriate weight to, the following [thirteen] and other relevant factors:",
+      "new_exact": "1\n\n. \"In determining whether the class action should be permitted for the fair and efficient adjudication of the controversy ... the court shall consider, and give appropriate weight to, the following [thirteen] and other relevant factors:",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "factors1 the district",
+      "new_exact": "factors[1] the district",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 12959,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "on notice.1 First",
+      "new_exact": "on notice.[1] First",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. Both First American",
+      "new_exact": "\n\n1\n\n. Both First American",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "28-01-16.2\n",
+      "new_exact": "28-01-16.[2]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The court actually",
+      "new_exact": "\n\n2\n\n. The court actually",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12960,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 8,
+    "edits": [
+     {
+      "old_exact": "gent).1\n\nA",
+      "new_exact": "gent).[1]\n\nA",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "for a new trial on the issue of damages.\n\n. While the",
+      "new_exact": "for a new trial on the issue of damages.\n\n1\n\n. While the",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 12961,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 6,
+    "edits": [
+     {
+      "old_exact": "\n\n. The",
+      "new_exact": "\n\n1\n\n. The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 6,
+    "edits": [
+     {
+      "old_exact": "capricious.1 Graber",
+      "new_exact": "capricious.[1] Graber",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12962,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": "1 \u2014 4\u201495[sicJ,\n1\n an amount",
+      "new_exact": "1 \u2014 4\u201495[sicJ,\n[1]\n an amount",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The parties do not now dispute the intended deadline for extending the lease was January 4, 1998, not 1995.",
+      "new_exact": "\n\n1\n\n. The parties do not now dispute the intended deadline for extending the lease was January 4, 1998, not 1995.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13010,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 7,
+    "edits": [
+     {
+      "old_exact": "(1969) 1 creates",
+      "new_exact": "(1969) [1] creates",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. Section 27-20-44, N.D.C.C., was amended effective August 1, 1999.",
+      "new_exact": "\n\n1\n\n. Section 27-20-44, N.D.C.C., was amended effective August 1, 1999.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13024,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 9,
+    "edits": [
+     {
+      "old_exact": "\n\n. Under our statutes",
+      "new_exact": "\n\n1\n\n. Under our statutes",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13034,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "T.V.(Tina) 1 B.V.",
+      "new_exact": "T.V.(Tina) [1] B.V.",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. All names",
+      "new_exact": "\n\n1\n\n. All names",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13182,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 6,
+    "edits": [
+     {
+      "old_exact": ".1 Standard 3 reads:",
+      "new_exact": ".[1] Standard 3 reads:",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n. The Jury Selection Plan \"attempts to incorporate, to the greatest degree possible, the North Dakota Jury Use and Management Standards.... \" Section 1, *North Dakota Jury Selection Plan.*The Standards are not made part of the plan. If the two conflict, the Plan controls.",
+      "new_exact": "\n1\n\n. The Jury Selection Plan \"attempts to incorporate, to the greatest degree possible, the North Dakota Jury Use and Management Standards.... \" Section 1, *North Dakota Jury Selection Plan.*The Standards are not made part of the plan. If the two conflict, the Plan controls.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13213,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "H.F.1 We",
+      "new_exact": "H.F.[1] We",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. M.F., the mother of the children, has not appealed the order terminating her parental rights.",
+      "new_exact": "\n\n1\n\n. M.F., the mother of the children, has not appealed the order terminating her parental rights.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": "1997.2 The",
+      "new_exact": "1997.[2] The",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The Honorable Ronald E. Goodman presided over the divorce proceeding.",
+      "new_exact": "\n\n2\n\n. The Honorable Ronald E. Goodman presided over the divorce proceeding.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13218,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "case,1 N.D.C.C.",
+      "new_exact": "case,[1] N.D.C.C.",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The parties agree the 1999 amendment",
+      "new_exact": "\n\n1\n\n. The parties agree the 1999 amendment",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 22
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13234,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\u00a7 25-03.1-18.1.1 The re\\*471 quest",
+      "new_exact": "\u00a7 25-03.1-18.1[1] The re\\*471 quest",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. North Dakota Century Code \u00a7 25-03.1-18.1(l)(a)",
+      "new_exact": "\n\n1\n\n. North Dakota Century Code \u00a7 25-03.1-18.1(l)(a)",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13240,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "recover_body_absent",
+    "confidence": "high",
+    "body_present_in_db": false,
+    "append_body": "1\n\n. We note North Dakota's second governor, Andrew Burke, was an orphan placed out in Indiana in 1859. Holt, at 125-26. Burke governed in North Dakota from 1891-92, when he was defeated in his bid for a second term. See North Dakota Centennial Blue Book 125 (1989). See also John Manesis, The Journey of Andrew Burke (1998).",
+    "edits": [
+     {
+      "old_exact": "*(1998).\n\n*.*A review of case law shows",
+      "new_exact": "*(1998).\n\n1\n\n. We note North Dakota's second governor, Andrew Burke, was an orphan placed out in Indiana in 1859. Holt, at 125-26. Burke governed in North Dakota from 1891-92, when he was defeated in his bid for a second term. See North Dakota Centennial Blue Book 125 (1989). See also John Manesis, The Journey of Andrew Burke (1998).\n\n2\n\n. A review of case law shows",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "already_clean",
+    "confidence": "high"
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. We recognize, overall, statutory adoption",
+      "new_exact": "\n\n3\n\n. We recognize, overall, statutory adoption",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. We conclude an equitable adoption may occur",
+      "new_exact": "\n\n4\n\n. We conclude an equitable adoption may occur",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. We have often stated visitation",
+      "new_exact": "\n\n5\n\n. We have often stated visitation",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 0,
+    "action": "strip_residual",
+    "confidence": "high",
+    "call_para": 135,
+    "edits": [
+     {
+      "old_exact": "\n1\n\n[\u00b6 135]",
+      "new_exact": "\n\n[\u00b6 135]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 0,
+    "action": "strip_residual",
+    "confidence": "high",
+    "call_para": 137,
+    "edits": [
+     {
+      "old_exact": "\n2\n\n[\u00b6 137]",
+      "new_exact": "\n\n[\u00b6 137]",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13281,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.,1 is",
+      "new_exact": "N.D.C.C.,[1] is",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 9,
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "child.2 Under",
+      "new_exact": "child.[2] Under",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 12,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. The trial court's order terminating the parental rights of M.H. was entered on December 30, 1998. This provision was amended, effective August 1, 1999, on matters not relevant to this appeal, and the quoted language was not changed.",
+      "new_exact": "\n\n1\n\n. The trial court's order terminating the parental rights of M.H. was entered on December 30, 1998. This provision was amended, effective August 1, 1999, on matters not relevant to this appeal, and the quoted language was not changed.",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. However, when a parent files a petition to relinquish parental rights to an identified adoptive parent, under N.D.C.C. \u00a7 14-15.1-02, our \"open adoption\" procedure, a report of agreements between the parties, including agreements \"which relate in any way to the future conduct of any party with respect to the child\" must be filed with the court. N.D.C.C. \u00a7 14-15.1-05. The identified adop-live parent has 90 days after entry of the order for relinquishment to file for adoption under N.D.C.C. ch. 14-15. N.D .C .C. \u00a7 14-15.1-07. An order under N.D.C.C. ch. 14-15.1 terminates the relationship of the birth parent and the child. N.D.C.C. \u00a7 14-15.1-03(4). The present case does not arise under N.D.C.C. ch. 14-15.1.",
+      "new_exact": "\n\n2\n\n. However, when a parent files a petition to relinquish parental rights to an identified adoptive parent, under N.D.C.C. \u00a7 14-15.1-02, our \"open adoption\" procedure, a report of agreements between the parties, including agreements \"which relate in any way to the future conduct of any party with respect to the child\" must be filed with the court. N.D.C.C. \u00a7 14-15.1-05. The identified adop-live parent has 90 days after entry of the order for relinquishment to file for adoption under N.D.C.C. ch. 14-15. N.D .C .C. \u00a7 14-15.1-07. An order under N.D.C.C. ch. 14-15.1 terminates the relationship of the birth parent and the child. N.D.C.C. \u00a7 14-15.1-03(4). The present case does not arise under N.D.C.C. ch. 14-15.1.",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 13323,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 6,
+    "edits": [
+     {
+      "old_exact": "reversed.1\n\n[\u00b6",
+      "new_exact": "reversed.[1]\n\n[\u00b6",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "agency.\n\n. We do not cite the prior case appealing the divorce order",
+      "new_exact": "agency.\n\n1\n\n. We do not cite the prior case appealing the divorce order",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13351,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "Randy\u201d)1 and D.N. (\u201cDenise",
+      "new_exact": "Randy\u201d)[1] and D.N. (\u201cDenise",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. All names of the parties in this case are pseudonyms.",
+      "new_exact": "\n\n1\n\n. All names of the parties in this case are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13362,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(\"Connie\")1 appeals",
+      "new_exact": "(\"Connie\")[1] appeals",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 1,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n. All names in parentheses following initials are pseudonyms.",
+      "new_exact": "\n1\n\n. All names in parentheses following initials are pseudonyms.",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "witnesses.\"2",
+      "new_exact": "witnesses.\"[2]",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 29,
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n. Rule 52(a), N.D.R.Civ.P., currently specifies, \"Findings of fact, whether based on oral or documentary evidence, shall not be set aside unless clearly erroneous, and due regard shall be given to the opportunity of the trial court to judge the credibility of the witnesses.\"",
+      "new_exact": "\n2\n\n. Rule 52(a), N.D.R.Civ.P., currently specifies, \"Findings of fact, whether based on oral or documentary evidence, shall not be set aside unless clearly erroneous, and due regard shall be given to the opportunity of the trial court to judge the credibility of the witnesses.\"",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.\n3\n It provides for a type of trial anew, giving appreciable weight to the findings.",
+      "new_exact": "N.D.C.C.[3] It provides for a type of trial anew, giving appreciable weight to the findings.",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 33,
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n. Presumably, the citation to N.D.C.C. \u00a7 28-27-12, was a clerical error, and the Court meanl to cite N.D.C.C. \u00a7 28-27-32.\n",
+      "new_exact": "\n3\n\n. Presumably, the citation to N.D.C.C. \u00a7 28-27-12, was a clerical error, and the Court meanl to cite N.D.C.C. \u00a7 28-27-32.\n",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 13383,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 4,
+    "edits": [
+     {
+      "old_exact": "knowledge.1 Rem",
+      "new_exact": "knowledge.[1] Rem",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\n. Remmick has not argued the United States was not required to name Jeffrey Whitman as a party to the foreclosure action.",
+      "new_exact": "\n\n1\n\n. Remmick has not argued the United States was not required to name Jeffrey Whitman as a party to the foreclosure action.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13408,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "M.F. (\"Mary\")1 appealed",
+      "new_exact": "M.F. (\"Mary\")[1] appealed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. All names of the parlies, other than the State, are pseudonyms.",
+      "new_exact": "\n\n1\n\n. All names of the parlies, other than the State, are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(\"Mike\"),2 now",
+      "new_exact": "(\"Mike\"),[2] now",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The juvenile court also terminated Mike's parental rights to Tim and David, but Mike has not appealed from the court's order and is not a party to this appeal.",
+      "new_exact": "\n\n2\n\n. The juvenile court also terminated Mike's parental rights to Tim and David, but Mike has not appealed from the court's order and is not a party to this appeal.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "child.3 In",
+      "new_exact": "child.[3] In",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Although there is some evidence Mary was involved with another man during this time, the parties assume this is Mike's child and paternity is not an issue in the case.",
+      "new_exact": "\n\n3\n. Although there is some evidence Mary was involved with another man during this time, the parties assume this is Mike's child and paternity is not an issue in the case.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13416,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": "child.1 At",
+      "new_exact": "child.[1] At",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. In 1994, the mother's parental rights to two other children were terminated in Polk County, Minnesota.\n",
+      "new_exact": "\n\n1\n\n. In 1994, the mother's parental rights to two other children were terminated in Polk County, Minnesota.\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 18,
+    "edits": [
+     {
+      "old_exact": "privacy.2\n\n[\u00b6 19]",
+      "new_exact": "privacy.[2]\n\n[\u00b6 19]",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The parents have not raised a separation-of-powers argument. *See State v. Hanson,*558 N.W.2d 611 (N.D.1996).\n",
+      "new_exact": "\n\n2\n\n. The parents have not raised a separation-of-powers argument. *See State v. Hanson,*558 N.W.2d 611 (N.D.1996).\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 27,
+    "edits": [
+     {
+      "old_exact": "b)(2),3 which",
+      "new_exact": "b)(2),[3] which",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. The father's reply brief in this Court claims N.D.C.C. \u00a7 27-20-44(l)(b)(2) should be struck down \"as being improper, overbroad, vague, and unconstitutional.\" The father, however, did not raise the issue in the juvenile court, or in his initial brief to this Court. The father's constitutional argument about N.D.C.C. \u00a7 27-20-44(1)(b)(2) is not properly before this Court. *See Peters-Riemers,*2001 ND 62, \u00b6 25, 624 N.W.2d 83 (declining to address constitutional issue not raised in trial court); *Hendrickson v. Hendrickson,*2000 ND 1, \u00b6 20, 603 N.W.2d 896 (declining to address issue raised for first time in reply brief).\n\n[\u00b6 29] GERALD W. VANDE WALLE, C.J., and WILLIAM A. NEUMANN, MARY MUEHLEN MARING, CAROL RONNING KAPSNER, JJ., concur.\n",
+      "new_exact": "\n\n3\n\n. The father's reply brief in this Court claims N.D.C.C. \u00a7 27-20-44(l)(b)(2) should be struck down \"as being improper, overbroad, vague, and unconstitutional.\" The father, however, did not raise the issue in the juvenile court, or in his initial brief to this Court. The father's constitutional argument about N.D.C.C. \u00a7 27-20-44(1)(b)(2) is not properly before this Court. *See Peters-Riemers,*2001 ND 62, \u00b6 25, 624 N.W.2d 83 (declining to address constitutional issue not raised in trial court); *Hendrickson v. Hendrickson,*2000 ND 1, \u00b6 20, 603 N.W.2d 896 (declining to address issue raised for first time in reply brief).\n\n",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13430,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1989.1 A",
+      "new_exact": "1989.[1] A",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. R.H. did not appeal the termination of his parental rights.",
+      "new_exact": "\n\n1\n\n. R.H. did not appeal the termination of his parental rights.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 12,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "subsection 4\n2\n, reasonable efforts",
+      "new_exact": "subsection 4\n[2]\n, reasonable efforts",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 12,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. Section 27-20-32.2(4) provides:",
+      "new_exact": "\n\n2\n\n. Section 27-20-32.2(4) provides:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13466,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "M.R. (\u201cMaria\u201d)1 appealed",
+      "new_exact": "M.R. (\u201cMaria\u201d)[1] appealed",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "children.\n\n. The names of the parties, except the State, are pseudonyms.",
+      "new_exact": "children.\n\n1\n\n. The names of the parties, except the State, are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": "S.L. (\u201cSandra\u201d).2 After",
+      "new_exact": "S.L. (\u201cSandra\u201d)[2] After",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "pseudonyms.\n\n. Sandra turned age 18 in March 2000 and is not a party to these proceedings.",
+      "new_exact": "pseudonyms.\n\n2\n\n. Sandra turned age 18 in March 2000 and is not a party to these proceedings.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13487,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "provided:1\n\nPersons",
+      "new_exact": "provided:[1]\n\nPersons",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "affirmed.\n\n. Section 12.1-04-01 was amended",
+      "new_exact": "affirmed.\n\n1\n\n. Section 12.1-04-01 was amended",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13497,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "recommendations.1 We",
+      "new_exact": "recommendations.[1] We",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. After the hearing panel issued its report, Crary sent a letter to the Secretary of the Disciplin",
+      "new_exact": "\n\n1\n\n. After the hearing panel issued its report, Crary sent a letter to the Secretary of the Disciplin",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13499,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 4,
+    "edits": [
+     {
+      "old_exact": "Responsibility:1 DR",
+      "new_exact": "Responsibility:[1] DR",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. Because Swanson's conduct in handling the Hoffas and Anderson estates began in 1981, events in this case are governed under both the North Dakota Code of Professional Responsibility effective, from January 1, 1977, to December 31, 1987, and the North Dakota Rules of Professional Conduct, effective January 1, 1988.",
+      "new_exact": "\n\n1\n\n. Because Swanson's conduct in handling the Hoffas and Anderson estates began in 1981, events in this case are governed under both the North Dakota Code of Professional Responsibility effective, from January 1, 1977, to December 31, 1987, and the North Dakota Rules of Professional Conduct, effective January 1, 1988.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 5,
+    "edits": [
+     {
+      "old_exact": "suspension,2 with",
+      "new_exact": "suspension,[2] with",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n\n. Under N.D.R. Lawyer Discipl. 1.3(a)(2), a suspension by this Court may not exceed three years.",
+      "new_exact": "\n\n2\n\n. Under N.D.R. Lawyer Discipl. 1.3(a)(2), a suspension by this Court may not exceed three years.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 13592,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "Decided 2002-07-11\n\nKAPSNER, Justice.\n\n\\*701[\u00b6 1] D.K (\"Don\")1 appealed from a juvenile court order,",
+      "new_exact": "Decided 2002-07-11\n\nKAPSNER, Justice.\n\n\\*701[\u00b6 1] D.K (\"Don\")[1] appealed from a juvenile court order,",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "mand for further proceedings consistent with this opinion.\n\n. All names in parentheses following initials are pseudonyms.\n\n[\u00b6 15] ",
+      "new_exact": "mand for further proceedings consistent with this opinion.\n\n1\n\n. All names in parentheses following initials are pseudonyms.\n\n[\u00b6 15] ",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13654,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "25-03.1-26.1 R.O. did not waive",
+      "new_exact": "25-03.1-26.[1] R.O. did not waive",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 12
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. N.D.C.C. \u00a7 25-03.1-25(2) states:",
+      "new_exact": "\n\n1\n\n. N.D.C.C. \u00a7 25-03.1-25(2) states:",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   }
+  ]
+ },
+ {
+  "opinion_id": 13657,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(\"Tammy\")1 appealed",
+      "new_exact": "(\"Tammy\")[1] appealed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The names of the parties, except the State, are pseudonyms.",
+      "new_exact": "\n\n1\n\n. The names of the parties, except the State, are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1997.2 While",
+      "new_exact": "1997.[2] While",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n. The trial court found Kip and Tammy were married on July 18, 1996, but Tammy testified they were married in 1997.",
+      "new_exact": "\n\n2\n\n. The trial court found Kip and Tammy were married on July 18, 1996, but Tammy testified they were married in 1997.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 13686,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Steel1 appealed",
+      "new_exact": "Steel[1] appealed",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "McNeel2 to S.S.",
+      "new_exact": "McNeel[2] to S.S.",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Board.3 Judgment",
+      "new_exact": "Board.[3] Judgment",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 6
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "session.4 Section",
+      "new_exact": "session.[4] Section",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 13
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. \"Susan Steel",
+      "new_exact": "\n\n1\n\n. \"Susan Steel",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. \"Ernest McNeel",
+      "new_exact": "\n\n2\n\n. \"Ernest McNeel",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. D.Q. had",
+      "new_exact": "\n\n3\n\n. D.Q. had",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n\n. Compulsory attendance",
+      "new_exact": "\n\n4\n\n. Compulsory attendance",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   }
+  ],
+  "overall_confidence": "high"
+ }
+]
