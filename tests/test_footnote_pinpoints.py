@@ -245,6 +245,7 @@ _ERA_FOOTNOTES = [
     ("2024 ND 147", "It appears the district court applied the amended version", 1, 32),
     # period-orphan restore w/ inline [N] (batch orphan-footnote-restore-2026-06-23)
     ("1997 ND 9", "A.E. did not raise a due process argument", 2, 17),
+    ("1999 ND 103", "Ame asserted on appeal the visitation provisions", 2, 32),
 ]
 
 

@@ -31,6 +31,11 @@ ENTRIES = [
          call_old="arrested in the past.2", call_new="arrested in the past.[2]",
          orphan_anchor="A.E. did not raise a due process argument",
          authority="archive/1997/960079.htm (court HTML: call <sup>(2)</sup> at end of ¶17)"),
+    dict(oid=12955, num=2, call_para=32,
+         call_old="finding on visitation is not clearly erroneous.2",
+         call_new="finding on visitation is not clearly erroneous.[2]",
+         orphan_anchor="Ame asserted on appeal the visitation provisions",
+         authority="archive/1999/980268.htm (court HTML: call <sup>(2)</sup> at end of ¶32)"),
 ]
 
 

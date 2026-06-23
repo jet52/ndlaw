@@ -12,9 +12,9 @@ convention, the call digit is bracketed inline `[N]` at the exact call site
 place; the standalone parser links body → ¶ via the unique inline `[N]`. Only
 structure markers added — asserted: identical alphabetic-token sequence. Restores
 ONLY the citation-confirmed footnote per opinion (uncited sibling orphans are left
-for the separate hand-verified backlog pass). Recovered: **1997 ND 9** → ¶ 17 n.2
-(call site confirmed vs court archive HTML `<sup>(2)</sup>` at end of ¶17). Script:
-`scripts/restore_orphan_footnotes_2026-06-23.py`.
+for the separate hand-verified backlog pass). Recovered: **1997 ND 9** → ¶ 17 n.2;
+**1999 ND 103** → ¶ 32 n.2 (each call site confirmed vs the court archive HTML
+`<sup>(N)</sup>`). Script: `scripts/restore_orphan_footnotes_2026-06-23.py`.
 
 ## Batch `modern-footnote-recover-2026-06-23` — restore modern footnotes mashed inline (Phase 2c)
 
