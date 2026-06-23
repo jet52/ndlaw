@@ -243,6 +243,8 @@ _ERA_FOOTNOTES = [
     ("2024 ND 99", "was amended effective Aug. 1, 2023, to codify summary disposition", 1, 6),
     ("2022 ND 136", "was amended effective August 1, 2021, to provide that", 1, 6),
     ("2024 ND 147", "It appears the district court applied the amended version", 1, 32),
+    # period-orphan restore w/ inline [N] (batch orphan-footnote-restore-2026-06-23)
+    ("1997 ND 9", "A.E. did not raise a due process argument", 2, 17),
 ]
 
 

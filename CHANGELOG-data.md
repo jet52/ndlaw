@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `orphan-footnote-restore-2026-06-23` — number period-orphan footnotes + inline [N] call (Phase 2c)
+
+Citation-graph-confirmed footnotes whose BODY is present as a number-less period
+orphan (`\n\n. body` — ndcourts-markdown lineage dropped the body number). The call
+survived attached to the prose (e.g. `arrested in the past.2`). Per the ratified
+convention, the call digit is bracketed inline `[N]` at the exact call site
+(cross-checked against an authoritative source), and the orphan body is numbered in
+place; the standalone parser links body → ¶ via the unique inline `[N]`. Only
+structure markers added — asserted: identical alphabetic-token sequence. Restores
+ONLY the citation-confirmed footnote per opinion (uncited sibling orphans are left
+for the separate hand-verified backlog pass). Recovered: **1997 ND 9** → ¶ 17 n.2
+(call site confirmed vs court archive HTML `<sup>(2)</sup>` at end of ¶17). Script:
+`scripts/restore_orphan_footnotes_2026-06-23.py`.
+
 ## Batch `modern-footnote-recover-2026-06-23` — restore modern footnotes mashed inline (Phase 2c)
 
 Modern (1997+) footnotes the analyzer mashed **inline** into the running text rather
