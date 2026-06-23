@@ -273,7 +273,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12348	1997 ND 18	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/558/855.md | archive:archive/1997/950341.htm | markdown:markdown/1997/1997ND18.md | other:court-archive/558/950341.htm | pdf:pdfs/1997/1997ND18.pdf
 12352	1997 ND 4	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/559/211.md | archive:archive/1997/960127.htm | markdown:markdown/1997/1997ND4.md | other:court-archive/559/960127.htm
 12353	1997 ND 9	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/559/215.md | nw_scan:NW2d/559/215_2.md | archive:archive/1997/960079.htm | markdown:markdown/1997/1997ND9.md
-12355	1997 ND 19	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/559/221.md | archive:archive/1997/960133.htm | markdown:markdown/1997/1997ND19.md | other:court-archive/559/960133.htm
+12355	1997 ND 19	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/559/221.md | archive:archive/1997/960133.htm | markdown:markdown/1997/1997ND19.md | other:court-archive/559/960133.htm
 12356	1997 ND 24	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/559/225.md | archive:archive/1997/960275.htm | markdown:markdown/1997/1997ND24.md | other:court-archive/559/960275.htm | pdf:pdfs/1997/1997ND24.pdf
 12357	1997 ND 20	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/559/229.md | archive:archive/1997/960223.htm | markdown:markdown/1997/1997ND20.md | other:court-archive/559/960223.htm
 12359	1997 ND 3	markdown	CLEAN	1,2,3,4,5,6,7,9	n	0	0	0	0	-	nw_scan:NW2d/559/531.md | archive:archive/1997/960093.htm | markdown:markdown/1997/1997ND3.md | other:court-archive/559/960093.htm
@@ -311,9 +311,9 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12420	1997 ND 77	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/562/574.md | archive:archive/1997/960381.htm | markdown:markdown/1997/1997ND77.md
 12421	1997 ND 64	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/562/734.md | archive:archive/1997/960174.htm | markdown:markdown/1997/1997ND64.md
 12423	1997 ND 79	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/562/741.md | archive:archive/1997/960248.htm | markdown:markdown/1997/1997ND79.md
-12427	1997 ND 83	westlaw_doc	MALFORMED	-	-	0	0	1	0	-	nw_scan:NW2d/562/878.md | archive:archive/1997/960295.htm | markdown:markdown/1997/1997ND83.md | westlaw_doc:N.W.2d/562/0878-Dr-Brian-GALE-Appellee-v-NORTH-DAKOTA-BOARD-OF-PODIATRIC-MEDICINE-Appellant-Civil-No-96029.doc
+12427	1997 ND 83	westlaw_doc	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/562/878.md | archive:archive/1997/960295.htm | markdown:markdown/1997/1997ND83.md | westlaw_doc:N.W.2d/562/0878-Dr-Brian-GALE-Appellee-v-NORTH-DAKOTA-BOARD-OF-PODIATRIC-MEDICINE-Appellant-Civil-No-96029.doc
 12428	1997 ND 56	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/562/91.md | archive:archive/1997/960173.htm | markdown:markdown/1997/1997ND56.md | pdf:pdfs/1997/1997ND56.pdf
-12430	1997 ND 84	markdown	PERIOD_ORPHAN	-	-	3	0	0	0	-	nw_scan:NW2d/562/98.md | archive:archive/1997/960276.htm | markdown:markdown/1997/1997ND84.md
+12430	1997 ND 84	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/562/98.md | archive:archive/1997/960276.htm | markdown:markdown/1997/1997ND84.md
 12431	1997 ND 92	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/563/103.md | archive:archive/1997/960131.htm | markdown:markdown/1997/1997ND92.md
 12432	1997 ND 89	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/563/108.md | archive:archive/1997/960204.htm | markdown:markdown/1997/1997ND89.md
 12433	1997 ND 107	markdown	CLEAN	1,2,3,4	y	0	0	0	0	-	nw_scan:NW2d/563/112.md | archive:archive/1997/960351.htm | markdown:markdown/1997/1997ND107.md
@@ -328,12 +328,12 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12451	1997 ND 104	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/564/298.md | archive:archive/1997/960291.htm | markdown:markdown/1997/1997ND104.md
 12455	1997 ND 102	markdown	NOTES_SECTION	1,1,2,3	n	0	0	0	0	y	nw_scan:NW2d/564/616.md | archive:archive/1997/960243.htm | markdown:markdown/1997/1997ND102.md
 12456	1997 ND 99	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/564/623.md | archive:archive/1997/960270.htm | markdown:markdown/1997/1997ND99.md
-12458	1997 ND 98	westlaw_doc	MALFORMED	-	-	0	0	3	0	-	nw_scan:NW2d/564/631.md | archive:archive/1997/960384.htm | markdown:markdown/1997/1997ND98.md | westlaw_doc:N.W.2d/564/0631-Joyce-BURR-Plaintiff-and-Appellant-v-Cheryl-KULAS-and-Donald-K-Lemon-PhD-Defendants-and-Ap.doc
+12458	1997 ND 98	westlaw_doc	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/564/631.md | archive:archive/1997/960384.htm | markdown:markdown/1997/1997ND98.md | westlaw_doc:N.W.2d/564/0631-Joyce-BURR-Plaintiff-and-Appellant-v-Cheryl-KULAS-and-Donald-K-Lemon-PhD-Defendants-and-Ap.doc
 12461	1997 ND 108	markdown	MALFORMED	1	y	0	1	0	0	-	nw_scan:NW2d/564/651.md | archive:archive/1997/960305.htm | markdown:markdown/1997/1997ND108.md
 12462	1997 ND 105	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/564/655.md | archive:archive/1997/960273.htm | markdown:markdown/1997/1997ND105.md
 12465	1997 ND 123	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/565/47.md | archive:archive/1997/960375.htm | markdown:markdown/1997/1997ND123.md
 12466	1997 ND 118	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/565/485.md | archive:archive/1997/970013.htm | markdown:markdown/1997/1997ND118.md
-12467	1997 ND 122	westlaw_doc	MALFORMED	-	-	0	0	2	0	-	nw_scan:NW2d/565/491.md | archive:archive/1997/960367.htm | markdown:markdown/1997/1997ND122.md | westlaw_doc:N.W.2d/565/0491-Beverly-J-RATAJCZAK-Plaintiff-Appellee-and-Cross-Appellant-v-Ervin-S-RATAJCZAK-Defendant-A.doc
+12467	1997 ND 122	westlaw_doc	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/565/491.md | archive:archive/1997/960367.htm | markdown:markdown/1997/1997ND122.md | westlaw_doc:N.W.2d/565/0491-Beverly-J-RATAJCZAK-Plaintiff-Appellee-and-Cross-Appellant-v-Ervin-S-RATAJCZAK-Defendant-A.doc
 12468	1997 ND 124	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/565/498.md | archive:archive/1997/970003.htm | markdown:markdown/1997/1997ND124.md
 12469	1997 ND 119	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/565/752.md | archive:archive/1997/960331.htm | markdown:markdown/1997/1997ND119.md
 12472	1997 ND 125	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/565/762.md | archive:archive/1997/960388.htm | markdown:markdown/1997/1997ND125.md
@@ -346,7 +346,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12489	1997 ND 140	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/566/812.md | archive:archive/1997/960374.htm | markdown:markdown/1997/1997ND140.md
 12490	1997 ND 139	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/566/819.md | archive:archive/1997/970055.htm | markdown:markdown/1997/1997ND139.md
 12491	1997 ND 150	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/566/822.md | archive:archive/1997/970025.htm | markdown:markdown/1997/1997ND150.md
-12492	1997 ND 137	westlaw_doc	MALFORMED	-	-	0	0	1	0	-	nw_scan:NW2d/567/189.md | archive:archive/1997/960267.htm | markdown:markdown/1997/1997ND137.md | westlaw_doc:N.W.2d/567/0189-Gary-SOWATZKI-Claimant-and-Appellee-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellant-C.doc
+12492	1997 ND 137	westlaw_doc	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/189.md | archive:archive/1997/960267.htm | markdown:markdown/1997/1997ND137.md | westlaw_doc:N.W.2d/567/0189-Gary-SOWATZKI-Claimant-and-Appellee-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellant-C.doc
 12495	1997 ND 145	westlaw_doc	MALFORMED	-	-	0	0	2	0	-	nw_scan:NW2d/567/201.md | archive:archive/1997/960336.htm | markdown:markdown/1997/1997ND145.md | westlaw_doc:N.W.2d/567/0201-Kevin-McCABE-Claimant-and-Appellant-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellee-Ci.doc
 12496	1997 ND 149	westlaw_doc	MALFORMED	-	-	0	0	4	0	-	nw_scan:NW2d/567/206.md | archive:archive/1997/970017.htm | markdown:markdown/1997/1997ND149.md | westlaw_doc:N.W.2d/567/0206-Debra-Susan-MAHONEY-Plaintiff-and-Appellee-v-Timothy-James-MAHONEY-Defendant-and-Appellant.doc
 12497	1997 ND 151	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/216.md | archive:archive/1997/970016.htm | markdown:markdown/1997/1997ND151.md
@@ -360,9 +360,9 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12506	1997 ND 161	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/567/813.md | archive:archive/1997/970051.htm | markdown:markdown/1997/1997ND161.md
 12507	1997 ND 166	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/567/819.md | archive:archive/1997/970022.htm | markdown:markdown/1997/1997ND166.md
 12509	1997 ND 164	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/567/829.md | archive:archive/1997/960386.htm | markdown:markdown/1997/1997ND164.md | pdf:pdfs/1997/1997ND164.pdf
-12510	1997 ND 154	westlaw_doc	MALFORMED	-	-	0	0	1	0	-	nw_scan:NW2d/567/833.md | archive:archive/1997/960383.htm | markdown:markdown/1997/1997ND154.md | westlaw_doc:N.W.2d/567/0833-Gary-McDANIEL-Claimant-and-Appellant-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellee-a.doc
+12510	1997 ND 154	westlaw_doc	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/567/833.md | archive:archive/1997/960383.htm | markdown:markdown/1997/1997ND154.md | westlaw_doc:N.W.2d/567/0833-Gary-McDANIEL-Claimant-and-Appellant-v-NORTH-DAKOTA-WORKERS-COMPENSATION-BUREAU-Appellee-a.doc
 12511	1997 ND 158	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/839.md | archive:archive/1997/960357.htm | markdown:markdown/1997/1997ND158.md
-12512	1997 ND 152	westlaw_doc	MALFORMED	-	-	0	0	1	0	-	nw_scan:NW2d/567/844.md | archive:archive/1997/960345.htm | markdown:markdown/1997/1997ND152.md | westlaw_doc:N.W.2d/567/0844-Nancy-BLESSUM-Plaintiff-and-Appellee-v-David-SHELVER-Defendant-and-Appellant-Civil-No-9603.doc
+12512	1997 ND 152	westlaw_doc	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/844.md | archive:archive/1997/960345.htm | markdown:markdown/1997/1997ND152.md | westlaw_doc:N.W.2d/567/0844-Nancy-BLESSUM-Plaintiff-and-Appellee-v-David-SHELVER-Defendant-and-Appellant-Civil-No-9603.doc
 12513	1997 ND 168	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/567/853.md | archive:archive/1997/970079.htm | markdown:markdown/1997/1997ND168.md
 12514	1997 ND 156	markdown	NOTES_SECTION	1,2	y	0	0	0	0	y	nw_scan:NW2d/568/277.md | archive:archive/1997/970039.htm | markdown:markdown/1997/1997ND156.md
 12516	1997 ND 167	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/568/284.md | archive:archive/1997/960237.htm | markdown:markdown/1997/1997ND167.md
@@ -429,7 +429,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12617	1998 ND 45	markdown	NOTES_SECTION	1,2,3,4	y	0	0	0	0	y	nw_scan:NW2d/574/867.md | archive:archive/1998/970233.htm | markdown:markdown/1998/1998ND45.md | pdf:pdfs/1998/1998ND45.pdf
 12618	1998 ND 55	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/574/875.md | archive:archive/1998/970238.htm | markdown:markdown/1998/1998ND55.md | pdf:pdfs/1998/1998ND55.pdf
 12622	1998 ND 21	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/575/200.md | archive:archive/1998/970186.htm | markdown:markdown/1998/1998ND21.md | pdf:pdfs/1998/1998ND21.pdf
-12623	1998 ND 13	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/375/203.md | nw_scan:NW2d/575/203.md | archive:archive/1998/970181.htm | markdown:markdown/1998/1998ND13.md | pdf:pdfs/1998/1998ND13.pdf
+12623	1998 ND 13	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/375/203.md | nw_scan:NW2d/575/203.md | archive:archive/1998/970181.htm | markdown:markdown/1998/1998ND13.md | pdf:pdfs/1998/1998ND13.pdf
 12625	1998 ND 35	markdown	MALFORMED	1,2,3,4	y	0	1	0	0	-	nw_scan:NW2d/575/211.md | archive:archive/1998/970212.htm | markdown:markdown/1998/1998ND35.md | pdf:pdfs/1998/1998ND35.pdf
 12627	1998 ND 64	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/575/221.md | archive:archive/1998/970287.htm | markdown:markdown/1998/1998ND64.md | pdf:pdfs/1998/1998ND64.pdf
 12632	1998 ND 40	markdown	NOTES_SECTION	1,2	y	0	0	0	0	y	nw_scan:NW2d/575/436.md | archive:archive/1998/970269.htm | markdown:markdown/1998/1998ND40.md | pdf:pdfs/1998/1998ND40.pdf
@@ -490,9 +490,9 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12724	1998 ND 140	markdown	NOTES_SECTION	1,2,3,4	y	0	0	0	0	y	nw_scan:NW2d/582/6.md | archive:archive/1998/970376.htm | markdown:markdown/1998/1998ND140.md | pdf:pdfs/1998/1998ND140.pdf
 12725	1998 ND 139	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/582/639.md | archive:archive/1998/970333.htm | markdown:markdown/1998/1998ND139.md | pdf:pdfs/1998/1998ND139.pdf
 12727	1998 ND 144	markdown	CLEAN	1,2,3,4,5,6	y	0	0	0	0	-	nw_scan:NW2d/582/647.md | archive:archive/1998/970307.htm | markdown:markdown/1998/1998ND144.md | pdf:pdfs/1998/1998ND144.pdf
-12728	1998 ND 145	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/582/653.md | archive:archive/1998/970340.htm | markdown:markdown/1998/1998ND145.md | pdf:pdfs/1998/1998ND145.pdf
+12728	1998 ND 145	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/582/653.md | archive:archive/1998/970340.htm | markdown:markdown/1998/1998ND145.md | pdf:pdfs/1998/1998ND145.pdf
 12729	1998 ND 156	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/582/657.md | archive:archive/1998/970320.htm | markdown:markdown/1998/1998ND156.md | pdf:pdfs/1998/1998ND156.pdf
-12730	1998 ND 147	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/582/661.md | archive:archive/1998/980034.htm | markdown:markdown/1998/1998ND147.md | pdf:pdfs/1998/1998ND147.pdf
+12730	1998 ND 147	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/582/661.md | archive:archive/1998/980034.htm | markdown:markdown/1998/1998ND147.md | pdf:pdfs/1998/1998ND147.pdf
 12731	1998 ND 152	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/582/665.md | archive:archive/1998/970347.htm | markdown:markdown/1998/1998ND152.md | pdf:pdfs/1998/1998ND152.pdf
 12732	1998 ND 150	markdown	NOTES_SECTION	1	y	0	0	0	0	y	nw_scan:NW2d/583/102.md | archive:archive/1998/980008.htm | markdown:markdown/1998/1998ND150.md | pdf:pdfs/1998/1998ND150.pdf
 12733	1998 ND 151	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/583/109.md | archive:archive/1998/980040.htm | markdown:markdown/1998/1998ND151.md | pdf:pdfs/1998/1998ND151.pdf
@@ -555,7 +555,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12818	1999 ND 32	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/589/585.md | archive:archive/1999/980165.htm | markdown:markdown/1999/1999ND32.md | pdf:pdfs/1999/1999ND32.pdf
 12820	1999 ND 25	markdown	CLEAN	1,2,3,4	y	0	0	0	0	-	nw_scan:NW2d/589/880.md | archive:archive/1999/980123.htm | markdown:markdown/1999/1999ND25.md | pdf:pdfs/1999/1999ND25.pdf
 12821	1999 ND 29	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/589/889.md | archive:archive/1999/980252.htm | markdown:markdown/1999/1999ND29.md | pdf:pdfs/1999/1999ND29.pdf
-12824	1999 ND 23	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/589/905.md | archive:archive/1999/980199.htm | markdown:markdown/1999/1999ND23.md | pdf:pdfs/1999/1999ND23.pdf
+12824	1999 ND 23	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/589/905.md | archive:archive/1999/980199.htm | markdown:markdown/1999/1999ND23.md | pdf:pdfs/1999/1999ND23.pdf
 12839	1999 ND 30	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/590/197.md | archive:archive/1999/980081.htm | markdown:markdown/1999/1999ND30.md | pdf:pdfs/1999/1999ND30.pdf
 12840	1999 ND 34	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/590/202.md | archive:archive/1999/980249.htm | markdown:markdown/1999/1999ND34.md | pdf:pdfs/1999/1999ND34.pdf
 12841	1999 ND 28	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/590/205.md | archive:archive/1999/980088.htm | markdown:markdown/1999/1999ND28.md | pdf:pdfs/1999/1999ND28.pdf
@@ -594,7 +594,7 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12896	1999 ND 96	markdown	NOTES_SECTION	1,2	y	0	0	0	0	y	nw_scan:NW2d/593/775.md | archive:archive/1999/980307.htm | markdown:markdown/1999/1999ND96.md | pdf:pdfs/1999/1999ND96.pdf
 12898	1999 ND 98	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/593/785.md | archive:archive/1999/980355.htm | markdown:markdown/1999/1999ND98.md | pdf:pdfs/1999/1999ND98.pdf
 12900	1999 ND 110	markdown	NOTES_SECTION	1	y	0	0	0	0	y	nw_scan:NW2d/594/317.md | nw_scan:NW2d/594/317_2.md | markdown:markdown/1999/1999ND110.md | archive:archive/1999/980356.htm | pdf:pdfs/1999/1999ND110.pdf
-12901	1999 ND 106	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/594/702.md | archive:archive/1999/980357.htm | markdown:markdown/1999/1999ND106.md | pdf:pdfs/1999/1999ND106.pdf
+12901	1999 ND 106	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/594/702.md | archive:archive/1999/980357.htm | markdown:markdown/1999/1999ND106.md | pdf:pdfs/1999/1999ND106.pdf
 12905	1999 ND 107	markdown	NOTES_SECTION	1	y	0	0	0	0	y	nw_scan:NW2d/595/10.md | archive:archive/1999/980246.htm | markdown:markdown/1999/1999ND107.md | pdf:pdfs/1999/1999ND107.pdf
 12906	1999 ND 102	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/595/16.md | archive:archive/1999/980306.htm | markdown:markdown/1999/1999ND102.md | pdf:pdfs/1999/1999ND102.pdf
 12907	1999 ND 115	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/595/285.md | archive:archive/1999/980208.htm | markdown:markdown/1999/1999ND115.md | pdf:pdfs/1999/1999ND115.pdf
@@ -610,14 +610,14 @@ id	cite	lineage	bucket	det_nums	contig	n_orphan	n_malformed	n_nbsp	west_brackets
 12928	1999 ND 128	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/597/420.md | archive:archive/1999/980366.htm | markdown:markdown/1999/1999ND128.md | pdf:pdfs/1999/1999ND128.pdf
 12929	1999 ND 137	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/597/644.md | archive:archive/1999/980269.htm | markdown:markdown/1999/1999ND137.md | pdf:pdfs/1999/1999ND137.pdf
 12930	1999 ND 134	markdown	NOTES_SECTION	1,2,3,4,5,6	y	0	0	0	0	y	nw_scan:NW2d/597/652.md | archive:archive/1999/980027.htm | markdown:markdown/1999/1999ND134.md | pdf:pdfs/1999/1999ND134.pdf
-12933	1999 ND 139	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/598/106.md | archive:archive/1999/990030.htm | markdown:markdown/1999/1999ND139.md | pdf:pdfs/1999/1999ND139.pdf
-12934	1999 ND 140	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/598/111.md | archive:archive/1999/990024.htm | markdown:markdown/1999/1999ND140.md | pdf:pdfs/1999/1999ND140.pdf
+12933	1999 ND 139	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/598/106.md | archive:archive/1999/990030.htm | markdown:markdown/1999/1999ND139.md | pdf:pdfs/1999/1999ND139.pdf
+12934	1999 ND 140	markdown	CLEAN	1	y	0	0	0	0	-	nw_scan:NW2d/598/111.md | archive:archive/1999/990024.htm | markdown:markdown/1999/1999ND140.md | pdf:pdfs/1999/1999ND140.pdf
 12935	1999 ND 142	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/598/116.md | archive:archive/1999/980319.htm | markdown:markdown/1999/1999ND142.md | pdf:pdfs/1999/1999ND142.pdf
-12937	1999 ND 158	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/598/125.md | archive:archive/1999/990003.htm | markdown:markdown/1999/1999ND158.md | pdf:pdfs/1999/1999ND158.pdf
+12937	1999 ND 158	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/598/125.md | archive:archive/1999/990003.htm | markdown:markdown/1999/1999ND158.md | pdf:pdfs/1999/1999ND158.pdf
 12939	1999 ND 153	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/598/139.md | archive:archive/1999/990096.htm | markdown:markdown/1999/1999ND153.md | pdf:pdfs/1999/1999ND153.pdf
 12940	1999 ND 143	markdown	PERIOD_ORPHAN	-	-	20	0	0	0	-	nw_scan:NW2d/598/147.md | archive:archive/1999/980272.htm | markdown:markdown/1999/1999ND143.md | pdf:pdfs/1999/1999ND143.pdf
 12941	1999 ND 144	markdown	PERIOD_ORPHAN	-	-	4	0	0	0	-	nw_scan:NW2d/598/174.md | archive:archive/1999/980342.htm | markdown:markdown/1999/1999ND144.md | pdf:pdfs/1999/1999ND144.pdf
-12943	1999 ND 147	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/598/193.md | archive:archive/1999/980294.htm | markdown:markdown/1999/1999ND147.md | pdf:pdfs/1999/1999ND147.pdf
+12943	1999 ND 147	markdown	CLEAN	1,2	y	0	0	0	0	-	nw_scan:NW2d/598/193.md | archive:archive/1999/980294.htm | markdown:markdown/1999/1999ND147.md | pdf:pdfs/1999/1999ND147.pdf
 12944	1999 ND 150	markdown	PERIOD_ORPHAN	-	-	2	0	0	0	-	nw_scan:NW2d/598/480.md | archive:archive/1999/990020.htm | markdown:markdown/1999/1999ND150.md | pdf:pdfs/1999/1999ND150.pdf
 12945	1999 ND 156	markdown	CLEAN	1,2,3	y	0	0	0	0	-	nw_scan:NW2d/598/490.md | archive:archive/1999/990023.htm | markdown:markdown/1999/1999ND156.md | pdf:pdfs/1999/1999ND156.pdf
 12946	1999 ND 151	markdown	PERIOD_ORPHAN	-	-	1	0	0	0	-	nw_scan:NW2d/598/494.md | archive:archive/1999/990050.htm | markdown:markdown/1999/1999ND151.md | pdf:pdfs/1999/1999ND151.pdf

@@ -2,6 +2,20 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-editpair-apply-2026-06-23` — first automated footnote repairs (Phase 2b)
+
+First end-to-end run of the propose -> validate -> gated-apply pipeline. Agents
+(read-only) emitted self-verified exact `old_exact -> new_exact` edit pairs from
+the court archive HTML; the applier replaced + gated each opinion atomically:
+marker-only edits (no letters/non-marker punctuation changed), alphabetic-token
+multiset preserved (+ appended body words only), parser detects each footnote,
+call_para matches, invariants 24/2/0. **17 of 28 archive-backed opinions repaired**
+(incl. **1997 ND 98** n.1-3, recovering a citation-confirmed loss); 11 skipped
+atomically (exact-string miss or a non-marker over-correction caught by the gate
+— e.g. 1997 ND 43 fn3 comma->period). 1998 ND 228 held for manual renumber/strip
+(decided). Each footnote logged. Scripts: `scripts/apply_footnote_editpairs.py`
+(+ `footnote_source_diff.py`, `validate_footnote_proposals.py`).
+
 ## Batch `west-keynote-strip-2026-06-23` — strip West key-number headnote markers (corpus pass Phase 1)
 
 West/CL-lineage opinions retained West key-number `[N]` headnote markers (runs like

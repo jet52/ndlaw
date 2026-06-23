@@ -25,6 +25,15 @@ def words(s):
     return sorted(re.findall(r"[A-Za-z]+", s))
 
 
+def marker_only(old, new):
+    """An edit may only change footnote-marker mechanism: brackets, the digit,
+    periods, and whitespace. Letters and other punctuation (commas, dashes,
+    quotes, parens, §) must be IDENTICAL — catches agent over-corrections like
+    turning a comma into a period."""
+    k = lambda s: re.sub(r"[\[\]\d.\s]", "", s)
+    return k(old) == k(new)
+
+
 def body_present(text, body):
     tn = " ".join(re.findall(r"[a-z0-9]+", text.lower()))
     w = re.findall(r"[a-z0-9]+", body.lower())
@@ -67,6 +76,9 @@ def main():
                 oe, ne = ed.get("old_exact", ""), ed.get("new_exact", "")
                 if not oe or text.count(oe) != 1:
                     ok, reason = False, f"fn{num} edit old_exact count={text.count(oe) if oe else 'empty'}"
+                    break
+                if not marker_only(oe, ne):
+                    ok, reason = False, f"fn{num} edit changes non-marker chars: {oe!r}->{ne!r}"
                     break
                 text = text.replace(oe, ne)
             if not ok:
