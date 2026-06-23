@@ -2,6 +2,15 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-inline-call-retrofit-2026-06-23` — align 1999 ND 2 / 2011 ND 122 to inline [N] (Phase 2c)
+
+The two footnotes restored earlier this arc used a bare-line call marker (Route A).
+Both call digits actually survived attached in the prose (`material fact1`,
+`costs.1`); retrofit to the ratified inline-[N] convention by bracketing the
+attached digit and removing the redundant bare-line marker. **1999 ND 2** → ¶ 5 n.1;
+**2011 ND 122** → ¶ 1 n.1. Body numbering unchanged; alphabetic-token sequence
+asserted identical. Script: `scripts/retrofit_inline_call_2026-06-23.py`.
+
 ## Batch `footnote-body-marker-fix-2026-06-23` — normalize malformed footnote-body markers (Phase 2c)
 
 Footnotes present in the text but parser-invisible because the period-form body
