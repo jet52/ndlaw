@@ -2,6 +2,34 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `yaml-frontmatter-2026-06-24` — strip embedded YAML frontmatter (17,593 opinions)
+
+The largest text_content cleanup in the corpus (user-approved). Markdown/reporter-
+sourced opinions were ingested with their `---\ntitle: ...\n---` frontmatter block
+embedded at the start of text_content — pure metadata (title, title_full, court,
+date_filed, citations, judges, cluster_id), all duplicated in the structured
+columns/tables, and indexed by FTS / returned by get_opinion_text / shipped in the
+released DB. `scripts/strip_yaml_frontmatter.py` removed ONLY the single leading
+frontmatter block (opening `---` through the first closing `---` fence + trailing
+blank line); any `---` inside the body untouched. Gated per opinion: must start
+with `---\n`, the block must contain a `title:` key, closing fence must exist, and
+the remaining body must be >= 40 chars (never blank an opinion). 17,593 OK / 0
+skipped. FTS index auto-synced via the opinions_au trigger (verified: the
+YAML-only term "cluster_id" now returns 0 FTS hits). Detector 175/0; invariants
+24 ok / 2 known / 0 regressed; 66 tests pass.
+
+## Batch `filed-office-2026-06-24` — strip FILED-IN-OFFICE page-headers (301 headers)
+
+Removed `FILED IN THE OFFICE OF THE CLERK OF SUPREME COURT <date> STATE OF NORTH
+DAKOTA` clerk filing page-headers fused into text_content — a clerk-stamp variant
+the earlier pass missed (often leads text_content; leading-docket / trailing-
+running-header fusions). `scripts/strip_filed_office.py`, same gate model as
+strip_clerk_stamps (stamp-vocab word-multiset + PDF fallback for mid-word fusion).
+301 headers removed (177 strict + 124 PDF-verified fusion), 0 skipped; 181
+lowercase "filed in the office of the clerk" matches were legitimate prose and
+correctly left. Numeric + month-name dates, optional "THE", OCR stray-char
+tolerated. 0 all-caps headers remain. Detector 175/0; 66 tests pass.
+
 ## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P14-P16 (53 opinions)
 
 Batches P14-P16 (119 opinions, 2024 ND 77 -> 2023 ND 208; crosses into the

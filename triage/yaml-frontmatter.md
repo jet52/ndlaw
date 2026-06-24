@@ -1,4 +1,4 @@
-# YAML frontmatter strip — DRY-RUN
+# YAML frontmatter strip — APPLIED
 
 17593 opinions OK, 0 skipped.
 
