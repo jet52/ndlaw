@@ -1,0 +1,72 @@
+[
+ {
+  "opinion_id": 19669,
+  "class": "heading_seq",
+  "old_exact": "structural error. A\n\n[¶11]",
+  "new_exact": "structural error.\n\nA\n\n[¶11]",
+  "verified_count": 1,
+  "source": "2022ND157.pdf: subheading 'A' is standalone before [¶11]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 19669,
+  "class": "heading_seq",
+  "old_exact": "waived compliance. B\n\n[¶13]",
+  "new_exact": "waived compliance.\n\nB\n\n[¶13]",
+  "verified_count": 1,
+  "source": "2022ND157.pdf: subheading 'B' is standalone before [¶13]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 18222,
+  "class": "heading_seq",
+  "old_exact": "We affirm. I\n\n[¶2]",
+  "new_exact": "We affirm.\n\nI\n\n[¶2]",
+  "verified_count": 1,
+  "source": "2023ND150.pdf line 50: section 'I' is standalone before [¶2]; DB merged it onto the intro paragraph.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 18222,
+  "class": "heading_seq",
+  "old_exact": "Brady violation claim. H\n\n[¶5]",
+  "new_exact": "Brady violation claim.\n\nII\n\n[¶5]",
+  "verified_count": 1,
+  "source": "2023ND150.pdf line 80: section 'II' is standalone before the 'Post-conviction relief may be granted' paragraph ([¶5] in DB). DB OCR'd 'II' as 'H' and merged it onto the prior sentence. Restored to 'II' on its own line.",
+  "confidence": "high",
+  "note": "Heading-reformat + OCR correction (II misread as 'H')."
+ },
+ {
+  "opinion_id": 18222,
+  "class": "heading_seq",
+  "old_exact": "924 N.W.2d 87). III\n\n[¶6]",
+  "new_exact": "924 N.W.2d 87).\n\nIII\n\n[¶6]",
+  "verified_count": 1,
+  "source": "2023ND150.pdf line 103: section 'III' is standalone before [¶6]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 18222,
+  "class": "heading_seq",
+  "old_exact": "not all purposes. IV\n\n[¶15]",
+  "new_exact": "not all purposes.\n\nIV\n\n[¶15]",
+  "verified_count": 1,
+  "source": "2023ND150.pdf line 258: section 'IV' is standalone before [¶15]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 18222,
+  "class": "heading_seq",
+  "old_exact": "counsel was ineffective. V\n\n[¶20]",
+  "new_exact": "counsel was ineffective.\n\nV\n\n[¶20]",
+  "verified_count": 1,
+  "source": "2023ND150.pdf line 357: section 'V' is standalone before [¶20]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ }
+]

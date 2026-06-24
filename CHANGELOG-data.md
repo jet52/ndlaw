@@ -2,6 +2,28 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `headings-2022ND132-2026-06-24` + `headings-2026-06-24` — section-heading reformat queue (3 opinions, 11 headings)
+
+Draining the recurring heading-reformat queue. Section/subsection headings (I, II, A,
+B, C, ...) were merged onto the end of the preceding line during ingestion; the proofing
+agents proposed DELETING the stray letters, which would lose the court's section
+structure. Correct action is MOVE to the heading's own line (verified against each
+opinion's PDF). All edits conserve text (letters relocated, not removed).
+
+- **2022 ND 132** (id 19647, State v. Dearinger): A/B/C. 'A' had been scrambled into the
+  middle of ¶10 (after 'preliminary hearings:'); moved before ¶10. B before ¶15, C
+  before ¶17 (the agent's proposal missed C — found via full structural reconciliation).
+- **2022 ND 157** (id 19669, State v. Pulkrabek): A before ¶11, B before ¶13.
+- **2023 ND 150** (id 18222, Black Elk v. State): I/II/III/IV/V. 'II' had been OCR'd as
+  'H' and merged onto the prior sentence (restored to 'II' on its own line before ¶5);
+  I before ¶2, III before ¶6, IV before ¶15, V before ¶20.
+
+Note on method: the original agent proposals named the wrong PDF stems for two of these
+(neutral cite != filing-year sequence); cites were re-derived from `source_path` before
+verifying. Deferred (ambiguous, need individual treatment): **2022 ND 85** (id 19709,
+"A An" — heading vs. spurious dup) and **2025 ND 61** (id 20271, two parallel A/B/C
+subsection sequences under II and III).
+
 ## Batch `corpus-proofing-p26-2026-06-24` — proofing fleet P26 (40 opinions, 2022 ND 90→48)
 
 Low-noise cycle (31/40 clean). Verifier: 6 auto / 7 review / 4 reject. Only 2 items

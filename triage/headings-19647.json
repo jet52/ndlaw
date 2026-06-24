@@ -1,0 +1,32 @@
+[
+ {
+  "opinion_id": 19647,
+  "class": "heading_seq",
+  "old_exact": "960 N.W.2d 788.\n\n[¶10] Rule 5.1, N.D.R.Crim.P., governs preliminary hearings: A \"(a) Probable Cause",
+  "new_exact": "960 N.W.2d 788.\n\nA\n\n[¶10] Rule 5.1, N.D.R.Crim.P., governs preliminary hearings: \"(a) Probable Cause",
+  "verified_count": 1,
+  "source": "2022ND132.pdf line 95: subheading 'A' is a standalone centered heading immediately before [¶10]. DB scrambled it into the middle of ¶10 (after 'preliminary hearings:'). Moved to its own line before ¶10; text conserved.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE): the agent proposed deleting 'A ', which would lose the section heading. Relocated instead."
+ },
+ {
+  "opinion_id": 19647,
+  "class": "heading_seq",
+  "old_exact": "as the State alleged. B\n\n[¶15]",
+  "new_exact": "as the State alleged.\n\nB\n\n[¶15]",
+  "verified_count": 1,
+  "source": "2022ND132.pdf line 167: subheading 'B' is standalone before [¶15]. DB merged it onto the prior sentence. Moved to its own line.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ },
+ {
+  "opinion_id": 19647,
+  "class": "heading_seq",
+  "old_exact": "\"beat up\" T.D. C\n\n[¶17]",
+  "new_exact": "\"beat up\" T.D.\n\nC\n\n[¶17]",
+  "verified_count": 1,
+  "source": "2022ND132.pdf line 180: subheading 'C' is standalone between ¶16 and [¶17]. DB merged it onto the end of ¶16. Moved to its own line. (Agent missed this one.)",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE); not in the agent's proposal set — found via full structural reconciliation."
+ }
+]
