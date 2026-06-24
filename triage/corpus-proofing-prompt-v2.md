@@ -1,4 +1,10 @@
-# Corpus proofing — subagent prompt v1
+# Corpus proofing — subagent prompt v2
+
+Changelog: v2 (2026-06-24) — added rule 6.5/8 form-feed & page-furniture (a
+separate deterministic pass owns 0x0C + running headers; agents ignore them);
+tightened the `whitespace` class to forbid ellipsis respacing (`. . . .` is the
+court's Bluebook form) and token-wrapping newlines. Synced in
+`scripts/gen_proofing_workflow.py`.
 
 Injected per opinion. `{...}` are filled by the workflow generator. The era block
 swaps source guidance. Output is forced via StructuredOutput (schema below).
@@ -52,7 +58,12 @@ Authoritative source for this era: {source_desc}
   ("ofthe", "inthe") by an OCR/line break.
 - `whitespace` — mid-sentence hard line break to rejoin; 3+ consecutive blank lines
   to collapse to the opinion's paragraph norm; doubled internal spaces. Only where
-  meaning is untouched. Do NOT reflow the whole document.
+  meaning is untouched. Do NOT reflow the whole document. MECHANICAL ONLY: never
+  respace an ellipsis (". . . ." is the court's Bluebook form — leave verbatim, do
+  not collapse to "...."); never insert a newline to wrap a token across a line.
+- **Form-feed / page furniture (do NOT propose):** a 0x0C byte (page break) and any
+  running header it precedes (short case name + "No./Nos./Civil No. <docket>"
+  repeating the caption) are owned by a separate deterministic pass. Ignore them.
 - `paragraph_seq` — a `[¶N]` marker out of sequence/duplicated/missing where the
   correct number is UNAMBIGUOUS from the surrounding markers; else flag.
   CAUTION: a restart/repeat of low numbers mid-opinion (…¶11, then ¶1-9, then ¶12)

@@ -52,9 +52,22 @@ def pdf_text(con, oid):
 
 
 
+_ELLIPSIS_SP = re.compile(r"\.\s+\.")   # spaced dots: ". ." — whitespace is semantic
+
+
 def _ws_equiv(a, b):
-    """True if a and b differ only in whitespace (incl. letter-spacing)."""
-    return re.sub(r"\s+", "", a) == re.sub(r"\s+", "", b)
+    """True if a and b differ only in whitespace AND that whitespace is not
+    semantic. Whitespace between dots is part of a legal ellipsis (Bluebook
+    ". . . ."), and a newline inserted where there was none breaks a token
+    across a line (e.g. a hyphenated statute number) — neither is a safe
+    mechanical AUTO fix, so we route those to REVIEW."""
+    if re.sub(r"\s+", "", a) != re.sub(r"\s+", "", b):
+        return False
+    if _ELLIPSIS_SP.search(a) or _ELLIPSIS_SP.search(b):
+        return False                      # ellipsis respacing -> review
+    if b.count("\n") > a.count("\n"):
+        return False                      # newline inserted (reflow) -> review
+    return True
 
 def core(s, n=45):
     c = norm(s)
