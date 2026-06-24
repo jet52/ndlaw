@@ -1,0 +1,10418 @@
+[
+ {
+  "opinion_id": 7371,
+  "cite": "225 N.W.2d 571",
+  "status": "OK_nopdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 7688,
+  "cite": "252 N.W.2d 893",
+  "status": "OK_nopdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 7877,
+  "cite": "268 N.W.2d 126",
+  "status": "OK_nopdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 8248,
+  "cite": "295 N.W.2d 401",
+  "status": "OK_nopdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 8274,
+  "cite": "298 N.W.2d 493",
+  "status": "OK_nopdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 8691,
+  "cite": "321 N.W.2d 510",
+  "status": "OK_nopdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 9578,
+  "cite": "382 N.W.2d 381",
+  "status": "OK_nopdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 10149,
+  "cite": "424 N.W.2d 894",
+  "status": "OK_nopdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 11482,
+  "cite": "506 N.W.2d 368",
+  "status": "OK_nopdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 12079,
+  "cite": "541 N.W.2d 685",
+  "status": "OK_nopdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12388,
+  "cite": "1997 ND 30",
+  "status": "OK_nopdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12404,
+  "cite": "1997 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12419,
+  "cite": "1997 ND 74",
+  "status": "OK_nopdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12429,
+  "cite": "1997 ND 73",
+  "status": "OK_nopdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 12484,
+  "cite": "1997 ND 148",
+  "status": "OK_nopdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 12500,
+  "cite": "1997 ND 155",
+  "status": "OK_nopdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12511,
+  "cite": "1997 ND 158",
+  "status": "OK_nopdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 12536,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 24, ¶ 9, 559 N.W.2d 225",
+   "1997 ND 57, ¶ 5, 561 N.W.2d 631",
+   "1997 ND 57, ¶ 7, 561 N.W.2d 631"
+  ]
+ },
+ {
+  "opinion_id": 12551,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 153, ¶ 6, 567 N.W.2d 807",
+   "1997 ND 180, ¶ 21, 568 N.W.2d 747",
+   "1997 ND 155, ¶¶ 21-22, 567 N.W.2d 336"
+  ]
+ },
+ {
+  "opinion_id": 12559,
+  "cite": "1997 ND 204",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 12566,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 191, ¶ 6, 569 N.W.2d 269"
+  ]
+ },
+ {
+  "opinion_id": 12583,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 54, ¶ 13, 561 N.W.2d 634",
+   "1997 ND 238, ¶23, 572 N.W.2d 809"
+  ]
+ },
+ {
+  "opinion_id": 12586,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 93, ¶ 17, 563 N.W.2d 400"
+  ]
+ },
+ {
+  "opinion_id": 12630,
+  "cite": "1998 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12636,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 25, ¶ 22, 560 N.W.2d 198",
+   "1997 ND 8, ¶ 14, 560 N.W.2d 194",
+   "1997 ND 188, ¶ 6, 569 N.W.2d 451",
+   "1997 ND 7, ¶¶ 48-49, 559 N.W.2d 802"
+  ]
+ },
+ {
+  "opinion_id": 12639,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 7, ¶ 16, 559 N.W.2d 807"
+  ]
+ },
+ {
+  "opinion_id": 12640,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 107, ¶ 9, 563 N.W.2d 112",
+   "1997 ND 238, ¶ 11, 572 N.W.2d 809",
+   "1997 ND 98, ¶ 12, 564 N.W.2d 631"
+  ]
+ },
+ {
+  "opinion_id": 12647,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 175, ¶ 10, 568 N.W.2d 741",
+   "1997 ND 175, ¶ 10, 568 N.W.2d 741",
+   "1997 ND 175, ¶ 10, 568 N.W.2d 741",
+   "1997 ND 175, ¶ 11, 568 N.W.2d 741"
+  ]
+ },
+ {
+  "opinion_id": 12674,
+  "cite": "1998 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 12679,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 78, ¶¶ 10-11, 576 N.W.2d 505",
+   "1997 ND 179, ¶ 30, 568 N.W.2d 920",
+   "1997 ND 179, ¶ 27, 568 N.W.2d 920",
+   "1997 ND 179, ¶ 29, 568 N.W.2d 920"
+  ]
+ },
+ {
+  "opinion_id": 12680,
+  "cite": "1998 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 12684,
+  "cite": "1998 ND 121",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 12691,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 11, ¶ 15, 559 N.W.2d 818",
+   "1998 ND 53, ¶ 5, 575 N.W.2d 667",
+   "1997 ND 95, ¶ 5, 563 N.W.2d 384",
+   "1997 ND 58, ¶ 7, 561 N.W.2d 642"
+  ]
+ },
+ {
+  "opinion_id": 12705,
+  "cite": "79 N.D. 595",
+  "status": "OK_nopdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 12706,
+  "cite": "1998 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 12707,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 47, ¶ 6, 561 N.W.2d 644",
+   "1998 ND 4, ¶ 14, 574 N.W.2d 564"
+  ]
+ },
+ {
+  "opinion_id": 12730,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 132, ¶¶ 13-14, 580 N.W.2d 583"
+  ]
+ },
+ {
+  "opinion_id": 12736,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 199, ¶2, 570 N.W.2d 195",
+   "1997 ND 36, ¶ 11, 559 N.W.2d 846",
+   "1998 ND 46, ¶45, 575 N.W.2d 445",
+   "1997 ND 199, ¶ 11, 570 N.W.2d 195"
+  ]
+ },
+ {
+  "opinion_id": 12739,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 56, ¶ 8, 562 N.W.2d 91"
+  ]
+ },
+ {
+  "opinion_id": 12746,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 153, ¶ 10, 583 N.W.2d 377",
+   "1998 ND 153, ¶ 8, 583 N.W.2d 377",
+   "1998 ND 153, ¶ 30, 583 N.W.2d 377"
+  ]
+ },
+ {
+  "opinion_id": 12752,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 200, ¶ 21, 570 N.W.2d 719"
+  ]
+ },
+ {
+  "opinion_id": 12760,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 99, ¶ 14, 578 N.W.2d 519"
+  ]
+ },
+ {
+  "opinion_id": 12801,
+  "cite": "1999 ND 1",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12860,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 36, ¶¶ 11-12, 590 N.W.2d 215"
+  ]
+ },
+ {
+  "opinion_id": 12865,
+  "cite": "1999 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12879,
+  "cite": "1999 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 12885,
+  "cite": "1999 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 12890,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 12, ¶ 20, 589 N.W.2d 551",
+   "1999 ND 25, ¶ 34, 589 N.W.2d 880",
+   "1999 ND 12, ¶ 20, 589 N.W.2d 551",
+   "1999 ND 25, ¶¶ 32-34, 589 N.W.2d 880"
+  ]
+ },
+ {
+  "opinion_id": 12904,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 74, ¶ 9, 592 N.W.2d 585",
+   "1999 ND 73, ¶ 27, 592 N.W.2d 565",
+   "1999 ND 74, ¶ 11, 592 N.W.2d 585",
+   "1999 ND 74, ¶ 11, 592 N.W.2d 585"
+  ]
+ },
+ {
+  "opinion_id": 12907,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 129, ¶ 9, 580 N.W.2d 573"
+  ]
+ },
+ {
+  "opinion_id": 12910,
+  "cite": "1999 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 12922,
+  "cite": "1999 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 12929,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 134, ¶ 30, 597 N.W.2d 652",
+   "1999 ND 134, ¶ 37, 597 N.W.2d 652"
+  ]
+ },
+ {
+  "opinion_id": 12930,
+  "cite": "1999 ND 134",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 12938,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 105, ¶ 27, 595 N.W.2d 1",
+   "1999 ND 103, ¶ 9, 598 N.W.2d 81",
+   "1999 ND 126, ¶ 9, 596 N.W.2d 317",
+   "1999 ND 119, ¶ 23, 595 N.W.2d 583"
+  ]
+ },
+ {
+  "opinion_id": 12940,
+  "cite": "1999 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12941,
+  "cite": "1999 ND 144",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12949,
+  "cite": "1999 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 12951,
+  "cite": "1999 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 12953,
+  "cite": "1999 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 12966,
+  "cite": "1999 ND 171",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 12969,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 175, ¶10, 568 N.W.2d 741",
+   "1998 ND 135, ¶28, 580 N.W.2d 593",
+   "1997 ND 144, ¶8, 567 N.W.2d 330",
+   "1998 ND 135, ¶29, 580 N.W.2d 593"
+  ]
+ },
+ {
+  "opinion_id": 12970,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 129, ¶ 7, 598 N.W.2d 89",
+   "1999 ND 153, ¶ 20, 598 N.W.2d 139",
+   "1999 ND 153, ¶ 18, 598 N.W.2d 139",
+   "1999 ND 129, ¶ 7, 598 N.W.2d 89"
+  ]
+ },
+ {
+  "opinion_id": 12977,
+  "cite": "1999 ND 180",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13007,
+  "cite": "1999 ND 190",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13009,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 94, ¶34, 593 N.W.2d 383"
+  ]
+ },
+ {
+  "opinion_id": 13032,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 177, ¶20, 584 N.W.2d 844"
+  ]
+ },
+ {
+  "opinion_id": 13038,
+  "cite": "1999 ND 236",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13039,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 219, ¶9, 587 N.W.2d 173",
+   "1997 ND 169, ¶6, 567 N.W.2d 345"
+  ]
+ },
+ {
+  "opinion_id": 13043,
+  "cite": "1999 ND 241",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13054,
+  "cite": "1999 ND 235",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13058,
+  "cite": "1999 ND 247",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13063,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 141, ¶21, 581 N.W.2d 921"
+  ]
+ },
+ {
+  "opinion_id": 13070,
+  "cite": "2000 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13084,
+  "cite": "2000 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13106,
+  "cite": "2000 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 13113,
+  "cite": "2000 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 13120,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 26, ¶ 8, 606 N.W.2d 524",
+   "2000 ND 39, ¶ 9, 607 N.W.2d 561",
+   "2000 ND 26, ¶¶ 15-17, 606 N.W.2d 524",
+   "1999 ND 54, ¶10, 591 N.W.2d 120"
+  ]
+ },
+ {
+  "opinion_id": 13136,
+  "cite": "2000 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13161,
+  "cite": "2000 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 13167,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 39, ¶10, 590 N.W.2d 433"
+  ]
+ },
+ {
+  "opinion_id": 13170,
+  "cite": "2000 ND 105",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 13180,
+  "cite": "2000 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13181,
+  "cite": "2000 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13210,
+  "cite": "2000 ND 148",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13217,
+  "cite": "2000 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13230,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 200, ¶ 9, 570 N.W.2d 719"
+  ]
+ },
+ {
+  "opinion_id": 13238,
+  "cite": "2000 ND 179",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 13241,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 168, ¶7, 598 N.W.2d 846"
+  ]
+ },
+ {
+  "opinion_id": 13248,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 105, ¶¶9-10, 595 N.W.2d 1",
+   "1999 ND 28, ¶5, 590 N.W.2d 205"
+  ]
+ },
+ {
+  "opinion_id": 13251,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 191, ¶6, 600 N.W.2d 851"
+  ]
+ },
+ {
+  "opinion_id": 13252,
+  "cite": "2000 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13285,
+  "cite": "2000 ND 224",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13294,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 91, ¶18, 577 N.W.2d 782"
+  ]
+ },
+ {
+  "opinion_id": 13299,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 205, ¶13, 602 N.W.2d 268"
+  ]
+ },
+ {
+  "opinion_id": 13302,
+  "cite": "2001 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13306,
+  "cite": "2001 ND 17",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13322,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 225, ¶ 15, 621 N.W.2d 141"
+  ]
+ },
+ {
+  "opinion_id": 13327,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 203, ¶ 25, 621 N.W.2d 314",
+   "1999 ND 16, ¶ 13, 589 N.W.2d 579",
+   "2001 ND 33, ¶ 9, 622 N.W.2d 232"
+  ]
+ },
+ {
+  "opinion_id": 13340,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 15, ¶31, 605 N.W.2d 153",
+   "2000 ND 15, ¶10, 605 N.W.2d 153",
+   "2000 ND 15, ¶27, 605 N.W.2d 153",
+   "2000 ND 15, ¶30, 605 N.W.2d 153"
+  ]
+ },
+ {
+  "opinion_id": 13344,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 158, ¶22, 615 N.W.2d 533",
+   "1997 ND 94, ¶4, 563 N.W.2d 394"
+  ]
+ },
+ {
+  "opinion_id": 13355,
+  "cite": "2001 ND 62",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 13368,
+  "cite": "2001 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13374,
+  "cite": "2001 ND 97",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13378,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 207, ¶5, 619 N.W.2d 490"
+  ]
+ },
+ {
+  "opinion_id": 13381,
+  "cite": "2001 ND 99",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13383,
+  "cite": "2001 ND 102",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13384,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 194, ¶10, 585 N.W.2d 811"
+  ]
+ },
+ {
+  "opinion_id": 13395,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 53, ¶ 33, 623 N.W.2d 720"
+  ]
+ },
+ {
+  "opinion_id": 13396,
+  "cite": "2001 ND 118",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13407,
+  "cite": "2000 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13417,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 202, ¶34, 620 N.W.2d 136",
+   "1998 ND 151, ¶24, 583 N.W.2d 109"
+  ]
+ },
+ {
+  "opinion_id": 13421,
+  "cite": "2001 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13422,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 67, ¶29, 575 N.W.2d 906"
+  ]
+ },
+ {
+  "opinion_id": 13438,
+  "cite": "2001 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13445,
+  "cite": "2001 ND 166",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13451,
+  "cite": "2001 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13455,
+  "cite": "2001 ND 176",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 13462,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 41, ¶ 9, 622 N.W.2d 726"
+  ]
+ },
+ {
+  "opinion_id": 13464,
+  "cite": "2001 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13494,
+  "cite": "2002 ND 1",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 13501,
+  "cite": "2002 ND 4",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13512,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 54, ¶10, 623 N.W.2d 382"
+  ]
+ },
+ {
+  "opinion_id": 13548,
+  "cite": "2002 ND 53",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13553,
+  "cite": "2002 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13556,
+  "cite": "2002 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13558,
+  "cite": "2002 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13559,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 107, ¶ 6, 611 N.W.2d 162"
+  ]
+ },
+ {
+  "opinion_id": 13565,
+  "cite": "2002 ND 65",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13566,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 109, ¶ 6, 579 N.W.2d 599"
+  ]
+ },
+ {
+  "opinion_id": 13569,
+  "cite": "2002 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13572,
+  "cite": "2002 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13573,
+  "cite": "2002 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13584,
+  "cite": "2002 ND 98",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13586,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 93, ¶8, 563 N.W.2d 400",
+   "2000 ND 109, ¶8, 611 N.W.2d 173"
+  ]
+ },
+ {
+  "opinion_id": 13603,
+  "cite": "2002 ND 121",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13613,
+  "cite": "2002 ND 125",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 13638,
+  "cite": "2002 ND 137",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13641,
+  "cite": "2002 ND 140",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 13671,
+  "cite": "2002 ND 175",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 13685,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 122, ¶8, 611 N.W.2d 898"
+  ]
+ },
+ {
+  "opinion_id": 13697,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 173, ¶ 22, 653 N.W.2d 79",
+   "2002 ND 173, ¶ 22, 653 N.W.2d 79"
+  ]
+ },
+ {
+  "opinion_id": 13718,
+  "cite": "2003 ND 10",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13719,
+  "cite": "2003 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 13723,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 110, ¶ 13, 628 N.W.2d 325"
+  ]
+ },
+ {
+  "opinion_id": 13733,
+  "cite": "2003 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13736,
+  "cite": "2003 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13750,
+  "cite": "2003 ND 48",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13752,
+  "cite": "2003 ND 42",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13756,
+  "cite": "2003 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 13759,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 209, ¶23, 655 N.W.2d 60",
+   "2002 ND 42, ¶6, 640 N.W.2d 689"
+  ]
+ },
+ {
+  "opinion_id": 13770,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 75, ¶3, 609 N.W.2d 96",
+   "2001 ND 101, ¶8, 627 N.W.2d 379"
+  ]
+ },
+ {
+  "opinion_id": 13785,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 48, ¶ 8, 623 N.W.2d 357"
+  ]
+ },
+ {
+  "opinion_id": 13799,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 15, ¶ 18, 656 N.W.2d 718",
+   "2003 ND 15, ¶ 18, 656 N.W.2d 718"
+  ]
+ },
+ {
+  "opinion_id": 13803,
+  "cite": "2003 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13810,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 116, ¶10, 646 N.W.2d 724"
+  ]
+ },
+ {
+  "opinion_id": 13815,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 8, ¶10, 621 N.W.2d 353"
+  ]
+ },
+ {
+  "opinion_id": 13818,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 65, ¶6, 643 N.W.2d 29"
+  ]
+ },
+ {
+  "opinion_id": 13822,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 216, ¶5, 587 N.W.2d 568"
+  ]
+ },
+ {
+  "opinion_id": 13828,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 17, ¶ 11, 621 N.W.2d 860"
+  ]
+ },
+ {
+  "opinion_id": 13829,
+  "cite": "2003 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 13836,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 92, ¶ 10, 663 N.W.2d 175",
+   "2003 ND 104, ¶¶ 20-21, 663 N.W.2d 186"
+  ]
+ },
+ {
+  "opinion_id": 13840,
+  "cite": "2003 ND 121",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13845,
+  "cite": "2003 ND 125",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13854,
+  "cite": "2003 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13860,
+  "cite": "2003 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13892,
+  "cite": "2003 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 13893,
+  "cite": "2003 ND 167",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 13907,
+  "cite": "2003 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 13912,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 168, ¶ 6, 670 N.W.2d 826"
+  ]
+ },
+ {
+  "opinion_id": 13914,
+  "cite": "2003 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 13915,
+  "cite": "2003 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 13927,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 113, ¶ 6, 665 N.W.2d 45"
+  ]
+ },
+ {
+  "opinion_id": 13935,
+  "cite": "2004 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 13945,
+  "cite": "2004 ND 26",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 13959,
+  "cite": "2004 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 13965,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 70, ¶ 8, 575 N.W.2d 924"
+  ]
+ },
+ {
+  "opinion_id": 13967,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 23, ¶ 10, 674 N.W.2d 495",
+   "2004 ND 23, ¶¶ 9-12, 674 N.W.2d 495",
+   "2003 ND 187, ¶ 21, 671 N.W.2d 825",
+   "2003 ND 187, ¶ 22, 671 N.W.2d 825"
+  ]
+ },
+ {
+  "opinion_id": 13968,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 162, ¶ 24, 652 N.W.2d 330"
+  ]
+ },
+ {
+  "opinion_id": 13970,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 21, ¶ 6, 674 N.W.2d 9"
+  ]
+ },
+ {
+  "opinion_id": 13974,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 194, ¶8, 585 N.W.2d 811"
+  ]
+ },
+ {
+  "opinion_id": 13975,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 91, ¶8, 663 N.W.2d 169",
+   "2003 ND 156, ¶9, 670 N.W.2d 336"
+  ]
+ },
+ {
+  "opinion_id": 13979,
+  "cite": "2004 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 13984,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 125, ¶7, 565 N.W.2d 762",
+   "1999 ND 175, ¶21, 599 N.W.2d 293",
+   "2001 ND 125, ¶29, 630 N.W.2d 46",
+   "1999 ND 31, ¶20, 589 N.W.2d 896"
+  ]
+ },
+ {
+  "opinion_id": 13992,
+  "cite": "2004 ND 71",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 13994,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 30, ¶7, 657 N.W.2d 245"
+  ]
+ },
+ {
+  "opinion_id": 13998,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 38, ¶ 19, 622 N.W.2d 712"
+  ]
+ },
+ {
+  "opinion_id": 14000,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 170, ¶ 4, 584 N.W.2d 493"
+  ]
+ },
+ {
+  "opinion_id": 14009,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 65, ¶27, 643 N.W.2d 29"
+  ]
+ },
+ {
+  "opinion_id": 14034,
+  "cite": "2004 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14037,
+  "cite": "2004 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14047,
+  "cite": "2004 ND 107",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14049,
+  "cite": "2004 ND 141",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14053,
+  "cite": "2004 ND 126",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 14066,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 126, ¶ 8, 681 N.W.2d 786"
+  ]
+ },
+ {
+  "opinion_id": 14072,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 197, ¶10, 672 N.W.2d 457",
+   "2003 ND 90, ¶20, 663 N.W.2d 161"
+  ]
+ },
+ {
+  "opinion_id": 14073,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 192, ¶¶ 11-12, 618 N.W.2d 505"
+  ]
+ },
+ {
+  "opinion_id": 14078,
+  "cite": "2004 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 14079,
+  "cite": "2004 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 14080,
+  "cite": "2004 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14086,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 128, ¶ 8, 681 N.W.2d 816"
+  ]
+ },
+ {
+  "opinion_id": 14087,
+  "cite": "2004 ND 163",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14090,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 122, ¶ 9, 595 N.W.2d 592"
+  ]
+ },
+ {
+  "opinion_id": 14091,
+  "cite": "2004 ND 158",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 14092,
+  "cite": "2004 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14094,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 197, ¶6, 636 N.W.2d 664"
+  ]
+ },
+ {
+  "opinion_id": 14095,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 151, ¶ 11, 683 N.W.2d 897",
+   "2000 ND 159, ¶10, 615 N.W.2d 542",
+   "1997 ND 9, ¶27, 559 N.W.2d 215",
+   "2004 ND 151, ¶ 11, 683 N.W.2d 897"
+  ]
+ },
+ {
+  "opinion_id": 14096,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 128, ¶ 8, 681 N.W.2d 816",
+   "2004 ND 147, ¶ 9, 683 N.W.2d 903"
+  ]
+ },
+ {
+  "opinion_id": 14097,
+  "cite": "2004 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14098,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 162, ¶ 20, 685 N.W.2d 129"
+  ]
+ },
+ {
+  "opinion_id": 14100,
+  "cite": "2004 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 14101,
+  "cite": "2004 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 14103,
+  "cite": "2004 ND 178",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14107,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 175, ¶10, 653 N.W.2d 33",
+   "2002 ND 162, ¶24, 652 N.W.2d 330",
+   "2000 ND 108, ¶16, 611 N.W.2d 187"
+  ]
+ },
+ {
+  "opinion_id": 14115,
+  "cite": "2004 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 14117,
+  "cite": "2004 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 14120,
+  "cite": "2004 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14132,
+  "cite": "2004 ND 207",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14140,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 118, ¶ 12, 647 N.W.2d 684"
+  ]
+ },
+ {
+  "opinion_id": 14141,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 145, ¶ 22, 598 N.W.2d 787"
+  ]
+ },
+ {
+  "opinion_id": 14153,
+  "cite": "2004 ND 224",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 14154,
+  "cite": "2004 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14158,
+  "cite": "2004 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 14166,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 163, ¶9, 685 N.W.2d 512",
+   "2004 ND 157, ¶25, 685 N.W.2d 120"
+  ]
+ },
+ {
+  "opinion_id": 14181,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 174, ¶7, 687 N.W.2d 226",
+   "1997 ND 125, ¶14, 565 N.W.2d 762"
+  ]
+ },
+ {
+  "opinion_id": 14189,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 135, ¶ 13, 596 N.W.2d 332",
+   "1998 ND 142, ¶7, 581 N.W.2d 919"
+  ]
+ },
+ {
+  "opinion_id": 14194,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 87, ¶17, 593 N.W.2d 762"
+  ]
+ },
+ {
+  "opinion_id": 14197,
+  "cite": "2005 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14198,
+  "cite": "2005 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14207,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 6, ¶4, 673 N.W.2d 241",
+   "2003 ND 71, ¶5, 660 N.W.2d 568"
+  ]
+ },
+ {
+  "opinion_id": 14210,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 34, ¶ 8, 692 N.W.2d 133"
+  ]
+ },
+ {
+  "opinion_id": 14211,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 16, ¶7, 673 N.W.2d 615"
+  ]
+ },
+ {
+  "opinion_id": 14217,
+  "cite": "2005 ND 43",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14222,
+  "cite": "2005 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14223,
+  "cite": "2005 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14235,
+  "cite": "2005 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 14238,
+  "cite": "2005 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 14243,
+  "cite": "2005 ND 92",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14244,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 205, ¶27, 571 N.W.2d 332",
+   "1999 ND 12, ¶9, 589 N.W.2d 551"
+  ]
+ },
+ {
+  "opinion_id": 14248,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 51, ¶4, 693 N.W.2d 39"
+  ]
+ },
+ {
+  "opinion_id": 14257,
+  "cite": "2005 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 14260,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 75, ¶8, 694 N.W.2d 225"
+  ]
+ },
+ {
+  "opinion_id": 14272,
+  "cite": "2005 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 14298,
+  "cite": "2005 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14303,
+  "cite": "2005 ND 125",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14308,
+  "cite": "2005 ND 136",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14322,
+  "cite": "2005 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14324,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 153, ¶¶ 17-21, 598 N.W.2d 139"
+  ]
+ },
+ {
+  "opinion_id": 14329,
+  "cite": "2005 ND 151",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14332,
+  "cite": "2005 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 14345,
+  "cite": "2005 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 14348,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 161, ¶¶4-6, 670 N.W.2d 500"
+  ]
+ },
+ {
+  "opinion_id": 14351,
+  "cite": "2005 ND 172",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14358,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 75, ¶ 18, 694 N.W.2d 225",
+   "2004 ND 166, ¶22, 686 N.W.2d 118",
+   "2004 ND 166, ¶25, 686 N.W.2d 118"
+  ]
+ },
+ {
+  "opinion_id": 14365,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 71, ¶4, 660 N.W.2d 568"
+  ]
+ },
+ {
+  "opinion_id": 14368,
+  "cite": "2005 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 14378,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 187, ¶ 11, 705 N.W.2d 845",
+   "2005 ND 192, ¶ 10, 705 N.W.2d 809",
+   "2005 ND 187, ¶¶ 9-10, 705 N.W.2d 845",
+   "2005 ND 187, ¶ 12, 705 N.W.2d 845"
+  ]
+ },
+ {
+  "opinion_id": 14453,
+  "cite": "2006 ND 34",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 14454,
+  "cite": "2006 ND 36",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 14470,
+  "cite": "2006 ND 58",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14480,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 204, ¶ 28, 706 N.W.2d 614"
+  ]
+ },
+ {
+  "opinion_id": 14492,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 187, ¶ 11, 705 N.W.2d 845",
+   "2003 ND 179, ¶5, 671 N.W.2d 811",
+   "2004 ND 191, ¶4, 687 N.W.2d 454"
+  ]
+ },
+ {
+  "opinion_id": 14498,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 24, ¶ 8, 708 N.W.2d 908",
+   "1999 ND 45, ¶20, 590 N.W.2d 454",
+   "2005 ND 74, ¶5, 694 N.W.2d 840",
+   "1998 ND 120, ¶28, 579 N.W.2d 171"
+  ]
+ },
+ {
+  "opinion_id": 14502,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 228, ¶8, 690 N.W.2d 239",
+   "2004 ND 75, ¶19, 678 N.W.2d 552",
+   "1997 ND 155, ¶21, 567 N.W.2d 336"
+  ]
+ },
+ {
+  "opinion_id": 14511,
+  "cite": "2006 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14516,
+  "cite": "2006 ND 97",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14519,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 95, ¶20, 627 N.W.2d 146",
+   "2005 ND 25, ¶7, 691 N.W.2d 579"
+  ]
+ },
+ {
+  "opinion_id": 14524,
+  "cite": "2006 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14529,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 88, ¶22, 626 N.W.2d 660",
+   "2003 ND 123, ¶7, 665 N.W.2d 724"
+  ]
+ },
+ {
+  "opinion_id": 14545,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 207, ¶20, 689 N.W.2d 366"
+  ]
+ },
+ {
+  "opinion_id": 14560,
+  "cite": "2006 ND 152",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14569,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 27, ¶6, 673 N.W.2d 923"
+  ]
+ },
+ {
+  "opinion_id": 14602,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 141, ¶ 8, 717 N.W.2d 576"
+  ]
+ },
+ {
+  "opinion_id": 14606,
+  "cite": "2006 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 14608,
+  "cite": "2006 ND 179",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 14610,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 133, ¶ 20, 717 N.W.2d 567"
+  ]
+ },
+ {
+  "opinion_id": 14616,
+  "cite": "2006 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14619,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 175, ¶ 8, 720 N.W.2d 425"
+  ]
+ },
+ {
+  "opinion_id": 14623,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 82, ¶8, 695 N.W.2d 205",
+   "2004 ND 218, ¶4, 689 N.W.2d 407"
+  ]
+ },
+ {
+  "opinion_id": 14631,
+  "cite": "2006 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14632,
+  "cite": "2006 ND 208",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14641,
+  "cite": "2006 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14644,
+  "cite": "2006 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14680,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 242, ¶ 16, 724 N.W.2d 168"
+  ]
+ },
+ {
+  "opinion_id": 14685,
+  "cite": "2007 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14688,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 152, ¶7, 683 N.W.2d 891"
+  ]
+ },
+ {
+  "opinion_id": 14690,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 158, ¶21, 567 N.W.2d 839"
+  ]
+ },
+ {
+  "opinion_id": 14693,
+  "cite": "2007 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14697,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 14, ¶ 9, 727 N.W.2d 252"
+  ]
+ },
+ {
+  "opinion_id": 14699,
+  "cite": "2007 ND 31",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14702,
+  "cite": "2007 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14703,
+  "cite": "2007 ND 28",
+  "status": "OK_pdf",
+  "chars_removed": 39
+ },
+ {
+  "opinion_id": 14706,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 100, ¶9, 714 N.W.2d 52",
+   "2001 ND 88, ¶22, 626 N.W.2d 660",
+   "2006 ND 120, ¶13, 714 N.W.2d 845"
+  ]
+ },
+ {
+  "opinion_id": 14711,
+  "cite": "2007 ND 36",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 14712,
+  "cite": "2007 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14713,
+  "cite": "2007 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14715,
+  "cite": "2007 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14735,
+  "cite": "2007 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14737,
+  "cite": "2007 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14743,
+  "cite": "2007 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 14745,
+  "cite": "2007 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 14753,
+  "cite": "2007 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14754,
+  "cite": "2007 ND 90",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14755,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 53, ¶4, 692 N.W.2d 912",
+   "2004 ND 14, ¶¶7-10, 673 N.W.2d 635",
+   "2004 ND 14, ¶7, 673 N.W.2d 635",
+   "2002 ND 37, ¶19, 640 N.W.2d 38"
+  ]
+ },
+ {
+  "opinion_id": 14759,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 84, ¶4, 712 N.W.2d 828",
+   "1999 ND 27, ¶6, 589 N.W.2d 902",
+   "1998 ND 153, ¶23, 583 N.W.2d 377"
+  ]
+ },
+ {
+  "opinion_id": 14764,
+  "cite": "2007 ND 102",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 14767,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 18, ¶ 22, 575 N.W.2d 193"
+  ]
+ },
+ {
+  "opinion_id": 14769,
+  "cite": "2007 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 14782,
+  "cite": "2007 ND 126",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14787,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 228, ¶21, 690 N.W.2d 239",
+   "2005 ND 187, ¶ 11, 705 N.W.2d 845"
+  ]
+ },
+ {
+  "opinion_id": 14788,
+  "cite": "2007 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14789,
+  "cite": "2007 ND 118",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 14790,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 229, ¶6, 571 N.W.2d 345"
+  ]
+ },
+ {
+  "opinion_id": 14796,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 24, ¶ 9, 691 N.W.2d 198"
+  ]
+ },
+ {
+  "opinion_id": 14800,
+  "cite": "2007 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 14804,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 211, ¶¶ 25-27, 722 N.W.2d 515",
+   "2006 ND 134, ¶7, 717 N.W.2d 558",
+   "2002 ND 36, ¶9, 640 N.W.2d 439",
+   "2003 ND 39, ¶48, 657 N.W.2d 276"
+  ]
+ },
+ {
+  "opinion_id": 14805,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 51, ¶9, 676 N.W.2d 98"
+  ]
+ },
+ {
+  "opinion_id": 14808,
+  "cite": "2007 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 14811,
+  "cite": "2007 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14814,
+  "cite": "2007 ND 148",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14817,
+  "cite": "2007 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 14833,
+  "cite": "2007 ND 166",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 14838,
+  "cite": "2007 ND 163",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 14841,
+  "cite": "2007 ND 179",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 14843,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 78, ¶9, 678 N.W.2d 154"
+  ]
+ },
+ {
+  "opinion_id": 14859,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 49, ¶31, 729 N.W.2d 692",
+   "2004 ND 195, ¶8, 688 N.W.2d 182",
+   "2003 ND 186, ¶20, 671 N.W.2d 801"
+  ]
+ },
+ {
+  "opinion_id": 14860,
+  "cite": "2007 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 14892,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 136, ¶9, 701 N.W.2d 865",
+   "2007 ND 28, ¶34, 728 N.W.2d 124"
+  ]
+ },
+ {
+  "opinion_id": 14894,
+  "cite": "2008 ND 13",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 14904,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 179, ¶20, 720 N.W.2d 635",
+   "2000 ND 22, ¶26, 606 N.W.2d 886",
+   "2007 ND 122, ¶25, 735 N.W.2d 873",
+   "1999 ND 33, ¶21, 590 N.W.2d 192"
+  ]
+ },
+ {
+  "opinion_id": 14911,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 200, ¶21, 570 N.W.2d 719",
+   "2004 ND 213, ¶7, 689 N.W.2d 390"
+  ]
+ },
+ {
+  "opinion_id": 14919,
+  "cite": "2008 ND 47",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14923,
+  "cite": "2008 ND 49",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 14930,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 133, ¶13, 717 N.W.2d 567"
+  ]
+ },
+ {
+  "opinion_id": 14932,
+  "cite": "2008 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14938,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 67, ¶¶ 25-26, 730 N.W.2d 841"
+  ]
+ },
+ {
+  "opinion_id": 14939,
+  "cite": "2008 ND 66",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14946,
+  "cite": "2008 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14949,
+  "cite": "2008 ND 62",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 14957,
+  "cite": "2008 ND 90",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 14968,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 28, ¶ 7, 744 N.W.2d 771"
+  ]
+ },
+ {
+  "opinion_id": 14969,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 44, ¶ 8, 729 N.W.2d 120"
+  ]
+ },
+ {
+  "opinion_id": 14987,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 42, ¶6, 640 N.W.2d 689"
+  ]
+ },
+ {
+  "opinion_id": 14991,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 122, ¶19, 714 N.W.2d 832",
+   "2006 ND 66, ¶12, 712 N.W.2d 299"
+  ]
+ },
+ {
+  "opinion_id": 14997,
+  "cite": "2008 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15003,
+  "cite": "2008 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15004,
+  "cite": "2008 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 15007,
+  "cite": "2008 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15014,
+  "cite": "2008 ND 140",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15020,
+  "cite": "2008 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 15032,
+  "cite": "2008 ND 159",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 15034,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 230, ¶ 13, 571 N.W.2d 363"
+  ]
+ },
+ {
+  "opinion_id": 15036,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 101, ¶ 11, 750 N.W.2d 407"
+  ]
+ },
+ {
+  "opinion_id": 15040,
+  "cite": "2008 ND 167",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15041,
+  "cite": "2008 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 15043,
+  "cite": "2008 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15051,
+  "cite": "2008 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15053,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 229, ¶7, 723 N.W.2d 676",
+   "1999 ND 144, ¶ 10, 598 N.W.2d 174",
+   "2002 ND 138, ¶21, 651 N.W.2d 601"
+  ]
+ },
+ {
+  "opinion_id": 15060,
+  "cite": "2008 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15065,
+  "cite": "2008 ND 182",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15066,
+  "cite": "2008 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15095,
+  "cite": "2008 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 15105,
+  "cite": "2008 ND 224",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15107,
+  "cite": "2008 ND 226",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 15111,
+  "cite": "2008 ND 234",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 15116,
+  "cite": "2009 ND 8",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15137,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 28, ¶27, 728 N.W.2d 124"
+  ]
+ },
+ {
+  "opinion_id": 15143,
+  "cite": "2009 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 15151,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 150, ¶10, 632 N.W.2d 812"
+  ]
+ },
+ {
+  "opinion_id": 15152,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 43, ¶29, 675 N.W.2d 161",
+   "2003 ND 39, ¶40, 657 N.W.2d 276"
+  ]
+ },
+ {
+  "opinion_id": 15153,
+  "cite": "2009 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 15164,
+  "cite": "2008 ND 206",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15172,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 188, ¶8, 653 N.W.2d 713"
+  ]
+ },
+ {
+  "opinion_id": 15177,
+  "cite": "2009 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15180,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 123, ¶8, 565 N.W.2d 47"
+  ]
+ },
+ {
+  "opinion_id": 15186,
+  "cite": "2009 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15198,
+  "cite": "2009 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 15199,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 52, ¶ 8, 764 N.W.2d 178",
+   "2009 ND 52, ¶ 9, 764 N.W.2d 178"
+  ]
+ },
+ {
+  "opinion_id": 15202,
+  "cite": "2009 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15203,
+  "cite": "2009 ND 98",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15208,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 185, ¶2, 756 N.W.2d 771"
+  ]
+ },
+ {
+  "opinion_id": 15213,
+  "cite": "2009 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15216,
+  "cite": "2009 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15219,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 89, ¶13, 732 N.W.2d 703"
+  ]
+ },
+ {
+  "opinion_id": 15228,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 207, ¶4, 743 N.W.2d 391"
+  ]
+ },
+ {
+  "opinion_id": 15254,
+  "cite": "2009 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 15255,
+  "cite": "2009 ND 137",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 15262,
+  "cite": "2009 ND 150",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 15264,
+  "cite": "2009 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15269,
+  "cite": "2009 ND 152",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15277,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 141, ¶ 10, 770 N.W.2d 713",
+   "2009 ND 144, ¶ 8, 770 N.W.2d 231",
+   "2009 ND 144, ¶ 7, 770 N.W.2d 231",
+   "2003 ND 111, ¶¶ 9-10, 665 N.W.2d 692"
+  ]
+ },
+ {
+  "opinion_id": 15278,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 101, ¶¶ 7-8, 714 N.W.2d 57"
+  ]
+ },
+ {
+  "opinion_id": 15279,
+  "cite": "2009 ND 163",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15288,
+  "cite": "2009 ND 180",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15293,
+  "cite": "2009 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15294,
+  "cite": "2009 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 15296,
+  "cite": "2009 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 15305,
+  "cite": "2009 ND 210",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15306,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 153, ¶¶5-7, 652 N.W.2d 324"
+  ]
+ },
+ {
+  "opinion_id": 15313,
+  "cite": "2009 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 15315,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 82, ¶8, 732 N.W.2d 389"
+  ]
+ },
+ {
+  "opinion_id": 15322,
+  "cite": "2009 ND 217",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15327,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 180, ¶4, 705 N.W.2d 257",
+   "2006 ND 17, ¶17, 708 N.W.2d 895"
+  ]
+ },
+ {
+  "opinion_id": 15334,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 114, ¶6, 735 N.W.2d 862",
+   "2007 ND 114, ¶8, 735 N.W.2d 862"
+  ]
+ },
+ {
+  "opinion_id": 15336,
+  "cite": "2010 ND 13",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15341,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 84, ¶ 7, 625 N.W.2d 544"
+  ]
+ },
+ {
+  "opinion_id": 15345,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 163, ¶¶ 15-16, 616 N.W.2d 353"
+  ]
+ },
+ {
+  "opinion_id": 15350,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 205, ¶40, 776 N.W.2d 217",
+   "2009 ND 205, ¶41, 776 N.W.2d 217"
+  ]
+ },
+ {
+  "opinion_id": 15355,
+  "cite": "2010 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15357,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 180, ¶10, 773 N.W.2d 420",
+   "1997 ND 201, ¶ 10, 569 N.W.2d 697"
+  ]
+ },
+ {
+  "opinion_id": 15358,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 189, ¶8, 720 N.W.2d 921"
+  ]
+ },
+ {
+  "opinion_id": 15362,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 41, ¶24, 575 N.W.2d 649"
+  ]
+ },
+ {
+  "opinion_id": 15365,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 216, ¶20, 602 N.W.2d 697",
+   "2004 ND 126, ¶12, 681 N.W.2d 786",
+   "2008 ND 153, ¶5, 755 N.W.2d 99",
+   "2007 ND 102, ¶13, 733 N.W.2d 902"
+  ]
+ },
+ {
+  "opinion_id": 15367,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 76, ¶22, 678 N.W.2d 138",
+   "2003 ND 111, ¶¶ 9-10, 665 N.W.2d 692",
+   "2004 ND 76, ¶8, 678 N.W.2d 138"
+  ]
+ },
+ {
+  "opinion_id": 15370,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 2, ¶ 8, 777 N.W.2d 606",
+   "2010 ND 2, ¶ 8, 777 N.W.2d 606",
+   "2010 ND 2, ¶ 8, 777 N.W.2d 606",
+   "2010 ND 2, ¶ 13, 777 N.W.2d 606"
+  ]
+ },
+ {
+  "opinion_id": 15371,
+  "cite": "2010 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 15372,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 116, ¶8, 715 N.W.2d 145",
+   "2008 ND 176, ¶29, 755 N.W.2d 900",
+   "2000 ND 88, ¶21, 609 N.W.2d 737"
+  ]
+ },
+ {
+  "opinion_id": 15385,
+  "cite": "2010 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15386,
+  "cite": "2010 ND 51",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15388,
+  "cite": "2010 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 15397,
+  "cite": "2010 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15401,
+  "cite": "2010 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15402,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 139, ¶ 26, 632 N.W.2d 407"
+  ]
+ },
+ {
+  "opinion_id": 15404,
+  "cite": "2010 ND 76",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15412,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 160, ¶7, 718 N.W.2d 586"
+  ]
+ },
+ {
+  "opinion_id": 15414,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 13, ¶ 5, 727 N.W.2d 256"
+  ]
+ },
+ {
+  "opinion_id": 15416,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 179, ¶23, 773 N.W.2d 798"
+  ]
+ },
+ {
+  "opinion_id": 15418,
+  "cite": "2010 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15425,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 67, ¶ 23, 780 N.W.2d 707"
+  ]
+ },
+ {
+  "opinion_id": 15427,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 135, ¶7, 737 N.W.2d 253"
+  ]
+ },
+ {
+  "opinion_id": 15433,
+  "cite": "2010 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15437,
+  "cite": "2010 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15438,
+  "cite": "2010 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15439,
+  "cite": "2010 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15441,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 69, ¶ 8, 781 N.W.2d 200",
+   "2008 ND 186, ¶4, 756 N.W.2d 775",
+   "2006 ND 191, ¶20, 721 N.W.2d 398",
+   "2010 ND 69, ¶ 17, 781 N.W.2d 200"
+  ]
+ },
+ {
+  "opinion_id": 15448,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 33, ¶19, 778 N.W.2d 802"
+  ]
+ },
+ {
+  "opinion_id": 15450,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 26, ¶4, 590 N.W.2d 187",
+   "2007 ND 132, ¶34, 737 N.W.2d 647",
+   "2006 ND 66, ¶20, 712 N.W.2d 299",
+   "2004 ND 77, ¶24, 678 N.W.2d 144"
+  ]
+ },
+ {
+  "opinion_id": 15451,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 23, ¶11, 778 N.W.2d 773",
+   "2004 ND 107, ¶10, 681 N.W.2d 70",
+   "2001 ND 156, ¶20, 634 N.W.2d 65"
+  ]
+ },
+ {
+  "opinion_id": 15462,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 144, ¶ 17, 613 N.W.2d 516"
+  ]
+ },
+ {
+  "opinion_id": 15468,
+  "cite": "2010 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 15472,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 56, ¶22, 746 N.W.2d 416",
+   "2005 ND 20, ¶9, 691 N.W.2d 278"
+  ]
+ },
+ {
+  "opinion_id": 15474,
+  "cite": "2010 ND 144",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 15479,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 103, ¶ 19, 783 N.W.2d 12",
+   "2010 ND 46, ¶ 4, 779 N.W.2d 635",
+   "2010 ND 107, ¶ 16, 783 N.W.2d 254",
+   "2004 ND 216, ¶6, 689 N.W.2d 403"
+  ]
+ },
+ {
+  "opinion_id": 15481,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 210, ¶15, 722 N.W.2d 548",
+   "2009 ND 116, ¶23, 767 N.W.2d 817"
+  ]
+ },
+ {
+  "opinion_id": 15482,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 207, ¶4, 743 N.W.2d 391",
+   "2009 ND 122, ¶2, 768 N.W.2d 485"
+  ]
+ },
+ {
+  "opinion_id": 15485,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 134, ¶9, 737 N.W.2d 243"
+  ]
+ },
+ {
+  "opinion_id": 15494,
+  "cite": "2010 ND 166",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15497,
+  "cite": "2010 ND 171",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15502,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 45, ¶20, 590 N.W.2d 454"
+  ]
+ },
+ {
+  "opinion_id": 15504,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 162, ¶ 12, 787 N.W.2d 746"
+  ]
+ },
+ {
+  "opinion_id": 15506,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 126, ¶¶ 9-10, 580 N.W.2d 580"
+  ]
+ },
+ {
+  "opinion_id": 15507,
+  "cite": "2010 ND 183",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15509,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 114, ¶7, 646 N.W.2d 693",
+   "2003 ND 55, ¶ 13, 660 N.W.2d 196",
+   "2009 ND 82, ¶8, 765 N.W.2d 511"
+  ]
+ },
+ {
+  "opinion_id": 15510,
+  "cite": "2010 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15530,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 67, ¶28, 711 N.W.2d 149"
+  ]
+ },
+ {
+  "opinion_id": 15539,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 30, ¶ 10, 778 N.W.2d 551"
+  ]
+ },
+ {
+  "opinion_id": 15540,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 26, ¶ 17, 590 N.W.2d 187"
+  ]
+ },
+ {
+  "opinion_id": 15543,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 99, ¶ 5, 766 N.W.2d 458",
+   "2010 ND 109, ¶ 14, 783 N.W.2d 21"
+  ]
+ },
+ {
+  "opinion_id": 15544,
+  "cite": "2010 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15547,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 179, ¶20, 720 N.W.2d 635"
+  ]
+ },
+ {
+  "opinion_id": 15550,
+  "cite": "2010 ND 236",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15551,
+  "cite": "2010 ND 250",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15553,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 179, ¶12, 617 N.W.2d 478",
+   "2010 ND 217, ¶ 16, 790 N.W.2d 745"
+  ]
+ },
+ {
+  "opinion_id": 15558,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 194, ¶13, 757 N.W.2d 58",
+   "2008 ND 211, ¶5, 757 N.W.2d 748"
+  ]
+ },
+ {
+  "opinion_id": 15566,
+  "cite": "2011 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15573,
+  "cite": "2011 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15576,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 70, ¶25, 712 N.W.2d 312"
+  ]
+ },
+ {
+  "opinion_id": 15583,
+  "cite": "2011 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 15586,
+  "cite": "2011 ND 39",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15588,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 109, ¶ 12, 564 N.W.2d 274"
+  ]
+ },
+ {
+  "opinion_id": 15589,
+  "cite": "2011 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15591,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 27, ¶ 11, 794 N.W.2d 204"
+  ]
+ },
+ {
+  "opinion_id": 15602,
+  "cite": "2011 ND 49",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15604,
+  "cite": "2011 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15615,
+  "cite": "2011 ND 74",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15618,
+  "cite": "2011 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15625,
+  "cite": "2011 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15630,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 197, ¶8, 742 N.W.2d 513",
+   "2008 ND 66, ¶44, 747 N.W.2d 463"
+  ]
+ },
+ {
+  "opinion_id": 15639,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 78, ¶¶ 6-8, 796 N.W.2d 649"
+  ]
+ },
+ {
+  "opinion_id": 15683,
+  "cite": "2011 ND 139",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 15690,
+  "cite": "2011 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15694,
+  "cite": "2011 ND 150",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15695,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 189, ¶4, 653 N.W.2d 688",
+   "1998 ND 173, ¶23, 584 N.W.2d 502"
+  ]
+ },
+ {
+  "opinion_id": 15697,
+  "cite": "2011 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 15704,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 36, ¶22, 606 N.W.2d 895"
+  ]
+ },
+ {
+  "opinion_id": 15707,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 168, ¶ 7, 740 N.W.2d 388",
+   "2005 ND 139, ¶7, 701 N.W.2d 880"
+  ]
+ },
+ {
+  "opinion_id": 15708,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 100, ¶¶ 13-14, 783 N.W.2d 262",
+   "2009 ND 153, ¶20, 771 N.W.2d 282",
+   "2006 ND 176, ¶9, 720 N.W.2d 54"
+  ]
+ },
+ {
+  "opinion_id": 15710,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 33, ¶3, 710 N.W.2d 125"
+  ]
+ },
+ {
+  "opinion_id": 15718,
+  "cite": "2011 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15719,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 15, ¶23, 760 N.W.2d 123"
+  ]
+ },
+ {
+  "opinion_id": 15721,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 15, ¶23, 760 N.W.2d 123"
+  ]
+ },
+ {
+  "opinion_id": 15723,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 178, ¶9, 720 N.W.2d 433",
+   "2005 ND 97, ¶ 9, 696 N.W.2d 918"
+  ]
+ },
+ {
+  "opinion_id": 15724,
+  "cite": "2011 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15726,
+  "cite": "2011 ND 185",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15729,
+  "cite": "2011 ND 202",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 15732,
+  "cite": "2011 ND 183",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 15734,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 45, ¶ 16, 574 N.W.2d 867"
+  ]
+ },
+ {
+  "opinion_id": 15735,
+  "cite": "2011 ND 197",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15737,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 183, ¶8, 788 N.W.2d 629"
+  ]
+ },
+ {
+  "opinion_id": 15738,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 128, ¶¶ 13-15, 649 N.W.2d 532"
+  ]
+ },
+ {
+  "opinion_id": 15739,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 136, ¶ 7, 667 N.W.2d 628"
+  ]
+ },
+ {
+  "opinion_id": 15751,
+  "cite": "2011 ND 227",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 15760,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 68, ¶19, 795 N.W.2d 899",
+   "2011 ND 38, ¶3, 794 N.W.2d 741",
+   "1998 ND 138, ¶6, 582 N.W.2d 2",
+   "2006 ND 231, ¶1, 723 N.W.2d 684"
+  ]
+ },
+ {
+  "opinion_id": 15792,
+  "cite": "2012 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15796,
+  "cite": "2012 ND 28",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15801,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 55, ¶ 5, 795 N.W.2d 707"
+  ]
+ },
+ {
+  "opinion_id": 15805,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 14, ¶¶ 6-7, 809 N.W.2d 323"
+  ]
+ },
+ {
+  "opinion_id": 15806,
+  "cite": "2012 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15813,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 64, ¶12, 795 N.W.2d 294"
+  ]
+ },
+ {
+  "opinion_id": 15814,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 155, ¶8, 787 N.W.2d 286",
+   "2010 ND 62, ¶10, 780 N.W.2d 660",
+   "2010 ND 221, ¶10, 791 N.W.2d 33"
+  ]
+ },
+ {
+  "opinion_id": 15824,
+  "cite": "2012 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15830,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 139, ¶25, 632 N.W.2d 407",
+   "1999 ND 235, ¶22, 603 N.W.2d 869",
+   "1999 ND 12, ¶21, 589 N.W.2d 551"
+  ]
+ },
+ {
+  "opinion_id": 15834,
+  "cite": "2012 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 15836,
+  "cite": "2012 ND 88",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15848,
+  "cite": "2012 ND 98",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15860,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 32, ¶10, 778 N.W.2d 813"
+  ]
+ },
+ {
+  "opinion_id": 15861,
+  "cite": "2012 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15862,
+  "cite": "2012 ND 122",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15871,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 165, ¶3, 801 N.W.2d 702",
+   "2009 ND 152, ¶4, 771 N.W.2d 585",
+   "2008 ND 130, ¶10, 751 N.W.2d 686"
+  ]
+ },
+ {
+  "opinion_id": 15874,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 1, ¶8, 638 N.W.2d 1",
+   "2003 ND 131, ¶7, 667 N.W.2d 582"
+  ]
+ },
+ {
+  "opinion_id": 15883,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 72, ¶10, 747 N.W.2d 117",
+   "2008 ND 72, ¶ 3, 747 N.W.2d 117",
+   "2012 ND 80, ¶ 45, 815 N.W.2d 240",
+   "2008 ND 72, ¶16, 747 N.W.2d 117"
+  ]
+ },
+ {
+  "opinion_id": 15901,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 50, ¶ 7, 780 N.W.2d 437",
+   "2012 ND 151, ¶¶ 9-15, 819 N.W.2d 546"
+  ]
+ },
+ {
+  "opinion_id": 15906,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 158, ¶7, 801 N.W.2d 740",
+   "1997 ND 135, ¶8, 566 N.W.2d 806",
+   "2011 ND 158, ¶7, 801 N.W.2d 740",
+   "2010 ND 58, ¶26, 780 N.W.2d 688"
+  ]
+ },
+ {
+  "opinion_id": 15907,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 87, ¶ 8, 816 N.W.2d 74",
+   "1998 ND 158, ¶10, 583 N.W.2d 621"
+  ]
+ },
+ {
+  "opinion_id": 15908,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 25, ¶¶2-10, 606 N.W.2d 108",
+   "2006 ND 122, ¶19, 714 N.W.2d 832"
+  ]
+ },
+ {
+  "opinion_id": 15916,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 116, ¶ 7, 817 N.W.2d 363",
+   "2012 ND 118, ¶ 21, 817 N.W.2d 351",
+   "2012 ND 139, ¶5, 818 N.W.2d 778",
+   "2007 ND 87, ¶ 12, 733 N.W.2d 241"
+  ]
+ },
+ {
+  "opinion_id": 15917,
+  "cite": "2012 ND 175",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15920,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 66, ¶7, 730 N.W.2d 833"
+  ]
+ },
+ {
+  "opinion_id": 15926,
+  "cite": "2012 ND 178",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15928,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 190, ¶13, 600 N.W.2d 881"
+  ]
+ },
+ {
+  "opinion_id": 15932,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 155, ¶ 16, 819 N.W.2d 511",
+   "2012 ND 155, ¶ 16, 819 N.W.2d 511",
+   "2012 ND 155, ¶ 18, 819 N.W.2d 511"
+  ]
+ },
+ {
+  "opinion_id": 15935,
+  "cite": "2012 ND 203",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15940,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2001 ND 138, ¶ 21, 631 N.W.2d 564",
+   "2002 ND 37, ¶20, 640 N.W.2d 38",
+   "2005 ND 53, ¶4, 692 N.W.2d 912"
+  ]
+ },
+ {
+  "opinion_id": 15941,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 132, ¶3, 800 N.W.2d 304",
+   "1999 ND 199, ¶21, 600 N.W.2d 869",
+   "2010 ND 107, ¶24, 783 N.W.2d 254",
+   "2011 ND 202, ¶7, 804 N.W.2d 378"
+  ]
+ },
+ {
+  "opinion_id": 15950,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 153, ¶5, 755 N.W.2d 99",
+   "2012 ND 144, ¶11, 818 N.W.2d 697"
+  ]
+ },
+ {
+  "opinion_id": 15952,
+  "cite": "2012 ND 231",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 15959,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 98, ¶7, 766 N.W.2d 442",
+   "2001 ND 133, ¶6, 631 N.W.2d 595",
+   "2009 ND 173, ¶9, 775 N.W.2d 695"
+  ]
+ },
+ {
+  "opinion_id": 15960,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 176, ¶10, 687 N.W.2d 237",
+   "2004 ND 77, ¶9, 678 N.W.2d 144",
+   "2010 ND 10, ¶20, 777 N.W.2d 617",
+   "2011 ND 203, ¶17, 805 N.W.2d 98"
+  ]
+ },
+ {
+  "opinion_id": 15963,
+  "cite": "2012 ND 245",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15964,
+  "cite": "2012 ND 247",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15965,
+  "cite": "2012 ND 248",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 15969,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 51, ¶4, 746 N.W.2d 411"
+  ]
+ },
+ {
+  "opinion_id": 15971,
+  "cite": "2012 ND 258",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15974,
+  "cite": "2012 ND 259",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15978,
+  "cite": "2013 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 15981,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 16, ¶13, 639 N.W.2d 439",
+   "2011 ND 131, ¶10, 800 N.W.2d 284",
+   "2002 ND 102, ¶7, 646 N.W.2d 712",
+   "1999 ND 64, ¶7, 592 N.W.2d 523"
+  ]
+ },
+ {
+  "opinion_id": 15986,
+  "cite": "2013 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 15997,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 257, ¶ 8, 825 N.W.2d 883"
+  ]
+ },
+ {
+  "opinion_id": 16002,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 52, ¶ 18, 591 N.W.2d 101"
+  ]
+ },
+ {
+  "opinion_id": 16008,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 12, ¶10, 709 N.W.2d 726",
+   "1999 ND 204, ¶16, 601 N.W.2d 587"
+  ]
+ },
+ {
+  "opinion_id": 16011,
+  "cite": "2013 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16013,
+  "cite": "2013 ND 47",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16016,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 14, ¶ 10, 826 N.W.2d 340",
+   "2006 ND 172, ¶ 11, 719 N.W.2d 379"
+  ]
+ },
+ {
+  "opinion_id": 16020,
+  "cite": "2013 ND 57",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16033,
+  "cite": "2013 ND 76",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16036,
+  "cite": "2013 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 16037,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 32, ¶ 7, 827 N.W.2d 324"
+  ]
+ },
+ {
+  "opinion_id": 16038,
+  "cite": "2013 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16039,
+  "cite": "2013 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16041,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 143, ¶14, 738 N.W.2d 472"
+  ]
+ },
+ {
+  "opinion_id": 16045,
+  "cite": "2013 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16047,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 46, ¶ 6, 828 N.W.2d 775",
+   "2013 ND 46, ¶¶ 8-9, 828 N.W.2d 775"
+  ]
+ },
+ {
+  "opinion_id": 16053,
+  "cite": "2013 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16059,
+  "cite": "2013 ND 95",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16060,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 170, ¶9, 803 N.W.2d 534",
+   "2002 ND 37, ¶32, 640 N.W.2d 38"
+  ]
+ },
+ {
+  "opinion_id": 16064,
+  "cite": "2013 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16065,
+  "cite": "2013 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16066,
+  "cite": "2013 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16071,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 43, ¶7, 590 N.W.2d 446"
+  ]
+ },
+ {
+  "opinion_id": 16074,
+  "cite": "2013 ND 122",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16085,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 129, ¶8, 751 N.W.2d 228",
+   "2012 ND 12, ¶11, 810 N.W.2d 327",
+   "2009 ND 44, ¶30, 763 N.W.2d 430",
+   "2009 ND 43, ¶20, 763 N.W.2d 783"
+  ]
+ },
+ {
+  "opinion_id": 16088,
+  "cite": "2013 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16090,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 144, ¶22, 701 N.W.2d 873"
+  ]
+ },
+ {
+  "opinion_id": 16092,
+  "cite": "2013 ND 156",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16096,
+  "cite": "2013 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16099,
+  "cite": "2013 ND 157",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16101,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 95, ¶ 13, 644 N.W.2d 878",
+   "2000 ND 202, ¶25, 620 N.W.2d 136",
+   "2006 ND 10, ¶17, 708 N.W.2d 913",
+   "2006 ND 10, ¶17, 708 N.W.2d 913"
+  ]
+ },
+ {
+  "opinion_id": 16102,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 163, ¶7, 598 N.W.2d 811",
+   "2008 ND 230, ¶ 6, 758 N.W.2d 702",
+   "2004 ND 157, ¶12, 685 N.W.2d 120",
+   "2005 ND 140, ¶21, 701 N.W.2d 915"
+  ]
+ },
+ {
+  "opinion_id": 16103,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 56, ¶11, 676 N.W.2d 786",
+   "2013 ND 9, ¶5, 826 N.W.2d 330",
+   "2012 ND 28, ¶8, 812 N.W.2d 388"
+  ]
+ },
+ {
+  "opinion_id": 16104,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 134, ¶7, 737 N.W.2d 243"
+  ]
+ },
+ {
+  "opinion_id": 16105,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 149, ¶8, 771 N.W.2d 578",
+   "2005 ND 85, ¶8, 695 N.W.2d 691",
+   "2004 ND 60, ¶24, 676 N.W.2d 752",
+   "2004 ND 60, ¶24, 676 N.W.2d 752"
+  ]
+ },
+ {
+  "opinion_id": 16106,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 179, ¶19, 568 N.W.2d 920"
+  ]
+ },
+ {
+  "opinion_id": 16109,
+  "cite": "2013 ND 158",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16114,
+  "cite": "2013 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16116,
+  "cite": "2013 ND 167",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16120,
+  "cite": "2013 ND 168",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16122,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 154, ¶44, 755 N.W.2d 432"
+  ]
+ },
+ {
+  "opinion_id": 16123,
+  "cite": "2013 ND 176",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16125,
+  "cite": "2013 ND 182",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16132,
+  "cite": "2013 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 16138,
+  "cite": "2013 ND 215",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16139,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 139, ¶7, 667 N.W.2d 637",
+   "2004 ND 15, ¶9, 673 N.W.2d 622",
+   "2003 ND 139, ¶8, 667 N.W.2d 637",
+   "2004 ND 15, ¶9, 673 N.W.2d 622"
+  ]
+ },
+ {
+  "opinion_id": 16141,
+  "cite": "2013 ND 214",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16165,
+  "cite": "2013 ND 239",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 16168,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 214, ¶6, 776 N.W.2d 567"
+  ]
+ },
+ {
+  "opinion_id": 16172,
+  "cite": "2013 ND 247",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16173,
+  "cite": "2013 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 16174,
+  "cite": "2013 ND 242",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16175,
+  "cite": "2013 ND 243",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 16177,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 187, ¶ 7, 838 N.W.2d 452"
+  ]
+ },
+ {
+  "opinion_id": 16179,
+  "cite": "2013 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16185,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 219, ¶8, 822 N.W.2d 701"
+  ]
+ },
+ {
+  "opinion_id": 16188,
+  "cite": "2014 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16191,
+  "cite": "2014 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16192,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 143, ¶25, 752 N.W.2d 192"
+  ]
+ },
+ {
+  "opinion_id": 16194,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 133, ¶6, 699 N.W.2d 851",
+   "2001 ND 130, ¶16, 631 N.W.2d 150"
+  ]
+ },
+ {
+  "opinion_id": 16196,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 60, ¶8, 813 N.W.2d 592"
+  ]
+ },
+ {
+  "opinion_id": 16208,
+  "cite": "2014 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16209,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 171, ¶33, 685 N.W.2d 748"
+  ]
+ },
+ {
+  "opinion_id": 16210,
+  "cite": "2014 ND 24",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16219,
+  "cite": "2014 ND 26",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 16222,
+  "cite": "2014 ND 42",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 16223,
+  "cite": "2014 ND 29",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16231,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 33, ¶ 8, 842 N.W.2d 873",
+   "2014 ND 33, ¶ 11, 842 N.W.2d 873"
+  ]
+ },
+ {
+  "opinion_id": 16236,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 208, ¶2, 823 N.W.2d 786",
+   "2011 ND 154, ¶ 46, 801 N.W.2d 677",
+   "2011 ND 64, ¶8, 795 N.W.2d 294",
+   "2006 ND 185, ¶10, 721 N.W.2d 16"
+  ]
+ },
+ {
+  "opinion_id": 16238,
+  "cite": "2014 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16240,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 87, ¶33, 609 N.W.2d 418"
+  ]
+ },
+ {
+  "opinion_id": 16241,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 176, ¶8, 704 N.W.2d 847",
+   "2008 ND 185, ¶¶8-10, 756 N.W.2d 771"
+  ]
+ },
+ {
+  "opinion_id": 16245,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 122, ¶ 8, 714 N.W.2d 832"
+  ]
+ },
+ {
+  "opinion_id": 16248,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 179, ¶19, 568 N.W.2d 920",
+   "2014 ND 7, ¶24, 841 N.W.2d 687",
+   "1997 ND 179, ¶20, 568 N.W.2d 920",
+   "2014 ND 7, ¶26, 841 N.W.2d 687"
+  ]
+ },
+ {
+  "opinion_id": 16253,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 195, ¶17, 789 N.W.2d 723"
+  ]
+ },
+ {
+  "opinion_id": 16257,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 231, ¶ 9, 807 N.W.2d 570"
+  ]
+ },
+ {
+  "opinion_id": 16260,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 141, ¶ 32, 752 N.W.2d 640"
+  ]
+ },
+ {
+  "opinion_id": 16262,
+  "cite": "2014 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16264,
+  "cite": "2014 ND 91",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16285,
+  "cite": "2014 ND 126",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 16286,
+  "cite": "2014 ND 127",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16289,
+  "cite": "2014 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 16291,
+  "cite": "2014 ND 122",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16293,
+  "cite": "2014 ND 125",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16300,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 232, ¶20, 571 N.W.2d 648"
+  ]
+ },
+ {
+  "opinion_id": 16304,
+  "cite": "2014 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16306,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 64, ¶ 1, 677 N.W.2d 215"
+  ]
+ },
+ {
+  "opinion_id": 16307,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 181, ¶ 14, 599 N.W.2d 323"
+  ]
+ },
+ {
+  "opinion_id": 16312,
+  "cite": "2014 ND 157",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16332,
+  "cite": "2014 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16333,
+  "cite": "2014 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16335,
+  "cite": "2014 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16337,
+  "cite": "2014 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16339,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 32, ¶12, 744 N.W.2d 760"
+  ]
+ },
+ {
+  "opinion_id": 16343,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 249, ¶ 8, 840 N.W.2d 596",
+   "2000 ND 119, ¶¶ 6-11, 611 N.W.2d 888"
+  ]
+ },
+ {
+  "opinion_id": 16344,
+  "cite": "2014 ND 171",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16345,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 227, ¶9, 807 N.W.2d 585",
+   "2013 ND 214, ¶10, 839 N.W.2d 834",
+   "2013 ND 240, ¶¶9-10, 840 N.W.2d 605",
+   "2014 ND 84, ¶ 4, 845 N.W.2d 327"
+  ]
+ },
+ {
+  "opinion_id": 16350,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 77, ¶21, 764 N.W.2d 438",
+   "2006 ND 194, ¶7, 721 N.W.2d 693"
+  ]
+ },
+ {
+  "opinion_id": 16351,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2010 ND 251, ¶10, 793 N.W.2d 172",
+   "2010 ND 86, ¶7, 782 N.W.2d 346",
+   "2001 ND 17, ¶8, 621 N.W.2d 860",
+   "2014 ND 7, ¶21, 841 N.W.2d 687"
+  ]
+ },
+ {
+  "opinion_id": 16352,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 99, ¶5, 663 N.W.2d 642",
+   "2014 ND 30, ¶8, 842 N.W.2d 845",
+   "2010 ND 63, ¶5, 780 N.W.2d 650",
+   "2010 ND 63, ¶¶6-8, 780 N.W.2d 650"
+  ]
+ },
+ {
+  "opinion_id": 16366,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 79, ¶ 8, 660 N.W.2d 909"
+  ]
+ },
+ {
+  "opinion_id": 16368,
+  "cite": "2014 ND 208",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16372,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 176, ¶8, 704 N.W.2d 847"
+  ]
+ },
+ {
+  "opinion_id": 16373,
+  "cite": "2014 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16393,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 195, ¶ 8, 855 N.W.2d 389",
+   "2014 ND 152, ¶7, 849 N.W.2d 599",
+   "2014 ND 119, ¶21, 848 N.W.2d 659",
+   "2014 ND 152, ¶16, 849 N.W.2d 599"
+  ]
+ },
+ {
+  "opinion_id": 16394,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 190, ¶23, 705 N.W.2d 836"
+  ]
+ },
+ {
+  "opinion_id": 16399,
+  "cite": "2015 ND 11",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16403,
+  "cite": "2015 ND 41",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16410,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 120, ¶ 26-27, 769 N.W.2d 416",
+   "2007 ND 118, ¶12, 736 N.W.2d 477",
+   "1998 ND 18, ¶¶ 17-20, 575 N.W.2d 193"
+  ]
+ },
+ {
+  "opinion_id": 16413,
+  "cite": "2015 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 16415,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 6, ¶ 15, 858 N.W.2d 302",
+   "2015 ND 6, ¶¶ 5-8, 858 N.W.2d 302",
+   "2015 ND 6, ¶ 17, 858 N.W.2d 302",
+   "2002 ND 142, ¶20, 651 N.W.2d 665"
+  ]
+ },
+ {
+  "opinion_id": 16418,
+  "cite": "2015 ND 43",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16419,
+  "cite": "2015 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16441,
+  "cite": "2015 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 16444,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 112, ¶ 10, 735 N.W.2d 882"
+  ]
+ },
+ {
+  "opinion_id": 16456,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2004 ND 118, ¶7, 681 N.W.2d 431",
+   "2010 ND 60, ¶7, 780 N.W.2d 656",
+   "2013 ND 110, ¶26, 833 N.W.2d 422",
+   "2014 ND 200, ¶ 28, 855 N.W.2d 614"
+  ]
+ },
+ {
+  "opinion_id": 16462,
+  "cite": "2015 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16470,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 212, ¶20, 758 N.W.2d 427",
+   "2008 ND 212, ¶28, 758 N.W.2d 427",
+   "2014 ND 193, ¶4, 855 N.W.2d 113",
+   "1998 ND 50, ¶14, 575 N.W.2d 658"
+  ]
+ },
+ {
+  "opinion_id": 16475,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 6, ¶19, 858 N.W.2d 302"
+  ]
+ },
+ {
+  "opinion_id": 16477,
+  "cite": "2015 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 16478,
+  "cite": "2015 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16487,
+  "cite": "2015 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16491,
+  "cite": "2015 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16494,
+  "cite": "2015 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16496,
+  "cite": "2015 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 16498,
+  "cite": "2015 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16511,
+  "cite": "2015 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16514,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 63, ¶12, 711 N.W.2d 183",
+   "2007 ND 121, ¶8, 736 N.W.2d 488",
+   "2005 ND 187, ¶10, 705 N.W.2d 845",
+   "2007 ND 112, ¶9, 735 N.W.2d 882"
+  ]
+ },
+ {
+  "opinion_id": 16515,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 207, ¶4, 855 N.W.2d 665",
+   "2013 ND 33, ¶13, 827 N.W.2d 17"
+  ]
+ },
+ {
+  "opinion_id": 16520,
+  "cite": "2015 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16526,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 136, ¶ 5, 799 N.W.2d 388"
+  ]
+ },
+ {
+  "opinion_id": 16535,
+  "cite": "2015 ND 187",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16538,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 150, ¶ 16, 864 N.W.2d 759",
+   "2015 ND 150, ¶ 16, 864 N.W.2d 759"
+  ]
+ },
+ {
+  "opinion_id": 16539,
+  "cite": "2015 ND 191",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16540,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 83, ¶9, 609 N.W.2d 428"
+  ]
+ },
+ {
+  "opinion_id": 16555,
+  "cite": "2015 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16557,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 194, ¶¶ 12-14, 855 N.W.2d 99"
+  ]
+ },
+ {
+  "opinion_id": 16564,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 174, ¶ 41, 820 N.W.2d 672"
+  ]
+ },
+ {
+  "opinion_id": 16566,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 88, ¶ 8, 845 N.W.2d 335",
+   "2008 ND 37, ¶24, 744 N.W.2d 724",
+   "2008 ND 37, ¶24, 744 N.W.2d 724"
+  ]
+ },
+ {
+  "opinion_id": 16567,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 32, ¶8, 858 N.W.2d 901"
+  ]
+ },
+ {
+  "opinion_id": 16569,
+  "cite": "2015 ND 222",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16599,
+  "cite": "2015 ND 252",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16604,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 138, ¶12, 799 N.W.2d 397",
+   "2009 ND 122, ¶¶8-9, 768 N.W.2d 485",
+   "2015 ND 18, ¶¶ 30-31, 859 N.W.2d 403",
+   "2015 ND 197, ¶¶ 15-19, 867 N.W.2d 690"
+  ]
+ },
+ {
+  "opinion_id": 16606,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 138, ¶12, 799 N.W.2d 397"
+  ]
+ },
+ {
+  "opinion_id": 16610,
+  "cite": "2015 ND 273",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16618,
+  "cite": "2015 ND 277",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16622,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 217, ¶ 16, 868 N.W.2d 861"
+  ]
+ },
+ {
+  "opinion_id": 16625,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 169, ¶10, 616 N.W.2d 861"
+  ]
+ },
+ {
+  "opinion_id": 16636,
+  "cite": "2015 ND 302",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 16644,
+  "cite": "2016 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16650,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 284, ¶ 7, 872 N.W.2d 323"
+  ]
+ },
+ {
+  "opinion_id": 16655,
+  "cite": "2016 ND 36",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 16656,
+  "cite": "2016 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 16659,
+  "cite": "2016 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16661,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2016 ND 9, ¶ 8, 873 N.W.2d 672"
+  ]
+ },
+ {
+  "opinion_id": 16666,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 127, ¶6, 650 N.W.2d 813"
+  ]
+ },
+ {
+  "opinion_id": 16667,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1997 ND 178, ¶30, 568 N.W.2d 755",
+   "1998 ND 94, ¶7, 578 N.W.2d 101",
+   "1998 ND 11, ¶21, 574 N.W.2d 784"
+  ]
+ },
+ {
+  "opinion_id": 16670,
+  "cite": "2016 ND 43",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16673,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2016 ND 14, ¶ 33, 873 N.W.2d 911"
+  ]
+ },
+ {
+  "opinion_id": 16677,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 210, ¶10, 839 N.W.2d 851",
+   "2010 ND 63, ¶7, 780 N.W.2d 650"
+  ]
+ },
+ {
+  "opinion_id": 16679,
+  "cite": "2016 ND 57",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16680,
+  "cite": "2016 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16685,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 128, ¶30, 736 N.W.2d 788"
+  ]
+ },
+ {
+  "opinion_id": 16689,
+  "cite": "2016 ND 65",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 16695,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2016 ND 72, ¶ 14, 877 N.W.2d 312",
+   "2012 ND 136, ¶ 10, 819 N.W.2d 483"
+  ]
+ },
+ {
+  "opinion_id": 16696,
+  "cite": "2016 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 16706,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2006 ND 219, ¶7, 723 N.W.2d 384"
+  ]
+ },
+ {
+  "opinion_id": 16709,
+  "cite": "2016 ND 95",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16715,
+  "cite": "2016 ND 85",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16716,
+  "cite": "2016 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16717,
+  "cite": "2016 ND 107",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16718,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 57, ¶ 17-21, 844 N.W.2d 557"
+  ]
+ },
+ {
+  "opinion_id": 16731,
+  "cite": "2016 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16732,
+  "cite": "2016 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16734,
+  "cite": "2016 ND 115",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16735,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 133, ¶7, 751 N.W.2d 247"
+  ]
+ },
+ {
+  "opinion_id": 16749,
+  "cite": "2016 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16752,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 152, ¶27, 864 N.W.2d 424"
+  ]
+ },
+ {
+  "opinion_id": 16762,
+  "cite": "2016 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16771,
+  "cite": "2016 ND 161",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16774,
+  "cite": "2016 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 16783,
+  "cite": "2016 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 16790,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 6, ¶15, 858 N.W.2d 302"
+  ]
+ },
+ {
+  "opinion_id": 16791,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 134, ¶11, 864 N.W.2d 265",
+   "2012 ND 198, ¶8, 821 N.W.2d 373",
+   "1998 ND 216, ¶ 8, 587 N.W.2d 568",
+   "2012 ND 198, ¶12, 821 N.W.2d 373"
+  ]
+ },
+ {
+  "opinion_id": 16795,
+  "cite": "2016 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16796,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 94, ¶22, 845 N.W.2d 900"
+  ]
+ },
+ {
+  "opinion_id": 16812,
+  "cite": "2016 ND 232",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16814,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 80, ¶9, 733 N.W.2d 248",
+   "2004 ND 21, ¶8, 674 N.W.2d 9",
+   "2009 ND 179, ¶23, 773 N.W.2d 798",
+   "2011 ND 74, ¶21, 796 N.W.2d 614"
+  ]
+ },
+ {
+  "opinion_id": 16822,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2005 ND 187, ¶9, 705 N.W.2d 845",
+   "2013 ND 124, ¶ 16, 833 N.W.2d 492",
+   "2013 ND 124, ¶ 17, 833 N.W.2d 492"
+  ]
+ },
+ {
+  "opinion_id": 16842,
+  "cite": "2017 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 16855,
+  "cite": "2017 ND 20",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 16857,
+  "cite": "2017 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16858,
+  "cite": "2017 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16859,
+  "cite": "2017 ND 33",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 16869,
+  "cite": "2017 ND 45",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16871,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2007 ND 36, ¶7, 729 N.W.2d 101",
+   "2004 ND 133, ¶7, 682 N.W.2d 294"
+  ]
+ },
+ {
+  "opinion_id": 16872,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2014 ND 128, ¶25, 848 N.W.2d 709"
+  ]
+ },
+ {
+  "opinion_id": 16873,
+  "cite": "2017 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16874,
+  "cite": "2017 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16877,
+  "cite": "2017 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 16878,
+  "cite": "2017 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 16885,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 212, ¶ 15, 758 N.W.2d 427"
+  ]
+ },
+ {
+  "opinion_id": 16888,
+  "cite": "2017 ND 73",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16898,
+  "cite": "2017 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16901,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 92, ¶11, 663 N.W.2d 175"
+  ]
+ },
+ {
+  "opinion_id": 16903,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2013 ND 240, ¶16, 840 N.W.2d 605"
+  ]
+ },
+ {
+  "opinion_id": 16908,
+  "cite": "2017 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16911,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 154, ¶ 6, 771 N.W.2d 288"
+  ]
+ },
+ {
+  "opinion_id": 16912,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1998 ND 132, ¶10, 580 N.W.2d 583"
+  ]
+ },
+ {
+  "opinion_id": 16914,
+  "cite": "2017 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16917,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2012 ND 178, ¶ 14, 820 N.W.2d 740",
+   "2010 ND 140, ¶¶ 10, 786 N.W.2d 8"
+  ]
+ },
+ {
+  "opinion_id": 16923,
+  "cite": "2017 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16925,
+  "cite": "2017 ND 122",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 16928,
+  "cite": "2017 ND 117",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16940,
+  "cite": "2017 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 16944,
+  "cite": "2017 ND 139",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16951,
+  "cite": "2017 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 16956,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2003 ND 81, ¶ 11, 662 N.W.2d 242"
+  ]
+ },
+ {
+  "opinion_id": 16959,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 118, ¶20, 863 N.W.2d 915",
+   "2014 ND 102, ¶22, 846 N.W.2d 724",
+   "2011 ND 170, ¶26, 803 N.W.2d 534"
+  ]
+ },
+ {
+  "opinion_id": 16967,
+  "cite": "2017 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 16972,
+  "cite": "2017 ND 169",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 16977,
+  "cite": "2017 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 16980,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 119, ¶¶ 10-11, 611 N.W.2d 888"
+  ]
+ },
+ {
+  "opinion_id": 17006,
+  "cite": "2017 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17007,
+  "cite": "2017 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17008,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 87, ¶¶ 27-30, 609 N.W.2d 418"
+  ]
+ },
+ {
+  "opinion_id": 17022,
+  "cite": "2017 ND 206",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17025,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 95, ¶ 15, 644 N.W.2d 878",
+   "2017 ND 42, ¶6, 890 N.W.2d 803"
+  ]
+ },
+ {
+  "opinion_id": 17032,
+  "cite": "2017 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17039,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 59, ¶28, 643 N.W.2d 45"
+  ]
+ },
+ {
+  "opinion_id": 17052,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2011 ND 154, ¶ 15, 801 N.W.2d 677"
+  ]
+ },
+ {
+  "opinion_id": 17059,
+  "cite": "2017 ND 249",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17071,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 122, ¶5, 863 N.W.2d 521",
+   "2013 ND 40, ¶11, 827 N.W.2d 555",
+   "2002 ND 134, ¶5, 649 N.W.2d 556",
+   "2016 ND 176, ¶22, 883 N.W.2d 917"
+  ]
+ },
+ {
+  "opinion_id": 17074,
+  "cite": "2017 ND 254",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17077,
+  "cite": "2017 ND 269",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17078,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2017 ND 24, ¶9, 889 N.W.2d 855",
+   "2017 ND 214, ¶ 32, 900 N.W.2d 812",
+   "2017 ND 214, ¶ 33, 900 N.W.2d 812"
+  ]
+ },
+ {
+  "opinion_id": 17081,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2017 ND 174, ¶8, 898 N.W.2d 706",
+   "1999 ND 74, ¶12, 592 N.W.2d 585"
+  ]
+ },
+ {
+  "opinion_id": 17083,
+  "cite": "2017 ND 248",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17084,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2017 ND 215, ¶ 28, 901 N.W.2d 718"
+  ]
+ },
+ {
+  "opinion_id": 17099,
+  "cite": "2017 ND 286",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17105,
+  "cite": "2017 ND 291",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17106,
+  "cite": "2018 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 80
+ },
+ {
+  "opinion_id": 17108,
+  "cite": "2018 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17109,
+  "cite": "2018 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17110,
+  "cite": "2018 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17111,
+  "cite": "2018 ND 66",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17112,
+  "cite": "2018 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17113,
+  "cite": "2018 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 87
+ },
+ {
+  "opinion_id": 17114,
+  "cite": "2018 ND 71",
+  "status": "OK_pdf",
+  "chars_removed": 204
+ },
+ {
+  "opinion_id": 17115,
+  "cite": "2018 ND 72",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17117,
+  "cite": "2018 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17119,
+  "cite": "2018 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17120,
+  "cite": "2018 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 72
+ },
+ {
+  "opinion_id": 17121,
+  "cite": "2018 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17122,
+  "cite": "2018 ND 84",
+  "status": "OK_pdf",
+  "chars_removed": 182
+ },
+ {
+  "opinion_id": 17123,
+  "cite": "2018 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 116
+ },
+ {
+  "opinion_id": 17125,
+  "cite": "2018 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 52
+ },
+ {
+  "opinion_id": 17126,
+  "cite": "2018 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 178
+ },
+ {
+  "opinion_id": 17135,
+  "cite": "2018 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17141,
+  "cite": "2018 ND 85",
+  "status": "OK_pdf",
+  "chars_removed": 68
+ },
+ {
+  "opinion_id": 17149,
+  "cite": "2018 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 66
+ },
+ {
+  "opinion_id": 17152,
+  "cite": "2018 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17153,
+  "cite": "2018 ND 114",
+  "status": "OK_pdf",
+  "chars_removed": 113
+ },
+ {
+  "opinion_id": 17154,
+  "cite": "2018 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 65
+ },
+ {
+  "opinion_id": 17155,
+  "cite": "2018 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17156,
+  "cite": "2018 ND 109",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17157,
+  "cite": "2018 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17158,
+  "cite": "2018 ND 118",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17161,
+  "cite": "2018 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 68
+ },
+ {
+  "opinion_id": 17162,
+  "cite": "2018 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17164,
+  "cite": "2018 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 67
+ },
+ {
+  "opinion_id": 17165,
+  "cite": "2018 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17167,
+  "cite": "2018 ND 115",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 17168,
+  "cite": "2018 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 72
+ },
+ {
+  "opinion_id": 17169,
+  "cite": "2018 ND 117",
+  "status": "OK_pdf",
+  "chars_removed": 134
+ },
+ {
+  "opinion_id": 17170,
+  "cite": "2018 ND 121",
+  "status": "OK_pdf",
+  "chars_removed": 70
+ },
+ {
+  "opinion_id": 17171,
+  "cite": "2018 ND 122",
+  "status": "OK_pdf",
+  "chars_removed": 111
+ },
+ {
+  "opinion_id": 17172,
+  "cite": "2018 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 45
+ },
+ {
+  "opinion_id": 17173,
+  "cite": "2018 ND 124",
+  "status": "OK_pdf",
+  "chars_removed": 154
+ },
+ {
+  "opinion_id": 17174,
+  "cite": "2018 ND 139",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17176,
+  "cite": "2018 ND 129",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17177,
+  "cite": "2018 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 103
+ },
+ {
+  "opinion_id": 17178,
+  "cite": "2018 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17179,
+  "cite": "2018 ND 134",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17180,
+  "cite": "2018 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17181,
+  "cite": "2018 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 49
+ },
+ {
+  "opinion_id": 17182,
+  "cite": "2018 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17184,
+  "cite": "2018 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 196
+ },
+ {
+  "opinion_id": 17186,
+  "cite": "2018 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 91
+ },
+ {
+  "opinion_id": 17187,
+  "cite": "2018 ND 141",
+  "status": "OK_pdf",
+  "chars_removed": 79
+ },
+ {
+  "opinion_id": 17188,
+  "cite": "2018 ND 140",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17189,
+  "cite": "2018 ND 137",
+  "status": "OK_pdf",
+  "chars_removed": 64
+ },
+ {
+  "opinion_id": 17190,
+  "cite": "2018 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17192,
+  "cite": "2018 ND 136",
+  "status": "OK_pdf",
+  "chars_removed": 104
+ },
+ {
+  "opinion_id": 17194,
+  "cite": "2018 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17202,
+  "cite": "2018 ND 150",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17203,
+  "cite": "2018 ND 161",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17204,
+  "cite": "2018 ND 149",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17209,
+  "cite": "2018 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17210,
+  "cite": "2018 ND 163",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17214,
+  "cite": "2018 ND 168",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17215,
+  "cite": "2018 ND 158",
+  "status": "OK_pdf",
+  "chars_removed": 56
+ },
+ {
+  "opinion_id": 17217,
+  "cite": "2018 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 75
+ },
+ {
+  "opinion_id": 17219,
+  "cite": "2018 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 64
+ },
+ {
+  "opinion_id": 17222,
+  "cite": "2018 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 132
+ },
+ {
+  "opinion_id": 17224,
+  "cite": "2018 ND 175",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17225,
+  "cite": "2018 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17226,
+  "cite": "2018 ND 181",
+  "status": "OK_pdf",
+  "chars_removed": 101
+ },
+ {
+  "opinion_id": 17227,
+  "cite": "2018 ND 182",
+  "status": "OK_pdf",
+  "chars_removed": 96
+ },
+ {
+  "opinion_id": 17228,
+  "cite": "2018 ND 183",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17230,
+  "cite": "2018 ND 179",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17231,
+  "cite": "2018 ND 180",
+  "status": "OK_pdf",
+  "chars_removed": 70
+ },
+ {
+  "opinion_id": 17232,
+  "cite": "2018 ND 176",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17233,
+  "cite": "2018 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 45
+ },
+ {
+  "opinion_id": 17237,
+  "cite": "2018 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17240,
+  "cite": "2018 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 64
+ },
+ {
+  "opinion_id": 17242,
+  "cite": "2018 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17243,
+  "cite": "2018 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 17244,
+  "cite": "2018 ND 203",
+  "status": "OK_pdf",
+  "chars_removed": 51
+ },
+ {
+  "opinion_id": 17245,
+  "cite": "2018 ND 197",
+  "status": "OK_pdf",
+  "chars_removed": 65
+ },
+ {
+  "opinion_id": 17246,
+  "cite": "2018 ND 201",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17247,
+  "cite": "2018 ND 204",
+  "status": "OK_pdf",
+  "chars_removed": 47
+ },
+ {
+  "opinion_id": 17248,
+  "cite": "2018 ND 195",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17249,
+  "cite": "2018 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17251,
+  "cite": "2018 ND 199",
+  "status": "OK_pdf",
+  "chars_removed": 80
+ },
+ {
+  "opinion_id": 17252,
+  "cite": "2018 ND 202",
+  "status": "OK_pdf",
+  "chars_removed": 126
+ },
+ {
+  "opinion_id": 17253,
+  "cite": "2018 ND 205",
+  "status": "OK_pdf",
+  "chars_removed": 70
+ },
+ {
+  "opinion_id": 17255,
+  "cite": "2018 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 236
+ },
+ {
+  "opinion_id": 17256,
+  "cite": "2018 ND 206",
+  "status": "OK_pdf",
+  "chars_removed": 50
+ },
+ {
+  "opinion_id": 17259,
+  "cite": "2018 ND 213",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17260,
+  "cite": "2018 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 119
+ },
+ {
+  "opinion_id": 17261,
+  "cite": "2018 ND 214",
+  "status": "OK_pdf",
+  "chars_removed": 90
+ },
+ {
+  "opinion_id": 17262,
+  "cite": "2018 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17263,
+  "cite": "2018 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 86
+ },
+ {
+  "opinion_id": 17264,
+  "cite": "2018 ND 215",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17265,
+  "cite": "2018 ND 217",
+  "status": "OK_pdf",
+  "chars_removed": 79
+ },
+ {
+  "opinion_id": 17266,
+  "cite": "2018 ND 209",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17267,
+  "cite": "2018 ND 211",
+  "status": "OK_pdf",
+  "chars_removed": 171
+ },
+ {
+  "opinion_id": 17268,
+  "cite": "2018 ND 219",
+  "status": "OK_pdf",
+  "chars_removed": 69
+ },
+ {
+  "opinion_id": 17269,
+  "cite": "2018 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 60
+ },
+ {
+  "opinion_id": 17270,
+  "cite": "2018 ND 229",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17271,
+  "cite": "2018 ND 230",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17272,
+  "cite": "2018 ND 231",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17273,
+  "cite": "2018 ND 232",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17274,
+  "cite": "2018 ND 224",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 17276,
+  "cite": "2018 ND 226",
+  "status": "OK_pdf",
+  "chars_removed": 77
+ },
+ {
+  "opinion_id": 17277,
+  "cite": "2018 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17278,
+  "cite": "2018 ND 227",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17279,
+  "cite": "2018 ND 225",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17280,
+  "cite": "2018 ND 220",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17281,
+  "cite": "2018 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17294,
+  "cite": "2018 ND 245",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17295,
+  "cite": "2018 ND 247",
+  "status": "OK_pdf",
+  "chars_removed": 114
+ },
+ {
+  "opinion_id": 17296,
+  "cite": "2018 ND 248",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17297,
+  "cite": "2018 ND 249",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17309,
+  "cite": "2018 ND 270",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17310,
+  "cite": "2018 ND 263",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17311,
+  "cite": "2018 ND 251",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17312,
+  "cite": "2018 ND 265",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17313,
+  "cite": "2018 ND 255",
+  "status": "OK_pdf",
+  "chars_removed": 108
+ },
+ {
+  "opinion_id": 17314,
+  "cite": "2018 ND 252",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17315,
+  "cite": "2018 ND 256",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 17316,
+  "cite": "2018 ND 262",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17317,
+  "cite": "2018 ND 260",
+  "status": "OK_pdf",
+  "chars_removed": 76
+ },
+ {
+  "opinion_id": 17318,
+  "cite": "2018 ND 254",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17320,
+  "cite": "2018 ND 253",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17321,
+  "cite": "2018 ND 257",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17322,
+  "cite": "2018 ND 268",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17323,
+  "cite": "2018 ND 258",
+  "status": "OK_pdf",
+  "chars_removed": 80
+ },
+ {
+  "opinion_id": 17324,
+  "cite": "2018 ND 264",
+  "status": "OK_pdf",
+  "chars_removed": 75
+ },
+ {
+  "opinion_id": 17325,
+  "cite": "2018 ND 259",
+  "status": "OK_pdf",
+  "chars_removed": 87
+ },
+ {
+  "opinion_id": 17326,
+  "cite": "2018 ND 261",
+  "status": "OK_pdf",
+  "chars_removed": 60
+ },
+ {
+  "opinion_id": 17327,
+  "cite": "2018 ND 273",
+  "status": "OK_pdf",
+  "chars_removed": 81
+ },
+ {
+  "opinion_id": 17328,
+  "cite": "2018 ND 272",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17329,
+  "cite": "2018 ND 267",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17330,
+  "cite": "2018 ND 266",
+  "status": "OK_pdf",
+  "chars_removed": 45
+ },
+ {
+  "opinion_id": 17331,
+  "cite": "2018 ND 269",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17332,
+  "cite": "2018 ND 271",
+  "status": "OK_pdf",
+  "chars_removed": 106
+ },
+ {
+  "opinion_id": 17333,
+  "cite": "2018 ND 274",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17336,
+  "cite": "2019 ND 4",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17337,
+  "cite": "2019 ND 6",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17339,
+  "cite": "2019 ND 2",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17340,
+  "cite": "2019 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17341,
+  "cite": "2019 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17342,
+  "cite": "2019 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17343,
+  "cite": "2019 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17344,
+  "cite": "2019 ND 13",
+  "status": "OK_pdf",
+  "chars_removed": 52
+ },
+ {
+  "opinion_id": 17346,
+  "cite": "2019 ND 15",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17347,
+  "cite": "2019 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17348,
+  "cite": "2019 ND 26",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17349,
+  "cite": "2019 ND 11",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17350,
+  "cite": "2019 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17351,
+  "cite": "2019 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17352,
+  "cite": "2019 ND 19",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17353,
+  "cite": "2019 ND 20",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17354,
+  "cite": "2019 ND 28",
+  "status": "OK_pdf",
+  "chars_removed": 156
+ },
+ {
+  "opinion_id": 17356,
+  "cite": "2019 ND 24",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17357,
+  "cite": "2019 ND 27",
+  "status": "OK_pdf",
+  "chars_removed": 95
+ },
+ {
+  "opinion_id": 17358,
+  "cite": "2019 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 81
+ },
+ {
+  "opinion_id": 17359,
+  "cite": "2019 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 96
+ },
+ {
+  "opinion_id": 17360,
+  "cite": "2019 ND 17",
+  "status": "OK_pdf",
+  "chars_removed": 68
+ },
+ {
+  "opinion_id": 17361,
+  "cite": "2019 ND 10",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17362,
+  "cite": "2019 ND 14",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17363,
+  "cite": "2019 ND 29",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17364,
+  "cite": "2019 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 44
+ },
+ {
+  "opinion_id": 17365,
+  "cite": "2019 ND 31",
+  "status": "OK_pdf",
+  "chars_removed": 66
+ },
+ {
+  "opinion_id": 17366,
+  "cite": "2019 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17370,
+  "cite": "2019 ND 37",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 17371,
+  "cite": "2019 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17372,
+  "cite": "2019 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 107
+ },
+ {
+  "opinion_id": 17374,
+  "cite": "2019 ND 51",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 17375,
+  "cite": "2019 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17376,
+  "cite": "2019 ND 49",
+  "status": "OK_pdf",
+  "chars_removed": 56
+ },
+ {
+  "opinion_id": 17378,
+  "cite": "2019 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17379,
+  "cite": "2019 ND 47",
+  "status": "OK_pdf",
+  "chars_removed": 61
+ },
+ {
+  "opinion_id": 17380,
+  "cite": "2019 ND 33",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17381,
+  "cite": "2019 ND 42",
+  "status": "OK_pdf",
+  "chars_removed": 69
+ },
+ {
+  "opinion_id": 17383,
+  "cite": "2019 ND 43",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 17384,
+  "cite": "2019 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 43
+ },
+ {
+  "opinion_id": 17385,
+  "cite": "2019 ND 48",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17386,
+  "cite": "2019 ND 41",
+  "status": "OK_pdf",
+  "chars_removed": 49
+ },
+ {
+  "opinion_id": 17387,
+  "cite": "2019 ND 46",
+  "status": "OK_pdf",
+  "chars_removed": 192
+ },
+ {
+  "opinion_id": 17388,
+  "cite": "2019 ND 45",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17389,
+  "cite": "2019 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17390,
+  "cite": "2019 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17391,
+  "cite": "2019 ND 57",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17392,
+  "cite": "2019 ND 58",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17394,
+  "cite": "2019 ND 73",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 17395,
+  "cite": "2019 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17396,
+  "cite": "2019 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17397,
+  "cite": "2019 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17400,
+  "cite": "2019 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17402,
+  "cite": "2019 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17403,
+  "cite": "2019 ND 74",
+  "status": "OK_pdf",
+  "chars_removed": 106
+ },
+ {
+  "opinion_id": 17404,
+  "cite": "2019 ND 65",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 17405,
+  "cite": "2019 ND 76",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17406,
+  "cite": "2019 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17407,
+  "cite": "2019 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 99
+ },
+ {
+  "opinion_id": 17408,
+  "cite": "2019 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 68
+ },
+ {
+  "opinion_id": 17409,
+  "cite": "2019 ND 71",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17410,
+  "cite": "2019 ND 72",
+  "status": "OK_pdf",
+  "chars_removed": 93
+ },
+ {
+  "opinion_id": 17411,
+  "cite": "2019 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17412,
+  "cite": "2019 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 52
+ },
+ {
+  "opinion_id": 17413,
+  "cite": "2019 ND 84",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17414,
+  "cite": "2019 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17415,
+  "cite": "2019 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17416,
+  "cite": "2019 ND 87",
+  "status": "OK_pdf",
+  "chars_removed": 93
+ },
+ {
+  "opinion_id": 17417,
+  "cite": "2019 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 104
+ },
+ {
+  "opinion_id": 17418,
+  "cite": "2019 ND 85",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17419,
+  "cite": "2019 ND 88",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17420,
+  "cite": "2019 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 64
+ },
+ {
+  "opinion_id": 17422,
+  "cite": "2019 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 142
+ },
+ {
+  "opinion_id": 17423,
+  "cite": "2019 ND 66",
+  "status": "OK_pdf",
+  "chars_removed": 49
+ },
+ {
+  "opinion_id": 17424,
+  "cite": "2019 ND 90",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17425,
+  "cite": "2019 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 83
+ },
+ {
+  "opinion_id": 17426,
+  "cite": "2019 ND 91",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17427,
+  "cite": "2019 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 162
+ },
+ {
+  "opinion_id": 17428,
+  "cite": "2019 ND 102",
+  "status": "OK_pdf",
+  "chars_removed": 59
+ },
+ {
+  "opinion_id": 17429,
+  "cite": "2019 ND 107",
+  "status": "OK_pdf",
+  "chars_removed": 66
+ },
+ {
+  "opinion_id": 17430,
+  "cite": "2019 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17431,
+  "cite": "2019 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17432,
+  "cite": "2019 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 77
+ },
+ {
+  "opinion_id": 17433,
+  "cite": "2019 ND 92",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17435,
+  "cite": "2019 ND 98",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17436,
+  "cite": "2019 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 97
+ },
+ {
+  "opinion_id": 17437,
+  "cite": "2019 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17438,
+  "cite": "2019 ND 105",
+  "status": "OK_pdf",
+  "chars_removed": 78
+ },
+ {
+  "opinion_id": 17439,
+  "cite": "2019 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17440,
+  "cite": "2019 ND 97",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17441,
+  "cite": "2019 ND 109",
+  "status": "OK_pdf",
+  "chars_removed": 82
+ },
+ {
+  "opinion_id": 17442,
+  "cite": "2019 ND 95",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17443,
+  "cite": "2019 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17444,
+  "cite": "2019 ND 99",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17445,
+  "cite": "2019 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17446,
+  "cite": "2019 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 81
+ },
+ {
+  "opinion_id": 17447,
+  "cite": "2019 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17448,
+  "cite": "2019 ND 114",
+  "status": "OK_pdf",
+  "chars_removed": 50
+ },
+ {
+  "opinion_id": 17449,
+  "cite": "2019 ND 115",
+  "status": "OK_pdf",
+  "chars_removed": 43
+ },
+ {
+  "opinion_id": 17450,
+  "cite": "2019 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17451,
+  "cite": "2019 ND 121",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17452,
+  "cite": "2019 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17453,
+  "cite": "2019 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17454,
+  "cite": "2019 ND 117",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17457,
+  "cite": "2019 ND 137",
+  "status": "OK_pdf",
+  "chars_removed": 102
+ },
+ {
+  "opinion_id": 17458,
+  "cite": "2019 ND 129",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17459,
+  "cite": "2019 ND 127",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17462,
+  "cite": "2019 ND 134",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17463,
+  "cite": "2019 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 115
+ },
+ {
+  "opinion_id": 17464,
+  "cite": "2019 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 92
+ },
+ {
+  "opinion_id": 17466,
+  "cite": "2019 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 47
+ },
+ {
+  "opinion_id": 17468,
+  "cite": "2019 ND 126",
+  "status": "OK_pdf",
+  "chars_removed": 110
+ },
+ {
+  "opinion_id": 17470,
+  "cite": "2019 ND 130",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17472,
+  "cite": "2019 ND 144",
+  "status": "OK_pdf",
+  "chars_removed": 60
+ },
+ {
+  "opinion_id": 17473,
+  "cite": "2019 ND 136",
+  "status": "OK_pdf",
+  "chars_removed": 52
+ },
+ {
+  "opinion_id": 17474,
+  "cite": "2019 ND 139",
+  "status": "OK_pdf",
+  "chars_removed": 83
+ },
+ {
+  "opinion_id": 17476,
+  "cite": "2019 ND 124",
+  "status": "OK_pdf",
+  "chars_removed": 83
+ },
+ {
+  "opinion_id": 17477,
+  "cite": "2019 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 72
+ },
+ {
+  "opinion_id": 17478,
+  "cite": "2019 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17479,
+  "cite": "2019 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 17480,
+  "cite": "2019 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 91
+ },
+ {
+  "opinion_id": 17481,
+  "cite": "2019 ND 147",
+  "status": "OK_pdf",
+  "chars_removed": 72
+ },
+ {
+  "opinion_id": 17482,
+  "cite": "2019 ND 149",
+  "status": "OK_pdf",
+  "chars_removed": 99
+ },
+ {
+  "opinion_id": 17483,
+  "cite": "2019 ND 150",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17484,
+  "cite": "2019 ND 148",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17485,
+  "cite": "2019 ND 152",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17497,
+  "cite": "2019 ND 161",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17498,
+  "cite": "2019 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17499,
+  "cite": "2019 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 93
+ },
+ {
+  "opinion_id": 17500,
+  "cite": "2019 ND 157",
+  "status": "OK_pdf",
+  "chars_removed": 88
+ },
+ {
+  "opinion_id": 17501,
+  "cite": "2019 ND 158",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17503,
+  "cite": "2019 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 65
+ },
+ {
+  "opinion_id": 17504,
+  "cite": "2019 ND 175",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17508,
+  "cite": "2019 ND 162",
+  "status": "OK_pdf",
+  "chars_removed": 43
+ },
+ {
+  "opinion_id": 17510,
+  "cite": "2019 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17511,
+  "cite": "2019 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17512,
+  "cite": "2019 ND 166",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17513,
+  "cite": "2019 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 41
+ },
+ {
+  "opinion_id": 17514,
+  "cite": "2019 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 166
+ },
+ {
+  "opinion_id": 17515,
+  "cite": "2019 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 60
+ },
+ {
+  "opinion_id": 17516,
+  "cite": "2019 ND 179",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17517,
+  "cite": "2019 ND 178",
+  "status": "OK_pdf",
+  "chars_removed": 84
+ },
+ {
+  "opinion_id": 17518,
+  "cite": "2019 ND 180",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17519,
+  "cite": "2019 ND 185",
+  "status": "OK_pdf",
+  "chars_removed": 87
+ },
+ {
+  "opinion_id": 17520,
+  "cite": "2019 ND 191",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 17521,
+  "cite": "2019 ND 190",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17522,
+  "cite": "2019 ND 181",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17525,
+  "cite": "2019 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17526,
+  "cite": "2019 ND 156",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17527,
+  "cite": "2019 ND 168",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17528,
+  "cite": "2019 ND 159",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17529,
+  "cite": "2019 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 48
+ },
+ {
+  "opinion_id": 17530,
+  "cite": "2019 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 73
+ },
+ {
+  "opinion_id": 17531,
+  "cite": "2019 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 118
+ },
+ {
+  "opinion_id": 17533,
+  "cite": "2019 ND 188",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17534,
+  "cite": "2019 ND 187",
+  "status": "OK_pdf",
+  "chars_removed": 47
+ },
+ {
+  "opinion_id": 17535,
+  "cite": "2019 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 44
+ },
+ {
+  "opinion_id": 17536,
+  "cite": "2019 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 44
+ },
+ {
+  "opinion_id": 17537,
+  "cite": "2019 ND 183",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17538,
+  "cite": "2019 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17539,
+  "cite": "2019 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 55
+ },
+ {
+  "opinion_id": 17540,
+  "cite": "2019 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 85
+ },
+ {
+  "opinion_id": 17543,
+  "cite": "2019 ND 197",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17544,
+  "cite": "2019 ND 205",
+  "status": "OK_pdf",
+  "chars_removed": 56
+ },
+ {
+  "opinion_id": 17545,
+  "cite": "2019 ND 201",
+  "status": "OK_pdf",
+  "chars_removed": 50
+ },
+ {
+  "opinion_id": 17546,
+  "cite": "2019 ND 202",
+  "status": "OK_pdf",
+  "chars_removed": 74
+ },
+ {
+  "opinion_id": 17548,
+  "cite": "2019 ND 206",
+  "status": "OK_pdf",
+  "chars_removed": 261
+ },
+ {
+  "opinion_id": 17549,
+  "cite": "2019 ND 207",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17552,
+  "cite": "2019 ND 210",
+  "status": "OK_pdf",
+  "chars_removed": 85
+ },
+ {
+  "opinion_id": 17553,
+  "cite": "2019 ND 211",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17556,
+  "cite": "2019 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17557,
+  "cite": "2019 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17558,
+  "cite": "2019 ND 217",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17560,
+  "cite": "2019 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 62
+ },
+ {
+  "opinion_id": 17563,
+  "cite": "2019 ND 215",
+  "status": "OK_pdf",
+  "chars_removed": 93
+ },
+ {
+  "opinion_id": 17565,
+  "cite": "2019 ND 222",
+  "status": "OK_pdf",
+  "chars_removed": 151
+ },
+ {
+  "opinion_id": 17566,
+  "cite": "2019 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 74
+ },
+ {
+  "opinion_id": 17568,
+  "cite": "2019 ND 220",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17569,
+  "cite": "2019 ND 227",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17570,
+  "cite": "2019 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 17571,
+  "cite": "2019 ND 229",
+  "status": "OK_pdf",
+  "chars_removed": 51
+ },
+ {
+  "opinion_id": 17572,
+  "cite": "2019 ND 233",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17574,
+  "cite": "2019 ND 231",
+  "status": "OK_pdf",
+  "chars_removed": 70
+ },
+ {
+  "opinion_id": 17575,
+  "cite": "2019 ND 203",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17576,
+  "cite": "2020 ND 8",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17577,
+  "cite": "2020 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17578,
+  "cite": "2020 ND 4",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17579,
+  "cite": "2020 ND 11",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17580,
+  "cite": "2020 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17581,
+  "cite": "2020 ND 19",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17582,
+  "cite": "2020 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17584,
+  "cite": "2020 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17585,
+  "cite": "2020 ND 17",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17586,
+  "cite": "2020 ND 6",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17587,
+  "cite": "2020 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17588,
+  "cite": "2020 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 63
+ },
+ {
+  "opinion_id": 17589,
+  "cite": "2020 ND 24",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17590,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2015 ND 125, ¶ 48, 863 N.W.2d 876"
+  ]
+ },
+ {
+  "opinion_id": 17591,
+  "cite": "2020 ND 26",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17592,
+  "cite": "2020 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17593,
+  "cite": "2020 ND 35",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17595,
+  "cite": "2020 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 17596,
+  "cite": "2020 ND 41",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17597,
+  "cite": "2020 ND 34",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17598,
+  "cite": "2020 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17599,
+  "cite": "2020 ND 37",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 17600,
+  "cite": "2020 ND 42",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17602,
+  "cite": "2020 ND 45",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17603,
+  "cite": "2020 ND 46",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17604,
+  "cite": "2020 ND 49",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17605,
+  "cite": "2020 ND 51",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17606,
+  "cite": "2020 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17607,
+  "cite": "2020 ND 48",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17608,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2019 ND 159, ¶ 6, 931 N.W.2d 181",
+   "2018 ND 217, ¶ 6, 917 N.W.2d 515",
+   "2019 ND 240, ¶ 12, 934 N.W.2d 5"
+  ]
+ },
+ {
+  "opinion_id": 17617,
+  "cite": "2020 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17618,
+  "cite": "2020 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17619,
+  "cite": "2020 ND 66",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17621,
+  "cite": "2020 ND 62",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17622,
+  "cite": "2020 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17623,
+  "cite": "2020 ND 71",
+  "status": "OK_pdf",
+  "chars_removed": 56
+ },
+ {
+  "opinion_id": 17624,
+  "cite": "2020 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17625,
+  "cite": "2020 ND 65",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17626,
+  "cite": "2020 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17627,
+  "cite": "2020 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17628,
+  "cite": "2020 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17630,
+  "cite": "2020 ND 74",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17631,
+  "cite": "2020 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17633,
+  "cite": "2020 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17634,
+  "cite": "2020 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17635,
+  "cite": "2020 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17636,
+  "cite": "2020 ND 99",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17637,
+  "cite": "2020 ND 88",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17638,
+  "cite": "2020 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17639,
+  "cite": "2020 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17640,
+  "cite": "2020 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17642,
+  "cite": "2020 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17643,
+  "cite": "2020 ND 85",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17644,
+  "cite": "2020 ND 87",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17645,
+  "cite": "2020 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17646,
+  "cite": "2020 ND 92",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17649,
+  "cite": "2020 ND 105",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17650,
+  "cite": "2020 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17652,
+  "cite": "2020 ND 130",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17653,
+  "cite": "2020 ND 134",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17655,
+  "cite": "2020 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17656,
+  "cite": "2020 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17657,
+  "cite": "2020 ND 151",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17658,
+  "cite": "2020 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 39
+ },
+ {
+  "opinion_id": 17661,
+  "cite": "2020 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17662,
+  "cite": "2020 ND 156",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17664,
+  "cite": "2020 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17665,
+  "cite": "2020 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17666,
+  "cite": "2020 ND 163",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17668,
+  "cite": "2020 ND 171",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17670,
+  "cite": "2020 ND 152",
+  "status": "OK_pdf",
+  "chars_removed": 41
+ },
+ {
+  "opinion_id": 17671,
+  "cite": "2020 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17672,
+  "cite": "2020 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17673,
+  "cite": "2020 ND 159",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 17674,
+  "cite": "2020 ND 167",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17675,
+  "cite": "2020 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17676,
+  "cite": "2020 ND 172",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17677,
+  "cite": "2020 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17678,
+  "cite": "2020 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17679,
+  "cite": "2020 ND 181",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17680,
+  "cite": "2020 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17681,
+  "cite": "2020 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17682,
+  "cite": "2020 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17683,
+  "cite": "2020 ND 188",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17684,
+  "cite": "2020 ND 182",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17685,
+  "cite": "2020 ND 180",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17686,
+  "cite": "2020 ND 178",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17687,
+  "cite": "2020 ND 190",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17688,
+  "cite": "2020 ND 197",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17689,
+  "cite": "2020 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17690,
+  "cite": "2020 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17692,
+  "cite": "2020 ND 199",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17693,
+  "cite": "2020 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17694,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2009 ND 72, ¶ 11, 764 N.W.2d 425"
+  ]
+ },
+ {
+  "opinion_id": 17695,
+  "cite": "2020 ND 222",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17696,
+  "cite": "2020 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17697,
+  "cite": "2020 ND 214",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17698,
+  "cite": "2020 ND 215",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17701,
+  "cite": "2020 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17702,
+  "cite": "2020 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17703,
+  "cite": "2020 ND 220",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17704,
+  "cite": "2020 ND 211",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17716,
+  "cite": "2020 ND 207",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17717,
+  "cite": "2020 ND 204",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17718,
+  "cite": "2020 ND 205",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17719,
+  "cite": "2020 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17720,
+  "cite": "2020 ND 208",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17721,
+  "cite": "2020 ND 209",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17722,
+  "cite": "2020 ND 227",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17723,
+  "cite": "2020 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17725,
+  "cite": "2020 ND 250",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17726,
+  "cite": "2020 ND 248",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17727,
+  "cite": "2020 ND 239",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17728,
+  "cite": "2020 ND 241",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17729,
+  "cite": "2020 ND 238",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17731,
+  "cite": "2020 ND 231",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17732,
+  "cite": "2020 ND 236",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17733,
+  "cite": "2020 ND 249",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17734,
+  "cite": "2020 ND 240",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17735,
+  "cite": "2020 ND 233",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17736,
+  "cite": "2020 ND 235",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17737,
+  "cite": "2020 ND 242",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17738,
+  "cite": "2020 ND 251",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17739,
+  "cite": "2020 ND 252",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17740,
+  "cite": "2020 ND 255",
+  "status": "OK_pdf",
+  "chars_removed": 44
+ },
+ {
+  "opinion_id": 17741,
+  "cite": "2021 ND 8",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17742,
+  "cite": "2021 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17744,
+  "cite": "2021 ND 1",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17745,
+  "cite": "2021 ND 6",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17746,
+  "cite": "2021 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17747,
+  "cite": "2021 ND 2",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17748,
+  "cite": "2021 ND 11",
+  "status": "OK_pdf",
+  "chars_removed": 39
+ },
+ {
+  "opinion_id": 17751,
+  "cite": "2021 ND 14",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17753,
+  "cite": "2021 ND 16",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17754,
+  "cite": "2021 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17755,
+  "cite": "2021 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17756,
+  "cite": "2021 ND 20",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17757,
+  "cite": "2021 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17758,
+  "cite": "2021 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17759,
+  "cite": "2021 ND 34",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17760,
+  "cite": "2021 ND 24",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17761,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 56, ¶ 14, 59 N.W.2d 126"
+  ]
+ },
+ {
+  "opinion_id": 17762,
+  "cite": "2021 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17763,
+  "cite": "2021 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17764,
+  "cite": "2021 ND 27",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17765,
+  "cite": "2021 ND 35",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17767,
+  "cite": "2021 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17768,
+  "cite": "2021 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17769,
+  "cite": "2021 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17771,
+  "cite": "2021 ND 46",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17772,
+  "cite": "2021 ND 60",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17773,
+  "cite": "2021 ND 53",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17774,
+  "cite": "2021 ND 61",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17775,
+  "cite": "2021 ND 49",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17776,
+  "cite": "2021 ND 47",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17777,
+  "cite": "2021 ND 58",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17778,
+  "cite": "2021 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17780,
+  "cite": "2021 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17781,
+  "cite": "2021 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 32
+ },
+ {
+  "opinion_id": 17782,
+  "cite": "2021 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17783,
+  "cite": "2021 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17784,
+  "cite": "2021 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17785,
+  "cite": "2021 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17788,
+  "cite": "2021 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17792,
+  "cite": "2021 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17794,
+  "cite": "2020 ND 185",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17795,
+  "cite": "2021 ND 71",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17796,
+  "cite": "2021 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17798,
+  "cite": "2021 ND 73",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17799,
+  "cite": "2021 ND 72",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17801,
+  "cite": "2021 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17802,
+  "cite": "2021 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17803,
+  "cite": "2021 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 40
+ },
+ {
+  "opinion_id": 17804,
+  "cite": "2021 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17805,
+  "cite": "2021 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17806,
+  "cite": "2021 ND 84",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17807,
+  "cite": "2021 ND 88",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17808,
+  "cite": "2021 ND 87",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17809,
+  "cite": "2021 ND 92",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17810,
+  "cite": "2021 ND 90",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17811,
+  "cite": "2021 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17812,
+  "cite": "2021 ND 91",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17813,
+  "cite": "2021 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 17814,
+  "cite": "2021 ND 85",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17822,
+  "cite": "2021 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17823,
+  "cite": "2021 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17825,
+  "cite": "2021 ND 95",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17826,
+  "cite": "2021 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17827,
+  "cite": "2021 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17828,
+  "cite": "2021 ND 98",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17829,
+  "cite": "2021 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17830,
+  "cite": "2021 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17831,
+  "cite": "2021 ND 107",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17832,
+  "cite": "2021 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17833,
+  "cite": "2021 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17834,
+  "cite": "2021 ND 114",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17835,
+  "cite": "2021 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17836,
+  "cite": "2021 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17837,
+  "cite": "2021 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17838,
+  "cite": "2021 ND 109",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17839,
+  "cite": "2021 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17841,
+  "cite": "2021 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17842,
+  "cite": "2021 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17844,
+  "cite": "2021 ND 118",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 17845,
+  "cite": "2021 ND 124",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17846,
+  "cite": "2021 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17847,
+  "cite": "2021 ND 136",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17848,
+  "cite": "2021 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17849,
+  "cite": "2021 ND 134",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17850,
+  "cite": "2021 ND 135",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17851,
+  "cite": "2021 ND 137",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17852,
+  "cite": "2021 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 43
+ },
+ {
+  "opinion_id": 17853,
+  "cite": "2021 ND 141",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17854,
+  "cite": "2021 ND 150",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17855,
+  "cite": "2021 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17856,
+  "cite": "2021 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17858,
+  "cite": "2021 ND 144",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17859,
+  "cite": "2021 ND 149",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17860,
+  "cite": "2021 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17861,
+  "cite": "2021 ND 140",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17862,
+  "cite": "2021 ND 139",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17863,
+  "cite": "2021 ND 143",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17864,
+  "cite": "2021 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17865,
+  "cite": "2021 ND 154",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17866,
+  "cite": "2021 ND 158",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17867,
+  "cite": "2021 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17868,
+  "cite": "2021 ND 152",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 17869,
+  "cite": "2021 ND 159",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17870,
+  "cite": "2021 ND 160",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17871,
+  "cite": "2021 ND 161",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17872,
+  "cite": "2021 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17873,
+  "cite": "2021 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17874,
+  "cite": "2021 ND 162",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17875,
+  "cite": "2021 ND 175",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17876,
+  "cite": "2021 ND 174",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17877,
+  "cite": "2021 ND 173",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 17878,
+  "cite": "2021 ND 168",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17879,
+  "cite": "2021 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17880,
+  "cite": "2021 ND 186",
+  "status": "OK_pdf",
+  "chars_removed": 58
+ },
+ {
+  "opinion_id": 17881,
+  "cite": "2021 ND 182",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17882,
+  "cite": "2021 ND 185",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17885,
+  "cite": "2021 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17886,
+  "cite": "2021 ND 183",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17888,
+  "cite": "2021 ND 172",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17889,
+  "cite": "2021 ND 169",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17892,
+  "cite": "2021 ND 191",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17893,
+  "cite": "2021 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17894,
+  "cite": "2021 ND 194",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17895,
+  "cite": "2021 ND 190",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17896,
+  "cite": "2021 ND 195",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17897,
+  "cite": "2021 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17898,
+  "cite": "2021 ND 200",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17899,
+  "cite": "2021 ND 199",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17900,
+  "cite": "2021 ND 203",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 17901,
+  "cite": "2021 ND 204",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 17902,
+  "cite": "2021 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17903,
+  "cite": "2021 ND 210",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 17904,
+  "cite": "2021 ND 213",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 17905,
+  "cite": "2021 ND 215",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17907,
+  "cite": "2021 ND 209",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17908,
+  "cite": "2021 ND 214",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17909,
+  "cite": "2021 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 17910,
+  "cite": "2021 ND 208",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 17911,
+  "cite": "2021 ND 217",
+  "status": "OK_pdf",
+  "chars_removed": 54
+ },
+ {
+  "opinion_id": 17913,
+  "cite": "2021 ND 216",
+  "status": "OK_nopdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17915,
+  "cite": "2021 ND 225",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17916,
+  "cite": "2021 ND 220",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17917,
+  "cite": "2021 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17919,
+  "cite": "2021 ND 234",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17920,
+  "cite": "2021 ND 233",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17921,
+  "cite": "2021 ND 239",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17922,
+  "cite": "2021 ND 236",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 17923,
+  "cite": "2021 ND 237",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17924,
+  "cite": "2021 ND 238",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17925,
+  "cite": "2021 ND 228",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 17926,
+  "cite": "2021 ND 240",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17927,
+  "cite": "2021 ND 230",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17928,
+  "cite": "2021 ND 235",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17930,
+  "cite": "2021 ND 232",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17931,
+  "cite": "2021 ND 229",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17932,
+  "cite": "2022 ND 4",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17933,
+  "cite": "2022 ND 1",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 17934,
+  "cite": "2022 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17935,
+  "cite": "2022 ND 15",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17936,
+  "cite": "2022 ND 6",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17937,
+  "cite": "2022 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17939,
+  "cite": "2022 ND 8",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17940,
+  "cite": "2022 ND 5",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17941,
+  "cite": "2022 ND 12",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17942,
+  "cite": "2022 ND 2",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17943,
+  "cite": "2022 ND 11",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 17944,
+  "cite": "2022 ND 13",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 17945,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2000 ND 203, ¶ 14, 621 N.W.2d 314"
+  ]
+ },
+ {
+  "opinion_id": 17946,
+  "cite": "2022 ND 17",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17947,
+  "cite": "2022 ND 20",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 17948,
+  "cite": "2022 ND 21",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17949,
+  "cite": "2022 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17952,
+  "cite": "2022 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 17953,
+  "cite": "2022 ND 23",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 17954,
+  "cite": "2022 ND 26",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17955,
+  "cite": "2022 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17963,
+  "cite": "2022 ND 28",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 17964,
+  "cite": "2022 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 45
+ },
+ {
+  "opinion_id": 17965,
+  "cite": "2022 ND 29",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 17966,
+  "cite": "2022 ND 40",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17967,
+  "cite": "2022 ND 36",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17968,
+  "cite": "2022 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 17969,
+  "cite": "2022 ND 39",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 17970,
+  "cite": "2022 ND 41",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 17971,
+  "cite": "2022 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 17972,
+  "cite": "2022 ND 31",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 17974,
+  "cite": "2022 ND 46",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 17975,
+  "cite": "2022 ND 47",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17977,
+  "cite": "2022 ND 45",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 17978,
+  "cite": "2022 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 17979,
+  "cite": "2022 ND 53",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17980,
+  "cite": "2022 ND 57",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17981,
+  "cite": "2022 ND 56",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17983,
+  "cite": "2022 ND 51",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 17984,
+  "cite": "2022 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 67
+ },
+ {
+  "opinion_id": 17985,
+  "cite": "2022 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17986,
+  "cite": "2022 ND 61",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 17987,
+  "cite": "2022 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 17988,
+  "cite": "2022 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 17990,
+  "cite": "2022 ND 52",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 17991,
+  "cite": "2022 ND 58",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 17992,
+  "cite": "2022 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 36
+ },
+ {
+  "opinion_id": 17995,
+  "cite": "2022 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 17998,
+  "cite": "2022 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 17999,
+  "cite": "2022 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18000,
+  "cite": "2022 ND 88",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18001,
+  "cite": "2022 ND 90",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18004,
+  "cite": "2022 ND 78",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18005,
+  "cite": "2022 ND 83",
+  "status": "OK_pdf",
+  "chars_removed": 7
+ },
+ {
+  "opinion_id": 18006,
+  "cite": "2022 ND 87",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 18007,
+  "cite": "2022 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 18009,
+  "cite": "2022 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18010,
+  "cite": "2022 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18011,
+  "cite": "2022 ND 76",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18012,
+  "cite": "2022 ND 72",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 18013,
+  "cite": "2022 ND 99",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18014,
+  "cite": "2022 ND 95",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18015,
+  "cite": "2022 ND 102",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 18016,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2002 ND 140, ¶ 9, 651 N.W.2d 625",
+   "2000 ND 12, ¶ 7, 604 N.W.2d 453",
+   "2014 ND 97, ¶¶ 7-8, 846 N.W.2d 327",
+   "2001 ND 167, ¶ 7, 634 N.W.2d 514"
+  ]
+ },
+ {
+  "opinion_id": 18017,
+  "cite": "2022 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18018,
+  "cite": "2022 ND 100",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18019,
+  "cite": "2022 ND 97",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18020,
+  "cite": "2022 ND 91",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18021,
+  "cite": "2022 ND 94",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 18022,
+  "cite": "2022 ND 96",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18023,
+  "cite": "2022 ND 101",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18024,
+  "cite": "2022 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18025,
+  "cite": "2022 ND 111",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18026,
+  "cite": "2022 ND 112",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18027,
+  "cite": "2022 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18029,
+  "cite": "2022 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18030,
+  "cite": "2022 ND 105",
+  "status": "OK_pdf",
+  "chars_removed": 64
+ },
+ {
+  "opinion_id": 18031,
+  "cite": "2022 ND 117",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18032,
+  "cite": "2022 ND 113",
+  "status": "OK_pdf",
+  "chars_removed": 53
+ },
+ {
+  "opinion_id": 18033,
+  "cite": "2022 ND 107",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18034,
+  "cite": "2022 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 18035,
+  "cite": "2022 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18036,
+  "cite": "2022 ND 120",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18037,
+  "cite": "2022 ND 124",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 18039,
+  "cite": "2022 ND 126",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 18040,
+  "cite": "2022 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 18041,
+  "cite": "2022 ND 128",
+  "status": "OK_pdf",
+  "chars_removed": 47
+ },
+ {
+  "opinion_id": 18042,
+  "cite": "2022 ND 125",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18043,
+  "cite": "2022 ND 130",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18044,
+  "cite": "2022 ND 131",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18045,
+  "cite": "2022 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18046,
+  "cite": "2022 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 18047,
+  "cite": "2022 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18049,
+  "cite": "2022 ND 166",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18050,
+  "cite": "2022 ND 168",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18051,
+  "cite": "2022 ND 170",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18052,
+  "cite": "2022 ND 169",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18069,
+  "cite": "2022 ND 171",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18071,
+  "cite": "2022 ND 176",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18072,
+  "cite": "2022 ND 172",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 18075,
+  "cite": "2022 ND 165",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 18076,
+  "cite": "2022 ND 164",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 18078,
+  "cite": "2022 ND 177",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18079,
+  "cite": "2022 ND 181",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18080,
+  "cite": "2022 ND 197",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18081,
+  "cite": "2022 ND 189",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 18083,
+  "cite": "2022 ND 196",
+  "status": "OK_pdf",
+  "chars_removed": 35
+ },
+ {
+  "opinion_id": 18084,
+  "cite": "2022 ND 184",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18085,
+  "cite": "2022 ND 188",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18086,
+  "cite": "2022 ND 199",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18087,
+  "cite": "2022 ND 193",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18088,
+  "cite": "2022 ND 185",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18090,
+  "cite": "2022 ND 191",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18091,
+  "cite": "2022 ND 187",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18092,
+  "cite": "2022 ND 192",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18093,
+  "cite": "2022 ND 201",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18095,
+  "cite": "2022 ND 211",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18096,
+  "cite": "2022 ND 207",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18097,
+  "cite": "2022 ND 210",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18098,
+  "cite": "2022 ND 208",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 18099,
+  "cite": "2022 ND 205",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 18100,
+  "cite": "2022 ND 206",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18101,
+  "cite": "2022 ND 226",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18102,
+  "cite": "2022 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18103,
+  "cite": "2022 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 18104,
+  "cite": "2022 ND 221",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18105,
+  "cite": "2022 ND 220",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 18106,
+  "cite": "2022 ND 219",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18107,
+  "cite": "2022 ND 218",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18108,
+  "cite": "2022 ND 212",
+  "status": "OK_pdf",
+  "chars_removed": 31
+ },
+ {
+  "opinion_id": 18109,
+  "cite": "2022 ND 222",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18110,
+  "cite": "2022 ND 217",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18111,
+  "cite": "2022 ND 224",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 18112,
+  "cite": "2022 ND 198",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18114,
+  "cite": "2022 ND 231",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18115,
+  "cite": "2022 ND 237",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18117,
+  "cite": "2022 ND 232",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18118,
+  "cite": "2022 ND 233",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18119,
+  "cite": "2022 ND 234",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18120,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "1999 ND 95, ¶20, 593 N.W.2d 768"
+  ]
+ },
+ {
+  "opinion_id": 18121,
+  "cite": "2022 ND 230",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 18123,
+  "cite": "2023 ND 7",
+  "status": "OK_pdf",
+  "chars_removed": 27
+ },
+ {
+  "opinion_id": 18124,
+  "cite": "2023 ND 2",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18125,
+  "cite": "2023 ND 3",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18126,
+  "cite": "2023 ND 10",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18127,
+  "cite": "2023 ND 9",
+  "status": "OK_pdf",
+  "chars_removed": 33
+ },
+ {
+  "opinion_id": 18128,
+  "cite": "2023 ND 8",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 18129,
+  "cite": "2023 ND 30",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18131,
+  "cite": "2023 ND 25",
+  "status": "OK_pdf",
+  "chars_removed": 12
+ },
+ {
+  "opinion_id": 18132,
+  "cite": "2023 ND 24",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18133,
+  "cite": "2023 ND 14",
+  "status": "OK_pdf",
+  "chars_removed": 28
+ },
+ {
+  "opinion_id": 18134,
+  "cite": "2023 ND 22",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 18135,
+  "cite": "2023 ND 18",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 18136,
+  "cite": "2023 ND 29",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ },
+ {
+  "opinion_id": 18137,
+  "cite": "2023 ND 20",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 18138,
+  "cite": "2023 ND 28",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18140,
+  "cite": "2023 ND 13",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18142,
+  "cite": "2023 ND 32",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18143,
+  "cite": "2023 ND 41",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18144,
+  "cite": "2023 ND 38",
+  "status": "OK_pdf",
+  "chars_removed": 37
+ },
+ {
+  "opinion_id": 18145,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2016 ND 29, ¶ 4, 876 N.W.2d 25",
+   "2019 ND 263, ¶ 4, 934 N.W.2d 417",
+   "2019 ND 169, ¶ 7, 930 N.W.2d 162"
+  ]
+ },
+ {
+  "opinion_id": 18146,
+  "cite": "2023 ND 35",
+  "status": "OK_pdf",
+  "chars_removed": 49
+ },
+ {
+  "opinion_id": 18147,
+  "cite": "2023 ND 33",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18148,
+  "cite": "2023 ND 37",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 18149,
+  "cite": "2023 ND 34",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18150,
+  "cite": "2023 ND 36",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18151,
+  "cite": "2023 ND 46",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18152,
+  "cite": "2023 ND 43",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18153,
+  "cite": "2023 ND 45",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18154,
+  "cite": "2023 ND 48",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18155,
+  "cite": "2023 ND 50",
+  "status": "OK_pdf",
+  "chars_removed": 60
+ },
+ {
+  "opinion_id": 18156,
+  "cite": "2023 ND 44",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18157,
+  "cite": "2023 ND 51",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18158,
+  "cite": "2023 ND 64",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18159,
+  "cite": "2023 ND 58",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18161,
+  "cite": "2023 ND 61",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18162,
+  "cite": "2023 ND 67",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18163,
+  "cite": "2023 ND 62",
+  "status": "OK_pdf",
+  "chars_removed": 15
+ },
+ {
+  "opinion_id": 18164,
+  "cite": "2023 ND 65",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 18165,
+  "cite": "2023 ND 66",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18166,
+  "cite": "2023 ND 63",
+  "status": "OK_pdf",
+  "chars_removed": 13
+ },
+ {
+  "opinion_id": 18167,
+  "cite": "2023 ND 59",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18168,
+  "cite": "2023 ND 57",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 18169,
+  "cite": "2023 ND 54",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18170,
+  "cite": "2023 ND 55",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18171,
+  "cite": "2023 ND 79",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18172,
+  "cite": "2023 ND 81",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 18173,
+  "cite": "2023 ND 82",
+  "status": "OK_pdf",
+  "chars_removed": 34
+ },
+ {
+  "opinion_id": 18174,
+  "cite": "2023 ND 80",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18175,
+  "cite": "2023 ND 77",
+  "status": "OK_pdf",
+  "chars_removed": 46
+ },
+ {
+  "opinion_id": 18178,
+  "cite": "2023 ND 70",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18179,
+  "cite": "2023 ND 68",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 18180,
+  "cite": "2023 ND 69",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18181,
+  "cite": "2023 ND 75",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18188,
+  "cite": "2023 ND 87",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18189,
+  "cite": "2023 ND 93",
+  "status": "OK_pdf",
+  "chars_removed": 5
+ },
+ {
+  "opinion_id": 18190,
+  "cite": "2023 ND 86",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18191,
+  "cite": "2023 ND 92",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18192,
+  "cite": "2023 ND 91",
+  "status": "OK_pdf",
+  "chars_removed": 17
+ },
+ {
+  "opinion_id": 18193,
+  "cite": "2023 ND 89",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18195,
+  "cite": "2023 ND 103",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 18196,
+  "cite": "2023 ND 102",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18197,
+  "cite": "2023 ND 106",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 18198,
+  "cite": "2023 ND 104",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18199,
+  "cite": "2023 ND 108",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 18200,
+  "cite": "2023 ND 110",
+  "status": "OK_pdf",
+  "chars_removed": 2
+ },
+ {
+  "opinion_id": 18201,
+  "cite": "2023 ND 119",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18202,
+  "cite": "2023 ND 115",
+  "status": "OK_pdf",
+  "chars_removed": 53
+ },
+ {
+  "opinion_id": 18203,
+  "cite": "2023 ND 116",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 18204,
+  "cite": "2023 ND 118",
+  "status": "OK_pdf",
+  "chars_removed": 1
+ },
+ {
+  "opinion_id": 18205,
+  "cite": "2023 ND 114",
+  "status": "OK_pdf",
+  "chars_removed": 25
+ },
+ {
+  "opinion_id": 18206,
+  "cite": "2023 ND 123",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18207,
+  "cite": "2023 ND 138",
+  "status": "OK_pdf",
+  "chars_removed": 11
+ },
+ {
+  "opinion_id": 18208,
+  "cite": "2023 ND 133",
+  "status": "OK_pdf",
+  "chars_removed": 14
+ },
+ {
+  "opinion_id": 18210,
+  "cite": "2023 ND 132",
+  "status": "OK_pdf",
+  "chars_removed": 16
+ },
+ {
+  "opinion_id": 18211,
+  "cite": "2023 ND 129",
+  "status": "OK_pdf",
+  "chars_removed": 42
+ },
+ {
+  "opinion_id": 18212,
+  "cite": "2023 ND 142",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 18213,
+  "cite": "2023 ND 141",
+  "status": "OK_pdf",
+  "chars_removed": 92
+ },
+ {
+  "opinion_id": 18214,
+  "cite": "2023 ND 148",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18215,
+  "cite": "2023 ND 145",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 18216,
+  "cite": "2023 ND 144",
+  "status": "OK_pdf",
+  "chars_removed": 23
+ },
+ {
+  "opinion_id": 18217,
+  "cite": "2023 ND 146",
+  "status": "OK_pdf",
+  "chars_removed": 10
+ },
+ {
+  "opinion_id": 18218,
+  "cite": "2023 ND 147",
+  "status": "OK_pdf",
+  "chars_removed": 20
+ },
+ {
+  "opinion_id": 18220,
+  "cite": "2023 ND 159",
+  "status": "OK_pdf",
+  "chars_removed": 4
+ },
+ {
+  "opinion_id": 18221,
+  "cite": "2023 ND 153",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 18223,
+  "cite": "2023 ND 155",
+  "status": "OK_pdf",
+  "chars_removed": 24
+ },
+ {
+  "opinion_id": 18225,
+  "cite": "2023 ND 223",
+  "status": "OK_pdf",
+  "chars_removed": 3
+ },
+ {
+  "opinion_id": 18227,
+  "status": "SKIP_pdf_mismatch",
+  "bad": [
+   "2008 ND 36, ¶ 19, 745 N.W.2d 631",
+   "2018 ND 181, ¶ 6, 915 N.W.2d 647"
+  ]
+ },
+ {
+  "opinion_id": 18228,
+  "cite": "2023 ND 216",
+  "status": "OK_pdf",
+  "chars_removed": 8
+ },
+ {
+  "opinion_id": 18231,
+  "cite": "2023 ND 219",
+  "status": "OK_pdf",
+  "chars_removed": 18
+ },
+ {
+  "opinion_id": 18232,
+  "cite": "2023 ND 213",
+  "status": "OK_pdf",
+  "chars_removed": 29
+ },
+ {
+  "opinion_id": 18235,
+  "cite": "2023 ND 226",
+  "status": "OK_pdf",
+  "chars_removed": 30
+ },
+ {
+  "opinion_id": 18237,
+  "cite": "2023 ND 225",
+  "status": "OK_pdf",
+  "chars_removed": 21
+ },
+ {
+  "opinion_id": 18238,
+  "cite": "2023 ND 227",
+  "status": "OK_pdf",
+  "chars_removed": 65
+ },
+ {
+  "opinion_id": 18239,
+  "cite": "2023 ND 230",
+  "status": "OK_pdf",
+  "chars_removed": 26
+ },
+ {
+  "opinion_id": 18240,
+  "cite": "2023 ND 234",
+  "status": "OK_pdf",
+  "chars_removed": 6
+ },
+ {
+  "opinion_id": 18244,
+  "cite": "2023 ND 239",
+  "status": "OK_pdf",
+  "chars_removed": 19
+ },
+ {
+  "opinion_id": 18245,
+  "cite": "2023 ND 248",
+  "status": "OK_pdf",
+  "chars_removed": 38
+ },
+ {
+  "opinion_id": 18246,
+  "cite": "2023 ND 249",
+  "status": "OK_pdf",
+  "chars_removed": 22
+ },
+ {
+  "opinion_id": 18247,
+  "cite": "2023 ND 246",
+  "status": "OK_pdf",
+  "chars_removed": 9
+ }
+]
