@@ -1,0 +1,32 @@
+[
+ {
+  "opinion_id": 20305,
+  "class": "scramble",
+  "old_exact": "The requirement preserves agency judicial efficiency. The exhaustion authority and promotes requirement recognizes",
+  "new_exact": "The requirement preserves agency authority and promotes judicial efficiency. The exhaustion requirement recognizes",
+  "verified_count": 1,
+  "source": "2025ND92.pdf (pdftotext -layout, block quote in ¶26): 'The requirement preserves agency authority and promotes judicial efficiency. The exhaustion requirement recognizes the agency's initial decision-making responsibility'",
+  "confidence": "high",
+  "note": "pdfminer column-scramble (modern_scramble class): within-paragraph word-order transposition. Same word multiset; PDF-verified reading order. Cross-boundary fragment handled in companion edits."
+ },
+ {
+  "opinion_id": 20305,
+  "class": "scramble",
+  "old_exact": "Garaas, ¶ 10 (cleaned up). interpretation, pure questions of\n\n[¶27]",
+  "new_exact": "Garaas, ¶ 10 (cleaned up).\n\n[¶27]",
+  "verified_count": 1,
+  "source": "2025ND92.pdf: ¶26 ends 'Garaas, ¶ 10 (cleaned up).' The trailing 'interpretation, pure questions of' is a displaced fragment that belongs in ¶27 (moved by companion edit).",
+  "confidence": "high",
+  "note": "Removes 4-word fragment displaced into ¶26 by the column scramble; the same 4 words are reinserted into ¶27 below, conserving all court text."
+ },
+ {
+  "opinion_id": 20305,
+  "class": "scramble",
+  "old_exact": "\"depends on a mixed limited to, expertise of 'including, but not bundle of considerations, administrative bodies, statutory law, constitutional issues,",
+  "new_exact": "\"depends on a mixed bundle of considerations, 'including, but not limited to, expertise of administrative bodies, statutory interpretation, pure questions of law, constitutional issues,",
+  "verified_count": 1,
+  "source": "2025ND92.pdf ¶27 (quoting Kadlec, 1998 ND 165, ¶ 25): 'depends on a mixed bundle of considerations, ‘including, but not limited to, expertise of administrative bodies, statutory interpretation, pure questions of law, constitutional issues, discretionary authority of the courts...'",
+  "confidence": "high",
+  "note": "Within-paragraph reorder + reinsertion of the 'interpretation, pure questions of' fragment displaced into ¶26. Restores the verbatim Kadlec quotation."
+ }
+]

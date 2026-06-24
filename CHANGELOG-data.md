@@ -2,6 +2,34 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `scramble-2025ND92-2026-06-24` — 2025 ND 92 column-scramble repair (1 opinion, 3 edits)
+
+Manual-review item from `p567-flagged-manual.json`. The agent's original proposal
+("strip the stray phrase `interpretation, pure questions of`") was a delete-should-be-MOVE
+error: broader context showed ¶26–¶27 are pdfminer column-scrambles (the
+`modern_scramble` class), and that 4-word fragment is displaced *Kadlec*-quotation text
+belonging in ¶27, not garbage. Repaired against `2025ND92.pdf` (pdftotext -layout),
+all court text conserved:
+
+- **¶26 internal reorder** (block quote from *Garaas*): `preserves agency judicial
+  efficiency. The exhaustion authority and promotes requirement recognizes` ->
+  `preserves agency authority and promotes judicial efficiency. The exhaustion
+  requirement recognizes`.
+- **¶26 -> ¶27 fragment move**: removed `interpretation, pure questions of` from the end
+  of ¶26 (after `Garaas, ¶ 10 (cleaned up).`) and reinserted it into the *Kadlec*
+  quotation in ¶27 (`statutory interpretation, pure questions of law`).
+- **¶27 internal reorder**: `"depends on a mixed limited to, expertise of 'including,
+  but not bundle of considerations, administrative bodies, statutory law` -> `"depends
+  on a mixed bundle of considerations, 'including, but not limited to, expertise of
+  administrative bodies, statutory interpretation, pure questions of law`.
+
+Companion manual-review items checked the same cycle, no action needed: **2025 ND 202**
+(id 20191) and **2025 ND 116** (id 20095) were already correct in the DB (proposals
+stale — fixed by the rejoin pass / a prior batch); **2025 ND 134** (id 20115, 4 malformed
+`<sup>&</sup>lt;sup>N</sup>` entities) deferred to the footnote/markup cohort — it carries
+8 `<sup>` HTML tags plus a mid-sentence footnote-text splice in ¶38, so an isolated
+entity fix would be a half-measure.
+
 ## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P20-P22 (30 opinions)
 
 Batches P20-P22 (120 opinions, 2023 ND 86 -> 2022 ND 211), first cycle on the
