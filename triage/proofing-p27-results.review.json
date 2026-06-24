@@ -1,0 +1,182 @@
+[
+ {
+  "opinion_id": 19698,
+  "class": "other",
+  "old_exact": "Crothers, Justice.\n\nliability\n\n[¶1]",
+  "new_exact": "Crothers, Justice.\n\n[¶1]",
+  "verified_count": 1,
+  "source": "PDF shows no standalone 'liability' word; this is markup contamination",
+  "confidence": "high",
+  "note": "Standalone word appearing as metadata/tag between opinion author and first paragraph; not present in authoritative PDF source",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19698,
+  "class": "missing_text",
+  "old_exact": "commercial general (CGL) policy Grinnell had with JRC Construction. Grinnell argues the district court misinterpreted the insurance policy. Grinnell claims it is not required to indemnify JRC Construction because its work product was defective. We affirm in part, reverse in part and remand. insurance",
+  "new_exact": "commercial general liability insurance (CGL) policy Grinnell had with JRC Construction. Grinnell argues the district court misinterpreted the insurance policy. Grinnell claims it is not required to indemnify JRC Construction because its work product was defective. We affirm in part, reverse in part and remand.",
+  "verified_count": 1,
+  "source": "PDF source contains 'commercial general liability insurance (CGL)' in [¶1]",
+  "confidence": "high",
+  "evidence": "Source text: 'commercial general liability insurance (CGL) policy'. DB text missing 'liability insurance' words, plus trailing ' insurance' tag at end of paragraph.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19696,
+  "class": "caption",
+  "old_exact": "Gino Jose,\n\nand\n\nDefendant and Appellee\n\nState of North Dakota,",
+  "new_exact": "Gino Jose,\n\nDefendant and Appellee\n\nand\n\nState of North Dakota,",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND33.pdf page 1",
+  "confidence": "high",
+  "evidence": "Rendered PDF page 1 shows caption with 'and' positioned between 'Defendant and Appellee' and 'State of North Dakota', not between 'Gino Jose' and 'Defendant and Appellee'. The correct logical structure per PDF is: Kim Goldade-Jose nka Kim Austin (Plaintiff and Appellant) v. Gino Jose (Defendant and Appellee) AND State of North Dakota (Statutory Real Party in Interest).",
+  "note": "Structural caption error: conjunctive 'and' was repositioned incorrectly in DB ingestion.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19694,
+  "class": "ocr_digit",
+  "old_exact": "under the 4 influence",
+  "new_exact": "under the influence",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND27.pdf pages 3-4 (PDF line 192: page number '4' inserted mid-line between columns)",
+  "confidence": "high",
+  "evidence": "PDF source shows page number '4' on its own line (line 192) between 'under the' (end of page 3) and 'influence of alcohol' (beginning of page 4). During text extraction and ingestion, this page number was incorrectly merged into the running text as 'under the 4 influence'. The correct text per the printed opinion is 'under the influence of alcohol'. Confirmed in PDF by visual inspection: paragraph begins at line 188 'follow after a person has tested over the legal limit for driving under the', continues at line 192 with isolated page number '4', then resumes at line 193 'influence of alcohol'.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17950,
+  "class": "ocr_digit",
+  "old_exact": "2 022 ND 24",
+  "new_exact": "2022 ND 24",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction vs database ingestion error",
+  "confidence": "high",
+  "evidence": "Year number has spurious space; PDF shows '2022 ND 24' without space",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17950,
+  "class": "ocr_char",
+  "old_exact": "V.\n",
+  "new_exact": "v.\n",
+  "verified_count": 1,
+  "source": "PDF vs database - citation formatting convention",
+  "confidence": "high",
+  "evidence": "Citation 'v.' (versus) should be lowercase; appears before 'Power Energy' in second caption",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17950,
+  "class": "ocr_char",
+  "old_exact": "Logist ",
+  "new_exact": "Logistics ",
+  "verified_count": 1,
+  "source": "PDF vs database - OCR truncation",
+  "confidence": "high",
+  "evidence": "Word truncated to 'Logist' in caption; PDF shows complete 'Logistics' in 'Power Energy Logistics, LLC'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17945,
+  "class": "ocr_digit",
+  "old_exact": "2000 ND 203, ¶ 14, 621 N.W.2d 314",
+  "new_exact": "2000 ND 203, ¶ 14, 619 N.W.2d 501",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND16.pdf extracted via pdftotext",
+  "confidence": "high",
+  "note": "Logan v. Bush citation: DB incorrectly shows '621 N.W.2d 314' while authoritative PDF source shows '619 N.W.2d 501'. Volume and page number both incorrect in DB.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17940,
+  "class": "split_join",
+  "old_exact": "N.D.C.C. § 29-32.1-12, and Lebeau failed",
+  "new_exact": "N.D.C.C. § 29-32.1-\n12, and Lebeau failed",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND5.pdf page 2, lines 10-11",
+  "confidence": "high",
+  "note": "Statute citation wrongly joined in DB; authoritative PDF shows split across page lines with '29-32.1-' ending line 10 and '12,' starting line 11. The statute number itself (29-32.1-12) is identical; only the linebreak position differs due to page width constraints. This is a mechanical linebreak correction, not a content change.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19619,
+  "class": "missing_text",
+  "old_exact": "do not apply (citing N.D.R.Ev. 1101(d)(3)(C)). to preliminary hearings in criminal cases. Id.",
+  "new_exact": "do not apply to preliminary hearings in criminal cases. Id. (citing N.D.R.Ev. 1101(d)(3)(C)).",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2021/2021ND226.pdf lines 157-159",
+  "confidence": "high",
+  "note": "Citation parenthetical misplaced within sentence in DB. The parenthetical '(citing N.D.R.Ev. 1101(d)(3)(C)).' appears mid-sentence after 'do not apply' in the DB, creating a sentence fragment 'to preliminary hearings...' Following the authoritative PDF, the citation should follow the complete dependent clause 'to preliminary hearings in criminal cases' and cite only to the rule via the parenthetical after 'Id.'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17911,
+  "class": "ocr_char",
+  "old_exact": "does not Srender them useless, and",
+  "new_exact": "does not render them useless, and",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction; ¶31 (¶31] When we are faced with conflicting rules... Statutes and rules are to be construed in a way which does not render them useless...",
+  "confidence": "high",
+  "evidence": "The DB text contains 'Srender' (one occurrence at line 499), which is an OCR misread of the letter 'S' being prepended to 'render'. The authoritative PDF source clearly shows 'render' in the same position. This is a straightforward OCR character error where a stray mark or ligature was misread as the letter 'S'.",
+  "note": "Image-verified via mutool render of PDF page 12 showing 'Statutes and rules are to be construed in a way which does not render them useless' with clear 'render' (not 'Srender')",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19614,
+  "class": "split_join",
+  "old_exact": "which of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter. ineffective assistance allege",
+  "new_exact": "which allege ineffective assistance of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter.",
+  "verified_count": 1,
+  "source": "PDF 2021ND206.pdf shows continuous text in statute subsection 2 of N.D.C.C. § 29-32.1-09; DB has text fragments scattered across lines with phrase 'allege ineffective assistance of' misplaced and duplicated 'ineffective assistance' at end of subsection",
+  "confidence": "high",
+  "evidence": "PDF lines 78-82: '2. The court, on its own motion, may dismiss any grounds of an application which allege ineffective assistance of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter.' DB has the same passage but with critical phrase inverted: 'which of postconviction counsel' followed later by orphaned 'ineffective assistance allege'. This is a classic OCR/ingestion fragment error where text was split across page columns and reassembled out of order.",
+  "note": "This error is in the reproduced statute text within [¶3]. The corrupt form reads as: 'application which of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter. ineffective assistance allege 3. The court may grant...' The correct form restores proper statutory language.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19608,
+  "class": "heading_seq",
+  "old_exact": "[¶13] Because we are without jurisdiction, we dismiss this appeal.\n\nIII",
+  "new_exact": "III\n\n[¶13] Because we are without jurisdiction, we dismiss this appeal.",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2021/2021ND189.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows section heading 'III' appearing BEFORE paragraph 13 (with blank lines in between), while DB has 'III' appearing AFTER paragraph 13. Line-by-line examination confirms PDF structure: '...appeal was untimely.\\n\\n                                     III\\n\\n[¶13] Because we are without jurisdiction...' vs DB: '...appeal was untimely.\\n\\n[¶13] Because we are without jurisdiction...\\n\\nIII'. This is a heading sequence inversion error in the database.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17886,
+  "class": "missing_text",
+  "old_exact": "Section 14-09-06.6(6)(b) requires",
+  "new_exact": "Section 14-09-06.6(6)(b), N.D.C.C., requires",
+  "verified_count": 1,
+  "source": "PDF page 4, paragraph [¶12]",
+  "confidence": "high",
+  "evidence": "The DB text at [¶12] is missing the authority citation ', N.D.C.C.,' that appears in the authoritative PDF. This is a standard ingestion defect where the statute reference was split and partially lost. The PDF clearly shows 'Section 14-09-06.6(6)(b), N.D.C.C., requires' while the DB only has 'Section 14-09-06.6(6)(b) requires'. Paragraph [¶9] contains the same pattern correctly: 'Section 14-09-06.6(6)(a), N.D.C.C., requires' in both versions, confirming this is the court's standard format.",
+  "note": "This is a missing text error at the statute/authority level - the N.D.C.C. citation abbreviation that accompanies the statute reference was dropped during ingestion.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19603,
+  "class": "split_join",
+  "old_exact": "was seized or possessed of the the premises commencement of such action. twenty years before in question within",
+  "new_exact": "was seized or possessed of the premises in question within twenty years before the commencement of such action.",
+  "verified_count": 1,
+  "source": "PDF pdftotext /Users/jerod/refs/nd/opin/pdfs/2021/2021ND171.pdf - lines 149-154: statute quote in [¶10]",
+  "confidence": "high",
+  "note": "OCR/ingestion defect: statute text from N.D.C.C. § 28-01-04 is severely scrambled with words reordered (doubled 'the', wrong word sequence 'premises commencement' vs 'premises in question within twenty years before the commencement'). Source PDF shows correct order. This is a critical content error affecting legal text.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19603,
+  "class": "split_join",
+  "old_exact": "Unjust enrichment requires: impoverishment; (3) a connection between the enrichment and the impoverishment; (4) an absence of justification for the enrichment (1) an enrichment; and impoverishment; and (5) an absence of remedy provided by law.",
+  "new_exact": "Unjust enrichment requires: (1) an enrichment; (2) an impoverishment; (3) a connection between the enrichment and the impoverishment; (4) an absence of justification for the enrichment and impoverishment; and (5) an absence of remedy provided by law.",
+  "verified_count": 1,
+  "source": "PDF pdftotext /Users/jerod/refs/nd/opin/pdfs/2021/2021ND171.pdf - lines 406-412: numbered list in [¶27]",
+  "confidence": "high",
+  "note": "OCR/ingestion defect: the numbered list elements for the unjust enrichment doctrine are completely reordered. DB begins with '(2) an Unjust enrichment requires: impoverishment' then jumps to (3), (4), then (1), then (5). Source PDF shows proper order: (1) enrichment; (2) impoverishment; (3) connection; (4) absence of justification; (5) absence of remedy. The phrase 'and impoverishment' also repeats incorrectly in the DB and should appear once as 'and impoverishment' after (4).",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

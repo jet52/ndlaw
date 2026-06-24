@@ -2,6 +2,42 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-p27-2026-06-24` — proofing fleet P27 (11 opinions, 2022 ND 47 → 2021 ND 166)
+
+Low-noise cycle (96/120 clean). Verifier: 12 auto / 16 review / 12 reject. Applied 15 fixes
+across 11 opinions after the consolidated triage; all PDF-verified.
+
+- **2022 ND 35** (id 19698, Pavlicek): scramble — restored `commercial general liability
+  insurance (CGL)` (¶1 had dropped `liability insurance`, with `liability` orphaned after the
+  byline and `insurance` trailing ¶1). PDF lines 43-44 confirm.
+- **2021 ND 226** (id 19619, Brown): scramble — `(citing N.D.R.Ev. 1101(d)(3)(C))` parenthetical
+  was displaced into the middle of `do not apply ... to preliminary hearings`; restored to the
+  end with `Id.`
+- **2021 ND 171** (id 19603, Continental): two scrambles — `seized or possessed of the premises
+  in question within twenty years before the commencement`, and `Unjust enrichment requires:
+  (1) an enrichment; (2) an impoverishment; (3) a connection`.
+- **2021 ND 183** (id 17886, Kerzmann): `Section 14-09-06.6(6)(b) requires` -> `...(6)(b),
+  N.D.C.C., requires` (PDF ¶12).
+- **2021 ND 189** (id 19608, A.S.F.): heading `III` moved from after [¶13] to before it (PDF).
+- **2022 ND 33** (id 19696, Goldade-Jose): caption reorder (`and` repositioned; word-multiset
+  preserved).
+- **2022 ND 27** (id 19694): removed stray OCR `4` (`under the 4 influence`).
+- **2022 ND 24** (id 17950): `2 022 ND 24`->`2022 ND 24`, caption `V.`->`v.`, `Logist`->`Logistics`.
+- **2021 ND ?** (id 17911): OCR `does not Srender`->`does not render`.
+- Whitespace (id 19700 trailing space; id 17903 blank-line collapse around page numbers).
+
+Not applied:
+- **id 17945 (2022 ND 16, Pomarleau) REJECTED** — agent proposed `2000 ND 203, ¶ 14, 621 N.W.2d
+  314` -> `619 N.W.2d 501` from the PDF text layer, but the actual 2000 ND 203 opinion (id 13291)
+  self-cites as **621 N.W.2d 314** — the DB is correct; the change would corrupt it. Digit-class
+  trap (never trust the text layer for digits).
+- **id 17940 (2022 ND 5) REJECTED** — proposed splitting the statute number `§ 29-32.1-12` across
+  a line (`29-32.1-\n12`); the DB's joined form is correct.
+- **id 19614 (2021 ND 206, Chase) DEFERRED** — agent's reconstructed word `allege` appears nowhere
+  in the PDF; needs correct reconstruction.
+- 4 signature-indent auto items (id 17884) rejected (corpus 1-space convention); 5 citation/`Id.`
+  reflows deferred to citation-rejoin v2 (`triage/p27-defer-rejoin.json`).
+
 ## Batch `west-synopsis-strip-2026-06-24` — strip residual West Synopsis blocks (138 opinions)
 
 Acting on the corpus-wide synopsis-leakage scan (`triage/SYNOPSIS-LEAKAGE-SCAN.md`): 720

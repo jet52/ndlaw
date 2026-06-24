@@ -1,0 +1,139 @@
+[
+ {
+  "opinion_id": 17952,
+  "class": "split_join",
+  "old_exact": "filed his first application for post- conviction relief",
+  "new_exact": "filed his first application for post-conviction relief",
+  "verified_count": 1,
+  "source": "PDF source shows word boundary without space-after-hyphen: pdftotext renders line break as 'post-\\nconviction', indicating hyphenated compound split across lines, not a space-separated artifact",
+  "confidence": "high",
+  "evidence": "Position in DB (~line 40): 'In May 2018, Friesz filed his first application for post- conviction relief and a hearing was held.' PDF pdftotext output at same context shows 'post-\\nconviction' (line break, not space).",
+  "note": "Markdown ingestion error: PDF line-break converted to space instead of removed.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17952,
+  "class": "split_join",
+  "old_exact": "in his previous application for post- conviction relief.",
+  "new_exact": "in his previous application for post-conviction relief.",
+  "verified_count": 1,
+  "source": "PDF source shows hyphen-linebreak, not space; pdftotext output: 'post-\\nconviction'",
+  "confidence": "high",
+  "evidence": "Position in DB (~line 61): '...or in his previous application for post- conviction relief.\\n\\nII' PDF at same location shows 'post-\\nconviction' (linebreak, not space).",
+  "note": "Markdown ingestion error: same as Fix 1",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17952,
+  "class": "split_join",
+  "old_exact": "preliminary stages of a post- conviction proceeding",
+  "new_exact": "preliminary stages of a post-conviction proceeding",
+  "verified_count": 1,
+  "source": "PDF source: 'preliminary stages of a post-\\nconviction proceeding' (pdftotext output)",
+  "confidence": "high",
+  "evidence": "Position in DB (~line 60-61): legal citation block. PDF shows identical context with linebreak, not space.",
+  "note": "Third instance of hyphen-space artifact from linebreak ingestion",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17952,
+  "class": "split_join",
+  "old_exact": "N.D.C.C. § 29-32.1- 01",
+  "new_exact": "N.D.C.C. § 29-32.1-01",
+  "verified_count": 1,
+  "source": "PDF source shows '1-\\n01' (pdftotext: hyphen then linebreak then '01')",
+  "confidence": "high",
+  "evidence": "Position in DB (~line 44): 'Friesz asserted that pursuant to N.D.C.C. § 29-32.1- 01(3)(a)(1), this newly discovered evidence...' PDF shows statute split across line as '1-\\n01', markdown incorrectly converted linebreak to space.",
+  "note": "Citation element split: markdown ingestion added space instead of removing/collapsing linebreak",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17950,
+  "class": "ocr_char",
+  "old_exact": "No o.",
+  "new_exact": "No.",
+  "verified_count": 2,
+  "source": "PDF vs database - OCR artifact",
+  "confidence": "high",
+  "evidence": "Space in abbreviation 'No.' appearing before both case numbers (20210016 and 20210017); PDF clearly shows 'No.' without space",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17950,
+  "class": "ocr_char",
+  "old_exact": "D efendants",
+  "new_exact": "Defendants",
+  "verified_count": 2,
+  "source": "PDF vs database - OCR splitting error",
+  "confidence": "high",
+  "evidence": "Space inserted in middle of word 'Defendants'; occurs in both captions; PDF shows proper spelling without space",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17928,
+  "class": "other",
+  "old_exact": "968 N.W.2d 183; 2021 ND 235",
+  "new_exact": "968 N.W.2d 183; 2022 ND 235",
+  "verified_count": 1,
+  "source": "/tmp/src_2021ND235.pdf rendered at p.1 clearly shows '2022 ND 235'",
+  "confidence": "high",
+  "note": "The PDF is marked 'Corrected Opinion Filed 02/16/22' and the caption shows 2022 ND 235. The DB incorrectly has 2021 ND 235. This appears on line 4 of the DB metadata.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17928,
+  "class": "other",
+  "old_exact": "2021 ND 235",
+  "new_exact": "2022 ND 235",
+  "verified_count": 1,
+  "source": "PDF page 1 caption line 13 clearly shows '2022 ND 235'",
+  "confidence": "high",
+  "note": "Second instance of the opinion number in the DB (line 18) also needs correction from 2021 to 2022 ND 235.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19617,
+  "class": "caption",
+  "old_exact": "S.J.H.,\n\nand\n\nS.D.S.,\n\nDefendant and Appellant\n\nPlaintiff",
+  "new_exact": "S.J.H.,\n\nand\n\nS.D.S.,\n\nPlaintiff",
+  "verified_count": 1,
+  "source": "2021ND218.pdf (image-verified caption page 1)",
+  "confidence": "high",
+  "evidence": "PDF rendered page 1 shows three-column caption: State of North Dakota (Plaintiff and Appellee) | v. | S.J.H. (Defendant and Appellant) | and | S.D.S. (Plaintiff). DB incorrectly places both 'Defendant and Appellant' and 'Plaintiff' on separate lines after both parties instead of aligning with their respective parties. The label 'Defendant and Appellant' belongs only to S.J.H., and 'Plaintiff' belongs only to S.D.S.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17905,
+  "class": "ocr_char",
+  "old_exact": "is not sufficient to afford relief.\" (quoting Fleck v.",
+  "new_exact": "is not sufficient to afford relief.\") (quoting Fleck v.",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction shows 'relief.\") (quoting Fleck v.' on line 136 of source",
+  "confidence": "high",
+  "evidence": "DB is missing a closing parenthesis after the closing double quote. The Hatch v. Hatch citation block ends a quoted material with a closing quote, which is then followed by a parenthetical citation '(quoting Fleck v.)'. The DB shows relief.\" ( instead of relief.\") (",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17905,
+  "class": "whitespace",
+  "old_exact": "Plaintiff 's motion",
+  "new_exact": "Plaintiff's motion",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction shows 'Plaintiff's motion' (no space) on line 140 of source",
+  "confidence": "high",
+  "evidence": "DB contains spurious space before the possessive apostrophe in 'Plaintiff 's' which should be 'Plaintiff's'. Verified in paragraph 9 discussing the district court's reasoning.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17903,
+  "class": "whitespace",
+  "old_exact": " 6\n\n",
+  "new_exact": " 6\n",
+  "verified_count": 1,
+  "source": "PDF ends cleanly after page number; DB has trailing blank line",
+  "confidence": "high",
+  "evidence": "DB file ends with ' 6' followed by two newlines; PDF file ends with ' 6' followed by one newline (EOF). Anchor at EOF, verified unique.",
+  "note": "Trailing whitespace artifact: removal of extra blank line after final page number matches source formatting.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

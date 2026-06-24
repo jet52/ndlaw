@@ -1,0 +1,58 @@
+[
+ {
+  "opinion_id": 17975,
+  "class": "whitespace",
+  "old_exact": "State v. Zottnick, 2011 ND 84, ¶ 11, \n796",
+  "new_exact": "State v. Zottnick, 2011 ND 84, ¶ 11,\n796",
+  "verified_count": 1,
+  "source": "/tmp/src_2022ND47.txt (extracted via pdftotext -layout from /Users/jerod/refs/nd/opin/pdfs/2022/2022ND47.pdf)",
+  "confidence": "high",
+  "note": "Trailing space before citation line break. PDF source confirms no space before the newline in this position. Verified via rendered PDF at 300dpi showing continuous text flow.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17967,
+  "class": "whitespace",
+  "old_exact": "See Whetsel v. State,\n\n2019 ND 237",
+  "new_exact": "See Whetsel v. State,\n2019 ND 237",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction - /Users/jerod/refs/nd/opin/pdfs/2022/2022ND36.pdf",
+  "confidence": "high",
+  "evidence": "DB contains double newline (\\n\\n) between 'See Whetsel v. State,' and '2019 ND 237', while PDF source shows single newline (\\n). This is a common PDF ingestion artifact where multiple blank lines or spacing are converted to extra newlines during text extraction.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17940,
+  "class": "whitespace",
+  "old_exact": "961 N.W.2d\n278\n (summarily",
+  "new_exact": "961 N.W.2d\n278 (summarily",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND5.pdf page 2, line 14",
+  "confidence": "high",
+  "note": "Extra blank line between case reporter page number (278) and the following parenthetical. Source shows direct continuation '278 (' on the same line; DB has spurious newline creating '278\\n (' format. This is a mechanical whitespace artifact from pdftotext ingestion.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17903,
+  "class": "whitespace",
+  "old_exact": "Dick v. Erman,\n\n2019 ND 54",
+  "new_exact": "Dick v. Erman,\n2019 ND 54",
+  "verified_count": 1,
+  "source": "PDF shows continuous citation on adjacent lines; DB inserts unwanted break",
+  "confidence": "high",
+  "evidence": "Citation elements are split across lines in DB (case name, year/reporter). PDF shows them properly joined. Anchor verified unique in DB.",
+  "note": "Citation fragmentation defect: blank line interrupts case name and citation year that should flow together. Removal restores readability.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17889,
+  "class": "whitespace",
+  "old_exact": "a mistake has been made.\n\nId.\n The",
+  "new_exact": "a mistake has been made.\nId. The",
+  "verified_count": 1,
+  "source": "PDF source text extracted via pdftotext -layout; comparison of DB text vs. authoritative PDF rendering",
+  "confidence": "high",
+  "evidence": "The DB has an extraneous blank line between the closing of ¶10 and the citation 'Id.' followed by an incorrect space-based line break before 'The district court's findings'. The source PDF shows 'Id.' immediately following on the same line-wrapped text as the period, with 'The' continuing naturally. This is a mid-sentence hard break requiring rejoin per instructions.",
+  "_verdict": "auto:whitespace_only"
+ }
+]
