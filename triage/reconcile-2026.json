@@ -1,0 +1,14 @@
+[
+ {
+  "opinion_id": 20511,
+  "cite": "2026 ND 106",
+  "class": "scramble",
+  "para": 7,
+  "old_exact": " Section 29-32.1-09, N.D.C.C., postconviction relief application: governs summary dismissal of a 1. The court, on its own motion, may enter a judgment denying a meritless application on any and all issues raised in the application before any response by the state. The court also may summarily deny a second or successive application for similar relief on behalf of the same applicant and may summarily deny any application when the issues raised in the application have previously been decided by the appellate court in the same case. 2. The court, on its own motion, may dismiss any grounds of an application which allege ineffective assistance of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter.",
+  "new_exact": " Section 29-32.1-09, N.D.C.C., governs summary dismissal of a postconviction relief application: 1. The court, on its own motion, may enter a judgment denying a meritless application on any and all issues raised in the application before any response by the state. The court also may summarily deny a second or successive application for similar relief on behalf of the same applicant and may summarily deny any application when the issues raised in the application have previously been decided by the appellate court in the same case. 2. The court, on its own motion, may dismiss any grounds of an application which allege ineffective assistance of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter.",
+  "verified_count": 1,
+  "jaccard": 1.0,
+  "source": "court PDF (pdftotext)",
+  "confidence": "high"
+ }
+]

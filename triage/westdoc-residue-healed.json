@@ -1,0 +1,4933 @@
+[
+ {
+  "opinion_id": 7812,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "given.1 We have",
+      "new_exact": "given.[1] We have",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nSee Alsager",
+      "new_exact": "\n\n1\n\n. See Alsager",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 7888,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 34,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "that account.1\n",
+      "new_exact": "that account.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 34,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n1\n\nIt would seem",
+      "new_exact": "\n\n1\n\n. It would seem",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 51,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "the bank.2\n 2\n\nSee",
+      "new_exact": "the bank.[2]\n\n2\n\n. See",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 60,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "the bank.3\n3\n\nThe record",
+      "new_exact": "the bank.[3]\n\n3\n\n. The record",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8107,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 32,
+    "edits": [
+     {
+      "old_exact": "continue teaching.1\n",
+      "new_exact": "continue teaching.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe Age Discrimination",
+      "new_exact": "\n\n1\n\n. The Age Discrimination",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 116,
+    "edits": [
+     {
+      "old_exact": "retirement policy.2\n",
+      "new_exact": "retirement policy.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nSee State Hospital",
+      "new_exact": "\n\n2\n\n. See State Hospital",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8224,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 29,
+    "edits": [
+     {
+      "old_exact": "being”.\n 1\n\nThe",
+      "new_exact": "being”.\n [1]\n\nThe",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 30,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe 1967 Session",
+      "new_exact": "\n\n1\n\n. The 1967 Session",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8316,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "display.1\n",
+      "new_exact": "display.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nTo supplement his United States v. Sanders, supra, argument",
+      "new_exact": "\n\n1\n\n. To supplement his United States v. Sanders, supra, argument",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.R.Crim.P.,2 may",
+      "new_exact": "N.D.R.Crim.P.,[2] may",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nRule 52(b), N.D.R.Crim.P., reads:",
+      "new_exact": "\n\n2\n\n. Rule 52(b), N.D.R.Crim.P., reads:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "on the particular issue at hand.\n",
+      "new_exact": "on the particular issue at hand.[3]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nThus in State v. Starratt",
+      "new_exact": "\n\n3\n\n. Thus in State v. Starratt",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8340,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "defendants.1\n",
+      "new_exact": "defendants.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nLeo",
+      "new_exact": "\n\n1\n\n. Leo",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8345,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 45,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "cause.1 In Draper",
+      "new_exact": "cause.[1] In Draper",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nSamual M. Davis, Rights-of-Juveniles; The Juvenile Justice System (2d ed. 1980).",
+      "new_exact": "\n\n1\n\n. Samual M. Davis, Rights-of-Juveniles; The Juvenile Justice System (2d ed. 1980).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 51,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "juvenile2 to the",
+      "new_exact": "juvenile[2] to the",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nSee, e. g., Cal.Welf. & Inst.Code s 707 (Supp.1979).",
+      "new_exact": "\n\n2\n\n. See, e. g., Cal.Welf. & Inst.Code s 707 (Supp.1979).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 51,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "convincing.3 Thus",
+      "new_exact": "convincing.[3] Thus",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n\n3\n\nMass.Gen.Laws Ann., Ch. 119, s 61 (Supp.1979).",
+      "new_exact": "\n\n3\n\n. Mass.Gen.Laws Ann., Ch. 119, s 61 (Supp.1979).",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8361,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 58,
+    "edits": [
+     {
+      "old_exact": "school district.1\n",
+      "new_exact": "school district.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 58,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\n“",
+      "new_exact": "\n\n1\n\n. “",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 72,
+    "edits": [
+     {
+      "old_exact": "returned to teaching.2 ",
+      "new_exact": "returned to teaching.[2] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 72,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nRepayment",
+      "new_exact": "\n\n2\n\n. Repayment",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8367,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 25,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "school year.1 Subsequent",
+      "new_exact": "school year.[1] Subsequent",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 1\n\nThe letters",
+      "new_exact": "\n\n1\n\n. The letters",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 50,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "contract2 in that",
+      "new_exact": "contract.[2] in that",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 2\n\nSubsection",
+      "new_exact": "\n\n2\n\n. Subsection",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 67,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "decision.3\n",
+      "new_exact": "decision.[3]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 3\n\nDobervich insists",
+      "new_exact": "\n\n3\n\n. Dobervich insists",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 72,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "reasons.4\n",
+      "new_exact": "reasons.[4]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 4\n\nAlthough",
+      "new_exact": "\n\n4\n\n. Although",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 78,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "supra.5 Dobervich",
+      "new_exact": "supra.[5] Dobervich",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 5\n\nIn Rolland",
+      "new_exact": "\n\n5\n\n. In Rolland",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 78,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "contract.\n\n6\n\nSee",
+      "new_exact": "contract.\n\n[6]\n\nSee",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "6\n\nSee concurring",
+      "new_exact": "6\n\n. See concurring",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 7,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 78,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(N.D.1980).\n\n7\n\nA",
+      "new_exact": "(N.D.1980).\n\n[7]\n\nA",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "7\n\nA trial",
+      "new_exact": "7\n\n. A trial",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 8,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 78,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "contract.\n\n8\n\nThe",
+      "new_exact": "contract.\n\n[8]\n\nThe",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "8\n\nThe statutory",
+      "new_exact": "8\n\n. The statutory",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 111,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "decency.”9\n",
+      "new_exact": "decency.”[9]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 9\n\nIn Baker",
+      "new_exact": "\n\n9\n\n. In Baker",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 119,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "supra,10 is",
+      "new_exact": "supra,[10] is",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 10\n\nIn Rolland",
+      "new_exact": "\n\n10\n\n. In Rolland",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8398,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 198,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " manner.1 Prior",
+      "new_exact": " manner.[1] Prior",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 1\n\nIn State v. Portmann",
+      "new_exact": "\n\n1\n\n. In State v. Portmann",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 198,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "statements in Keidel v. Rask, supra,2 this matter",
+      "new_exact": "statements in Keidel v. Rask, supra,[2] this matter",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "implied dedication.”\n\n2\n\nIn Keidel v. Rask, 290 N.W.2d 255 (N.D.1980), we stated:",
+      "new_exact": "implied dedication.”\n\n2\n\n. In Keidel v. Rask, 290 N.W.2d 255 (N.D.1980), we stated:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 215,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "effect.3\n",
+      "new_exact": "effect.[3]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 3\n\nIn Kritzberger",
+      "new_exact": "\n\n3\n\n. In Kritzberger",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 224,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "portion.4 We",
+      "new_exact": "portion.[4] We",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 4\n\nIn Keidel v. Rask",
+      "new_exact": "\n\n4\n\n. In Keidel v. Rask",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 229,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "end.5\n",
+      "new_exact": "end.[5]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 5\n\nThe width",
+      "new_exact": "\n\n5\n\n. The width",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 234,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "time,6 we",
+      "new_exact": "time,[6] we",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 6\n\nIn Keidel v. Rask, supra",
+      "new_exact": "\n\n6\n\n. In Keidel v. Rask, supra",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8418,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "s 27-20-35, NDCC.1\n",
+      "new_exact": "s 27-20-35, NDCC.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nSection",
+      "new_exact": "\n\n1\n\n. Section",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "rehabilitated.2 He",
+      "new_exact": "rehabilitated.[2] He",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nDuane",
+      "new_exact": "\n\n2\n\n. Duane",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "School.3\n",
+      "new_exact": "School.[3]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nObviously",
+      "new_exact": "\n\n3\n\n. Obviously",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8472,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " a court.1",
+      "new_exact": " a court.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe State did not make",
+      "new_exact": "\n\n1\n\n. The State did not make",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " Constitution.2",
+      "new_exact": " Constitution.[2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n2\n\nOur reference to specific",
+      "new_exact": "\n\n2\n\n. Our reference to specific",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "jury.”3",
+      "new_exact": "jury.”[3]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nAs will be discussed",
+      "new_exact": "\n\n3\n\n. As will be discussed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "indictment4",
+      "new_exact": "indictment[4]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nThe order denying",
+      "new_exact": "\n\n4\n\n. The order denying",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "itself.5",
+      "new_exact": "itself.[5]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n5\n\nWe note that Nordquist",
+      "new_exact": "\n\n5\n\n. We note that Nordquist",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "certain.”6",
+      "new_exact": "certain.”[6]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n6\n\nWebster",
+      "new_exact": "\n\n6\n\n. Webster",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 7,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "jury;7",
+      "new_exact": "jury;[7]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 7,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 7\n\nThe State does not",
+      "new_exact": "\n\n7\n\n. The State does not",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 8,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Constitution,8",
+      "new_exact": "Constitution,[8]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 8,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 8\n\nThat Amendment states",
+      "new_exact": "\n\n8\n\n. That Amendment states",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Constitution,9",
+      "new_exact": "Constitution,[9]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 9,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n9\n\nThe pertinent language of",
+      "new_exact": "\n\n9\n\n. The pertinent language of",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.,10",
+      "new_exact": "N.D.C.C.,[10]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 10,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n10\n\nSection 29-21-11",
+      "new_exact": "\n\n10\n\n. Section 29-21-11",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.R.Ev.,11",
+      "new_exact": "N.D.R.Ev.,[11]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n11\n\nRule 512",
+      "new_exact": "\n\n11\n\n. Rule 512",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(N.D.1967),12",
+      "new_exact": "(N.D.1967),[12]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 12,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n12\n\nThe language relied",
+      "new_exact": "\n\n12\n\n. The language relied",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8536,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 21,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "for a new trial.1 This appeal is from the order de",
+      "new_exact": "for a new trial.[1] This appeal is from the order de",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nIn denying McLain’s motion for a new trial, the judge also ruled",
+      "new_exact": "\n\n1\n\n. In denying McLain’s motion for a new trial, the judge also ruled",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "on the night in question.2 Mosser’s affidavit, in",
+      "new_exact": "on the night in question.[2] Mosser’s affidavit, in",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nMosser did not identify the woman he saw at the truck stop as the complainant",
+      "new_exact": "\n\n2\n\n. Mosser did not identify the woman he saw at the truck stop as the complainant",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "by the throat.”3\n 3",
+      "new_exact": "by the throat.”[3]\n\n3",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nMosser’s testimony at the hearing on the motion for a new trial mirrors",
+      "new_exact": "\n\n3\n\n. Mosser’s testimony at the hearing on the motion for a new trial mirrors",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "a favorable verdict.4\n 4\n\nThe",
+      "new_exact": "a favorable verdict.[4]\n\n4\n\n. The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nThe State contends that the newly discovered evidence also fails to meet",
+      "new_exact": "\n\n4\n\n. The State contends that the newly discovered evidence also fails to meet",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8596,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "NOTES\nThe record before us does not contain any written documents made at that time which acknowledged paternity.",
+      "new_exact": "NOTES\n\n1\n\n. The record before us does not contain any written documents made at that time which acknowledged paternity.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\nOne hearing was on the motion for temporary support. Although nothing was resolved on the record before us with reference to temporary support, the order issued after this hearing required blood tests to be taken and also appointed a guardian ad litem. A second hearing was before the juvenile referee, at which time Walter admitted paternity. A third hearing was on the issue of child support.",
+      "new_exact": "\n\n2\n\n. One hearing was on the motion for temporary support. Although nothing was resolved on the record before us with reference to temporary support, the order issued after this hearing required blood tests to be taken and also appointed a guardian ad litem. A second hearing was before the juvenile referee, at which time Walter admitted paternity. A third hearing was on the issue of child support.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "ntly enacted1 Depart",
+      "new_exact": "ntly enacted[1] Depart",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 1\n\nThe Department of Tran",
+      "new_exact": "\n\n1\n\n. The Department of Tra",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 2,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Supreme Court.2 The",
+      "new_exact": "Supreme Court[2] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 2\n\nCopies of the parties’",
+      "new_exact": "\n\n2\n\n. Copies of the parties",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "decision,3 a",
+      "new_exact": "decision,[3] a",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 3\n\nWe note, however, th",
+      "new_exact": "\n\n3\n\n. We note, however,",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 4,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and maintenance.”4 This is pr",
+      "new_exact": "and maintenance.”[4] This is pr",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 4\n\nNewman Signs has not argu",
+      "new_exact": "\n\n4\n\n. Newman Signs has not a",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 5,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "185, Note 9.”5\n 5",
+      "new_exact": "185, Note 9.”[5]\n 5",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 5\n\nThe citation is to Marches",
+      "new_exact": "\n\n5\n\n. The citation is to Marc",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "opinion_id": 8626,
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 8649,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "concept1 was",
+      "new_exact": "concept[1] was",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "entered.\n 1\n\nIn instances",
+      "new_exact": "entered.\n\n1\n\n. In instances",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "stated:2\n 2",
+      "new_exact": "stated:[2]\n 2",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "stated:2\n 2\n\nThe letters",
+      "new_exact": "stated:2\n\n2\n\n. The letters",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "statement.\n 3",
+      "new_exact": "statement.[3]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "statement.\n 3\n\nThe State of Georgia",
+      "new_exact": "statement.\n\n3\n\n. The State of Georgia",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "granted.”\n\n\n4\n\nIn Conway",
+      "new_exact": "granted.”\n\n\n[4]\n\nIn Conway",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "4\n\nIn Conway v. Parker, 304 N.W.2d 83 (N.D.1981), in footnote 2, we said:",
+      "new_exact": "4\n\n. In Conway v. Parker, 304 N.W.2d 83 (N.D.1981), in footnote 2, we said:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8799,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1848–29–03.1 Hence, when confronted",
+      "new_exact": "1848–29–03[1] Hence, when confronted",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nIncidentally",
+      "new_exact": "\n\n1\n\n. Incidentally",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Section 18432 is disclosed by the drafter",
+      "new_exact": "Section 1843[2] is disclosed by the drafter",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nSection 1843, Proposed",
+      "new_exact": "\n\n2\n\n. Section 1843, Proposed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Mr. Robert Wefald3 said:",
+      "new_exact": "Mr. Robert Wefald[3] said:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 3\n\nMr. Wefald was a special",
+      "new_exact": "\n\n3\n\n. Mr. Wefald was a special",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.4 Relative thereto",
+      "new_exact": "N.D.C.C.[4] Relative thereto",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 4\n\nThe phrase",
+      "new_exact": "\n\n4\n\n. The phrase",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8836,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "seats.1 Coming",
+      "new_exact": "seats.[1] Coming",
+      "verified_count": 1
+     },
+     {
+      "old_exact": " 1\n\n",
+      "new_exact": "\n\n1\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "cigarette.2 Miller",
+      "new_exact": "cigarette.[2] Miller",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "2\n\nThe combined",
+      "new_exact": "\n\n2\n\n. The combined",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "deliver.3 See",
+      "new_exact": "deliver.[3] See",
+      "verified_count": 1
+     },
+     {
+      "old_exact": " 3\n\nIn this regard",
+      "new_exact": "\n\n3\n\n. In this regard",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "deliver.4\n",
+      "new_exact": "deliver.[4]\n",
+      "verified_count": 1
+     },
+     {
+      "old_exact": " 4\n\nRecall that",
+      "new_exact": "\n\n4\n\n. Recall that",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "substance.5\n 5",
+      "new_exact": "substance.[5]\n\n5",
+      "verified_count": 1
+     },
+     {
+      "old_exact": " 5\n\nWashington",
+      "new_exact": "\n\n5\n\n. Washington",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 8872,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 27,
+    "edits": [
+     {
+      "old_exact": "Procedure.1 Proceedings",
+      "new_exact": "Procedure.[1] Proceedings",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 1\n\nRule",
+      "new_exact": "\n\n1\n\n. Rule",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 49,
+    "edits": [
+     {
+      "old_exact": "or the community.\n 2\n\nIn State v. Engel, 284 N.W.2d 303, 305 (N.D.1979)",
+      "new_exact": "or the community.[2]\n\n2\n\n. In State v. Engel, 284 N.W.2d 303, 305 (N.D.1979)",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 57,
+    "edits": [
+     {
+      "old_exact": "flee.3 We",
+      "new_exact": "flee.[3] We",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 3\n\nIn affidavits",
+      "new_exact": "\n\n3\n\n. In affidavits",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9150,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 31,
+    "edits": [
+     {
+      "old_exact": "without undue irregularities.”1",
+      "new_exact": "without undue irregularities.”[1]",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nIt does not appear that this statute was brought to the attention of the court below.",
+      "new_exact": "\n\n1\n\n. It does not appear that this statute was brought to the attention of the court below.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 37,
+    "edits": [
+     {
+      "old_exact": "common corner.”2 The map",
+      "new_exact": "common corner.”[2] The map",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nThe shaded areas in the map below represent parcels of land within the Solen district sought to be annexed to the Flasher",
+      "new_exact": "\n\n2\n\n. The shaded areas in the map below represent parcels of land within the Solen district sought to be annexed to the Flasher",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9170,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": ".”1\n 1\n\nAlthough the City argues in it",
+      "new_exact": ".”[1]\n 1\n\nAlthough the City argues in it",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nAlthough the City argues in its brief",
+      "new_exact": "\n\n1\n\n. Although the City argues in its brief",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "discretion.2 Although we question whether or not the Legislature can or did",
+      "new_exact": "discretion.[2] Although we question whether or not the Legislature can or did",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nNeither party has raised any issue as to whether or not the statutory",
+      "new_exact": "\n\n2\n\n. Neither party has raised any issue as to whether or not the statutory",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "discretion.\n 3\n\nWhether or not Wendelin would accomplish his purpose of freeing",
+      "new_exact": "discretion.3\n\n3\n\n. Whether or not Wendelin would accomplish his purpose of freeing",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9320,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 46,
+    "edits": [
+     {
+      "old_exact": "all:1\n 1\n\nWe recognize and consider findings of fact",
+      "new_exact": "all:[1]\n\n1\n\n. We recognize and consider findings of fact",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9338,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1889,1 and the second",
+      "new_exact": "1889,[1] and the second",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 1\n\n“Indian lands shall remain under the absolute jurisdiction",
+      "new_exact": "\n\n1\n\n. “Indian lands shall remain under the absolute jurisdiction",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1958.2\n 1",
+      "new_exact": "1958.[2]\n1",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n2\n\n“The people inhabiting this state do agree and declare that they forever disclaim",
+      "new_exact": "\n\n2\n\n. “The people inhabiting this state do agree and declare that they forever disclaim",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1326),3 notwithstanding *101",
+      "new_exact": "1326),[3] notwithstanding *101",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 3\n\n\n\nIn light of the mandate of the Supreme Court in this case",
+      "new_exact": "\n\n3\n\n. In light of the mandate of the Supreme Court in this case",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "acted.4\n 4",
+      "new_exact": "acted.[4]\n4",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 4\n\n“Although much has been said about reservation problems",
+      "new_exact": "\n\n4\n\n. “Although much has been said about reservation problems",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "actions.5\n 5",
+      "new_exact": "actions.[5]\n5",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 5\n\n“i. The assumption of civil jurisdiction by the State would",
+      "new_exact": "\n\n5\n\n. “i. The assumption of civil jurisdiction by the State would",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "reservations.6\n 6",
+      "new_exact": "reservations.[6]\n6",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 6\n\n“SECTION 1.) In accordance with the provisions of Public Law 280",
+      "new_exact": "\n\n6\n\n. “SECTION 1.) In accordance with the provisions of Public Law 280",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 7,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "people7 and,",
+      "new_exact": "people[7] and,",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 7\n\n“Marvin Sonosky, 1700 K St., Washington, D.C.",
+      "new_exact": "\n\n7\n\n. “Marvin Sonosky, 1700 K St., Washington, D.C.",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 8,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1963.\n\n\n8\n\n“",
+      "new_exact": "1963.\n\n\n[8]\n\n. “",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n8\n\n“§ 2.) Acceptance of jurisdiction",
+      "new_exact": "\n\n8\n\n. “§ 2.) Acceptance of jurisdiction",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 9,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "everyone;9 Article I,",
+      "new_exact": "everyone;[9] Article I,",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 9\n\n“All courts shall be open, and every man",
+      "new_exact": "\n\n9\n\n. “All courts shall be open, and every man",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 10,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "operation;10 and Article IV",
+      "new_exact": "operation;[10] and Article IV",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n10\n\n“All laws of a general nature shall have a uniform operation",
+      "new_exact": "\n\n10\n\n. “All laws of a general nature shall have a uniform operation",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 11,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "causes.11 In our view",
+      "new_exact": "causes.[11] In our view",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n11\n\n“The district court shall have original jurisdiction of all causes",
+      "new_exact": "\n\n11\n\n. “The district court shall have original jurisdiction of all causes",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Amendment.12 All of the cases",
+      "new_exact": "Amendment.[12] All of the cases",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 12\n\n“All persons born or naturalized in the United States",
+      "new_exact": "\n\n12\n\n. “All persons born or naturalized in the United States",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 13,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "it.13 It would be difficult",
+      "new_exact": "it.[13] It would be difficult",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 13\n\n“Civil jurisdiction as herein provided over an Indian reservation",
+      "new_exact": "\n\n13\n\n. “Civil jurisdiction as herein provided over an Indian reservation",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 9352,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "separately.”1 Under a Rule 21 severance, the trial court is not required",
+      "new_exact": "separately.”[1] Under a Rule 21 severance, the trial court is not required",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nCounsel for First National Bank moved the court for severance under the wrong rule, using Rule 42(b), which provides the mechanism for ordering a separate trial, instead of Rule 21, providing for severance of claims.",
+      "new_exact": "\n\n1\n\n. Counsel for First National Bank moved the court for severance under the wrong rule, using Rule 42(b), which provides the mechanism for ordering a separate trial, instead of Rule 21, providing for severance of claims.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "cross-claim.2 See Cook v. Cook, 364 N.W.2d 74 (N.D.1985)",
+      "new_exact": "cross-claim.[2] See Cook v. Cook, 364 N.W.2d 74 (N.D.1985)",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n2\n\nBoth the trial court and counsel have a duty to make sure orders such as these are properly entered in the record. Judicial economy is not served when a court of review must search through voluminous documents in the record in order to possibly find a statement or two that could constitute an order by the trial court.",
+      "new_exact": "\n\n2\n\n. Both the trial court and counsel have a duty to make sure orders such as these are properly entered in the record. Judicial economy is not served when a court of review must search through voluminous documents in the record in order to possibly find a statement or two that could constitute an order by the trial court.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "N.D.1981).3\n 3",
+      "new_exact": "N.D.1981).[3]\n 3",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nIf now, after having secured counsel, the Wallaces have defenses related to the foreclosure, they may attempt to raise them under Rule 60(b), N.D.R.Civ.P. Our disposition of this case does not prohibit the Wallaces from subsequently moving the trial court for relief from the summary judgment under Rule 60(b), N.D.R.Civ.P. See Gajewski v. Bratcher, 240 N.W.2d 871 (N.D.1976).",
+      "new_exact": "\n\n3\n\n. If now, after having secured counsel, the Wallaces have defenses related to the foreclosure, they may attempt to raise them under Rule 60(b), N.D.R.Civ.P. Our disposition of this case does not prohibit the Wallaces from subsequently moving the trial court for relief from the summary judgment under Rule 60(b), N.D.R.Civ.P. See Gajewski v. Bratcher, 240 N.W.2d 871 (N.D.1976).",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 9371,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "breach of contract.1",
+      "new_exact": "breach of contract.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "contract.1\n 1\n\nThe Bank had earlier instituted a foreclosure action on the home but settled the case when Burich and Swinney quitclaimed their interest in the home to the Bank.",
+      "new_exact": "contract.[1]\n\n1\n\n. The Bank had earlier instituted a foreclosure action on the home but settled the case when Burich and Swinney quitclaimed their interest in the home to the Bank.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "made the oral promise to obtain title, did not testify.",
+      "new_exact": "made the oral promise to obtain title, did not testify.[2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "testify.\n 2\n\nThe determination that consideration has failed is a question of fact and not of law.",
+      "new_exact": "testify.\n\n2\n\n. The determination that consideration has failed is a question of fact and not of law.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "or partial.3 *153 Schaff",
+      "new_exact": "or partial.[3] *153 Schaff",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDRCivP 52(a).\n 3\n\nFailure of consideration should be distinguished from lack of consideration. When there is a lack of consideration no contract is ever formed. Harrington v. Harrington, 365 N.W.2d 552 (N.D.1985).",
+      "new_exact": "NDRCivP 52(a).\n\n3\n\n. Failure of consideration should be distinguished from lack of consideration. When there is a lack of consideration no contract is ever formed. Harrington v. Harrington, 365 N.W.2d 552 (N.D.1985).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "object of the contract.4 Poppenga",
+      "new_exact": "object of the contract.[4] Poppenga",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n4\n\nThe following cases involve total failure of consideration: Korol v. Aronson, 360 N.W.2d 684 (N.D.1985)",
+      "new_exact": "\n4\n\n. The following cases involve total failure of consideration: Korol v. Aronson, 360 N.W.2d 684 (N.D.1985)",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "the home5 as a consequence",
+      "new_exact": "the home[5] as a consequence",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "(Mo.App.1961).\n 5\n\nSee footnote 1.",
+      "new_exact": "(Mo.App.1961).\n\n5\n\n. See footnote 1.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Constr. Co., supra.6",
+      "new_exact": "Constr. Co., supra.[6]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "complaint. Southern Constr. Co., supra.6\n 6\n\nNorth Dakota Rule of Civil Procedure 13(a) was adopted from a similar federal rule and therefore when construing the rule this court is guided by and gives great deference to federal case law interpreting the federal counterpart.",
+      "new_exact": "complaint. Southern Constr. Co., supra.[6]\n\n6\n\n. North Dakota Rule of Civil Procedure 13(a) was adopted from a similar federal rule and therefore when construing the rule this court is guided by and gives great deference to federal case law interpreting the federal counterpart.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9453,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "deed.1 At",
+      "new_exact": "deed.[1] At",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 2,
+    "body_present_in_db": true
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "damages.\n 1\n\nAll other",
+      "new_exact": "damages.\n\n1\n\n. All other",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "premises.2 Dickinson",
+      "new_exact": "premises.[2] Dickinson",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 3,
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "waste.3\n 2\n\nThe covenant read in part:",
+      "new_exact": "waste.[3]\n\n2\n\n. The covenant read in part:",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n3\n\nThe trial court found that Dickinson Associates",
+      "new_exact": "\n3\n\n. The trial court found that Dickinson Associates",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "case.4 See Ferraro",
+      "new_exact": "case.[4] See Ferraro",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 11,
+    "body_present_in_db": true
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nThus, for example, when the cost of repairing",
+      "new_exact": "\n\n4\n\n. Thus, for example, when the cost of repairing",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "evidence.5 The trial court acknowledged",
+      "new_exact": "evidence.[5] The trial court acknowledged",
+      "verified_count": 1
+     }
+    ],
+    "call_para": 15,
+    "body_present_in_db": true
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nDickinson Associates did not offer any evidence",
+      "new_exact": "\n\n5\n\n. Dickinson Associates did not offer any evidence",
+      "verified_count": 1
+     }
+    ],
+    "call_para": null,
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 9563,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": "him.\n  1\n\nNDCC",
+      "new_exact": "him.[1]\n\nNDCC",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n\nNDCC § 27–11–01:",
+      "new_exact": "\n\n1\n\n. NDCC § 27–11–01:",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9640,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 45,
+    "edits": [
+     {
+      "old_exact": "(N.D.1976).1\n",
+      "new_exact": "(N.D.1976).[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 45,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nK",
+      "new_exact": "\n\n1\n\n. K",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 71,
+    "edits": [
+     {
+      "old_exact": "best.2 ",
+      "new_exact": "best.[2] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 71,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nOn",
+      "new_exact": "\n\n2\n\n. On",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 9656,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "tort.1 Ingram",
+      "new_exact": "tort.[1] Ingram",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 2\n\nHouse Bill No. 1075",
+      "new_exact": "\n\n2\n\n. House Bill No. 1075",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 3\n\nThe argument that a statute",
+      "new_exact": "\n\n3\n\n. The argument that a statute",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 4\n\nSince its passage",
+      "new_exact": "\n\n4\n\n. Since its passage",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "So.2d 996.5 Courts have",
+      "new_exact": "So.2d 996.[5] Courts have",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "S.W.2d 218.6 Contrarily",
+      "new_exact": "S.W.2d 218.[6] Contrarily",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 7,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 8,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "and equal protection challenges.8\n",
+      "new_exact": "and equal protection challenges.[8]\n",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 9,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "review, strict scrutiny.9 Johnson",
+      "new_exact": "review, strict scrutiny.[9] Johnson",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 10,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 11,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1974).11 When analyzing",
+      "new_exact": "1974).[11] When analyzing",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 12,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "protection.12 Arneson involved",
+      "new_exact": "protection.[12] Arneson involved",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 13,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "294.13 We conclude that",
+      "new_exact": "294.[13] We conclude that",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 14,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 15,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "62,734,15 and which appears",
+      "new_exact": "62,734,[15] and which appears",
+      "verified_count": 1
+     }
+    ],
+    "append_body": ""
+   },
+   {
+    "num": 16,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 17,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 18,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 19,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 20,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   },
+   {
+    "num": 21,
+    "action": "not_a_footnote",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": false,
+    "edits": [],
+    "append_body": ""
+   }
+  ]
+ },
+ {
+  "opinion_id": 9759,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "VI.”1 We",
+      "new_exact": "VI.”[1] We",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "appealing.\n 1\n\nSee",
+      "new_exact": "appealing.\n\n1\n\n. See",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "appeal.2\n",
+      "new_exact": "appeal.[2]\n",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".2\n 2\n\nFirst",
+      "new_exact": ".[2]\n\n2\n\n. First",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "costs.3 N.D.C.C.",
+      "new_exact": "costs.[3] N.D.C.C.",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "provides:\n 3\n\nFirst",
+      "new_exact": "provides:\n\n3\n\n. First",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   }
+  ]
+ },
+ {
+  "opinion_id": 9840,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "rights,1 ",
+      "new_exact": "rights,[1] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\n",
+      "new_exact": "\n\n1\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "60(b).2 ",
+      "new_exact": "60(b).[2] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\n",
+      "new_exact": "\n\n2\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "C.C.,3 ",
+      "new_exact": "C.C.,[3] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n3\n\n",
+      "new_exact": "\n\n3\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": ".Civ.P.,4 ",
+      "new_exact": ".Civ.P.,[4] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n4\n\n",
+      "new_exact": "\n\n4\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "27–20.5",
+      "new_exact": "27–20.[5]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n5\n\n",
+      "new_exact": "\n\n5\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "C.C,6 ",
+      "new_exact": "C.C,[6] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 6\n\n",
+      "new_exact": "\n\n6\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10061,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "cattle,1 the",
+      "new_exact": "cattle,[1] the",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe cattle",
+      "new_exact": "\n\n1\n\n. The cattle",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "grain,2 the Dodge",
+      "new_exact": "grain,[2] the Dodge",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n2\n\nThe grain",
+      "new_exact": "\n\n2\n\n. The grain",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "bank accounts.3 Thus",
+      "new_exact": "bank accounts.[3] Thus",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n3\n\nThe bank",
+      "new_exact": "\n\n3\n\n. The bank",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "Procedure,4 filed",
+      "new_exact": "Procedure,[4] filed",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nRule 52",
+      "new_exact": "\n\n4\n\n. Rule 52",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "exception.5 On",
+      "new_exact": "exception.[5] On",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n5\n\nOn April",
+      "new_exact": "\n\n5\n\n. On April",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "will itself.6",
+      "new_exact": "will itself.[6]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 6,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 6\n\nThe appellants",
+      "new_exact": "\n\n6\n\n. The appellants",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10081,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "Century Code1 and therefore issued",
+      "new_exact": "Century Code[1] and therefore issued",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "continuing review.2\n 1\n\nAt the conclusion",
+      "new_exact": "continuing review.2\n\n1\n\n. At the conclusion",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "subject to a continuing review.2\n",
+      "new_exact": "subject to a continuing review.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "child.”\n\n\n2\n\nIn addition",
+      "new_exact": "child.”\n\n2\n\n. In addition",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "this Court.3 On appeal",
+      "new_exact": "this Court.[3] On appeal",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "child.\n 3\n\nJohn Thelen",
+      "new_exact": "child.\n\n3\n\n. John Thelen",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "the juvenile court.4 We are",
+      "new_exact": "the juvenile court.[4] We are",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "1982).\n 4\n\nSection 27–20–56",
+      "new_exact": "1982).\n\n4\n\n. Section 27–20–56",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10119,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "NOTES\nAlthough American Hardware cross-appealed, we need not consider the cross-appeal because of our disposition of the issue on appeal.",
+      "new_exact": "NOTES\n\n1\n\n. Although American Hardware cross-appealed, we need not consider the cross-appeal because of our disposition of the issue on appeal.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10540,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "buy.1 After the",
+      "new_exact": "buy.[1] After the",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nAn “anticipatory search warrant” is a warrant",
+      "new_exact": "\n\n1\n\n. An “anticipatory search warrant” is a warrant",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "arrest.2\n",
+      "new_exact": "arrest.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nOn appeal, Wahl did not challenge",
+      "new_exact": "\n\n2\n\n. On appeal, Wahl did not challenge",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "unlawful.3 Payton",
+      "new_exact": "unlawful.[3] Payton",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nBecause the Fourth Amendment",
+      "new_exact": "\n\n3\n\n. Because the Fourth Amendment",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(N.D.1980).4 In State",
+      "new_exact": "(N.D.1980).[4] In State",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nFor an analysis",
+      "new_exact": "\n\n4\n\n. For an analysis",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "warrant.5\n",
+      "new_exact": "warrant.[5]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nIn this case, and in previous cases",
+      "new_exact": "\n\n5\n\n. In this case, and in previous cases",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10755,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 31,
+    "edits": [
+     {
+      "old_exact": "homestead.1 Bladow",
+      "new_exact": "homestead.[1] Bladow",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 31,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nAlthough we have",
+      "new_exact": "\n\n1\n\n. Although we have",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 45,
+    "edits": [
+     {
+      "old_exact": "merit.2\n",
+      "new_exact": "merit.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 45,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nBladow",
+      "new_exact": "\n\n2\n\n. Bladow",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 62,
+    "edits": [
+     {
+      "old_exact": "Act.3 Although",
+      "new_exact": "Act.[3] Although",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 62,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nSection 47–19.1–01, N.D.C.C., reads",
+      "new_exact": "\n\n3\n\n. Section 47–19.1–01, N.D.C.C., reads",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 79,
+    "edits": [
+     {
+      "old_exact": "employed.4 We",
+      "new_exact": "employed.[4] We",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 79,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nSection 27–07.1–23, N.D.C.C., reads",
+      "new_exact": "\n\n4\n\n. Section 27–07.1–23, N.D.C.C., reads",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 90,
+    "edits": [
+     {
+      "old_exact": "located.5 See",
+      "new_exact": "located.[5] See",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 90,
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nSection 27–07.1–17, N.D.C.C., reads",
+      "new_exact": "\n\n5\n\n. Section 27–07.1–17, N.D.C.C., reads",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10764,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "medical care.1 See",
+      "new_exact": "medical care.[1] See",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nIn some",
+      "new_exact": "\n\n1\n\n. In some",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "certification.2\n",
+      "new_exact": "certification.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n\n2\n\nAfter",
+      "new_exact": "\n\n2\n\n. After",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 10874,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "(department)1 ",
+      "new_exact": "(department)[1] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nAt the relevant times",
+      "new_exact": "\n\n1\n\n. At the relevant times",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "l in this case.2\n 2\n\n",
+      "new_exact": "l in this case.[2]\n 2\n\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "ase.2\n 2\n\nEbachs",
+      "new_exact": "ase.2\n\n2\n\n. Ebachs",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "facilities.”3 “",
+      "new_exact": "facilities.”[3] “",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nSection 24–01–01.1",
+      "new_exact": "\n\n3\n\n. Section 24–01–01.1",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "NDCC,4 gives",
+      "new_exact": "NDCC,[4] gives",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nSection 40–05–02(14) provided",
+      "new_exact": "\n\n4\n\n. Section 40–05–02(14) provided",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "judgment.5\n",
+      "new_exact": "judgment.[5]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nThe challenged findings",
+      "new_exact": "\n\n5\n\n. The challenged findings",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "*440 1 We",
+      "new_exact": "*440 [1] We",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 1\n\nIn",
+      "new_exact": "\n\n1\n\n. In",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "County2 which",
+      "new_exact": "County [2] which",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 2\n\nThe",
+      "new_exact": "\n\n2\n\n. The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "1981.3 Prior",
+      "new_exact": "1981. [3] Prior",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 3\n\nIf",
+      "new_exact": "\n\n3\n\n. If",
+      "verified_count": 1
+     }
+    ]
+   }
+  ],
+  "opinion_id": 10936,
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 10994,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "Ambers Heirs1 ",
+      "new_exact": "Ambers Heirs[1] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": " 1\n\nThe Contestants are heirs at law of George Ambers pursuant to the law of intestate succession, § 30.1–04–03 (2–103), N.D.C.C.",
+      "new_exact": "\n\n1\n\n. The Contestants are heirs at law of George Ambers pursuant to the law of intestate succession, § 30.1–04–03 (2–103), N.D.C.C.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "appealed2 from",
+      "new_exact": "appealed[2] from",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "\n2\n\nWhile Byron and Gail Nelson filed a notice of cross appeal from the judgment, they did not raise any cross-appeal issues in their brief or argument and we deem the cross appeal to have been abandoned.",
+      "new_exact": "\n\n2\n\n. While Byron and Gail Nelson filed a notice of cross appeal from the judgment, they did not raise any cross-appeal issues in their brief or argument and we deem the cross appeal to have been abandoned.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 37,
+    "edits": [
+     {
+      "old_exact": "School.3\n",
+      "new_exact": "School.[3]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 37,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nPresumably, Lutheran Health Systems and the Anne Carlson School are successors of the beneficiaries provided for in the 1955 will.",
+      "new_exact": "\n\n3\n\n. Presumably, Lutheran Health Systems and the Anne Carlson School are successors of the beneficiaries provided for in the 1955 will.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 91,
+    "edits": [
+     {
+      "old_exact": "Gail.”4",
+      "new_exact": "Gail.”[4]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 91,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nCounsel for Contestants acknowledged at oral argument that George Ambers’ relatives did not visit him as often as the Nelsons did and asserted that a relative would visit George every three to six months. Counsel also observed in Contestants’ brief: “By late 1981 when George entered the Maddock Home Nelsons were making a point of visiting regularly and from 1986 to his death in August of 1988 they made at least seventy-four (74) visits to George at the Harvey Nursing Home.” (Page references omitted.)",
+      "new_exact": "\n\n4\n\n. Counsel for Contestants acknowledged at oral argument that George Ambers’ relatives did not visit him as often as the Nelsons did and asserted that a relative would visit George every three to six months. Counsel also observed in Contestants’ brief: “By late 1981 when George entered the Maddock Home Nelsons were making a point of visiting regularly and from 1986 to his death in August of 1988 they made at least seventy-four (74) visits to George at the Harvey Nursing Home.” (Page references omitted.)",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11019,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 64,
+    "edits": [
+     {
+      "old_exact": "argues:\n 1\n\nNDCC",
+      "new_exact": "argues:\n[1]\n\nNDCC",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "deceive.\n\n\n2\n\nNDCC",
+      "new_exact": "deceive.\n\n1\n\n. NDCC",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "fraud.\n\n\nThe evidence",
+      "new_exact": "fraud.\n\n2\n\n. The evidence",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11110,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "garment1 that required",
+      "new_exact": "garment[1] that required",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 1\n\nDr. Juhala",
+      "new_exact": "\n\n1\n\n. Dr. Juhala",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Dr. Juhala2 advising:\n",
+      "new_exact": "Dr. Juhala[2] advising:\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 2\n\nIn 1986, the Bureau",
+      "new_exact": "\n\n2\n\n. In 1986, the Bureau",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "stipulation3 between the Bureau",
+      "new_exact": "stipulation[3] between the Bureau",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 3\n\nThe stipulation said:",
+      "new_exact": "\n\n3\n\n. The stipulation said:",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "benefits4 because of",
+      "new_exact": "benefits[4] because of",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": " 4\n\nThe Bureau",
+      "new_exact": "\n\n4\n\n. The Bureau",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11118,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Professional Responsibility.1 The",
+      "new_exact": "Professional Responsibility.[1] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe American Bar Association issued",
+      "new_exact": "\n\n1\n\n. The American Bar Association issued",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDSILD 6.0.2 Kaiser did",
+      "new_exact": "NDSILD 6.0.[2] Kaiser did",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nStandard 6.0, on Violations of Duties",
+      "new_exact": "\n\n2\n\n. Standard 6.0, on Violations of Duties",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "9.3.3\n 3\n\nStandard 9.1, on Aggravation",
+      "new_exact": "9.3.3[3]\n\n. Standard 9.1, on Aggravation",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "criminal.4 Kaiser has",
+      "new_exact": "criminal.[4] Kaiser has",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nApparently, Kaiser has not been charged",
+      "new_exact": "\n\n4\n\n. Apparently, Kaiser has not been charged",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11143,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "death.1 See 3 Am.Jur.2d Agency § 55 (1986).",
+      "new_exact": "death.[1] See 3 Am.Jur.2d Agency § 55 (1986).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 1\n\nThe Uniform Durable Power of Attorney Act, NDCC ch. 30.1–30, authorizes limited continuation of a power of attorney after the principal’s death. NDCC 30.1–30–04(1) says that good faith actions taken by the holder of the power of attorney before learning of the principal’s death are binding upon the principal’s successors in interest. In this case, Larson and Grovom knew of Reiten’s death when the money was withdrawn from the account.\n\n\n",
+      "new_exact": "\n\n1\n\n. The Uniform Durable Power of Attorney Act, NDCC ch. 30.1–30, authorizes limited continuation of a power of attorney after the principal’s death. NDCC 30.1–30–04(1) says that good faith actions taken by the holder of the power of attorney before learning of the principal’s death are binding upon the principal’s successors in interest. In this case, Larson and Grovom knew of Reiten’s death when the money was withdrawn from the account.\n\n\n",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ],
+    "body_present_in_db": true
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "rehearing.2\n 2",
+      "new_exact": "rehearing.[2]\n 2",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": " 2\n\nThe parties did not cite NDRAppP 41(a). This rule says that “[t]he timely filing of a petition for rehearing will stay the mandate until disposition of the petition unless otherwise ordered by the court.” This rule, however, does not apply here; no mandate is issued in a disciplinary proceeding. A mandate is the official mode of communicating the judgment of an appellate court to a lower court. Black’s Law Dictionary 962 (6th ed. 1990). It is the vehicle for revesting jurisdiction in the lower court. Mancuso v. Beach, 187 Ill.App.3d 388, 135 Ill.Dec. 21, 23, 543 N.E.2d 256, 258 (1989). Because the opinion of this court is the final order in a disciplinary proceeding, no mandate issues.\n\n\n",
+      "new_exact": "\n\n2\n\n. The parties did not cite NDRAppP 41(a). This rule says that “[t]he timely filing of a petition for rehearing will stay the mandate until disposition of the petition unless otherwise ordered by the court.” This rule, however, does not apply here; no mandate is issued in a disciplinary proceeding. A mandate is the official mode of communicating the judgment of an appellate court to a lower court. Black’s Law Dictionary 962 (6th ed. 1990). It is the vehicle for revesting jurisdiction in the lower court. Mancuso v. Beach, 187 Ill.App.3d 388, 135 Ill.Dec. 21, 23, 543 N.E.2d 256, 258 (1989). Because the opinion of this court is the final order in a disciplinary proceeding, no mandate issues.\n\n\n",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ],
+    "body_present_in_db": true
+   }
+  ]
+ },
+ {
+  "opinion_id": 11334,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDRAppP 4(b)(3);1 NDRCrimP",
+      "new_exact": "NDRAppP 4(b)(3);[1] NDRCrimP",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe relevant",
+      "new_exact": "\n\n1\n\n. The relevant",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11504,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "his gross income.1 Sven",
+      "new_exact": "his gross income.[1] Sven",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nNDAC 75–02–04.1–01",
+      "new_exact": "\n\n1\n\n. NDAC 75–02–04.1–01",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "4–09–08.2(1),2 but the amended",
+      "new_exact": "4–09–08.2(1),[2] but the amended",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nNDCC 14–09–08.2(1) says:\nA jud",
+      "new_exact": "\n\n2\n\n. NDCC 14–09–08.2(1) says:\nA jud",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "NDCC 14–09–08.10.3 However, th",
+      "new_exact": "NDCC 14–09–08.10.[3] However, th",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nNDCC 14–09–08.10 says:\n1. Unle",
+      "new_exact": "\n\n3\n\n. NDCC 14–09–08.10 says:\n1. Unle",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "NDCC 14–09–09.24(1).4 However,",
+      "new_exact": "NDCC 14–09–09.24(1).[4] However,",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nNDCC 14–09–09.24 says:\nImmedia",
+      "new_exact": "\n\n4\n\n. NDCC 14–09–09.24 says:\nImmedia",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "NDCC 14–09–09.23.5 The North D",
+      "new_exact": "NDCC 14–09–09.23.[5] The North D",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nNDCC 14–09–09.23 says:\nAdminis",
+      "new_exact": "\n\n5\n\n. NDCC 14–09–09.23 says:\nAdminis",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 11927,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "We therefore affirm.",
+      "new_exact": "We therefore affirm.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nAll names of the parties in this case are pseudonyms.",
+      "new_exact": "\n\n1\n\n. All names of the parties in this case are pseudonyms.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "ordinary citizen.2 For",
+      "new_exact": "ordinary citizen.[2] For",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nTo the extent this statement by the trial court can be interpreted as meaning a prisoner may be denied a personal court appearance for a purely punitive reason, it is incorrect. As we discuss later in this opinion, prisoners have a right of access to the courts, and although prisoners may be denied personal court appearances for a variety of reasons related to their imprisonment, additional punishment is not among them. See infra, at p. 658 and n. 3.",
+      "new_exact": "\n\n2\n\n. To the extent this statement by the trial court can be interpreted as meaning a prisoner may be denied a personal court appearance for a purely punitive reason, it is incorrect. As we discuss later in this opinion, prisoners have a right of access to the courts, and although prisoners may be denied personal court appearances for a variety of reasons related to their imprisonment, additional punishment is not among them. See infra, at p. 658 and n. 3.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "consideration.3 In",
+      "new_exact": "consideration.[3] In",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nRelying on Stone v. Morris, 546 F.2d 730, 735–736 (7th Cir.1976), we said:\n“In making its determination the trial court may take into account the costs and inconvenience of transporting a prisoner from his place of incarceration to the courtroom, any potential danger or security risk which the presence of a particular inmate would pose to the court, the substantiality of the matter at issue, the need for an early determination of the matter, the possibility of delaying trial until the prisoner is released, the probability of success on the merits, the integrity of the correctional system, and the interests of the inmate in presenting his testimony in person rather than by deposition.”\nIn Interest of F.H., 283 N.W.2d 202, 209 (N.D.1979).",
+      "new_exact": "\n\n3\n\n. Relying on Stone v. Morris, 546 F.2d 730, 735–736 (7th Cir.1976), we said:\n“In making its determination the trial court may take into account the costs and inconvenience of transporting a prisoner from his place of incarceration to the courtroom, any potential danger or security risk which the presence of a particular inmate would pose to the court, the substantiality of the matter at issue, the need for an early determination of the matter, the possibility of delaying trial until the prisoner is released, the probability of success on the merits, the integrity of the correctional system, and the interests of the inmate in presenting his testimony in person rather than by deposition.”\nIn Interest of F.H., 283 N.W.2d 202, 209 (N.D.1979).",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "process.4 But",
+      "new_exact": "process.[4] But",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nThese rights may also be provided by statute. For example, N.D.C.C. § 27–20–27(1) of the Uniform Juvenile Court Act provides:\n“27–20–27. Other basic rights.\n“1. A party is entitled to the opportunity to introduce evidence and otherwise be heard in his own behalf and to cross-examine adverse witnesses.”\nJack does not rely on this statute as the basis for his claimed right to personally confront and cross-examine the witnesses.",
+      "new_exact": "\n\n4\n\n. These rights may also be provided by statute. For example, N.D.C.C. § 27–20–27(1) of the Uniform Juvenile Court Act provides:\n“27–20–27. Other basic rights.\n“1. A party is entitled to the opportunity to introduce evidence and otherwise be heard in his own behalf and to cross-examine adverse witnesses.”\nJack does not rely on this statute as the basis for his claimed right to personally confront and cross-examine the witnesses.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "Jack.5 The",
+      "new_exact": "Jack.[5] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 5,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 5\n\nIn its rulings denying Jack’s request for a personal appearance, the trial court made no explicit findings on the emotional or psychological effect Jack’s personal court appearance would have on the children. The trial court, however, after noting the potential danger and security risk, stated that “[f]or these and all other reasons [Jack] will not be allowed in the courtroom.” (Emphasis added). Besides the potential danger and security risk, the only other reasons given by Mark and Sandy for opposing Jack’s request for a personal court appearance were the documented emotional and psychological damage that would be suffered by the children if personal contact were allowed. While we would have preferred explicit findings on this matter, it is evident from the record that the trial court accepted the opinions of the children’s counselors and implicitly found that personal contact with Jack would emotionally and psychologically harm the children.",
+      "new_exact": "\n\n5\n\n. In its rulings denying Jack’s request for a personal appearance, the trial court made no explicit findings on the emotional or psychological effect Jack’s personal court appearance would have on the children. The trial court, however, after noting the potential danger and security risk, stated that “[f]or these and all other reasons [Jack] will not be allowed in the courtroom.” (Emphasis added). Besides the potential danger and security risk, the only other reasons given by Mark and Sandy for opposing Jack’s request for a personal court appearance were the documented emotional and psychological damage that would be suffered by the children if personal contact were allowed. While we would have preferred explicit findings on this matter, it is evident from the record that the trial court accepted the opinions of the children’s counselors and implicitly found that personal contact with Jack would emotionally and psychologically harm the children.",
+      "verified_count": 1,
+      "_healed": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12163,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "court.1 The",
+      "new_exact": "court.[1] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "2\n 1\n\nThe record",
+      "new_exact": "2\n\n1\n\n. The record",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "proceedings.2\n",
+      "new_exact": "proceedings.[2]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "appeal.\n\n2\n\nWe have",
+      "new_exact": "appeal.\n\n2\n\n. We have",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19516,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": "properties.1\n 1\n\nFive",
+      "new_exact": "properties.[1]\n\nFive",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": " 1\n\nFive",
+      "new_exact": "\n1\n\n. Five",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": "$225,000,2 and the",
+      "new_exact": "$225,000,[2] and the",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": " 2\n\nMore than",
+      "new_exact": "\n2\n\n. More than",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 29,
+    "edits": [
+     {
+      "old_exact": "equals cost3 and thereby",
+      "new_exact": "equals cost[3] and thereby",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 29,
+    "edits": [
+     {
+      "old_exact": " 3\n\nThe City",
+      "new_exact": "\n3\n\n. The City",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19804,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "call_para": 21,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "judgment.1\n ",
+      "new_exact": "judgment.[1]\n ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nBearce",
+      "new_exact": "\n\n1\n\n. Bearce",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]

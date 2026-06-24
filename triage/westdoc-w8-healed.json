@@ -1,0 +1,686 @@
+[
+ {
+  "opinion_id": 12187,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "),1 ",
+      "new_exact": "),[1] ",
+      "verified_count": 1
+     },
+     {
+      "old_exact": "\n 1\n\n",
+      "new_exact": "\n\n1\n\n. ",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12242,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "of Surviving Spouse)1. In",
+      "new_exact": "of Surviving Spouse)[1]. In",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nChapter 30.1–05",
+      "new_exact": "\n\n1\n\n. Chapter 30.1–05",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12245,
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "appealed1 an",
+      "new_exact": "appealed[1] an",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": 1
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThis",
+      "new_exact": "\n\n1\n\n. This",
+      "verified_count": 1
+     }
+    ],
+    "body_present_in_db": true,
+    "call_para": null
+   }
+  ],
+  "overall_confidence": "high"
+ },
+ {
+  "opinion_id": 12247,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.1 We",
+      "new_exact": "N.D.C.C.[1] We",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 1,
+    "edits": [
+     {
+      "old_exact": " 1\n\nThis case is a companion to Criminal No. 960008, In Interest of J.A.G., 552 N.W.2d 317 (N.D.1996).",
+      "new_exact": "\n\n1\n\n. This case is a companion to Criminal No. 960008, In Interest of J.A.G., 552 N.W.2d 317 (N.D.1996).",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": "transfer hearing.2",
+      "new_exact": "transfer hearing.[2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 2,
+    "edits": [
+     {
+      "old_exact": " 2\n\nC.R.M. also relies on Eastburn v. J.K.H., 392 N.W.2d 406 (N.D.1986), which relied on P.W.N. for the proposition that reasonable grounds to believe a child committed a delinquent act must be established by witnesses available for cross-examination. In Eastburn, we noted that the testimony of social workers was hearsay, but we did not decide if that was permissible, because there was no objection in juvenile court.",
+      "new_exact": "\n\n2\n\n. C.R.M. also relies on Eastburn v. J.K.H., 392 N.W.2d 406 (N.D.1986), which relied on P.W.N. for the proposition that reasonable grounds to believe a child committed a delinquent act must be established by witnesses available for cross-examination. In Eastburn, we noted that the testimony of social workers was hearsay, but we did not decide if that was permissible, because there was no objection in juvenile court.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": "course of his investigation.3",
+      "new_exact": "course of his investigation.[3]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 3,
+    "edits": [
+     {
+      "old_exact": " 3\n\nOur conclusion is in accord with the decisions of at least one of the other states to enact the Uniform Juvenile Court Act. See In re R.B., 264 Ga. 602, 448 S.E.2d 690 (1994); In the Interest of R.J., 191 Ga.App. 712, 382 S.E.2d 671 (1989).",
+      "new_exact": "\n\n3\n\n. Our conclusion is in accord with the decisions of at least one of the other states to enact the Uniform Juvenile Court Act. See In re R.B., 264 Ga. 602, 448 S.E.2d 690 (1994); In the Interest of R.J., 191 Ga.App. 712, 382 S.E.2d 671 (1989).",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12256,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 41,
+    "edits": [
+     {
+      "old_exact": "NOTES\nThe names",
+      "new_exact": "NOTES\n\n1\n\n. The names",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 53,
+    "edits": [
+     {
+      "old_exact": "pseudonyms.\n\nSection 14-17-04",
+      "new_exact": "pseudonyms.\n\n2\n\n. Section 14-17-04",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 70,
+    "edits": [
+     {
+      "old_exact": "another man.\"\n\nBut cf.",
+      "new_exact": "another man.\"\n\n3\n\n. But cf.",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 94,
+    "edits": [
+     {
+      "old_exact": "child].\n\nThe prior law",
+      "new_exact": "child].\n\n4\n\n. The prior law",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12304,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 3,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "N.D.C.C.,1 her",
+      "new_exact": "N.D.C.C.,[1] her",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": null,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nIn 1994",
+      "new_exact": "\n\n1\n\n. In 1994",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12319,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "NOTES\nThe Share House is a facility in Fargo, similar to a halfway house, that combines residential programming with intense outpatient treatment.",
+      "new_exact": "NOTES\n1\n\n. The Share House is a facility in Fargo, similar to a halfway house, that combines residential programming with intense outpatient treatment.",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 12333,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "(4).1 We affirm",
+      "new_exact": "(4).[1] We affirm",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nSection 27",
+      "new_exact": "\n\n1\n\n. Section 27",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": " at 685.2 Specifically",
+      "new_exact": " at 685.[2] Specifically",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nIn 1995",
+      "new_exact": "\n\n2\n\n. In 1995",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19372,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 18,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "hearing.1\n",
+      "new_exact": "hearing.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 18,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nA court",
+      "new_exact": "\n\n1\n\n. A court",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19516,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "properties.1\n",
+      "new_exact": "properties[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nFive percent",
+      "new_exact": "\n\n1\n\n. Five percent",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "$225,000,2 ",
+      "new_exact": "$225,000[2] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nMore than 6.75%",
+      "new_exact": "\n\n2\n\n. More than 6.75%",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "cost3 ",
+      "new_exact": "cost[3] ",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 3\n\nThe City defines",
+      "new_exact": "\n\n3\n\n. The City defines",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19688,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 35,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "estate.1 The",
+      "new_exact": "estate.[1] The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 35,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe district",
+      "new_exact": "\n\n1\n\n. The district",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "call_para": 38,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "basis,2 we",
+      "new_exact": "basis,[2] we",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "call_para": 38,
+    "body_present_in_db": true,
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nThe court’s reduction of the marital estate by",
+      "new_exact": "\n\n2\n\n. The court’s reduction of the marital estate by",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 19804,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "retrofit_bareline_to_bracket",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": 21,
+    "edits": [
+     {
+      "old_exact": "judgment.1\n",
+      "new_exact": "judgment.[1]\n",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "body_present_in_db": true,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": " 1\n\nBearce",
+      "new_exact": "\n\n1\n\n. Bearce",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 11,
+    "action": "strip_residual",
+    "confidence": "high",
+    "body_present_in_db": false,
+    "call_para": null,
+    "edits": [
+     {
+      "old_exact": "*175 [11]",
+      "new_exact": "*175",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "opinion_id": 20486,
+  "overall_confidence": "high",
+  "footnotes": [
+   {
+    "num": 1,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDRAppP.1",
+      "new_exact": "NDRAppP.[1]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 1,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 1\n\nThe",
+      "new_exact": "\n\n1\n\n. The",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDRCrimP2",
+      "new_exact": "NDRCrimP[2]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 2,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 2\n\nRule 35 permits",
+      "new_exact": "\n\n2\n\n. Rule 35 permits",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "NDRCrimP3",
+      "new_exact": "NDRCrimP[3]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 3,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n3\n\nCorrecting",
+      "new_exact": "\n\n3\n\n. Correcting",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "fix_marker",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "this opinion.4",
+      "new_exact": "this opinion.[4]",
+      "verified_count": 1
+     }
+    ]
+   },
+   {
+    "num": 4,
+    "action": "number_orphan",
+    "confidence": "high",
+    "edits": [
+     {
+      "old_exact": "\n 4\n\nWe said",
+      "new_exact": "\n\n4\n\n. We said",
+      "verified_count": 1
+     }
+    ]
+   }
+  ]
+ }
+]
