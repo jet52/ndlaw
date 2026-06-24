@@ -2,6 +2,33 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-corrected-2026-06-24` — P2/P3 review: agent-error corrections (5 opinions)
+
+Hand-verified corrections from the P2/P3 REVIEW queues where the agent's proposal
+was wrong; each rebuilt and confirmed against the court PDF (user-approved):
+
+- **Section-heading letters (4)** — 2026 ND 35 (`A` before ¶7, `B` before ¶12),
+  2026 ND 61 (`B` before ¶10), 2026 ND 70 (`B` before ¶13). Ingestion merged the
+  one-letter section heading onto the end of the prior citation line
+  (`…850. A
+
+[¶7]`). The agent proposed DELETING the letter (would lose the
+  heading); corrected to REFORMAT it onto its own line (`…850.
+
+A
+
+[¶7]`),
+  matching the PDF.
+- **2026 ND 34 (move, not delete)** — `the due process and constitutional` was
+  scrambled out of ¶11 to the end of ¶10. Agent proposed deleting it (text loss);
+  corrected to MOVE it back into ¶11 (`This Court has discussed the due process
+  and constitutional considerations`), per the PDF.
+- **2026 ND 75 (statute join)** — `§ 12-44.1-32` was line-wrapped to `12-44.1- 32`
+  (stray space). Agent matched the PDF line-break; corrected to JOIN to
+  `12-44.1-32` (one section number).
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `corpus-proofing-2026-06-24` — proofing fleet P3 AUTO (1 opinion)
 
 Third proofing batch (40 modern opinions, 2026 ND 7-45), first run on the v2

@@ -1,0 +1,62 @@
+[
+ {
+  "opinion_id": 20341,
+  "class": "heading_seq",
+  "old_exact": "6 N.W.3d 850. A\n\n[¶7]",
+  "new_exact": "6 N.W.3d 850.\n\nA\n\n[¶7]",
+  "verified_count": 1,
+  "source": "2026ND35.pdf",
+  "evidence": "PDF: \"850.\n\n A\n\n[¶7]\" — A is a section heading merged onto citation line",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20341,
+  "class": "heading_seq",
+  "old_exact": "impermissible factor. B\n\n[¶12]",
+  "new_exact": "impermissible factor.\n\nB\n\n[¶12]",
+  "verified_count": 1,
+  "source": "2026ND35.pdf",
+  "evidence": "PDF: \"factor.\n\n B\n\n[¶12]\" — B is a section heading",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20370,
+  "class": "heading_seq",
+  "old_exact": "932 N.W.2d 386). B\n\n[¶10]",
+  "new_exact": "932 N.W.2d 386).\n\nB\n\n[¶10]",
+  "verified_count": 1,
+  "source": "2026ND61.pdf",
+  "evidence": "PDF: \"386).\n\n B\n\n[¶10]\" — B is a section heading",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20380,
+  "class": "heading_seq",
+  "old_exact": "the DVPO. B\n\n[¶13]",
+  "new_exact": "the DVPO.\n\nB\n\n[¶13]",
+  "verified_count": 1,
+  "source": "2026ND70.pdf",
+  "evidence": "PDF: \"DVPO.\n\n B\n\n[¶13]\" — B is a section heading",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20340,
+  "class": "split_join",
+  "old_exact": "vexatious litigant. the due process and constitutional\n\n[¶11] This Court has discussed con",
+  "new_exact": "vexatious litigant.\n\n[¶11] This Court has discussed the due process and constitutional con",
+  "verified_count": 1,
+  "source": "2026ND34.pdf",
+  "evidence": "PDF ¶11: \"This Court has discussed the due process and constitutional considerations\" — words displaced to end of ¶10; MOVE back",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20396,
+  "class": "split_join",
+  "old_exact": "section 12-44.1- 32 or",
+  "new_exact": "section 12-44.1-32 or",
+  "verified_count": 1,
+  "source": "2026ND75.pdf",
+  "evidence": "single statute § 12-44.1-32 wrapped across a line; remove the stray space (join)",
+  "confidence": "high"
+ }
+]
