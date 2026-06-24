@@ -2,6 +2,25 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `quotes-straight-2026-06-24` — normalize curly quotes to straight ASCII (13,492 opinions)
+
+User policy decision: the authoritative edition uses straight ASCII quotes and
+apostrophes. `scripts/normalize_quotes_straight.py` mapped the four curly quote
+characters corpus-wide — “ U+201C / ” U+201D -> ", and ‘ U+2018 / ’ U+2019 -> ' —
+across 13,492 opinions (~692,662 chars: “168,735 ”164,563 ‘44,906 ’314,458).
+Per-opinion gate confirmed the ONLY change was those four chars. 0 skipped; 0 curly
+quotes remain. FTS auto-synced via the opinions_au trigger.
+
+This is intentionally LOSSY (open/close direction discarded). The user was advised
+of the trade-offs (irreversible directional loss; divergence from the curly-quoted
+published PDFs; that the modern straight-quote cohort was itself an ingestion
+flattening) and chose straight for uniformity/portability/searchability, noting no
+semantic difference. Directional data remains recoverable from the court PDFs;
+changelog rows record per-opinion substitution counts. OUT OF SCOPE / left as-is:
+primes ′″ (14/20 opinions), grave ` (393), guillemets «» (15/22) — not curly
+quotes; separate review if desired. Detector 175/0; invariants 24 ok / 2 known /
+0 regressed; 66 tests pass.
+
 ## Batch `proofing-review-revert-2026-06-24` — preserve-source-typo revert (2023 ND 177)
 
 REVERTED an applied "OCR typo" fix that was actually correcting the COURT'S OWN
