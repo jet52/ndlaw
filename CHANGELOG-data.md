@@ -2,6 +2,50 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `ocr-cleanup-2026-06-24` — deferred-queue OCR/cleanup (12 fixes, 11 opinions)
+
+Worked the genuinely-actionable OCR/cleanup items from the deferred queues (after an
+inventory found 72 of 115 live items were already owned by rejoin-v2 or the markup
+cohort). Every fix PDF-verified against the opinion's correct PDF (cites re-derived from
+`source_path`, not guessed). Two agent proposals were reversed from DELETE to MOVE, and
+one was rejected outright (see below).
+
+Applied:
+- **2022 ND 103** (id 18024): removed prepended markdown metadata header (title/court/
+  citation/date) — not part of the published opinion.
+- **2022 ND 183** (id 18082): `SW1/4` -> `SW¼` (typographic fraction, PDF line 78).
+- **2023 ND 154** (id 18224): OCR'd neutral-cite header `2023 IN 1) 154` -> `2023 ND 154`;
+  removed adjacent OCR garbage line `2020 * T n -`.
+- **2023 ND 11** (id 19717): removed a FILED/docket stamp OCR-spliced mid-sentence before
+  `report` (joins cleanly to `...filed a report`).
+- **2023 ND 16** (id 19744): scramble MOVE — `to be` was displaced before `The agreement`;
+  restored to `The agreement does not appear to be substantively`. (Agent proposed
+  deleting `to be`, which would have lost it.)
+- **2023 ND 97** (id 19837): caption party-separator OCR garbage `V. D.C. 1 1 A 11` -> `v.`
+- **2024 ND 68** (id 20041): removed OCR garbage line `0004 NIT 00`.
+- **2022 ND 231** (id 18114): restored corrupted citation `(quoting Willprecht, 2020 ND at
+  ¶ 11)` -> `(quoting Willprecht v. Willprecht, 2021 ND 17, ¶ 11, 954 N.W.2d 707)` (PDF
+  line 234).
+- **2023 ND 130** (id 19730): heading MOVE — `V` was misplaced before the signature block
+  [¶22]; relocated before the disposition [¶21] (PDF line 313). Paired edits.
+- **2023 ND 182** (id 19768): caption — reordered displaced `Respondents` / `Respondent and
+  Appellant` labels to the PDF two-column layout (pure reorder, word-multiset preserved).
+- **2024 ND 207** (id 19960): caption — restored dropped `Petitioner` and `Respondent`
+  party designations (PDF-confirmed).
+- **2025 ND 49** (id 20257): caption MOVE — `Petitioner`/`Respondent` were orphaned after
+  `Per Curiam.`; relocated into the caption parties. (Agent proposed deleting them, which
+  would have lost the designations.)
+
+Rejected / deferred:
+- **2024 ND 122** (id 19866) **rejected**: the agent proposed deleting `In November 2023,
+  the district court amended child support and entered judgment.` — but this is legitimate
+  ¶8 factual text, appearing once in both DB and PDF (the empty `new_exact` passed the
+  verifier only because an empty string trivially matches). Deleting would corrupt ¶8.
+- **2022 ND 183** (id 18082) `V.`->`v.` deferred — flagged landmine (PDF has ` V.` twice;
+  possible middle initials, needs image verification).
+- **2023 ND 179** (id 19765) deferred to the scramble bucket (dangling `confidential
+  attorney-client` fragment; not a clean delete).
+
 ## Batches `headings-2022ND132-2026-06-24` + `headings-2026-06-24` — section-heading reformat queue (3 opinions, 11 headings)
 
 Draining the recurring heading-reformat queue. Section/subsection headings (I, II, A,

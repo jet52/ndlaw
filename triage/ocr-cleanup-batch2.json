@@ -1,0 +1,52 @@
+[
+ {
+  "opinion_id": 19730,
+  "class": "paragraph_seq",
+  "old_exact": "[¶21] The order denying the motion to vacate the criminal judgment and for a new trial and the criminal judgment are affirmed.\n\nV\n\n[¶22]",
+  "new_exact": "[¶21] The order denying the motion to vacate the criminal judgment and for a new trial and the criminal judgment are affirmed.\n\n[¶22]",
+  "verified_count": 1,
+  "source": "PDF shows section marker V appears BEFORE [¶21], not after it (line 313 of pdftotext output). The DB incorrectly has V between [¶21] and [¶22]; it must be moved to between [¶20] and [¶21].",
+  "confidence": "high",
+  "note": "Heading MOVE (paired edits): V belongs before disposition [¶21], not before signature block [¶22]. PDF 2023ND130 line 313 confirms. Apply both.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 1,
+  "_add": 0,
+  "_files": [
+   "triage/p171819-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND130.md"
+ },
+ {
+  "opinion_id": 19730,
+  "class": "paragraph_seq",
+  "old_exact": "based on this issue.\n\n[¶21]",
+  "new_exact": "based on this issue.\n\nV\n\n[¶21]",
+  "verified_count": 1,
+  "source": "PDF pdftotext output shows centered 'V' at line 313, appearing between the end of [¶20] text and the start of [¶21]. Section V should introduce paragraph 21, matching the PDF structure where Section V → [¶21].",
+  "confidence": "high",
+  "note": "Heading MOVE (paired edits): V belongs before disposition [¶21], not before signature block [¶22]. PDF 2023ND130 line 313 confirms. Apply both.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p171819-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND130.md"
+ },
+ {
+  "opinion_id": 18114,
+  "class": "missing_text",
+  "old_exact": "Willprecht, 2020\nND at ¶ 11)",
+  "new_exact": "Willprecht v.\nWillprecht, 2021 ND 17, ¶ 11, 954 N.W.2d 707)",
+  "verified_count": 1,
+  "source": "2022ND231.pdf line 234-235: 'Id. (quoting Willprecht v. Willprecht, 2021 ND 17, ¶ 11, 954 N.W.2d 707).' DB corrupted to 'Willprecht, 2020 ND at ¶ 11'. Restored.",
+  "confidence": "high",
+  "note": "Citation restore (PDF-confirmed): dropped/garbled parenthetical citation.",
+  "_verdict": "review:pdf_confirmed",
+  "_d": "cite-mangle",
+  "_files": [
+   "triage/p202122-deferred.json"
+  ],
+  "_src": "markdown/2022/2022ND231.md"
+ }
+]

@@ -1,0 +1,78 @@
+[
+ {
+  "opinion_id": 19768,
+  "class": "caption",
+  "old_exact": "In the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nand\n\nC.D., mother,\n\nNo. 20230290\n\nIn the Interest of K.J., minor child\n\nRespondents\n\nRespondent and Appellant\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nand\n\nC.D., mother,\n\nRespondents\n\nRespondent and Appellant\n\nNo. 20230291",
+  "new_exact": "In the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nRespondents\n\nand\n\nC.D., mother,\n\nRespondent and Appellant\n\nNo. 20230290\n\nIn the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nRespondents\n\nand\n\nC.D., mother,\n\nRespondent and Appellant\n\nNo. 20230291",
+  "verified_count": 1,
+  "source": "2023ND182.pdf lines 15-35; PDF caption structure pairs party names with role designations (Petitioner and Appellee with State of North Dakota; Respondents with K.J., child, W.J., father; Respondent and Appellant with C.D., mother)",
+  "confidence": "high",
+  "note": "Caption: reorder displaced Respondents/Respondent-and-Appellant labels to PDF two-column layout (pure reorder, word-multiset preserved).",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "cite-mangle",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND182.md"
+ },
+ {
+  "opinion_id": 19960,
+  "class": "caption",
+  "old_exact": "of the State of North Dakota,\n v.",
+  "new_exact": "of the State of North Dakota, Petitioner\n v.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND207.pdf (pdftotext layout)",
+  "confidence": "high",
+  "evidence": "PDF caption line 13 shows 'of the State of North Dakota,                                     Petitioner' on the same line as the Disciplinary Board designation. DB has this split across lines 13-14 with Petitioner orphaned to line 29.",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p10",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p8910-deferred.json",
+   "triage/p8910-judgment.json"
+  ],
+  "_src": "markdown/2024/2024ND207.md",
+  "note": "Caption: restore dropped party designation (PDF-confirmed)."
+ },
+ {
+  "opinion_id": 19960,
+  "class": "caption",
+  "old_exact": "David R. Spencer,\n\n________________",
+  "new_exact": "David R. Spencer, Respondent\n\n________________",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND207.pdf (pdftotext layout)",
+  "confidence": "high",
+  "evidence": "PDF caption line 15 shows 'David R. Spencer,                                                 Respondent' on the same line as the party name. DB has this split across lines 16 and 31 with Respondent orphaned to line 31.",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p10",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p8910-deferred.json",
+   "triage/p8910-judgment.json"
+  ],
+  "_src": "markdown/2024/2024ND207.md",
+  "note": "Caption: restore dropped party designation (PDF-confirmed)."
+ },
+ {
+  "opinion_id": 20257,
+  "class": "caption",
+  "old_exact": "of the State of North Dakota,\n\nv.\n\nDavid R. Spencer,\n\nNo. 20240339",
+  "new_exact": "of the State of North Dakota, Petitioner\n\nv.\n\nDavid R. Spencer, Respondent\n\nNo. 20240339",
+  "verified_count": 1,
+  "source": "2025ND49.pdf caption: 'Disciplinary Board ... of the State of North Dakota, [Petitioner] / v. / David R. Spencer, [Respondent]'. DB caption dropped both designation labels.",
+  "confidence": "high",
+  "note": "Caption MOVE part 1/2: add Petitioner/Respondent labels to the caption parties (relocated from the orphaned position below)."
+ },
+ {
+  "opinion_id": 20257,
+  "class": "caption",
+  "old_exact": "Per Curiam.\n\n Petitioner\n\nRespondent\n\n[¶1] ",
+  "new_exact": "Per Curiam.\n\n[¶1] ",
+  "verified_count": 1,
+  "source": "2025ND49.pdf: no 'Petitioner'/'Respondent' text between 'Per Curiam.' and the first paragraph; these labels were orphaned here by ingestion and belong in the caption.",
+  "confidence": "high",
+  "note": "Caption MOVE part 2/2: remove the orphaned Petitioner/Respondent labels (relocated into the caption above). Agent proposed deleting them outright, which would lose the party designations."
+ }
+]

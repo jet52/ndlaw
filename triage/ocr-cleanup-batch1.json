@@ -1,0 +1,82 @@
+[
+ {
+  "opinion_id": 18024,
+  "class": "other",
+  "old_exact": "# Matter of Shane Lance Yates\n\nNorth Dakota Supreme Court\n974 N.W.2d 408; 2022 ND 103\nDecided 2022-05-12\n\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "2022ND103.pdf: published opinion begins with the FILED stamp + 'IN THE SUPREME COURT' caption, not this markdown metadata header (title/court/citation/date). Header is ingestion metadata, not court text.",
+  "confidence": "high",
+  "note": "Remove prepended markdown metadata header (not part of the published opinion)."
+ },
+ {
+  "opinion_id": 18082,
+  "class": "ocr_char",
+  "old_exact": "Township 153 North, Range 102 West Section 12: SW1/4 Section 12: S",
+  "new_exact": "Township 153 North, Range 102 West Section 12: SW¼ Section 12: S",
+  "verified_count": 1,
+  "source": "2022ND183.pdf line 78: 'Section 12: SW¼' uses the typographic fraction U+00BC. DB has ASCII '1/4'.",
+  "confidence": "high",
+  "note": "OCR: typographic quarter-fraction in property description."
+ },
+ {
+  "opinion_id": 18224,
+  "class": "ocr_digit",
+  "old_exact": "2023 IN 1) 154",
+  "new_exact": "2023 ND 154",
+  "verified_count": 1,
+  "source": "2023ND154.pdf line 12: neutral-cite header reads '2023 ND 154'. DB OCR'd 'ND' as 'IN 1)'.",
+  "confidence": "high",
+  "note": "OCR of the neutral-citation header."
+ },
+ {
+  "opinion_id": 18224,
+  "class": "ocr_char",
+  "old_exact": "2020 * T n -\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "2023ND154.pdf: no such text in the header; OCR garbage adjacent to the neutral-cite line. Removed.",
+  "confidence": "high",
+  "note": "Remove OCR garbage line in the header region."
+ },
+ {
+  "opinion_id": 19717,
+  "class": "missing_text",
+  "old_exact": "20230014 FILED FEBRUARY 9, 2023 CLERK OF THE SUPREME COURT STATE OF NORTH DAKOTAreport",
+  "new_exact": "report",
+  "verified_count": 1,
+  "source": "2023ND11.pdf line 43: sentence reads '...the South Central Judicial District filed a report containing population...'. A docket/FILED stamp was OCR-spliced before 'report'. Removed; joins cleanly to 'filed a report'.",
+  "confidence": "high",
+  "note": "Remove FILED-stamp text spliced mid-sentence before 'report'."
+ },
+ {
+  "opinion_id": 19744,
+  "class": "ocr_char",
+  "old_exact": "concluded as follows: to be The agreement does not appear substantively",
+  "new_exact": "concluded as follows: The agreement does not appear to be substantively",
+  "verified_count": 1,
+  "source": "2023ND16.pdf line 204: block quote reads 'The agreement does not appear to be substantively unconscionable.' DB scrambled 'to be' to before 'The agreement', leaving 'does not appear substantively'. Moved 'to be' back to its place.",
+  "confidence": "high",
+  "note": "Scramble MOVE (not delete): the agent proposed deleting 'to be', which would lose it; restored to 'does not appear to be substantively'."
+ },
+ {
+  "opinion_id": 19837,
+  "class": "ocr_char",
+  "old_exact": "V. D.C. 1 1 A 11",
+  "new_exact": "v.",
+  "verified_count": 1,
+  "source": "2023ND97.pdf caption: party separator is 'v.' on its own line between 'State of North Dakota, Plaintiff and Appellee' and 'Alvin Henry Brown, Jr., Defendant and Appellant'. DB OCR-garbled it as 'V. D.C. 1 1 A 11'.",
+  "confidence": "high",
+  "note": "OCR garbage in caption party-separator -> 'v.'"
+ },
+ {
+  "opinion_id": 20041,
+  "class": "ocr_char",
+  "old_exact": "0004 NIT 00\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "2024ND68.pdf: no such text; OCR garbage line. Removed.",
+  "confidence": "high",
+  "note": "Remove OCR garbage line."
+ }
+]

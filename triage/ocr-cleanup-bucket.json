@@ -1,0 +1,426 @@
+[
+ {
+  "opinion_id": 19866,
+  "class": "paragraph_seq",
+  "old_exact": " In November 2023, the district court amended child support and entered judgment.",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction",
+  "confidence": "high",
+  "evidence": "The sentence appears at the end of ¶7 in the DB, but in the PDF source (line 93-95) it belongs in ¶8. The DB has the sentence in ¶7: '[¶7]...education savings account. In November 2023, the district court amended child support and entered judgment.' but the PDF shows '[¶7]...education savings account.' and '[¶8] In November 2023, the district court amended child support and entered judgment. Mariya Stephens timely appealed.'",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p12",
+  "_rem": 11,
+  "_add": 0,
+  "_files": [
+   "triage/p111213-judgment.json"
+  ],
+  "_src": "markdown/2024/2024ND122.md"
+ },
+ {
+  "opinion_id": 20041,
+  "class": "ocr_char",
+  "old_exact": "0004 NIT 00\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND68.pdf",
+  "confidence": "high",
+  "evidence": "String '0004 NIT 00' appears in DB text at line 5, immediately before '2024 ND 68'. Full PDF scan finds NO occurrence of '0004 NIT 00' anywhere. This is a metadata/docket artifact from OCR that does not appear in the authoritative PDF.",
+  "note": "Metadata docket number artifact — not part of opinion proper. Safe to remove.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "markdown/2024/2024ND68.md"
+ },
+ {
+  "opinion_id": 20044,
+  "class": "ocr_char",
+  "old_exact": "*776 Appeal from the Juvenile Court of Grand Forks County, Northeast Central Judicial District, the Honorable M. Jason McCarthy, Judge.",
+  "new_exact": "Appeal from the Juvenile Court of Grand Forks County, Northeast Central Judicial District, the Honorable M. Jason McCarthy, Judge.",
+  "verified_count": 1,
+  "source": "PDF: 2024ND132.pdf (verified as 2024 ND 70)",
+  "confidence": "high",
+  "note": "Westlaw-specific page marker *776 appears at start of opinion header. The authoritative PDF source does not contain this marker. This is a common artifact from Westlaw document ingestion.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "N.W.3d/5/0775-In-the-Interest-of-HJJN-a-Child.doc"
+ },
+ {
+  "opinion_id": 20028,
+  "class": "ocr_digit",
+  "old_exact": "[¶3] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+  "new_exact": "[¶3] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr 1",
+  "verified_count": 1,
+  "source": "PDF source text 2024ND56.pdf, page 1, signature block",
+  "confidence": "high",
+  "evidence": "The PDF rendering shows the page number '1' at the end of the signature line. The DB text is missing this page number marker.",
+  "note": "The ' 1' is the page number footer for page 1 of the opinion, consistent with court publishing standards.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "markdown/2024/2024ND56.md"
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "2021 ND 217, ¶ 2, 967 N.W.2d 765",
+  "new_exact": "2021 ND 217, ¶ 2",
+  "verified_count": 1,
+  "source": "PDF pages 4-5, paragraph 16",
+  "confidence": "high",
+  "evidence": "Authoritative PDF shows citation without reporter reference in paragraph 16. DB includes extra '967 N.W.2d 765' that does not appear in source.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "N.W.2d/999/0170-STATE-of-North-Dakota-Plaintiff-and-Appellant-v-Mark-Edward-BEARCE-Defendant-and-Appellee-.doc"
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "2021 ND 217, ¶¶ 4, 13, 967 N.W.2d 765",
+  "new_exact": "2021 ND 217, ¶¶ 4, 13",
+  "verified_count": 1,
+  "source": "PDF pages 4-5, paragraph 17",
+  "confidence": "high",
+  "evidence": "Authoritative PDF shows citation without reporter reference in paragraph 17. DB includes extra '967 N.W.2d 765' that does not appear in source.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "N.W.2d/999/0170-STATE-of-North-Dakota-Plaintiff-and-Appellant-v-Mark-Edward-BEARCE-Defendant-and-Appellee-.doc"
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "Neilan, 2021 ND 217, ¶ 22, 967 N.W.2d 765",
+  "new_exact": "Neilan, 2021 ND 217, ¶ 22",
+  "verified_count": 1,
+  "source": "PDF pages 4-5, paragraph 18",
+  "confidence": "high",
+  "evidence": "Authoritative PDF shows citation without reporter reference in paragraph 18. DB includes extra '967 N.W.2d 765' that does not appear in source.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p141516-deferred.json"
+  ],
+  "_src": "N.W.2d/999/0170-STATE-of-North-Dakota-Plaintiff-and-Appellant-v-Mark-Edward-BEARCE-Defendant-and-Appellee-.doc"
+ },
+ {
+  "opinion_id": 19777,
+  "class": "ocr_char",
+  "old_exact": "39-20-03.1(3)¹ required that the officer provide",
+  "new_exact": "39-20-03.1(3)1 required that the officer provide",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2023/2023ND190.pdf shows '39-20-03.1(3)1 required' with plain ASCII digit 1 (U+0031)",
+  "confidence": "high",
+  "evidence": "Superscript 1 character (U+00B9) in DB at paragraph 15, footnote marker position. PDF source clearly shows plain digit '1' at this location.",
+  "note": "This is a footnote marker incorrectly converted to superscript during OCR/ingestion. The authoritative source shows plain '1' linking to the footnote on page 6 of the PDF.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND190.md"
+ },
+ {
+  "opinion_id": 19777,
+  "class": "paragraph_seq",
+  "old_exact": "[¶23] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+  "new_exact": "Jon J. Jensen, C.J.\n      Daniel J. Crothers\n      Lisa Fair McEvers\n      Jerod E. Tufte\n      Douglas A. Bahr",
+  "verified_count": 1,
+  "source": "PDF page 9 shows signature block without [¶23] marker and with line breaks between each justice's name",
+  "confidence": "high",
+  "evidence": "The PDF source does not contain a [¶23] marker in the signature block. Each justice name appears on a separate line with indentation. The DB incorrectly combines all names on one line with the paragraph marker.",
+  "note": "The signature block should not be treated as a numbered paragraph. The PDF clearly shows each name on its own line. The [¶23] marker is an ingestion artifact applied incorrectly to non-numbered content.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND190.md"
+ },
+ {
+  "opinion_id": 19768,
+  "class": "caption",
+  "old_exact": "In the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nand\n\nC.D., mother,\n\nNo. 20230290\n\nIn the Interest of K.J., minor child\n\nRespondents\n\nRespondent and Appellant\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nand\n\nC.D., mother,\n\nRespondents\n\nRespondent and Appellant\n\nNo. 20230291",
+  "new_exact": "In the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nRespondents\n\nand\n\nC.D., mother,\n\nRespondent and Appellant\n\nNo. 20230290\n\nIn the Interest of K.J., minor child\n\nState of North Dakota,\n\nPetitioner and Appellee\n\nv.\n\nK.J., child, W.J., father,\n\nRespondents\n\nand\n\nC.D., mother,\n\nRespondent and Appellant\n\nNo. 20230291",
+  "verified_count": 1,
+  "source": "2023ND182.pdf lines 15-35; PDF caption structure pairs party names with role designations (Petitioner and Appellee with State of North Dakota; Respondents with K.J., child, W.J., father; Respondent and Appellant with C.D., mother)",
+  "confidence": "high",
+  "note": "The DB caption has scrambled role designations in both cases. The PDF shows each party paired with its correct role, but the DB has displaced these roles to appear after the docket number instead of after the relevant party. This sequencing defect affects both No. 20230290 and No. 20230291 cases.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "cite-mangle",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND182.md"
+ },
+ {
+  "opinion_id": 18224,
+  "class": "ocr_digit",
+  "old_exact": "2023 IN 1) 154",
+  "new_exact": "2023 ND 154",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND154.pdf line 12",
+  "confidence": "high",
+  "evidence": "Standard ND Supreme Court citation format is '2023 ND 154' (the reporter abbreviation is 'ND'). PDF line 12 shows '2023 ND 154'. DB shows corrupted 'IN 1)' where 'ND' should be, consistent with OCR misreading 'ND' as 'IN' and '.' as '1)'.",
+  "note": "Occurs in caption line of opinion. Digit/letter confusion in OCR (N→I, D→1), period→parenthesis.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND154.md"
+ },
+ {
+  "opinion_id": 18224,
+  "class": "missing_text",
+  "old_exact": "2020 * T n -\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND154.pdf",
+  "confidence": "high",
+  "evidence": "DB lines 3-4 show '2020 * T n -' and '2023 IN 1) 154' as separate lines. PDF shows only '2023 ND 154' on line 12. The '2020 * T n -' line does not exist in the source and appears to be spurious OCR output (possibly attempting to read '2023 ND' with scanning artifacts).",
+  "note": "Noise artifact: this line has no counterpart in the PDF and is nonsensical ('2020 * T n -'). Should be deleted entirely. Likely OCR attempt to read a smudge or fold mark.",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND154.md"
+ },
+ {
+  "opinion_id": 19837,
+  "class": "ocr_char",
+  "old_exact": "V. D.C. 1 1 A 11",
+  "new_exact": "v.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND97.pdf line 16",
+  "confidence": "high",
+  "evidence": "PDF shows 'v.' between plaintiff/appellee and defendant/appellant caption; DB text shows garbled 'V. D.C. 1 1 A 11'",
+  "_verdict": "review:pdf_confirmed",
+  "_defer": "digit",
+  "_files": [
+   "triage/p171819-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND97.md"
+ },
+ {
+  "opinion_id": 19765,
+  "class": "split_join",
+  "old_exact": "and deny the request to correct the record. confidential attorney-client",
+  "new_exact": "and deny the request to correct the record.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND179.pdf",
+  "confidence": "high",
+  "evidence": "End of paragraph 1: DB text has stray artifact 'confidential attorney-client' (a fragment from paragraph 2) appended after the period. PDF source shows clean termination with period only. The phrase appears once in DB at end of paragraph 1 and does not appear in that location in the PDF.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 3,
+  "_add": 0,
+  "_files": [
+   "triage/p171819-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND179.md"
+ },
+ {
+  "opinion_id": 19730,
+  "class": "paragraph_seq",
+  "old_exact": "[¶21] The order denying the motion to vacate the criminal judgment and for a new trial and the criminal judgment are affirmed.\n\nV\n\n[¶22]",
+  "new_exact": "[¶21] The order denying the motion to vacate the criminal judgment and for a new trial and the criminal judgment are affirmed.\n\n[¶22]",
+  "verified_count": 1,
+  "source": "PDF shows section marker V appears BEFORE [¶21], not after it (line 313 of pdftotext output). The DB incorrectly has V between [¶21] and [¶22]; it must be moved to between [¶20] and [¶21].",
+  "confidence": "high",
+  "note": "Structural defect: section marker V is in wrong location. This is Proposal 1 of 2 needed to correct the section placement.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 1,
+  "_add": 0,
+  "_files": [
+   "triage/p171819-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND130.md"
+ },
+ {
+  "opinion_id": 19730,
+  "class": "paragraph_seq",
+  "old_exact": "based on this issue.\n\n[¶21]",
+  "new_exact": "based on this issue.\n\nV\n\n[¶21]",
+  "verified_count": 1,
+  "source": "PDF pdftotext output shows centered 'V' at line 313, appearing between the end of [¶20] text and the start of [¶21]. Section V should introduce paragraph 21, matching the PDF structure where Section V → [¶21].",
+  "confidence": "high",
+  "note": "Structural defect: section marker V is missing from its correct position. This is Proposal 2 of 2; apply both proposals together to fix the section placement.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p171819-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND130.md"
+ },
+ {
+  "opinion_id": 19717,
+  "class": "missing_text",
+  "old_exact": "20230014 FILED FEBRUARY 9, 2023 CLERK OF THE SUPREME COURT STATE OF NORTH DAKOTAreport",
+  "new_exact": "report",
+  "verified_count": 1,
+  "source": "PDF pdftotext -layout output, paragraph 4 (lines 39-45 in source). The running header/footer docket number, filing date, and court name were smushed onto the end of '[¶4] No comments or petitions were received to relocate or abolish this judgeship. On January 31, 2023, the South Central Judicial District filed a' during OCR ingestion. The source shows these elements separated by page break (\\x0c, line 42) and line breaks; the word 'report' should follow directly.",
+  "confidence": "high",
+  "note": "This is a page furniture artifact (header/footer text injected mid-sentence). The page break and running header are stripped in the clean text; only the erroneous concatenation of header text to 'report' needs fixing.",
+  "_verdict": "review:pdf_confirmed",
+  "_d": "digit",
+  "_files": [
+   "triage/p202122-deferred.json"
+  ],
+  "_src": "markdown/2023/2023ND11.md"
+ },
+ {
+  "opinion_id": 18114,
+  "class": "missing_text",
+  "old_exact": "Willprecht, 2020\nND at ¶ 11)",
+  "new_exact": "Willprecht v.\nWillprecht, 2021 ND 17, ¶ 11, 954 N.W.2d 707)",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND231.pdf line 234-235 (corrected opinion footer)",
+  "confidence": "high",
+  "note": "Missing case name, wrong year (2020 ND instead of 2021 ND 17), wrong citation (2020 ND 77 vs 2021 ND 17), and missing reporter volume. This is a corrected opinion per 4/21/23 clerk notation in PDF.",
+  "_verdict": "review:pdf_confirmed",
+  "_d": "cite-mangle",
+  "_files": [
+   "triage/p202122-deferred.json"
+  ],
+  "_src": "markdown/2022/2022ND231.md"
+ },
+ {
+  "opinion_id": 19744,
+  "class": "ocr_char",
+  "old_exact": "to be The agreement",
+  "new_exact": "The agreement",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND16.txt (PDF: 'The agreement does not appear to be substantively')",
+  "confidence": "high",
+  "evidence": "The PDF shows 'The agreement does not appear to be substantively unconscionable' at the start of a quoted block. The DB incorrectly has 'to be The agreement does not appear substantively' - the spurious 'to be ' before 'The agreement' is an ingestion artifact, and 'substantively' lacks 'unconscionable' (part of 'to be' phrase bleeding). The PDF context confirms the correct text.",
+  "note": "Appears in ¶9 within a block quote from district court opinion. The phrase 'to be' is extraneous and breaks the sentence structure.",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 2,
+  "_add": 0,
+  "_files": [
+   "triage/p202122-judgment.json"
+  ],
+  "_src": "markdown/2023/2023ND16.md"
+ },
+ {
+  "opinion_id": 18082,
+  "class": "ocr_char",
+  "old_exact": "Township 153 North, Range 102 West Section 12: SW1/4 Section 12: S",
+  "new_exact": "Township 153 North, Range 102 West Section 12: SW¼ Section 12: S",
+  "verified_count": 1,
+  "source": "PDF line 78 shows Section 12: SW¼ with Unicode fraction symbol U+00BC",
+  "confidence": "high",
+  "note": "OCR transcription error: property description uses typographic fraction not ASCII 1/4",
+  "_verdict": "review:pdf_confirmed",
+  "_d": "digit",
+  "_files": [
+   "triage/p232425-deferred.json"
+  ],
+  "_src": "markdown/2022/2022ND183.md"
+ },
+ {
+  "opinion_id": 18024,
+  "class": "other",
+  "old_exact": "# Matter of Shane Lance Yates\n\nNorth Dakota Supreme Court\n974 N.W.2d 408; 2022 ND 103\nDecided 2022-05-12\n\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "PDF authoritative text; DB metadata header not in printed opinion",
+  "confidence": "high",
+  "note": "Markdown-style metadata (title, citation, decision date) prepended in DB but not present in official PDF; removed to match published source",
+  "_verdict": "review:pdf_confirmed",
+  "_d": "cite-mangle",
+  "_files": [
+   "triage/p232425-deferred.json"
+  ],
+  "_src": "markdown/2022/2022ND103.md"
+ },
+ {
+  "opinion_id": 18082,
+  "class": "ocr_char",
+  "old_exact": "\nV.\n",
+  "new_exact": "\nv.\n",
+  "verified_count": 1,
+  "source": "PDF line 27 shows lowercase 'v.' in case caption",
+  "confidence": "high",
+  "note": "Case caption standard format uses lowercase 'v.' for 'versus'",
+  "_verdict": "review:pdf_confirmed",
+  "_rem": 1,
+  "_add": 1,
+  "_files": [
+   "triage/p232425-judgment.json"
+  ],
+  "_src": "markdown/2022/2022ND183.md"
+ },
+ {
+  "opinion_id": 20257,
+  "class": "caption",
+  "old_exact": " Petitioner\n\nRespondent\n\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "PDF authoritiesource (pdftotext)",
+  "confidence": "high",
+  "evidence": "The words 'Petitioner' and 'Respondent' appear in the opinion caption (after party names) in the PDF but also incorrectly appear orphaned after 'Per Curiam.' in the database text. The PDF shows no text between 'Per Curiam.' and '[¶1]' at this location (only a page break 0x0C). This is a misplaced duplication from database ingestion where caption elements were incorrectly moved to the preamble-body boundary.",
+  "note": "The complete proper fix would require repositioning these designations within the caption structure, but the minimal transcription correction is to remove the misplaced instance after 'Per Curiam.' where the PDF source shows it does not appear.",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p8",
+  "_rem": 2,
+  "_add": 0,
+  "_files": [
+   "triage/p8910-deferred.json",
+   "triage/p8910-judgment.json"
+  ],
+  "_src": "markdown/2025/2025ND49.md"
+ },
+ {
+  "opinion_id": 19960,
+  "class": "caption",
+  "old_exact": "of the State of North Dakota,\n v.",
+  "new_exact": "of the State of North Dakota, Petitioner\n v.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND207.pdf (pdftotext layout)",
+  "confidence": "high",
+  "evidence": "PDF caption line 13 shows 'of the State of North Dakota,                                     Petitioner' on the same line as the Disciplinary Board designation. DB has this split across lines 13-14 with Petitioner orphaned to line 29.",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p10",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p8910-deferred.json",
+   "triage/p8910-judgment.json"
+  ],
+  "_src": "markdown/2024/2024ND207.md"
+ },
+ {
+  "opinion_id": 19960,
+  "class": "caption",
+  "old_exact": "David R. Spencer,\n\n________________",
+  "new_exact": "David R. Spencer, Respondent\n\n________________",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND207.pdf (pdftotext layout)",
+  "confidence": "high",
+  "evidence": "PDF caption line 15 shows 'David R. Spencer,                                                 Respondent' on the same line as the party name. DB has this split across lines 16 and 31 with Respondent orphaned to line 31.",
+  "_verdict": "review:pdf_confirmed",
+  "_batch": "p10",
+  "_rem": 0,
+  "_add": 1,
+  "_files": [
+   "triage/p8910-deferred.json",
+   "triage/p8910-judgment.json"
+  ],
+  "_src": "markdown/2024/2024ND207.md"
+ }
+]
