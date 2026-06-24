@@ -1,0 +1,90 @@
+[
+ {
+  "opinion_id": 19787,
+  "class": "whitespace",
+  "old_exact": "Douglas A. Bahr \n",
+  "new_exact": "Douglas A. Bahr\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND200.pdf",
+  "confidence": "high",
+  "evidence": "PDF source shows no trailing space after 'Douglas A. Bahr'; DB text contains a single trailing space before the newline on line 44 of the signature paragraph [¶3].",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "conviction. A",
+  "new_exact": "conviction. A",
+  "verified_count": 1,
+  "source": "PDF authoritative text, ¶4 (line 83-84): 'to warrant the conviction. A conviction rests upon insufficient'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F, UTF-8 bytes E2 80 AF) inserted between sentence-ending period and capital A; PDF source shows regular space (U+0020). This is an OCR/ingestion artifact from PDF-to-text conversion.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "a sufficiency",
+  "new_exact": "a sufficiency",
+  "verified_count": 1,
+  "source": "PDF authoritative text, ¶4 (line 88): 'In considering a sufficiency of the evidence claim'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F) between article 'a' and noun 'sufficiency'; PDF source shows regular space. OCR artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "sufficiency of",
+  "new_exact": "sufficiency of",
+  "verified_count": 1,
+  "source": "PDF authoritative text, ¶4 (line 88): 'sufficiency of the evidence claim'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F) between noun and preposition; PDF source shows regular space. OCR artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "the evidence",
+  "new_exact": "the evidence",
+  "verified_count": 1,
+  "source": "PDF authoritative text, ¶4 (line 88): 'sufficiency of the evidence claim'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F) between definite article and noun; PDF source shows regular space. OCR artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "evidence claim",
+  "new_exact": "evidence claim",
+  "verified_count": 1,
+  "source": "PDF authoritative text, ¶4 (line 88): 'sufficiency of the evidence claim'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F) between noun adjunct and noun; PDF source shows regular space. OCR artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19766,
+  "class": "ocr_char",
+  "old_exact": "¶ 7",
+  "new_exact": "¶ 7",
+  "verified_count": 1,
+  "source": "PDF authoritative text, citation (line 91): 'State v. Hannah, 2016 ND 11, ¶ 7, 873 N.W.2d 668'",
+  "confidence": "high",
+  "evidence": "Narrow no-break space (U+202F) between paragraph symbol and digit; PDF source shows regular space before digit in citation. OCR artifact—standard legal citation formatting requires regular space between symbol and pinpoint number.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19732,
+  "class": "whitespace",
+  "old_exact": " Respondent and Appellant",
+  "new_exact": "Respondent and Appellant",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND135.txt caption, line 22",
+  "confidence": "high",
+  "evidence": "The PDF source shows 'A.D., mother,' followed by horizontal alignment spaces and then 'Respondent and Appellant' on the same line (line 22 in PDF). The DB text has the same content but with a leading space character (' Respondent and Appellant') which is an OCR/ingestion artifact.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

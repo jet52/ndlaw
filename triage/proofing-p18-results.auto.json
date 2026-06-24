@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 19732,
+  "class": "whitespace",
+  "old_exact": " Respondent and Appellant",
+  "new_exact": "Respondent and Appellant",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND135.txt caption, line 22",
+  "confidence": "high",
+  "evidence": "The PDF source shows 'A.D., mother,' followed by horizontal alignment spaces and then 'Respondent and Appellant' on the same line (line 22 in PDF). The DB text has the same content but with a leading space character (' Respondent and Appellant') which is an OCR/ingestion artifact.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

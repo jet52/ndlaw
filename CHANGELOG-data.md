@@ -2,6 +2,33 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P17-P19 (31 opinions)
+
+Batches P17-P19 (120 opinions, 2023 ND 207 -> 92), first run on post-cleanup text
+(YAML/clerk-stamps/form-feed/FILED-OFFICE already stripped; clean rate up early in
+the range). Applied 8 clean AUTO (NNBSP->space, trailing/leading space) + 40 review
+items after hardened triage; pytest clean (no regression).
+
+- Stray-letter/OCR-garbage removals (2023 ND 206 "papers B", 2023 ND 97 "affirm. T"
+  / "served. TTT"), OCR typos (sumbitted->submitted, " V."->" v."), missing words
+  (entry of [judgment] for), capitalization-per-PDF (Section->section), a
+  displaced-fragment move (2023 ND 188 "requests for"), 2 heading reformats
+  (2023 ND 181 A/B, corrected from agent deletes).
+
+Deferred (171 proposals, NOT applied) - this era is dominated by the markdown-
+sourced records:
+- **markdown citation-linebreak mangling (149 proposals / 24 opinions)** - citations
+  fragmented across lines with stray newlines/commas (e.g. "2017 ND 158, ¶ 4\n,\n897
+  N.W.2d 334"). A distinct systematic class warranting a dedicated citation-rejoin
+  pass (overlapping anchors make piecemeal apply fragile). IDs: 18192-18221 range +
+  19768.
+- 17 LaTeX-markup cohort, 5 digit-change (high-risk, per-item).
+
+Also flagged (not acted): a corpus-wide straight-vs-curly apostrophe encoding
+question (DB U+0027 vs PDF U+2019) — pervasive, stylistic; needs a policy decision.
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `yaml-frontmatter-2026-06-24` — strip embedded YAML frontmatter (17,593 opinions)
 
 The largest text_content cleanup in the corpus (user-approved). Markdown/reporter-

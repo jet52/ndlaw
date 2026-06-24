@@ -1,0 +1,68 @@
+[
+ {
+  "opinion_id": 18198,
+  "class": "whitespace",
+  "old_exact": "2017 ND 102, ¶ 7\n,\n893 N.W.2d 176\n. A motion",
+  "new_exact": "2017 ND 102, ¶ 7, 893 N.W.2d 176. A motion",
+  "verified_count": 1,
+  "source": "PDF 2023ND104 via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Citation 2017 ND 102, ¶ 7 in State v. Rourke: erroneous line breaks split comma from reporter citation number; verified in source PDF",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18198,
+  "class": "whitespace",
+  "old_exact": "2005 ND 63,\n¶ 13\n,\n693 N.W.2d 631\n. Johnson",
+  "new_exact": "2005 ND 63,\n¶ 13, 693 N.W.2d 631. Johnson",
+  "verified_count": 1,
+  "source": "PDF 2023ND104 via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Citation 2005 ND 63, ¶ 13 in State v. Krull: erroneous line breaks split comma from reporter citation number; verified in source PDF",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18193,
+  "class": "whitespace",
+  "old_exact": "234 N.W.2d 853, 855\n (N.D.\n1975).",
+  "new_exact": "234 N.W.2d 853, 855 (N.D.\n1975).",
+  "verified_count": 1,
+  "source": "PDF pdftotext layout artifact: space before parenthesis on line break",
+  "confidence": "high",
+  "evidence": "Source PDF shows '855 (N.D.' on same line; DB has space-newline between number and parenthesis.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18193,
+  "class": "whitespace",
+  "old_exact": "603\n. ",
+  "new_exact": "603. ",
+  "verified_count": 1,
+  "source": "PDF pdftotext layout artifact: period on separate line after citation",
+  "confidence": "high",
+  "evidence": "Source PDF shows period immediately after 603 on same line; DB has newline separating them.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18193,
+  "class": "whitespace",
+  "old_exact": "644\n. ",
+  "new_exact": "644. ",
+  "verified_count": 1,
+  "source": "PDF pdftotext layout artifact: period on separate line after citation",
+  "confidence": "high",
+  "evidence": "Source PDF shows period immediately after 644 on same line; DB has newline separating them.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18191,
+  "class": "whitespace",
+  "old_exact": "2016 ND 225, ¶¶ 8-9\n,\n888 N.W.2d 197\n (",
+  "new_exact": "2016 ND 225, ¶¶ 8-9, 888 N.W.2d 197 (",
+  "verified_count": 1,
+  "source": "PDF pdftotext -layout extraction verified against source",
+  "confidence": "high",
+  "note": "Citation has excessive line breaks and missing comma after ¶¶ 8-9. DB has orphaned comma on new line before 888 reporter; SRC keeps comma on same line.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

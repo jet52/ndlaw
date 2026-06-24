@@ -1,0 +1,135 @@
+[
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "argues the Stout- Hawkinson factors must be analyzed",
+  "new_exact": "argues the Stout-Hawkinson factors must be analyzed",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶20 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf lines 240-256 show 'Stout-Hawkinson' as standard legal citation form (case name); DB version has erroneous space",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "by applying the Stout- Hawkinson factors. Seay",
+  "new_exact": "by applying the Stout-Hawkinson factors. Seay",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶20 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf line 250 shows 'Stout-Hawkinson' without space after hyphen",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "Stout- Hawkinson factors are designed to address the best interests of the child for cases in which a primary custodian has already been designated and the custodial parent wishes to move.",
+  "new_exact": "Stout-Hawkinson factors are designed to address the best interests of the child for cases in which a primary custodian has already been designated and the custodial parent wishes to move.",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶24 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf line 300-302 shows 'Stout-Hawkinson' as standard form",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "Stout- Hawkinson factors are considered when a custodial parent requests to change the residence of a child to another state under N.D.C.C. § 14-09-07.",
+  "new_exact": "Stout-Hawkinson factors are considered when a custodial parent requests to change the residence of a child to another state under N.D.C.C. § 14-09-07.",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶24 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf line 311-313 shows 'Stout-Hawkinson' without space after hyphen",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "awarding final decision- making authority to Mari Sayler",
+  "new_exact": "awarding final decision-making authority to Mari Sayler",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶39 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf line 479 shows 'decision-making' as compound adjective without space",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19741,
+  "class": "split_join",
+  "old_exact": "decision- making authority. We reverse the part awarding attorney",
+  "new_exact": "decision-making authority. We reverse the part awarding attorney",
+  "verified_count": 1,
+  "source": "PDF authoritative; ¶50 shows proper hyphenation",
+  "confidence": "high",
+  "evidence": "PDF 2023ND156.pdf line 606 shows 'decision-making' as standard compound form",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19735,
+  "class": "split_join",
+  "old_exact": "face- time",
+  "new_exact": "face-time",
+  "verified_count": 1,
+  "source": "PDF source (2023ND139.pdf page 2) shows 'face-' at end of line, 'time\"' at start of next line; pdftotext converted the line break to a space",
+  "confidence": "high",
+  "evidence": "DB byte sequence: 0x666163652d2074696d65 (face- time with space after hyphen). PDF shows hyphenated compound 'face-time' (FaceTime video calls) split across lines. Occurs exactly once in DB at byte position 949. This is an OCR/ingestion artifact.",
+  "note": "The term 'face-time' is a compound adjective referring to FaceTime video calls. The line-break split in the source PDF was incorrectly converted to a space during text extraction.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19731,
+  "class": "other",
+  "old_exact": "[¶17] $ We",
+  "new_exact": "[¶17] We",
+  "verified_count": 1,
+  "source": "PDF pdftotext line 218: 'We affirm the judgment.' begins paragraph without $ prefix",
+  "confidence": "high",
+  "note": "Stray $ delimiter is ingestion artifact",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19731,
+  "class": "missing_text",
+  "old_exact": "of uncertainty\").\n\n[¶9] Nicholas",
+  "new_exact": "of uncertainty\").\n\nII\n\n[¶9] Nicholas",
+  "verified_count": 1,
+  "source": "PDF pdftotext line 130: standalone section marker 'II' appears between ¶8 (ending line 128) and ¶9 (starting line 132)",
+  "confidence": "high",
+  "note": "Section marker II missing entirely from database ingestion; appears on its own line in PDF",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18211,
+  "class": "split_join",
+  "old_exact": " v. Bismarck-Mandan Orchestral Ass'n,\n2007 ND\n91, ¶ 12\n,",
+  "new_exact": " v. Bismarck-Mandan Orchestral Ass'n,\n2007 ND\n91, ¶ 12,",
+  "verified_count": 1,
+  "source": "PDF source text (pdftotext -layout)",
+  "confidence": "high",
+  "note": "Citation paragraph marker 12 was incorrectly split across line break during OCR/ingestion",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18211,
+  "class": "split_join",
+  "old_exact": "ild's best interests.\" Konkel v. Amb,\n2020 ND\n17, ¶ 7\n,",
+  "new_exact": "ild's best interests.\" Konkel v. Amb,\n2020 ND\n17, ¶ 7,",
+  "verified_count": 1,
+  "source": "PDF source text (pdftotext -layout)",
+  "confidence": "high",
+  "note": "Citation paragraph marker 7 was incorrectly split across line break during OCR/ingestion",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18210,
+  "class": "split_join",
+  "old_exact": "Schmitz v. N.D. State Bd. of Chiropractic Exam'rs,\n2022\nND 52, ¶ 14\n,\n971 N.W.2d 892\n.",
+  "new_exact": "Schmitz v. N.D. State Bd. of Chiropractic Exam'rs, 2022 ND 52, ¶ 14, 971 N.W.2d 892.",
+  "verified_count": 1,
+  "source": "PDF pdftotext lines 92-93 (Schmitz citation)",
+  "confidence": "high",
+  "note": "Citation components split across multiple lines with improper formatting",
+  "_verdict": "reject:bad_anchor"
+ }
+]

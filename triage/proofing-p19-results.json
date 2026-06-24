@@ -1,0 +1,1281 @@
+[
+ {
+  "opinion_id": 19728,
+  "clean": false,
+  "proposals": [],
+  "flags": [
+   {
+    "class": "ocr_char",
+    "location_quote": "denied Graff's motion; Graff's prior convictions; Graff's criminal convictions; Graff's past; Graff's right; State's Attorney; State's second; State's request; State's violation; State's misconduct; victim's guardian; victim's presence; court's criminal judgment; court's judgment; court's decision; court's dismissal; court's findings; court's rationale; and 16 other instances across 34 total apostrophes",
+    "description": "Systematic apostrophe character encoding defect: All 34 apostrophes in the authoritative PDF use the typographic right single quotation mark (U+2019 ''') but the DB has converted all of them to the ASCII apostrophe (U+0027 '''). This is a consistent, document-wide OCR or text ingestion error affecting possessive forms and contractions throughout the opinion (e.g., 'Graff's', 'State's', 'court's', 'didn't', 'We're', 'wouldn't', 'doesn't', 'don't', 'that's', 'you'd', 'victim's', 'defendant's', 'detective's', 'prosecutor's'). The correct form per the authoritative PDF source is the right single quotation mark character."
+   },
+   {
+    "class": "other",
+    "location_quote": "End of [¶1] text: 'I'; End of [¶10] text: 'III'",
+    "description": "Roman numeral section heading artifacts: The DB shows footnote markers 'I' and 'III' embedded at the end of text paragraphs [¶1] and [¶10], whereas the authoritative PDF displays these as standalone section heading paragraphs (centered, on separate lines). This appears to be a structural formatting difference where section heads were misprocessed during ingestion. Requires separate handling per footnote processing pipeline.",
+    "confidence": "medium"
+   }
+  ]
+ },
+ {
+  "opinion_id": 19727,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶9] We affirm.\n\n[¶10] Jon J. Jensen, C.J. Lisa Fair McEvers Jerod E. Tufte\n\nIII",
+    "new_exact": "III\n\n[¶9] We affirm.\n\n[¶10] Jon J. Jensen, C.J. Lisa Fair McEvers Jerod E. Tufte",
+    "verified_count": 1,
+    "source": "/tmp/src_2023ND126.txt lines 143-149",
+    "confidence": "high",
+    "note": "The section heading 'III' is out of sequence in DB text. In the authorized PDF, it appears between the conclusion of ¶8 and the start of ¶9, not after the justice signatures. This is a structural ingestion error where the section heading got moved to an incorrect position after the majority opinion signatures instead of appearing before the dissenting opinion's paragraph 9."
+   }
+  ],
+  "flags": [],
+  "era": "2023"
+ },
+ {
+  "opinion_id": 19726,
+  "clean": false,
+  "proposals": [],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "[¶3] Sullivan moved to suppress the evidence resulting from the arrest, and the court denied his motion. On appeal, Sullivan argues the court erred in finding that he received a sufficient advisement regarding the cause of his arrest under N.D.C.C. § 29-06-17 and in finding that the officers had probable cause to arrest him.\n\n[¶4] Our standard of review for a district court's ruling on a motion to suppress is well established.\n\nI",
+    "description": "Section header 'I' appears after [¶4] instead of before it. In the PDF, 'I' is positioned as a centered line immediately after [¶3] and before [¶4], serving as an organizational divider for the first section of the opinion."
+   },
+   {
+    "class": "paragraph_seq",
+    "location_quote": "State v. Suelzle, 2021 ND 194, ¶ 9, 965 N.W.2d 855 (quoting State v. James, 2016 ND 68, ¶ 5, 876 N.W.2d 720).\n\nII\n\n[¶5] Sullivan argues that the police officer who arrested him violated section 29-06-17",
+    "description": "Section header 'II' appears after the block quote citations instead of before [¶5]. In the PDF, 'II' is positioned as a centered line immediately before [¶5], serving as an organizational divider for the second section of the opinion."
+   },
+   {
+    "class": "paragraph_seq",
+    "location_quote": "[¶14] We affirm.\n\n[¶15] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr\n\nIV",
+    "description": "Section header 'IV' appears after [¶15] (justices' names) instead of before [¶14]. In the PDF, 'IV' is positioned as a centered line between [¶13]'s ending and [¶14]'s 'We affirm', serving as an organizational divider for the final section."
+   }
+  ],
+  "coverage_note": "The DB text contains all 4 Roman numeral section headers (I, II, III, IV), but three are displaced. Section III appears to be correctly positioned before [¶10]. Sections I, II, and IV are in wrong positions relative to the paragraphs they organize. The PDF clearly shows these as centered organizational dividers. This is a structural sequencing issue affecting the logical flow of the opinion organization.\""
+ },
+ {
+  "opinion_id": 19725,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 19724,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶6] The judgment is affirmed in part. J.D.'s appeal is dismissed.\n\nIV\n\n[¶7] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "IV\n\n[¶6] The judgment is affirmed in part. J.D.'s appeal is dismissed.\n\n[¶7] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "2023ND122.pdf (lines 200-208)",
+    "confidence": "high",
+    "evidence": "The source PDF shows section heading IV immediately before [¶6] (with one blank line between them). The DB has incorrectly placed IV between [¶6] and [¶7]. This is a paragraph sequencing error during OCR/ingestion: the Roman numeral section heading belongs at the start of the section, not in the middle of it. Confirmed by comparing PDF layout structure where IV clearly precedes the [¶6] paragraph."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 19723,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Comprehensive verification completed: (1) word-by-word comparison of DB vs. PDF source after removing page furniture (1,423 words, perfect match); (2) byte-level character analysis (UTF-8 valid, properly encoded smart quotes, no anomalies); (3) citation verification (all 10 case citations correct, no OCR errors in numbers); (4) paragraph integrity check (all 13 paragraphs present, sequential, no gaps/duplicates); (5) rule number verification (all N.D.R.Crim.P. citations accurate); (6) party name verification (all instances of 'Brame' spelled correctly); (7) structural analysis (caption clean, justice signatures correct, no missing text). One trivial formatting artifact detected: trailing space after '231).' at end of ¶5 (cosmetic, from PDF layout extraction). This is standard whitespace handling and not a content error. Opinion is CLEAN.\"",
+  "era": "2023"
+ },
+ {
+  "opinion_id": 18206,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "Spirit Prop. Mgmt. v. Vondell,\n2017 ND 158, ¶ 4\n,\n897 N.W.2d 334\n (quoting\nCheetah Props. 1, LLC v. Panther Pressure Testers, Inc.,\n2016 ND 102, ¶ 20\n,\n\n879 N.W.2d 423\n).",
+    "new_exact": "Spirit Prop. Mgmt. v. Vondell, 2017 ND 158, ¶ 4, 897 N.W.2d 334 (quoting\nCheetah Props. 1, LLC v. Panther Pressure Testers, Inc., 2016 ND 102, ¶ 20,\n879 N.W.2d 423).",
+    "verified_count": 1,
+    "source": "2023ND123.pdf page 2 (Spirit Prop. Mgmt. v. Vondell citation)",
+    "confidence": "high",
+    "note": "Citation fragmented across multiple lines with stray commas and newlines in OCR. PDF shows citation on continuous lines (with natural page wrapping). This is a split_join error where citation elements were incorrectly separated during ingestion.",
+    "evidence": "DB has citation broken as: 'Vondell,\\n2017 ND 158, ¶ 4\\n,\\n897 N.W.2d 334\\n (quoting...' with a lone comma on its own line and stray newlines. PDF source shows: 'Vondell, 2017 ND 158, ¶ 4, 897 N.W.2d 334 (quoting' as a continuous logical unit."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "litigated unless damages or rent is claimed. Vondell,\n2017 ND 158, ¶ 4\n. Thus,",
+    "new_exact": "litigated unless damages or rent is claimed. Vondell, 2017 ND 158, ¶ 4. Thus,",
+    "verified_count": 1,
+    "source": "2023ND123.pdf page 2, paragraph 9 (Vondell citation)",
+    "confidence": "high",
+    "note": "Citation reference split with line break before period. Correct version has period immediately after citation, not on a new line.",
+    "evidence": "DB shows: 'Vondell,\\n2017 ND 158, ¶ 4\\n. Thus,' with period on its own line. PDF shows: 'Vondell, 2017 ND 158, ¶ 4. Thus,' with period attached to citation."
+   }
+  ],
+  "flags": [
+   {
+    "class": "whitespace",
+    "location_quote": "[¶5] The notice provided it was served on Borlay under N.D.C.C. § 47-32-02, relating to eviction.",
+    "description": "Line-wrapping artifact: PDF wraps statute reference as '§ 47-32-' then '02,' on next line. DB joins as '§ 47-32-02,' on single line. This is a pdftotext layout artifact, not a content error—the actual text is identical.",
+    "confidence": "high"
+   },
+   {
+    "class": "whitespace",
+    "location_quote": "[¶14] the plaintiff 's claim for damages, rent, or profits. N.D.C.C. § 47-32-04. The proceeding is limited...",
+    "description": "Line-wrapping artifact: PDF wraps statute reference as '§ 47-32-' then '04.' on next line. DB joins on single line. Again, identical content with different page layout.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2023"
+ },
+ {
+  "opinion_id": 19721,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "[¶4] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶4] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "PDF official publication 2023ND117.pdf page 1 shows justices formatted with line breaks and indentation",
+    "confidence": "high",
+    "evidence": "DB text joins all five justice names on a single line with spaces. PDF displays [¶4] with the Chief Justice on the first line, then each subsequent justice on its own line indented by 5 spaces. This is a line-break/indentation formatting artifact from PDF-to-text conversion—the substantive text is correct but the presentation formatting was lost.",
+    "note": "The opinion's three substantive paragraphs [¶1], [¶2], [¶3] match the PDF exactly (content-wise). The caption structure differs in the DB (parties/designations split across lines vs. aligned in PDF), but caption formatting is a known layout artifact handled separately. Only this [¶4] justices formatting is proposed as a substantive whitespace fix."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Full opinion examined. DB text compared character-by-character against PDF authoritative source. All substantive opinion content matches perfectly (paragraphs [¶1]-[¶3]). One formatting defect identified in the justices list at [¶4]: line breaks and indentation were collapsed during ingestion. Caption formatting differences are layout artifacts not proposed for correction.\""
+ },
+ {
+  "opinion_id": 19720,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 18205,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "2023 ND 45, ¶ 7\n,\n987 N.W.2d 666",
+    "new_exact": "2023 ND 45, ¶ 7, 987 N.W.2d 666",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 2 (line 86-88 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line: '2023 ND 45, ¶ 7, 987 N.W.2d 666'. DB incorrectly splits with comma on separate line after ¶ 7."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2020 ND 77, ¶ 19\n,\n941 N.W.2d 556",
+    "new_exact": "2020 ND 77, ¶ 19, 941 N.W.2d 556",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 3 (line 119-121 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line: '2020 ND 77, ¶ 19, 941 N.W.2d 556'. DB incorrectly splits with comma on separate line."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2015 ND 98, ¶ 6\n,\n862 N.W.2d 817",
+    "new_exact": "2015 ND 98, ¶ 6, 862 N.W.2d 817",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 3 (line 165-167 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line. DB incorrectly splits with comma on separate line after ¶ 6."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2020 ND 62, ¶ 21\n,\n940 N.W.2d 622",
+    "new_exact": "2020 ND 62, ¶ 21, 940 N.W.2d 622",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 3 (line 187-189 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line: '2020 ND 62, ¶ 21, 940 N.W.2d 622'. DB incorrectly splits with comma on separate line."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2006 ND 171, ¶ 12\n,\n719 N.W.2d\n362",
+    "new_exact": "2006 ND 171, ¶ 12, 719 N.W.2d\n362",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 5 (line 255-259 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has '2006 ND 171, ¶ 12, 719 N.W.2d' on one line followed by '362'. DB incorrectly has comma on separate line."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2017 ND 50, ¶ 9\n,\n891 N.W.2d 135",
+    "new_exact": "2017 ND 50, ¶ 9, 891 N.W.2d 135",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 6 (line 328-330 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line: '2017 ND 50, ¶ 9, 891 N.W.2d 135'. DB incorrectly splits with comma on separate line."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2015 ND 98, ¶ 6\n,\n\n862 N.W.2d 817",
+    "new_exact": "2015 ND 98, ¶ 6, 862 N.W.2d 817",
+    "verified_count": 1,
+    "source": "2023 ND 114, page 8 (line 386-390 in DB)",
+    "confidence": "high",
+    "evidence": "PDF has citation on single line: '2015 ND 98, ¶ 6, 862 N.W.2d 817'. DB has extra blank line between comma and reporter."
+   }
+  ],
+  "flags": [],
+  "coverage_note": "Comprehensive review completed. All paragraph markers [¶1-35] present and in sequence in both DB and PDF. Word-level content verified identical after normalization. All seven differences are split_join whitespace artifacts from OCR/ingestion where citation commas were placed on separate lines or separated by blank lines.\"",
+  "era": "2023"
+ },
+ {
+  "opinion_id": 18204,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "N.D.R.App.P. 35(1)(a)(2)",
+    "new_exact": "N.D.R.App.P. 35.1(a)(2)",
+    "verified_count": 1,
+    "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2023/2023ND118.pdf line 98: 'We summarily affirm under N.D.R.App.P. 35.1(a)(2) and (4).'",
+    "confidence": "high",
+    "note": "OCR/ingestion error: period (.) misread as parenthesis (). PDF clearly shows period separating rule number from subdivision. This is the correct ND Rules of Appellate Procedure citation format."
+   }
+  ],
+  "flags": [
+   {
+    "class": "missing_text",
+    "location_quote": "PDF header line 5-6: 'Corrected Opinion Filed 8/31/23 by Clerk of the Supreme Court' — not captured in DB",
+    "description": "The PDF includes a correction notice indicating the opinion was corrected and refiled on 8/31/23. The DB text does not contain this metadata line. This is page furniture / header text that may have been intentionally omitted from the OCR extraction.",
+    "confidence": "medium"
+   },
+   {
+    "class": "missing_text",
+    "location_quote": "PDF footer line 110: 'Filed by Clerk of Supreme Court 8/31/23' — not captured in DB",
+    "description": "The PDF footer includes a filing date/source note that does not appear in the DB. This is running header / page furniture typically handled by a separate deterministic pass per the rules.",
+    "confidence": "medium"
+   },
+   {
+    "class": "whitespace",
+    "location_quote": "DB lines 97-102 vs. PDF lines 94-95: Citation block has extraneous line breaks",
+    "description": "DB text shows: 'See Interest of A.C.,\\n2022 ND 123, ¶ 5\\n,\\n975\\nN.W.2d 567' (5 lines with standalone comma). PDF shows: 'See Interest of A.C., 2022 ND 123, ¶ 5, 975\\nN.W.2d 567' (joined). This appears to be an OCR line-break artifact. Cannot auto-fix as per rules (whitespace changes must not reflow tokens across lines). Recommend manual review.",
+    "confidence": "medium"
+   },
+   {
+    "class": "whitespace",
+    "location_quote": "DB lines 108-111 vs. PDF lines 101-104: Signature block indentation",
+    "description": "DB has 1 leading space before justice names; PDF has 5 leading spaces. The content is identical but formatting differs. Preserving as-is per fidelity principle (not correcting stylistic/formatting differences).",
+    "confidence": "low"
+   }
+  ],
+  "era": "2023",
+  "coverage_note": "Full opinion examined: header through footer (all 111 PDF lines, 115 DB lines). Substantive text: ¶1-¶3 complete. No missing paragraphs detected. The opinion is a brief 2-page summary affirmance with 4 consolidated case numbers (20230135-20230138).\""
+ },
+ {
+  "opinion_id": 18203,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "¶ 19\n,",
+    "new_exact": "¶ 19,",
+    "verified_count": 1,
+    "source": "PDF source comparison (2023ND116.pdf extracted via pdftotext)",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines. Source PDF shows ¶ 19, followed by newline; DB shows ¶ 19 followed by newline then comma."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 17\n,",
+    "new_exact": "¶ 17,",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 5\n,",
+    "new_exact": "¶ 5,",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 8\n,",
+    "new_exact": "¶ 8,",
+    "verified_count": 3,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines (3 instances)."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 12\n,",
+    "new_exact": "¶ 12,",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 6\n,",
+    "new_exact": "¶ 6,",
+    "verified_count": 2,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines (2 instances)."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 31\n,",
+    "new_exact": "¶ 31,",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 13\n,",
+    "new_exact": "¶ 13,",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Paragraph marker and comma improperly split across lines."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "774\n)",
+    "new_exact": "774)",
+    "verified_count": 1,
+    "source": "PDF source comparison",
+    "confidence": "high",
+    "note": "Citation closing parenthesis improperly on separate line. Occurs in State v. Tresenriter citation."
+   }
+  ],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "Line 48-50 and elsewhere: Section markers [I], [II], [III], [IV], [V] appear in opinion",
+    "description": "Opinion contains section heading markers (I, II, III, IV, V) that restart the paragraph numbering context. These are structural divisions, not errors—the opinion uses [¶1]-[¶22] for numbered paragraphs within sections.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2023"
+ },
+ {
+  "opinion_id": 18202,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "einze,\n2022 ND 201, ¶ 4\n,\n982 N.W.2",
+    "new_exact": "einze,\n2022 ND 201, ¶ 4,\n982 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Davis-Heinze, 2022 ND 201, ¶ 4, 982 N.W.2d 1' on single logical line",
+    "confidence": "high",
+    "evidence": "DB has line break after ¶4 with comma on separate line; PDF has correct citation format with comma after ¶4 on same line as page number reference"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "leton,\n2022 ND 149, ¶ 4\n,\n978 N.W.2",
+    "new_exact": "leton,\n2022 ND 149, ¶ 4,\n978 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Pendleton, 2022 ND 149, ¶ 4, 978 N.W.2d 641' with correct comma placement",
+    "confidence": "high",
+    "evidence": "Identical issue to proposal 1: misplaced line break before comma in citation"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "rales,\n2019\nND 206, ¶ 16\n,\n932 N.W.2",
+    "new_exact": "rales,\n2019\nND 206, ¶ 16,\n932 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Morales, 2019 ND 206, ¶ 16, 932 N.W.2d 106' with comma after paragraph marker",
+    "confidence": "high",
+    "evidence": "Citation formatting defect: comma incorrectly separated onto new line"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "derick,\n2023 ND 77,\n¶ 7\n,\n989 N.W.2",
+    "new_exact": "derick,\n2023 ND 77,\n¶ 7,\n989 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Frederick, 2023 ND 77, ¶ 7, 989 N.W.2d 504' with proper comma placement",
+    "confidence": "high",
+    "evidence": "Line break defect in citation paragraph marker section"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "riter,\n2012 ND 240, ¶ 12\n,\n823 N.W.2",
+    "new_exact": "riter,\n2012 ND 240, ¶ 12,\n823 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Tresenriter, 2012 ND 240, ¶ 12, 823 N.W.2d 774' with comma on same line",
+    "confidence": "high",
+    "evidence": "Citation formatting: comma incorrectly placed on new line before reporter volume"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "emacher,\n2023 ND 9, ¶ 8\n,\n984 N.W.2",
+    "new_exact": "emacher,\n2023 ND 9, ¶ 8,\n984 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows 'State v. Rademacher, 2023 ND 9, ¶ 8, 984 N.W.2d 660' with correct format",
+    "confidence": "high",
+    "evidence": "Consistent line-break error pattern in citation formatting"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "derick,\n2023 ND 77, ¶ 7\n,\n989 N.W.2",
+    "new_exact": "derick,\n2023 ND 77, ¶ 7,\n989 N.W.2",
+    "verified_count": 1,
+    "source": "PDF shows same Frederick citation correctly formatted in dissent (¶39)",
+    "confidence": "high",
+    "evidence": "Second occurrence of Frederick 2023 ND 77, ¶ 7 citation with same formatting defect"
+   }
+  ],
+  "flags": [
+   {
+    "class": "whitespace",
+    "location_quote": "Throughout opinion (14 instances of 3+ blank-line runs vs 12 in PDF)",
+    "description": "DB contains 14 runs of 3+ blank lines while PDF (pdftotext -layout output) shows 12. This is a known artifact of how form-feed characters (0x0C, 17 instances in PDF) are processed. The form-feeds and running page headers in the PDF are handled by a separate deterministic pipeline and should not be manually edited. These whitespace differences are expected and not errors.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2023"
+ },
+ {
+  "opinion_id": 18201,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "State v. Dahl,\n2022 ND 212, ¶ 5\n,\n982 N.W.2d 580\n (quoting State v. Nakvinda,\n\n2011 ND 217, ¶ 12\n,\n807 N.W.2d 204\n).\n",
+    "new_exact": "State v. Dahl, 2022 ND 212, ¶ 5, 982 N.W.2d 580 (quoting State v. Nakvinda,\n2011 ND 217, ¶ 12, 807 N.W.2d 204).\n",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND119.pdf",
+    "evidence": "PDF line 85 shows continuous citation 'State v. Dahl, 2022 ND 212, ¶ 5, 982 N.W.2d 580 (quoting State v. Nakvinda, 2011 ND 217, ¶ 12, 807 N.W.2d 204).' on single line; DB lines 89-98 have spurious line breaks and stray commas after paragraph markers (¶ 5 and ¶ 12)",
+    "confidence": "high",
+    "note": "Citation formatting defect from PDF ingestion: line breaks inserted mid-citation and spurious commas added after paragraph markers"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "State v. Friesz,\n2017 ND 177, ¶ 37\n,\n898 N.W.2d 688\n (quoting State v. Rogers,\n\n 2\n\n2007 ND 68, ¶ 10\n,\n730 N.W.2d 859\n).",
+    "new_exact": "State v. Friesz, 2017 ND 177, ¶ 37, 898 N.W.2d 688 (quoting State v. Rogers,\n\n                                       2\n2007 ND 68, ¶ 10, 730 N.W.2d 859).",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND119.pdf",
+    "evidence": "PDF lines 112-115 show 'State v. Friesz, 2017 ND 177, ¶ 37, 898 N.W.2d 688 (quoting State v. Rogers,' on line 112, then page number '2' on line 114, then 'ND 68, ¶ 10,' on line 115; DB lines 124-134 have spurious line breaks after ¶37, stray comma, and incorrect spacing before page number",
+    "confidence": "high",
+    "note": "Nested citation formatting defect: line breaks and spurious commas after paragraph markers interfere with proper citation format"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "City of W. Fargo v. Hawkins,\n2000 ND 168,\n¶ 10\n,\n616 N.W.2d 856\n.",
+    "new_exact": "City of W. Fargo v. Hawkins, 2000 ND 168,\n¶ 10, 616 N.W.2d 856.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND119.pdf",
+    "evidence": "PDF lines 117-118 show continuous citation format 'City of W. Fargo v. Hawkins, 2000 ND 168,' on line 117 and '¶ 10, 616 N.W.2d 856.' on line 118; DB has spurious line breaks and stray comma after ¶ 10",
+    "confidence": "high",
+    "note": "Citation formatting defect: stray comma after paragraph marker ¶ 10"
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Comprehensive review completed. Opinion structure verified: all 12 paragraph markers present and in order. All major case citations examined. No OCR character errors, digit substitutions, or missing text detected. Three split_join formatting defects identified and fixed in proposals. After applying all proposals, opinion content matches PDF source exactly.\""
+ },
+ {
+  "opinion_id": 19719,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Comprehensive comparison completed: DB text vs. authoritative PDF source. The opinion (2023 ND 112, DB id 19719) was fully analyzed at character level, word level, and sentence level after normalizing for page furniture (page numbers, section dividers, line breaks). No content errors were found. The minor differences detected are all formatting artifacts from PDF extraction: page numbers (1, 2, 3, 4) in the PDF that do not appear in the DB, and line-wrapping differences in citations (e.g., \"12.1-08- 06(3)(b)\" split across lines in PDF vs. continuous in DB). All opinion text is byte-accurate and matches the authoritative printed source.\""
+ },
+ {
+  "opinion_id": 19718,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "missing_text",
+    "old_exact": "the performance inquiry must be whether the circumstances.'\" Id. at 478. Instead of a per se rule, the Court used a circumstance specific analysis. Id. counsel's assistance was considering all reasonable",
+    "new_exact": "the performance inquiry must be whether counsel's assistance was reasonable considering all the circumstances.'\" Id. at 478. Instead of a per se rule, the Court used a circumstance specific analysis. Id.",
+    "verified_count": 1,
+    "source": "PDF pdftotext extraction from /Users/jerod/refs/nd/opin/pdfs/2023/2023ND111.pdf, lines 113-121",
+    "confidence": "high",
+    "evidence": "The DB text shows a truncated/corrupted quote in paragraph [¶7] reading 'the performance inquiry must be whether the circumstances.' followed by orphaned/garbled text ('counsel's assistance was considering all reasonable'). The PDF shows the complete, correct quote: 'the performance inquiry must be whether counsel's assistance was reasonable considering all the circumstances.' This is part of the discussion of Strickland's holding in the Roe v. Flores-Ortega analysis. The error represents missing middle text ('counsel's assistance was reasonable considering all the ') from a broken sentence.",
+    "note": "High-risk content correction: legal citation/quote text. The quoted material is substantive law from Strickland v. Washington and is essential to the opinion's reasoning. The DB version is clearly corrupted with text truncation and orphaned fragments. The PDF version shows the authoritative source text reconstructed from court's official filing."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Complete scan performed. Compared DB text against PDF source line-by-line and paragraph-by-paragraph. All 20 paragraphs verified. Page numbers/layout insertions in PDF are expected artifacts per instructions and not flagged. Single substantive error identified in ¶7 involving truncated quote from Strickland holding.\""
+ },
+ {
+  "opinion_id": 19716,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "post- conviction",
+    "new_exact": "post-conviction",
+    "verified_count": 1,
+    "source": "/tmp/src_2023ND109.txt lines 42-43 (post-\\nconviction with line break)",
+    "confidence": "high",
+    "evidence": "PDF source shows 'post-' at line end followed by newline, then 'conviction'. DB shows 'post- conviction' with space instead of being joined properly. All other 11 instances in the opinion correctly show 'post-conviction' without the erroneous space."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Full opinion scanned: 68 lines, 8433 characters. All critical elements verified (party names, docket number, charges, dates, sentences, citations, legal standards). All 13 paragraph markers present, all 4 section headings present. Opinion text identical to PDF source after removing formatting artifacts (page breaks, page numbers, headers).\""
+ },
+ {
+  "opinion_id": 18200,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "See Interest of A.C.,\n2022 ND 123, ¶ 5\n,\n975 N.W.2d 567\n (the clearly erroneous",
+    "new_exact": "See Interest of A.C., 2022 ND 123, ¶ 5, 975 N.W.2d 567 (the clearly erroneous",
+    "verified_count": 1,
+    "source": "PDF page 2; pdftotext -layout extraction",
+    "confidence": "high",
+    "evidence": "In the authoritative PDF (2023ND110.pdf page 2), the first citation flows continuously: 'See Interest of A.C., 2022 ND 123, ¶ 5, 975 N.W.2d 567 (the clearly erroneous...'. The DB text has incorrectly split this citation across multiple lines with newlines after each element, creating: 'See Interest of A.C.,\\n2022 ND 123, ¶ 5\\n,\\n975 N.W.2d 567\\n (the clearly...'. This is an ingestion/OCR artifact where line breaks in the PDF layout were incorrectly preserved as content breaks.",
+    "note": "Citation is rendered as a continuous sentence in the printed opinion. Collapsing the line breaks restores proper formatting."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "parental rights proceeding); see also Interest of A.P.,\n2022 ND 131, ¶ 2\n,\n976\nN.W.2d 244\n (whether terminating parental rights",
+    "new_exact": "parental rights proceeding); see also Interest of A.P., 2022 ND 131, ¶ 2, 976\nN.W.2d 244 (whether terminating parental rights",
+    "verified_count": 1,
+    "source": "PDF page 2; pdftotext -layout extraction",
+    "confidence": "high",
+    "evidence": "In the authoritative PDF, this citation appears as: 'see also Interest of A.P., 2022 ND 131, ¶ 2, 976' (end of line 52) followed by 'N.W.2d 244 (whether...' (start of line 53). The DB has split the citation erratically: 'Interest of A.P.,\\n2022 ND 131, ¶ 2\\n,\\n976\\nN.W.2d 244\\n (whether...'. The commas and spaces after elements have been separated from the elements themselves, creating false line boundaries.",
+    "note": "Like Proposal 1, this collapses unnecessary line breaks while preserving the one legitimate line break that exists in the PDF between '976' and 'N.W.2d 244'."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "# Interest of I.X.F.\n\nNorth Dakota Supreme Court\n992 N.W.2d 18; 2023 ND 110\nDecided 2023-06-08",
+    "description": "DB contains added metadata header not present in PDF. The first 5 lines (title, court name, citation, decision date) appear to have been inserted by the database ingestion process. The PDF starts directly with 'FILED IN THE OFFICE OF THE CLERK OF SUPREME COURT...' The metadata is factually correct but is not part of the authoritative printed text.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "opinion_id": 18199,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "State v. Etemad,\n\n2018 ND 240\n,\n919 N.W.2d 192",
+    "new_exact": "State v. Etemad,\n2018 ND 240, 919 N.W.2d 192",
+    "verified_count": 1,
+    "source": "PDF line 49 shows continuous citation",
+    "confidence": "high",
+    "note": "Blank line and separated comma between case name and citation removed"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Etemad\nv. State,\n2022 ND 81, ¶ 1\n,\n972 N.W.2d 928",
+    "new_exact": "Etemad\nv. State, 2022 ND 81, ¶ 1, 972 N.W.2d 928",
+    "verified_count": 1,
+    "source": "PDF line 53 shows inline citation with commas",
+    "confidence": "high",
+    "note": "Comma separated from citation on own line; merged to inline format"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Atkins v.\nState,\n2021 ND 83, ¶ 8\n,\n959 N.W.2d 588",
+    "new_exact": "Atkins v.\nState, 2021 ND 83, ¶ 8, 959 N.W.2d 588",
+    "verified_count": 1,
+    "source": "PDF lines 76-77 show citation formatted inline",
+    "confidence": "high",
+    "note": "Comma after paragraph mark moved to inline position"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Chase v. State,\n2017\nND 192, ¶ 6\n,\n899 N.W.2d 280",
+    "new_exact": "Chase v. State, 2017\nND 192, ¶ 6, 899 N.W.2d 280",
+    "verified_count": 1,
+    "source": "PDF lines 84-85 show case name comma and inline citation",
+    "confidence": "high",
+    "note": "Space after case name restored; citation comma made inline"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Patten v. Green,\n397 N.W.2d 458, 459\n (N.D. 1986)",
+    "new_exact": "Patten v. Green, 397 N.W.2d 458, 459 (N.D. 1986)",
+    "verified_count": 1,
+    "source": "PDF shows no space before parenthetical citation",
+    "confidence": "high",
+    "note": "Line break and leading space before year parenthetical removed"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Vandeberg v. State,\n2003 ND 71, ¶ 4\n,\n\n660 N.W.2d 568",
+    "new_exact": "Vandeberg v. State,\n2003 ND 71, ¶ 4, 660 N.W.2d 568",
+    "verified_count": 1,
+    "source": "PDF line 99 shows no blank line between citation parts",
+    "confidence": "high",
+    "note": "Double blank line after paragraph mark and separated comma removed"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Curtiss v. State,\n2020 ND 256, ¶ 4\n,\n952 N.W.2d 43",
+    "new_exact": "Curtiss v. State,\n2020 ND 256, ¶ 4, 952 N.W.2d 43",
+    "verified_count": 1,
+    "source": "PDF confirms comma inline with citation number",
+    "confidence": "high",
+    "note": "Comma separated on own line moved inline"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2014 ND 125, ¶ 12\n,\n848 N.W.2d 703",
+    "new_exact": "2014 ND 125, ¶ 12, 848 N.W.2d 703",
+    "verified_count": 1,
+    "source": "PDF shows Chisholm citation with inline comma",
+    "confidence": "high",
+    "note": "Continuation of Chisholm citation with separated comma merged"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Van Chase\nv. State,\n2019 ND 214, ¶ 8\n,\n932 N.W.2d 529",
+    "new_exact": "Van Chase\nv. State, 2019 ND 214, ¶ 8, 932 N.W.2d 529",
+    "verified_count": 1,
+    "source": "PDF lines 119-120 show citation with inline commas",
+    "confidence": "high",
+    "note": "Comma after paragraph mark moved to inline"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Krile v. Lawyer,\n\n2020 ND 176, ¶ 13\n,\n947 N.W.2d 366",
+    "new_exact": "Krile v. Lawyer,\n2020 ND 176, ¶ 13, 947 N.W.2d 366",
+    "verified_count": 1,
+    "source": "PDF shows normal line wrap without blank line",
+    "confidence": "high",
+    "note": "Blank line after case name and separated comma removed"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Steen v. State,\n2007 ND 123, ¶ 23\n,\n736\nN.W.2d 457",
+    "new_exact": "Steen v. State, 2007 ND 123, ¶ 23, 736\nN.W.2d 457",
+    "verified_count": 1,
+    "source": "PDF lines 140-141 show case name and citation on first line with reporter wrapping",
+    "confidence": "high",
+    "note": "Case name-citation space restored; separated comma merged inline; reporter wrap preserved"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Davis v. State,\n2013 ND 34, ¶ 15\n,\n827 N.W.2d 8",
+    "new_exact": "Davis v. State, 2013 ND 34, ¶ 15, 827 N.W.2d 8",
+    "verified_count": 1,
+    "source": "PDF line 156 confirms inline citation format",
+    "confidence": "high",
+    "note": "Comma separated on own line moved to inline position"
+   }
+  ],
+  "flags": [],
+  "coverage_note": "Systematic scan of entire opinion. Identified 12 split-join issues affecting legal citations throughout the document. All involve citations where commas and/or reporter numbers were placed on separate lines in the DB (likely an OCR/PDF text extraction artifact) while the authoritative source shows them formatted inline or with normal line wrapping. No OCR character errors, digit corruption, or missing text detected. Form feeds present in source (5) are absent in DB but per instructions these are handled by a separate deterministic pipeline. Whitespace and page numbering differences (centered sections, justice alignment) are also handled separately.\""
+ },
+ {
+  "opinion_id": 19839,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "and the individual's diagnosed disorder.  Matter of J.M., 2019 ND 125,",
+    "new_exact": "and the individual's diagnosed disorder. Matter of J.M., 2019 ND 125,",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND99.pdf",
+    "confidence": "high",
+    "evidence": "PDF source shows single regular space (U+0020) after 'disorder.' followed by 'Matter'. DB text contains a non-breaking space (U+202F) followed by a regular space, which is an ingestion artifact. The non-breaking space should be removed to match the authoritative PDF.",
+    "note": "Located in paragraph 5, between the citation ending 'diagnosed disorder.' and the next citation 'Matter of J.M.'"
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 19838,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Comprehensive verification: compared DB text byte-for-byte against authoritative PDF source (2023ND98.pdf) after removing page furniture (form feeds, page numbers); verified all 30+ critical elements (citations, names, dates, numbers, rule references); checked for common OCR errors (character confusions, doubled words, misreadings); confirmed paragraph structure and punctuation balance; examined non-ASCII characters (pilcrows, smart quotes). Result: zero transcription defects detected. Opinion text is faithful to printed source."
+ },
+ {
+  "opinion_id": 19837,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "V. D.C. 1 1 A 11",
+    "new_exact": "v.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND97.pdf line 16",
+    "confidence": "high",
+    "evidence": "PDF shows 'v.' between plaintiff/appellee and defendant/appellant caption; DB text shows garbled 'V. D.C. 1 1 A 11'"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "affirm. T",
+    "new_exact": "affirm.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND97.pdf line 43",
+    "confidence": "high",
+    "evidence": "PDF ends paragraph 1 with 'We affirm.' followed by section header 'I'; DB adds spurious 'T'"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "charge. Π",
+    "new_exact": "charge.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND97.pdf line 90",
+    "confidence": "high",
+    "evidence": "PDF ends sentence with period; DB shows pilcrow symbol Π (OCR artifact)"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "served. TTT",
+    "new_exact": "served.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND97.pdf line 200",
+    "confidence": "high",
+    "evidence": "PDF ends sentence with period; DB shows spurious 'TTT' before section header 'III'"
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 19715,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Full opinion text verified byte-by-byte against authoritative source PDF. Opinion 2023 ND 107, case In the Interest of T.H.P.B., Jr., a child. All 220 content words match exactly between database and source. Character encoding verified (proper curly apostrophes U+2019 in \"State's Attorney\"). All citations, case names, party names, judge names, justice names, and disposition verified. Database ingestion is accurate with no OCR defects, character substitutions, or transcription errors detected."
+ },
+ {
+  "opinion_id": 19714,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "[¶6] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶6] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND105.pdf (lines 63-67)",
+    "confidence": "high",
+    "evidence": "The official PDF displays the signature block with each justice's name on a separate line with consistent indentation (5 spaces). The DB text incorrectly collapsed these onto a single line separated by spaces. This is a structural ingestion defect, not an editorial correction.",
+    "note": "The DB ingestion pipeline failed to preserve the multi-line formatting of the signature block. Each justice name should appear on its own line with proper indentation."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Comprehensive review completed: verified all citations (2020 ND 29, 2008 ND 234, 2004 ND 81, 1998 ND 170), all statutory references (N.D.R.Ev. 404(b), N.D.R.App.P. 35.1(a)(4), N.D.R.App.P. 35.1(a)(2)), case facts, procedural history, and legal holding. All ASCII punctuation verified. No OCR character errors detected. No missing text detected. The single defect is the wrongly-joined signature block.\""
+ },
+ {
+  "opinion_id": 19713,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "missing_text",
+    "old_exact": "accord fact. The to other administrative agencies' Commission's decisions",
+    "new_exact": "accord to other administrative agencies' findings of fact. The Commission's decisions",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND101.pdf",
+    "confidence": "high",
+    "evidence": "PDF source (pdftotext extraction, lines 112-114) shows 'accord\\n      to other administrative agencies' findings of fact. The\\n      Commission's decisions' which flowed to a continuous sentence in the DB. The DB version is missing 'to' after 'accord' and is missing 'findings of fact' entirely, instead incorrectly saying 'accord fact. The to other administrative agencies'.",
+    "note": "This is a critical OCR/text extraction error in [¶7] that disrupts the sentence flow. The phrase 'than we ordinarily accord to other administrative agencies' findings of fact' is the correct statutory standard language."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "set forth by the findings of legislature",
+    "new_exact": "set forth by the legislature",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND101.pdf",
+    "confidence": "high",
+    "evidence": "PDF source (pdftotext extraction, lines 118-121) shows the phrase spanning a page break: 'set forth by the\\n\\n                                      2\\n\\x0c      legislature' (where \\x0c is the form-feed byte between pages). The correct text is 'statutory standards set forth by the legislature.' The DB incorrectly includes 'findings of' before 'legislature'.",
+    "note": "In [¶7], the phrase should be 'the statutory standards set forth by the legislature' not 'the findings of legislature'. The extra 'findings of' appears to be a text extraction artifact."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 19712,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 18198,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "2017 ND 102, ¶ 7\n,\n893 N.W.2d 176\n. A motion",
+    "new_exact": "2017 ND 102, ¶ 7, 893 N.W.2d 176. A motion",
+    "verified_count": 1,
+    "source": "PDF 2023ND104 via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Citation 2017 ND 102, ¶ 7 in State v. Rourke: erroneous line breaks split comma from reporter citation number; verified in source PDF"
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "2005 ND 63,\n¶ 13\n,\n693 N.W.2d 631\n. Johnson",
+    "new_exact": "2005 ND 63,\n¶ 13, 693 N.W.2d 631. Johnson",
+    "verified_count": 1,
+    "source": "PDF 2023ND104 via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Citation 2005 ND 63, ¶ 13 in State v. Krull: erroneous line breaks split comma from reporter citation number; verified in source PDF"
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "2009 ND\n9, ¶ 5\n,\n760 N.W.2d 136\n. \"[I]t",
+    "new_exact": "2009 ND\n9, ¶ 5, 760 N.W.2d 136. \"[I]t",
+    "verified_count": 1,
+    "source": "PDF 2023ND104 via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Citation 2009 ND 9, ¶ 5 in City of Fargo v. Lunday: erroneous line breaks split comma from reporter citation number; verified in source PDF"
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "2019 ND 239, ¶ 15\n,\n934 N.W.2d 1\n (\"[W]e",
+    "new_exact": "2019 ND 239, ¶ 15, 934 N.W.2d 1 (\"[W]e",
+    "verified_count": 1,
+    "source": "PDF 2023ND104 via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Citation 2019 ND 239, ¶ 15 in State v. Smith: erroneous line breaks split comma from reporter citation number; verified in source PDF"
+   }
+  ],
+  "flags": [],
+  "coverage_note": "Comprehensive proofreading of DB text against authoritative PDF source: examined citation formatting, OCR character accuracy, punctuation, whitespace, paragraph structure, and form-feed artifacts. Identified 4 citation formatting defects (erroneous line breaks splitting commas from reporter numbers in 4 different case citations). All defects confirmed byte-for-byte in PDF source; no other substantive issues detected. Opinion is otherwise clean for transcription accuracy.\"",
+  "era": "2023"
+ },
+ {
+  "opinion_id": 18197,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 18196,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "State v. Rai,\n2019 ND 71, ¶ 13\n,\n924 N.W.2d 410\n\n(cleaned up)",
+    "new_exact": "State v. Rai, 2019 ND 71, ¶ 13, 924 N.W.2d 410\n(cleaned up)",
+    "verified_count": 1,
+    "source": "PDF source (pdftotext -layout): line 44 shows citation on single line: 'State v. Rai, 2019 ND 71, ¶ 13, 924 N.W.2d 410'",
+    "confidence": "high",
+    "evidence": "The DB text splits the citation across multiple lines with a comma on its own line (line 52), creating an invalid formatting artifact. The PDF renders this as a single continuous line. Additionally, DB inserts an extra blank line between the citation and '(cleaned up)', which is not present in the source.",
+    "note": "This is a compound defect: (1) wrongly split citation lines with orphaned comma, and (2) extra blank line. Both are ingestion/OCR processing artifacts."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "Lines 1-5 of DB text: '# State v. Heinrich\\n\\nNorth Dakota Supreme Court\\n991 N.W.2d 65; 2023 ND 102\\nDecided 2023-05-30'",
+    "description": "Database text includes synthesized metadata header (title, court, citation, date) that is NOT in the source PDF. These appear to be added by the ingestion system and should not be part of the authoritative opinion text.",
+    "confidence": "high"
+   },
+   {
+    "class": "whitespace",
+    "location_quote": "Throughout: DB collapses all leading/trailing whitespace and page layout; source PDF preserves justified layout and indentation",
+    "description": "The DB has aggressively normalized whitespace, removing all the layout spacing that preserves the PDF's justified formatting (e.g., 'State of North Dakota,' on left vs. 'Plaintiff and Appellee' on right). This is a structural ingestion choice, not a transcription error. The form-feed character (0x0C) in the source is also not present in DB.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2023",
+  "coverage_note": "Comprehensive review of 2023 ND 102 (18196). Compared database text against authoritative PDF source via pdftotext -layout. Found one substantive transcription defect (split/malformed citation with extra blank line) and flagged structural/layout differences (metadata header added by ingestion system; whitespace normalization). The opinion body is otherwise accurate.\""
+ },
+ {
+  "opinion_id": 18195,
+  "clean": false,
+  "era": "2023",
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "¶ 11\n,\n",
+    "new_exact": "¶ 11,",
+    "verified_count": 1,
+    "source": "PDF pdftotext extraction shows paragraph marker and comma on same line",
+    "confidence": "high",
+    "note": "OCR/ingestion artifact: newline incorrectly inserted between paragraph number and comma"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "¶ 43\n,\n",
+    "new_exact": "¶ 43,",
+    "verified_count": 1,
+    "source": "PDF pdftotext extraction shows paragraph marker and comma on same line",
+    "confidence": "high",
+    "note": "OCR/ingestion artifact: newline incorrectly inserted between paragraph number and comma"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "956 N.W.2d 354\n)",
+    "new_exact": "956 N.W.2d 354)",
+    "verified_count": 1,
+    "source": "PDF line 85 shows reporter citation and parenthesis on same line: '956 N.W.2d 354); see also'",
+    "confidence": "high",
+    "note": "OCR/ingestion artifact: newline incorrectly inserted between reporter cite and closing parenthesis"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "595 N.W.2d 571\n;",
+    "new_exact": "595 N.W.2d 571;",
+    "verified_count": 1,
+    "source": "PDF line 251 shows reporter citation and semicolon on same line: '595 N.W.2d 571; Gen. Elec.'",
+    "confidence": "high",
+    "note": "OCR/ingestion artifact: newline incorrectly inserted between reporter cite and semicolon"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "587 N.W.2d 183\n).",
+    "new_exact": "587 N.W.2d 183).",
+    "verified_count": 1,
+    "source": "PDF line 254 shows reporter citation and period-enclosed parenthesis on same line: '587 N.W.2d 183).'",
+    "confidence": "high",
+    "note": "OCR/ingestion artifact: newline incorrectly inserted between reporter cite and closing punctuation"
+   }
+  ],
+  "flags": [
+   {
+    "class": "split_join",
+    "location_quote": "¶ 13\n,\n",
+    "description": "Paragraph marker separated from comma by unwanted newline. Appears 2 times in database (citations: '2021 ND 56, ¶ 13' and '2022 ND 156, ¶ 13'). PDF source confirms comma should immediately follow paragraph number. Cannot propose as byte-exact fix per rules requiring verified_count == 1.",
+    "confidence": "high"
+   },
+   {
+    "class": "split_join",
+    "location_quote": "¶ 10\n,\n",
+    "description": "Paragraph marker separated from comma by unwanted newline. Appears 2 times in database (citations: '1999 ND 118, ¶ 10' and '2008 ND 61, ¶ 10'). PDF source confirms comma should immediately follow paragraph number. Cannot propose as byte-exact fix per rules requiring verified_count == 1.",
+    "confidence": "high"
+   },
+   {
+    "class": "split_join",
+    "location_quote": "¶ 6\n,\n",
+    "description": "Paragraph marker separated from comma by unwanted newline. Appears 2 times in database (citations: '1998 ND 223, ¶ 6' and '2015 ND 38, ¶ 6'). PDF source confirms comma should immediately follow paragraph number. Cannot propose as byte-exact fix per rules requiring verified_count == 1.",
+    "confidence": "high"
+   },
+   {
+    "class": "split_join",
+    "location_quote": "¶ 9\n,\n",
+    "description": "Paragraph marker separated from comma by unwanted newline. Appears 2 times in database (citations: '2021 ND 38, ¶ 9' and '2019 ND 189, ¶ 9'). PDF source confirms comma should immediately follow paragraph number. Cannot propose as byte-exact fix per rules requiring verified_count == 1.",
+    "confidence": "high"
+   }
+  ],
+  "coverage_note": "Comprehensive scan completed: all 30 paragraphs identified, all case names verified, all justice names in signature block confirmed. Document integrity verified (no missing text, no paragraph duplications, no false page breaks). Defects are limited to OCR/line-wrapping artifacts affecting citation and paragraph number formatting.\""
+ },
+ {
+  "opinion_id": 19835,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶11] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶11] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND95.pdf (official PDF); pdftotext -layout extraction shows signature block with each justice name on separate line with 5-space indentation",
+    "confidence": "high",
+    "note": "The DB text has all five justices' names concatenated on a single line (signature block) separated by spaces. The official PDF source shows each justice name on its own line, indented with 5 spaces for visual presentation in the formatted document. This is a structural formatting correction, not a content change. All names and titles are correct; the change restores the proper line breaks that exist in the authoritative PDF."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Opinion 2023 ND 95 is a brief administrative order (11 paragraphs) concerning chambering of two new district court judgeships in the East Central Judicial District. Comprehensive character-level scan completed for OCR errors (digits, common confusions like 0/O, l/1, rn/m, cl/d). All numbers, percentages, dates, statutes, and proper names verified against source. All substantive content confirmed present and correct. Single formatting defect identified in signature block.\""
+ },
+ {
+  "opinion_id": 19836,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "problem- solving",
+    "new_exact": "problem-solving",
+    "verified_count": 1,
+    "source": "PDF line break at end of line 46: 'problem-' continues as 'solving' on line 47",
+    "confidence": "high",
+    "evidence": "The authoritative PDF shows standard hyphenation with 'problem-' at line end and 'solving' continuing on the next line. The DB has incorrectly rendered this as 'problem- solving' with a space after the hyphen, creating a false word split. Normalized comparison confirms all other text content matches PDF exactly."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 19834,
+  "clean": false,
+  "proposals": [],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "unless: 1. 2. 3. 4. 5. 6. The order is not in accordance with the law. The order is in violation of the constitutional rights of the appellant. The provisions of [chapter 28-32] have not been complied with in the proceedings before the agency. The rules or procedure of the agency have not afforded the appellant a fair hearing. The findings of fact made by the agency are not supported by a preponderance of the evidence. The conclusions of law and order of the agency are not supported by its findings of fact. 7. 8. The findings of fact made by the agency do not sufficiently address the evidence presented to the agency by the appellant. The conclusions of law and order of the agency do not sufficiently explain the agency's rationale for not adopting any contrary recommendations by a hearing officer or an administrative law judge.",
+    "description": "Statutory list items (N.D.C.C. § 28-32-46 criteria) have been consolidated into a single paragraph. The DB text has all list numbers (1-8) presented together at the start ('1. 2. 3. 4. 5. 6. ... 7. 8.') followed by all item texts concatenated, whereas the authoritative PDF properly interleaves each number with its corresponding text and line breaks (e.g., '1. The order is not in accordance with the law.' followed by '2. The order is in violation of the constitutional rights of the appellant.', etc.). All words and content are present and correct; this is a structural/formatting issue from OCR/text extraction that collapsed the list layout.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "opinion_id": 19832,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "Benjamin J. Johnson, J.,",
+    "new_exact": "Benjamen J. Johnson, J.,",
+    "verified_count": 1,
+    "source": "Official PDF caption - judge listed as 'the Honorable Benjamen J. Johnson, Judge'",
+    "confidence": "high",
+    "evidence": "Verified by visual inspection of source PDF page 1; database has misspelled the judge's first name"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "hyphenating H.L.B.'s surname would increase",
+    "new_exact": "hyphenating H.R.B.'s surname would increase",
+    "verified_count": 1,
+    "source": "Paragraph [¶21] - PDF page 9 visual inspection",
+    "confidence": "high",
+    "evidence": "PDF clearly shows 'H.R.B.' with capital R, not L. OCR engine misread the letter R as L in the child's initials. This is the first of three instances of this same OCR error."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "with H.L.B. The court expressed",
+    "new_exact": "with H.R.B. The court expressed",
+    "verified_count": 1,
+    "source": "Paragraph [¶22] - PDF page 9",
+    "confidence": "high",
+    "evidence": "Same OCR confusion of R and L in child's initial. PDF clearly shows H.R.B., which is the correct child designation throughout the opinion."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "that changing H.L.B.'s name would not",
+    "new_exact": "that changing H.R.B.'s name would not",
+    "verified_count": 1,
+    "source": "Paragraph [¶23] - PDF page 9",
+    "confidence": "high",
+    "evidence": "Third and final instance of R/L OCR confusion. PDF confirms H.R.B. is the correct child designation. All three H.L.B. instances in paragraphs 21-23 are OCR errors that should be H.R.B."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "H.L.B. appears 3 times; H.R.B. appears 26 times in database",
+    "description": "Pattern anomaly: OCR engine consistently confused R with L only in the child's initials (H.R.B.) in three consecutive paragraphs (21-23), while correctly reading H.R.B. in all other locations. This is a classic OCR failure pattern where similar letters are misread in specific contexts.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2023"
+ },
+ {
+  "opinion_id": 19831,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "A.M. was was killed",
+    "new_exact": "A.M. was killed",
+    "verified_count": 1,
+    "source": "PDF pages 1-2: page break artifact where 'was killed' is split across pages; OCR/ingestion captured both instances of 'was'",
+    "confidence": "high",
+    "evidence": "PDF source shows 'A.M. was\\n[page 1 footer]\\n[page 2 header]\\nwas killed' — pdftotext reconstructs this with the page break (0x0c byte) and page header visible. The DB ingestion process incorrectly included both 'was' instances."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "accident. judgment action seeking a\n\n[¶6] Nodak commenced this declaratory declaration",
+    "new_exact": "accident.\n\n[¶6] Nodak commenced this declaratory judgment action seeking a declaration",
+    "verified_count": 1,
+    "source": "PDF ¶6 clearly reads 'Nodak commenced this declaratory judgment action seeking a declaration' with the phrase split across lines but semantically part of ¶6, not ¶5",
+    "confidence": "high",
+    "evidence": "PDF source: 'Nodak insured the vehicle H.W. and A.M. occupied at the time of the accident.\\n\\n[¶6] Nodak commenced this declaratory judgment action seeking a\\ndeclaration Farm Family's...' The phrase 'judgment action seeking a' belongs in ¶6 starting sentence, not at the end of ¶5. DB has also introduced 'declaratory declaration' which should be 'declaratory judgment action seeking a declaration'."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Full opinion text scanned. Sections checked: caption/parties, all numbered paragraphs (¶1-¶34), section headings (I-IV), standard of review block quote, citations and case names. No structural flags. Remaining text after applying fixes contains no detectable OCR errors, duplicate words, or missing content.\""
+ },
+ {
+  "opinion_id": 19736,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 18194,
+  "clean": false,
+  "era": "2023",
+  "coverage_note": "Complete scan of 80-line DB text vs 332-line source PDF. All five corruption instances involve ingestion-layer OCR/formatting defects: four are citation escaping artifacts, one is a catastrophic paragraph 9 repetition.",
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "(quoting $Jensen\\ v$ . Jensen, 2013 ND 144, ¶ 8, 835 N.W.2d 819)",
+    "new_exact": "(quoting Jensen v. Jensen, 2013 ND 144, ¶ 8, 835 N.W.2d 819)",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND94.pdf",
+    "confidence": "high",
+    "evidence": "Source shows Jensen v. Jensen without escaping; DB has erroneous $...\\v$ escape in paragraph 9."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "$Kerzmann \\ v$ . Kerzmann, 2021 ND 183, ¶¶ 9, 12, 965 N.W.2d 427",
+    "new_exact": "Kerzmann v. Kerzmann, 2021 ND 183, ¶¶ 9, 12, 965 N.W.2d 427",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND94.pdf",
+    "confidence": "high",
+    "evidence": "Source shows Kerzmann v. without escaping; DB has erroneous dollar-sign and backslash pattern in paragraph 12."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "$Gomm\\ v.\\ Winterfeldt$ , 2022 ND 172, ¶ 30, 980 N.W.2d 204",
+    "new_exact": "Gomm v. Winterfeldt, 2022 ND 172, ¶ 30, 980 N.W.2d 204",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND94.pdf",
+    "confidence": "high",
+    "evidence": "Source shows Gomm v. Winterfeldt without escaping; DB has erroneous backslash escapes in paragraph 13."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "(quoting $Kunz\\ v.\\ Slappy$ , 2021 ND 186, ¶ 26, 965 N.W.2d 408)",
+    "new_exact": "(quoting Kunz v. Slappy, 2021 ND 186, ¶ 26, 965 N.W.2d 408)",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND94.pdf",
+    "confidence": "high",
+    "evidence": "Source shows Kunz v. Slappy without escaping; DB has erroneous backslash escapes in paragraph 13."
+   },
+   {
+    "class": "missing_text",
+    "old_exact": "Id. (quoting $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . $Thompson\\ v$ . A\n\n",
+    "new_exact": "Id.\n(quoting Thompson v. Thompson, 2012 ND 15, ¶ 6, 809 N.W.2d 331).\n\n                                        A\n\n",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND94.pdf",
+    "confidence": "high",
+    "evidence": "CRITICAL: Source shows single complete citation Thompson v. Thompson, 2012 ND 15, ¶ 6, 809 N.W.2d 331 (153 chars). DB contains 61 repetitions of $Thompson\\ v$ . fragment (1344 chars total) in paragraph 9 — massive OCR/ingestion corruption. This is the most critical defect."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 18193,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "2009 ND 16, ¶\n22\n,\n722 N.W.2d 603",
+    "new_exact": "2009 ND 16,\n¶ 22, 722 N.W.2d 603",
+    "verified_count": 1,
+    "source": "PDF pdftotext layout artifact: paragraph marker wrongly separated from citation",
+    "confidence": "high",
+    "evidence": "Source PDF shows citation on single line; DB has line breaks after '¶', after '22', and after comma—a clear ingestion defect."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "2023 ND 24, ¶ 4\n,\n\n985 N.W.2d 644",
+    "new_exact": "2023 ND 24, ¶ 4,\n985 N.W.2d 644",
+    "verified_count": 1,
+    "source": "PDF pdftotext layout artifact: comma separated from citation by blank line",
+    "confidence": "high",
+    "evidence": "Source PDF shows '¶ 4,' on same line with page number on next line; DB splits comma onto separate line with extra blank."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "234 N.W.2d 853, 855\n (N.D.\n1975).",
+    "new_exact": "234 N.W.2d 853, 855 (N.D.\n1975).",
+    "verified_count": 1,
+    "source": "PDF pdftotext layout artifact: space before parenthesis on line break",
+    "confidence": "high",
+    "evidence": "Source PDF shows '855 (N.D.' on same line; DB has space-newline between number and parenthesis."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "603\n. ",
+    "new_exact": "603. ",
+    "verified_count": 1,
+    "source": "PDF pdftotext layout artifact: period on separate line after citation",
+    "confidence": "high",
+    "evidence": "Source PDF shows period immediately after 603 on same line; DB has newline separating them."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "644\n. ",
+    "new_exact": "644. ",
+    "verified_count": 1,
+    "source": "PDF pdftotext layout artifact: period on separate line after citation",
+    "confidence": "high",
+    "evidence": "Source PDF shows period immediately after 644 on same line; DB has newline separating them."
+   }
+  ],
+  "flags": [],
+  "era": "2023",
+  "coverage_note": "Opinion text from [¶1] through signature block fully verified against PDF source. All five defects are ingestion/layout artifacts from pdftotext processing. No OCR character errors (l/1, rn/m, etc.) detected. All names, dates, and citations verified present and correct. Ellipsis formatting (spaced four-dot style) matches source. Opinion is authoritative after applying proposed fixes.\""
+ },
+ {
+  "opinion_id": 18192,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "Markgraf v. Welker,\n2015 ND 303, ¶ 10\n,\n873 N.W.2d 26\n.",
+    "new_exact": "Markgraf v. Welker, 2015 ND 303, ¶ 10, 873 N.W.2d 26.",
+    "verified_count": 1,
+    "source": "pdftotext -layout '/Users/jerod/refs/nd/opin/pdfs/2023/2023ND91.pdf'",
+    "confidence": "high",
+    "evidence": "PDF source shows citation on single line (line 118); DB has citation split across lines 122-126 with errant newlines and a spurious comma on its own line",
+    "note": "Lines 122-126 in DB: 'Markgraf v. Welker,' / '2015 ND 303, ¶ 10' / ',' / '873 N.W.2d 26' / '.' should be joined into single line"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "E.W. Wylie's employee.\n58 N.W.2d 76, 78-79\n (N.D. 1953). E.W. Wylie asserted it",
+    "new_exact": "E.W. Wylie's employee. 58 N.W.2d 76, 78-79 (N.D. 1953). E.W. Wylie asserted it",
+    "verified_count": 1,
+    "source": "pdftotext -layout '/Users/jerod/refs/nd/opin/pdfs/2023/2023ND91.pdf'",
+    "confidence": "high",
+    "evidence": "PDF source shows citation on same line as preceding text (line 206); DB splits citation across lines 217-219 with newlines between reporter and parenthetical",
+    "note": "Lines 217-219 in DB should be joined: citation '58 N.W.2d 76, 78-79' belongs on same line as preceding period and following parenthetical '(N.D. 1953)'"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "jobsite.\n214 N.W.2d 635, 637\n (N.D. 1974). The",
+    "new_exact": "jobsite. 214 N.W.2d 635, 637 (N.D. 1974). The",
+    "verified_count": 1,
+    "source": "pdftotext -layout '/Users/jerod/refs/nd/opin/pdfs/2023/2023ND91.pdf'",
+    "confidence": "high",
+    "evidence": "PDF source shows citation on single line after period (line 222); DB splits citation across lines 234-236 with newlines between reporter and parenthetical",
+    "note": "Lines 234-236 in DB should be joined: citation '214 N.W.2d 635, 637' and parenthetical '(N.D. 1974)' belong on same line"
+   }
+  ],
+  "flags": [],
+  "coverage_note": "Thorough comparison of DB text (514 lines) against authoritative PDF source (475 lines via pdftotext -layout). All sections from caption through signature block examined. Three split_join defects identified in citations; these are mechanical ingestion artifacts from pdftotext layout mode, not content errors. No OCR character errors, digit transpositions, missing text, or caption corruption detected. Blank line run differences (15 in DB vs 9+ in source) are expected due to PDF layout rendering and do not require correction.\""
+ },
+ {
+  "opinion_id": 18191,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "discretion.\"\nId.\n W",
+    "new_exact": "discretion.\" Id. W",
+    "verified_count": 1,
+    "source": "PDF pdftotext -layout extraction verified against source",
+    "confidence": "high",
+    "note": "Hard line breaks after closing curly quote and after 'Id.' should be single spaces. DB has newline-space-newline, SRC has space-space."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "Comm'rs,\n2020 ND 93,\n¶ 16\n,\n942 N.W.2d 823\n. ",
+    "new_exact": "Comm'rs, 2020 ND 93,\n¶ 16, 942 N.W.2d 823. ",
+    "verified_count": 1,
+    "source": "PDF pdftotext -layout extraction verified against source",
+    "confidence": "high",
+    "note": "Citation formatting has excessive line breaks and missing comma. DB breaks after Comm'rs, and ¶ 16, with orphaned comma line; SRC keeps Comm'rs on same line and comma after ¶ 16."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "2016 ND 225, ¶¶ 8-9\n,\n888 N.W.2d 197\n (",
+    "new_exact": "2016 ND 225, ¶¶ 8-9, 888 N.W.2d 197 (",
+    "verified_count": 1,
+    "source": "PDF pdftotext -layout extraction verified against source",
+    "confidence": "high",
+    "note": "Citation has excessive line breaks and missing comma after ¶¶ 8-9. DB has orphaned comma on new line before 888 reporter; SRC keeps comma on same line."
+   }
+  ],
+  "flags": [],
+  "coverage_note": "This 56-line opinion is short and fully reviewed. Three whitespace/citation formatting issues found, all confirmed in PDF source.",
+  "era": "2023"
+ }
+]

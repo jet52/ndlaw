@@ -1,0 +1,22 @@
+[
+ {
+  "opinion_id": 19767,
+  "class": "heading_seq",
+  "old_exact": "877 N.W.2d 58). A\n\n[¶6] Isa",
+  "new_exact": "877 N.W.2d 58).\n\nA\n\n[¶6] Isa",
+  "verified_count": 1,
+  "source": "2023ND181.pdf",
+  "evidence": "heading A merged onto prior line; reformat not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19767,
+  "class": "heading_seq",
+  "old_exact": "erroneous. B\n\n[¶13] Is",
+  "new_exact": "erroneous.\n\nB\n\n[¶13] Is",
+  "verified_count": 1,
+  "source": "2023ND181.pdf",
+  "evidence": "heading B merged onto prior line; reformat not delete.",
+  "confidence": "high"
+ }
+]

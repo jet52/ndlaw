@@ -1,0 +1,92 @@
+[
+ {
+  "opinion_id": 19793,
+  "class": "ocr_char",
+  "old_exact": "We for treated postconviction relief",
+  "new_exact": "We treated the orders denying Everett's applications for postconviction relief",
+  "verified_count": 1,
+  "source": "PDF 2023ND206.pdf page 5-6 - [¶14] block quote",
+  "confidence": "high",
+  "note": "OCR error: 'We for treated' should be 'We treated the orders denying Everett's applications for'. The word 'for' is misplaced; correct phrase found in source document.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19793,
+  "class": "split_join",
+  "old_exact": "orders denying Everett's applications the Wheeler, at ¶ 7.",
+  "new_exact": "Wheeler, at ¶ 7.",
+  "verified_count": 1,
+  "source": "PDF 2023ND206.pdf page 6 - [¶14] final attribution line",
+  "confidence": "high",
+  "note": "Spurious text 'orders denying Everett's applications the' was concatenated with the Wheeler attribution. This phrase should not appear here; it is a fragment of the block quote text that was incorrectly merged into the attribution line.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19777,
+  "class": "ocr_char",
+  "old_exact": "'a copy of &lt;sup>1 Section 39-20-03.1(3)",
+  "new_exact": "'a copy of\n\n\n\n1 Section 39-20-03.1(3)",
+  "verified_count": 1,
+  "source": "PDF source shows page break (multiple newlines) followed by footnote '1 Section...' at page 6",
+  "confidence": "high",
+  "evidence": "DB contains HTML entity &lt;sup> which is an encoding artifact. The PDF clearly shows the footnote appears after page content separation, not inline with the quote.",
+  "note": "The HTML entity &lt;sup> is an ingestion error. In the PDF source, after 'a copy of' there is a page break followed by the footnote number '1' and its text on the next page.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19777,
+  "class": "other",
+  "old_exact": "N.D.C.C. § 39-20-04.1.\" Id. [$1/21$] [¶21]",
+  "new_exact": "N.D.C.C. § 39-20-04.1.\" Id. [¶21]",
+  "verified_count": 1,
+  "source": "PDF source at page 8 shows no page/footnote artifact between 'Id.' and '[¶21]'",
+  "confidence": "high",
+  "evidence": "The artifact '[$1/21$]' does not appear in the PDF source. This appears to be a processing error (page number marker) that was incorrectly ingested into the text.",
+  "note": "Page break/pagination artifact that should be removed entirely. Does not correspond to any text in the authoritative PDF source.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19774,
+  "class": "split_join",
+  "old_exact": "client's for interests",
+  "new_exact": "client's interests",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND188.pdf (lines 81-82)",
+  "confidence": "high",
+  "evidence": "PDF text shows '...by failing to take reasonable steps to protect the client's interests by providing...' but DB shows 'protect the client's for interests'. The spurious 'for' word should be removed. The curly quote (U+2019) is preserved in the correction.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19767,
+  "class": "split_join",
+  "old_exact": "The applicant must show (1) his fell below an objective standard of reasonableness,\" and (2) \"there is a reasonable probability that, but for \"counsel's representation counsel's errors, he would not have pleaded guilty and would have insisted on going to trial.\" Isxaaq v. State",
+  "new_exact": "The applicant must show (1) his \"counsel's representation fell below an objective standard of reasonableness,\" and (2) \"there is a reasonable probability that, but for counsel's errors, he would not have pleaded guilty and would have insisted on going to trial.\" Isxaaq v. State",
+  "verified_count": 1,
+  "source": "PDF source shows correct Strickland test language: (1) his 'counsel's representation fell below' with proper opening quote; (2) 'but for counsel's errors' without the duplicated phrase",
+  "confidence": "high",
+  "note": "Critical OCR error in [¶7] - two defects in the two-prong Strickland test: (A) missing opening quote before 'counsel's representation' in first prong; (B) text corruption in second prong where 'counsel's representation counsel's errors' should be just 'counsel's errors'. Source PDF clearly shows correct statutory language.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19765,
+  "class": "missing_text",
+  "old_exact": "\"appropriate communication\"",
+  "new_exact": "\"appropriate confidential attorney-client communication\"",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND179.pdf",
+  "confidence": "high",
+  "evidence": "In paragraph 2, opening sentence quote: DB shows incomplete phrase 'appropriate communication' (with smart quotes U+201C...U+201D) while PDF shows complete phrase 'appropriate confidential attorney-client communication'. The three words 'confidential attorney-client' are omitted from the DB. This appears once in DB and the correct version appears in PDF.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19754,
+  "class": "other",
+  "old_exact": "petition for discipline were filed FILED SEPTEMBER 18, 2023 CLERK OF THE SUPREME COURT STATE OF NORTH DAKOTA and served",
+  "new_exact": "petition for discipline were filed and served",
+  "verified_count": 1,
+  "source": "PDF page header extracted as running header; appears in PDF source between 'were filed' and 'and served' as page furniture (page number '1' and form-feed 0x0C), not prose",
+  "confidence": "high",
+  "evidence": "The string 'FILED SEPTEMBER 18, 2023 CLERK OF THE SUPREME COURT STATE OF NORTH DAKOTA' is a page header that appears at the top of the PDF page. In the source PDF text extraction, it appears as part of the page header region before a page break (0x0C) and page number. The database text incorrectly inserted this header text inline into the [¶2] paragraph text. All other content in the opinion matches the source.",
+  "_verdict": "reject:unverified"
+ }
+]
