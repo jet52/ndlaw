@@ -75,5 +75,19 @@
   19709,
   20271,
   19920
- ]
+ ],
+ "hjjn_provenance": {
+  "ids": {
+   "20044": "2024 ND 70 (interim, 5 N.W.3d 775)",
+   "19877": "2024 ND 132 (post-remand, 9 N.W.3d 656)"
+  },
+  "docket": "20240060 (shared; correctly separate records)",
+  "issue": "text_content is West .doc rendering (star-pages, 'Attorneys and Law Firms'/'Opinion' labels, West cite forms) while authoritative court PDFs exist",
+  "misfiled": "pdfs/2024/2024ND70.pdf=ND132; pdfs/2024/2024ND132.pdf=ND70; markdown/2024/2024ND70.md=ND132",
+  "fix": "re-derive text_content from correct court PDF for both; correct misfiled PDF/markdown names",
+  "status": "DEFERRED \u2014 provenance task, not a star-page edit"
+ },
+ "westdoc_done": {
+  "19804": "2023 ND 231 \u2014 5 West-added parallel cites stripped (batch westdoc-cleanup-2026-06-24)"
+ }
 }

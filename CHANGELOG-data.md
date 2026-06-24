@@ -2,6 +2,32 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `westdoc-cleanup-2026-06-24` — strip West-added parallel citations (2023 ND 231)
+
+- **2023 ND 231** (id 19804, State v. Bearce): removed 5 West-editor-added parallel
+  citations (`, 967 N.W.2d 765`) appended to short-form references to *State v. Neilan*,
+  2021 ND 217. The court's published text (verified against `2023ND231.pdf` and
+  `markdown/2023/2023ND231.md`) cites the case in full once (¶15: `State v. Neilan, 2021
+  ND 217, 967 N.W.2d 765`) and uses short forms (`Neilan, 2021 ND 217, ¶ X` / `Id.`)
+  thereafter. The West `.doc` rendering (the row's `source_path`) had appended the parallel
+  reporter to ¶¶ 2, 4/13, 22, 23, 23. The single legitimate first-cite parallel is kept.
+  (The agent's original proposal caught only 3 of the 5; verified all instances.)
+
+### Deferred finding — H.J.J.N. provenance (NOT applied)
+
+Investigating the second "West-doc item" (a `*776` star-page removal in id 20044) surfaced
+a provenance issue rather than a cleanup: **id 20044 = 2024 ND 70** (interim, retain
+jurisdiction, 5 N.W.3d 775) and its sibling **id 19877 = 2024 ND 132** (post-remand, 9
+N.W.3d 656) — two decisions sharing docket 20240060 — both store the **West `.doc`
+rendering** as `text_content` (West star-pages `*776`/`*777`/`*657`, "Attorneys and Law
+Firms"/"Opinion" section labels, West citation forms) even though authoritative court PDFs
+exist. The court PDFs are **misfiled/swapped**: `pdfs/2024/2024ND70.pdf` contains 2024 ND
+132 and `pdfs/2024/2024ND132.pdf` contains 2024 ND 70; `markdown/2024/2024ND70.md` also
+contains 2024 ND 132. Proper fix = re-derive both opinions' `text_content` from the correctly
+identified court source (and correct the misfiled PDF/markdown names). Tracked in
+`triage/ocr-cleanup-dispositions-2026-06-24.json`. Not band-aided with a single star-page
+deletion.
+
 ## Batch `headings-2026-06-24-b` — ambiguous heading reformats (3 opinions, 13 edits)
 
 The three heading opinions deferred from the first heading pass (ambiguous: parallel

@@ -1,0 +1,52 @@
+[
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "¶ 2, 967 N.W.2d 765",
+  "new_exact": "¶ 2",
+  "verified_count": 1,
+  "source": "2023ND231.pdf + markdown/2023/2023ND231.md (authoritative court text): Neilan is cited 'State v. Neilan, 2021 ND 217, 967 N.W.2d 765' once (first cite, ¶15), then short-form 'Neilan, 2021 ND 217, ¶ X' / 'Id.' without the parallel. The West .doc appended the parallel reporter to subsequent cites.",
+  "confidence": "high",
+  "note": "Strip West-editor-added parallel citation to match the court's published text (keeps the single legitimate full cite at ¶15)."
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "¶¶ 4, 13, 967 N.W.2d 765",
+  "new_exact": "¶¶ 4, 13",
+  "verified_count": 1,
+  "source": "2023ND231.pdf + markdown/2023/2023ND231.md (authoritative court text): Neilan is cited 'State v. Neilan, 2021 ND 217, 967 N.W.2d 765' once (first cite, ¶15), then short-form 'Neilan, 2021 ND 217, ¶ X' / 'Id.' without the parallel. The West .doc appended the parallel reporter to subsequent cites.",
+  "confidence": "high",
+  "note": "Strip West-editor-added parallel citation to match the court's published text (keeps the single legitimate full cite at ¶15)."
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "¶ 22, 967 N.W.2d 765",
+  "new_exact": "¶ 22",
+  "verified_count": 1,
+  "source": "2023ND231.pdf + markdown/2023/2023ND231.md (authoritative court text): Neilan is cited 'State v. Neilan, 2021 ND 217, 967 N.W.2d 765' once (first cite, ¶15), then short-form 'Neilan, 2021 ND 217, ¶ X' / 'Id.' without the parallel. The West .doc appended the parallel reporter to subsequent cites.",
+  "confidence": "high",
+  "note": "Strip West-editor-added parallel citation to match the court's published text (keeps the single legitimate full cite at ¶15)."
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "¶ 23, 967 N.W.2d 765.\n",
+  "new_exact": "¶ 23.\n",
+  "verified_count": 1,
+  "source": "2023ND231.pdf + markdown/2023/2023ND231.md (authoritative court text): Neilan is cited 'State v. Neilan, 2021 ND 217, 967 N.W.2d 765' once (first cite, ¶15), then short-form 'Neilan, 2021 ND 217, ¶ X' / 'Id.' without the parallel. The West .doc appended the parallel reporter to subsequent cites.",
+  "confidence": "high",
+  "note": "Strip West-editor-added parallel citation to match the court's published text (keeps the single legitimate full cite at ¶15)."
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "¶ 23, 967 N.W.2d 765. Since",
+  "new_exact": "¶ 23. Since",
+  "verified_count": 1,
+  "source": "2023ND231.pdf + markdown/2023/2023ND231.md (authoritative court text): Neilan is cited 'State v. Neilan, 2021 ND 217, 967 N.W.2d 765' once (first cite, ¶15), then short-form 'Neilan, 2021 ND 217, ¶ X' / 'Id.' without the parallel. The West .doc appended the parallel reporter to subsequent cites.",
+  "confidence": "high",
+  "note": "Strip West-editor-added parallel citation to match the court's published text (keeps the single legitimate full cite at ¶15)."
+ }
+]
