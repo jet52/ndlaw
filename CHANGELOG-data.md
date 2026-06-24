@@ -2,6 +2,27 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `west-furniture-strip-2026-06-24` (part 1) — star-pages + header labels (44 opinions)
+
+First step of the West-furniture-strip pass over the 45 modern (≥1997) West-`.doc`-sourced
+opinions identified in the audit (`triage/WESTDOC-MODERN-AUDIT.md`). **Wholesale
+re-derivation from the court markdown was rejected** after analysis: it would discard heavy
+curation (footnote `[N]` resolution, self-cite/keynote stripping, quote-norm — 12 of 43
+carry `[N]` footnotes that feed the detector) and import the scraper's raw `<sup>`/scramble
+artifacts, regressing the footnote detector. Instead, strip the residual West editorial
+furniture from the curated text (user-approved).
+
+This step removed, from 44 opinions (1 noop): West N.W. **star-page markers** (`*NNN`,
+e.g. `district court postponed *103 Nelson's`) inserted for reporter pagination, and the
+`Attorneys and Law Firms` / `Opinion` **section labels** where they sat at the header start.
+Per-opinion safety gates (all passed): `[¶N]`/`[¶ N]` marker count unchanged, `[N]`
+footnote-call count unchanged, no star-page may remain, no new double-/leading-spaces.
+Counsel names and the justice byline are court text and were kept. Detector 175/0
+(no regression), invariants 24/0, 66 tests pass. Tool: `scripts/strip_west_furniture.py`.
+
+(Part 2 — Synopsis blocks + mid-header labels on 31 opinions with complex West headers —
+follows.)
+
 ## Batch `westdoc-cleanup-2026-06-24` — strip West-added parallel citations (2023 ND 231)
 
 - **2023 ND 231** (id 19804, State v. Bearce): removed 5 West-editor-added parallel
