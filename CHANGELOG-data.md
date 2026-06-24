@@ -2,6 +2,35 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `footnote-editpair-apply-2026-06-23` — West-doc residue re-pass 3 (17 opinions)
+
+A third pass over the 20 remaining `westlaw_doc` `SRC_MORE` opinions (1978–1988),
+whose footnotes are PRESENT in the DB but parser-undetected (bare-line orphan
+bodies + unbracketed call digits). Agents proposed byte-exact bracket/number
+edit-pairs against the authoritative `.doc` footnote sets; `heal_footnote_anchors.py`
+fixed 19 curly-quote/nbsp misses. **17 opinions repaired.**
+
+The applier is atomic per opinion, and these tail cases hit a sequential-edit
+**overlapping-anchor** hazard: when one footnote's body sits at the next footnote's
+call site, applying the first edit invalidates the second's byte anchor (count→0).
+Rather than lose an opinion's good edits over one bad anchor, a num-grouped prune
+dropped only the conflicting footnote (and its paired call/body object) per opinion,
+keeping the rest — a pruned footnote simply stays unmarked (present, not lost).
+
+**Result:** `SRC_MORE` 28 → 19 (westlaw_doc 20 → 11); MATCH 508 → 517. Detector
+175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass. (Rows share the
+batch name with the archive batch-4 apply — same applier, hardcoded `BATCH`.)
+
+**11 westlaw_doc remain** (`triage/westdoc-footnote-residue-manual.json`, 39
+undetected footnotes total) — documented tail, NOT loss:
+- 1985 ND 40 (0/12) + 1979 ND 119 (0/7): workflow connection-dropped both passes;
+  a 2-opinion retry returned actions with no edit-pairs / one drop → nothing
+  applyable.
+- 1979 ND 141 (1/9): agent misread; anchors systematically count=0.
+- 1979 ND 30 (9/12), 1986 ND 104 (19/21), 1978 ND 27 (3/5), and the rest: 1–3
+  footnotes each blocked by the overlapping-anchor hazard; partially repaired.
+Further gains need hand-built non-overlapping anchors; deferred as polish.
+
 ## Batch `footnote-editpair-apply-2026-06-23` — archive worklist COMPLETE (batch 4)
 
 Closed the archive-backed `SRC_MORE` worklist. Batch 4 ran the final 43 archive
