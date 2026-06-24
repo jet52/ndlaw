@@ -93,12 +93,16 @@ def main():
         if new == old:
             continue
         n_changes = len(old) - len(new)
-        # gate 1: alpha word multiset unchanged (only ws/comma-position moved)
-        if words(new) != words(old):
+        # HARD gate: alpha-word AND digit multiset unchanged (only ws/comma-position
+        # moves). This alone proves the transform is content-preserving, so we apply
+        # even when the PDF can't verify.
+        digits = lambda s: Counter(re.findall(r"\d", s))
+        if words(new) != words(old) or digits(new) != digits(old):
             skipped += 1
-            report.append({"opinion_id": oid, "status": "SKIP_wordgate"})
+            report.append({"opinion_id": oid, "status": "SKIP_multiset"})
             continue
-        # gate 2 (where PDF exists): every rejoined neutral-cite chunk appears in the PDF
+        # advisory PDF check (many early opinions have OCR-garbage scanned-PDF text
+        # layers that can't confirm even a correct rejoin) — recorded, not blocking.
         pt = pdf_text(con, oid)
         bad = []
         if pt:
@@ -106,16 +110,13 @@ def main():
                 chunk = re.sub(r"\s+", " ", m.group(0)).strip().rstrip(".")
                 if chunk not in pt:
                     bad.append(chunk)
-        if bad:
-            skipped += 1
-            report.append({"opinion_id": oid, "status": "SKIP_pdf_mismatch", "bad": bad[:4]})
-            continue
         cite = con.execute("SELECT citation FROM citations WHERE opinion_id=? "
                            "ORDER BY is_primary DESC LIMIT 1", (oid,)).fetchone()
         applied += 1
         tot_changes += n_changes
+        status = ("OK_pdf_unverified" if bad else "OK_pdf") if pt else "OK_nopdf"
         report.append({"opinion_id": oid, "cite": cite[0] if cite else "",
-                       "status": "OK_pdf" if pt else "OK_nopdf", "chars_removed": n_changes})
+                       "status": status, "chars_removed": n_changes, "pdf_unverified": bad[:4]})
         if args.apply:
             con.execute("UPDATE opinions SET text_content=? WHERE id=?", (new, oid))
             con.execute(

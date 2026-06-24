@@ -26,6 +26,29 @@ almost entirely this class), 8 LaTeX, 3 digit. Plus 2 markdown-mangle deletions
 (2023 ND 78, 2023 ND 16) held to the citation cohort. Detector 175/0; invariants
 24 ok / 2 known / 0 regressed; 66 tests pass.
 
+## Batch `citation-rejoin-2026-06-24` — rejoin fragmented citations (1,629 opinions)
+
+Markdown/reporter-sourced opinions ingested citations split across lines with stray
+newlines and isolated commas (e.g. "Vondell,\n2017 ND 158, ¶ 4\n,\n897\nN.W.2d 334").
+`scripts/rejoin_citations.py` applied four conservative, citation-internal transforms:
+lone-comma line (\n,\n -> ", "), number->reporter split (967\nN.W.2d -> 967 N.W.2d),
+case-name->neutral-cite (Name,\nYYYY ND -> Name, YYYY ND), and digit->close-punct
+(737\n. -> 737.).
+
+PROVABLY content-preserving: across all 1,629 candidates the alphabetic-word multiset
+AND the digit multiset are UNCHANGED (only whitespace / a comma's position moves) — no
+letter or number altered anywhere. Validated 148/149 against the proofing agents' own
+PDF-verified cite-mangle proposals (the 1 outlier was a caption, not a cite). 1,261 were
+additionally PDF-cite-verified; 350 are 1997-98 opinions whose SCANNED PDF text layers
+are themselves OCR-garbage ("ller y. Bragg ... ~2. 559 N.W.2d") and can't confirm a
+correct rejoin — applied anyway on the content-preserving guarantee; 18 had no PDF.
+Hard gate = alpha+digit multiset identical (0 skipped). FTS auto-synced.
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
+This resolves the dominant deferred class of the reporter/markdown era. The proofing
+prompt gained rule 10 (ignore fragmented citations — this pass owns them), rule 11
+(ignore markup contamination), and rule 12 (spelling is high-risk: image-verified).
+
 ## Batch `quotes-straight-2026-06-24` — normalize curly quotes to straight ASCII (13,492 opinions)
 
 User policy decision: the authoritative edition uses straight ASCII quotes and

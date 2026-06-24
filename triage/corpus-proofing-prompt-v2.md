@@ -69,6 +69,14 @@ Authoritative source for this era: {source_desc}
 - **Quote characters (do NOT propose):** the DB uses STRAIGHT ASCII quotes/apostrophes
   (" and ') by policy; PDFs use curly (“ ” ‘ ’). This is INTENTIONAL — never flag or
   propose a straight-vs-curly quote difference.
+- **Fragmented citations (do NOT propose):** markdown-sourced opinions split citations
+  across lines (lone comma on a line, volume-number split before the reporter, name then
+  newline then year). A deterministic citation-rejoin pass owns this — ignore it.
+- **Markup contamination (do NOT propose):** leftover math-mode $...$, backslash-P
+  pilcrow, ### headings, <sup> tags, stray backslashes — a separate pass owns it; flag at most.
+- **Spelling is HIGH-RISK:** a misspelled-looking word may be the court's OWN typo. Propose
+  only if the correct spelling is visible in the source; confidence medium; state you have
+  NOT image-verified. Spelling fixes are image-verified (rendered glyphs) before apply.
 - `paragraph_seq` — a `[¶N]` marker out of sequence/duplicated/missing where the
   correct number is UNAMBIGUOUS from the surrounding markers; else flag.
   CAUTION: a restart/repeat of low numbers mid-opinion (…¶11, then ¶1-9, then ¶12)
