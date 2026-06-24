@@ -1,0 +1,79 @@
+{
+ "_doc": "OCR/cleanup bucket dispositions, 2026-06-24",
+ "applied_batches": [
+  "ocr-cleanup-2026-06-24 (12 fixes/11 opinions)"
+ ],
+ "rejected": [
+  {
+   "id": 19866,
+   "cite": "2024 ND 122",
+   "why": "agent delete of legit \u00b68 factual sentence (appears 1x DB & PDF); empty new_exact false-passed verifier"
+  },
+  {
+   "id": 20028,
+   "cite": "2024 ND 56",
+   "why": "agent +' 1' after Bahr signature; PDF shows no '1' (page-number artifact)"
+  }
+ ],
+ "deferred": [
+  {
+   "id": 18082,
+   "cite": "2022 ND 183",
+   "item": "V.->v.",
+   "bucket": "landmine/image-verify",
+   "why": "PDF has ' V.' 2x, possible middle initials"
+  },
+  {
+   "id": 19765,
+   "cite": "2023 ND 179",
+   "item": "confidential attorney-client fragment",
+   "bucket": "scramble",
+   "why": "dangling fragment, not clean delete; join 19830/19658"
+  },
+  {
+   "id": 19777,
+   "cite": "2023 ND 190",
+   "item": "(3)\u00b9 footnote call",
+   "bucket": "footnote-pipeline",
+   "why": "real fn call; agent's ->1 changes meaning"
+  },
+  {
+   "id": 19777,
+   "cite": "2023 ND 190",
+   "item": "mashed signature block",
+   "bucket": "signature-reformat",
+   "why": "sigs on one line; convention question (1 vs 6 space)"
+  },
+  {
+   "id": 20028,
+   "cite": "2024 ND 56",
+   "item": "mashed signature block",
+   "bucket": "signature-reformat",
+   "why": "same class as 19777"
+  },
+  {
+   "id": 19804,
+   "cite": "State v. Bearce",
+   "item": "remove 967 N.W.2d 765 parallel x3",
+   "bucket": "westdoc-citation",
+   "why": "West .doc source; verify what court printed"
+  },
+  {
+   "id": 20044,
+   "cite": "In re H.J.J.N.",
+   "item": "remove *776 star-page",
+   "bucket": "westdoc-starpage",
+   "why": "star-pages used for pincites elsewhere; need policy"
+  }
+ ],
+ "scramble_bucket_ids": [
+  19830,
+  19658,
+  19765
+ ],
+ "heading_defer_ambiguous": [
+  19709,
+  20271,
+  19920
+ ]
+}
