@@ -2,6 +2,33 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `west-synopsis-strip-2026-06-24` — strip residual West Synopsis blocks (138 opinions)
+
+Acting on the corpus-wide synopsis-leakage scan (`triage/SYNOPSIS-LEAKAGE-SCAN.md`): 720
+opinions carried a residual West `Synopsis` block (West editorial — case summary, procedural
+posture, disposition restatement, or separate-opinion list) the earlier
+`strip-westlaw-synopsis-2026-05-13` batch missed. Stripped the **conservatively safe subset**
+only — 116 post-1953 + 22 pre-1953 = **138 opinions** — via `scripts/strip_west_synopsis.py`.
+
+Strip fired ONLY when the Synopsis block was immediately bounded by `Attorneys and Law
+Firms` (the West header position), ≤400 chars, with **hard gates**: contains no
+`Syllabus by the Court` (incl. OCR variants — see below), no opinion-body marker; and the
+court Syllabus + body paragraph fingerprint must be byte-identical before/after. Examples
+removed: `Synopsis\nReversed, and a new trial ordered.`, `Synopsis\nMeschke, J., filed a
+concurring opinion.`, `Synopsis\nSee, also, 26 N. D. 77, 143 N. W. 764...`. Counsel, byline,
+syllabus, and body untouched. Detector 175/0, invariants 24/0, 66 tests pass.
+
+**Landmine caught:** id 12215's block was `Synopsis\nOrder affirmed.\n\nSullabus by the Court.\n
+An action under the declaratory judgment...` — the court's syllabus **OCR-misspelled as
+"Sullabus"**, so the literal `Syllabus by the Court` gate missed it. Hardened the gate to
+`(?i)s[uy]ll?ab[uo]s` + `by the Court`; id 12215 correctly skipped (syllabus preserved).
+
+**Not stripped (582, deferred to individual handling):** blocks >400 chars / no clean
+`Attorneys` boundary (the Synopsis content has no clean end before the body — e.g. id 559's
+18k-char span), Synopsis-before-Syllabus (Syllabus-bounded, 293), and 43 where the
+body/syllabus fingerprint would change. These need per-opinion boundary work; the safe
+automated subset is done. Worklist: `triage/synopsis-leakage-worklist.json`.
+
 ## Batch `west-furniture-strip-2026-06-24` (part 1) — star-pages + header labels (44 opinions)
 
 First step of the West-furniture-strip pass over the 45 modern (≥1997) West-`.doc`-sourced
