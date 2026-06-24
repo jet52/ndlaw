@@ -25,6 +25,18 @@ def strip_furniture(s):
     head = re.sub(r'^\s*Attorneys and Law Firms\n', '', head)
     head = re.sub(r'\nOpinion\n', '\n', head)
     s = head + body
+    # West Synopsis / reporter-caption block sitting BEFORE the counsel block:
+    # remove everything up to and including the "Attorneys and Law Firms" label,
+    # but ONLY when that prefix is unmistakably West editorial (a Synopsis block or a
+    # West reporter caption) and contains no opinion-body paragraph marker. This never
+    # fires on court text such as a leading "Appeal from ..." jurisdiction line.
+    m = re.search(r'Attorneys and Law Firms\n', s)
+    if m:
+        prefix = s[:m.start()]
+        west_prefix = re.match(r'\s*(Synopsis\b|\d+\s+N\.W\.|West\b)', prefix) or \
+                      'Supreme Court of North Dakota.' in prefix
+        if west_prefix and not re.search(r'\[¶\s*\d+\]', prefix):
+            s = s[m.end():]
     # star-pages: line/paragraph-start (consume trailing space), inline, residual
     s = re.sub(r'(\n+)\*\d+ ?', r'\1', s)   # at start of a line (any run of newlines)
     s = re.sub(r'^\*\d+ ?', '', s)          # at very start of the text

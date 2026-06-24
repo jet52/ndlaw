@@ -20,8 +20,25 @@ footnote-call count unchanged, no star-page may remain, no new double-/leading-s
 Counsel names and the justice byline are court text and were kept. Detector 175/0
 (no regression), invariants 24/0, 66 tests pass. Tool: `scripts/strip_west_furniture.py`.
 
-(Part 2 — Synopsis blocks + mid-header labels on 31 opinions with complex West headers —
-follows.)
+### Part 2 (batch `west-furniture-strip-pt2-2026-06-24`) — Synopsis blocks + mid-header labels (30 opinions)
+
+The 31 opinions with complex West headers carried a West **Synopsis** block (18 with the
+full `Background:`/`Holdings:` summary the earlier strip batch missed; the rest a residual
+`Synopsis` label) and/or West subsequent-history notes (`Opinion, 14 N.W.3d 45,
+superseded.`) and a West reporter caption (id 19532: `950 N.W.2d 761 (Mem) / Supreme Court
+of North Dakota. / STATE of...`), all sitting before the counsel block. Removed everything
+from the start of `text_content` up to and including the `Attorneys and Law Firms` label —
+**only** when that prefix is unmistakably West editorial (begins with `Synopsis`, a reporter
+cite, or contains `Supreme Court of North Dakota.`) **and** contains no opinion-body
+paragraph marker. 30 opinions stripped (34–1,951 chars each); counsel + byline + body kept.
+
+**Excluded: id 20044 (2024 ND 70, H.J.J.N.)** — its pre-label prefix is the court's own
+`Appeal from the Juvenile Court...` jurisdiction line, not synopsis; the guard correctly
+left it untouched. It belongs to the deferred H.J.J.N. provenance fix.
+
+After both parts: across the 45, **0 star-pages, 0 Synopsis blocks, 0 `Background:`/
+`Holdings:`** remain; the only residual `Attorneys and Law Firms` label is on the deferred
+id 20044. Detector 175/0 (no regression), invariants 24/0, 66 tests pass.
 
 ## Batch `westdoc-cleanup-2026-06-24` — strip West-added parallel citations (2023 ND 231)
 
