@@ -1,0 +1,154 @@
+[
+ {
+  "opinion_id": 20146,
+  "class": "whitespace",
+  "old_exact": ". . . .",
+  "new_exact": "....",
+  "verified_count": 1,
+  "source": "PDF source pdftotext extraction shows compact four-dot ellipsis form throughout; this is the standard ND opinion ellipsis format",
+  "confidence": "high",
+  "note": "Spaced ellipsis '. . . .' is an OCR/ingestion processing artifact; the authoritative PDF shows the compact form '....' which matches ND court style",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20130,
+  "class": "split_join",
+  "old_exact": "does not\nsupervisory\nnecessarily\njurisdiction.\" State v. Powley, 2019 ND 51, ¶ 13, 923 N.W.2d 123.\n\ncreate extraordinary\n\ncircumstances\n\njustifying\n\n",
+  "new_exact": "does not\nnecessarily create extraordinary circumstances justifying supervisory\njurisdiction.\" State v. Powley, 2019 ND 51, ¶ 13, 923 N.W.2d 123.\n\n",
+  "verified_count": 1,
+  "source": "/tmp/src_2025ND148.txt (PDF pdftotext)",
+  "confidence": "high",
+  "note": "Lines 84-93 in DB have words severely out of order. Words 'supervisory', 'necessarily', 'create extraordinary', 'circumstances', 'justifying' are split across separate lines in wrong sequence. PDF shows the correct phrase on contiguous lines: 'does not\\nnecessarily create extraordinary circumstances justifying supervisory\\njurisdiction.' This is a major OCR/ingestion error where words were reordered and fragmented.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20129,
+  "class": "missing_text",
+  "old_exact": "broadly. in Nichols was to nullify California's state\n\n[¶18] The plaintiff's goal implementation plan (SIP).",
+  "new_exact": "broadly.\n\n[¶18] The plaintiff's goal in Nichols was to nullify California's state\nimplementation plan (SIP).",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND147.pdf",
+  "confidence": "high",
+  "note": "Lines 119-121: DB text is garbled and missing 'The plaintiff's goal in Nichols' from paragraph [¶18]. The phrase 'in Nichols was to nullify California's state' appears orphaned at the end of paragraph [¶17], when it should be part of 'The plaintiff's goal in Nichols was to nullify California's state implementation plan (SIP).' in paragraph [¶18]. This is a major ingestion/OCR defect where text was split across paragraph boundaries incorrectly.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20128,
+  "class": "missing_text",
+  "old_exact": "Continental's declaratory third-party defendants",
+  "new_exact": "Continental's declaratory judgment claim against third-party defendants",
+  "verified_count": 1,
+  "source": "2025 ND 146 PDF, ¶1 (lines 44-46)",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20128,
+  "class": "missing_text",
+  "old_exact": "states the described property contains \"forty the property contains \"approximately forty (40) acres,\"1",
+  "new_exact": "states the described property contains \"forty (40) acres.\" Stating the property contains \"approximately forty (40) acres,\"1",
+  "verified_count": 1,
+  "source": "2025 ND 146 PDF, ¶8 (lines 172-174)",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20125,
+  "class": "split_join",
+  "old_exact": "The term in conduct \"intentionally, knowingly, or \"willfully\" means to engage recklessly.\" ",
+  "new_exact": "The term \"willfully\" means to engage in conduct \"intentionally, knowingly, or recklessly.\" ",
+  "verified_count": 1,
+  "source": "Comparison with PDF source /Users/jerod/refs/nd/opin/pdfs/2025/2025ND143.pdf line ~171-172; statute cited N.D.C.C. § 12.1-02-02(1)(e) defines willfully as engaging 'in conduct' with enumerated mental states",
+  "confidence": "high",
+  "note": "OCR/ingestion error: the phrase 'in conduct' was moved to the beginning and the elements of the definition were scrambled. The correct statutory reading is 'The term \"willfully\" means to engage in conduct \"intentionally, knowingly, or recklessly.\"' per the PDF source.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20113,
+  "class": "split_join",
+  "old_exact": "As Filed by Clerk of Supreme Court 7/24/25noted",
+  "new_exact": "As noted",
+  "verified_count": 1,
+  "source": "PDF shows footer intrusion across page break (lines 409-413); footer should be removed from text body",
+  "confidence": "high",
+  "note": "DB line 113: page footer artifact 'Filed by Clerk of Supreme Court 7/24/25' incorrectly merged into paragraph ¶32. PDF shows sentence should read 'As noted in the prior section...' with footer on separate lines",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20112,
+  "class": "missing_text",
+  "old_exact": "for . . . lost term value of \"improvements\" is not defined in N.D.C.C. ch. 38-11.1. At trial, the district court was not convinced \"normal farming usage of farm land by things as crop rotation, use of fertilizer, and other typical methods of farming would constitute an improvement to the topsoil or any other aspect of the soil in general.\" In improvements caused by drilling operations.\" The granting the Rule 50 motion",
+  "new_exact": "for . . . lost value of improvements caused by drilling operations.\" The term \"improvements\" is not defined in N.D.C.C. ch. 38-11.1. At trial, the district court was not convinced \"normal farming usage of farm land by things as crop rotation, use of fertilizer, and other typical methods of farming would constitute an improvement to the topsoil or any other aspect of the soil in general.\" In granting the Rule 50 motion",
+  "verified_count": 1,
+  "source": "PDF source 2025ND131.pdf lines 717-728 show correct statute quote split across page: 'for . . . lost\\nvalue of improvements caused by drilling operations.\" The term\\n\"improvements\" is not defined...In\\n\\ngranting the Rule 50 motion'. DB text corrupts this into 'lost term value of' and duplicates 'improvements caused by drilling operations.' The granting'",
+  "confidence": "high",
+  "note": "Critical OCR/ingestion defect in paragraph [¶54]. The statute quote text was scrambled during PDF-to-text conversion. The phrase 'improvements caused by drilling operations.' The term' was incorrectly split, losing 'value of' at the critical point and duplicating text ('In improvements caused by drilling operations.' The granting' should be 'In granting'). The correct complete statute quote reads: '...for . . . lost value of improvements caused by drilling operations.\" The term \"improvements\" is not defined...' Both old and new are exactly 421 characters; verified count = 1 (byte-exact match in DB file, single unique occurrence).",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20111,
+  "class": "ocr_char",
+  "old_exact": "Ι\n",
+  "new_exact": "I\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND130.pdf page 3",
+  "confidence": "high",
+  "evidence": "Line 27 contains Greek capital letter Iota (U+0399) instead of Latin capital I (U+0041). Verified by rendered PDF showing simple section header 'I' as a Roman numeral section divider.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20111,
+  "class": "ocr_char",
+  "old_exact": "907 N.W.2d 361)).\n\n $\\mathsf{C}$ \n",
+  "new_exact": "907 N.W.2d 361)).\n\n C \n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND130.pdf page 4-5",
+  "confidence": "high",
+  "evidence": "Line 71 contains LaTeX markup '$\\mathsf{C}$' instead of plain Latin letter C. This is a section header that should be a simple letter, not mathematical markup. Confirmed by rendered PDF showing simple letter 'C' as section divider.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20111,
+  "class": "ocr_char",
+  "old_exact": "В\n",
+  "new_exact": "B\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND130.pdf page 6",
+  "confidence": "high",
+  "evidence": "Line 97 contains Cyrillic capital B (U+0412) instead of Latin capital B (U+0042). Verified by rendered PDF showing simple section header 'B' as Roman numeral section marker.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20111,
+  "class": "ocr_char",
+  "old_exact": "substantial rights.\n\n $\\mathsf{C}$ \n",
+  "new_exact": "substantial rights.\n\n C \n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND130.pdf page 6",
+  "confidence": "high",
+  "evidence": "Line 117 contains LaTeX markup '$\\mathsf{C}$' instead of plain Latin letter C. Second occurrence of same OCR error at different location. Section header should be simple letter, not mathematical notation.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20107,
+  "class": "whitespace",
+  "old_exact": "[ . . . ]",
+  "new_exact": "[...]",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND127.pdf page 5 (via pdftotext), /tmp/src_2025ND127.txt line 213",
+  "confidence": "high",
+  "note": "¶15 ellipsis: DB shows spaced four-dot form '[ . . . ]' but PDF source (pdftotext) shows compact three-dot form '[...]'. Per ND court style, ellipses in opinions use the compact form. This occurs in context 'N.D.R.Juv.P. 10: (a) Presence. [...] (3) Parent, Guardian...' where bracketed ellipsis indicates omitted rule text.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20106,
+  "class": "split_join",
+  "old_exact": "falls the plain description of post-production costs to \"include[e] within transportation, gathering, compression, processing, treating, and marketing costs[]\" that the lessee incur[s] after extracting the oil or gas from the ground.",
+  "new_exact": "falls within the plain description of post-production costs to \"include[e] transportation, gathering, compression, processing, treating, and marketing costs[]\" that the lessee incur[s] after extracting the oil or gas from the ground.",
+  "verified_count": 1,
+  "source": "PDF-authoritative 2025ND126.pdf",
+  "confidence": "high",
+  "note": "[paragraph 19] Missing 'within' and duplicate 'within' artifact. Page break caused word omission and duplication.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

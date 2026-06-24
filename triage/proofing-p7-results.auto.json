@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 20089,
+  "class": "whitespace",
+  "old_exact": " and\n",
+  "new_exact": "and\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND110.pdf",
+  "confidence": "high",
+  "evidence": "PDF caption shows 'and' as a separate indented line in the case caption between Kelsie Ann Kvislen and Felix A. Jackson, III. The leading space is an OCR/ingestion artifact from the layout-preserved text extraction. The substance is 'and' (conjunction joining the two respondent names), not ' and' with leading space. PDF visual confirmation shows proper spacing between party names.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

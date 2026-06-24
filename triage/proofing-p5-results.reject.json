@@ -1,0 +1,118 @@
+[
+ {
+  "opinion_id": 20185,
+  "class": "split_join",
+  "old_exact": "[¶2] Staiger and Johnson were never married but have one child together, D.S. (born 2020). The original judgment awarded primary residential responsibility to Johnson subject to Staiger's parenting time every other weekend and one evening during the week opposite of his weekend. In April 2022, Johnson filed a motion to modify the parties' parenting plan.\n\n[¶3] Johnson requested the district court restrict Staiger's parenting time with a graduated plan for increased visitation.",
+  "new_exact": "[¶2] Staiger and Johnson were never married but have one child together, D.S. (born 2020). The original judgment awarded primary residential responsibility to Johnson subject to Staiger's parenting time every other weekend and one evening during the week opposite of his weekend.\n\n[¶3] In April 2022, Johnson filed a motion to modify the parties' parenting plan. Johnson requested the district court restrict Staiger's parenting time with a graduated plan for increased visitation.",
+  "verified_count": 1,
+  "source": "PDF source (authoritative court document)",
+  "confidence": "high",
+  "evidence": "PDF shows ¶2 ending at 'opposite of his weekend.' and ¶3 beginning 'In April 2022, Johnson filed a motion...'. DB incorrectly has this sentence as the end of ¶2 and ¶3 beginning with 'Johnson requested the district court...'. This is a paragraph boundary error.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20185,
+  "class": "whitespace",
+  "old_exact": "ii) . . . . iii)",
+  "new_exact": "ii) .... iii)",
+  "verified_count": 2,
+  "source": "PDF source (pdftotext extraction shows '....' compact form, not spaced)",
+  "confidence": "high",
+  "evidence": "The authoritative PDF text layer contains four dots with no spaces (....); the spaced form ('. . . .') is an OCR/ingestion artifact. This occurs twice in the document: in ¶9 and ¶34, with identical context. Per ND opinion style, ellipses use the compact four-dot form.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20181,
+  "class": "split_join",
+  "old_exact": "[¶37] The following exchange occurred during Gores' testimony: Did either of the police officers ever tell you that you were Q under arrest? A Q A No. Did they ever say you were being detained? No. . . . . Did the police officers ever say you were under arrest? No. Q A",
+  "new_exact": "[¶37] The following exchange occurred during Gores' testimony:\n\nQ: Did either of the police officers ever tell you that you were under arrest?\nA: No.\nQ: Did they ever say you were being detained?\nA: No.\n. . . . .\nQ: Did the police officers ever say you were under arrest?\nA: No.",
+  "source": "2025ND194.pdf extracted via pdftotext",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "The DB text shows Q&A dialogue labels (Q, A) jumbled inline with the testimony text: 'you were Q under arrest? A Q A No.' The PDF source shows proper Q&A formatting with each label on its own line followed by the corresponding text. This is a split_join error where line breaks were lost during OCR/ingestion, causing Q&A labels to fuse with adjacent text.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20174,
+  "class": "split_join",
+  "old_exact": "| Ne                       | os. 20250174 & 20250175 |",
+  "new_exact": "| Nos.                     | 20250174 & 20250175 |",
+  "verified_count": 1,
+  "source": "PDF OCR vs DB text",
+  "confidence": "high",
+  "evidence": "Hyphenation artifact: 'Nos.' was split across column boundary in OCR ingestion, appearing as 'Ne' (left column) and 'os.' (right column). PDF OCR shows proper caption format with 'Nos. 20250174 & 20250175'.",
+  "note": "Line 11 in caption/case header table. Restores proper abbreviation.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20174,
+  "class": "ocr_digit",
+  "old_exact": "[97]",
+  "new_exact": "[¶7]",
+  "verified_count": 1,
+  "source": "PDF OCR vs DB text",
+  "confidence": "high",
+  "evidence": "Paragraph marker error. The pilcrow character (¶ U+00B6) was misread as the digit '9'. Paragraph numbering sequence in DB is 1,2,3,4,5,6,8,9... confirming ¶7 exists but was corrupted. Line 45 shows the error. PDF OCR incorrectly renders this context but structural analysis confirms [¶7] is required.",
+  "note": "Converts corrupted marker [97] to correct paragraph marker [¶7]. This precedes discussion of two-step revocation analysis.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20174,
+  "class": "ocr_char",
+  "old_exact": "Ι\n\n",
+  "new_exact": "I\n\n",
+  "verified_count": 1,
+  "source": "PDF OCR vs DB text",
+  "confidence": "high",
+  "evidence": "Section header error. The DB contains Greek Iota (Ι U+0399, UTF-8: ce99) which should be Latin capital I (I U+0049, UTF-8: 49). This appears at line 29 as a section divider. Byte analysis confirms one occurrence. Section sequence should be I, II, III, IV.",
+  "note": "Appears after opening fact pattern before case history begins. Restores proper Roman numeral section header.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20174,
+  "class": "ocr_char",
+  "old_exact": "Ш\n\n",
+  "new_exact": "III\n\n",
+  "verified_count": 1,
+  "source": "PDF OCR vs DB text",
+  "confidence": "high",
+  "evidence": "Section header error. The DB contains Cyrillic Sha (Ш U+0428, UTF-8: d0a8) which should be Roman numeral III (I+I+I). This appears at line 70 as section divider. Byte analysis confirms one occurrence. OCR rendering showed 'Il' (two capital I's) which OCR engine misread as Cyrillic. Proper section sequence: I, II, III, IV.",
+  "note": "Precedes ¶11 discussing legality of sentences. Restores proper Roman numeral III section header.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20171,
+  "class": "split_join",
+  "old_exact": "¶¶ 10- 11",
+  "new_exact": "¶¶ 10-11",
+  "verified_count": 1,
+  "source": "PDF source shows 'Id. ¶¶ 10-\\n11' at line 83 of opinion; pdftotext split the hyphenated range across lines, and DB incorrectly inserted a space before the second number instead of joining with hyphen only",
+  "confidence": "high",
+  "evidence": "PDF text contains the citation split across lines: '10-' on one line followed by '11' on the next. Standard legal citation format for paragraph ranges uses hyphen without space: ¶¶ 10-11. The DB text shows '¶¶ 10- 11' with an erroneous space before the second number.",
+  "note": "This is a split_join error where a line-break-split citation was incorrectly reassembled with a space character instead of being properly joined with just the hyphen.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20156,
+  "class": "split_join",
+  "old_exact": "received termed \"behavior five write-ups which Dr. Byrne acknowledgments\"",
+  "new_exact": "received five write-ups which Dr. Byrne termed \"behavior acknowledgments\"",
+  "verified_count": 1,
+  "source": "PDF source pdftotext output from /Users/jerod/refs/nd/opin/pdfs/2025/2025ND171.pdf",
+  "confidence": "high",
+  "evidence": "PDF line 166 shows correct word order: 'Skorick received five write-ups which Dr. Byrne termed \"behavior acknowledgments\"'. DB has words scrambled in syntactically nonsensical way.",
+  "note": "Word-order error: 'five' and 'termed' swapped, 'acknowledgments' displaced. Curly quotes (U+201C/U+201D) preserved.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20147,
+  "class": "whitespace",
+  "old_exact": "unrebutted in this case. . . . . And, again, the experts said that's not just a general stress to testify",
+  "new_exact": "unrebutted in this case. .... And, again, the experts said that's not just a general stress to testify",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND163.pdf page 3, court's oral statement shows compact four-dot ellipsis (....) where DB has spaced version",
+  "confidence": "medium",
+  "note": "The DB has . . . . . (six spaced periods total) but the PDF shows .... (compact four-dot form). This is within the trial court's oral explanation quoted in paragraph 13.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

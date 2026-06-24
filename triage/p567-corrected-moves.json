@@ -1,0 +1,32 @@
+[
+ {
+  "opinion_id": 20118,
+  "class": "paragraph_seq",
+  "old_exact": "evaluation.\n\n[¶36] We affirm the district court’s judgment.\n\nIV\n\n[¶37] Jon J.",
+  "new_exact": "evaluation.\n\nIV\n\n[¶36] We affirm the district court’s judgment.\n\n[¶37] Jon J.",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "PDF: section IV precedes [¶36] (...evaluation.\n\nIV\n\n[¶36] We affirm...); DB displaced IV to after ¶36. MOVE not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20095,
+  "class": "paragraph_seq",
+  "old_exact": "I\n\nIn Roth v. Meyer, 2024 ND 113, 9 N.W.3d 469, we affirmed in part, reversed\n\n[¶2] in part, and remanded for further proceedings.",
+  "new_exact": "I\n\n[¶2] In Roth v. Meyer, 2024 ND 113, 9 N.W.3d 469, we affirmed in part, reversed in part, and remanded for further proceedings.",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "PDF: ¶2 = \"In Roth v. Meyer... affirmed in part, reversed in part, and remanded\"; DB split it with [¶2] marker misplaced mid-sentence. Move marker + join (absorbs orphan, no dup).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20191,
+  "class": "paragraph_seq",
+  "old_exact": "Per Curiam.\n\nfrom an order denying his request\n\n[¶1] Omar Kalmio appeals for postconviction relief.",
+  "new_exact": "Per Curiam.\n\n[¶1] Omar Kalmio appeals from an order denying his request for postconviction relief.",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "PDF: ¶1 = \"Omar Kalmio appeals from an order denying his request for postconviction relief\"; DB had orphan fragment before [¶1]. Absorb + remove orphan (no dup).",
+  "confidence": "high"
+ }
+]

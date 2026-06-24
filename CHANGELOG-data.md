@@ -2,6 +2,33 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `corpus-proofing-2026-06-24` / `proofing-review-approved-2026-06-24` — proofing fleet P5-P7 (51 opinions)
+
+Batches P5-P7 (117 opinions, 2025 ND 203 -> 82), run in parallel on the v2 prompt
+(0 form-feed proposals; agents now correctly cite ND's compact ellipsis style).
+Combined gate: 3 AUTO / 73 REVIEW / 44 REJECT.
+
+- **AUTO (3):** paragraph spacing, narrow-no-break-space -> space, trailing space.
+- **REVIEW (68 applied, user-approved after word-delta + PDF triage):** 25 word-order
+  scrambles (e.g. 2025 ND 199 "erred in concluding Chapter 12.1-19.1 is
+  unconstitutionally vague"; 2025 ND 171/168/164), 13 paragraph_seq, 7 caption
+  reorderings, 13 whitespace (compact ellipses + spacing), 5 missing-text, 5
+  ocr_char (incl. 2025 ND 134 `$\P$` LaTeX -> `¶`).
+- **3 agent-error corrections (delete -> move):** 2025 ND 137 (section IV moved
+  before ¶36), 2025 ND 116 (¶2 marker moved + orphan joined, no dup), 2025 ND 202
+  (¶1 orphan absorbed + removed, no dup). Verified vs PDF.
+- **5 deferred to manual** (`triage/p567-flagged-manual.json`): 2025 ND 134 four
+  garbled `<sup>` footnote-call tags (footnote/markup pipeline, not this lane);
+  2025 ND 92 "interpretation, pure questions of" mid-sentence displacement
+  (complex reconstruction).
+
+Triage method (reusable): the verify gate's "NEW in PDF" is necessary but not
+sufficient; per item also check the word-multiset delta — pure reorder/respace
+(delta 0) + PDF-confirmed = safe batch; word-count change = verify individually;
+an agent "delete" of displaced structure usually needs a MOVE instead.
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `corpus-proofing-2026-06-24` / `proofing-review-approved-2026-06-24` — proofing fleet P4 (18 opinions)
 
 Fourth proofing batch (40 opinions, 2026 ND 6 -> 2025 ND 204; first to cross into
