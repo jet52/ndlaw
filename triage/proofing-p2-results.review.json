@@ -1,0 +1,192 @@
+[
+ {
+  "opinion_id": 20399,
+  "class": "split_join",
+  "old_exact": "I N   T H E   S U P R E M E   C O U R T",
+  "new_exact": "IN THE SUPREME COURT",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND78.pdf",
+  "confidence": "high",
+  "evidence": "PDF source contains normal word spacing 'IN THE SUPREME COURT'. DB has characters separated by spaces: 'I N   T H E   S U P R E M E   C O U R T'. This is an OCR artifact from pdftotext -layout where character-level spacing was preserved instead of word-level spacing.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20399,
+  "class": "paragraph_seq",
+  "old_exact": "[¶2] Lisa Fair McEvers, C.J. Jerod E. Tufte Jon J. Jensen Douglas A. Bahr Mark A. Friese",
+  "new_exact": "[¶2] Lisa Fair McEvers, C.J.\n     Jerod E. Tufte\n     Jon J. Jensen\n     Douglas A. Bahr\n     Mark A. Friese",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND78.pdf",
+  "confidence": "high",
+  "evidence": "PDF source shows justice names on separate lines with 5-space indentation after the first line. DB has all justice names on a single line with only spaces between them. The newlines and indentation were stripped during ingestion.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20392,
+  "class": "paragraph_seq",
+  "old_exact": "[¶5] Lisa Fair McEvers, C.J. Jerod E. Tufte Jon J. Jensen Douglas A. Bahr Mark A. Friese",
+  "new_exact": "[¶5] Lisa Fair McEvers, C.J.\n     Jerod E. Tufte\n     Jon J. Jensen\n     Douglas A. Bahr\n     Mark A. Friese",
+  "verified_count": 1,
+  "source": "pdftotext shows each justice name on separate indented line (5 lines total, each starting with spaces for indentation)",
+  "confidence": "high",
+  "note": "DB collapsed multi-line signature block into single line; source has each justice on separate line with indentation",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20380,
+  "class": "other",
+  "old_exact": "children as protected parties under the DVPO. B",
+  "new_exact": "children as protected parties under the DVPO.",
+  "verified_count": 1,
+  "source": "PDF vs DB comparison: PDF shows no 'B' at this location; section B appears on its own line",
+  "confidence": "high",
+  "note": "Stray section label 'B' appended to end of [¶12]; the section heading should appear separately, not attached to paragraph text",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20378,
+  "class": "split_join",
+  "old_exact": "member who is the victim of domestic violence. If the child, residential the welfare of necessary responsibility for a child may be awarded",
+  "new_exact": "member who is the victim of domestic violence. If necessary to protect the welfare of the child, residential responsibility for a child may be awarded",
+  "verified_count": 1,
+  "source": "PDF N.D.C.C. § 14-09-06.2(1)(j) quotation (lines 169-171 in PDF)",
+  "confidence": "high",
+  "evidence": "Text in ¶11 shows scrambled statute quotation with words reordered. PDF shows correct statutory language: 'If necessary to protect the welfare of the child, residential responsibility'. Occurs exactly once in statute quotation.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20378,
+  "class": "other",
+  "old_exact": "chapter 14-07.1. to protect N.D.C.C. § 14-09-06.2(1)(j).",
+  "new_exact": "chapter 14-07.1.\n\nN.D.C.C. § 14-09-06.2(1)(j).",
+  "verified_count": 1,
+  "source": "PDF lines 180-183 showing proper paragraph break and formatting",
+  "confidence": "high",
+  "evidence": "Extraneous text 'to protect' inserted between end of statute text and citation. PDF shows proper separation with blank line between statute end and citation. This is same statute passage as previous issue - continuation of ¶11 scramble.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20375,
+  "class": "split_join",
+  "old_exact": "a marital share of immediately received Richard’s military retirement. Richard $50,500.00",
+  "new_exact": "a marital share of Richard’s military retirement. Richard immediately received $50,500.00",
+  "verified_count": 1,
+  "source": "PDF ¶20 block quote, lines 268-271 of pdftotext output",
+  "confidence": "high",
+  "evidence": "DB ¶20 contains a garbled quotation from the district court's findings. The phrase reads 'a marital share of immediately received Richard's military retirement. Richard $50,500.00' where 'immediately received' is wrongly inserted between 'of' and 'Richard's'. PDF block quote shows the correct text: 'on a belief Roxane would eventually receive a marital share of\\n      Richard’s military retirement. Richard immediately received\\n      $50,500.00' where 'immediately received' properly follows 'Richard '. This is a significant transcription error that garbles the meaning of the district court's quoted findings.",
+  "note": "split_join class: words wrongly split and repositioned during OCR. The phrase should read 'Richard immediately received $50,500.00' (Richard received the money immediately) not 'of immediately received Richard's military retirement' (nonsensical). Uses curly right quotation mark (U+2019) consistent with DB text.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20370,
+  "class": "ocr_char",
+  "old_exact": "ND 221, ¶ 13, 932 N.W.2d 386). B",
+  "new_exact": "ND 221, ¶ 13, 932 N.W.2d 386).",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/markdown/2026/2026ND61.md",
+  "confidence": "high",
+  "note": "Stray 'B' at end of ¶9 should not be there—likely OCR or extraction error. This 'B' is a section marker that should appear as a standalone heading, not inline.",
+  "evidence": "PDF does not have this character inline; 'B' appears as its own section marker on a separate line after ¶10.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20366,
+  "class": "caption",
+  "old_exact": "Larry Alber,\n\nv.\n\nPlaintiff and Appellant",
+  "new_exact": "Larry Alber,\n\nPlaintiff and Appellant\n\nv.",
+  "verified_count": 1,
+  "source": "PDF plain text extraction (pdftotext without -layout flag) shows correct caption structure with party designation before 'v.' marker",
+  "confidence": "high",
+  "note": "Caption formatting error: party designation separated from party name by 'v.' divider. Standard legal caption format places designations with party names, with 'v.' separating the parties.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20363,
+  "class": "caption",
+  "old_exact": "Mark Allen Rath,\n\nand\n\nDefendant and Appellant\n\nState of North Dakota,",
+  "new_exact": "Mark Allen Rath,\n\nDefendant and Appellant\n\nand\n\nState of North Dakota,",
+  "verified_count": 1,
+  "source": "PDF visual inspection of page 1 (lines 8-10) shows 'Mark Allen Rath,' paired with 'Defendant and Appellant' on the same visual line, followed by 'and' and then 'State of North Dakota,' - the DB has these elements in the wrong order",
+  "confidence": "high",
+  "note": "This is a caption structure defect: the party designation 'Defendant and Appellant' belongs with 'Mark Allen Rath,' (as the second party), not between the connector 'and' and the third party 'State of North Dakota,'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20362,
+  "class": "caption",
+  "old_exact": "IN THE SUPREME COURT\nSTATE OF NORTH DAKOTA\n\n2026 ND 54\n\nNeil Galpin,\nv.\n\nCantina Holdings, LLC,\nand Clay Butte Holdings, LLC,\n\nPlaintiff and Appellee\n\nDefendants and Appellants\n\nNo. 20250254\n\n",
+  "new_exact": "IN THE SUPREME COURT\nSTATE OF NORTH DAKOTA\n\n2026 ND 54\n\nNeil Galpin,                                             Plaintiff and Appellee\n      v.\nCantina Holdings, LLC,\nand Clay Butte Holdings, LLC,                      Defendants and Appellants\n\n\n                                 No. 20250254\n\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND54.pdf (pdftotext)",
+  "confidence": "high",
+  "evidence": "PDF source shows party names and designations on same lines (names left-aligned, designations right-aligned on same line). DB incorrectly separates them to different lines. Also includes 6-space indent before 'v.' and 33-space indent before 'No. 20250254' to match PDF layout. Opinion body text verified to match perfectly.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20361,
+  "class": "split_join",
+  "old_exact": "made several specific the circumstances findings demonstrating surrounding the present parenting time schedule",
+  "new_exact": "made several specific findings demonstrating that the circumstances surrounding the present parenting time schedule",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2026/2026ND53.pdf page 4; rendered via mutool at 300dpi",
+  "confidence": "high",
+  "evidence": "OCR/ingestion error in paragraph [¶7] within the Prchal v. Prchal quotation. The quoted text has words scrambled: 'specific the circumstances findings demonstrating surrounding' should be 'specific findings demonstrating that the circumstances surrounding'. This is a clear transposition/word-order error, not a typographical mistake by the court. The PDF rendering confirms the correct order is: 'made several specific findings demonstrating that the circumstances surrounding the present parenting time schedule should be modified'.",
+  "note": "This error appears in line 55 of the database text, embedded in the quotation from Prchal v. Prchal, 2011 ND 62, ¶ 23. The byte-exact string occurs exactly once in the database.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20355,
+  "class": "caption",
+  "old_exact": "State of North Dakota,\n\nv.\n\nDelon Evan Davis,\n\nPlaintiff and Appellee\n\nDefendant and Appellant",
+  "new_exact": "State of North Dakota,\n\nPlaintiff and Appellee\n\nv.\n\nDelon Evan Davis,\n\nDefendant and Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND48.pdf (page 1, rendered at 300dpi confirms standard caption format)",
+  "confidence": "high",
+  "note": "The case caption in the DB text has the party labels (Plaintiff and Appellee / Defendant and Appellant) placed after both parties instead of aligned to each respective party. The authoritative PDF shows the correct format: 'State of North Dakota, [Plaintiff and Appellee]' on the first line, 'v.' centered, and 'Delon Evan Davis, [Defendant and Appellant]' on the third line. This is the standard legal caption format.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20354,
+  "class": "split_join",
+  "old_exact": ". I[¶2]",
+  "new_exact": ".\n\n                                        I\n\n[¶2]",
+  "verified_count": 1,
+  "source": "/tmp/src_2026ND47.txt",
+  "confidence": "high",
+  "note": "Section heading 'I' is fused with paragraph marker '[¶2]' without proper line breaks. Source shows them properly separated with centered alignment for the section heading.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20396,
+  "class": "whitespace",
+  "old_exact": "section 12-44.1- 32 or 12-54.1-01",
+  "new_exact": "section 12-44.1-\n      32 or 12-54.1-01",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND75.pdf",
+  "confidence": "medium",
+  "evidence": "In the quoted statute text in [¶6], the PDF shows '12-44.1-' at the end of one line and '32' indented on the next line. The DB has incorrectly joined this with a space ('12-44.1- 32'), losing the line break structure. The indentation indicates this is part of a block quote of the statute.",
+  "_verdict": "review:held_from_auto(ws-semantic)"
+ },
+ {
+  "opinion_id": 20366,
+  "class": "whitespace",
+  "old_exact": "prejudicial. . . . . When",
+  "new_exact": "prejudicial. .... When",
+  "verified_count": 1,
+  "source": "PDF layout-preserved text shows line 248-249: 'are prejudicial.' followed by line 249: '      ....' (four periods). DB incorrectly renders as spaced periods.",
+  "confidence": "high",
+  "note": "Ellipsis formatting in quoted material from case law. PDF shows four periods (....); DB has incorrectly spaced five periods (. . . . .)",
+  "_verdict": "review:held_from_auto(ws-semantic)"
+ },
+ {
+  "opinion_id": 20366,
+  "class": "whitespace",
+  "old_exact": "adequate? . . . . . . . I mean",
+  "new_exact": "adequate? .... . . . I mean",
+  "verified_count": 1,
+  "source": "PDF layout text at lines 445-447: 'adequate?' followed by '            ....' (four periods on separate indented line), then '            . . . I mean'. DB collapsed to running text but used incorrect ellipsis spacing pattern.",
+  "confidence": "high",
+  "note": "Ellipsis formatting in court transcript quote. PDF shows distinct ellipsis pattern: four periods followed by spaced periods. DB incorrectly normalized to continuous spaced periods.",
+  "_verdict": "review:held_from_auto(ws-semantic)"
+ }
+]

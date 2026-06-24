@@ -2,6 +2,44 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-2026-06-24` — proofing fleet P2 AUTO (12 opinions)
+
+Second proofing batch (40 modern opinions, 2026 ND 46–85). Agents proposed
+transcription-fidelity fixes verified against the court PDFs; the deterministic
+gate (`verify_proofing_proposals.py`) routed 26 → AUTO, 14 → REVIEW, 37 → REJECT.
+
+**Applied (AUTO, 23 proposals / 12 opinions):** whitespace-only, PDF-confirmed,
+ws-equivalent — letter-spaced headers (`I N   T H E   S U P R E M E   C O U R T`
+→ `IN THE SUPREME COURT`), double-space collapses in "Appeal from the District
+Court …" / attorney lines, trailing-space-before-newline, and a signature-block
+reflow (justices onto separate lines).
+
+**Gate tightening:** 3 proposals the loose `_ws_equiv` test admitted to AUTO were
+hand-pulled to REVIEW because whitespace is semantic there — a statute number
+reflowed across a line (`12-44.1- 32` → `12-44.1-\n   32`, matches PDF *layout*
+not cleaner text) and two quoted-transcript ellipses respaced (`. . . . .` →
+`....`). Logged for the v2 prompt/gate refinement.
+
+**REVIEW queue (17 items / 13 opinions):** `triage/proofing-p2-REVIEW.md` —
+PDF-confirmed but meaning-affecting (split_join scrambles, caption, paragraph_seq,
+the 3 held-back ws items). Awaiting user sign-off; NOT applied.
+
+**REJECT (37):** 15 are the form-feed running-header cases (agents anchored on the
+literal `^L`; DB holds a real 0x0C byte) — see the form-feed furniture note below;
+the rest were bad-anchor / db-already-matches-pdf / unverified.
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
+### Open finding — form-feed page-furniture (120 opinions, NOT yet treated)
+
+`pdftotext` emits a 0x0C form-feed at every page break; ingestion preserved it.
+120 opinions carry one (98 carry several), across 1998–2026 (incl. the current
+2026 pipeline). Most are followed by a running header (`<short case name>` +
+`Civil No. <docket>`) that duplicates the page-1 caption — appellate page
+furniture, not published text; a few are bare mid-sentence breaks. Treatment
+(byte-only strip vs. full furniture removal vs. leave) is a corpus-wide structural
+decision deferred to the user; tracked here, not auto-applied.
+
 ## Batch `footnote-editpair-apply-2026-06-23` — West-doc residue re-pass 3 (17 opinions)
 
 A third pass over the 20 remaining `westlaw_doc` `SRC_MORE` opinions (1978–1988),
