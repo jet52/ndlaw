@@ -2,6 +2,25 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` — P2/P3 review queue cleared (18 opinions)
+
+User-reviewed and approved the meaning-affecting P2/P3 proposals (all byte-exact,
+all confirmed verbatim against the court PDF):
+
+- **9 word-order scrambles** (split_join) the deterministic reconcile missed —
+  e.g. 2026 ND 69 "If necessary to protect the welfare of the child…", 2026 ND 66
+  "Richard immediately received $50,500.00", 2026 ND 19 "engaged in \"deliberate
+  illegal treatment\"". Two are complementary fragment-moves (2026 ND 19, ND 69).
+- **5 section-heading position fixes** (paragraph_seq) — `III`/`IV` moved before
+  their ¶ marker (2026 ND 44, 30) and signature-block reflows.
+- **5 caption reorderings** — smushed `Party, v. Designation` restored to the
+  PDF's `Party, Designation v. Party, Designation` (2026 ND 22/48/54/55/58).
+- **5 ellipsis respacings** — `. . . . .` → `....`; ND's PDFs use the compact
+  four-dot form, so the DB's spaced version was the ingestion artifact.
+
+With the agent-error corrections batch, the entire 31-item P2/P3 REVIEW queue is
+resolved. Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `proofing-review-corrected-2026-06-24` — P2/P3 review: agent-error corrections (5 opinions)
 
 Hand-verified corrections from the P2/P3 REVIEW queues where the agent's proposal
