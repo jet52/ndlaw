@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 20207,
+  "class": "whitespace",
+  "old_exact": "51-2025-JV- 00037",
+  "new_exact": "51-2025-JV-00037",
+  "verified_count": 1,
+  "source": "PDF source (pdftotext) shows 'See 51-2025-JV-\\n00037' (line break mid-identifier); DB normalized with space",
+  "confidence": "high",
+  "note": "File number list in paragraph 3 where PDF had line break between prefix and number; correcting spacing artifact from OCR extraction",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20207,
+  "class": "whitespace",
+  "old_exact": "51-2024-JV- 00028",
+  "new_exact": "51-2024-JV-00028",
+  "verified_count": 1,
+  "source": "PDF source (pdftotext) shows 'File Nos. 51-2024-JV-\\n      00028' (line break with indentation); DB normalized with single space",
+  "confidence": "high",
+  "note": "File number in paragraph 9 where PDF had line break and leading whitespace; removing spurious space to match consistent formatting of adjacent file numbers on same page",
+  "_verdict": "auto:whitespace_only"
+ }
+]

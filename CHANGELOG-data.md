@@ -2,6 +2,23 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-2026-06-24` / `proofing-review-approved-2026-06-24` — proofing fleet P4 (18 opinions)
+
+Fourth proofing batch (40 opinions, 2026 ND 6 -> 2025 ND 204; first to cross into
+2025). v2 prompt clean (0 form-feed proposals). Gate: 2 AUTO / 26 REVIEW / 8 REJECT.
+
+- **AUTO (2):** case-number joins (`51-2025-JV- 00037` -> `51-2025-JV-00037`).
+- **REVIEW (26, user-approved after PDF verification):** 11 word-order scrambles
+  (e.g. 2026 ND 1 restored a garbled district-court oral ruling; 2025 ND 216 had
+  several), 6 paragraph_seq (heading moves + signature reflows), 3 caption
+  reorderings (2025 ND 234/231/204), 2 missing-text restorations (2025 ND 216
+  "the"/"It"), 2 compact-ellipsis fixes, 1 stray-word delete.
+- **Agent-error caught + corrected:** 2025 ND 208 section heading `II` was
+  misplaced inside a quoted statute; the agent proposed deleting it (would drop
+  section II from the I-V sequence). Corrected to MOVE it before `[¶4]` per the PDF.
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `proofing-review-approved-2026-06-24` — P2/P3 review queue cleared (18 opinions)
 
 User-reviewed and approved the meaning-affecting P2/P3 proposals (all byte-exact,

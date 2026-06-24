@@ -1,0 +1,93 @@
+[
+ {
+  "opinion_id": 20368,
+  "class": "split_join",
+  "old_exact": "Id. In concluding the district court erred by not applying the statutory default\n\n[¶4] winding up provisions",
+  "new_exact": "Id.\n\n[¶4] In concluding the district court erred by not applying the statutory default winding up provisions",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND6.pdf pages 1-2 (transitions at page break)",
+  "confidence": "high",
+  "note": "PDF source shows paragraph 3 ending with 'Id.' followed by page break (page number '1'), then paragraph 4 beginning with 'In concluding the district court erred by not applying the statutory default winding up provisions under N.D.C.C. § 45-20-07...' The DB text incorrectly splits this sentence across the paragraph boundary, placing 'In concluding the district court erred by not applying the statutory default' at the end of ¶3 and 'winding up provisions' at the start of ¶4. This is a clear split_join ingestion error.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20213,
+  "class": "split_join",
+  "old_exact": "two years and the court's oral twenty-four days. The written order pronouncements reflected the amount of credit for time served as \"3 years and 34 days[.]\" followed that",
+  "new_exact": "two years and twenty-four days. The written order that followed the court's oral pronouncements reflected the amount of credit for time served as \"3 years and 34 days[.]\"",
+  "verified_count": 1,
+  "source": "PDF source 2025ND222.pdf extracted via pdftotext -layout; paragraph [¶3] end section describing credit calculation",
+  "confidence": "high",
+  "evidence": "The database text contains a mangled phrase: 'two years and the court's oral twenty-four days. The written order pronouncements reflected...' which is grammatically incoherent and introduces spurious words ('the court's oral' before 'twenty-four days'). The PDF source clearly shows: 'two years and twenty-four days. The written order that followed the court's oral pronouncements reflected...' The correction reorganizes the phrase to match the court's actual pronouncement and adds the missing word 'that followed' to clarify the temporal relationship. The text 'followed that' at the end of the DB phrase is also removed as erroneous. This is a split/join error where text was partially transposed during OCR/ingestion.",
+  "note": "This error occurs in paragraph [¶3] describing the revocation hearing's discussion of credit for time served. The phrase is critical to the legal reasoning: the court awarded credit for 'two years' (on the original sentence) plus the time between arrest on the warrant and resentencing, totaling 'twenty-four days.' The mangled DB version makes the sentence grammatically incorrect and obscures the calculation.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20208,
+  "class": "ocr_char",
+  "old_exact": "AFFRIMED.",
+  "new_exact": "AFFIRMED.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND218.pdf page 1 (mutool render confirms 'AFFIRMED.')",
+  "confidence": "high",
+  "evidence": "PDF rendered text shows 'AFFIRMED.' with single 'F' and 'I'; DB text has double 'F' and misses 'I'. OCR error in ingestion.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20206,
+  "class": "ocr_char",
+  "old_exact": "These to four descriptions",
+  "new_exact": "These four descriptions",
+  "verified_count": 1,
+  "source": "PDF ¶14 (line 191): 'These four descriptions are significant for our analysis'",
+  "confidence": "high",
+  "evidence": "Extra 'to' inserted after 'These'. OCR/ingestion error. PDF source clearly shows 'These four' as proper enumeration.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20201,
+  "class": "split_join",
+  "old_exact": " judicial proceedings.\" Id. (cleaned up). B",
+  "new_exact": " judicial proceedings.\" Id. (cleaned up).\n\nB",
+  "verified_count": 1,
+  "source": "/tmp/src_2025ND211.txt lines 85-88 (pdftotext output)",
+  "confidence": "high",
+  "note": "Section marker B should be on its own line (paragraph structure element), not appended to the preceding paragraph. PDF shows B centered on separate line between [¶6] and [¶7].",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20198,
+  "class": "split_join",
+  "old_exact": "non- compliant",
+  "new_exact": "non-compliant",
+  "verified_count": 1,
+  "source": "pdftotext from /Users/jerod/refs/nd/opin/pdfs/2025/2025ND209.pdf lines 81-82: 'non-' at end of line, 'compliant' at start of next line",
+  "confidence": "high",
+  "evidence": "Located in [¶7] describing Apex Engineering's findings. The PDF source shows the word split across lines (line 81 ends with 'non-' and line 82 begins with 'compliant'), indicating a hyphenated word. The DB incorrectly inserted a space between the hyphen and 'compliant'.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20197,
+  "class": "split_join",
+  "old_exact": "\"Incarceration alone insufficient to establish abandonment, but incarceration with other factors such as parental neglect, withholding affection, failure to provide financial support, and lack of contact can support a finding of abandonment.\"",
+  "new_exact": "\"Incarceration alone is insufficient to establish abandonment, but incarceration with other factors such as parental neglect, withholding affection, failure to provide financial support, and lack of contact can support a finding of abandonment.\"",
+  "verified_count": 1,
+  "source": "paragraph 20 block quotation from In re Adoption of I.R.R., 2013 ND 211",
+  "confidence": "high",
+  "evidence": "Quotation in DB omits the word 'is' (\"insufficient\" instead of \"is insufficient\"). PDF source shows the complete quoted sentence with 'is' present, making the grammar correct.",
+  "note": "Missing auxiliary verb in substantive legal quotation. This is a high-confidence defect.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20195,
+  "class": "whitespace",
+  "old_exact": "Act as my own. . . . . . . . THE COURT:",
+  "new_exact": "Act as my own. . . . THE COURT:",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND206.pdf page 4, rendered as /tmp/p5.png; pdftotext extraction /tmp/src_2025ND206.txt lines 160-162",
+  "confidence": "high",
+  "evidence": "PDF shows 'MR. YOUNG: Act as my own. . . .' (4 dots with spaces) on one line, followed by '           ....' (4 dots without spaces) on the next line. DB incorrectly concatenates these as 8 dot-separated dots ('. . . . . . . .') instead of 4. This is a mishandling of the ellipsis in the OCR/ingestion process.",
+  "note": "The court's Bluebook ellipsis form '. . . .' (4 dots with spaces between) is rendered with a line break and continuation ('.....') in the PDF layout. The DB transcription incorrectly expanded this to 8 individual dots instead of preserving the 4-dot form.",
+  "_verdict": "reject:unverified"
+ }
+]
