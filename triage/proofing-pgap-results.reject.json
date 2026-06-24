@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 20190,
+  "class": "split_join",
+  "old_exact": "This Court affirmed, but for a different reason. Id. ¶ 15. the\n\n[¶15] In affirming, we distinguished between whether test was \"administered under\" N.D.C.C. § 39-20-01 or N.D.C.C. § 39-20-01.1.",
+  "new_exact": "This Court affirmed, but for a different reason. Id. ¶ 15.\n\n[¶15] In affirming, we distinguished between whether the test was \"administered under\" N.D.C.C. § 39-20-01 or N.D.C.C. § 39-20-01.1.",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction shows 'whether the test was' with correct article; DB has orphaned 'the' at end of prior line and 'whether test was' in subsequent paragraph",
+  "confidence": "high",
+  "note": "Single error manifesting as: (1) stray 'the' at end of 'Id. ¶ 15.' and (2) missing article in 'whether test was'. Both corrections required to fix one ingestion defect. The word 'the' was inadvertently relocated during OCR/ingestion process.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

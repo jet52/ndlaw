@@ -1,0 +1,140 @@
+[
+ {
+  "opinion_id": 20076,
+  "class": "split_join",
+  "old_exact": "sixty- eight days",
+  "new_exact": "sixty-eight days",
+  "verified_count": 1,
+  "source": "PDF source line 62-63 shows 'sixty-' at line end, 'eight days' at line start; soft hyphenation across lines should be joined",
+  "confidence": "high",
+  "evidence": "pdftotext breaks the compound hyphenated number across lines. The DB ingestion incorrectly preserved the line break as a space.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19987,
+  "class": "split_join",
+  "old_exact": "§§ 39- (3) unlawful possession of drug 10-71(1)(b), 39-10-71(2), 12.1-32-01(4); paraphernalia",
+  "new_exact": "§§ 39-10-71(1)(b), 39-10-71(2), 12.1-32-01(4); (3) unlawful possession of drug paraphernalia",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND231.pdf",
+  "confidence": "high",
+  "evidence": "The DB text has the statute citation and ordinal number scrambled across line breaks. The correct source (PDF extracted with pdftotext -layout) shows: '§§ 39-\\n10-71(1)(b), 39-10-71(2), 12.1-32-01(4); (3) unlawful possession of drug\\nparaphernalia' (line breaks removed for DB format). The DB erroneously places '(3)' immediately after '§§ 39-' and moves '10-71(1)(b)' to the end of the statute segment instead of immediately after '39-', breaking the natural reading of the statute citation and the ordinal count sequence.",
+  "note": "Located in ¶2, describing the charges. The text should enumerate count (2) (fleeing a peace officer, N.D.C.C. §§ 39-10-71(1)(b), etc.) followed by count (3) (unlawful possession of drug paraphernalia, N.D.C.C. §§ 19-03.4-03(2), etc.). The DB scrambling makes the statute reference unreadable.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19978,
+  "class": "split_join",
+  "old_exact": "form and submit supporting to review.\" Lowe's medical provider, Balch documentation Interventional Pain & Wellness Center, was copied on the correspondence. for WSI",
+  "new_exact": "form and submit supporting documentation for WSI to review.\" Lowe's medical provider, Balch Interventional Pain & Wellness Center, was copied on the correspondence.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND223.pdf paragraphs 3, page 2",
+  "confidence": "high",
+  "evidence": "DB text has word-order scramble: 'supporting to review' (should be 'supporting documentation for WSI to review'), 'Balch documentation' (should be 'Balch'), and 'for WSI' trailing at paragraph end. PDF source clearly shows correct order: 'form and submit supporting documentation for WSI to review' and 'Balch Interventional Pain & Wellness Center'. This is an ingestion/OCR error where text was fragmented and reordered.",
+  "note": "The DB version has the words/phrase fragmented across the paragraph ending with dangling 'for WSI'. The correct text from the PDF shows 'documentation for WSI' together, moved from after 'Balch' to after 'supporting'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19973,
+  "class": "missing_text",
+  "old_exact": " This case presents\n\n[¶6] interpretation. \"Statutory issues of statutory interpretation is a question of law, fully reviewable on appeal.\" State v. Glaser, 2015 ND 31, ¶ 13, 858 N.W.2d 920 (quoting State v. Holbach, 2014 ND 14, ¶ 16, 842 N.W.2d 328). Questions of law are reviewed de novo.",
+  "new_exact": "[¶6] This case presents issues of statutory interpretation. \"Statutory\ninterpretation is a question of law, fully reviewable on appeal.\" State v. Glaser,\n2015 ND 31, ¶ 13, 858 N.W.2d 920 (quoting State v. Holbach, 2014 ND 14, ¶ 16,\n842 N.W.2d 328). Questions of law are reviewed de novo.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND219.pdf - section II, paragraph 6",
+  "confidence": "high",
+  "evidence": "The PDF source shows '[¶6] This case presents issues of statutory interpretation' as a complete sentence opening the paragraph. The DB text is corrupted with: (1) a stray fragment ' This case presents' before [¶6], and (2) [¶6] incorrectly beginning with 'interpretation.' followed by 'Statutory issues of statutory interpretation' (redundant and garbled). The OCR/ingestion process appears to have: lost 'issues of statutory' from the opening of [¶6], created a duplicate 'Statutory issues of', and displaced 'This case presents' as a separate fragment.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19969,
+  "class": "whitespace",
+  "old_exact": "N.D.R.Crim.P.  33 motions for new trial based on newly discovered evidence",
+  "new_exact": "N.D.R.Crim.P. 33 motions for new trial based on newly discovered evidence",
+  "verified_count": 1,
+  "source": "PDF shows single regular space (U+0020); DB contains thin space (U+202F) followed by regular space, appearing as double space",
+  "confidence": "high",
+  "evidence": "At ¶19, DB has 'N.D.R.Crim.P.  33 motions' (bytes: ...P.\\xe2\\x80\\xaf 20...). PDF has 'N.D.R.Crim.P. 33 motions' (single space). Thin space is a Unicode formatting character, likely an OCR/ingestion artifact.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19964,
+  "class": "paragraph_seq",
+  "old_exact": "and (7).\\n\\n[¶6] The criminal judgment is affirmed.\\n\\nIII",
+  "new_exact": "and (7).\\n\\nIII\\n\\n[¶6] The criminal judgment is affirmed.",
+  "verified_count": 1,
+  "source": "PDF text comparison; section header III should precede paragraph [¶6] not follow it",
+  "confidence": "high",
+  "evidence": "PDF source shows 'and (7).' followed by 'III' followed by '[¶6]', whereas markdown has 'and (7).' followed by '[¶6]' followed by 'III'. The markdown sequence is inverted compared to authoritative PDF.",
+  "note": "This is a structural/sequencing error where the section header for Part III is misplaced. The fix restores correct document structure.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19962,
+  "class": "whitespace",
+  "old_exact": ". . . . ",
+  "new_exact": "....",
+  "verified_count": 1,
+  "source": "PDF authoritative original (2024ND209.pdf) shows compact ellipsis in paragraph 4 handwritten document quote; ND opinions use the compact four-dot form",
+  "confidence": "high",
+  "note": "The DB text contains a spaced four-dot ellipsis (. . . .) which is an OCR/ingestion artifact. The authoritative PDF displays the ellipsis in the handwritten document quote (paragraph 4) within the context 'I agree to vacate the home by July 15 Aug 1, 2023. ... See list of removable items[.]'. The correct North Dakota opinion format is the compact four-dot form (....).",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19959,
+  "class": "split_join",
+  "old_exact": "[¶8] According the referee's analysis was based on",
+  "new_exact": "[¶8] According to the report, the referee's analysis was based on",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND206.pdf",
+  "confidence": "high",
+  "evidence": "PDF section ¶8 reads 'According to the report, the referee's analysis was based on'. DB text has incomplete phrase 'According the' missing 'to the report,' which belongs at the start of ¶8. The DB improperly merged content and dropped the phrase 'to the report,' from the sentence structure.",
+  "note": "This is an OCR/ingestion defect. The phrase 'to the report,' was placed at the end of ¶7's long block quote (where it does not belong) and 'According the' in ¶8 is an incomplete phrase. The correct structure has ¶7 ending with the closing quote and ¶8 beginning with the full phrase 'According to the report, the referee's analysis...'",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19959,
+  "class": "whitespace",
+  "old_exact": "impacting their marketability. . . . . The physical partition",
+  "new_exact": "impacting their marketability. . . . .\n\nThe physical partition",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND206.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows compact ellipsis '....' on its own line with blank lines before and after (lines 165-169 in PDF pdftotext output). DB text has spaced ellipsis '. . . . .' running directly into the next sentence without paragraph separation.",
+  "note": "The PDF clearly shows the ellipsis formatted as '....' (four dots, compact form standard in ND opinions) with blank lines separating it from surrounding text. The DB text has six spaced dots '. . . . .' which is an ingestion artifact of the PDF's indented block quote formatting.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19959,
+  "class": "split_join",
+  "old_exact": "comprise the subject property.\" to the report,",
+  "new_exact": "comprise the subject property.\"",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND206.pdf",
+  "confidence": "high",
+  "evidence": "The phrase 'to the report,' is misplaced in the DB at the end of ¶7's block quote. The PDF shows ¶7 ends with the closing curly quote after 'subject property.' with no 'to the report,' text. The phrase 'to the report,' belongs as part of ¶8's opening sentence 'According to the report, the referee's analysis...' (see Proposal 1).",
+  "note": "This is part of the same defect as Proposal 1: the phrase was incorrectly split and relocated. Removing it here and restoring it to ¶8's opening (Proposal 1) corrects the structural error.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19954,
+  "class": "split_join",
+  "old_exact": "position description school psychologists' responsibilities",
+  "new_exact": "position description for school psychologists provides school psychologists' responsibilities",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2024/2024ND201.pdf lines 162-163 of pdftotext output",
+  "confidence": "high",
+  "evidence": "Paragraph [¶11]: PDF source shows 'position description for school psychologists provides school psychologists' responsibilities' (with page breaks in pdftotext output). DB text is missing 'for' after 'position description' and missing 'provides school' before the second 'psychologists'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19954,
+  "class": "ocr_char",
+  "old_exact": "broadening school psychologists provides their understanding",
+  "new_exact": "broadening their understanding",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2024/2024ND201.pdf lines 171-177",
+  "confidence": "high",
+  "evidence": "Same paragraph [¶11], sentence identifying school psychologists: PDF shows 'broadening [page break] their understanding of psychological forces' (per footnote quoting educational materials). DB incorrectly includes 'school psychologists provides' between 'broadening' and 'their'.",
+  "_verdict": "reject:unverified"
+ }
+]

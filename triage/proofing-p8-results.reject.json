@@ -1,0 +1,145 @@
+[
+ {
+  "opinion_id": 20290,
+  "class": "ocr_char",
+  "old_exact": "\n\nΙ\n\n",
+  "new_exact": "\n\nI\n\n",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2025/2025ND79.pdf page 2, visual inspection confirms Roman numeral I (not Greek Iota)",
+  "confidence": "high",
+  "note": "Greek Capital Iota (U+0399) incorrectly substituted for ASCII Capital I (U+0049) in section divider between paragraphs 1 and 2. PDF clearly shows a standard Roman numeral I.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20279,
+  "class": "missing_text",
+  "old_exact": "consideration determinations is the",
+  "new_exact": "consideration in residential responsibility determinations is the",
+  "verified_count": 1,
+  "source": "PDF source line 99 shows the phrase 'Ultimately, the paramount consideration in residential responsibility' continuing with 'determinations is the best interests'",
+  "confidence": "high",
+  "evidence": "The phrase 'in residential responsibility' was dropped during OCR/ingestion. Source ¶6 clearly contains this phrase between 'paramount consideration' and 'determinations' when properly formatted (accounting for page breaks in the source at line 101).",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20278,
+  "class": "ocr_char",
+  "old_exact": "environment. . . . . d.",
+  "new_exact": "environment.... d.",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction; confirmed in rendered PDF image",
+  "confidence": "high",
+  "evidence": "The authoritative PDF (pdftotext output and rendered image) shows compact four-dot ellipsis '....' while the DB shows spaced '. . . .' This is a known OCR/ingestion artifact. ND opinions use the compact form.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20278,
+  "class": "ocr_char",
+  "old_exact": "child. . . . . l.",
+  "new_exact": "child.... l.",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction; confirmed in rendered PDF image",
+  "confidence": "high",
+  "evidence": "Same ellipsis artifact as instance 1 — second occurrence in the opinion, in the statutory text quotation section.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20276,
+  "class": "split_join",
+  "old_exact": "the State raised judicata and misuse of process as affirmative defenses to a both res postconviction relief application",
+  "new_exact": "the State raised both res judicata and misuse of process as affirmative defenses to a postconviction relief application",
+  "verified_count": 1,
+  "source": "PDF source pdftotext, lines 177-180; confirmed against authoritative PDF",
+  "confidence": "high",
+  "evidence": "The DB text is word-scrambled/garbled. The words 'both res' are misplaced and separated from their citation 'judicata', appearing at the end of the clause instead of the beginning. The PDF shows the correct order: 'the State raised both res judicata and misuse of process...to a postconviction relief application.' Both strings are exactly 119 characters.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20275,
+  "class": "ocr_char",
+  "old_exact": "[¶24] When reviewing the denial of a motion to suppress, this Court: \"defers to the district court's findings of fact and resolves conflicts in testimony in favor of affirmance. Generally, a district court's decision to deny a motion to suppress will be affirmed if there is the sufficient competent evidence capable of supporting court's findings and if its decision is not contrary to the manifest weight of the evidence. Questions of law are fully reviewable on appeal, and whether a finding of fact meets a legal standard is a question of law.\" State v. Canfield, 2013 ND 236, ¶ 6, 840 N.W.2d 620 (cleaned up).",
+  "new_exact": "[¶24] When reviewing the denial of a motion to suppress, this Court: \"defers to the district court's findings of fact and resolves conflicts in testimony in favor of affirmance. Generally, a district court's decision to deny a motion to suppress will be affirmed if there is sufficient competent evidence capable of supporting the court's findings and if its decision is not contrary to the manifest weight of the evidence. Questions of law are fully reviewable on appeal, and whether a finding of fact meets a legal standard is a question of law.\" State v. Canfield, 2013 ND 236, ¶ 6, 840 N.W.2d 620 (cleaned up).",
+  "verified_count": 1,
+  "source": "2025ND65.pdf, lines 403-408 (block quote of State v. Canfield precedent)",
+  "confidence": "high",
+  "note": "Two ingestion errors in the quoted text from State v. Canfield: (1) will be affirmed if there is the sufficient should omit the before sufficient; (2) supporting court's findings should include the before court's. Both confirmed in authoritative PDF.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20274,
+  "class": "split_join",
+  "old_exact": "similar Filed by Clerk of Supreme Court 5/29/25but",
+  "new_exact": "similar but",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND64.pdf page 8; pdftotext output lines 345-350",
+  "confidence": "high",
+  "evidence": "PDF shows running header 'Filed by Clerk of Supreme Court 5/29/25' inserted mid-sentence at a page break between 'similar' (end of page 8) and 'but' (start of page 9). The pdftotext extracted output shows a 0x0C form-feed character at line 350 followed by the running header, then 'but'. The DB text has this header inline, breaking the space between two words that should be joined by a single space.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20272,
+  "class": "ocr_char",
+  "old_exact": "Ι\n",
+  "new_exact": "I\n",
+  "verified_count": 1,
+  "source": "PDF page 2: rendered section header shows Latin capital I, not Greek Iota",
+  "confidence": "high",
+  "note": "Section I header — Greek Iota (U+0399) should be Latin I. Verified by visual inspection of rendered PDF.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20272,
+  "class": "ocr_char",
+  "old_exact": "Π\n",
+  "new_exact": "II\n",
+  "verified_count": 1,
+  "source": "PDF page 11: rendered section header shows Roman numerals II, not Greek Pi",
+  "confidence": "high",
+  "note": "Section II header — Greek Pi (U+03A0) should be Roman numeral II. Verified by visual inspection of rendered PDF.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20272,
+  "class": "ocr_char",
+  "old_exact": "В\n",
+  "new_exact": "III\n",
+  "verified_count": 1,
+  "source": "PDF page 9: context and pattern with surrounding section headers establish standard Roman numeral pattern",
+  "confidence": "high",
+  "note": "Section III header (line 141) — Cyrillic capital Ve (U+0412) should be Roman numeral III. Verified by comparison with rendered sections I and II.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20272,
+  "class": "ocr_char",
+  "old_exact": "Α\n",
+  "new_exact": "A\n",
+  "verified_count": 1,
+  "source": "PDF page 8: rendered section header shows plain Latin A, not Greek Alpha",
+  "confidence": "high",
+  "note": "Section A header — Greek capital Alpha (U+0391) should be Latin capital A. Verified by visual inspection of rendered PDF.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20272,
+  "class": "ocr_char",
+  "old_exact": "В\n",
+  "new_exact": "B\n",
+  "verified_count": 1,
+  "source": "PDF pages 11-12: rendered section header shows Latin B, not Cyrillic Ve",
+  "confidence": "high",
+  "note": "Section B header (line 232) — Cyrillic capital Ve (U+0412) should be Latin B. Verified by context and pattern analysis.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20259,
+  "class": "paragraph_seq",
+  "old_exact": "\n\n[¶30] We affirm the district court's judgment affirming DHHS's decision.\n\nIV\n\n",
+  "new_exact": "\n\nIV\n\n[¶30] We affirm the district court's judgment affirming DHHS's decision.\n\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND50.pdf",
+  "confidence": "high",
+  "note": "Section heading 'IV' appears after ¶30 instead of before it. PDF structure (lines 486, 508) shows section headings (III and IV) precede the paragraphs they govern. This places IV between ¶29 and ¶30, where it belongs.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

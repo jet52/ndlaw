@@ -1,0 +1,32 @@
+[
+ {
+  "opinion_id": 20150,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Comprehensive review: DB text compared byte-for-byte against authoritative PDF source (2025ND166.pdf) after stripping page furniture (form-feed 0x0C characters and page number headers). Opinion body ([¶1]–[¶18]) verified for substantive content, all citations, monetary amounts, party names, case names, and paragraph numbering. All high-risk elements (numbers, citations, names) individually verified against source. No OCR defects, split/join errors, or character substitutions detected. Caption formatting differs due to PDF multi-column layout vs. DB linearization, but substantive content is identical.\"",
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20173,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20190,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "This Court affirmed, but for a different reason. Id. ¶ 15. the\n\n[¶15] In affirming, we distinguished between whether test was \"administered under\" N.D.C.C. § 39-20-01 or N.D.C.C. § 39-20-01.1.",
+    "new_exact": "This Court affirmed, but for a different reason. Id. ¶ 15.\n\n[¶15] In affirming, we distinguished between whether the test was \"administered under\" N.D.C.C. § 39-20-01 or N.D.C.C. § 39-20-01.1.",
+    "verified_count": 1,
+    "source": "PDF pdftotext extraction shows 'whether the test was' with correct article; DB has orphaned 'the' at end of prior line and 'whether test was' in subsequent paragraph",
+    "confidence": "high",
+    "note": "Single error manifesting as: (1) stray 'the' at end of 'Id. ¶ 15.' and (2) missing article in 'whether test was'. Both corrections required to fix one ingestion defect. The word 'the' was inadvertently relocated during OCR/ingestion process."
+   }
+  ],
+  "flags": []
+ }
+]

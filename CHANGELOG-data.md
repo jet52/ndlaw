@@ -2,6 +2,36 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` — proofing fleet P8-P10 + gap (46 opinions)
+
+Batches P8-P10 (123 opinions, 2025 ND 81 -> 2024 ND 199) + re-run of 3 P5-dropped
+opinions (2025 ND 166/187/201 — recovered, 1 fix). Combined gate: 0 AUTO / 83
+REVIEW / 40 REJECT. 76 review items applied after word-delta + PDF triage:
+
+- **33 word-order scrambles** (e.g. 2025 ND 28 "Conducting a comprehensive
+  assessment of the circumstances"; 2025 ND 37 Keller block-quote restoration;
+  2025 ND 41 financial-info scramble).
+- **9 OCR character fixes** — section-heading letters mis-encoded in the wrong
+  Unicode block: Greek Iota `Ι`->`I`, Cyrillic `П`->`II`, Greek `Α`->`A`, LaTeX
+  `$\mathsf{C}$`->`C`.
+- **10 heading reformats** — merged A/B/C/D subheadings moved to their own line
+  (corrected from the agent's proposed delete; PDF-confirmed as headings).
+- 11 paragraph_seq (incl. complementary signature/section moves), 4 caption
+  reorders, 4 missing-text restorations, misc.
+
+**Deferred** (`triage/p8910-deferred.json`): 3 caption word-changes (2025 ND 49,
+2024 ND 207) + 1 check (2025 ND 61) for closer review; 3 clerk filing-stamp items
+folded into the corpus-wide clerk-stamp pass (see below).
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
+### Open finding — clerk filing-stamps (~1,772 opinions, remover being built)
+
+`Filed MM/DD/YY by Clerk of Supreme Court` and `Corrected Opinion Filed ... by
+Clerk of the Supreme Court` administrative stamps are fused into text_content
+across ~1,772 opinions — court-clerk metadata, not the authored opinion. User
+approved building a deterministic remover (dry-run for sign-off, like form-feed).
+
 ## Batches `corpus-proofing-2026-06-24` / `proofing-review-approved-2026-06-24` — proofing fleet P5-P7 (51 opinions)
 
 Batches P5-P7 (117 opinions, 2025 ND 203 -> 82), run in parallel on the v2 prompt

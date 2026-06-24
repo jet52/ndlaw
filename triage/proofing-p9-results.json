@@ -1,0 +1,871 @@
+[
+ {
+  "opinion_id": 20249,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "the financial judgment. Allmendinger subsequently information in the original 2018 submitted",
+    "new_exact": "the financial information in the original 2018 judgment. Allmendinger subsequently submitted",
+    "verified_count": 1,
+    "source": "PDF pdftotext -layout '/Users/jerod/refs/nd/opin/pdfs/2025/2025ND41.pdf'",
+    "confidence": "high",
+    "note": "Paragraph 5: Text was scrambled during OCR/ingestion. The phrase 'information in the original 2018' was split and reordered incorrectly, and 'amended judgment' was misplaced. Corrects the sentence to read: '...reduced for multiple families based on the financial information in the original 2018 judgment. Allmendinger subsequently submitted...'"
+   },
+   {
+    "class": "split_join",
+    "old_exact": "proposed for reconsideration, Allmendinger opposed",
+    "new_exact": "proposed amended judgment. Carrier moved for reconsideration, Allmendinger opposed",
+    "verified_count": 1,
+    "source": "PDF pdftotext -layout '/Users/jerod/refs/nd/opin/pdfs/2025/2025ND41.pdf'",
+    "confidence": "high",
+    "note": "Paragraph 6: Text was scrambled during OCR/ingestion. The phrase 'amended judgment. Carrier moved' was misplaced, leaving the sentence incoherent ('proposed for reconsideration' without object). Corrects to: '...amended judgment based on Allmendinger's proposed amended judgment. Carrier moved for reconsideration...'"
+   }
+  ],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "paragraphs 5-6 junction",
+    "description": "Paragraph 5 ends with 'Carrier moved' and paragraph 6 begins with the full judgment text, but due to the scrambled text, this boundary is unclear. The text flows correctly with the proposed fixes applied.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20248,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶10] The standard of review for child support decisions is well-established:\n\nIII",
+    "new_exact": "III\n\n[¶10] The standard of review for child support decisions is well-established:",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND40.txt lines 113-115",
+    "confidence": "high",
+    "evidence": "PDF source shows 'III' (line 113) appearing on a separate line BEFORE '[¶10]' (line 115), with blank lines between. The DB version incorrectly places 'III' AFTER '[¶10]' and its colon. This breaks the structural ordering of section markers and paragraphs. The PDF source clearly shows: line 113 '                                       III'; line 114 (blank); line 115 '[¶10] The standard of review...'",
+    "note": "This is a structural issue where a section marker was placed after the paragraph opener instead of before it. All other paragraphs (I, II, IV, V, VI, VII) correctly appear before their first paragraph. Only III is misplaced in the DB version."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 20246,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20245,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20244,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "testimony: the Fair",
+    "new_exact": "testimony: Fair",
+    "verified_count": 1,
+    "source": "2025ND37.pdf, ¶10, line 170",
+    "confidence": "high",
+    "evidence": "The block-quoted text in ¶10 should begin with 'Fair administration' (not 'the Fair administration'). The PDF shows this phrase on a separate indented line following the colon after 'testimony:', and the DB has erroneously inserted 'the' before 'Fair'. This is a clear ingestion artifact.",
+    "note": "The phrase appears in a block quote in ¶10. The word 'Fair' begins the indented quotation; the article 'the' was inserted incorrectly during text extraction."
+   },
+   {
+    "class": "missing_text",
+    "old_exact": "conducting followed, but test has been scrupulously",
+    "new_exact": "conducting the test has been scrupulously followed, but",
+    "verified_count": 1,
+    "source": "2025ND37.pdf, ¶10, lines 171-172",
+    "confidence": "high",
+    "evidence": "The DB text is scrambled in a critical part of the block quote in ¶10. The PDF clearly shows 'conducting the test has been scrupulously followed, but' spread across lines 171-172. The DB version is missing 'the test' and has 'followed' in the wrong position, plus has inserted 'test has been scrupulous' which appears to be OCR/extraction confusion with the next sentence.",
+    "note": "This is a significant textual error in a statutory/regulatory quote. The complete phrase from the Keller precedent is: 'the method approved by the State Toxicologist for conducting the test has been scrupulously followed, but \"scrupulous\" compliance does not mean...' The DB incorrectly scrambled this to 'conducting followed, but test has been scrupulously \"scrupulous\"'"
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full opinion comparison completed. Extracted and extracted DB text from opinion ID 20244 (2025 ND 37), compared against authoritative PDF source, removed known artifacts (page numbers, running headers, whitespace layout), and identified all substantive text discrepancies. The opinion contains two corrections, both located in ¶10 (a block-quoted passage from Keller v. N.D. Dep't of Transp., 2015 ND 81). After applying both proposals, the DB text matches the PDF source perfectly.\""
+ },
+ {
+  "opinion_id": 20243,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "trust instruments. In North Dakota, General rules of construction of written documents apply to the construction of the interpretation of a contract",
+    "new_exact": "General rules of construction of written documents apply to the construction of trust instruments. In North Dakota, the interpretation of a contract",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND36.txt lines 264-266 (indented block quotation in [¶14])",
+    "confidence": "high",
+    "evidence": "The DB text has two sentences reversed/scrambled. The source PDF shows a block quotation (indented, starting at line 264) that begins with 'General rules of construction of written documents apply to the construction of trust instruments.' Followed by 'In North Dakota, the interpretation of a contract is governed...'. The DB version incorrectly places 'trust instruments. In North Dakota,' before 'General rules...'. Both strings are exactly 148 bytes, making this a direct substitution with no length change."
+   }
+  ],
+  "flags": [
+   {
+    "class": "whitespace",
+    "location_quote": "N.D.C.C. § 59- 15-06",
+    "description": "PDF layout artifact: statute cite split across line break in source (line 168-169). Appears as 'N.D.C.C. § 59-' at end of line 168, then '15-06' at start of line 169. Not a transcription error—pure layout artifact. DB correctly shows as 'N.D.C.C. § 59-15-06' when joined.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "opinion_id": 20242,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "Ι",
+    "new_exact": "I",
+    "verified_count": 1,
+    "source": "PDF visual inspection (page 2) + character analysis",
+    "confidence": "high",
+    "evidence": "The Greek capital Iota (U+0399) appears as a section divider on line 27, after [¶1] and before [¶2]. The PDF rendering shows a proper Latin Roman numeral 'I', which matches the pattern of 'II' (line 55), 'III' (line 67), and 'IV' (line 101) throughout the document. This is a clear OCR character substitution artifact.",
+    "note": "This is the only defect found in the database text. All other elements verified correctly: dates (April 8/29, 2022, etc.), citations (N.D.C.C. sections), case names (RTS Shearing, etc.), party names (Gravity/Valence), and document structure."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "Ι (U+0399 Greek Capital Iota on line 27)",
+    "description": "OCR character substitution: Greek Iota instead of Latin I in Roman numeral section marker",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20241,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Comprehensive verification: character-by-character comparison (all tokens match), quote mark verification (3 x U+201C, 3 x U+201D, 3 x U+2019 in both DB and PDF), citation verification (all 14 critical citations present and identical), paragraph structure (3 paragraphs correctly marked), justice signatures (5 justices correctly listed), no OCR artifacts detected, no footnote issues, semantic content 100% identical after layout normalization.\"",
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20240,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "caption",
+    "old_exact": "and Phillip P. Connolly,\n\nand\n\nLeighann N. Barton\n\nNo. 20240230\n\nRespondents\n\nClaimant",
+    "new_exact": "and Phillip P. Connolly,                                             Respondents\n      and\nLeighann N. Barton                                                      Claimant\n\n                                 No. 20240230",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND33.pdf (pdftotext -layout lines 17-21)",
+    "confidence": "high",
+    "evidence": "PDF shows party labels (Respondents/Claimant) aligned to the right on the same lines as party names. DB has wrongly separated these labels and placed them after the docket number. This reorders the caption structure: PDF order is ...andPhillipP.Connolly,RespondentsandLeighannN.BartonClaimantNo.20240230, while DB shows ...andPhillipP.Connolly,andLeighannN.BartonNo.20240230RespondentsClaimant. Verified by byte-exact comparison (whole-text comparison ignoring whitespace shows PDF={1645 chars}, DB={1644 chars}, with 49 character differences all in this caption section).",
+    "note": "High-confidence fix. The caption order is material to the opinion structure. The PDF rendering clearly shows Respondents and Claimant are labels associated with specific parties, not free-floating text."
+   }
+  ],
+  "flags": [
+   {
+    "class": "whitespace",
+    "location_quote": "Lines 1-2: '                   IN THE SUPREME COURT' and '                   STATE OF NORTH DAKOTA'; Line 4: '                                  2025 ND 33'",
+    "description": "DB has removed leading whitespace (centering indentation) from the header. PDF shows 19 spaces before 'IN THE SUPREME COURT', 19 spaces before 'STATE OF NORTH DAKOTA', and 34 spaces before '2025 ND 33'. DB has removed all these leading spaces. While whitespace normalization can be acceptable for ingestion, the removal of centering may affect the visual fidelity of the opinion header.",
+    "confidence": "medium"
+   },
+   {
+    "class": "whitespace",
+    "location_quote": "Multiple lines in caption section (lines 8-22): inconsistent indentation patterns throughout party listing",
+    "description": "The PDF uses specific indentation for the caption (6 spaces before 'v.' and 'and' connectors, etc.) but the DB has normalized these. The caption in the PDF is formatted as a legal pleading caption with aligned left/right columns, while the DB has flattened it to single-column with extra blank lines for separation.",
+    "confidence": "medium"
+   }
+  ],
+  "era": "2025",
+  "coverage_note": "Full opinion reviewed (62 lines in PDF). Header/caption section thoroughly analyzed. Body paragraphs [¶1] and [¶2] verified identical between PDF and DB (content-wise). Conclusion/signature block reviewed. One major caption reordering error identified and proposed for fixing. Two indentation/whitespace structural concerns flagged for human review.\""
+ },
+ {
+  "opinion_id": 20239,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full opinion text verified against authoritative PDF source (2025 ND 32). All 27 paragraphs present and correct. No OCR errors, no missing text, no textual divergences. Paragraph numbering sequential. Ellipses formatting consistent (spaced form '. . . .' as printed). All monetary amounts, statutory citations, dates, and party names verified. Opinion is publication-ready.\""
+ },
+ {
+  "opinion_id": 20238,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full opinion comprehensively reviewed. DB text verified against authoritative PDF source through character-level and word-level comparison. All critical citations, numbers, names, and statutory references confirmed accurate. Page break artifacts in source PDF (form-feed chars, page numbers, running headers) correctly excluded from DB. Text consolidation from multi-line PDF layout to DB format is accurate with no OCR character substitutions or omissions detected.\""
+ },
+ {
+  "opinion_id": 20237,
+  "clean": false,
+  "era": "2025",
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "appointed. indicated he was",
+    "new_exact": "appointed.",
+    "verified_count": 1,
+    "source": "PDF 2025ND30.pdf page-break artifact at end of ¶3",
+    "confidence": "high",
+    "evidence": "The PDF shows page break between end of ¶3 (ending with 'appointed.') and start of ¶4 (beginning 'At the pretrial conference, Janachovsky again indicated he was'). The DB text erroneously includes the orphaned fragment 'indicated he was' at the end of ¶3 before starting ¶4. Normalizing both texts and removing page furniture (form-feeds, page numbers) confirms this is the only substantive difference between DB and PDF."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "At the pretrial conference, Janachovsky again representing himself",
+    "new_exact": "At the pretrial conference, Janachovsky again indicated he was representing himself",
+    "verified_count": 1,
+    "source": "PDF 2025ND30.pdf page-break artifact at start of ¶4",
+    "confidence": "high",
+    "evidence": "The DB text omits 'indicated he was' due to page-break handling error. The PDF clearly shows the complete phrase 'At the pretrial conference, Janachovsky again indicated he was representing himself'. This proposal and the preceding one address the same page-break artifact split across ¶3/¶4 boundary."
+   }
+  ],
+  "flags": [],
+  "coverage_note": "Full text comparison conducted: DB (61 lines) vs PDF (176 lines w/layout). After normalization (removing form-feeds and page numbers), substantive content differences identified and isolated to page-break handling artifacts. No other OCR, transcription, or ingestion errors detected. The opinion text is otherwise clean.\""
+ },
+ {
+  "opinion_id": 20235,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "2025 ND 29: Complete token-level verification of all substantive content against authoritative PDF source. 245 word/number tokens extracted and compared; 100% match. All critical citations, case names, attorney names, judge/justice names, and special characters (smart quotes, pilcrow) verified. Page furniture (page number '1', form feeds, running header) properly excluded from comparison. Database ingestion normalization (layout spacing, line breaks, paragraph joins) confirmed as intentional and appropriate, not errors. Opinion is clean and ready for publication.\""
+ },
+ {
+  "opinion_id": 20234,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "assessment of a assessment",
+    "new_exact": "assessment",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], vs PDF page 4-5",
+    "confidence": "high",
+    "evidence": "Double 'assessment' phrase is clearly OCR error. PDF shows single 'assessment' in this location. High confidence single-word fix with exact occurrence count of 1."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "Conducting the comprehensive circumstances",
+    "new_exact": "Conducting a comprehensive assessment of the circumstances",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], item (1), vs PDF pages 4-5",
+    "confidence": "high",
+    "evidence": "Phrase is clearly corrupted in DB. The PDF shows 'Conducting a comprehensive assessment of the circumstances' as the correct start of item (1). This is a clear reconstruction error where 'a comprehensive assessment of the' was dropped and replaced with 'the'. Occurs exactly once in DB."
+   },
+   {
+    "class": "paragraph_seq",
+    "old_exact": "Identifying appropriate services and helping a parent or (2) Indian",
+    "new_exact": "(2) Identifying appropriate services and helping a parent or Indian",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], item (2), vs PDF page 5",
+    "confidence": "medium",
+    "evidence": "List item (2) is misplaced in DB - it appears without its number at the start and has the number '(2)' inserted later. PDF shows '(2)' starts the item. The DB incorrectly fuses item (1)'s ending with item (2)'s body. Occurs exactly once."
+   },
+   {
+    "class": "split_join",
+    "old_exact": ". and employing (5) Offering",
+    "new_exact": ". (5) Offering and employing",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], item (5), vs PDF page 5",
+    "confidence": "medium",
+    "evidence": "Item (5) has its number and 'and employing' connector in wrong positions in DB. The phrase 'and employing' should follow 'Offering' not precede '(5)'. PDF shows correct order: '(5) Offering and employing'. Occurs exactly once."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "tribe. available and (6) Taking",
+    "new_exact": "tribe. (6) Taking",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], item (6), vs PDF page 5",
+    "confidence": "high",
+    "evidence": "Extra phrase 'available and' appears before item (6) in DB but not in PDF. This is OCR debris - the word 'available' belongs earlier in item (5) text but got duplicated/misplaced. Occurs exactly once."
+   },
+   {
+    "class": "paragraph_seq",
+    "old_exact": "child. Identifying community resources, (8) including",
+    "new_exact": "child. (8) Identifying community resources, including",
+    "verified_count": 1,
+    "source": "DB line 90, paragraph [¶14], item (8), vs PDF page 5",
+    "confidence": "medium",
+    "evidence": "List item (8) is formatted incorrectly - the item number should start the item. DB shows '(8) including' misplaced midway through the text. PDF shows '(8) Identifying community resources, including'. Item structure is clearly corrupted. Occurs exactly once."
+   }
+  ],
+  "flags": [
+   {
+    "class": "whitespace",
+    "location_quote": "DB lines 62 and 88: positions after 'nights;' and after 'unsuccessful.'",
+    "description": "Ellipsis formatting: DB contains '. . . .' (spaced four-dot form) in two locations, but PDF shows '.…' (compact form, per ND court style). Only the first instance (after 'nights;') appears to need correction to match PDF's compact form. However, both instances are identical strings in DB (count=2), preventing a byte-exact single-instance proposal. The second instance after 'unsuccessful. . . . N.D.C.C.' matches what appears to be intentional spaced spacing in PDF. Recommend manual review of ellipsis standardization.",
+    "confidence": "medium"
+   },
+   {
+    "class": "other",
+    "location_quote": "DB paragraph [¶14], entire Active efforts list (lines 90, ~2200 characters)",
+    "description": "The numbered list items (1) through (11) in paragraph [¶14] have systematic structural corruption: numbers are misplaced relative to their text, connecting words are in wrong positions, and the list is merged into a continuous paragraph with incorrect internal breaks. Individual sentence-level fixes have been proposed, but the entire section shows signs of severe OCR mangling that may warrant holistic review to ensure all 11 items are correctly reconstructed.",
+    "confidence": "medium"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20233,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "and we have recognized the following: this Court has upheld summary denials of However, [postconviction] relief when the applicants were put to their proof, and summary disposition occurred after the applicants then failed to provide some evidentiary support for their allegations.",
+    "new_exact": "and we have recognized the following: However, this Court has upheld summary denials of [postconviction] relief when the applicants were put to their proof, and summary disposition occurred after the applicants then failed to provide some evidentiary support for their allegations.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND27.pdf lines 80-90 show correct word order: 'However, this Court has upheld summary denials of [postconviction] relief'",
+    "confidence": "high",
+    "note": "Word order corrupted in ingestion: 'this Court has upheld...However' should be 'However...this Court has upheld'. This is a long-quoted block from Atkins/Mwinyi; the PDF shows correct order."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "could draw different the inferences and reach different conclusions undisputed facts. from",
+    "new_exact": "could draw different inferences and reach different conclusions from the undisputed facts.",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND27.pdf lines 111-113 show correct form: 'could draw different inferences and reach different conclusions from the undisputed facts.'",
+    "confidence": "high",
+    "note": "Severe word-order corruption in Vandeberg quote: 'different the inferences' should be 'different inferences', 'conclusions undisputed facts. from' should be 'conclusions from the undisputed facts.' PDF confirms correct text."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 20232,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "Ι\n\nThe State's motion to stay follows",
+    "new_exact": "Ι\n\n[¶2] The State's motion to stay follows",
+    "verified_count": 1,
+    "source": "PDF visual rendering (page 3) shows [¶2] label present before this paragraph; DB text is missing the label",
+    "confidence": "high",
+    "note": "Missing paragraph marker [¶2]; this paragraph is unnumbered in the DB but should be numbered. The section marker Ι itself is correct (Greek iota used in opinion headings)."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "\nΙ\n",
+    "new_exact": "\nI\n",
+    "verified_count": 2,
+    "source": "Unicode analysis: Ι is Greek capital iota (U+0399), should be Latin capital I (U+0049); ND opinions use Latin letters for section markers",
+    "confidence": "high",
+    "note": "Two instances (lines 43 and 215): Greek iota substituted for Latin I in section markers. However, line 43 marks the start of the main opinion's section I, and rendering confirms it should be 'I'."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "\nВ\n",
+    "new_exact": "\nIV\n",
+    "verified_count": 4,
+    "source": "Unicode analysis: В is Cyrillic capital VE (U+0412), should be Latin Roman numeral IV; standard section numbering in ND opinions uses I, II, III, IV",
+    "confidence": "high",
+    "note": "Four instances (lines 99, 159, 243, 419): Cyrillic В substituted for Roman numeral IV in section markers"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "\nП\n",
+    "new_exact": "\nII\n",
+    "verified_count": 1,
+    "source": "Unicode analysis: П is Cyrillic capital PE (U+041F), should be Latin Roman numeral II; appears after ¶50 in dissent section, between section I and III",
+    "confidence": "high",
+    "note": "One instance (line 229): Cyrillic П substituted for Roman numeral II in section marker"
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "\nΑ\n",
+    "new_exact": "\nA\n",
+    "verified_count": 1,
+    "source": "Unicode analysis: Α is Greek capital alpha (U+0391), should be Latin capital A (U+0041); ND opinions use Latin letters for subsection markers",
+    "confidence": "high",
+    "note": "One instance (line 273): Greek alpha substituted for Latin A in subsection marker"
+   }
+  ],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "Line 41: [¶1] ... Line 47: [¶3]",
+    "description": "Paragraph numbering gap: ¶1 jumps directly to ¶3. Paragraph ¶2 label is missing. The actual text of ¶2 is present (lines 43-46, between section marker Ι and ¶3) but lacks the [¶2] marker.",
+    "confidence": "high"
+   },
+   {
+    "class": "heading_seq",
+    "location_quote": "Section markers: I (line 43), II (line 75), III (line 85), then В/IV (line 99), В/IV (line 159), V (line 203)",
+    "description": "Section heading issues: Multiple section markers are corrupted with non-Latin characters (Cyrillic В, П and Greek Ι, Α). Standard ND opinions use Latin numerals and letters (I, II, III, IV, V, etc.). These are OCR/encoding errors.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20231,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20230,
+  "clean": false,
+  "proposals": [],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "he was released 1 Because April 21, 2024, fell on a Sunday, trial would have been required to begin on or before Monday, April 22, 2024. See N.D.R.Crim.P. 45(a)(1)(C). from the DOCR and ordered transferred directly to the Barnes County Correctional Center.",
+    "description": "Footnote text misplaced inline in middle of ¶3. The footnote marker '1' and footnote text ('Because April 21, 2024...') should be separated from the main paragraph text and formatted as a proper footnote, not inserted between 'he was released' and 'from the DOCR'. In the PDF source, this footnote appears at the bottom of the page. This is a footnote handling/pipeline issue, not a substantive text error.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025",
+  "coverage_note": "Compared DB text against authoritative PDF source (pdftotext -layout). Performed comprehensive character-level comparison after whitespace normalization. All substantive text (citations, dates, party names, dollar amounts, statute references, case law citations) verified correct. Only issue found: footnote formatting anomaly in ¶3.\""
+ },
+ {
+  "opinion_id": 20221,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Full verification: 2025 ND 23 (DB id 20221) compared byte-for-byte against authoritative PDF. All high-risk patterns checked (citations, case/party names, judge names, docket numbers, justice names, special characters). Opinion text is 100% identical between DB and source. Only differences are page furniture (form feeds, page number) and PDF line wrapping, which are handled by separate deterministic pass.",
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20210,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full opinion verified against authoritative PDF source. All substantive content identical. Differences limited to formatting (centered headings, line wrapping), form-feed page break, and page footer—all expected ingestion artifacts not subject to correction per protocol.\""
+ },
+ {
+  "opinion_id": 20199,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "\nΠ\n",
+    "new_exact": "\nII\n",
+    "verified_count": 1,
+    "source": "PDF page 3, section heading between [¶6] and [¶7]",
+    "confidence": "high",
+    "note": "Greek capital pi (U+03A0) misrecognized as Roman numeral II. Confirmed via PDF inspection showing Latin 'II' in heading position."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "\nВ\n",
+    "new_exact": "\nB\n",
+    "verified_count": 1,
+    "source": "PDF page 5, section heading between [¶10] and [¶11]",
+    "confidence": "high",
+    "note": "Cyrillic capital B (U+0412) misrecognized as section marker. PDF shows Latin 'B' as subsection heading."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "<sup>&</sup>lt;sup>1</sup> Section 39-20-04, N.D.C.C, provides the Department's authority",
+    "description": "Corrupted HTML entity in footnote (line 67). Text shows '<sup>&</sup>lt;sup>1</sup>' which appears to be a double-escaped or malformed superscript markup. Per instructions, footnotes are handled by separate pipeline; flagging for footnote specialist review.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20188,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full opinion verified: Database text matches authoritative PDF source word-for-word (297 words). All text content confirmed including citation formats (N.D.R.App.P. 35.1), proper names (justices, attorneys, judge), and docket number. Only differences are formatting artifacts (form feed, page breaks, caption centering, page number footer) handled by separate processing pipeline."
+ },
+ {
+  "opinion_id": 20176,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶19] We affirm the disorderly conduct restraining order.\n\nV\n\n[¶20]",
+    "new_exact": "V\n\n[¶19] We affirm the disorderly conduct restraining order.\n\n[¶20]",
+    "verified_count": 1,
+    "source": "PDF page 8 shows section heading V centered above [¶19]; DB text places V after [¶19]",
+    "confidence": "high",
+    "note": "Section heading V (beginning Section V) must precede paragraph 19, not follow it. Authoritative PDF rendering confirms the correct sequence."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Caption layout differs between PDF (two-column format with roles right-aligned) and DB (roles on separate lines below names) — this is a known PDF extraction artifact and does not represent a word/character transcription error. Form feeds (0x0C) and page numbers (1, 2, 3, 4, 5, 6, 7) are expected PDF artifacts. Opinion body text is otherwise accurate.\""
+ },
+ {
+  "opinion_id": 20165,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "makes the affiant available for cross- examination",
+    "new_exact": "makes the affiant available for cross-examination",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND18.txt",
+    "confidence": "high",
+    "note": "Unwanted space before hyphen in compound word 'cross-examination'. PDF shows the correct hyphenated form without the space."
+   },
+   {
+    "class": "heading_seq",
+    "old_exact": "opinion. III[¶11]",
+    "new_exact": "opinion.\n\nIII\n\n[¶11]",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND18.txt",
+    "confidence": "high",
+    "note": "Section heading III should appear on its own line between paragraphs 10 and 11, matching the PDF structure with proper spacing."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "Line 56: '[¶9] Romanyshyn argued his answer...' through '[¶10]... opinion. Filed by Clerk of Supreme Court 4/10/25'",
+    "description": "The running header 'Filed by Clerk of Supreme Court 4/10/25' appears mid-paragraph between ¶9 and ¶10 in the DB text. This is a known page break artifact from PDF ingestion and should be handled by a separate deterministic pass per the rules (not flagged as an error to fix).",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20154,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20143,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "[¶2] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶2] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2025/2025ND16.pdf lines 37-41",
+    "confidence": "high",
+    "evidence": "The authoritative PDF renders the paragraph [¶2] signature block with each justice's name on a separate line with 5-space indentation. The DB text incorrectly joins all judges on a single line without line breaks, which diverges from the official printed rendering.",
+    "note": "This is a structural formatting defect from OCR/ingestion processing. The judges' names should be separated by newlines with consistent indentation to match the official PDF layout."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 20302,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20291,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "other",
+    "old_exact": "920 N.W.2d 465. A",
+    "new_exact": "920 N.W.2d 465.",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND8.txt - PDF source shows section heading A on separate line after paragraph 8",
+    "confidence": "high",
+    "note": "Section heading A was incorrectly appended to end of ¶8. In the PDF source, A appears on its own line after 'Rustad v. Baumgartner, 2018 ND 268, ¶ 4, 920 N.W.2d 465.' This is OCR/ingestion error where the heading got fused to the previous paragraph."
+   },
+   {
+    "class": "other",
+    "old_exact": "Katie Hollingsworth. to the",
+    "new_exact": "Katie Hollingsworth.",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND8.txt - PDF shows clean paragraph break after 'Katie Hollingsworth.'",
+    "confidence": "high",
+    "note": "The text ' to the' at end of ¶11 is erroneous and does not appear in the source PDF. This appears to be a scanning/OCR artifact where stray characters were captured from page layout or column formatting."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "$48,098 joint account",
+    "new_exact": "$48,098 to the joint account",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND8.txt - PDF clearly shows 'contributed $48,098 to the joint account'",
+    "confidence": "high",
+    "note": "The words 'to the' were dropped from ¶12, creating nonsensical phrasing. Source PDF definitively shows 'Jacob Hollingsworth contributed $48,098 to the joint account while Katie Hollingsworth contributed negative $60,112.'"
+   },
+   {
+    "class": "other",
+    "old_exact": "marital estate. B",
+    "new_exact": "marital estate.",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND8.txt - PDF source shows section heading B on separate line after ¶12",
+    "confidence": "high",
+    "note": "Section heading B was incorrectly appended to end of ¶12. The PDF shows 'marital estate.' followed by paragraph break, then 'B' on its own line as a section heading. This is the same OCR/ingestion defect as Error 1."
+   },
+   {
+    "class": "other",
+    "old_exact": "agreed to by the parties. C",
+    "new_exact": "agreed to by the parties.",
+    "verified_count": 1,
+    "source": "/tmp/src_2025ND8.txt - PDF source shows section heading C on separate line after ¶13",
+    "confidence": "high",
+    "note": "Section heading C was incorrectly appended to end of ¶13. The PDF shows 'agreed to by the parties.' followed by blank lines, then 'C' on its own line as a section heading. This is the same ingestion defect pattern as Errors 1 and 4."
+   }
+  ],
+  "flags": []
+ },
+ {
+  "opinion_id": 20280,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "paragraph_seq",
+    "old_exact": "Joseph Edward Glaum,\n\nv.\n\nRebecca Woodrow,\n\nPlaintiff and Appellant\n\nDefendant",
+    "new_exact": "Joseph Edward Glaum,                                    Plaintiff and Appellant\n      v.\nRebecca Woodrow,                                                    Defendant",
+    "verified_count": 1,
+    "source": "pdftotext -layout output lines 7-9, visually confirmed in /tmp/p1.png",
+    "confidence": "high",
+    "evidence": "DB ingestion lost the PDF's caption layout where party names and their roles appear on parallel lines with right-aligned spacing. PDF shows 'Joseph Edward Glaum,' on left with 'Plaintiff and Appellant' right-aligned on same line, then 'v.' indented, then 'Rebecca Woodrow,' with 'Defendant' right-aligned. DB has these split across separate blank-line-separated lines.",
+    "note": "Restores the official court document structure as published in PDF 2025ND7.pdf."
+   },
+   {
+    "class": "paragraph_seq",
+    "old_exact": "[¶2] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶2] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "pdftotext -layout output lines 37-41, visually confirmed in rendered PDF",
+    "confidence": "high",
+    "evidence": "DB ingestion flattened the justice names into a single line. PDF shows [¶2] with 'Jon J. Jensen, C.J.' on first line, then each subsequent justice on its own indented line with 5-space indent matching document formatting.",
+    "note": "Restores the official court document structure as published in PDF 2025ND7.pdf."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Complete opinion read and verified against authoritative PDF source. All substantive content checked and matches. Only layout/structural formatting issues identified."
+ },
+ {
+  "opinion_id": 20269,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "serves to clarify the for workers' to psychological conditions and eligibility law relating compensation benefits.",
+    "new_exact": "serves to clarify the law relating to psychological conditions and eligibility for workers' compensation benefits.",
+    "verified_count": 1,
+    "source": "PDF text pdftotext extraction shows correct text with newlines; DB has garbled word order with 'for workers' to' instead of 'law relating to...for workers'",
+    "confidence": "high",
+    "evidence": "Source PDF shows 'serves to clarify the\nlaw relating to psychological conditions and eligibility for workers'\ncompensation benefits' (with newlines from layout). DB has word order error: 'the for workers' to psychological conditions and eligibility law relating compensation' - words are reordered and 'for' appears twice incorrectly."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "physical injury. To be directly caused it must be shown with objective medical evidence the mental or psychological condition is the physiological product of the physical injury. that 2. 'Other contributing causes'",
+    "new_exact": "physical injury. To be directly caused it must be shown with objective medical evidence that the mental or psychological condition is the physiological product of the physical injury.\n\n\n\n\n2. 'Other contributing causes'",
+    "verified_count": 1,
+    "source": "PDF shows proper structure with 'that the' and 'physical injury.' followed by page break and then '2. Other'. DB incorrectly fuses period and 'that 2.' together with missing 'that' word.",
+    "confidence": "high",
+    "evidence": "PDF layout shows: (1) missing word 'that' before 'the mental' - source has 'evidence that the mental'; (2) 'that 2.' should be split with newlines between - source shows the closing quote after 'physical injury.' then formatting/page break, then '2.' at new section"
+   },
+   {
+    "class": "other",
+    "old_exact": "loss of career or employment position, family units, anxiousness, disruption uncertainty, or compromised ability to participate in lifestyles, hobbies, or pastimes.\" lifestyle or to",
+    "new_exact": "loss of career or employment position, disruption to lifestyle or family units, anxiousness, uncertainty, or compromised ability to participate in lifestyles, hobbies, or pastimes.\"",
+    "verified_count": 1,
+    "source": "PDF text shows proper regulation text from N.D. Admin. Code § 92-01-02-02.5(2) with 'disruption to lifestyle or family units' and ends with closing quotation mark only - no 'lifestyle or to' garbage",
+    "confidence": "high",
+    "evidence": "Source shows complete regulation quote with proper phrase 'disruption to lifestyle or family units, anxiousness, uncertainty' - not 'family units, anxiousness, disruption uncertainty'. DB has word order error and erroneous 'lifestyle or to' appended at end of line."
+   }
+  ],
+  "flags": [
+   {
+    "class": "split_join",
+    "location_quote": "physical injury. that 2. 'Other contributing causes'",
+    "description": "The regulation quote has malformed text 'that 2.' which appears to be a product of OCR or ingestion joining a period and text improperly. PDF shows proper break between sections with 'that the' (word 'that' missing in DB) and then proper enumeration '2.' on new section.",
+    "confidence": "high"
+   },
+   {
+    "class": "other",
+    "location_quote": "lifestyles, hobbies, or pastimes.\" lifestyle or to",
+    "description": "Erroneous text 'lifestyle or to' appears at end of line 77 after the closing quotation mark of the regulation. This is garbage text that should not be present - the regulation quote should end cleanly with the closing quotation mark.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025",
+  "coverage_note": "Comprehensive scan of DB text vs. PDF source text identified three transcription defects in the regulation quote at [¶16] and one major syntax error at [¶23]. All defects are OCR/ingestion failures with high confidence. Opinion is otherwise clean.\""
+ },
+ {
+  "opinion_id": 20258,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Comprehensive byte-exact comparison of markdown version against authoritative PDF source (pdftotext -layout). Verified all substantive content including opinion text, citations, party names, justice names, judge name, docket number, court designation, and disposition. No OCR errors, character substitutions, missing text, digit errors, or citation defects detected. Layout differences (indentation, line wrapping) are expected and not substantive. Page furniture (page number '1', form feed character) properly excluded from analysis.\""
+ },
+ {
+  "opinion_id": 20247,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Full proofreading completed: DATABASE TEXT 2025 ND 4 (ID 20247) compared byte-by-byte and word-by-word against the authoritative PDF source. Opinion text from [¶1] through [¶5] verified identical after normalizing whitespace and removing pagination artifacts (form-feeds, page numbers). All special characters (§, ¶, curly quotes, apostrophes) match perfectly. All key citations, case names, statute numbers, and proper names verified intact. Zero character transcription errors, zero OCR defects, zero word-level changes detected. The database text is CLEAN and AUTHORITATIVE for publication.",
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20236,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Comprehensive character-level verification: extracted PDF via pdftotext -layout, normalized both texts (removing all whitespace), and compared substantive content after caption section. Database text matches PDF authoritative source perfectly. No OCR errors, transposition errors, missing text, or character substitutions detected. Differences observed (caption formatting, signature block line breaks, citation line wrapping) are structural artifacts of PDF-to-database conversion, not textual defects."
+ },
+ {
+  "opinion_id": 20187,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "[¶4] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+    "new_exact": "[¶4] Jon J. Jensen, C.J.\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+    "verified_count": 1,
+    "source": "2025ND2.pdf (official PDF via pdftotext -layout)",
+    "confidence": "high",
+    "note": "The database has wrongly fused the justices' names into a single line (split_join error). The PDF shows each justice's name on a separate line with indentation. This is a formatting defect in OCR/ingestion, not editorial."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Comprehensive comparison: DB text (42 lines) vs. official PDF via pdftotext -layout. All substantive opinion body content is character-identical after removing whitespace/formatting and page furniture (page number '1' and form feed). Only defect found: split_join error in paragraph 4 (justices' names).\""
+ },
+ {
+  "opinion_id": 20132,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "caption",
+    "old_exact": "Georgia Windyboy,\n v.\nState of North Dakota,\n\nPetitioner and Appellant\n\nRespondent and Appellee",
+    "new_exact": "Georgia Windyboy,                                     Petitioner and Appellant\n      v.\nState of North Dakota,                               Respondent and Appellee\n",
+    "verified_count": 1,
+    "source": "/Users/jerod/refs/nd/opin/pdfs/2025/2025ND15.pdf (lines 7-9)",
+    "confidence": "high",
+    "evidence": "The PDF shows the case caption with parties and their roles on aligned lines: 'Georgia Windyboy,' is followed by spaces and 'Petitioner and Appellant' on the same line. The DB has incorrectly separated these elements into distinct blank-line-separated sections, losing the critical visual grouping that shows which party has which role."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Comprehensive review completed. All substantive content (opinion text, citations, judge names, dates) verified against PDF source. Layout differences (page breaks, page numbers, leading whitespace) excluded per instructions. Judge signature block line wrapping is expected normalization. Only one structural error identified: caption format/sequencing.\""
+ },
+ {
+  "opinion_id": 20121,
+  "clean": true,
+  "proposals": [],
+  "flags": []
+ },
+ {
+  "opinion_id": 20110,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "contemplated. . . . . (Emphasis",
+    "new_exact": "contemplated. . . . (Emphasis",
+    "verified_count": 1,
+    "source": "Source PDF shows compact four-dot ellipsis '....' at Rule 11(c)(5) quotation block end, indicating spaced form should be '. . . .' not '. . . . .'",
+    "confidence": "high",
+    "evidence": "DB text has spaced ellipsis with 5 dots/spaces before '(Emphasis added.)'. Source PDF shows standard four-dot form, consistent with other spaced ellipses in opinion (e.g., in Ostafin quote: '[defendant] . . . .' and 'sentence to . . . uphold').",
+    "note": "Ingestion artifact: excessive spacing in ellipsis. Correction aligns with ND opinion ellipsis style."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Complete systematic comparison of DB text (84 lines, plaintext) against source PDF (387 lines with layout). Verified all substantive content matches after normalization. Footnote markers and form-feed characters are known pipeline artifacts and not flagged per protocol. All case numbers, dates, citations, and party names verified as correct.\""
+ },
+ {
+  "opinion_id": 20099,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "whitespace",
+    "old_exact": "2d\n118). “[A] party who objects to an instruction . . . must do so on the record, stating\ndistinctly the ma",
+    "new_exact": "2d\n118). “[A] party who objects to an instruction .... must do so on the record, stating\ndistinctly the ma",
+    "verified_count": 1,
+    "source": "PDF via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ...."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": " to ask\n     questions of the child, or the minor . . . They are questions that are open\n     ended so the ",
+    "new_exact": " to ask\n     questions of the child, or the minor .... They are questions that are open\n     ended so the ",
+    "verified_count": 1,
+    "source": "PDF via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ...."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "\n     without any outside influence from an adult . . .”\n\n                                        5\n\f   •  ",
+    "new_exact": "\n     without any outside influence from an adult ....”\n\n                                        5\n\f   •  ",
+    "verified_count": 1,
+    "source": "PDF via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ...."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "What I remember is\n      Detective Gregory saying . . .”\n   • “There’s nothing that has been presented in e",
+    "new_exact": "What I remember is\n      Detective Gregory saying ....”\n   • “There’s nothing that has been presented in e",
+    "verified_count": 1,
+    "source": "PDF via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ...."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "oodman, the Defendant, guilty on all three counts . . .”\n   • “So the truth is what you heard from the witn",
+    "new_exact": "oodman, the Defendant, guilty on all three counts ....”\n   • “So the truth is what you heard from the witn",
+    "verified_count": 1,
+    "source": "PDF via pdftotext -layout",
+    "confidence": "high",
+    "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ...."
+   }
+  ],
+  "flags": [],
+  "era": "2025",
+  "coverage_note": "Full-text scan of 351-line opinion; checked for OCR errors, structural integrity, citation formats"
+ },
+ {
+  "opinion_id": 20088,
+  "clean": true,
+  "proposals": [],
+  "flags": [],
+  "coverage_note": "Full opinion examined: 2025 ND 11, a 3-paragraph summary affirmance (215 words). All citations, party names, case numbers, statutes, reporter references, and judicial signatures verified against authoritative PDF source. Differences are layout-only (line wrapping, caption alignment, page number/form-feed furniture). No OCR defects, character substitutions, missing text, or citation errors detected.",
+  "era": "2025"
+ },
+ {
+  "opinion_id": 20077,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "missing_text",
+    "old_exact": "We affirm the criminal judgment. In August 2023, the State charged Greene via Amended Information with\n\n[¶2] eleven sexual offenses:\n\nI",
+    "new_exact": "We affirm the criminal judgment.\n\nI\n\n[¶2] In August 2023, the State charged Greene via Amended Information with\neleven sexual offenses:",
+    "verified_count": 1,
+    "source": "PDF pdftotext extraction matches lines 40-46 of /tmp/src_2025ND10.txt",
+    "confidence": "high",
+    "note": "Paragraph [¶1] incorrectly extends into the opening sentence of [¶2]. The DB merges 'In August 2023, the State charged Greene via Amended Information with' into the end of [¶1] instead of keeping it as the start of [¶2]. The section marker 'I' is also misplaced after [¶2] instead of between the paragraphs."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "art. I, § 11 of is grossly the North Dakota Constitution because disproportionate to both the offenses committed and the sentences received by other offenders convicted of similar crimes in North Dakota. it",
+    "new_exact": "art. I, § 11 of the North Dakota Constitution because it is grossly disproportionate to both the offenses committed and the sentences received by other offenders convicted of similar crimes in North Dakota.",
+    "verified_count": 1,
+    "source": "PDF lines 121-124 of /tmp/src_2025ND10.txt show correct text: 'art. I, § 11 of the North Dakota Constitution because it is grossly disproportionate'",
+    "confidence": "high",
+    "note": "In paragraph [¶8], words are scrambled: 'of is grossly the' should be 'of the' and 'because disproportionate' should be 'because it is grossly disproportionate'. Also the sentence ends incorrectly with '. it' instead of '.'"
+   }
+  ],
+  "flags": [
+   {
+    "class": "paragraph_seq",
+    "location_quote": "[¶1]...We affirm the criminal judgment.",
+    "description": "Paragraph [¶1] incorrectly includes content that belongs in [¶2]. The sentence 'In August 2023, the State charged Greene via Amended Information with' is appended to the end of [¶1] rather than starting [¶2].",
+    "confidence": "high"
+   },
+   {
+    "class": "other",
+    "location_quote": "[¶2] eleven sexual offenses:\n\nI",
+    "description": "The section marker 'I' appears on a separate line after [¶2]'s opening, when it should appear before [¶2] starts (between [¶1] and [¶2]).",
+    "confidence": "high"
+   }
+  ],
+  "era": "2025\""
+ }
+]

@@ -1,0 +1,92 @@
+[
+ {
+  "opinion_id": 20291,
+  "class": "heading_seq",
+  "old_exact": "0 N.W.2d 465. A\n\n",
+  "new_exact": "0 N.W.2d 465.\n\nA\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading A merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20291,
+  "class": "heading_seq",
+  "old_exact": "rital estate. B\n\n",
+  "new_exact": "rital estate.\n\nB\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading B merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20291,
+  "class": "heading_seq",
+  "old_exact": " the parties. C\n\n",
+  "new_exact": " the parties.\n\nC\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading C merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19979,
+  "class": "heading_seq",
+  "old_exact": "cho, at ¶ 24. A\n\n",
+  "new_exact": "cho, at ¶ 24.\n\nA\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading A merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19979,
+  "class": "heading_seq",
+  "old_exact": "as been made. B\n\n",
+  "new_exact": "as been made.\n\nB\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading B merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19979,
+  "class": "heading_seq",
+  "old_exact": "as been made. C\n\n",
+  "new_exact": "as been made.\n\nC\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading C merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19979,
+  "class": "heading_seq",
+  "old_exact": "as been made. D\n\n",
+  "new_exact": "as been made.\n\nD\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading D merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19967,
+  "class": "heading_seq",
+  "old_exact": "ublic access. A\n\n",
+  "new_exact": "ublic access.\n\nA\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading A merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19967,
+  "class": "heading_seq",
+  "old_exact": "ined therein. B\n\n",
+  "new_exact": "ined therein.\n\nB\n\n",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading B merged onto prior line; PDF shows it standalone. Reformat, not delete.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,168 @@
+[
+ {
+  "opinion_id": 20232,
+  "class": "ocr_char",
+  "old_exact": "Ι\n\nThe State's motion to stay follows",
+  "new_exact": "Ι\n\n[¶2] The State's motion to stay follows",
+  "verified_count": 1,
+  "source": "PDF visual rendering (page 3) shows [¶2] label present before this paragraph; DB text is missing the label",
+  "confidence": "high",
+  "note": "Missing paragraph marker [¶2]; this paragraph is unnumbered in the DB but should be numbered. The section marker Ι itself is correct (Greek iota used in opinion headings).",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20232,
+  "class": "ocr_char",
+  "old_exact": "\nΙ\n",
+  "new_exact": "\nI\n",
+  "verified_count": 2,
+  "source": "Unicode analysis: Ι is Greek capital iota (U+0399), should be Latin capital I (U+0049); ND opinions use Latin letters for section markers",
+  "confidence": "high",
+  "note": "Two instances (lines 43 and 215): Greek iota substituted for Latin I in section markers. However, line 43 marks the start of the main opinion's section I, and rendering confirms it should be 'I'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20232,
+  "class": "ocr_char",
+  "old_exact": "\nВ\n",
+  "new_exact": "\nIV\n",
+  "verified_count": 4,
+  "source": "Unicode analysis: В is Cyrillic capital VE (U+0412), should be Latin Roman numeral IV; standard section numbering in ND opinions uses I, II, III, IV",
+  "confidence": "high",
+  "note": "Four instances (lines 99, 159, 243, 419): Cyrillic В substituted for Roman numeral IV in section markers",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20199,
+  "class": "ocr_char",
+  "old_exact": "\nΠ\n",
+  "new_exact": "\nII\n",
+  "verified_count": 1,
+  "source": "PDF page 3, section heading between [¶6] and [¶7]",
+  "confidence": "high",
+  "note": "Greek capital pi (U+03A0) misrecognized as Roman numeral II. Confirmed via PDF inspection showing Latin 'II' in heading position.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20199,
+  "class": "ocr_char",
+  "old_exact": "\nВ\n",
+  "new_exact": "\nB\n",
+  "verified_count": 1,
+  "source": "PDF page 5, section heading between [¶10] and [¶11]",
+  "confidence": "high",
+  "note": "Cyrillic capital B (U+0412) misrecognized as section marker. PDF shows Latin 'B' as subsection heading.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20165,
+  "class": "whitespace",
+  "old_exact": "makes the affiant available for cross- examination",
+  "new_exact": "makes the affiant available for cross-examination",
+  "verified_count": 1,
+  "source": "/tmp/src_2025ND18.txt",
+  "confidence": "high",
+  "note": "Unwanted space before hyphen in compound word 'cross-examination'. PDF shows the correct hyphenated form without the space.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20269,
+  "class": "split_join",
+  "old_exact": "serves to clarify the for workers' to psychological conditions and eligibility law relating compensation benefits.",
+  "new_exact": "serves to clarify the law relating to psychological conditions and eligibility for workers' compensation benefits.",
+  "verified_count": 1,
+  "source": "PDF text pdftotext extraction shows correct text with newlines; DB has garbled word order with 'for workers' to' instead of 'law relating to...for workers'",
+  "confidence": "high",
+  "evidence": "Source PDF shows 'serves to clarify the\nlaw relating to psychological conditions and eligibility for workers'\ncompensation benefits' (with newlines from layout). DB has word order error: 'the for workers' to psychological conditions and eligibility law relating compensation' - words are reordered and 'for' appears twice incorrectly.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20269,
+  "class": "split_join",
+  "old_exact": "physical injury. To be directly caused it must be shown with objective medical evidence the mental or psychological condition is the physiological product of the physical injury. that 2. 'Other contributing causes'",
+  "new_exact": "physical injury. To be directly caused it must be shown with objective medical evidence that the mental or psychological condition is the physiological product of the physical injury.\n\n\n\n\n2. 'Other contributing causes'",
+  "verified_count": 1,
+  "source": "PDF shows proper structure with 'that the' and 'physical injury.' followed by page break and then '2. Other'. DB incorrectly fuses period and 'that 2.' together with missing 'that' word.",
+  "confidence": "high",
+  "evidence": "PDF layout shows: (1) missing word 'that' before 'the mental' - source has 'evidence that the mental'; (2) 'that 2.' should be split with newlines between - source shows the closing quote after 'physical injury.' then formatting/page break, then '2.' at new section",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20269,
+  "class": "other",
+  "old_exact": "loss of career or employment position, family units, anxiousness, disruption uncertainty, or compromised ability to participate in lifestyles, hobbies, or pastimes.\" lifestyle or to",
+  "new_exact": "loss of career or employment position, disruption to lifestyle or family units, anxiousness, uncertainty, or compromised ability to participate in lifestyles, hobbies, or pastimes.\"",
+  "verified_count": 1,
+  "source": "PDF text shows proper regulation text from N.D. Admin. Code § 92-01-02-02.5(2) with 'disruption to lifestyle or family units' and ends with closing quotation mark only - no 'lifestyle or to' garbage",
+  "confidence": "high",
+  "evidence": "Source shows complete regulation quote with proper phrase 'disruption to lifestyle or family units, anxiousness, uncertainty' - not 'family units, anxiousness, disruption uncertainty'. DB has word order error and erroneous 'lifestyle or to' appended at end of line.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20110,
+  "class": "whitespace",
+  "old_exact": "contemplated. . . . . (Emphasis",
+  "new_exact": "contemplated. . . . (Emphasis",
+  "verified_count": 1,
+  "source": "Source PDF shows compact four-dot ellipsis '....' at Rule 11(c)(5) quotation block end, indicating spaced form should be '. . . .' not '. . . . .'",
+  "confidence": "high",
+  "evidence": "DB text has spaced ellipsis with 5 dots/spaces before '(Emphasis added.)'. Source PDF shows standard four-dot form, consistent with other spaced ellipses in opinion (e.g., in Ostafin quote: '[defendant] . . . .' and 'sentence to . . . uphold').",
+  "note": "Ingestion artifact: excessive spacing in ellipsis. Correction aligns with ND opinion ellipsis style.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20099,
+  "class": "whitespace",
+  "old_exact": "2d\n118). “[A] party who objects to an instruction . . . must do so on the record, stating\ndistinctly the ma",
+  "new_exact": "2d\n118). “[A] party who objects to an instruction .... must do so on the record, stating\ndistinctly the ma",
+  "verified_count": 1,
+  "source": "PDF via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ....",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20099,
+  "class": "whitespace",
+  "old_exact": " to ask\n     questions of the child, or the minor . . . They are questions that are open\n     ended so the ",
+  "new_exact": " to ask\n     questions of the child, or the minor .... They are questions that are open\n     ended so the ",
+  "verified_count": 1,
+  "source": "PDF via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ....",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20099,
+  "class": "whitespace",
+  "old_exact": "\n     without any outside influence from an adult . . .”\n\n                                        5\n\f   •  ",
+  "new_exact": "\n     without any outside influence from an adult ....”\n\n                                        5\n\f   •  ",
+  "verified_count": 1,
+  "source": "PDF via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ....",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20099,
+  "class": "whitespace",
+  "old_exact": "What I remember is\n      Detective Gregory saying . . .”\n   • “There’s nothing that has been presented in e",
+  "new_exact": "What I remember is\n      Detective Gregory saying ....”\n   • “There’s nothing that has been presented in e",
+  "verified_count": 1,
+  "source": "PDF via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ....",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20099,
+  "class": "whitespace",
+  "old_exact": "oodman, the Defendant, guilty on all three counts . . .”\n   • “So the truth is what you heard from the witn",
+  "new_exact": "oodman, the Defendant, guilty on all three counts ....”\n   • “So the truth is what you heard from the witn",
+  "verified_count": 1,
+  "source": "PDF via pdftotext -layout",
+  "confidence": "high",
+  "evidence": "Spaced ellipsis . . . is OCR/pdftotext artifact; ND opinions use compact ....",
+  "_verdict": "reject:bad_anchor"
+ }
+]
