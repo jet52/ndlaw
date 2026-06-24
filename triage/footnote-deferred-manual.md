@@ -22,3 +22,14 @@ body; the opinion has no footnotes. Stays `SRC_MORE` in the engine output but is
 
 Verify sources: `~/refs/nd/opin/archive/<year>/<docket>.htm` (FN_N_ anchors mark
 call sites, not bodies) + court PDFs `~/refs/nd/opin/pdfs/<year>/<cite>.pdf`.
+
+## West-doc footnote residue (manual) — 20 opinions, added 2026-06-24
+
+After the 223-opinion West-doc sweep (W1-W8) + two consolidated re-passes,
+**203/223 resolved (91%)**. These 20 (1978-1988) persistently skipped — mostly
+high-footnote-count opinions (1986 ND 104 = 21 fn, 1979 ND 30 / 1985 ND 40 = 12)
+where the agents hit byte-anchor/connection limits. Footnote bodies are PRESENT
+in the DB (parser-undetected, not lost — detector stays 175/0); these are polish.
+List: triage/westdoc-footnote-residue-manual.json. Ground-truth footnote sets
+available via scripts/westdoc_footnotes.py; repair with the editpair workflow +
+heal + gated applier, or by hand for the largest ones.
