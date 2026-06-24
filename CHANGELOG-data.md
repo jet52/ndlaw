@@ -2,6 +2,25 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `scramble-bucket-2026-06-24` — pdfminer column-scrambles (3 opinions, 8 edits)
+
+Manual reconstruction of three scrambled opinions the reconciler couldn't auto-fix (its
+per-paragraph pure-reorder gate doesn't fire on cross-boundary scrambles or scrambles
+mixing citations into prose). Each repaired against the opinion's PDF; all token-conserving
+(displaced fragments relocated, not deleted).
+
+- **2023 ND 179** (id 19765, Williamson v. State): cross-boundary — `confidential
+  attorney-client` was dangling at the end of ¶1; restored to ¶2's quote
+  (`"appropriate confidential attorney-client communication"`).
+- **2022 ND 145** (id 19658, Lovro v. City of Finley): the phrase `is to "prevent judicial
+  'second-guessing' of` was displaced (and internally reordered) to before [¶13]; restored
+  to its place after `the discretionary function exception`.
+- **2023 ND 78** (id 19830, Fietzek v. Fietzek): two scrambles. (1) The citation `2008 ND
+  58, ¶ 15` was scrambled (as `2008 ND 15, 58, ¶`) into `wasted asset` and dropped from the
+  `Hitz, ... 746 N.W.2d 732` cite; restored to `Hitz, 2008 ND 58, ¶ 15, 746 N.W.2d 732` and
+  `wasted asset` cleaned. (2) `fact subject to the` was displaced after `10 years.`;
+  restored to `finding of fact subject to the clearly erroneous standard`.
+
 ## Batch `ocr-cleanup-2026-06-24` — deferred-queue OCR/cleanup (12 fixes, 11 opinions)
 
 Worked the genuinely-actionable OCR/cleanup items from the deferred queues (after an

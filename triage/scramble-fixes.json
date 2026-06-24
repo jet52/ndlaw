@@ -1,0 +1,82 @@
+[
+ {
+  "opinion_id": 19765,
+  "class": "scramble",
+  "old_exact": "deny the request to correct the record. confidential attorney-client\n\n[¶2]",
+  "new_exact": "deny the request to correct the record.\n\n[¶2]",
+  "verified_count": 1,
+  "source": "2023ND179.pdf: ¶1 ends 'deny the request to correct the record.' The trailing 'confidential attorney-client' is displaced text belonging to ¶2's quote (moved in companion edit).",
+  "confidence": "high",
+  "note": "Cross-boundary scramble: remove fragment displaced into ¶1; reinserted into ¶2 below. Text conserved."
+ },
+ {
+  "opinion_id": 19765,
+  "class": "scramble",
+  "old_exact": "not allowing him to have \"appropriate communication\" during",
+  "new_exact": "not allowing him to have \"appropriate confidential attorney-client communication\" during",
+  "verified_count": 1,
+  "source": "2023ND179.pdf ¶2: 'not allowing him to have “appropriate confidential attorney-client communication” during his telephonic hearing.' DB dropped 'confidential attorney-client' (displaced into ¶1).",
+  "confidence": "high",
+  "note": "Cross-boundary scramble: reinsert the 'confidential attorney-client' fragment displaced into ¶1."
+ },
+ {
+  "opinion_id": 19658,
+  "class": "scramble",
+  "old_exact": "discretionary function exception legislative and administrative decisions",
+  "new_exact": "discretionary function exception is to \"prevent judicial 'second-guessing' of legislative and administrative decisions",
+  "verified_count": 1,
+  "source": "2022ND145.pdf lines 191-194: 'The purpose of the discretionary function exception is to “prevent judicial ‘second-guessing’ of legislative and administrative decisions grounded in social, economic, and political policy...”'",
+  "confidence": "high",
+  "note": "Scramble: restore the 'is to \"prevent judicial 'second-guessing' of' phrase displaced (and internally reordered) to before [¶13]; companion edit removes the dangling fragment."
+ },
+ {
+  "opinion_id": 19658,
+  "class": "scramble",
+  "old_exact": "(1988)). 'second-guessing' of is to \"prevent judicial\n\n[¶13]",
+  "new_exact": "(1988)).\n\n[¶13]",
+  "verified_count": 1,
+  "source": "2022ND145.pdf line 196: the quoted sentence ends at '(1988)).' before [¶13]. The 'second-guessing' of is to \"prevent judicial' fragment was displaced here and belongs in the sentence above.",
+  "confidence": "high",
+  "note": "Scramble: remove dangling displaced fragment (relocated into the sentence above). Token-conserving."
+ },
+ {
+  "opinion_id": 19830,
+  "class": "scramble",
+  "old_exact": "consider[.]\" Hitz, 746 N.W.2d 732",
+  "new_exact": "consider[.]\" Hitz, 2008 ND 58, ¶ 15, 746 N.W.2d 732",
+  "verified_count": 1,
+  "source": "2023ND78.pdf lines 229-232: 'Hitz, 2008 ND 58, ¶ 15, 746 N.W.2d 732 (quoting McDowell...)'. DB dropped the neutral cite + pincite (displaced into 'wasted asset' below).",
+  "confidence": "high",
+  "note": "Scramble: restore the displaced/reordered citation '2008 ND 58, ¶ 15' to the Hitz cite; companion edit removes it from 'wasted asset'."
+ },
+ {
+  "opinion_id": 19830,
+  "class": "scramble",
+  "old_exact": "results in a wasted 2008 ND 15, 58, ¶ asset or",
+  "new_exact": "results in a wasted asset or",
+  "verified_count": 1,
+  "source": "2023ND78.pdf lines 233-236: 'Economic misconduct is misconduct that results in a wasted asset or in the reduction of the net marital estate.' The '2008 ND 15, 58, ¶' fragment is the displaced/scrambled Hitz cite (restored above).",
+  "confidence": "high",
+  "note": "Scramble: remove the citation fragment scrambled into 'wasted asset' (relocated to the Hitz cite above). Token-conserving."
+ },
+ {
+  "opinion_id": 19830,
+  "class": "scramble",
+  "old_exact": "awarding spousal support for 10 years. to the fact subject This Court reviews",
+  "new_exact": "awarding spousal support for 10 years. This Court reviews",
+  "verified_count": 1,
+  "source": "2023ND78.pdf lines 216-219: '...erred in awarding spousal support for 10 years.' then block quote 'This Court reviews an award of spousal support as a finding of fact subject to the clearly erroneous standard...'",
+  "confidence": "high",
+  "note": "Scramble: remove 'to the fact subject' displaced after '10 years.'; reinserted into the 'finding of ... clearly erroneous' phrase below. Token-conserving."
+ },
+ {
+  "opinion_id": 19830,
+  "class": "scramble",
+  "old_exact": "an award of spousal support as a finding of clearly erroneous standard",
+  "new_exact": "an award of spousal support as a finding of fact subject to the clearly erroneous standard",
+  "verified_count": 1,
+  "source": "2023ND78.pdf lines 218-220: 'This Court reviews an award of spousal support as a finding of fact subject to the clearly erroneous standard of review.'",
+  "confidence": "high",
+  "note": "Scramble: reinsert 'fact subject to the' displaced after '10 years.' above."
+ }
+]
