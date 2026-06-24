@@ -24,6 +24,23 @@ ambiguous multi-footnote / lost-call / OCR-garbled structure; footnotes present,
 not lost) + 1 engine false positive (2016 ND 142, header misread as a footnote).
 Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
 
+## Batch `modern-pdf-reconcile-2026-06-23` — deterministic scramble repair from PDF
+
+After fixing the scraper's extractor (pdfminer -> poppler pdftotext), modern
+opinion text is reconciled against the now-correct PDF WITHOUT a wholesale
+re-derivation that would revert corrections. scripts/reconcile_modern_pdf.py
+aligns DB<->PDF by the court's [¶N] markers and replaces a paragraph ONLY when
+the DB text is a PURE REORDER of the PDF (identical word multiset, different
+sequence) -- provably safe (no words added/dropped, just restored to the
+authoritative order), and safe over corrected paragraphs (the corrected words
+survive in the multiset). Footnote-marker and content-change paragraphs are
+flagged, never auto-replaced.
+
+2026 pilot: 116 opinions, 20 with scrambles -> 22 paragraph fixes applied. E.g.
+2026 ND 60 ¶3 "affirm the divorce 35.1(a)(2), (4), and (7). judgment under
+N.D.R.App.P." -> "affirm the divorce judgment under N.D.R.App.P. 35.1(a)(2),
+(4), and (7)."; 2026 ND 112 ¶9 restored. Reversible by batch.
+
 ## Batch `corpus-proofing-2026-06-23` — proofing fleet P1 (calibration, 2026)
 
 First corpus-proofing batch: 30 most-recent opinions, each agent diffing the DB
