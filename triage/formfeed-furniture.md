@@ -1,4 +1,4 @@
-# Form-feed furniture removal — DRY-RUN
+# Form-feed furniture removal — APPLIED
 
 120 opinions OK, 0 skipped (word-gate). Removed 118 running-header blocks + 1105 bare 0x0C bytes.
 

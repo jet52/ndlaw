@@ -2,6 +2,29 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `formfeed-furniture-2026-06-24` — page-furniture removal (120 opinions)
+
+Resolved the open form-feed finding from the P2 proofing batch (user-approved
+2026-06-24). `pdftotext` emits a 0x0C at every page break; ingestion preserved
+it across 120 opinions (1998–2026, incl. the current pipeline).
+`scripts/strip_formfeed_furniture.py` removed, per opinion and behind gates:
+
+- **118 running-header blocks** — `\x0c<short case name>\n<docket>\n\n` (e.g.
+  `Brooks v. State / No. 20250426`, `Zarrett v. Zarrett / Civil No. 970178`),
+  appellate page furniture duplicating the page-1 caption. A header is removed
+  ONLY when its docket number is independently confirmed earlier in the text
+  (the caption), proving it redundant; both the older blank-line and the 2026
+  single-newline header layouts are handled. The leading `\n\n` paragraph break
+  is kept, so the attorney block flows into the author line.
+- **1,105 bare 0x0C bytes** — lone page-break control chars at paragraph/line
+  boundaries; the byte is non-text and is dropped, surrounding whitespace kept.
+
+Gate: per-opinion alphabetic word-multiset must equal the original MINUS exactly
+the removed-header words — 120/120 passed, 0 skipped, 0 unverified-docket flags.
+Result: 0 opinions contain 0x0C. Detector 175/0; invariants 24 ok / 2 known /
+0 regressed; 66 tests pass. (The corpus-proofing v2 prompt now tells agents to
+ignore form-feed furniture so this artifact is not re-surfaced.)
+
 ## Batch `corpus-proofing-2026-06-24` — proofing fleet P2 AUTO (12 opinions)
 
 Second proofing batch (40 modern opinions, 2026 ND 46–85). Agents proposed
