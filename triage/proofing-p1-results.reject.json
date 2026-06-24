@@ -1,0 +1,143 @@
+[
+ {
+  "opinion_id": 20516,
+  "class": "missing_text",
+  "old_exact": "any objections to the existence of any terms.\" the Oral Assumption Agreement,\n",
+  "new_exact": "any objections to the existence of any terms.\"\n",
+  "verified_count": 1,
+  "source": "pdftotext /Users/jerod/refs/nd/opin/pdfs/2026/2026ND111.pdf lines 107-109",
+  "confidence": "high",
+  "note": "Paragraph 6 ending: Orphaned fragment 'the Oral Assumption Agreement,' was appended to the end of ¶6. The source PDF shows ¶6 correctly ends with the closing quotation after 'any terms.' This fragment belongs elsewhere and corrupts the paragraph structure.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20516,
+  "class": "split_join",
+  "old_exact": "accomplished through multiple the Master agreements, \"including Redemption Agreement, the ISI Redemption Agreement, and agreements with third-party owners.",
+  "new_exact": "accomplished through multiple agreements, \"including the Oral Assumption Agreement, the Master Redemption Agreement, the ISI Redemption Agreement, and agreements with third-party owners.",
+  "verified_count": 1,
+  "source": "pdftotext /Users/jerod/refs/nd/opin/pdfs/2026/2026ND111.pdf lines 111-113",
+  "confidence": "high",
+  "note": "Paragraph 7 list of agreements: Significant text scramble. DB has 'multiple the Master agreements, \"including Redemption Agreement,' when it should be 'multiple agreements, \"including the Oral Assumption Agreement, the Master Redemption Agreement,'. The phrase 'the Oral Assumption Agreement' was dropped and 'the Master' was prematurely added before 'agreements'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20515,
+  "class": "split_join",
+  "old_exact": "judgment. the initial motion, res Both motions originate",
+  "new_exact": "judgment.\n\nBoth motions originate",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND110.pdf page 3",
+  "confidence": "high",
+  "evidence": "PDF pdftotext extraction shows page break (\\x0c) between 'judgment.' and 'Both motions', with page number separator. DB incorrectly joined them, losing the paragraph break and corrupting 'the initial motion, res' as a fragment.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20510,
+  "class": "split_join",
+  "old_exact": "Based on its supplemental its original award \"of primary residential findings, the court found responsibility, parenting time, and property distribution shall remain as ordered in September 2024.",
+  "new_exact": "Based on its supplemental findings, the court found its original award \"of primary residential responsibility, parenting time, and property distribution shall remain as ordered in September 2024.",
+  "verified_count": 1,
+  "source": "PDF /tmp/src_2026ND105.txt lines 86-89, vs markdown line 44",
+  "confidence": "high",
+  "evidence": "PDF shows correct text structure: 'Based on its supplemental findings, the court found its original award.' The markdown repeats 'its', displaces 'findings', and has 'findings' and 'responsibility' in wrong positions.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20420,
+  "class": "ocr_char",
+  "old_exact": ". . . . . A. So basically, the literature describes an avulsion process as",
+  "new_exact": ".... A. So basically, the literature describes an avulsion process as",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND99.pdf lines 420-424",
+  "confidence": "high",
+  "evidence": "PDF source shows '....' (4 solid dots) at line 420 as ellipsis between Q and A in expert testimony. DB incorrectly has '. . . . .' (5 dots with spaces). This is standard OCR/ingestion defect where dot-space sequences become spaced-dot sequences.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20416,
+  "class": "split_join",
+  "old_exact": "The deputy transported Hernandez to the jail. jail, the deputy explained the potential driver’s license\n\n[¶4] At the consequences and how to request a hearing to contest license revocation. Hernandez responded: \"I got a paid lawyer so I ain’t worried about that.\" The deputy later explained the consequences of missing the court date. Hernandez responded: \"No I’ll have my—I’ll call my lawyer as soon as I leave from here.\"\n\n",
+  "new_exact": "The deputy transported Hernandez to the jail.\n\n[¶4] At the jail, the deputy explained the potential driver’s license consequences and how to request a hearing to contest license revocation. Hernandez responded: \"I got a paid lawyer so I ain’t worried about that.\" The deputy later explained the consequences of missing the court date. Hernandez responded: \"No I’ll have my—I’ll call my lawyer as soon as I leave from here.\"\n\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND95.pdf",
+  "confidence": "high",
+  "evidence": "PDF page 2 shows ¶3 ends 'to the jail.' and ¶4 begins 'At the jail, the deputy explained'. DB incorrectly contains duplicated/split text: 'jail. jail,' and ¶4 starts with 'At the consequences' instead of the correct 'At the jail, the deputy explained the potential driver's license consequences'",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20413,
+  "class": "split_join",
+  "old_exact": "The court found the lacked specificity as to ownership, value, and wrongful counterclaim interference with Elite's rights.",
+  "new_exact": "The court found the counterclaim lacked specificity as to ownership, value, and wrongful interference with Elite's rights.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND92.pdf (lines 197-199)",
+  "confidence": "high",
+  "evidence": "PDF shows 'counterclaim lacked' (correct word order); DB shows 'the lacked...counterclaim interference' (corrupted order). Verified: error phrase occurs exactly once in DB (confirmed via byte-search with UTF-8 right-single-quotation mark). Corrected phrase confirmed in PDF source.",
+  "note": "Word-order defect in paragraph 17 where 'counterclaim' and 'lacked' have swapped semantic positions, disrupting sentence structure: DB reads '...the lacked...counterclaim interference...' instead of PDF's '...the counterclaim lacked...interference...'. Suggests text-extraction word-reordering at column/line-break boundary.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20411,
+  "class": "ocr_char",
+  "old_exact": "^LInterest of R.Y.W.",
+  "new_exact": "\f                               Interest of R.Y.W.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND90.pdf (page 1, end; page 2 start)",
+  "confidence": "high",
+  "evidence": "Database contains literal ASCII characters '^' (0x5e) and 'L' (0x4c) where the authoritative PDF source has form feed (0x0c) character. pdftotext extraction shows \\x0c at byte 935 in source; database shows 0x5e 0x4c at byte 795. Form feed is the correct page separator control character used by the PDF; the literal ^L is a mishandling of this during OCR/text extraction.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "split_join",
+  "old_exact": "self- defense",
+  "new_exact": "self-defense",
+  "verified_count": 1,
+  "source": "pdftotext: 'self-' at line end, 'defense' on next line; DB OCR added unwanted space",
+  "confidence": "high",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "whitespace",
+  "old_exact": "Heather  E.  Misialek,  Assistant  State's  Attorney  (argued),  and  Madison \n",
+  "new_exact": "Heather E. Misialek, Assistant State's Attorney (argued), and Madison\n",
+  "verified_count": 1,
+  "source": "pdftotext: single spaces; DB OCR duplicated spaces throughout counsel name line",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "ocr_char",
+  "old_exact": "^LState v. Narveson",
+  "new_exact": "State v. Narveson",
+  "verified_count": 1,
+  "source": "pdftotext: centered 'State v. Narveson' (running head); DB OCR added literal '^L' prefix",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20409,
+  "class": "ocr_char",
+  "old_exact": "^LSandness v. Smith",
+  "new_exact": "Sandness v. Smith",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "PDF source contains form feed (\\x0c) character before section heading; DB has OCR corruption of this as caret-L (^L)",
+  "evidence": "PDF line 26 shows: '\\x0c                               Sandness v. Smith'; DB line 35 shows: '^LSandness v. Smith'. The caret-L is a known OCR artifact for form feed characters.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20408,
+  "class": "ocr_char",
+  "old_exact": "^LState v. Simpson",
+  "new_exact": "\fState v. Simpson",
+  "verified_count": 1,
+  "source": "PDF file contains form feed character (byte 0x0C). pdftotext preserves it.",
+  "confidence": "high",
+  "evidence": "PDF has form feed character (ASCII 12) for page break. Ingestion incorrectly converted to literal text '^L'.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

@@ -24,6 +24,27 @@ ambiguous multi-footnote / lost-call / OCR-garbled structure; footnotes present,
 not lost) + 1 engine false positive (2016 ND 142, header misread as a footnote).
 Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
 
+## Batch `corpus-proofing-2026-06-23` — proofing fleet P1 (calibration, 2026)
+
+First corpus-proofing batch: 30 most-recent opinions, each agent diffing the DB
+against the authoritative court PDF. Layer-C gate (verify_proofing_proposals.py)
+PDF-confirms each proposal (byte-exact DB anchor + reconstruction verbatim in PDF).
+ - **AUTO 11 applied** (6 opinions): whitespace-only / layout fixes — letter-spaced
+   "I N   T H E   S U P R E M E   C O U R T" -> "IN THE SUPREME COURT", double-space
+   and blank-line collapses, signature-block reflow to match the PDF. Reversible.
+ - **REVIEW 21** (PDF-confirmed, awaiting sign-off): see triage/proofing-p1-REVIEW-QUEUE.md.
+ - REJECT 13: 10 bad-anchor (mostly redundant overlapping descriptions of a scramble
+   already caught) + 2 unverified + 1 false-positive (DB already matched PDF).
+
+KEY FINDING — systemic word-scrambling in modern opinions. The PDF->markdown
+analyzer (~/code/scraper/analyzer) scrambles word order at line-break boundaries,
+often making text nonsensical. Confirmed against PDFs, e.g. 2026 ND 112 ¶9 stores
+"probable involving statutory cause decision presents purely a interpretation" for
+the PDF's "probable cause decision presents purely a legal question involving
+statutory interpretation". 21 such scrambles across the 30-opinion batch -> pervasive.
+The authoritative PDF carries the correct text. Open strategic question logged:
+deterministic re-derivation of modern text from PDFs vs. agent-patching.
+
 ## Batch `footnote-editpair-apply-2026-06-23` — corpus scaling, archive batches 2-3 (45 opinions)
 
 Scaled the propose -> gated-apply loop across the archive-backed `SRC_MORE`

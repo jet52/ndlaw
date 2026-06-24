@@ -1,0 +1,121 @@
+[
+ {
+  "opinion_id": 20515,
+  "class": "whitespace",
+  "old_exact": "[¶13] Lisa Fair McEvers, C.J. Jerod E. Tufte Jon J. Jensen Douglas A. Bahr Mark A. Friese",
+  "new_exact": "[¶13] Lisa Fair McEvers, C.J.\n      Jerod E. Tufte\n      Jon J. Jensen\n      Douglas A. Bahr\n      Mark A. Friese",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND110.pdf p. 4-5 (signature block)",
+  "confidence": "high",
+  "evidence": "PDF source shows justice names on separate lines with indentation (newline + 6 spaces). DB has all names compressed onto a single line, losing the signature block formatting.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20513,
+  "class": "whitespace",
+  "old_exact": "Grafton,\n\nNortheast Judicial District",
+  "new_exact": "Grafton,\nNortheast Judicial District",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2026/2026ND108.pdf (page 1, caption section)",
+  "confidence": "high",
+  "evidence": "The authoritative PDF shows the case caption with 'In the Matter of the Vacancy in Judgeship No. 6, with Chambers in Grafton,' followed immediately by 'Northeast Judicial District' on the next line with no blank line between. The DB text contains an extra blank line (double newline) that is not present in the source.",
+  "note": "This is a pure whitespace/formatting error in the case caption. The PDF layout renders these as consecutive lines. After removing this blank line, the entire text content matches the source byte-for-byte (excluding layout/pagination artifacts).",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20506,
+  "class": "whitespace",
+  "old_exact": "[¶27] Jerod E. Tufte, Acting C.J. Jon J. Jensen Douglas A. Bahr Mark A. Friese",
+  "new_exact": "[¶27] Jerod E. Tufte, Acting C.J.\n      Jon J. Jensen\n      Douglas A. Bahr\n      Mark A. Friese",
+  "verified_count": 1,
+  "source": "Official PDF: /Users/jerod/refs/nd/opin/pdfs/2026/2026ND101.pdf lines 453-456",
+  "confidence": "high",
+  "evidence": "PDF shows justice names on separate indented lines; DB has all names run together on single line. Formatting error in ingestion/OCR processing.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "ocr_char",
+  "old_exact": "I N   T H E   S U P R E M E   C O U R T",
+  "new_exact": "IN THE SUPREME COURT",
+  "verified_count": 1,
+  "source": "pdftotext: unspaced 'IN THE SUPREME COURT'; DB OCR adds spaces between letters",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "whitespace",
+  "old_exact": "Appeal  from  the  District  Court  of  Grand  Forks  County,  Northeast  Central ",
+  "new_exact": "Appeal from the District Court of Grand Forks County, Northeast Central ",
+  "verified_count": 1,
+  "source": "pdftotext: single spaces throughout; DB OCR duplicated spaces",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20410,
+  "class": "whitespace",
+  "old_exact": "Schoenberg,  under  the  Rule  on  Limited  Practice  of  Law  by  Law  Students  (on \n",
+  "new_exact": "Schoenberg, under the Rule on Limited Practice of Law by Law Students (on\n",
+  "verified_count": 1,
+  "source": "pdftotext: single spaces; DB OCR duplicated spaces",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20409,
+  "class": "ocr_char",
+  "old_exact": "I N   T H E   S U P R E M E   C O U R T",
+  "new_exact": "IN THE SUPREME COURT",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "PDF source (pdftotext -layout output) shows normal spacing: 'IN THE SUPREME COURT' with leading whitespace for centering, not letter-spaced",
+  "evidence": "DB line 1 has unusual letter spacing (space between each letter); PDF renders this as standard text with normal letter spacing and centering via indentation",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20409,
+  "class": "whitespace",
+  "old_exact": "Appeal from the District Court of Ramsey County, Northeast Judicial District, ",
+  "new_exact": "Appeal from the District Court of Ramsey County, Northeast Judicial District,",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "PDF source (pdftotext -layout) shows line ending without trailing space: 'Appeal from the District Court of Ramsey County, Northeast Judicial District,'",
+  "evidence": "DB line 24 ends with extraneous space after final comma; PDF line 16 ends without trailing space",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20408,
+  "class": "ocr_char",
+  "old_exact": "I N   T H E   S U P R E M E   C O U R T",
+  "new_exact": "IN THE SUPREME COURT",
+  "verified_count": 1,
+  "source": "PDF visual render (mutool) + pdftotext -layout source",
+  "confidence": "high",
+  "evidence": "OCR over-spacing: each character separated by spaces. PDF renders as normal text 'IN THE SUPREME COURT' without intervening spaces.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20408,
+  "class": "whitespace",
+  "old_exact": "Appeal  from  the  District  Court  of  Grand  Forks  County,  Northeast  Central ",
+  "new_exact": "Appeal from the District Court of Grand Forks County, Northeast Central",
+  "verified_count": 1,
+  "source": "pdftotext -layout output shows single spaces",
+  "confidence": "high",
+  "evidence": "DB has double/triple spaces between words and trailing space. PDF source renders with normal single spacing throughout.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20408,
+  "class": "whitespace",
+  "old_exact": "Kara S. Olson (argued) and Nicholas S. Samuelson (on brief), Special Assistant ",
+  "new_exact": "Kara S. Olson (argued) and Nicholas S. Samuelson (on brief), Special Assistant",
+  "verified_count": 1,
+  "source": "pdftotext output shows no trailing space at line end",
+  "confidence": "high",
+  "evidence": "DB line ends with space after 'Special Assistant'. PDF source line ends without trailing space.",
+  "_verdict": "auto:whitespace_only"
+ }
+]
