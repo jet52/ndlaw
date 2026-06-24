@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 18133,
+  "class": "ocr_char",
+  "old_exact": "N.D.R.Civ.P.11(c)(2)",
+  "new_exact": "N.D.R.Civ.P. 11(c)(2)",
+  "verified_count": 1,
+  "source": "PDF line 307 vs DB line 366",
+  "confidence": "high",
+  "note": "Missing space between period and rule number",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18129,
+  "class": "whitespace",
+  "old_exact": " Daniel J. Crothers\n Lisa Fair McEvers\n Jerod E. Tufte\n Douglas A. Bahr",
+  "new_exact": "     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte\n     Douglas A. Bahr",
+  "verified_count": 1,
+  "source": "PDF source shows justice names indented with 5 spaces (column alignment below 'Jon J. Jensen, C.J.' signature block). DB has only 1 space of indentation.",
+  "confidence": "high",
+  "note": "Mechanical whitespace correction restoring proper column alignment of signatory justices, verified against PDF layout.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

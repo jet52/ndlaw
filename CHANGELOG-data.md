@@ -2,6 +2,30 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P20-P22 (30 opinions)
+
+Batches P20-P22 (120 opinions, 2023 ND 86 -> 2022 ND 211), first cycle on the
+quote-normalized text with prompt rule 9 (agents correctly ignored straight-vs-curly
+differences). Applied 51 items across 30 opinions after the hardened triage; pytest
+clean (no regression).
+
+- **3 spelling fixes, each PDF-text-layer-verified SAFE** (per the sumbitted lesson):
+  martial->marital (2023 ND 86), administrate->administrative (2023 ND 77),
+  serous->serious (2023 ND 40) — text-layer shows the corrected form, not the typo.
+- OCR/case-name fixes verified against PDF: GMD->GMR Transp. (2022 ND 205, party
+  name; PDF shows GMR), Judge->Judicial Referee (2023 ND 79; PDF confirms), doubled
+  "for for" (2023 ND 41), "compensable injury" restore (2023 ND 17), carry over->
+  carryover (2023 ND 86).
+- 2023 ND 39 section III move: add before [¶22] + remove the misplaced copy after the
+  signature block (agent's remove-half had a stale \n\n anchor; rebuilt to the actual
+  \n single-newline). III now appears once, in position.
+- 41 clean reorder/respace items.
+
+Deferred (250, NOT applied): **239 markdown citation-linebreak mangle** (this era is
+almost entirely this class), 8 LaTeX, 3 digit. Plus 2 markdown-mangle deletions
+(2023 ND 78, 2023 ND 16) held to the citation cohort. Detector 175/0; invariants
+24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `quotes-straight-2026-06-24` — normalize curly quotes to straight ASCII (13,492 opinions)
 
 User policy decision: the authoritative edition uses straight ASCII quotes and

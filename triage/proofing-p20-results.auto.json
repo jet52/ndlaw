@@ -1,0 +1,173 @@
+[
+ {
+  "opinion_id": 18173,
+  "class": "whitespace",
+  "old_exact": "matter — when",
+  "new_exact": "matter—when",
+  "verified_count": 1,
+  "source": "PDF page 11, paragraph 24 shows em-dash without surrounding spaces: 'matter—when'",
+  "confidence": "high",
+  "evidence": "DB has spaced em-dash 'matter — when'; PDF source shows compact form 'matter—when' without spaces. This is a mechanical ingestion artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18173,
+  "class": "whitespace",
+  "old_exact": "matter — giving",
+  "new_exact": "matter—giving",
+  "verified_count": 1,
+  "source": "PDF page 12, paragraph 25 shows em-dash without surrounding spaces: 'matter—giving'",
+  "confidence": "high",
+  "evidence": "DB has spaced em-dash 'matter — giving'; PDF source shows compact form 'matter—giving' without spaces. This is a mechanical ingestion artifact.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 6\n,",
+  "new_exact": "¶ 6,",
+  "verified_count": 1,
+  "source": "PDF source text (pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2023/2023ND81.pdf). Line 209 shows citation 'City of Fargo v. Nikle, 2019 ND 79, ¶ 6, 924 N.W.2d 388' on single logical line.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 8\n,",
+  "new_exact": "¶ 8,",
+  "verified_count": 1,
+  "source": "PDF source text. Line 77 shows 'State v. Vickerman, 2022 ND 184, ¶ 8, 981 N.W.2d 881' on single logical line in PDF.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 10\n,",
+  "new_exact": "¶ 10,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent: paragraph numbers should not break before comma.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 11\n,",
+  "new_exact": "¶ 11,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 14\n,",
+  "new_exact": "¶ 14,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 15\n,",
+  "new_exact": "¶ 15,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 16\n,",
+  "new_exact": "¶ 16,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "¶ 20\n,",
+  "new_exact": "¶ 20,",
+  "verified_count": 1,
+  "source": "PDF source. Citation format consistent.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18172,
+  "class": "whitespace",
+  "old_exact": "981\nN.W.2d",
+  "new_exact": "981 N.W.2d",
+  "verified_count": 1,
+  "source": "PDF source line 77: reporter citation '981 N.W.2d 881' should remain on same line unit.",
+  "confidence": "high",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18177,
+  "class": "whitespace",
+  "old_exact": " Daniel J. Crothers",
+  "new_exact": "     Daniel J. Crothers",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND74.txt (PDF pdftotext output, lines 50-54 show 5-space indent)",
+  "confidence": "high",
+  "evidence": "PDF source shows consistent 5-space indentation for all four justices in the signature block ([¶2]); DB text shows only 1 space. This is a transcription/ingestion defect affecting whitespace formatting in the authoritative opinion layout.",
+  "note": "This is part of a systematic indentation error affecting all justices in the signature block.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18177,
+  "class": "whitespace",
+  "old_exact": " Lisa Fair McEvers",
+  "new_exact": "     Lisa Fair McEvers",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND74.txt (PDF pdftotext output, lines 50-54 show 5-space indent)",
+  "confidence": "high",
+  "evidence": "PDF source shows consistent 5-space indentation for all justices; DB shows 1 space.",
+  "note": "Part of systematic indentation error in signature block.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18177,
+  "class": "whitespace",
+  "old_exact": " Jerod E. Tufte",
+  "new_exact": "     Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND74.txt (PDF pdftotext output, lines 50-54 show 5-space indent)",
+  "confidence": "high",
+  "evidence": "PDF source shows 5-space indentation; DB shows 1 space.",
+  "note": "Part of systematic indentation error in signature block.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18177,
+  "class": "whitespace",
+  "old_exact": " Douglas A. Bahr",
+  "new_exact": "     Douglas A. Bahr",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND74.txt (PDF pdftotext output, lines 50-54 show 5-space indent)",
+  "confidence": "high",
+  "evidence": "PDF source shows 5-space indentation; DB shows 1 space.",
+  "note": "Part of systematic indentation error in signature block.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18164,
+  "class": "whitespace",
+  "old_exact": "¶¶ 14-15\n,",
+  "new_exact": "¶¶ 14-15,",
+  "verified_count": 1,
+  "source": "PDF (pdftotext): line 331 shows 'ND 119, ¶¶ 14-15, 975' without newline before comma",
+  "confidence": "high",
+  "note": "Erroneous newline inserted before comma in citation; PDF source shows continuous text",
+  "_verdict": "auto:whitespace_only"
+ }
+]

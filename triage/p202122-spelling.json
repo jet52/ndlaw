@@ -1,0 +1,48 @@
+[
+ {
+  "opinion_id": 18190,
+  "class": "ocr_char",
+  "old_exact": "the martial estate",
+  "new_exact": "the marital estate",
+  "verified_count": 1,
+  "source": "PDF source pdftotext extraction confirms correct spelling 'marital' at line 78 of source",
+  "confidence": "high",
+  "evidence": "Appears in ¶3, discussing division of marital assets. 'Marital estate' is the legal term for community property; 'martial' is not a legal term. Context and all surrounding usages confirm 'marital' is correct.",
+  "_verdict": "review:pdf_confirmed",
+  "_sp": [
+   "martial",
+   "marital"
+  ]
+ },
+ {
+  "opinion_id": 18175,
+  "class": "ocr_char",
+  "old_exact": "evidentiary or administrate issues",
+  "new_exact": "evidentiary or administrative issues",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND77.txt (pdftotext extraction from /Users/jerod/refs/nd/opin/pdfs/2023/2023ND77.pdf)",
+  "confidence": "high",
+  "evidence": "The word 'administrate' appears only once in the DB at position 21234 within paragraph 21. The PDF source shows 'administrative' (plural adjective) in the correct context: 'routine evidentiary or administrative issues' (line 403 of PDF text). This is a classic OCR error—the letter 'd' misread as 'te'.",
+  "_verdict": "review:pdf_confirmed",
+  "_sp": [
+   "administrate",
+   "administrative"
+  ]
+ },
+ {
+  "opinion_id": 18145,
+  "class": "ocr_char",
+  "old_exact": "involves serous difficulty in controlling behavior",
+  "new_exact": "involves serious difficulty in controlling behavior",
+  "verified_count": 1,
+  "source": "Rendered PDF page 4 (p4.png) and verified against DB text",
+  "confidence": "high",
+  "evidence": "Rendered PDF clearly shows 'serious difficulty' in the quoted material from the statute. The DB text has 'serous' on line 141, which is a single-character OCR miss (missing 'i'). This appears within a quoted statutory requirement about 'serious difficulty in controlling behavior.'",
+  "note": "This is a transcription error from OCR - the rendered PDF shows the correct 'serious' spelling. The quote is from statutory language defining 'sexually dangerous individual' and must match the statute exactly.",
+  "_verdict": "review:pdf_confirmed",
+  "_sp": [
+   "serous",
+   "serious"
+  ]
+ }
+]

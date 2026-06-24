@@ -1,0 +1,37 @@
+[
+ {
+  "opinion_id": 18188,
+  "class": "split_join",
+  "old_exact": "appeal.\"); Matter of Didier,\n2019\nND 263, ¶ 11\n,\n934 N.W.2d 417\n (concluding",
+  "new_exact": "appeal.\"); Matter of Didier, 2019\nND 263, ¶ 11, 934 N.W.2d 417 (concluding",
+  "verified_count": 1,
+  "source": "PDF text extraction /tmp/pdf_raw.txt shows citation on continuous line",
+  "confidence": "high",
+  "note": "Citation was incorrectly broken across multiple lines during OCR/ingestion. PDF shows: 'Matter of Didier, 2019 ND 263, ¶ 11, 934 N.W.2d 417' on continuous text with single line break to next clause.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19829,
+  "class": "split_join",
+  "old_exact": "In contrast, Dr. Remmick testified the pre- existing cervical spine condition did not interfere with physical function.",
+  "new_exact": "In contrast, Dr. Remmick testified the pre-existing cervical spine condition did not interfere with physical function.",
+  "verified_count": 1,
+  "source": "PDF pdftotext output /Users/jerod/refs/nd/opin/pdfs/2023/2023ND76.pdf (line break in source: 'pre-\\nexisting')",
+  "confidence": "high",
+  "evidence": "DB has 'pre- existing' (hyphen plus space) in paragraph [¶15]. Source PDF shows the word hyphenated and split across a line break ('pre-\\nexisting'). Proper form when reflowed is 'pre-existing' (hyphen, no space). This is a whitespace/split_join ingestion error.",
+  "note": "Minor fix: affects readability of medical fact testimony about pre-existing cervical spine condition.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19828,
+  "class": "split_join",
+  "old_exact": "FILED IN THE OFFICE OF THE CLERK OF SUPREME COURT APRIL 13, 2023 STATE OF NORTH DAKOTAInterest of K.B.",
+  "new_exact": "Interest of K.B.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND73.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows form-feed \\x0c between counsel section and running header 'Interest of K.B.' (page 2). The markdown incorrectly concatenated the filing header from page 1 with the running header without proper separation. The filing header ('FILED IN THE OFFICE OF THE CLERK...STATE OF NORTH DAKOTA') should not appear in the opinion text proper; only the running header 'Interest of K.B.' should be present on this line.",
+  "note": "The filing header text was an ingestion artifact that got smushed into this line. Removing it restores the correct running header.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

@@ -1,0 +1,35 @@
+[
+ {
+  "opinion_id": 18123,
+  "class": "whitespace",
+  "old_exact": "789 N.W.2d 550\n.",
+  "new_exact": "789 N.W.2d 550.",
+  "verified_count": 1,
+  "source": "2023ND7.pdf (line 199)",
+  "confidence": "high",
+  "evidence": "Period separated from citation by newline. PDF shows: '789 N.W.2d 550.'",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18106,
+  "class": "whitespace",
+  "old_exact": "2022 ND 189, ¶ 5\n.",
+  "new_exact": "2022 ND 189, ¶ 5.",
+  "verified_count": 1,
+  "source": "PDF (pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB has newline before closing period; PDF shows 'Kuntz v. State, 2022 ND 189, ¶ 5. As' with period directly following the paragraph mark on line 133",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18106,
+  "class": "whitespace",
+  "old_exact": "2018 ND 12, ¶ 6\n; Gill,",
+  "new_exact": "2018 ND 12, ¶ 6; Gill,",
+  "verified_count": 1,
+  "source": "PDF (pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB has newline before semicolon between citations; PDF shows 'Kostelecky, 2018 ND 12, ¶ 6; Gill, 2004 ND 137, ¶ 7.' unified on line 127",
+  "_verdict": "auto:whitespace_only"
+ }
+]

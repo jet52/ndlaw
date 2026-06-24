@@ -1,0 +1,114 @@
+[
+ {
+  "opinion_id": 19817,
+  "class": "paragraph_seq",
+  "old_exact": "Douglas A. Bahr\n\nIII\n\n",
+  "new_exact": "Douglas A. Bahr\n\n",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND39.pdf - the 'III' in the DB appears after the signature block, which is incorrect structural placement; the PDF shows it belongs before [¶22]",
+  "confidence": "high",
+  "note": "The 'III' section heading has been misplaced in the ingestion - it appears after all signatures in the DB but should appear as a section divider before [¶22] in the opinion body. Removing this duplicate misplaced instance.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19755,
+  "class": "ocr_char",
+  "old_exact": "Each 3 of the last 3 editions of the AMA Guides addresses",
+  "new_exact": "Each of the last 3 editions of the AMA Guides addresses",
+  "verified_count": 1,
+  "source": "2023ND17.pdf (pdftotext)",
+  "confidence": "high",
+  "evidence": "OCR error inserted spurious '3'; correct source text is 'Each of the last 3 editions' not 'Each 3 of the last 3 editions'. Located in ¶8 (ALJ decision quote).",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19755,
+  "class": "missing_text",
+  "old_exact": "preexisting conditions: injury. The organization may not \"An injured",
+  "new_exact": "preexisting conditions:\n\n\"An injured",
+  "verified_count": 1,
+  "source": "2023ND17.pdf (pdftotext)",
+  "confidence": "high",
+  "evidence": "Extraneous phrase 'injury. The organization may not' inserted before statute quote in ¶14. This phrase is actually part of the statute quote (N.D.C.C. § 65-05-12.2(3)) and should appear indented AFTER the colon, not before the opening quotation mark. Text parsing/ingestion error.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19744,
+  "class": "ocr_char",
+  "old_exact": ". A When this Court determines",
+  "new_exact": ". When this Court determines",
+  "verified_count": 1,
+  "source": "/tmp/src_2023ND16.txt (PDF shows section marker 'A' on separate line before 'When this Court')",
+  "confidence": "high",
+  "evidence": "The PDF has a structural section marker 'A' on its own line (between paragraphs, centered). This marker was incorrectly merged into the text as ' A When' during OCR/ingestion. The DB merges it into the sentence as 'A When this Court determines' which is incorrect. The correct text reads 'When this Court determines' with the 'A' label appearing as a separate structural element.",
+  "note": "Appears in ¶7. The section letter 'A' is a structural/organizational marker that was merged into text content. Removing it restores proper text flow.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18141,
+  "class": "split_join",
+  "old_exact": "modified three different times—in 2009, 2013, and 2016—with the last judgment requiring Rath to pay $366.00 per month.",
+  "new_exact": "modified three different times-in 2009, 2013, and 2016-with the last judgment requiring Rath to pay $366.00 per month.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND12.pdf (lines 60-62)",
+  "confidence": "high",
+  "note": "PDF authoritative source shows hyphens, not em-dashes, in this phrase. Both instances occur in the same sentence and both must be changed for consistency with the PDF.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 18141,
+  "class": "ocr_char",
+  "old_exact": "or it misinterprets or misapplies the law.\" State ex rel. K.B. v. Bauer, 2009 ND 45, ¶ 8, 763 N.W.2d 462 (quoting Hagel v. Hagel, 2006 ND 181, ¶ 9, 721 N.W.2d 1).",
+  "new_exact": "or it misinterprets or misapplies the law.'\" State ex rel. K.B. v. Bauer, 2009 ND 45, ¶ 8, 763 N.W.2d 462 (quoting Hagel v. Hagel, 2006 ND 181, ¶ 9, 721 N.W.2d 1).",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2023/2023ND12.pdf (lines 103-107)",
+  "confidence": "high",
+  "note": "PDF shows closing quote sequence .'\", i.e., period-apostrophe-doublequote, closing both the nested single quote and the outer double quote. DB is missing the right single quotation mark.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18135,
+  "class": "split_join",
+  "old_exact": "¶ 6\n,",
+  "new_exact": "¶ 6,",
+  "verified_count": 2,
+  "source": "PDF verification - incorrect newline before comma in citation format",
+  "confidence": "high",
+  "note": "Line break before comma after paragraph marker in citation violates standard citation punctuation spacing",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18135,
+  "class": "split_join",
+  "old_exact": "¶ 16\n,",
+  "new_exact": "¶ 16,",
+  "verified_count": 2,
+  "source": "PDF verification - incorrect newline before comma in citation format",
+  "confidence": "high",
+  "note": "Line break before comma after paragraph marker in citation violates standard citation punctuation spacing",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18135,
+  "class": "split_join",
+  "old_exact": "¶ 12\n,",
+  "new_exact": "¶ 12,",
+  "verified_count": 2,
+  "source": "PDF verification - incorrect newline before comma in citation format",
+  "confidence": "high",
+  "note": "Line break before comma after paragraph marker in citation violates standard citation punctuation spacing",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18131,
+  "class": "ocr_digit",
+  "old_exact": "trial exhibits 10-141\nconcerning",
+  "new_exact": "trial exhibits 10-14\nconcerning",
+  "verified_count": 1,
+  "source": "2023 ND 25 (PDF page 5)",
+  "confidence": "high",
+  "evidence": "The PDF image shows 'trial exhibits 10-14¹' where the superscript 1 is a footnote marker, not a digit. The pdftotext tool incorrectly rendered the superscript footnote marker as a digit, creating '10-141'. This is confirmed by: (1) ¶15 correctly refers to 'trial exhibits 10-14' (same exhibits); (2) Footnote 1 states 'exhibits 10-14 are the documents'; (3) The opinion consistently uses '10-14' elsewhere. The single instance of '10-141' in ¶13 is an OCR artifact from superscript-to-digit confusion.",
+  "note": "This is a classic OCR error where pdftotext converted a superscript footnote number to a digit. The exhibits are correctly identified as 10-14 throughout the opinion.",
+  "_verdict": "reject:db_matches_pdf"
+ }
+]

@@ -1,0 +1,101 @@
+[
+ {
+  "opinion_id": 18123,
+  "class": "whitespace",
+  "old_exact": "969 N.W.2d 184\n. \"The failure",
+  "new_exact": "969 N.W.2d 184. \"The failure",
+  "verified_count": 1,
+  "source": "2023ND7.pdf (line 97)",
+  "confidence": "high",
+  "evidence": "Period separated from citation by newline. PDF shows continuous: '969 N.W.2d 184. \"The failure' (note: PDF uses curly quote; DB uses straight quote per policy)",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19690,
+  "class": "other",
+  "old_exact": "concluding the Commission's Order and the Commission's Order does not address those issues.\" The court concluded Nodak's appeal could be resolved on the merits without addressing the constitutional issue. \"this Court reviews",
+  "new_exact": "concluding \"this Court reviews the Commission's Order and the Commission's Order does not address those issues.\" The court concluded Nodak's appeal could be resolved on the merits without addressing the constitutional issue.",
+  "verified_count": 1,
+  "source": "PDF lines 224-228, opinion text",
+  "confidence": "high",
+  "note": "Paragraph 15: Missing opening curly quote and quote fragment 'this Court reviews' incorrectly orphaned at end; proper placement is at start of quoted sentence. OCR/transcription defect.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19690,
+  "class": "whitespace",
+  "old_exact": ". . . .",
+  "new_exact": "....",
+  "verified_count": 1,
+  "source": "PDF lines 283-286 (shows three dots on separate line; rule: ND opinions use compact four-dot form)",
+  "confidence": "medium",
+  "note": "Paragraph 18: Ellipsis with improper spacing. Rule states ND opinions print compact form '....'; spaced form is ingestion artifact. However PDF shows only three dots, creating ambiguity - flagging as medium confidence for human review.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19689,
+  "class": "ocr_char",
+  "old_exact": "[,I 3 7]",
+  "new_exact": "[¶37]",
+  "verified_count": 1,
+  "source": "2022 ND 215 PDF at dissent section III",
+  "confidence": "high",
+  "note": "OCR misread pilcrow (¶) as comma-I pattern with space-separated digits. Capital letter I instead of proper pilcrow, and '3 7' with space instead of continuous '37'.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19689,
+  "class": "ocr_char",
+  "old_exact": "[,138]",
+  "new_exact": "[¶38]",
+  "verified_count": 1,
+  "source": "2022 ND 215 PDF at dissent section III",
+  "confidence": "high",
+  "note": "OCR misread pilcrow (¶) as comma. Malformed paragraph marker with comma prefix instead of proper pilcrow-digit format.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19689,
+  "class": "ocr_char",
+  "old_exact": "[,139]",
+  "new_exact": "[¶39]",
+  "verified_count": 1,
+  "source": "2022 ND 215 PDF at dissent section IV",
+  "confidence": "high",
+  "note": "OCR misread pilcrow (¶) as comma. Malformed paragraph marker with comma prefix instead of proper pilcrow-digit format.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 18106,
+  "class": "whitespace",
+  "old_exact": "2004 ND 137, ¶ 7\n. \"We will",
+  "new_exact": "2004 ND 137, ¶ 7. \"We will",
+  "verified_count": 1,
+  "source": "PDF (pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB has newline before period and opening quote; PDF shows 'Gill, 2004 ND 137, ¶ 7. \"We will not set aside' unified on lines 127-128",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18098,
+  "class": "split_join",
+  "old_exact": "564 N.W.2d 283\n.",
+  "new_exact": "564 N.W.2d 283.",
+  "verified_count": 1,
+  "source": "PDF shows: 'Eldred, 1997 ND 112, ¶ 31, 564 N.W.2d 283.' (McEvers concurrence)",
+  "confidence": "high",
+  "note": "Period split to separate line after reporter volume/page (second instance in opinion)",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18095,
+  "class": "split_join",
+  "old_exact": "Comm'n,\n2022 ND 119, ¶ 7\n,\n975 N.W.2d 578",
+  "new_exact": "Comm'n, 2022 ND 119, ¶ 7, 975 N.W.2d 578",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction confirms single-line citation formatting",
+  "confidence": "high",
+  "note": "Blue Appaloosa citation split across 4 lines in DB; PDF shows on 1 line.",
+  "_verdict": "reject:unverified"
+ }
+]
