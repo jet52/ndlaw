@@ -42,6 +42,9 @@ def pdf_text(con, oid):
         nd = row[0].replace(" ", "")
         p = f"{REFS}/pdfs/{row[0].split()[0]}/{nd}.pdf"
         if os.path.exists(p):
+            # -layout: reading-order correct across single-column and margin-[¶N]
+            # layouts (plain pdftotext scrambles the latter). norm() collapses its
+            # alignment padding for comparison.
             txt = norm(subprocess.run(["pdftotext", "-layout", p, "-"],
                                       capture_output=True, text=True).stdout)
     _pdf_cache[oid] = txt

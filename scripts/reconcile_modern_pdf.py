@@ -22,6 +22,7 @@ Usage: reconcile_modern_pdf.py OUT.json [--ids 20517,20516 | --year 2026 | --all
        [--db opinions.db]
 """
 import argparse
+import difflib
 import json
 import os
 import re
@@ -49,7 +50,11 @@ def pdftext(cite):
     p = f"{REFS}/pdfs/{cite.split()[0]}/{nd}.pdf"
     if not os.path.exists(p):
         return ""
-    return subprocess.run(["pdftotext", "-q", "-enc", "UTF-8", p, "-"],
+    # -layout is reading-order-correct across BOTH single-column modern PDFs and
+    # the early-modern PDFs that put the [¶N] number in a left margin (plain
+    # pdftotext interleaves the margin number into the body and scrambles those —
+    # it would have falsely "fixed" 130 already-correct 1998 opinions).
+    return subprocess.run(["pdftotext", "-layout", "-q", "-enc", "UTF-8", p, "-"],
                           capture_output=True, text=True).stdout
 
 
@@ -64,6 +69,23 @@ def words(s):
 def jaccard(a, b):
     sa, sb = set(a), set(b)
     return len(sa & sb) / max(1, len(sa | sb))
+
+
+def prose_reorder(db_body, pdf_body):
+    """A pure reorder is a PROSE scramble (safe to fix) only if the displaced
+    tokens are mostly words. Tables and enumerated lists also have matching word
+    multisets in a different order, but their 2D structure linearizes differently
+    per extractor — replacing them risks misaligning data. Returns True iff >=60%
+    of the moved tokens are 'wordy' (>=3 alphabetic chars)."""
+    ta, tb = norm(db_body).split(), norm(pdf_body).split()
+    moved = []
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, ta, tb).get_opcodes():
+        if tag != "equal":
+            moved += ta[i1:i2] + tb[j1:j2]
+    if not moved:
+        return False
+    wordy = sum(1 for t in moved if len(re.sub(r"[^A-Za-z]", "", t)) >= 3)
+    return wordy / len(moved) >= 0.6
 
 
 def reconcile(db_text, pdf_text):
@@ -89,6 +111,17 @@ def reconcile(db_text, pdf_text):
         # like "pre- dispositional" vs "predispositional", real text loss) is a
         # different, higher-stakes class -> flagged for review, never auto.
         if sorted(wa) == sorted(wb) and wa != wb:
+            if "*" in db_body:
+                # DB carries markdown italics (e.g. *Case Name*); plain pdftotext
+                # has none, so a whole-paragraph replacement would strip the
+                # formatting. Flag for careful handling, don't auto-replace.
+                flags.append({"para": num, "reason": "reorder but DB has markdown (*)",
+                              "db": norm(db_body)[:90]})
+                continue
+            if not prose_reorder(db_body, pdf_body):
+                flags.append({"para": num, "reason": "reorder but tabular/list (not prose)",
+                              "db": norm(db_body)[:90]})
+                continue
             proposals.append({
                 "class": "scramble", "para": num,
                 "old_exact": db_body, "new_exact": " " + norm(pdf_body),
