@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 19894,
+  "class": "whitespace",
+  "old_exact": "first- hand knowledge",
+  "new_exact": "first-hand knowledge",
+  "verified_count": 1,
+  "source": "PDF source 2024ND148.pdf shows 'first-' at line end followed by newline and 'hand' on next line (line break in hyphenated word), indicating the word should be 'first-hand' without internal space",
+  "confidence": "high",
+  "evidence": "DB text at line 58, position 6637: '...affiant have first- hand knowledge.' The source PDF text (lines 129-130) shows the hyphenated word spans a line break: 'first-\\n       hand' (correct hyphenation). The DB incorrectly renders this as 'first- hand' with space before 'hand' on the same line. Word count verified: exactly 1 occurrence in DB, 0 occurrences of 'first- hand', and 2 other correct instances of 'first-hand' appear elsewhere in the opinion.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

@@ -1,0 +1,102 @@
+[
+ {
+  "opinion_id": 20072,
+  "class": "ocr_char",
+  "old_exact": "That does weigh[ ] in favor of the Defendant.",
+  "new_exact": "That does weigh[] in favor of the Defendant.",
+  "verified_count": 1,
+  "source": "PDF pdftotext /Users/jerod/refs/nd/opin/pdfs/2024/2024ND96.pdf shows 'weigh[]' (empty brackets); DB shows 'weigh[ ]' (with space inside brackets)",
+  "confidence": "high",
+  "evidence": "PDF source line 127 renders as 'That does weigh[] in favor of the Defendant.' The space inside brackets is a transcription/OCR artifact from the pdftotext conversion. Legal writing convention uses empty brackets [] to indicate an editorial interpolation or omitted word, not brackets with a space inside.",
+  "note": "This appears in the quoted trial court testimony within ¶10. The space inside the brackets is inconsistent with legal citation format and the rendered PDF source.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20071,
+  "class": "whitespace",
+  "old_exact": "O p i n i o n o n P e t i t i o n f o r R e h e a r i n g f i l e d J u n e 2 0 , 2 0 2 4",
+  "new_exact": "Opinion on Petition for Rehearing filed June 20, 2024",
+  "verified_count": 1,
+  "source": "PDF first line from pdftotext extraction",
+  "confidence": "high",
+  "evidence": "DB first line has inter-character spacing (spaced form). PDF source shows normal spacing without spaces between characters.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20068,
+  "class": "whitespace",
+  "old_exact": "C.J.\nDaniel J. Crothers",
+  "new_exact": "C.J.\n     Daniel J. Crothers",
+  "verified_count": 1,
+  "source": "Authoritative PDF lines 53-54: Justice names indented with 5 leading spaces per official layout; DB text lacks this formatting",
+  "confidence": "high",
+  "note": "Justice name indentation missing",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20068,
+  "class": "whitespace",
+  "old_exact": "Crothers\nLisa Fair McEvers",
+  "new_exact": "Crothers\n     Lisa Fair McEvers",
+  "verified_count": 1,
+  "source": "Authoritative PDF lines 54-55: Justice names indented with 5 leading spaces per official layout; DB text lacks this formatting",
+  "confidence": "high",
+  "note": "Justice name indentation missing",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20068,
+  "class": "whitespace",
+  "old_exact": "McEvers\nJerod E. Tufte",
+  "new_exact": "McEvers\n     Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "Authoritative PDF lines 55-56: Justice names indented with 5 leading spaces per official layout; DB text lacks this formatting",
+  "confidence": "high",
+  "note": "Justice name indentation missing",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20068,
+  "class": "whitespace",
+  "old_exact": "Tufte\nDouglas A. Bahr",
+  "new_exact": "Tufte\n     Douglas A. Bahr",
+  "verified_count": 1,
+  "source": "Authoritative PDF lines 56-57: Justice names indented with 5 leading spaces per official layout; DB text lacks this formatting",
+  "confidence": "high",
+  "note": "Justice name indentation missing",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20066,
+  "class": "whitespace",
+  "old_exact": "1(a)(2).\n \n[¶2]",
+  "new_exact": "1(a)(2).\n\n[¶2]",
+  "verified_count": 1,
+  "source": "PDF source shows clean double-newline (0x0a 0x0a) at paragraph break; DB contains non-breaking space (U+00A0 / UTF-8 0xc2 0xa0) on its own line between paragraphs",
+  "confidence": "high",
+  "evidence": "Byte-exact comparison: DB = '1(a)(2).' + newline + U+00A0 + newline + '[¶2]'; PDF = '1(a)(2).' + newline + newline + '[¶2]'. The non-breaking space is an ingestion/OCR artifact that should be removed. All substantive opinion content verified identical to PDF when whitespace is normalized.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20064,
+  "class": "whitespace",
+  "old_exact": "sentencing factor.\n \n[¶2]",
+  "new_exact": "sentencing factor.\n\n[¶2]",
+  "verified_count": 1,
+  "source": "PDF source 2024ND89.pdf, pdftotext output line 38-39",
+  "confidence": "high",
+  "note": "Non-breaking space (U+00A0) incorrectly inserted between paragraph breaks. PDF shows plain double newline.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 20064,
+  "class": "whitespace",
+  "old_exact": "35.1(a)(4).\n \n[¶3]",
+  "new_exact": "35.1(a)(4).\n\n[¶3]",
+  "verified_count": 1,
+  "source": "PDF source 2024ND89.pdf, pdftotext output line 45-46",
+  "confidence": "high",
+  "note": "Non-breaking space (U+00A0) incorrectly inserted between paragraph breaks. PDF shows plain double newline.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

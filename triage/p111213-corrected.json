@@ -1,0 +1,32 @@
+[
+ {
+  "opinion_id": 19905,
+  "class": "paragraph_seq",
+  "old_exact": "Olander, at ¶ 16). Section 14-09-22.1, N.D.C.C. provides the offense of “neglect of child.” It provides,\n\n[¶8] in relevant part:",
+  "new_exact": "Olander, at ¶ 16).\n\n[¶8] Section 14-09-22.1, N.D.C.C. provides the offense of “neglect of child.” It provides, in relevant part:",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "PDF: ¶8 opens with \"Section 14-09-22.1... It provides, in relevant part:\"; DB had it at end of ¶7. Move (remove-half was rejected as bad anchor).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19924,
+  "class": "heading_seq",
+  "old_exact": "842 N.W.2d 328. A\n\n[¶9] Rol",
+  "new_exact": "842 N.W.2d 328.\n\nA\n\n[¶9] Rol",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading A merged onto citation line; PDF shows it standalone. Reformat not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19875,
+  "class": "heading_seq",
+  "old_exact": "t clearly erroneous. B\n\n[¶11] In",
+  "new_exact": "t clearly erroneous.\n\nB\n\n[¶11] In",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "section heading B merged onto paragraph end; PDF standalone. Reformat not delete.",
+  "confidence": "high"
+ }
+]

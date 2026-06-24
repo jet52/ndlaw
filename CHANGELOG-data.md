@@ -2,6 +2,37 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P11-P13 (49 opinions)
+
+Batches P11-P13 (120 opinions, 2024 ND 198 -> 78). Gate: 11 AUTO / 79 REVIEW /
+87 REJECT (the bad `$\P$`-spacing proposals correctly rejected). Applied 6 AUTO +
+78 review items after word-delta + PDF triage:
+
+- 16 word-order scrambles (incl. complex page-break descrambles: 2024 ND 194
+  "make it impossible for this Court to issue relief"; 2024 ND 81 summary-judgment
+  descramble; 2024 ND 154 disposition reassembly).
+- **6 citation fidelity fixes (2024 ND 97)** — removed `, 5 N.W.3d 489` that
+  ingestion wrongly appended to short-form Hillestad cites; VERIFIED the PDF
+  contains that reporter zero times (the court used short form).
+- 11 OCR-char (Greek/Cyrillic/LaTeX heading letters), 6 heading reformats
+  (incl. corrected A/B from agent deletes), 17 paragraph_seq, 8 missing-text,
+  8 whitespace, 4 captions.
+- 3 agent-error corrections (2024 ND 158 sentence move — agent's remove-half had a
+  bad anchor and would have duplicated; 2024 ND 175 / 2024 ND 130 heading reformats).
+
+**Regression caught + reverted** (`proofing-review-revert-2026-06-24`): an edit
+"9.9[1] years" -> "9.91 years" in 2024 ND 147 (id19893) merged a FOOTNOTE-CALL
+marker `[1]` into the number (corrupting both the figure and the call). It slipped
+the consolidated triage because the alpha-word-delta gate does not guard digits or
+bracketed footnote-calls. Caught by test_footnote_pinpoints, reverted; a corpus
+scan of all session batches found this was the ONLY such occurrence.
+TRIAGE LESSON: treat `[N]` (non-`[¶N]`) bracket changes and digit changes as
+high-risk regardless of alpha-word-delta.
+
+Deferred: 2024 ND 171 (Greek-Alpha heading, ambiguous), 2024 ND 84 (`weigh[ ]`
+anchor unconfirmed). Detector 175/0; invariants 24 ok / 2 known / 0 regressed;
+66 tests pass.
+
 ## Batch `clerk-stamps-2026-06-24` — court-clerk filing-stamp removal (1,864 opinions)
 
 Removed court-clerk filing metadata fused into text_content (administrative stamps,

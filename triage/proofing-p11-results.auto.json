@@ -1,0 +1,14 @@
+[
+ {
+  "opinion_id": 19909,
+  "class": "whitespace",
+  "old_exact": "No. 2023041 1",
+  "new_exact": "No. 20230411",
+  "verified_count": 1,
+  "source": "PDF line 16: '                                No. 20230411'",
+  "confidence": "high",
+  "evidence": "DB has docket number with errant space ('No. 2023041 1'); PDF shows correct format ('No. 20230411') without space. The space is an ingestion/OCR artifact that splits the docket number into two parts. Verified to occur exactly once in DB via byte-exact string search.",
+  "note": "This is a clear word-split error from pdftotext or OCR processing. The authoritative court opinion uses the correct format without a space.",
+  "_verdict": "auto:whitespace_only"
+ }
+]
