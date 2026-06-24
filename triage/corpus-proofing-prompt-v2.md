@@ -59,8 +59,10 @@ Authoritative source for this era: {source_desc}
 - `whitespace` — mid-sentence hard line break to rejoin; 3+ consecutive blank lines
   to collapse to the opinion's paragraph norm; doubled internal spaces. Only where
   meaning is untouched. Do NOT reflow the whole document. MECHANICAL ONLY: never
-  respace an ellipsis (". . . ." is the court's Bluebook form — leave verbatim, do
-  not collapse to "...."); never insert a newline to wrap a token across a line.
+  insert a newline to wrap a token across a line. ELLIPSES: ND prints the compact
+  four-dot "...."; if the DB shows spaced ". . . ." where the PDF shows "....",
+  that is an ingestion artifact — propose the compact form (human-reviewed). Match
+  the source; do not impose Bluebook spacing.
 - **Form-feed / page furniture (do NOT propose):** a 0x0C byte (page break) and any
   running header it precedes (short case name + "No./Nos./Civil No. <docket>"
   repeating the caption) are owned by a separate deterministic pass. Ignore them.
