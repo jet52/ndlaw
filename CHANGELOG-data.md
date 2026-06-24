@@ -2,6 +2,22 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-2026-06-24` — proofing fleet P3 AUTO (1 opinion)
+
+Third proofing batch (40 modern opinions, 2026 ND 7-45), first run on the v2
+prompt. The v2 changes landed: 0 form-feed proposals (rule 8 worked), clean rate
+21/40 (vs P2 8/40), 24 proposals total. Gate: 1 AUTO / 14 REVIEW / 9 REJECT.
+
+Applied (AUTO): 2026 ND 42 (id 20349) `732 N.W.2d 389.[¶4]` -> `389. [¶4]`
+(missing space at a paragraph transition; matches the opinion's own norm). The
+tightened gate correctly routed the two ellipsis-respacing proposals
+(`; . . . .` -> `; ....`) to REVIEW instead of AUTO.
+
+REVIEW queue (14 items / 10 opinions): `triage/proofing-p3-REVIEW.md` — split_join
+scrambles, paragraph_seq (heading III vs [¶10] order), the 2 ellipses, caption.
+Awaiting user sign-off; NOT applied. Detector 175/0; invariants 24 ok / 2 known /
+0 regressed; 66 tests pass.
+
 ## Batch `formfeed-furniture-2026-06-24` — page-furniture removal (120 opinions)
 
 Resolved the open form-feed finding from the P2 proofing batch (user-approved

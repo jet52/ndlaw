@@ -1,0 +1,14 @@
+[
+ {
+  "opinion_id": 20349,
+  "class": "whitespace",
+  "old_exact": "732 N.W.2d 389.[¶4]",
+  "new_exact": "732 N.W.2d 389. [¶4]",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND42.pdf",
+  "confidence": "high",
+  "evidence": "The PDF source shows period followed by two newlines before [¶4]: '389.\\n\\n[¶4]'. In plain-text DB form, this becomes a space separator: '389. [¶4]'. The DB currently has no space ('389.[¶4]'), a clear whitespace transcription defect. The pattern is verified against all other paragraph transitions in the opinion, which consistently show '. [¶N]' spacing in the PDF.",
+  "note": "All paragraph transitions in the PDF are formatted with period, two newlines, and paragraph marker. This is the only location where the space was dropped in transcription.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

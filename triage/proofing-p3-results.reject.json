@@ -1,0 +1,101 @@
+[
+ {
+  "opinion_id": 20343,
+  "class": "caption",
+  "old_exact": "G.G., father,\n\nIn the Interest of D.G., a child\n\nRespondents",
+  "new_exact": "G.G., father,\n\nRespondents",
+  "verified_count": 1,
+  "source": "2026ND37.pdf: official PDF shows the heading 'In the Interest of D.G., a child' appears only once per caption (at the start), not in the middle between party names and their designations",
+  "confidence": "high",
+  "evidence": "PDF caption structure (lines 6-15 for first case): 'In the Interest of D.G., a child' followed by party alignments (D.G./mother/Respondents on same line, G.G./father/Respondent and Appellant on same line), then 'No. 20250432'. DB erroneously inserts the heading after 'G.G., father,' and before 'Respondents', disrupting the caption structure. The string occurs exactly once.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20339,
+  "class": "split_join",
+  "old_exact": "emotional- support",
+  "new_exact": "emotional-support",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2026/2026ND33.pdf shows line-wrapped 'emotional-\\nsupport'; unwrapped form should have no space",
+  "confidence": "high",
+  "evidence": "DB text has 'emotional- support animal' (with space); PDF has 'emotional-\\nsupport animal' (with newline between hyphen and word); correct form is unhyphenated compound 'emotional-support' without space",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20339,
+  "class": "split_join",
+  "old_exact": "no- counterclaim",
+  "new_exact": "no-counterclaim",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2026/2026ND33.pdf shows line-wrapped 'no-\\ncounterclaim'; unwrapped form should have no space",
+  "confidence": "high",
+  "evidence": "DB text has 'no- counterclaim provision' (with space); PDF has 'no-\\ncounterclaim provision' (with newline between hyphen and word); correct form is unhyphenated compound 'no-counterclaim' without space",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20334,
+  "class": "ocr_char",
+  "old_exact": "nce that \"a line- by-line accounting of the needs of th",
+  "new_exact": "nce that \"a line-by-line accounting of the needs of th",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND29.pdf",
+  "confidence": "high",
+  "note": "The PDF source has 'a line-\\nby-line' (hyphenated word split across page lines), which normalizes to 'a line-by-line'. The DB incorrectly captured this as 'a line- by-line' (with unwanted space after hyphen), a clear OCR/ingestion defect. Located in ¶18 (Entzie citation). This is the only substantive content error found; page numbers and form-feeds are documented artifacts per rule 8.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20381,
+  "class": "missing_text",
+  "old_exact": "[¶23] Olson removed \"knowingly\" from the jury instructions, changing the offense to a strict liability offense. Olson preserved this issue by arguing the mens rea element should not be removed from the jury instructions. See N.D.R.Ev. 103, Explanatory Note (\"The purpose of subdivision (a) is to give the trial court an adequate basis for making a ruling, and to create a record that will permit informed appellate review.\"); N.B. v. Terwilliger, 2021 ND 74, ¶ 20, 958 N.W.2d 487 (holding appellant did not waive the issue when appellant raised the argument at the hearing and the court subsequently ruled on it).",
+  "new_exact": "[¶23] Olson contends the district court unconstitutionally removed \"knowingly\" from the jury instructions, changing the offense to a strict liability offense. Olson preserved this issue by arguing the mens rea element should not be removed from the jury instructions. See N.D.R.Ev. 103, Explanatory Note (\"The purpose of subdivision (a) is to give the trial court an adequate basis for making a ruling, and to create a record that will permit informed appellate review.\"); N.B. v. Terwilliger, 2021 ND 74, ¶ 20, 958 N.W.2d 487 (holding appellant did not waive the issue when appellant raised the argument at the hearing and the court subsequently ruled on it).",
+  "verified_count": 1,
+  "source": "PDF lines 224-232 (section D, paragraph 23)",
+  "confidence": "high",
+  "note": "Critical missing phrase: ¶23 incorrectly begins 'Olson removed' instead of 'Olson contends the district court unconstitutionally removed'. This omission fundamentally misrepresents the appellant's constitutional argument.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20381,
+  "class": "whitespace",
+  "old_exact": "Based on section 12.1-02- 02's plain language",
+  "new_exact": "Based on section 12.1-02-02's plain language",
+  "verified_count": 1,
+  "source": "PDF lines 293-294 (paragraph 27, statute reference)",
+  "confidence": "high",
+  "note": "OCR artifact from PDF line break: statute number '12.1-02-' wrapped to '02' on next line, creating space-dash-space in DB text '12.1-02- 02'. Should be continuous '12.1-02-02'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20319,
+  "class": "missing_text",
+  "old_exact": "order denying for postconviction relief under N.D.R.App.P. 35.1(a)(4). Johnson's application",
+  "new_exact": "order denying Johnson's application for postconviction relief under N.D.R.App.P. 35.1(a)(4).",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND15.pdf (lines 69-71 via pdftotext)",
+  "confidence": "high",
+  "note": "Paragraph 4 has a missing phrase. The DB text reads 'order denying for postconviction relief' when the authoritative PDF source shows 'order denying Johnson's application for postconviction relief'. The words 'Johnson's application' were apparently dropped during OCR/ingestion, and the sentence structure is corrupted (ending oddly with 'Johnson's application' on next line). The fix restores the complete sentence and corrects the terminating period.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20316,
+  "class": "ocr_char",
+  "old_exact": "AFFRIMED.",
+  "new_exact": "AFFIRMED.",
+  "verified_count": 1,
+  "source": "PDF page 1 rendered image shows 'AFFIRMED.' (two F's); pdftotext and DB both incorrectly extracted as 'AFFRIMED.' (one F)",
+  "confidence": "high",
+  "evidence": "Visual inspection of /tmp/p1.png clearly shows 'AFFIRMED.' in the PDF. The word appears on line 23 of the DB text at position 317-326. Both the database OCR and the pdftotext extraction contain the same OCR error.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20379,
+  "class": "split_join",
+  "old_exact": "instructions The \"[i]ntentionally\" and \"[k]nowingly.\" further provided the statutory definitions for both",
+  "new_exact": "The instructions further provided the statutory definitions for both \"[i]ntentionally\" and \"[k]nowingly.\"",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2026/2026ND7.pdf pages 139-142, confirmed by pdftotext extraction at lines 139-142 showing complete sentence 'The instructions further provided the statutory definitions for both \"[i]ntentionally\" and \"[k]nowingly.\"'",
+  "confidence": "high",
+  "note": "The DB text has a word-order corruption where 'instructions The' appears instead of 'The instructions', and the sentence is missing 'further provided the' and the word 'both' is misplaced. This corrupts the grammatical structure of [¶10]. The PDF source clearly shows the correct ordering.",
+  "_verdict": "reject:bad_anchor"
+ }
+]

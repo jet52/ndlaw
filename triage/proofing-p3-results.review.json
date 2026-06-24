@@ -1,0 +1,161 @@
+[
+ {
+  "opinion_id": 20351,
+  "class": "paragraph_seq",
+  "old_exact": "[¶10] The appeal is dismissed for lack of jurisdiction.\n\nIII\n\n[¶11]",
+  "new_exact": "III\n\n[¶10] The appeal is dismissed for lack of jurisdiction.\n\n[¶11]",
+  "verified_count": 1,
+  "source": "/tmp/src_2026ND44.txt shows III on line 135, before [¶10] on line 137. DB has III on line 85, after [¶10] on line 83.",
+  "confidence": "high",
+  "note": "Section heading III is in wrong sequence position relative to paragraph [¶10]. PDF source clearly shows III should precede [¶10], not follow it.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20347,
+  "class": "split_join",
+  "old_exact": "portion of the hearing. In Schmitz v. North Dakota State Board of Chiropractic Examiners, this Court\n\n[¶8] explained when",
+  "new_exact": "portion of the hearing.\n\n[¶8] In Schmitz v. North Dakota State Board of Chiropractic Examiners, this Court\nexplained when",
+  "verified_count": 1,
+  "source": "2026ND40.pdf extracted via pdftotext",
+  "confidence": "high",
+  "note": "Paragraph transition error: sentence beginning 'In Schmitz v. North Dakota State Board of Chiropractic Examiners, this Court' is incorrectly split between [¶7] and [¶8]. It should open [¶8] with the full phrase 'In Schmitz v. ... this Court' followed by 'explained when an executive session can be entered...' The word 'explained' is on the next line in the source, correctly indicating the continuation within [¶8], not bridging from [¶7].",
+  "evidence": "DB text has 'hearing. In Schmitz...this Court' at end of [¶7], then '[¶8] explained' on next line. Source PDF has 'hearing.' ending [¶7], then '[¶8] In Schmitz...this Court' opening [¶8], followed by 'explained' on next line.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20347,
+  "class": "split_join",
+  "old_exact": " functions. law presumes governmental operations are conducted with\n\n[¶55] The regularity.",
+  "new_exact": " functions.\n\n[¶55] The law presumes governmental operations are conducted with\nregularity.",
+  "verified_count": 1,
+  "source": "2026ND40.pdf extracted via pdftotext",
+  "confidence": "high",
+  "note": "Paragraph 54 ends with 'presumption of regular governmental functions.' Paragraph 55 should begin '[¶55] The law presumes governmental operations are conducted with regularity.' Instead, DB has incorrectly split this: text reads 'functions. law presumes...' with '[¶55] The regularity.' - mixing the opening label from [¶55] with the word 'regularity' that should come at the end of the sentence about presumption.",
+  "evidence": "DB shows: 'functions. law presumes governmental operations are conducted with\\n\\n[¶55] The regularity.' Source shows: 'functions.\\n\\n[¶55] The law presumes governmental operations are conducted with\\nregularity.' Verified single occurrence in DB at position 40375.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20345,
+  "class": "whitespace",
+  "old_exact": "; . . . . ",
+  "new_exact": "; .... ",
+  "verified_count": 1,
+  "source": "Authoritative PDF source (2026ND39.pdf) exhibits Bluebook-compliant four-dot ellipsis with no intervening spaces",
+  "confidence": "high",
+  "evidence": "DB ingestion produced spaced dots (non-standard); PDF shows compact form '; ....' (standard Bluebook convention for omitted statutory text)",
+  "note": "First instance at end of statutory quote in [¶6]: 'firearm; . . . . 2. This requirement applies...'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20345,
+  "class": "whitespace",
+  "old_exact": ": . . . . ",
+  "new_exact": ": .... ",
+  "verified_count": 1,
+  "source": "Authoritative PDF source exhibits compact ellipsis consistent with Bluebook format",
+  "confidence": "high",
+  "evidence": "DB has spaced ellipsis; PDF shows compact form within statutory quotation",
+  "note": "Second instance at end of statutory subsection in [¶6]: 'follows: . . . . b. If the offense...'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20344,
+  "class": "paragraph_seq",
+  "old_exact": "[¶3] Lisa Fair McEvers, C.J. Daniel J. Crothers Jerod E. Tufte Jon J. Jensen Douglas A. Bahr",
+  "new_exact": "[¶3] Lisa Fair McEvers, C.J.\n     Daniel J. Crothers\n     Jerod E. Tufte\n     Jon J. Jensen\n     Douglas A. Bahr",
+  "verified_count": 1,
+  "source": "2026ND38.pdf (authoritative PDF extracted via pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "The PDF source shows the judge signature block formatted with individual judge names on separate indented lines (lines 47-51 of pdftotext output). The DB has collapsed all judges onto a single line, removing newlines and indentation. This is a clear OCR/ingestion processing artifact. The substantive text of [¶1] and [¶2] is identical between DB and source (verified by normalization); only the signature block formatting differs.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20341,
+  "class": "other",
+  "old_exact": "State v. Castleman, 2024 ND 93, ¶ 5, 6 N.W.3d 850. A",
+  "new_exact": "State v. Castleman, 2024 ND 93, ¶ 5, 6 N.W.3d 850.",
+  "verified_count": 1,
+  "source": "PDF source shows 'A' is a standalone centered section header on its own line between [¶6] and [¶7], not inline text. In PDF: '850.\\n\\n                                        A\\n\\n[¶7]'. In DB it was incorrectly attached as '850. A\\n\\n[¶7]'",
+  "confidence": "high",
+  "evidence": "pdftotext extraction shows 'A' as a formatted standalone line; DB has it appended to paragraph text",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20341,
+  "class": "other",
+  "old_exact": "and did not rely on any impermissible factor. B",
+  "new_exact": "and did not rely on any impermissible factor.",
+  "verified_count": 1,
+  "source": "PDF source shows 'B' is a standalone centered section header on its own line between [¶11] and [¶12], not inline text. In PDF: 'factor.\\n\\n                                       B\\n\\n[¶12]'. In DB it was incorrectly attached as 'factor. B\\n\\n[¶12]'",
+  "confidence": "high",
+  "evidence": "pdftotext extraction shows 'B' as a formatted standalone line; DB has it appended to paragraph text",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20340,
+  "class": "split_join",
+  "old_exact": "by designating him a vexatious litigant. the due process and constitutional",
+  "new_exact": "by designating him a vexatious litigant.",
+  "verified_count": 1,
+  "source": "PDF source: 2026ND34.pdf, line 174-176; text should read '[¶10]...by designating him a vexatious litigant.' then '[¶11] This Court has discussed the due process and constitutional...'",
+  "confidence": "high",
+  "note": "Fragment 'the due process and constitutional' was detached from its proper position (start of ¶11) and appended to end of ¶10. This disrupts both paragraph structure and readability. Removing it restores correct paragraph boundary and allows ¶11 to begin properly.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20336,
+  "class": "paragraph_seq",
+  "old_exact": "[¶11] We affirm the judgment of conviction.\n\nIV",
+  "new_exact": "IV\n\n[¶11] We affirm the judgment of conviction.",
+  "verified_count": 1,
+  "source": "PDF source 2026ND30.pdf lines 131-133 show IV section heading before [¶11] paragraph",
+  "confidence": "high",
+  "evidence": "Source PDF has IV (centered, line 131) followed by blank line (132) then [¶11] (line 133). DB incorrectly places IV after [¶11]. This is a structural error in paragraph/section sequencing.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20327,
+  "class": "caption",
+  "old_exact": "State of North Dakota,\n\nv.\n\nPlaintiff and Appellee\n\nAngel Alberto Torres-Sosa,\n\nDefendant and Appellant",
+  "new_exact": "State of North Dakota,\n\nPlaintiff and Appellee\n\nv.\n\nAngel Alberto Torres-Sosa,\n\nDefendant and Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2026/2026ND22.pdf (official court PDF)",
+  "confidence": "high",
+  "evidence": "The official PDF renders the case caption with the vs/parties correctly paired: 'State of North Dakota, Plaintiff and Appellee' on one side and 'Angel Alberto Torres-Sosa, Defendant and Appellant' on the other, with 'v.' between them. The DB text has the 'v.' positioned after the plaintiff's name but before 'Plaintiff and Appellee', breaking the logical and standard legal caption format. This is a caption sequencing error that must be corrected to match the authoritative printed source.",
+  "note": "This is the only substantive text divergence from the source PDF. All other differences are whitespace/formatting artifacts (page headers, line breaks, form-feeds) which are known PDF artifacts. All citations, case names, judge names, justice names, and body text paragraphs are accurate.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20323,
+  "class": "split_join",
+  "old_exact": "When the unjust tortious conduct, such as enrichment allegations are predicated on misrepresentation or fraud, the claim is properly characterized as one arising in tort. Id. at 1008. in “deliberate\n\n",
+  "new_exact": "When the unjust enrichment allegations are predicated on tortious conduct, such as misrepresentation or fraud, the claim is properly characterized as one arising in tort. Id. at 1008.\n\n",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2026/2026ND19.pdf page 6, lines 363-366",
+  "confidence": "high",
+  "note": "Paragraph 21: scrambled syntax. 'Tortious conduct, such as enrichment allegations' is reversed - should be 'enrichment allegations are predicated on tortious conduct'. The fragment 'in “deliberate' at end should not exist here; it is a split-off artifact from page break. Sentence should end cleanly at 'Id. at 1008.'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20323,
+  "class": "split_join",
+  "old_exact": "[¶22] Sangster’s complaint alleges UND engaged illegal treatment” of the flight instructors.",
+  "new_exact": "[¶22] Sangster’s complaint alleges UND engaged in “deliberate illegal treatment” of the flight instructors.",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2026/2026ND19.pdf page 7, line 368",
+  "confidence": "high",
+  "note": "Paragraph 22: missing 'in' and 'deliberate'. Opening quote is wrong position. The phrase 'in “deliberate' was split away at end of [¶21] and should be part of [¶22]. Correct form: 'engaged in “deliberate illegal treatment”'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 20320,
+  "class": "whitespace",
+  "old_exact": "parties. . . . . (iv)",
+  "new_exact": "parties. .... (iv)",
+  "verified_count": 1,
+  "source": "pdftotext extract from authoritative PDF (page 6, verified via pdftotext -layout -f 6 -l 6)",
+  "confidence": "high",
+  "evidence": "The authoritative PDF page 6 displays the text: '(ii) A party who files a complaint or other initiating pleading must serve notice of filing on the other parties. .... (iv) The defendant may file...' with four consecutive dots, not Bluebook-spaced dots. The DB has '. . . . .' (spaced Bluebook form), which is a divergence from the court's published text.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]
