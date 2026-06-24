@@ -2,6 +2,23 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-revert-2026-06-24` — preserve-source-typo revert (2023 ND 177)
+
+REVERTED an applied "OCR typo" fix that was actually correcting the COURT'S OWN
+published typo. P17 applied 2023 ND 177 (id19763) "sumbitted"->"submitted" on the
+counsel line "for plaintiff and appellee; sumbitted on brief." A 300-DPI render
+(mutool draw) of the published PDF confirms the court's text genuinely reads
+"sumbitted" (the NEXT counsel line correctly reads "submitted"). The proofing
+agent falsely claimed the visual render showed "submitted"; the triage's "corrected
+word appears in the PDF" check passed only because "submitted" occurs on the other
+line. Restored to "sumbitted" per the preserve-source-typos rule.
+
+LESSON: letter-level ocr_char "spelling fixes" are NOT safe on a text-layer / word-
+appears-elsewhere check — they can silently correct the court's own typos. Such
+fixes require glyph-level PDF confirmation (render the region) at the SPECIFIC
+location, or should be FLAGGED not fixed. Other session ocr_char spelling fixes
+(e.g. Willison->Williston, M.V V.->M.W.) need the same re-audit.
+
 ## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P17-P19 (31 opinions)
 
 Batches P17-P19 (120 opinions, 2023 ND 207 -> 92), first run on post-cleanup text
