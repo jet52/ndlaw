@@ -38,23 +38,66 @@ _ROMAN_VAL = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7,
               "XIV": 14, "XV": 15}
 
 
-def para_seq_flags(text):
-    nums = [n for n, _ in pr.paragraph_markers(text)]
-    if len(nums) < 2:
-        return []
+def _para_texts(text):
+    """{occurrence_index: (num, body_text_to_next_marker)} for similarity checks."""
+    ms = list(pr._PARA_RE.finditer(text))
     out = []
-    seen = set()
-    prev = None
-    for n in nums:
-        if n in seen:
-            out.append(f"dup ¶{n}")
-        seen.add(n)
-        if prev is not None and n != prev + 1 and n not in (prev,):
-            if n < prev:
-                out.append(f"decrease ¶{prev}->¶{n}")
-            elif n > prev + 1:
-                out.append(f"gap ¶{prev}->¶{n}")
-        prev = n
+    for i, m in enumerate(ms):
+        end = ms[i + 1].start() if i + 1 < len(ms) else len(text)
+        out.append((int(m.group(1)), text[m.end():end]))
+    return out
+
+
+def _similar(a, b):
+    wa = re.findall(r"[a-z0-9]+", a.lower())
+    wb = re.findall(r"[a-z0-9]+", b.lower())
+    if not wa or not wb:
+        return False
+    sa, sb = set(wa[:40]), set(wb[:40])
+    return len(sa & sb) / max(1, len(sa | sb)) > 0.6
+
+
+def para_seq_flags(text):
+    """Flag genuine breaks in the opinion's OWN [¶N] sequence.
+
+    A drop to a low number is USUALLY a block quote of another numbered document
+    (an order/statute the opinion quotes), NOT a defect — those embedded blocks
+    resume the opinion's numbering afterward (…¶11, quoted ¶1-9, ¶12…). So: walk
+    the main ascending sequence; when a number drops below the expected next,
+    look ahead — if the expected number reappears, the in-between block is quoted
+    material (skip it). Only an UNRESOLVED restart (never resumes) is flagged, and
+    only if its text duplicates the original paragraph (true double-ingest) rather
+    than being a distinct trailing quote."""
+    seq = [n for n, _ in _para_texts(text)]
+    if len(seq) < 2:
+        return []
+    bodies = {}
+    for idx, (n, body) in enumerate(_para_texts(text)):
+        bodies.setdefault(n, []).append(body)
+    out = []
+    expected = seq[0]
+    i = 0
+    while i < len(seq):
+        n = seq[i]
+        if n == expected:
+            expected += 1
+            i += 1
+        elif n < expected:                      # a drop — quoted block or duplicate?
+            j = i
+            while j < len(seq) and seq[j] != expected:
+                j += 1
+            if j < len(seq):                    # numbering resumes -> quoted block, OK
+                i = j
+            else:                               # never resumes
+                first, repeat = bodies.get(n, ["", ""])[:2] if len(bodies.get(n, [])) > 1 else ("", "")
+                if first and repeat and _similar(first, repeat):
+                    out.append(f"DUPLICATE-TEXT restart ¶{n} (text matches original)")
+                # else: a trailing quoted block — not a defect
+                break
+        else:                                   # n > expected -> a real gap
+            out.append(f"gap ¶{expected-1}->¶{n}")
+            expected = n + 1
+            i += 1
     return out[:8]
 
 

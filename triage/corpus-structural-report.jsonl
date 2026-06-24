@@ -1,16 +1,13 @@
-{"id": 20408, "cite": "2026 ND 87", "era": "2026", "flags": {"paragraph_seq": ["dup ¶1", "decrease ¶9->¶1", "dup ¶2", "dup ¶3", "dup ¶4", "gap ¶4->¶10"]}}
-{"id": 20180, "cite": "2025 ND 193", "era": "2026", "flags": {"paragraph_seq": ["gap ¶20->¶34", "decrease ¶37->¶21"], "heading_seq": ["3->5", "6->9"]}}
+{"id": 20180, "cite": "2025 ND 193", "era": "2026", "flags": {"paragraph_seq": ["gap ¶20->¶34"], "heading_seq": ["3->5", "6->9"]}}
 {"id": 20194, "cite": "2025 ND 205", "era": "2025", "flags": {"heading_seq": ["1->3"]}}
 {"id": 20174, "cite": "2025 ND 188", "era": "2025", "flags": {"paragraph_seq": ["gap ¶6->¶8"], "heading_seq": ["2->4"]}}
 {"id": 20148, "cite": "2025 ND 164", "era": "2025", "flags": {"heading_seq": ["3->5"]}}
-{"id": 20135, "cite": "2025 ND 152", "era": "2025", "flags": {"paragraph_seq": ["gap ¶8->¶12", "decrease ¶12->¶9", "dup ¶12"], "heading_seq": ["1->4"]}}
-{"id": 20124, "cite": "2025 ND 142", "era": "2025", "flags": {"paragraph_seq": ["dup ¶1", "decrease ¶11->¶1", "dup ¶2", "dup ¶3", "dup ¶4", "dup ¶5", "dup ¶6", "dup ¶7"]}}
+{"id": 20135, "cite": "2025 ND 152", "era": "2025", "flags": {"paragraph_seq": ["gap ¶8->¶12"], "heading_seq": ["1->4"]}}
 {"id": 20309, "cite": "2025 ND 96", "era": "2025", "flags": {"heading_seq": ["1->3"]}}
 {"id": 20255, "cite": "2025 ND 47", "era": "2025", "flags": {"paragraph_seq": ["gap ¶21->¶25"]}}
 {"id": 20232, "cite": "2025 ND 26", "era": "2025", "flags": {"paragraph_seq": ["gap ¶1->¶3"], "heading_seq": ["3->5"]}}
 {"id": 20199, "cite": "2025 ND 21", "era": "2025", "flags": {"heading_seq": ["1->3"]}}
 {"id": 19966, "cite": "2024 ND 212", "era": "2024", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
-{"id": 19949, "cite": "2024 ND 198", "era": "2024", "flags": {"paragraph_seq": ["dup ¶1"]}}
 {"id": 19906, "cite": "2024 ND 159", "era": "2024", "flags": {"paragraph_seq": ["gap ¶13->¶18"]}}
 {"id": 19882, "cite": "2024 ND 137", "era": "2024", "flags": {"heading_seq": ["1->3"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 19876, "cite": "2024 ND 131", "era": "2024", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -47,7 +44,6 @@
 {"id": 18227, "cite": "2023 ND 218", "era": "2023", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 18226, "cite": "2023 ND 214", "era": "2023", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 18225, "cite": "2023 ND 223", "era": "2023", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 19775, "cite": "2023 ND 189", "era": "2023", "flags": {"paragraph_seq": ["dup ¶1", "decrease ¶6->¶1"]}}
 {"id": 19771, "cite": "2023 ND 185", "era": "2023", "flags": {"paragraph_seq": ["gap ¶43->¶45"]}}
 {"id": 19740, "cite": "2023 ND 151", "era": "2023", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 18223, "cite": "2023 ND 155", "era": "2023", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
@@ -278,7 +274,6 @@
 {"id": 17976, "cite": "2022 ND 48", "era": "2022", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 17975, "cite": "2022 ND 47", "era": "2022", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 17974, "cite": "2022 ND 46", "era": "2022", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
-{"id": 19696, "cite": "2022 ND 33", "era": "2022", "flags": {"paragraph_seq": ["dup ¶1", "decrease ¶2->¶1"]}}
 {"id": 17972, "cite": "2022 ND 31", "era": "2022", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 17971, "cite": "2022 ND 38", "era": "2022", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 17970, "cite": "2022 ND 41", "era": "2022", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
@@ -492,7 +487,6 @@
 {"id": 17743, "cite": "2021 ND 9", "era": "2021", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 17742, "cite": "2021 ND 7", "era": "2021", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 17741, "cite": "2021 ND 8", "era": "2021", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
-{"id": 19551, "cite": "2020 ND 270", "era": "2020", "flags": {"paragraph_seq": ["dup ¶2", "decrease ¶12->¶2", "dup ¶3", "gap ¶3->¶13"]}}
 {"id": 17740, "cite": "2020 ND 255", "era": "2020", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 17739, "cite": "2020 ND 252", "era": "2020", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 17738, "cite": "2020 ND 251", "era": "2020", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
@@ -788,7 +782,7 @@
 {"id": 17360, "cite": "2019 ND 17", "era": "2019", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 17359, "cite": "2019 ND 25", "era": "2019", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 17358, "cite": "2019 ND 9", "era": "2019", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
-{"id": 17357, "cite": "2019 ND 27", "era": "2019", "flags": {"paragraph_seq": ["gap ¶2->¶15", "gap ¶15->¶21", "gap ¶21->¶33", "decrease ¶33->¶3", "dup ¶15", "dup ¶21"], "whitespace": ["17 blank-runs(3+)"]}}
+{"id": 17357, "cite": "2019 ND 27", "era": "2019", "flags": {"paragraph_seq": ["gap ¶2->¶15", "gap ¶15->¶21", "gap ¶21->¶33"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 17356, "cite": "2019 ND 24", "era": "2019", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 17354, "cite": "2019 ND 28", "era": "2019", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 17353, "cite": "2019 ND 20", "era": "2019", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
@@ -914,7 +908,7 @@
 {"id": 17108, "cite": "2018 ND 70", "era": "2018", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 17106, "cite": "2018 ND 63", "era": "2018", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 19332, "cite": "2018 ND 62", "era": "2018", "flags": {"heading_seq": ["1->3"]}}
-{"id": 17105, "cite": "2017 ND 291", "era": "2017", "flags": {"paragraph_seq": ["gap ¶4->¶6", "dup ¶6"], "heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
+{"id": 17105, "cite": "2017 ND 291", "era": "2017", "flags": {"paragraph_seq": ["gap ¶4->¶6"], "heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 17104, "cite": "2017 ND 290", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 17102, "cite": "2017 ND 289", "era": "2017", "flags": {"paragraph_seq": ["gap ¶29->¶31"]}}
 {"id": 17099, "cite": "2017 ND 286", "era": "2017", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
@@ -932,9 +926,9 @@
 {"id": 17065, "cite": "2017 ND 260", "era": "2017", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 17062, "cite": "2017 ND 264", "era": "2017", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 17085, "cite": "2017 ND 246", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
-{"id": 17084, "cite": "2017 ND 240", "era": "2017", "flags": {"paragraph_seq": ["dup ¶6", "dup ¶26"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 17083, "cite": "2017 ND 248", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 17078, "cite": "2017 ND 242", "era": "2017", "flags": {"paragraph_seq": ["gap ¶27->¶29", "gap ¶31->¶82", "decrease ¶82->¶33"], "whitespace": ["10 blank-runs(3+)"]}}
+{"id": 17084, "cite": "2017 ND 240", "era": "2017", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
+{"id": 17083, "cite": "2017 ND 248", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 17078, "cite": "2017 ND 242", "era": "2017", "flags": {"paragraph_seq": ["gap ¶27->¶29", "gap ¶31->¶82"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 17075, "cite": "2017 ND 245", "era": "2017", "flags": {"heading_seq": ["1->3"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 17074, "cite": "2017 ND 254", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 17059, "cite": "2017 ND 249", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
@@ -945,11 +939,11 @@
 {"id": 17051, "cite": "2017 ND 253", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 17050, "cite": "2017 ND 251", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 17045, "cite": "2017 ND 232", "era": "2017", "flags": {"paragraph_seq": ["gap ¶19->¶21"], "heading_seq": ["2->4"], "whitespace": ["25 blank-runs(3+)"]}}
-{"id": 17067, "cite": "2017 ND 231", "era": "2017", "flags": {"paragraph_seq": ["gap ¶24->¶26", "dup ¶26"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 17067, "cite": "2017 ND 231", "era": "2017", "flags": {"paragraph_seq": ["gap ¶24->¶26"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 17039, "cite": "2017 ND 229", "era": "2017", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 17033, "cite": "2017 ND 219", "era": "2017", "flags": {"paragraph_seq": ["gap ¶25->¶27", "gap ¶29->¶32"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 17032, "cite": "2017 ND 218", "era": "2017", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
-{"id": 17031, "cite": "2017 ND 217", "era": "2017", "flags": {"paragraph_seq": ["dup ¶36"], "heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 17031, "cite": "2017 ND 217", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 17030, "cite": "2017 ND 216", "era": "2017", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 17028, "cite": "2017 ND 215", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 17029, "cite": "2017 ND 204", "era": "2017", "flags": {"starpage_seq": ["*75 *74 *75"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
@@ -962,8 +956,8 @@
 {"id": 17019, "cite": "2017 ND 209", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 17018, "cite": "2017 ND 208", "era": "2017", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 17017, "cite": "2017 ND 203", "era": "2017", "flags": {"paragraph_seq": ["gap ¶23->¶26"], "whitespace": ["22 blank-runs(3+)"]}}
-{"id": 17011, "cite": "2017 ND 202", "era": "2017", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "whitespace": ["11 blank-runs(3+)"]}}
-{"id": 17010, "cite": "2017 ND 201", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18", "gap ¶50->¶52"], "whitespace": ["36 blank-runs(3+)"]}}
+{"id": 17011, "cite": "2017 ND 202", "era": "2017", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["11 blank-runs(3+)"]}}
+{"id": 17010, "cite": "2017 ND 201", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18", "gap ¶50->¶52"], "whitespace": ["36 blank-runs(3+)"]}}
 {"id": 17009, "cite": "2017 ND 200", "era": "2017", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
 {"id": 17007, "cite": "2017 ND 198", "era": "2017", "flags": {"paragraph_seq": ["gap ¶16->¶18", "gap ¶35->¶37"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 17016, "cite": "2017 ND 188", "era": "2017", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
@@ -980,9 +974,9 @@
 {"id": 16991, "cite": "2017 ND 187", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16990, "cite": "2017 ND 192", "era": "2017", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16986, "cite": "2017 ND 179", "era": "2017", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
-{"id": 16985, "cite": "2017 ND 174", "era": "2017", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 16984, "cite": "2017 ND 175", "era": "2017", "flags": {"paragraph_seq": ["gap ¶22->¶25", "gap ¶25->¶28", "decrease ¶28->¶23"]}}
-{"id": 16983, "cite": "2017 ND 177", "era": "2017", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶40->¶42", "gap ¶42->¶48", "decrease ¶48->¶44", "dup ¶48"], "heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
+{"id": 16985, "cite": "2017 ND 174", "era": "2017", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "whitespace": ["7 blank-runs(3+)"]}}
+{"id": 16984, "cite": "2017 ND 175", "era": "2017", "flags": {"paragraph_seq": ["gap ¶22->¶25", "gap ¶25->¶28"]}}
+{"id": 16983, "cite": "2017 ND 177", "era": "2017", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶40->¶42", "gap ¶42->¶48"], "heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
 {"id": 16982, "cite": "2017 ND 171", "era": "2017", "flags": {"heading_seq": ["1->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16981, "cite": "2017 ND 178", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16980, "cite": "2017 ND 167", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
@@ -997,7 +991,7 @@
 {"id": 16966, "cite": "2017 ND 153", "era": "2017", "flags": {"paragraph_seq": ["gap ¶10->¶13"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16964, "cite": "2017 ND 158", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16961, "cite": "2017 ND 160", "era": "2017", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
-{"id": 16957, "cite": "2017 ND 155", "era": "2017", "flags": {"paragraph_seq": ["gap ¶24->¶26", "dup ¶26"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
+{"id": 16957, "cite": "2017 ND 155", "era": "2017", "flags": {"paragraph_seq": ["gap ¶24->¶26"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 16956, "cite": "2017 ND 157", "era": "2017", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16955, "cite": "2017 ND 161", "era": "2017", "flags": {"paragraph_seq": ["gap ¶5->¶7"]}}
 {"id": 16959, "cite": "2017 ND 148", "era": "2017", "flags": {"paragraph_seq": ["gap ¶9->¶11", "gap ¶15->¶17"], "starpage_seq": ["*446 *312 *554", "*224 *157 *219", "*553 *306 *788", "*521 *363 *553"]}}
@@ -1025,12 +1019,12 @@
 {"id": 16921, "cite": "2017 ND 124", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16920, "cite": "2017 ND 125", "era": "2017", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16919, "cite": "2017 ND 113", "era": "2017", "flags": {"paragraph_seq": ["gap ¶17->¶19"]}}
-{"id": 16918, "cite": "2017 ND 112", "era": "2017", "flags": {"paragraph_seq": ["gap ¶14->¶16", "dup ¶16"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 16918, "cite": "2017 ND 112", "era": "2017", "flags": {"paragraph_seq": ["gap ¶14->¶16"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16917, "cite": "2017 ND 92", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["30 blank-runs(3+)"]}}
 {"id": 16916, "cite": "2017 ND 103", "era": "2017", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16915, "cite": "2017 ND 94", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16914, "cite": "2017 ND 100", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
-{"id": 16913, "cite": "2017 ND 105", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶4", "dup ¶8"], "whitespace": ["18 blank-runs(3+)"]}}
+{"id": 16913, "cite": "2017 ND 105", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16912, "cite": "2017 ND 106", "era": "2017", "flags": {"heading_seq": ["1->3"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 16909, "cite": "2017 ND 110", "era": "2017", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16907, "cite": "2017 ND 108", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
@@ -1044,8 +1038,8 @@
 {"id": 16899, "cite": "2017 ND 93", "era": "2017", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16898, "cite": "2017 ND 101", "era": "2017", "flags": {"paragraph_seq": ["gap ¶4->¶6", "gap ¶10->¶12"], "heading_seq": ["2->4"]}}
 {"id": 16897, "cite": "2017 ND 99", "era": "2017", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
-{"id": 16896, "cite": "2017 ND 85", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"]}}
-{"id": 16892, "cite": "2017 ND 80", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"]}}
+{"id": 16896, "cite": "2017 ND 85", "era": "2017", "flags": {"paragraph_seq": ["gap ¶2->¶8"]}}
+{"id": 16892, "cite": "2017 ND 80", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18"]}}
 {"id": 16891, "cite": "2017 ND 79", "era": "2017", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16890, "cite": "2017 ND 78", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16889, "cite": "2017 ND 74", "era": "2017", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -1061,7 +1055,7 @@
 {"id": 16872, "cite": "2017 ND 50", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16871, "cite": "2017 ND 49", "era": "2017", "flags": {"paragraph_seq": ["gap ¶7->¶9", "gap ¶26->¶28"], "starpage_seq": ["*130 *129 *130"], "heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
 {"id": 16869, "cite": "2017 ND 45", "era": "2017", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
-{"id": 16868, "cite": "2017 ND 53", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 16868, "cite": "2017 ND 53", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16867, "cite": "2017 ND 51", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16866, "cite": "2017 ND 52", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16865, "cite": "2017 ND 48", "era": "2017", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
@@ -1071,7 +1065,7 @@
 {"id": 16859, "cite": "2017 ND 33", "era": "2017", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16862, "cite": "2017 ND 22", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16858, "cite": "2017 ND 25", "era": "2017", "flags": {"paragraph_seq": ["gap ¶10->¶12", "gap ¶25->¶27"], "heading_seq": ["2->4"], "whitespace": ["27 blank-runs(3+)"]}}
-{"id": 16857, "cite": "2017 ND 18", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "whitespace": ["5 blank-runs(3+)"]}}
+{"id": 16857, "cite": "2017 ND 18", "era": "2017", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16856, "cite": "2017 ND 19", "era": "2017", "flags": {"heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16843, "cite": "2017 ND 26", "era": "2017", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16840, "cite": "2017 ND 14", "era": "2017", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
@@ -1115,7 +1109,7 @@
 {"id": 16781, "cite": "2016 ND 171", "era": "2016", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16780, "cite": "2016 ND 172", "era": "2016", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16778, "cite": "2016 ND 169", "era": "2016", "flags": {"paragraph_seq": ["gap ¶18->¶20", "gap ¶25->¶27"], "heading_seq": ["2->5"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 16777, "cite": "2016 ND 168", "era": "2016", "flags": {"paragraph_seq": ["dup ¶6"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 16777, "cite": "2016 ND 168", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16776, "cite": "2016 ND 167", "era": "2016", "flags": {"paragraph_seq": ["gap ¶12->¶14"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16774, "cite": "2016 ND 165", "era": "2016", "flags": {"paragraph_seq": ["gap ¶9->¶11", "gap ¶16->¶18"], "starpage_seq": ["*2013 *1998 *1999", "*413 *219 *850"], "heading_seq": ["3->5"]}}
 {"id": 16773, "cite": "2016 ND 160", "era": "2016", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
@@ -1123,7 +1117,7 @@
 {"id": 16771, "cite": "2016 ND 161", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16770, "cite": "2016 ND 164", "era": "2016", "flags": {"paragraph_seq": ["gap ¶16->¶18"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16769, "cite": "2016 ND 163", "era": "2016", "flags": {"starpage_seq": ["*462 *161 *463"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
-{"id": 16768, "cite": "2016 ND 158", "era": "2016", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "gap ¶7->¶9"]}}
+{"id": 16768, "cite": "2016 ND 158", "era": "2016", "flags": {"paragraph_seq": ["gap ¶2->¶8"]}}
 {"id": 16767, "cite": "2016 ND 157", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16766, "cite": "2016 ND 156", "era": "2016", "flags": {"paragraph_seq": ["gap ¶3->¶5", "gap ¶7->¶9", "gap ¶20->¶22"], "heading_seq": ["2->4"], "whitespace": ["21 blank-runs(3+)"]}}
 {"id": 16765, "cite": "2016 ND 148", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
@@ -1150,9 +1144,9 @@
 {"id": 16738, "cite": "2016 ND 138", "era": "2016", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16737, "cite": "2016 ND 117", "era": "2016", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16735, "cite": "2016 ND 129", "era": "2016", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 16734, "cite": "2016 ND 115", "era": "2016", "flags": {"paragraph_seq": ["dup ¶6"], "heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 16734, "cite": "2016 ND 115", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16733, "cite": "2016 ND 114", "era": "2016", "flags": {"paragraph_seq": ["gap ¶14->¶16", "gap ¶25->¶27"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
-{"id": 16732, "cite": "2016 ND 113", "era": "2016", "flags": {"paragraph_seq": ["gap ¶9->¶11", "dup ¶21"], "whitespace": ["33 blank-runs(3+)"]}}
+{"id": 16732, "cite": "2016 ND 113", "era": "2016", "flags": {"paragraph_seq": ["gap ¶9->¶11"], "whitespace": ["33 blank-runs(3+)"]}}
 {"id": 16731, "cite": "2016 ND 111", "era": "2016", "flags": {"paragraph_seq": ["gap ¶1->¶3", "gap ¶18->¶20"], "heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16730, "cite": "2016 ND 110", "era": "2016", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16718, "cite": "2016 ND 105", "era": "2016", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
@@ -1168,7 +1162,7 @@
 {"id": 16708, "cite": "2016 ND 97", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 16707, "cite": "2016 ND 102", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 16706, "cite": "2016 ND 96", "era": "2016", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
-{"id": 16699, "cite": "2016 ND 84", "era": "2016", "flags": {"paragraph_seq": ["dup ¶16"], "heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
+{"id": 16699, "cite": "2016 ND 84", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16705, "cite": "2016 ND 83", "era": "2016", "flags": {"paragraph_seq": ["gap ¶9->¶11"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16704, "cite": "2016 ND 82", "era": "2016", "flags": {"paragraph_seq": ["gap ¶17->¶19"], "heading_seq": ["2->4"]}}
 {"id": 16703, "cite": "2016 ND 81", "era": "2016", "flags": {"paragraph_seq": ["gap ¶7->¶9", "gap ¶20->¶22"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
@@ -1185,7 +1179,7 @@
 {"id": 16683, "cite": "2016 ND 70", "era": "2016", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16698, "cite": "2016 ND 60", "era": "2016", "flags": {"paragraph_seq": ["gap ¶28->¶30"], "heading_seq": ["2->5", "6->8"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16693, "cite": "2016 ND 56", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
-{"id": 16692, "cite": "2016 ND 67", "era": "2016", "flags": {"paragraph_seq": ["gap ¶14->¶16", "dup ¶16"], "starpage_seq": ["*2013 *2004 *2010"], "heading_seq": ["2->4"]}}
+{"id": 16692, "cite": "2016 ND 67", "era": "2016", "flags": {"paragraph_seq": ["gap ¶14->¶16"], "starpage_seq": ["*2013 *2004 *2010"], "heading_seq": ["2->4"]}}
 {"id": 16690, "cite": "2016 ND 64", "era": "2016", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16689, "cite": "2016 ND 65", "era": "2016", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16687, "cite": "2016 ND 66", "era": "2016", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -1209,18 +1203,18 @@
 {"id": 16658, "cite": "2016 ND 37", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16656, "cite": "2016 ND 40", "era": "2016", "flags": {"paragraph_seq": ["gap ¶9->¶11"], "heading_seq": ["1->4"], "whitespace": ["52 blank-runs(3+)"]}}
 {"id": 16655, "cite": "2016 ND 36", "era": "2016", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 16651, "cite": "2016 ND 19", "era": "2016", "flags": {"paragraph_seq": ["gap ¶2->¶7", "decrease ¶8->¶3", "dup ¶8", "gap ¶6->¶8", "gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18", "gap ¶26->¶28"], "heading_seq": ["2->4"], "whitespace": ["29 blank-runs(3+)"]}}
+{"id": 16651, "cite": "2016 ND 19", "era": "2016", "flags": {"paragraph_seq": ["gap ¶2->¶7", "gap ¶12->¶18", "gap ¶26->¶28", "gap ¶28->¶30"], "heading_seq": ["2->4"], "whitespace": ["29 blank-runs(3+)"]}}
 {"id": 16650, "cite": "2016 ND 18", "era": "2016", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16649, "cite": "2016 ND 17", "era": "2016", "flags": {"starpage_seq": ["*2015 *2004 *2011", "*416 *157 *266", "*186 *18 *240", "*314 *265 *2004"], "heading_seq": ["2->4"]}}
 {"id": 16647, "cite": "2016 ND 10", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 16646, "cite": "2016 ND 14", "era": "2016", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 16646, "cite": "2016 ND 14", "era": "2016", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16645, "cite": "2016 ND 12", "era": "2016", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16644, "cite": "2016 ND 16", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16642, "cite": "2016 ND 9", "era": "2016", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16641, "cite": "2016 ND 11", "era": "2016", "flags": {"starpage_seq": ["*670 *534 *671"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16640, "cite": "2016 ND 15", "era": "2016", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16638, "cite": "2015 ND 303", "era": "2015", "flags": {"paragraph_seq": ["gap ¶20->¶22", "gap ¶36->¶38"], "starpage_seq": ["*2013 *2001 *2003", "*389 *35 *36", "*2012 *2009 *3774", "*243 *38 *178"]}}
-{"id": 16636, "cite": "2015 ND 302", "era": "2015", "flags": {"paragraph_seq": ["gap ¶32->¶84", "decrease ¶84->¶35"], "starpage_seq": ["*450 *358 *2004", "*450 *411 *724", "*392 *25 *2013", "*471 *462 *2001"], "heading_seq": ["2->4"]}}
+{"id": 16636, "cite": "2015 ND 302", "era": "2015", "flags": {"paragraph_seq": ["gap ¶32->¶84"], "starpage_seq": ["*450 *358 *2004", "*450 *411 *724", "*392 *25 *2013", "*471 *462 *2001"], "heading_seq": ["2->4"]}}
 {"id": 16635, "cite": "2015 ND 297", "era": "2015", "flags": {"starpage_seq": ["*2015 *2012 *2014", "*2014 *1998 *2014"]}}
 {"id": 16633, "cite": "2015 ND 300", "era": "2015", "flags": {"starpage_seq": ["*625 *265 *1999"]}}
 {"id": 16632, "cite": "2015 ND 295", "era": "2015", "flags": {"starpage_seq": ["*2014 *2011 *2014"]}}
@@ -1233,12 +1227,12 @@
 {"id": 16623, "cite": "2015 ND 285", "era": "2015", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16614, "cite": "2015 ND 283", "era": "2015", "flags": {"starpage_seq": ["*338 *235 *2008"], "heading_seq": ["2->5"]}}
 {"id": 16622, "cite": "2015 ND 282", "era": "2015", "flags": {"paragraph_seq": ["gap ¶7->¶9", "gap ¶9->¶11"], "starpage_seq": ["*305 *295 *758"], "heading_seq": ["2->4"]}}
-{"id": 16620, "cite": "2015 ND 280", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*823 *520 *2011", "*824 *526 *543"]}}
+{"id": 16620, "cite": "2015 ND 280", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*823 *520 *2011", "*824 *526 *543"]}}
 {"id": 16619, "cite": "2015 ND 270", "era": "2015", "flags": {"starpage_seq": ["*139 *78 *2013", "*2012 *1999 *2008", "*2015 *1998 *2009"]}}
 {"id": 16618, "cite": "2015 ND 277", "era": "2015", "flags": {"starpage_seq": ["*2015 *2013 *2015", "*233 *137 *377", "*377 *160 *297", "*297 *199 *2011"]}}
 {"id": 16617, "cite": "2015 ND 278", "era": "2015", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16616, "cite": "2015 ND 279", "era": "2015", "flags": {"starpage_seq": ["*2008 *2007 *2013", "*477 *384 *2011", "*600 *560 *601"], "heading_seq": ["2->4"]}}
-{"id": 16615, "cite": "2015 ND 275", "era": "2015", "flags": {"paragraph_seq": ["dup ¶6"], "starpage_seq": ["*2011 *2004 *2006"], "heading_seq": ["1->3"]}}
+{"id": 16615, "cite": "2015 ND 275", "era": "2015", "flags": {"starpage_seq": ["*2011 *2004 *2006"], "heading_seq": ["1->3"]}}
 {"id": 16613, "cite": "2015 ND 274", "era": "2015", "flags": {"paragraph_seq": ["gap ¶6->¶8"], "starpage_seq": ["*332 *214 *1998", "*472 *198 *473"], "heading_seq": ["2->4"]}}
 {"id": 16612, "cite": "2015 ND 268", "era": "2015", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "starpage_seq": ["*463 *74 *2012", "*2012 *1998 *2001", "*2001 *2000 *2004"]}}
 {"id": 16611, "cite": "2015 ND 281", "era": "2015", "flags": {"starpage_seq": ["*271 *152 *2015", "*555 *459 *2004"], "heading_seq": ["2->4"]}}
@@ -1246,11 +1240,11 @@
 {"id": 16609, "cite": "2015 ND 272", "era": "2015", "flags": {"starpage_seq": ["*534 *343 *499", "*499 *448 *2004"], "heading_seq": ["2->4"]}}
 {"id": 16608, "cite": "2015 ND 267", "era": "2015", "flags": {"paragraph_seq": ["gap ¶27->¶29", "gap ¶32->¶34"], "starpage_seq": ["*110 *76 *2002", "*440 *117 *441"], "heading_seq": ["2->4"]}}
 {"id": 16606, "cite": "2015 ND 255", "era": "2015", "flags": {"whitespace": ["67 blank-runs(3+)"]}}
-{"id": 16604, "cite": "2015 ND 250", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["11 blank-runs(3+)"]}}
+{"id": 16604, "cite": "2015 ND 250", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16602, "cite": "2015 ND 253", "era": "2015", "flags": {"paragraph_seq": ["gap ¶13->¶15"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16600, "cite": "2015 ND 249", "era": "2015", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16599, "cite": "2015 ND 252", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
-{"id": 16597, "cite": "2015 ND 233", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 16597, "cite": "2015 ND 233", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16579, "cite": "2015 ND 235", "era": "2015", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16578, "cite": "2015 ND 234", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16577, "cite": "2015 ND 237", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
@@ -1259,7 +1253,7 @@
 {"id": 16570, "cite": "2015 ND 223", "era": "2015", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16567, "cite": "2015 ND 220", "era": "2015", "flags": {"paragraph_seq": ["gap ¶18->¶20"], "whitespace": ["24 blank-runs(3+)"]}}
 {"id": 16566, "cite": "2015 ND 207", "era": "2015", "flags": {"heading_seq": ["2->4"]}}
-{"id": 16565, "cite": "2015 ND 216", "era": "2015", "flags": {"paragraph_seq": ["gap ¶32->¶84", "decrease ¶84->¶35"], "heading_seq": ["2->4"], "whitespace": ["26 blank-runs(3+)"]}}
+{"id": 16565, "cite": "2015 ND 216", "era": "2015", "flags": {"paragraph_seq": ["gap ¶32->¶84"], "heading_seq": ["2->4"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 16564, "cite": "2015 ND 217", "era": "2015", "flags": {"whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16563, "cite": "2015 ND 209", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["29 blank-runs(3+)"]}}
 {"id": 16562, "cite": "2015 ND 208", "era": "2015", "flags": {"whitespace": ["20 blank-runs(3+)"]}}
@@ -1270,9 +1264,9 @@
 {"id": 16555, "cite": "2015 ND 212", "era": "2015", "flags": {"whitespace": ["25 blank-runs(3+)"]}}
 {"id": 16552, "cite": "2015 ND 214", "era": "2015", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16551, "cite": "2015 ND 204", "era": "2015", "flags": {"whitespace": ["18 blank-runs(3+)"]}}
-{"id": 16550, "cite": "2015 ND 203", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"]}}
+{"id": 16550, "cite": "2015 ND 203", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"]}}
 {"id": 16549, "cite": "2015 ND 202", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 16548, "cite": "2015 ND 200", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 16548, "cite": "2015 ND 200", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16547, "cite": "2015 ND 201", "era": "2015", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16546, "cite": "2015 ND 199", "era": "2015", "flags": {"whitespace": ["24 blank-runs(3+)"]}}
 {"id": 16545, "cite": "2015 ND 194", "era": "2015", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
@@ -1310,7 +1304,7 @@
 {"id": 16506, "cite": "2015 ND 153", "era": "2015", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16505, "cite": "2015 ND 152", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16503, "cite": "2015 ND 138", "era": "2015", "flags": {"whitespace": ["35 blank-runs(3+)"]}}
-{"id": 16501, "cite": "2015 ND 140", "era": "2015", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 16501, "cite": "2015 ND 140", "era": "2015", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16500, "cite": "2015 ND 135", "era": "2015", "flags": {"starpage_seq": ["*272 *27 *273"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16499, "cite": "2015 ND 134", "era": "2015", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16498, "cite": "2015 ND 133", "era": "2015", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
@@ -1318,11 +1312,11 @@
 {"id": 16495, "cite": "2015 ND 127", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16493, "cite": "2015 ND 125", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["35 blank-runs(3+)"]}}
 {"id": 16492, "cite": "2015 ND 136", "era": "2015", "flags": {"paragraph_seq": ["gap ¶22->¶24"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 16491, "cite": "2015 ND 123", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
+{"id": 16491, "cite": "2015 ND 123", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
 {"id": 16487, "cite": "2015 ND 132", "era": "2015", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16486, "cite": "2015 ND 137", "era": "2015", "flags": {"paragraph_seq": ["gap ¶10->¶12"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16485, "cite": "2015 ND 126", "era": "2015", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 16483, "cite": "2015 ND 121", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["12 blank-runs(3+)"]}}
+{"id": 16483, "cite": "2015 ND 121", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16482, "cite": "2015 ND 129", "era": "2015", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16481, "cite": "2015 ND 130", "era": "2015", "flags": {"paragraph_seq": ["gap ¶5->¶7"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16479, "cite": "2015 ND 113", "era": "2015", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
@@ -1337,37 +1331,37 @@
 {"id": 16469, "cite": "2015 ND 100", "era": "2015", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16468, "cite": "2015 ND 96", "era": "2015", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16467, "cite": "2015 ND 104", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
-{"id": 16466, "cite": "2015 ND 97", "era": "2015", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
+{"id": 16466, "cite": "2015 ND 97", "era": "2015", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16465, "cite": "2015 ND 106", "era": "2015", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16464, "cite": "2015 ND 105", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16461, "cite": "2015 ND 93", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 16457, "cite": "2015 ND 79", "era": "2015", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
-{"id": 16456, "cite": "2015 ND 77", "era": "2015", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28", "gap ¶30->¶81", "decrease ¶81->¶32", "gap ¶48->¶50", "gap ¶51->¶53"], "heading_seq": ["2->6"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 16456, "cite": "2015 ND 77", "era": "2015", "flags": {"paragraph_seq": ["gap ¶22->¶28", "gap ¶30->¶81"], "heading_seq": ["2->6"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 16453, "cite": "2015 ND 70", "era": "2015", "flags": {"paragraph_seq": ["gap ¶7->¶9"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16452, "cite": "2015 ND 74", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16449, "cite": "2015 ND 73", "era": "2015", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16448, "cite": "2015 ND 76", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16444, "cite": "2015 ND 62", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16443, "cite": "2015 ND 61", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["40 blank-runs(3+)"]}}
-{"id": 16442, "cite": "2015 ND 65", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
-{"id": 16441, "cite": "2015 ND 68", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 16442, "cite": "2015 ND 65", "era": "2015", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 16441, "cite": "2015 ND 68", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16439, "cite": "2015 ND 66", "era": "2015", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16438, "cite": "2015 ND 64", "era": "2015", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16437, "cite": "2015 ND 75", "era": "2015", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
-{"id": 16419, "cite": "2015 ND 44", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 16419, "cite": "2015 ND 44", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 16418, "cite": "2015 ND 43", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16417, "cite": "2015 ND 36", "era": "2015", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16416, "cite": "2015 ND 39", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16415, "cite": "2015 ND 18", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["28 blank-runs(3+)"]}}
 {"id": 16414, "cite": "2015 ND 42", "era": "2015", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16413, "cite": "2015 ND 38", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
-{"id": 16412, "cite": "2015 ND 35", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 16412, "cite": "2015 ND 35", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16411, "cite": "2015 ND 33", "era": "2015", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16410, "cite": "2015 ND 34", "era": "2015", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16409, "cite": "2015 ND 31", "era": "2015", "flags": {"heading_seq": ["1->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16407, "cite": "2015 ND 40", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16406, "cite": "2015 ND 32", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
-{"id": 16405, "cite": "2015 ND 37", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 16405, "cite": "2015 ND 37", "era": "2015", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16403, "cite": "2015 ND 41", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16401, "cite": "2015 ND 16", "era": "2015", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16400, "cite": "2015 ND 7", "era": "2015", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
@@ -1383,7 +1377,7 @@
 {"id": 16387, "cite": "2014 ND 239", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16384, "cite": "2014 ND 238", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16390, "cite": "2014 ND 233", "era": "2014", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 16389, "cite": "2014 ND 235", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 16389, "cite": "2014 ND 235", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16388, "cite": "2014 ND 232", "era": "2014", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16386, "cite": "2014 ND 228", "era": "2014", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16385, "cite": "2014 ND 230", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
@@ -1406,11 +1400,11 @@
 {"id": 16360, "cite": "2014 ND 197", "era": "2014", "flags": {"heading_seq": ["1->3"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16358, "cite": "2014 ND 193", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16357, "cite": "2014 ND 199", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 16354, "cite": "2014 ND 182", "era": "2014", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31", "gap ¶33->¶35"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
+{"id": 16354, "cite": "2014 ND 182", "era": "2014", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16353, "cite": "2014 ND 181", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16352, "cite": "2014 ND 180", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 16351, "cite": "2014 ND 179", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["32 blank-runs(3+)"]}}
-{"id": 16349, "cite": "2014 ND 176", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"]}}
+{"id": 16351, "cite": "2014 ND 179", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["32 blank-runs(3+)"]}}
+{"id": 16349, "cite": "2014 ND 176", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18"]}}
 {"id": 16348, "cite": "2014 ND 175", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16347, "cite": "2014 ND 172", "era": "2014", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
 {"id": 16346, "cite": "2014 ND 168", "era": "2014", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
@@ -1447,26 +1441,26 @@
 {"id": 16285, "cite": "2014 ND 126", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16284, "cite": "2014 ND 132", "era": "2014", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16283, "cite": "2014 ND 131", "era": "2014", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
-{"id": 16282, "cite": "2014 ND 129", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
+{"id": 16282, "cite": "2014 ND 129", "era": "2014", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 16281, "cite": "2014 ND 130", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
-{"id": 16279, "cite": "2014 ND 110", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 16279, "cite": "2014 ND 110", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16277, "cite": "2014 ND 103", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16275, "cite": "2014 ND 105", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["30 blank-runs(3+)"]}}
 {"id": 16274, "cite": "2014 ND 107", "era": "2014", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16273, "cite": "2014 ND 102", "era": "2014", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16272, "cite": "2014 ND 106", "era": "2014", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 16271, "cite": "2014 ND 104", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8", "gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
+{"id": 16271, "cite": "2014 ND 104", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16269, "cite": "2014 ND 97", "era": "2014", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16267, "cite": "2014 ND 94", "era": "2014", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16266, "cite": "2014 ND 93", "era": "2014", "flags": {"whitespace": ["22 blank-runs(3+)"]}}
 {"id": 16265, "cite": "2014 ND 92", "era": "2014", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
-{"id": 16264, "cite": "2014 ND 91", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["6 blank-runs(3+)"]}}
-{"id": 16270, "cite": "2014 ND 82", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"]}}
+{"id": 16264, "cite": "2014 ND 91", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 16270, "cite": "2014 ND 82", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"]}}
 {"id": 16261, "cite": "2014 ND 83", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
-{"id": 16256, "cite": "2014 ND 89", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8", "gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 16256, "cite": "2014 ND 89", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16255, "cite": "2014 ND 84", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
-{"id": 16253, "cite": "2014 ND 87", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*319 *307 *320", "*521 *405 *519", "*530 *321 *2010", "*2012 *2009 *2012", "*2008 *1983 *1999", "*2012 *2009 *2010"], "heading_seq": ["2->4"]}}
-{"id": 16252, "cite": "2014 ND 81", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
+{"id": 16253, "cite": "2014 ND 87", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*319 *307 *320", "*521 *405 *519", "*530 *321 *2010", "*2012 *2009 *2012", "*2008 *1983 *1999", "*2012 *2009 *2010"], "heading_seq": ["2->4"]}}
+{"id": 16252, "cite": "2014 ND 81", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16251, "cite": "2014 ND 85", "era": "2014", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16248, "cite": "2014 ND 74", "era": "2014", "flags": {"whitespace": ["27 blank-runs(3+)"]}}
 {"id": 16247, "cite": "2014 ND 72", "era": "2014", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -1477,8 +1471,8 @@
 {"id": 16241, "cite": "2014 ND 63", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16240, "cite": "2014 ND 62", "era": "2014", "flags": {"whitespace": ["32 blank-runs(3+)"]}}
 {"id": 16239, "cite": "2014 ND 66", "era": "2014", "flags": {"whitespace": ["17 blank-runs(3+)"]}}
-{"id": 16236, "cite": "2014 ND 57", "era": "2014", "flags": {"paragraph_seq": ["gap ¶21->¶23", "decrease ¶23->¶22"], "heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
-{"id": 16233, "cite": "2014 ND 53", "era": "2014", "flags": {"paragraph_seq": ["gap ¶31->¶82", "decrease ¶82->¶33", "gap ¶37->¶39", "decrease ¶40->¶38"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
+{"id": 16236, "cite": "2014 ND 57", "era": "2014", "flags": {"paragraph_seq": ["gap ¶21->¶23"], "heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 16233, "cite": "2014 ND 53", "era": "2014", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 16231, "cite": "2014 ND 50", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["25 blank-runs(3+)"]}}
 {"id": 16228, "cite": "2014 ND 49", "era": "2014", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16227, "cite": "2014 ND 46", "era": "2014", "flags": {"starpage_seq": ["*803 *690 *691"], "heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
@@ -1497,7 +1491,7 @@
 {"id": 16210, "cite": "2014 ND 24", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16209, "cite": "2014 ND 33", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16208, "cite": "2014 ND 23", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
-{"id": 16206, "cite": "2014 ND 34", "era": "2014", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 16206, "cite": "2014 ND 34", "era": "2014", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16205, "cite": "2014 ND 30", "era": "2014", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16204, "cite": "2014 ND 19", "era": "2014", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 16218, "cite": "2014 ND 18", "era": "2014", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -1506,15 +1500,15 @@
 {"id": 16198, "cite": "2014 ND 13", "era": "2014", "flags": {"paragraph_seq": ["gap ¶25->¶28"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16197, "cite": "2014 ND 11", "era": "2014", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16196, "cite": "2014 ND 9", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
-{"id": 16195, "cite": "2014 ND 6", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 16195, "cite": "2014 ND 6", "era": "2014", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16194, "cite": "2014 ND 8", "era": "2014", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16193, "cite": "2014 ND 4", "era": "2014", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16192, "cite": "2014 ND 10", "era": "2014", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16189, "cite": "2014 ND 2", "era": "2014", "flags": {"heading_seq": ["3->5"]}}
 {"id": 16187, "cite": "2014 ND 1", "era": "2014", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16186, "cite": "2013 ND 252", "era": "2013", "flags": {"starpage_seq": ["*746 *681 *682"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 16185, "cite": "2013 ND 253", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8", "gap ¶27->¶29"], "whitespace": ["13 blank-runs(3+)"]}}
-{"id": 16184, "cite": "2013 ND 250", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["18 blank-runs(3+)"]}}
+{"id": 16185, "cite": "2013 ND 253", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "gap ¶27->¶29"], "whitespace": ["13 blank-runs(3+)"]}}
+{"id": 16184, "cite": "2013 ND 250", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 16350, "cite": "2013 ND 244", "era": "2013", "flags": {"whitespace": ["24 blank-runs(3+)"]}}
 {"id": 16183, "cite": "2013 ND 241", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16181, "cite": "2013 ND 234", "era": "2013", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -1525,7 +1519,7 @@
 {"id": 16170, "cite": "2013 ND 238", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16168, "cite": "2013 ND 245", "era": "2013", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16167, "cite": "2013 ND 240", "era": "2013", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 16166, "cite": "2013 ND 249", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
+{"id": 16166, "cite": "2013 ND 249", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 16165, "cite": "2013 ND 239", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 16163, "cite": "2013 ND 237", "era": "2013", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 16174, "cite": "2013 ND 242", "era": "2013", "flags": {"starpage_seq": ["*654 *358 *424"]}}
@@ -1537,7 +1531,7 @@
 {"id": 16142, "cite": "2013 ND 205", "era": "2013", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16139, "cite": "2013 ND 212", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 16138, "cite": "2013 ND 215", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
-{"id": 16136, "cite": "2013 ND 195", "era": "2013", "flags": {"paragraph_seq": ["gap ¶32->¶34", "decrease ¶34->¶33"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 16136, "cite": "2013 ND 195", "era": "2013", "flags": {"paragraph_seq": ["gap ¶32->¶34"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16134, "cite": "2013 ND 191", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16133, "cite": "2013 ND 188", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16132, "cite": "2013 ND 189", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
@@ -1545,22 +1539,22 @@
 {"id": 16127, "cite": "2013 ND 185", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16126, "cite": "2013 ND 184", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 16122, "cite": "2013 ND 175", "era": "2013", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
-{"id": 16121, "cite": "2013 ND 174", "era": "2013", "flags": {"paragraph_seq": ["gap ¶59->¶61", "decrease ¶61->¶60", "gap ¶60->¶62"], "starpage_seq": ["*2013 *2008 *2009", "*2008 *2006 *2008"], "heading_seq": ["2->4"]}}
+{"id": 16121, "cite": "2013 ND 174", "era": "2013", "flags": {"paragraph_seq": ["gap ¶59->¶61"], "starpage_seq": ["*2013 *2008 *2009", "*2008 *2006 *2008"], "heading_seq": ["2->4"]}}
 {"id": 16120, "cite": "2013 ND 168", "era": "2013", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 16117, "cite": "2013 ND 171", "era": "2013", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 16115, "cite": "2013 ND 169", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
-{"id": 16114, "cite": "2013 ND 164", "era": "2013", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
+{"id": 16114, "cite": "2013 ND 164", "era": "2013", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 16113, "cite": "2013 ND 173", "era": "2013", "flags": {"paragraph_seq": ["gap ¶19->¶21"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 16110, "cite": "2013 ND 159", "era": "2013", "flags": {"whitespace": ["19 blank-runs(3+)"]}}
 {"id": 16109, "cite": "2013 ND 158", "era": "2013", "flags": {"paragraph_seq": ["gap ¶23->¶25"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 16108, "cite": "2013 ND 149", "era": "2013", "flags": {"starpage_seq": ["*121 *102 *137", "*357 *138 *301", "*301 *144 *357"], "heading_seq": ["2->4"]}}
 {"id": 16107, "cite": "2013 ND 148", "era": "2013", "flags": {"starpage_seq": ["*2010 *1997 *2008", "*607 *377 *2010"], "heading_seq": ["2->4"]}}
 {"id": 16106, "cite": "2013 ND 154", "era": "2013", "flags": {"starpage_seq": ["*459 *333 *2012", "*2012 *1998 *1999"], "heading_seq": ["2->4"]}}
-{"id": 16105, "cite": "2013 ND 153", "era": "2013", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶81->¶32"], "starpage_seq": ["*238 *14 *150", "*150 *78 *238", "*2013 *2003 *2011", "*442 *343 *2012"], "heading_seq": ["2->4"]}}
+{"id": 16105, "cite": "2013 ND 153", "era": "2013", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "starpage_seq": ["*238 *14 *150", "*150 *78 *238", "*2013 *2003 *2011", "*442 *343 *2012"], "heading_seq": ["2->4"]}}
 {"id": 16103, "cite": "2013 ND 152", "era": "2013", "flags": {"starpage_seq": ["*2012 *2001 *2012", "*2004 *2002 *2012", "*519 *327 *519", "*519 *327 *737", "*422 *52 *2012", "*377 *335 *423"], "heading_seq": ["2->4"]}}
-{"id": 16102, "cite": "2013 ND 155", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*466 *447 *2005", "*499 *333 *2003", "*496 *403 *2005", "*2005 *1998 *1999", "*403 *329 *496"]}}
+{"id": 16102, "cite": "2013 ND 155", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*466 *447 *2005", "*499 *333 *2003", "*496 *403 *2005", "*2005 *1998 *1999", "*403 *329 *496"]}}
 {"id": 16101, "cite": "2013 ND 141", "era": "2013", "flags": {"starpage_seq": ["*387 *50 *2002", "*442 *392 *479", "*72 *12 *964", "*124 *50 *389", "*389 *89 *390", "*433 *391 *833"], "heading_seq": ["2->4", "2->4", "1->5", "1->6"]}}
-{"id": 16099, "cite": "2013 ND 157", "era": "2013", "flags": {"paragraph_seq": ["gap ¶14->¶16", "decrease ¶16->¶15"], "starpage_seq": ["*857 *554 *2004"]}}
+{"id": 16099, "cite": "2013 ND 157", "era": "2013", "flags": {"paragraph_seq": ["gap ¶14->¶16"], "starpage_seq": ["*857 *554 *2004"]}}
 {"id": 16098, "cite": "2013 ND 145", "era": "2013", "flags": {"starpage_seq": ["*2012 *2011 *2013", "*2002 *1999 *2002"]}}
 {"id": 16097, "cite": "2013 ND 151", "era": "2013", "flags": {"starpage_seq": ["*843 *841 *2013", "*2009 *2005 *2010"]}}
 {"id": 16096, "cite": "2013 ND 143", "era": "2013", "flags": {"starpage_seq": ["*2011 *2008 *2011", "*329 *316 *833", "*834 *534 *835"]}}
@@ -1568,7 +1562,7 @@
 {"id": 16094, "cite": "2013 ND 142", "era": "2013", "flags": {"starpage_seq": ["*139 *78 *2009", "*2009 *2001 *2012", "*2005 *2003 *2012", "*816 *482 *2010", "*2010 *2008 *2009", "*1999 *1997 *2013"], "heading_seq": ["2->4"]}}
 {"id": 16093, "cite": "2013 ND 146", "era": "2013", "flags": {"heading_seq": ["2->4"]}}
 {"id": 16092, "cite": "2013 ND 156", "era": "2013", "flags": {"starpage_seq": ["*497 *103 *132", "*497 *231 *802", "*462 *365 *367", "*462 *367 *462"], "heading_seq": ["2->4"]}}
-{"id": 16090, "cite": "2013 ND 137", "era": "2013", "flags": {"paragraph_seq": ["gap ¶31->¶82", "decrease ¶82->¶33"], "starpage_seq": ["*1000 *644 *645"], "whitespace": ["30 blank-runs(3+)"]}}
+{"id": 16090, "cite": "2013 ND 137", "era": "2013", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "starpage_seq": ["*1000 *644 *645"], "whitespace": ["30 blank-runs(3+)"]}}
 {"id": 16089, "cite": "2013 ND 136", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 16088, "cite": "2013 ND 123", "era": "2013", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16087, "cite": "2013 ND 128", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
@@ -1589,7 +1583,7 @@
 {"id": 16070, "cite": "2013 ND 126", "era": "2013", "flags": {"heading_seq": ["1->3"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 16068, "cite": "2013 ND 112", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 16067, "cite": "2013 ND 111", "era": "2013", "flags": {"paragraph_seq": ["gap ¶7->¶9"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 16066, "cite": "2013 ND 110", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["27 blank-runs(3+)"]}}
+{"id": 16066, "cite": "2013 ND 110", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["27 blank-runs(3+)"]}}
 {"id": 16065, "cite": "2013 ND 108", "era": "2013", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 16060, "cite": "2013 ND 103", "era": "2013", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 16058, "cite": "2013 ND 102", "era": "2013", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
@@ -1603,7 +1597,7 @@
 {"id": 16043, "cite": "2013 ND 80", "era": "2013", "flags": {"starpage_seq": ["*364 *332 *632"]}}
 {"id": 16042, "cite": "2013 ND 79", "era": "2013", "flags": {"starpage_seq": ["*2000 *1998 *2001", "*2009 *2001 *2011", "*2011 *1999 *2011", "*2011 *1999 *2011", "*1999 *1998 *2001", "*624 *256 *2004"]}}
 {"id": 16041, "cite": "2013 ND 68", "era": "2013", "flags": {"starpage_seq": ["*607 *402 *613"]}}
-{"id": 16040, "cite": "2013 ND 78", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*2009 *2003 *2007", "*604 *430 *445", "*2012 *2000 *2002"], "heading_seq": ["2->4"]}}
+{"id": 16040, "cite": "2013 ND 78", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*2009 *2003 *2007", "*604 *430 *445", "*2012 *2000 *2002"], "heading_seq": ["2->4"]}}
 {"id": 16039, "cite": "2013 ND 77", "era": "2013", "flags": {"starpage_seq": ["*590 *334 *2011", "*456 *334 *2012", "*213 *121 *334"], "heading_seq": ["2->4"]}}
 {"id": 16038, "cite": "2013 ND 69", "era": "2013", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 16037, "cite": "2013 ND 71", "era": "2013", "flags": {"starpage_seq": ["*2010 *2008 *2010", "*2006 *2004 *2006"], "heading_seq": ["1->4"]}}
@@ -1627,11 +1621,11 @@
 {"id": 16010, "cite": "2013 ND 48", "era": "2013", "flags": {"starpage_seq": ["*2007 *2003 *2008", "*2008 *1997 *2006", "*2010 *2006 *2010", "*2007 *1999 *2010", "*481 *452 *474"], "heading_seq": ["2->4"]}}
 {"id": 16009, "cite": "2013 ND 54", "era": "2013", "flags": {"starpage_seq": ["*536 *447 *2002", "*541 *507 *550", "*696 *541 *2012", "*2009 *2002 *2009"], "heading_seq": ["2->4"]}}
 {"id": 16004, "cite": "2013 ND 40", "era": "2013", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
-{"id": 16001, "cite": "2013 ND 37", "era": "2013", "flags": {"paragraph_seq": ["gap ¶20->¶22", "decrease ¶22->¶21"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 16001, "cite": "2013 ND 37", "era": "2013", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15999, "cite": "2013 ND 36", "era": "2013", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
-{"id": 16008, "cite": "2013 ND 35", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*837 *459 *1998"], "heading_seq": ["2->4"]}}
-{"id": 16007, "cite": "2013 ND 34", "era": "2013", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "starpage_seq": ["*2011 *1998 *2009", "*2009 *2008 *2011", "*394 *294 *941", "*236 *15 *2007", "*2010 *1998 *2010", "*2005 *1998 *2009"], "heading_seq": ["2->4"]}}
-{"id": 16000, "cite": "2013 ND 24", "era": "2013", "flags": {"paragraph_seq": ["gap ¶42->¶71", "decrease ¶72->¶43", "gap ¶62->¶68", "decrease ¶68->¶63", "dup ¶68"], "starpage_seq": ["*466 *371 *466", "*438 *64 *474", "*311 *44 *45", "*420 *168 *656", "*311 *51 *52"], "heading_seq": ["2->4"]}}
+{"id": 16008, "cite": "2013 ND 35", "era": "2013", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*837 *459 *1998"], "heading_seq": ["2->4"]}}
+{"id": 16007, "cite": "2013 ND 34", "era": "2013", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "starpage_seq": ["*2011 *1998 *2009", "*2009 *2008 *2011", "*394 *294 *941", "*236 *15 *2007", "*2010 *1998 *2010", "*2005 *1998 *2009"], "heading_seq": ["2->4"]}}
+{"id": 16000, "cite": "2013 ND 24", "era": "2013", "flags": {"paragraph_seq": ["gap ¶42->¶71"], "starpage_seq": ["*466 *371 *466", "*438 *64 *474", "*311 *44 *45", "*420 *168 *656", "*311 *51 *52"], "heading_seq": ["2->4"]}}
 {"id": 15998, "cite": "2013 ND 26", "era": "2013", "flags": {"starpage_seq": ["*539 *344 *345"]}}
 {"id": 15997, "cite": "2013 ND 30", "era": "2013", "flags": {"starpage_seq": ["*548 *337 *506", "*506 *450 *491", "*339 *74 *2006"]}}
 {"id": 15996, "cite": "2013 ND 32", "era": "2013", "flags": {"starpage_seq": ["*2011 *2010 *2012"], "heading_seq": ["2->4"]}}
@@ -1651,15 +1645,15 @@
 {"id": 15978, "cite": "2013 ND 12", "era": "2013", "flags": {"heading_seq": ["1->4"]}}
 {"id": 15977, "cite": "2013 ND 8", "era": "2013", "flags": {"starpage_seq": ["*2004 *2001 *2009", "*2012 *2004 *2012", "*2012 *1999 *2004", "*310 *136 *2004"], "heading_seq": ["2->4"]}}
 {"id": 15975, "cite": "2012 ND 257", "era": "2012", "flags": {"heading_seq": ["2->4"]}}
-{"id": 15974, "cite": "2012 ND 259", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "starpage_seq": ["*183 *41 *356", "*356 *311 *367", "*53 *22 *281", "*887 *882 *2010"], "heading_seq": ["2->4", "4->6"]}}
+{"id": 15974, "cite": "2012 ND 259", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*183 *41 *356", "*356 *311 *367", "*53 *22 *281", "*887 *882 *2010"], "heading_seq": ["2->4", "4->6"]}}
 {"id": 15973, "cite": "2012 ND 256", "era": "2012", "flags": {"starpage_seq": ["*2011 *2006 *2009", "*2012 *2011 *2012"]}}
 {"id": 15971, "cite": "2012 ND 258", "era": "2012", "flags": {"starpage_seq": ["*225 *10 *33", "*225 *182 *862"], "heading_seq": ["2->4"]}}
 {"id": 15970, "cite": "2012 ND 255", "era": "2012", "flags": {"starpage_seq": ["*2004 *2002 *2004", "*494 *434 *2004"]}}
-{"id": 15969, "cite": "2012 ND 254", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*847 *531 *2012", "*2004 *2003 *2007", "*556 *340 *531", "*849 *531 *850"], "heading_seq": ["2->4"]}}
+{"id": 15969, "cite": "2012 ND 254", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*847 *531 *2012", "*2004 *2003 *2007", "*556 *340 *531", "*849 *531 *850"], "heading_seq": ["2->4"]}}
 {"id": 15968, "cite": "2012 ND 261", "era": "2012", "flags": {"starpage_seq": ["*2002 *1999 *2008"], "heading_seq": ["2->4"]}}
 {"id": 15967, "cite": "2012 ND 253", "era": "2012", "flags": {"starpage_seq": ["*490 *466 *2011", "*264 *248 *552", "*506 *490 *2010"], "heading_seq": ["2->4"]}}
 {"id": 15965, "cite": "2012 ND 248", "era": "2012", "flags": {"heading_seq": ["1->3"]}}
-{"id": 15962, "cite": "2012 ND 237", "era": "2012", "flags": {"paragraph_seq": ["gap ¶9->¶11", "gap ¶11->¶18", "decrease ¶18->¶14"], "starpage_seq": ["*2009 *2000 *2012"]}}
+{"id": 15962, "cite": "2012 ND 237", "era": "2012", "flags": {"paragraph_seq": ["gap ¶9->¶11", "gap ¶11->¶18"], "starpage_seq": ["*2009 *2000 *2012"]}}
 {"id": 15961, "cite": "2012 ND 246", "era": "2012", "flags": {"starpage_seq": ["*783 *472 *2007", "*2012 *1999 *2007", "*236 *17 *447", "*522 *236 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15960, "cite": "2012 ND 240", "era": "2012", "flags": {"starpage_seq": ["*2004 *2003 *2010", "*2010 *2004 *2010", "*2009 *2008 *2012", "*2012 *2011 *2012"], "heading_seq": ["2->4"]}}
 {"id": 15959, "cite": "2012 ND 242", "era": "2012", "flags": {"starpage_seq": ["*2012 *2001 *2010", "*770 *380 *541", "*771 *541 *557", "*557 *541 *557"], "heading_seq": ["2->4"]}}
@@ -1667,24 +1661,24 @@
 {"id": 15957, "cite": "2012 ND 238", "era": "2012", "flags": {"starpage_seq": ["*427 *371 *757", "*760 *427 *2009"]}}
 {"id": 15956, "cite": "2012 ND 243", "era": "2012", "flags": {"starpage_seq": ["*2010 *2002 *2010"]}}
 {"id": 15955, "cite": "2012 ND 241", "era": "2012", "flags": {"starpage_seq": ["*2010 *2005 *2009"]}}
-{"id": 15954, "cite": "2012 ND 239", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*846 *753 *2005", "*615 *299 *2011"], "heading_seq": ["2->4"]}}
+{"id": 15954, "cite": "2012 ND 239", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*846 *753 *2005", "*615 *299 *2011"], "heading_seq": ["2->4"]}}
 {"id": 15953, "cite": "2012 ND 234", "era": "2012", "flags": {"starpage_seq": ["*2010 *2006 *2010", "*2010 *2006 *2010", "*434 *252 *733", "*2005 *2001 *2011"], "heading_seq": ["2->4"]}}
 {"id": 15951, "cite": "2012 ND 228", "era": "2012", "flags": {"starpage_seq": ["*2003 *2001 *2010", "*2001 *1998 *2008"]}}
-{"id": 15950, "cite": "2012 ND 226", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "starpage_seq": ["*2012 *2008 *2012", "*2012 *2008 *2012", "*2012 *2011 *2012", "*274 *92 *650", "*92 *47 *2007", "*312 *92 *650"], "heading_seq": ["1->3"]}}
+{"id": 15950, "cite": "2012 ND 226", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "starpage_seq": ["*2012 *2008 *2012", "*2012 *2008 *2012", "*2012 *2011 *2012", "*274 *92 *650", "*92 *47 *2007", "*312 *92 *650"], "heading_seq": ["1->3"]}}
 {"id": 15949, "cite": "2012 ND 225", "era": "2012", "flags": {"starpage_seq": ["*2011 *2010 *2012", "*514 *481 *538", "*2010 *2001 *2006"]}}
-{"id": 15948, "cite": "2012 ND 217", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶24"], "starpage_seq": ["*2011 *2010 *2011", "*260 *184 *2010"], "heading_seq": ["2->4"]}}
-{"id": 15947, "cite": "2012 ND 229", "era": "2012", "flags": {"paragraph_seq": ["gap ¶30->¶81", "decrease ¶81->¶32"], "starpage_seq": ["*859 *517 *2012", "*2010 *1997 *2009"], "heading_seq": ["2->4"]}}
+{"id": 15948, "cite": "2012 ND 217", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*2011 *2010 *2011", "*260 *184 *2010"], "heading_seq": ["2->4"]}}
+{"id": 15947, "cite": "2012 ND 229", "era": "2012", "flags": {"paragraph_seq": ["gap ¶30->¶81"], "starpage_seq": ["*859 *517 *2012", "*2010 *1997 *2009"], "heading_seq": ["2->4"]}}
 {"id": 15946, "cite": "2012 ND 219", "era": "2012", "flags": {"starpage_seq": ["*703 *471 *704", "*471 *135 *705", "*471 *78 *402", "*706 *471 *541"]}}
 {"id": 15945, "cite": "2012 ND 223", "era": "2012", "flags": {"starpage_seq": ["*267 *60 *315", "*498 *396 *2009"]}}
 {"id": 15944, "cite": "2012 ND 221", "era": "2012", "flags": {"starpage_seq": ["*534 *173 *2012", "*478 *122 *479", "*474 *90 *675", "*481 *107 *482"]}}
-{"id": 15940, "cite": "2012 ND 227", "era": "2012", "flags": {"paragraph_seq": ["gap ¶34->¶85", "decrease ¶85->¶36"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 15940, "cite": "2012 ND 227", "era": "2012", "flags": {"paragraph_seq": ["gap ¶34->¶85"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 15939, "cite": "2012 ND 216", "era": "2012", "flags": {"starpage_seq": ["*2012 *2008 *2012", "*2012 *2008 *2010", "*2006 *1999 *2012"]}}
 {"id": 15938, "cite": "2012 ND 222", "era": "2012", "flags": {"starpage_seq": ["*2012 *2008 *2012", "*2008 *2005 *2012"]}}
 {"id": 15937, "cite": "2012 ND 206", "era": "2012", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 15936, "cite": "2012 ND 204", "era": "2012", "flags": {"starpage_seq": ["*524 *277 *774", "*90 *66 *904", "*108 *78 *85", "*85 *81 *904", "*776 *410 *2001"]}}
 {"id": 15935, "cite": "2012 ND 203", "era": "2012", "flags": {"paragraph_seq": ["gap ¶27->¶29"], "starpage_seq": ["*2008 *2006 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15933, "cite": "2012 ND 201", "era": "2012", "flags": {"paragraph_seq": ["gap ¶32->¶34"], "heading_seq": ["2->5"], "whitespace": ["16 blank-runs(3+)"]}}
-{"id": 15941, "cite": "2012 ND 197", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶38->¶89", "decrease ¶89->¶40"], "starpage_seq": ["*1999 *1997 *2005", "*2010 *2002 *2010", "*2012 *2001 *2006", "*530 *502 *2010"], "heading_seq": ["2->4"]}}
+{"id": 15941, "cite": "2012 ND 197", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶38->¶89"], "starpage_seq": ["*1999 *1997 *2005", "*2010 *2002 *2010", "*2012 *2001 *2006", "*530 *502 *2010"], "heading_seq": ["2->4"]}}
 {"id": 15932, "cite": "2012 ND 199", "era": "2012", "flags": {"whitespace": ["21 blank-runs(3+)"]}}
 {"id": 15928, "cite": "2012 ND 180", "era": "2012", "flags": {"starpage_seq": ["*357 *188 *759", "*471 *357 *2002", "*2002 *1999 *2011"]}}
 {"id": 15927, "cite": "2012 ND 184", "era": "2012", "flags": {"starpage_seq": ["*520 *514 *753", "*753 *520 *2011"], "heading_seq": ["2->5"]}}
@@ -1713,7 +1707,7 @@
 {"id": 15901, "cite": "2012 ND 156", "era": "2012", "flags": {"paragraph_seq": ["gap ¶7->¶9"], "starpage_seq": ["*129 *10 *129", "*131 *11 *131", "*131 *115 *2009", "*508 *129 *2009", "*131 *129 *541", "*307 *117 *2012"]}}
 {"id": 15889, "cite": "2012 ND 151", "era": "2012", "flags": {"starpage_seq": ["*477 *328 *2010", "*132 *131 *552", "*508 *129 *2009", "*131 *129 *541", "*554 *283 *555"]}}
 {"id": 15888, "cite": "2012 ND 159", "era": "2012", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
-{"id": 15887, "cite": "2012 ND 152", "era": "2012", "flags": {"paragraph_seq": ["gap ¶33->¶84", "decrease ¶84->¶35"], "starpage_seq": ["*531 *373 *532", "*533 *252 *534", "*2012 *2002 *2009", "*2009 *1997 *2000", "*536 *354 *2000"], "heading_seq": ["2->4"]}}
+{"id": 15887, "cite": "2012 ND 152", "era": "2012", "flags": {"paragraph_seq": ["gap ¶33->¶84"], "starpage_seq": ["*531 *373 *532", "*533 *252 *534", "*2012 *2002 *2009", "*2009 *1997 *2000", "*536 *354 *2000"], "heading_seq": ["2->4"]}}
 {"id": 15886, "cite": "2012 ND 154", "era": "2012", "flags": {"starpage_seq": ["*2003 *1998 *2011"]}}
 {"id": 15885, "cite": "2012 ND 155", "era": "2012", "flags": {"starpage_seq": ["*2003 *2000 *2002", "*518 *333 *1998"], "heading_seq": ["2->4"]}}
 {"id": 15884, "cite": "2012 ND 160", "era": "2012", "flags": {"paragraph_seq": ["gap ¶7->¶9"], "starpage_seq": ["*503 *501 *504", "*506 *432 *501"], "heading_seq": ["2->4"]}}
@@ -1721,9 +1715,9 @@
 {"id": 15882, "cite": "2012 ND 124", "era": "2012", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15881, "cite": "2012 ND 136", "era": "2012", "flags": {"starpage_seq": ["*486 *415 *2002", "*517 *394 *487", "*517 *409 *415"], "heading_seq": ["2->4"]}}
 {"id": 15880, "cite": "2012 ND 143", "era": "2012", "flags": {"starpage_seq": ["*436 *365 *791"], "heading_seq": ["2->4"]}}
-{"id": 15879, "cite": "2012 ND 145", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*892 *787 *2010"], "heading_seq": ["2->4"]}}
-{"id": 15878, "cite": "2012 ND 139", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"]}}
-{"id": 15877, "cite": "2012 ND 134", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*310 *283 *2011", "*409 *78 *448", "*448 *153 *2011", "*2011 *2003 *2006"]}}
+{"id": 15879, "cite": "2012 ND 145", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*892 *787 *2010"], "heading_seq": ["2->4"]}}
+{"id": 15878, "cite": "2012 ND 139", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶18"]}}
+{"id": 15877, "cite": "2012 ND 134", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*310 *283 *2011", "*409 *78 *448", "*448 *153 *2011", "*2011 *2003 *2006"]}}
 {"id": 15875, "cite": "2012 ND 142", "era": "2012", "flags": {"starpage_seq": ["*520 *331 *2011", "*766 *409 *483", "*767 *409 *483"]}}
 {"id": 15874, "cite": "2012 ND 137", "era": "2012", "flags": {"paragraph_seq": ["gap ¶9->¶11"], "starpage_seq": ["*758 *750 *2003", "*759 *387 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15873, "cite": "2012 ND 140", "era": "2012", "flags": {"starpage_seq": ["*751 *390 *676", "*676 *390 *549", "*549 *268 *390", "*390 *183 *516"]}}
@@ -1733,16 +1727,16 @@
 {"id": 15869, "cite": "2012 ND 138", "era": "2012", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15868, "cite": "2012 ND 129", "era": "2012", "flags": {"starpage_seq": ["*2006 *2005 *2007", "*387 *243 *716"]}}
 {"id": 15867, "cite": "2012 ND 147", "era": "2012", "flags": {"starpage_seq": ["*402 *306 *396", "*396 *93 *229", "*229 *39 *436", "*178 *58 *711"]}}
-{"id": 15866, "cite": "2012 ND 144", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"]}}
-{"id": 15865, "cite": "2012 ND 148", "era": "2012", "flags": {"paragraph_seq": ["gap ¶34->¶85", "decrease ¶85->¶36"], "starpage_seq": ["*689 *554 *690", "*690 *678 *2003", "*2006 *2004 *2012", "*126 *103 *126", "*126 *73 *693", "*126 *103 *2012"]}}
-{"id": 15864, "cite": "2012 ND 123", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶20->¶22", "gap ¶37->¶88", "decrease ¶88->¶39", "gap ¶65->¶67", "decrease ¶67->¶66"], "whitespace": ["49 blank-runs(3+)"]}}
+{"id": 15866, "cite": "2012 ND 144", "era": "2012", "flags": {"paragraph_seq": ["gap ¶22->¶28"]}}
+{"id": 15865, "cite": "2012 ND 148", "era": "2012", "flags": {"paragraph_seq": ["gap ¶34->¶85"], "starpage_seq": ["*689 *554 *690", "*690 *678 *2003", "*2006 *2004 *2012", "*126 *103 *126", "*126 *73 *693", "*126 *103 *2012"]}}
+{"id": 15864, "cite": "2012 ND 123", "era": "2012", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶20->¶22", "gap ¶37->¶88"], "whitespace": ["49 blank-runs(3+)"]}}
 {"id": 15862, "cite": "2012 ND 122", "era": "2012", "flags": {"heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
 {"id": 15863, "cite": "2012 ND 121", "era": "2012", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 15861, "cite": "2012 ND 119", "era": "2012", "flags": {"starpage_seq": ["*2011 *2001 *2004"]}}
-{"id": 15860, "cite": "2012 ND 114", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*2004 *1998 *2010", "*2010 *2004 *2011", "*2010 *2009 *2011"], "heading_seq": ["2->4"]}}
+{"id": 15860, "cite": "2012 ND 114", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*2004 *1998 *2010", "*2010 *2004 *2011", "*2010 *2009 *2011"], "heading_seq": ["2->4"]}}
 {"id": 15859, "cite": "2012 ND 113", "era": "2012", "flags": {"paragraph_seq": ["gap ¶10->¶12"]}}
 {"id": 15858, "cite": "2012 ND 116", "era": "2012", "flags": {"starpage_seq": ["*533 *368 *533"]}}
-{"id": 15857, "cite": "2012 ND 118", "era": "2012", "flags": {"paragraph_seq": ["gap ¶32->¶38", "decrease ¶38->¶33", "dup ¶38"], "starpage_seq": ["*381 *357 *852", "*360 *249 *863", "*507 *362 *507"]}}
+{"id": 15857, "cite": "2012 ND 118", "era": "2012", "flags": {"paragraph_seq": ["gap ¶32->¶38"], "starpage_seq": ["*381 *357 *852", "*360 *249 *863", "*507 *362 *507"]}}
 {"id": 15856, "cite": "2012 ND 115", "era": "2012", "flags": {"starpage_seq": ["*2010 *2009 *2010", "*305 *74 *2010"]}}
 {"id": 15855, "cite": "2012 ND 117", "era": "2012", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15854, "cite": "2012 ND 120", "era": "2012", "flags": {"starpage_seq": ["*527 *473 *500", "*500 *373 *488", "*488 *337 *500", "*447 *338 *500", "*500 *340 *500"]}}
@@ -1756,7 +1750,7 @@
 {"id": 15841, "cite": "2012 ND 100", "era": "2012", "flags": {"starpage_seq": ["*188 *135 *781", "*506 *455 *463"]}}
 {"id": 15840, "cite": "2012 ND 99", "era": "2012", "flags": {"starpage_seq": ["*2002 *2000 *2005", "*265 *264 *2003", "*776 *410 *2011", "*377 *11 *778"]}}
 {"id": 15839, "cite": "2012 ND 92", "era": "2012", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
-{"id": 15851, "cite": "2012 ND 90", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*479 *357 *2010", "*446 *357 *521", "*449 *357 *2010"]}}
+{"id": 15851, "cite": "2012 ND 90", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*479 *357 *2010", "*446 *357 *521", "*449 *357 *2010"]}}
 {"id": 15846, "cite": "2012 ND 91", "era": "2012", "flags": {"starpage_seq": ["*231 *85 *337", "*337 *301 *351", "*351 *246 *1997", "*86 *12 *2007", "*281 *78 *2008"]}}
 {"id": 15838, "cite": "2012 ND 87", "era": "2012", "flags": {"starpage_seq": ["*2009 *2007 *2012"], "heading_seq": ["2->4"]}}
 {"id": 15837, "cite": "2012 ND 86", "era": "2012", "flags": {"starpage_seq": ["*538 *487 *2000", "*2005 *2000 *2004"], "heading_seq": ["2->4"]}}
@@ -1768,10 +1762,10 @@
 {"id": 15831, "cite": "2012 ND 78", "era": "2012", "flags": {"starpage_seq": ["*285 *211 *2001"]}}
 {"id": 15830, "cite": "2012 ND 79", "era": "2012", "flags": {"starpage_seq": ["*277 *21 *57", "*146 *59 *216", "*278 *19 *82", "*107 *69 *467", "*406 *279 *832"]}}
 {"id": 15828, "cite": "2012 ND 77", "era": "2012", "flags": {"starpage_seq": ["*507 *260 *539", "*539 *396 *1997", "*63 *15 *2622", "*462 *263 *462", "*507 *264 *462", "*507 *462 *2004"]}}
-{"id": 15827, "cite": "2012 ND 80", "era": "2012", "flags": {"paragraph_seq": ["gap ¶52->¶58", "decrease ¶58->¶53", "dup ¶58"], "starpage_seq": ["*251 *78 *252", "*418 *253 *1999", "*418 *254 *255"]}}
+{"id": 15827, "cite": "2012 ND 80", "era": "2012", "flags": {"paragraph_seq": ["gap ¶52->¶58"], "starpage_seq": ["*251 *78 *252", "*418 *253 *1999", "*418 *254 *255"]}}
 {"id": 15826, "cite": "2012 ND 76", "era": "2012", "flags": {"starpage_seq": ["*384 *237 *2011", "*557 *238 *469", "*203 *162 *245", "*245 *239 *694", "*528 *240 *469"]}}
-{"id": 15825, "cite": "2012 ND 75", "era": "2012", "flags": {"paragraph_seq": ["gap ¶13->¶16", "decrease ¶17->¶14"], "starpage_seq": ["*2011 *1999 *2003"]}}
-{"id": 15823, "cite": "2012 ND 61", "era": "2012", "flags": {"paragraph_seq": ["gap ¶6->¶8", "decrease ¶8->¶7", "gap ¶7->¶9"]}}
+{"id": 15825, "cite": "2012 ND 75", "era": "2012", "flags": {"paragraph_seq": ["gap ¶13->¶16"], "starpage_seq": ["*2011 *1999 *2003"]}}
+{"id": 15823, "cite": "2012 ND 61", "era": "2012", "flags": {"paragraph_seq": ["gap ¶6->¶8"]}}
 {"id": 15822, "cite": "2012 ND 63", "era": "2012", "flags": {"whitespace": ["25 blank-runs(3+)"]}}
 {"id": 15821, "cite": "2012 ND 62", "era": "2012", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 15818, "cite": "2012 ND 57", "era": "2012", "flags": {"starpage_seq": ["*460 *89 *2011", "*612 *460 *2011"]}}
@@ -1789,16 +1783,16 @@
 {"id": 15805, "cite": "2012 ND 31", "era": "2012", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 15804, "cite": "2012 ND 24", "era": "2012", "flags": {"heading_seq": ["2->4"]}}
 {"id": 15803, "cite": "2012 ND 35", "era": "2012", "flags": {"starpage_seq": ["*2008 *2007 *2008", "*2007 *2000 *2007"]}}
-{"id": 15802, "cite": "2012 ND 36", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"]}}
+{"id": 15802, "cite": "2012 ND 36", "era": "2012", "flags": {"paragraph_seq": ["gap ¶2->¶8"]}}
 {"id": 15801, "cite": "2012 ND 39", "era": "2012", "flags": {"starpage_seq": ["*517 *438 *462"], "heading_seq": ["2->4"]}}
 {"id": 15800, "cite": "2012 ND 34", "era": "2012", "flags": {"paragraph_seq": ["gap ¶3->¶5"], "starpage_seq": ["*456 *389 *430"]}}
-{"id": 15799, "cite": "2012 ND 37", "era": "2012", "flags": {"paragraph_seq": ["gap ¶19->¶21", "gap ¶36->¶87", "decrease ¶87->¶38"], "starpage_seq": ["*279 *204 *373"], "heading_seq": ["2->4"]}}
+{"id": 15799, "cite": "2012 ND 37", "era": "2012", "flags": {"paragraph_seq": ["gap ¶19->¶21", "gap ¶36->¶87"], "starpage_seq": ["*279 *204 *373"], "heading_seq": ["2->4"]}}
 {"id": 15798, "cite": "2012 ND 33", "era": "2012", "flags": {"starpage_seq": ["*408 *26 *817", "*409 *111 *164", "*411 *307 *466", "*412 *406 *466", "*466 *389 *413", "*413 *389 *996"], "heading_seq": ["2->4"]}}
 {"id": 15797, "cite": "2012 ND 30", "era": "2012", "flags": {"starpage_seq": ["*69 *32 *359", "*359 *318 *474", "*303 *48 *49", "*359 *245 *2011", "*547 *404 *405"]}}
 {"id": 15796, "cite": "2012 ND 28", "era": "2012", "flags": {"starpage_seq": ["*396 *294 *541", "*2000 *1999 *2008", "*442 *312 *393", "*2011 *2005 *2011", "*551 *394 *395", "*2008 *2002 *2008"]}}
 {"id": 15795, "cite": "2012 ND 32", "era": "2012", "flags": {"starpage_seq": ["*459 *386 *391", "*2007 *2003 *2004"], "heading_seq": ["2->4"]}}
 {"id": 15794, "cite": "2012 ND 38", "era": "2012", "flags": {"starpage_seq": ["*2008 *1998 *2005"]}}
-{"id": 15793, "cite": "2012 ND 29", "era": "2012", "flags": {"paragraph_seq": ["gap ¶30->¶81", "decrease ¶81->¶32"], "starpage_seq": ["*365 *240 *2003", "*266 *128 *2010", "*367 *276 *368", "*2011 *2002 *2009", "*371 *258 *372"], "heading_seq": ["2->4"]}}
+{"id": 15793, "cite": "2012 ND 29", "era": "2012", "flags": {"paragraph_seq": ["gap ¶30->¶81"], "starpage_seq": ["*365 *240 *2003", "*266 *128 *2010", "*367 *276 *368", "*2011 *2002 *2009", "*371 *258 *372"], "heading_seq": ["2->4"]}}
 {"id": 15791, "cite": "2012 ND 20", "era": "2012", "flags": {"paragraph_seq": ["gap ¶1->¶3"], "heading_seq": ["2->4"], "whitespace": ["21 blank-runs(3+)"]}}
 {"id": 15786, "cite": "2012 ND 18", "era": "2012", "flags": {"starpage_seq": ["*481 *164 *481"]}}
 {"id": 15790, "cite": "2012 ND 11", "era": "2012", "flags": {"starpage_seq": ["*2002 *2000 *2007"]}}
@@ -1819,7 +1813,7 @@
 {"id": 15747, "cite": "2011 ND 232", "era": "2011", "flags": {"starpage_seq": ["*2009 *2003 *2006", "*456 *246 *534", "*326 *249 *1999", "*215 *120 *884", "*339 *265 *966", "*233 *217 *2007"]}}
 {"id": 15789, "cite": "2011 ND 215", "era": "2011", "flags": {"starpage_seq": ["*132 *56 *224"]}}
 {"id": 15746, "cite": "2011 ND 217", "era": "2011", "flags": {"starpage_seq": ["*246 *211 *212"]}}
-{"id": 15745, "cite": "2011 ND 212", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "starpage_seq": ["*517 *303 *613", "*614 *520 *524"], "heading_seq": ["2->4"]}}
+{"id": 15745, "cite": "2011 ND 212", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*517 *303 *613", "*614 *520 *524"], "heading_seq": ["2->4"]}}
 {"id": 15744, "cite": "2011 ND 213", "era": "2011", "flags": {"starpage_seq": ["*601 *552 *1998", "*456 *333 *603", "*2003 *1999 *2000", "*2003 *1998 *2003"], "heading_seq": ["2->4"]}}
 {"id": 15741, "cite": "2011 ND 218", "era": "2011", "flags": {"starpage_seq": ["*2007 *2006 *2008", "*112 *16 *313", "*313 *225 *328", "*503 *198 *2010"]}}
 {"id": 15739, "cite": "2011 ND 216", "era": "2011", "flags": {"starpage_seq": ["*2006 *2000 *2009", "*635 *513 *1998", "*225 *188 *2002"], "heading_seq": ["2->4"]}}
@@ -1834,7 +1828,7 @@
 {"id": 15732, "cite": "2011 ND 183", "era": "2011", "flags": {"heading_seq": ["2->4"]}}
 {"id": 15731, "cite": "2011 ND 191", "era": "2011", "flags": {"starpage_seq": ["*2008 *2005 *2006", "*2006 *1998 *2009", "*2006 *2003 *2009", "*2010 *2005 *2010"]}}
 {"id": 15726, "cite": "2011 ND 185", "era": "2011", "flags": {"starpage_seq": ["*165 *148 *831", "*289 *13 *88", "*156 *26 *148", "*971 *809 *832"]}}
-{"id": 15724, "cite": "2011 ND 184", "era": "2011", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"]}}
+{"id": 15724, "cite": "2011 ND 184", "era": "2011", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"]}}
 {"id": 15723, "cite": "2011 ND 187", "era": "2011", "flags": {"starpage_seq": ["*2006 *1998 *2010", "*2005 *1999 *2005"], "heading_seq": ["2->4"]}}
 {"id": 15721, "cite": "2011 ND 188", "era": "2011", "flags": {"starpage_seq": ["*2010 *2004 *2009", "*2009 *2001 *2004", "*605 *518 *523", "*153 *117 *2008"]}}
 {"id": 15720, "cite": "2011 ND 189", "era": "2011", "flags": {"starpage_seq": ["*2011 *2006 *2007"]}}
@@ -1847,9 +1841,9 @@
 {"id": 15713, "cite": "2011 ND 170", "era": "2011", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 15712, "cite": "2011 ND 169", "era": "2011", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 15734, "cite": "2011 ND 167", "era": "2011", "flags": {"starpage_seq": ["*100 *75 *140", "*335 *142 *376", "*834 *454 *2001", "*454 *143 *2001", "*479 *144 *834", "*2009 *1998 *2009"], "heading_seq": ["2->4"]}}
-{"id": 15711, "cite": "2011 ND 168", "era": "2011", "flags": {"paragraph_seq": ["gap ¶31->¶33", "decrease ¶33->¶32"], "starpage_seq": ["*2010 *2000 *2006"], "heading_seq": ["2->4"]}}
+{"id": 15711, "cite": "2011 ND 168", "era": "2011", "flags": {"paragraph_seq": ["gap ¶31->¶33"], "starpage_seq": ["*2010 *2000 *2006"], "heading_seq": ["2->4"]}}
 {"id": 15710, "cite": "2011 ND 160", "era": "2011", "flags": {"starpage_seq": ["*167 *94 *414", "*72 *22 *363", "*363 *300 *402", "*164 *18 *194"]}}
-{"id": 15709, "cite": "2011 ND 166", "era": "2011", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*345 *156 *2010", "*2010 *1999 *2011"], "heading_seq": ["2->4"]}}
+{"id": 15709, "cite": "2011 ND 166", "era": "2011", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*345 *156 *2010", "*2010 *1999 *2011"], "heading_seq": ["2->4"]}}
 {"id": 15708, "cite": "2011 ND 159", "era": "2011", "flags": {"starpage_seq": ["*2010 *2008 *2010", "*2011 *2010 *2011", "*2011 *2009 *2010", "*2011 *2010 *2011"], "heading_seq": ["2->4"]}}
 {"id": 15707, "cite": "2011 ND 158", "era": "2011", "flags": {"starpage_seq": ["*2008 *2006 *2011", "*2010 *1997 *2010"]}}
 {"id": 15706, "cite": "2011 ND 157", "era": "2011", "flags": {"paragraph_seq": ["gap ¶6->¶8"], "starpage_seq": ["*242 *232 *271", "*271 *20 *738", "*552 *202 *739", "*253 *225 *881"], "heading_seq": ["2->4"]}}
@@ -1929,7 +1923,7 @@
 {"id": 15594, "cite": "2011 ND 47", "era": "2011", "flags": {"starpage_seq": ["*2010 *2003 *2010"], "heading_seq": ["1->4"]}}
 {"id": 15593, "cite": "2011 ND 46", "era": "2011", "flags": {"starpage_seq": ["*330 *93 *264", "*605 *331 *770"], "heading_seq": ["2->4"]}}
 {"id": 15592, "cite": "2011 ND 51", "era": "2011", "flags": {"starpage_seq": ["*530 *386 *465", "*327 *214 *2001"]}}
-{"id": 15591, "cite": "2011 ND 53", "era": "2011", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "starpage_seq": ["*2007 *2006 *2011", "*324 *271 *2008"], "heading_seq": ["2->4", "4->6"]}}
+{"id": 15591, "cite": "2011 ND 53", "era": "2011", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "starpage_seq": ["*2007 *2006 *2011", "*324 *271 *2008"], "heading_seq": ["2->4", "4->6"]}}
 {"id": 15590, "cite": "2011 ND 44", "era": "2011", "flags": {"starpage_seq": ["*139 *78 *2008", "*2008 *2001 *2008", "*2010 *1999 *2008", "*452 *314 *2008", "*2010 *2003 *2007", "*2007 *1999 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15589, "cite": "2011 ND 60", "era": "2011", "flags": {"starpage_seq": ["*427 *377 *530", "*530 *339 *2000", "*77 *73 *177", "*177 *77 *307", "*307 *14 *93", "*77 *14 *308"]}}
 {"id": 15588, "cite": "2011 ND 64", "era": "2011", "flags": {"starpage_seq": ["*335 *300 *2002", "*205 *97 *175"], "heading_seq": ["2->4"]}}
@@ -1939,14 +1933,14 @@
 {"id": 15583, "cite": "2011 ND 22", "era": "2011", "flags": {"starpage_seq": ["*626 *295 *551", "*438 *58 *462", "*694 *462 *2004", "*727 *387 *704", "*462 *367 *730", "*730 *367 *2004"]}}
 {"id": 15582, "cite": "2011 ND 32", "era": "2011", "flags": {"starpage_seq": ["*316 *60 *471", "*471 *436 *459"], "heading_seq": ["2->4"]}}
 {"id": 15581, "cite": "2011 ND 28", "era": "2011", "flags": {"starpage_seq": ["*451 *421 *2008", "*2010 *2002 *2009"], "heading_seq": ["2->4"]}}
-{"id": 15580, "cite": "2011 ND 31", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "starpage_seq": ["*2010 *2009 *2010", "*2006 *1997 *2006", "*2006 *2000 *2007"], "heading_seq": ["2->4"]}}
+{"id": 15580, "cite": "2011 ND 31", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*2010 *2009 *2010", "*2006 *1997 *2006", "*2006 *2000 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15578, "cite": "2011 ND 27", "era": "2011", "flags": {"starpage_seq": ["*325 *210 *2008", "*211 *24 *553", "*427 *212 *221", "*221 *24 *462"], "heading_seq": ["2->4"]}}
 {"id": 15577, "cite": "2011 ND 34", "era": "2011", "flags": {"heading_seq": ["2->4"]}}
 {"id": 15576, "cite": "2011 ND 33", "era": "2011", "flags": {"starpage_seq": ["*2008 *2006 *2008"]}}
 {"id": 15574, "cite": "2011 ND 35", "era": "2011", "flags": {"starpage_seq": ["*2002 *2000 *2010", "*2010 *2008 *2009", "*417 *331 *795", "*326 *325 *796"], "heading_seq": ["2->4"]}}
 {"id": 15573, "cite": "2011 ND 23", "era": "2011", "flags": {"starpage_seq": ["*2005 *2003 *2005", "*788 *396 *545", "*545 *436 *596", "*438 *39 *789", "*596 *436 *790"]}}
 {"id": 15572, "cite": "2011 ND 25", "era": "2011", "flags": {"starpage_seq": ["*2011 *2002 *2005"], "heading_seq": ["2->4"]}}
-{"id": 15570, "cite": "2011 ND 20", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "starpage_seq": ["*2010 *2005 *2010", "*772 *530 *2009", "*333 *251 *265", "*773 *530 *774"], "heading_seq": ["2->5"]}}
+{"id": 15570, "cite": "2011 ND 20", "era": "2011", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*2010 *2005 *2010", "*772 *530 *2009", "*333 *251 *265", "*773 *530 *774"], "heading_seq": ["2->5"]}}
 {"id": 15568, "cite": "2011 ND 21", "era": "2011", "flags": {"starpage_seq": ["*2003 *1997 *2001", "*465 *372 *1999", "*521 *466 *2008"]}}
 {"id": 15567, "cite": "2011 ND 29", "era": "2011", "flags": {"starpage_seq": ["*2007 *2001 *2004", "*535 *419 *439", "*535 *501 *532", "*532 *327 *501", "*538 *459 *569", "*569 *487 *576"], "heading_seq": ["2->4"]}}
 {"id": 15566, "cite": "2011 ND 7", "era": "2011", "flags": {"starpage_seq": ["*72 *64 *189", "*112 *35 *92", "*92 *25 *374", "*23 *14 *2007", "*472 *236 *326", "*326 *31 *376"], "heading_seq": ["2->4"]}}
@@ -1967,9 +1961,9 @@
 {"id": 15545, "cite": "2010 ND 229", "era": "2010", "flags": {"starpage_seq": ["*2005 *2003 *2007", "*535 *522 *2003", "*2003 *1997 *2000"], "heading_seq": ["2->4"]}}
 {"id": 15542, "cite": "2010 ND 231", "era": "2010", "flags": {"starpage_seq": ["*2007 *1999 *2007"]}}
 {"id": 15539, "cite": "2010 ND 233", "era": "2010", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "starpage_seq": ["*905 *529 *2008", "*529 *497 *906", "*907 *540 *908"], "heading_seq": ["2->4"]}}
-{"id": 15544, "cite": "2010 ND 221", "era": "2010", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["21 blank-runs(3+)"]}}
+{"id": 15544, "cite": "2010 ND 221", "era": "2010", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["21 blank-runs(3+)"]}}
 {"id": 15543, "cite": "2010 ND 220", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
-{"id": 15540, "cite": "2010 ND 210", "era": "2010", "flags": {"paragraph_seq": ["gap ¶28->¶30", "gap ¶44->¶69", "decrease ¶75->¶45"], "starpage_seq": ["*386 *334 *2007", "*544 *172 *554", "*22 *14 *2007", "*287 *17 *138", "*333 *287 *341", "*341 *287 *2007"], "heading_seq": ["2->4"]}}
+{"id": 15540, "cite": "2010 ND 210", "era": "2010", "flags": {"paragraph_seq": ["gap ¶28->¶30", "gap ¶44->¶69"], "starpage_seq": ["*386 *334 *2007", "*544 *172 *554", "*22 *14 *2007", "*287 *17 *138", "*333 *287 *341", "*341 *287 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15538, "cite": "2010 ND 212", "era": "2010", "flags": {"starpage_seq": ["*2009 *1997 *2008"]}}
 {"id": 15537, "cite": "2010 ND 219", "era": "2010", "flags": {"starpage_seq": ["*2009 *2004 *2005", "*2009 *2005 *2009"]}}
 {"id": 15536, "cite": "2010 ND 215", "era": "2010", "flags": {"heading_seq": ["2->4"]}}
@@ -1985,11 +1979,11 @@
 {"id": 15512, "cite": "2010 ND 198", "era": "2010", "flags": {"heading_seq": ["2->4"]}}
 {"id": 15511, "cite": "2010 ND 199", "era": "2010", "flags": {"starpage_seq": ["*2009 *2002 *2010"]}}
 {"id": 15510, "cite": "2010 ND 194", "era": "2010", "flags": {"starpage_seq": ["*2009 *2006 *2009", "*2009 *2005 *2010", "*2005 *2003 *2010", "*2010 *2005 *2010", "*2010 *2001 *2009"]}}
-{"id": 15509, "cite": "2010 ND 196", "era": "2010", "flags": {"paragraph_seq": ["gap ¶31->¶82", "decrease ¶82->¶38", "decrease ¶38->¶34", "dup ¶38"], "starpage_seq": ["*2010 *2003 *2010", "*2008 *2006 *2008", "*2009 *2001 *2008", "*139 *78 *2009", "*1999 *1997 *2009", "*2009 *2006 *2007"], "heading_seq": ["2->4"]}}
+{"id": 15509, "cite": "2010 ND 196", "era": "2010", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "starpage_seq": ["*2010 *2003 *2010", "*2008 *2006 *2008", "*2009 *2001 *2008", "*139 *78 *2009", "*1999 *1997 *2009", "*2009 *2006 *2007"], "heading_seq": ["2->4"]}}
 {"id": 15507, "cite": "2010 ND 183", "era": "2010", "flags": {"starpage_seq": ["*633 *396 *2010", "*182 *33 *205", "*205 *139 *877", "*446 *214 *1999"]}}
 {"id": 15506, "cite": "2010 ND 184", "era": "2010", "flags": {"starpage_seq": ["*292 *215 *534", "*541 *374 *461", "*2008 *1998 *2003", "*627 *541 *547", "*547 *534 *547", "*541 *461 *628"]}}
 {"id": 15505, "cite": "2010 ND 186", "era": "2010", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
-{"id": 15504, "cite": "2010 ND 185", "era": "2010", "flags": {"paragraph_seq": ["gap ¶23->¶29", "decrease ¶37->¶25"], "starpage_seq": ["*2009 *2004 *2009", "*139 *78 *2009"]}}
+{"id": 15504, "cite": "2010 ND 185", "era": "2010", "flags": {"paragraph_seq": ["gap ¶23->¶29"], "starpage_seq": ["*2009 *2004 *2009", "*139 *78 *2009"]}}
 {"id": 15502, "cite": "2010 ND 174", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15500, "cite": "2010 ND 168", "era": "2010", "flags": {"starpage_seq": ["*2008 *1999 *2010"]}}
 {"id": 15499, "cite": "2010 ND 167", "era": "2010", "flags": {"starpage_seq": ["*519 *348 *2001", "*466 *421 *2003", "*376 *351 *1965", "*262 *128 *828", "*190 *17 *2001", "*275 *190 *789"]}}
@@ -2006,7 +2000,7 @@
 {"id": 15485, "cite": "2010 ND 146", "era": "2010", "flags": {"starpage_seq": ["*2009 *2008 *2009", "*377 *228 *2000", "*377 *305 *1997", "*450 *448 *745", "*747 *500 *1999"]}}
 {"id": 15484, "cite": "2010 ND 158", "era": "2010", "flags": {"starpage_seq": ["*2009 *2008 *2009", "*2009 *2006 *2009", "*533 *151 *2010", "*305 *296 *458", "*458 *336 *2008"]}}
 {"id": 15483, "cite": "2010 ND 154", "era": "2010", "flags": {"starpage_seq": ["*2004 *2003 *2004", "*2009 *2004 *2010"], "heading_seq": ["2->4"]}}
-{"id": 15482, "cite": "2010 ND 150", "era": "2010", "flags": {"paragraph_seq": ["gap ¶2->¶4", "gap ¶4->¶8", "dup ¶4", "decrease ¶8->¶4", "dup ¶8"], "starpage_seq": ["*446 *413 *719", "*2009 *2003 *2007", "*529 *283 *720", "*492 *329 *446", "*472 *413 *721", "*721 *407 *2009"], "heading_seq": ["2->5"]}}
+{"id": 15482, "cite": "2010 ND 150", "era": "2010", "flags": {"paragraph_seq": ["gap ¶2->¶4", "gap ¶4->¶8"], "starpage_seq": ["*446 *413 *719", "*2009 *2003 *2007", "*529 *283 *720", "*492 *329 *446", "*472 *413 *721", "*721 *407 *2009"], "heading_seq": ["2->5"]}}
 {"id": 15481, "cite": "2010 ND 157", "era": "2010", "flags": {"starpage_seq": ["*2006 *2004 *2006"]}}
 {"id": 15479, "cite": "2010 ND 149", "era": "2010", "flags": {"starpage_seq": ["*2010 *2009 *2010", "*2010 *2008 *2009", "*2010 *2009 *2010"], "heading_seq": ["2->4"]}}
 {"id": 15478, "cite": "2010 ND 153", "era": "2010", "flags": {"starpage_seq": ["*512 *510 *2006"], "heading_seq": ["2->4"]}}
@@ -2015,7 +2009,7 @@
 {"id": 15486, "cite": "2010 ND 140", "era": "2010", "flags": {"starpage_seq": ["*2009 *2003 *2006", "*357 *188 *2002", "*295 *13 *460"]}}
 {"id": 15472, "cite": "2010 ND 141", "era": "2010", "flags": {"starpage_seq": ["*158 *99 *895", "*899 *506 *2008"]}}
 {"id": 15471, "cite": "2010 ND 139", "era": "2010", "flags": {"heading_seq": ["2->4"]}}
-{"id": 15470, "cite": "2010 ND 138", "era": "2010", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "starpage_seq": ["*422 *357 *2005", "*368 *345 *406", "*447 *427 *447", "*22 *19 *971", "*506 *443 *554", "*292 *113 *875"]}}
+{"id": 15470, "cite": "2010 ND 138", "era": "2010", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "starpage_seq": ["*422 *357 *2005", "*368 *345 *406", "*447 *427 *447", "*22 *19 *971", "*506 *443 *554", "*292 *113 *875"]}}
 {"id": 15466, "cite": "2010 ND 133", "era": "2010", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
 {"id": 15465, "cite": "2010 ND 132", "era": "2010", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15464, "cite": "2010 ND 136", "era": "2010", "flags": {"starpage_seq": ["*241 *25 *242"], "whitespace": ["7 blank-runs(3+)"]}}
@@ -2044,7 +2038,7 @@
 {"id": 15424, "cite": "2010 ND 93", "era": "2010", "flags": {"heading_seq": ["2->4"]}}
 {"id": 15421, "cite": "2010 ND 91", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 15476, "cite": "2010 ND 82", "era": "2010", "flags": {"starpage_seq": ["*545 *430 *2007", "*555 *508 *541", "*541 *231 *456"]}}
-{"id": 15418, "cite": "2010 ND 81", "era": "2010", "flags": {"paragraph_seq": ["dup ¶6"], "whitespace": ["10 blank-runs(3+)"]}}
+{"id": 15418, "cite": "2010 ND 81", "era": "2010", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 15417, "cite": "2010 ND 83", "era": "2010", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 15416, "cite": "2010 ND 85", "era": "2010", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 15415, "cite": "2010 ND 87", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
@@ -2075,11 +2069,11 @@
 {"id": 15348, "cite": "2010 ND 29", "era": "2010", "flags": {"heading_seq": ["3->5"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15347, "cite": "2010 ND 30", "era": "2010", "flags": {"heading_seq": ["2->5"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15343, "cite": "2010 ND 17", "era": "2010", "flags": {"whitespace": ["20 blank-runs(3+)"]}}
-{"id": 15342, "cite": "2010 ND 15", "era": "2010", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "whitespace": ["5 blank-runs(3+)"]}}
+{"id": 15342, "cite": "2010 ND 15", "era": "2010", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 15341, "cite": "2010 ND 19", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
 {"id": 15340, "cite": "2010 ND 18", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15339, "cite": "2010 ND 16", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
-{"id": 15338, "cite": "2010 ND 20", "era": "2010", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23"], "whitespace": ["12 blank-runs(3+)"]}}
+{"id": 15338, "cite": "2010 ND 20", "era": "2010", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 15337, "cite": "2010 ND 14", "era": "2010", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 15336, "cite": "2010 ND 13", "era": "2010", "flags": {"heading_seq": ["2->4"], "whitespace": ["49 blank-runs(3+)"]}}
 {"id": 15334, "cite": "2010 ND 3", "era": "2010", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -2087,7 +2081,7 @@
 {"id": 15329, "cite": "2010 ND 6", "era": "2010", "flags": {"paragraph_seq": ["gap ¶12->¶14"], "heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 15328, "cite": "2010 ND 2", "era": "2010", "flags": {"starpage_seq": ["*608 *606 *609"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15327, "cite": "2010 ND 5", "era": "2010", "flags": {"whitespace": ["25 blank-runs(3+)"]}}
-{"id": 15325, "cite": "2010 ND 9", "era": "2010", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "starpage_seq": ["*2008 *2004 *2008", "*510 *356 *2008"], "heading_seq": ["2->4"]}}
+{"id": 15325, "cite": "2010 ND 9", "era": "2010", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "starpage_seq": ["*2008 *2004 *2008", "*510 *356 *2008"], "heading_seq": ["2->4"]}}
 {"id": 15324, "cite": "2010 ND 11", "era": "2010", "flags": {"whitespace": ["29 blank-runs(3+)"]}}
 {"id": 15322, "cite": "2009 ND 217", "era": "2009", "flags": {"whitespace": ["30 blank-runs(3+)"]}}
 {"id": 15317, "cite": "2009 ND 218", "era": "2009", "flags": {"starpage_seq": ["*579 *298 *580"]}}
@@ -2107,7 +2101,7 @@
 {"id": 15290, "cite": "2009 ND 182", "era": "2009", "flags": {"paragraph_seq": ["gap ¶32->¶34"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 15289, "cite": "2009 ND 179", "era": "2009", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15288, "cite": "2009 ND 180", "era": "2009", "flags": {"paragraph_seq": ["gap ¶22->¶24"], "heading_seq": ["2->4"], "whitespace": ["27 blank-runs(3+)"]}}
-{"id": 15286, "cite": "2009 ND 177", "era": "2009", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*394 *223 *497", "*497 *409 *2003", "*209 *16 *763", "*101 *61 *62", "*447 *211 *1997"], "heading_seq": ["2->4"]}}
+{"id": 15286, "cite": "2009 ND 177", "era": "2009", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*394 *223 *497", "*497 *409 *2003", "*209 *16 *763", "*101 *61 *62", "*447 *211 *1997"], "heading_seq": ["2->4"]}}
 {"id": 15285, "cite": "2009 ND 174", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15284, "cite": "2009 ND 181", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 15282, "cite": "2009 ND 171", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["30 blank-runs(3+)"]}}
@@ -2137,7 +2131,7 @@
 {"id": 15227, "cite": "2009 ND 117", "era": "2009", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 15225, "cite": "2009 ND 130", "era": "2009", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 15222, "cite": "2009 ND 123", "era": "2009", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 15220, "cite": "2009 ND 115", "era": "2009", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "whitespace": ["26 blank-runs(3+)"]}}
+{"id": 15220, "cite": "2009 ND 115", "era": "2009", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 15219, "cite": "2009 ND 119", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 15218, "cite": "2009 ND 116", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 15213, "cite": "2009 ND 110", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["83 blank-runs(3+)"]}}
@@ -2186,7 +2180,7 @@
 {"id": 15137, "cite": "2009 ND 15", "era": "2009", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 15136, "cite": "2009 ND 16", "era": "2009", "flags": {"heading_seq": ["2->5"], "whitespace": ["41 blank-runs(3+)"]}}
 {"id": 15135, "cite": "2009 ND 14", "era": "2009", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
-{"id": 15134, "cite": "2009 ND 17", "era": "2009", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 15134, "cite": "2009 ND 17", "era": "2009", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 15116, "cite": "2009 ND 8", "era": "2009", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 15115, "cite": "2009 ND 20", "era": "2009", "flags": {"whitespace": ["17 blank-runs(3+)"]}}
 {"id": 15114, "cite": "2008 ND 236", "era": "2008", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -2201,8 +2195,8 @@
 {"id": 15095, "cite": "2008 ND 228", "era": "2008", "flags": {"paragraph_seq": ["gap ¶22->¶24"], "heading_seq": ["2->4"], "whitespace": ["41 blank-runs(3+)"]}}
 {"id": 15089, "cite": "2008 ND 212", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 15088, "cite": "2008 ND 214", "era": "2008", "flags": {"heading_seq": ["1->3"]}}
-{"id": 15086, "cite": "2008 ND 211", "era": "2008", "flags": {"paragraph_seq": ["gap ¶20->¶22", "decrease ¶22->¶21"], "whitespace": ["27 blank-runs(3+)"]}}
-{"id": 15164, "cite": "2008 ND 206", "era": "2008", "flags": {"paragraph_seq": ["dup ¶32", "decrease ¶34->¶32", "dup ¶33", "dup ¶34"]}}
+{"id": 15086, "cite": "2008 ND 211", "era": "2008", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "whitespace": ["27 blank-runs(3+)"]}}
+{"id": 15164, "cite": "2008 ND 206", "era": "2008", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶32 (text matches original)"]}}
 {"id": 15081, "cite": "2008 ND 203", "era": "2008", "flags": {"whitespace": ["114 blank-runs(3+)"]}}
 {"id": 15080, "cite": "2008 ND 202", "era": "2008", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 15078, "cite": "2008 ND 200", "era": "2008", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
@@ -2210,11 +2204,11 @@
 {"id": 15071, "cite": "2008 ND 204", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 15068, "cite": "2008 ND 196", "era": "2008", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 15075, "cite": "2008 ND 191", "era": "2008", "flags": {"paragraph_seq": ["gap ¶2->¶4"], "whitespace": ["4 blank-runs(3+)"]}}
-{"id": 15070, "cite": "2008 ND 192", "era": "2008", "flags": {"paragraph_seq": ["gap ¶19->¶21", "decrease ¶21->¶20"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 15070, "cite": "2008 ND 192", "era": "2008", "flags": {"paragraph_seq": ["gap ¶19->¶21"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 15069, "cite": "2008 ND 187", "era": "2008", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 15067, "cite": "2008 ND 188", "era": "2008", "flags": {"whitespace": ["20 blank-runs(3+)"]}}
 {"id": 15065, "cite": "2008 ND 182", "era": "2008", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
-{"id": 15060, "cite": "2008 ND 184", "era": "2008", "flags": {"paragraph_seq": ["dup ¶15", "decrease ¶27->¶15"], "whitespace": ["27 blank-runs(3+)"]}}
+{"id": 15060, "cite": "2008 ND 184", "era": "2008", "flags": {"whitespace": ["27 blank-runs(3+)"]}}
 {"id": 15054, "cite": "2008 ND 180", "era": "2008", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 15053, "cite": "2008 ND 178", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["37 blank-runs(3+)"]}}
 {"id": 15052, "cite": "2008 ND 172", "era": "2008", "flags": {"heading_seq": ["2->4"]}}
@@ -2244,7 +2238,7 @@
 {"id": 15016, "cite": "2008 ND 143", "era": "2008", "flags": {"whitespace": ["19 blank-runs(3+)"]}}
 {"id": 15015, "cite": "2008 ND 139", "era": "2008", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 15013, "cite": "2008 ND 138", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 15012, "cite": "2008 ND 136", "era": "2008", "flags": {"paragraph_seq": ["gap ¶8->¶19", "decrease ¶19->¶9"]}}
+{"id": 15012, "cite": "2008 ND 136", "era": "2008", "flags": {"paragraph_seq": ["gap ¶8->¶19"]}}
 {"id": 15011, "cite": "2008 ND 135", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 15007, "cite": "2008 ND 131", "era": "2008", "flags": {"starpage_seq": ["*2008 *2006 *2007", "*683 *447 *1998", "*419 *385 *401", "*92 *34 *466", "*781 *685 *2004", "*2004 *1998 *2000"], "heading_seq": ["2->4"]}}
 {"id": 15006, "cite": "2008 ND 132", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
@@ -2255,21 +2249,21 @@
 {"id": 15000, "cite": "2008 ND 115", "era": "2008", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 14999, "cite": "2008 ND 116", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 14998, "cite": "2008 ND 114", "era": "2008", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
-{"id": 14997, "cite": "2008 ND 112", "era": "2008", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4", "2->7", "7->9", "9->11"], "whitespace": ["34 blank-runs(3+)"]}}
+{"id": 14997, "cite": "2008 ND 112", "era": "2008", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4", "2->7", "7->9", "9->11"], "whitespace": ["34 blank-runs(3+)"]}}
 {"id": 14994, "cite": "2008 ND 106", "era": "2008", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 14993, "cite": "2008 ND 113", "era": "2008", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 14991, "cite": "2008 ND 109", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14990, "cite": "2008 ND 108", "era": "2008", "flags": {"heading_seq": ["2->5"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 14988, "cite": "2008 ND 105", "era": "2008", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 14987, "cite": "2008 ND 104", "era": "2008", "flags": {"whitespace": ["34 blank-runs(3+)"]}}
-{"id": 14986, "cite": "2008 ND 101", "era": "2008", "flags": {"paragraph_seq": ["gap ¶16->¶18", "decrease ¶18->¶17"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 14986, "cite": "2008 ND 101", "era": "2008", "flags": {"paragraph_seq": ["gap ¶16->¶18"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14970, "cite": "2008 ND 100", "era": "2008", "flags": {"starpage_seq": ["*554 *539 *2007"], "heading_seq": ["1->4"]}}
 {"id": 14968, "cite": "2008 ND 87", "era": "2008", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
 {"id": 14967, "cite": "2008 ND 98", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 14966, "cite": "2008 ND 95", "era": "2008", "flags": {"paragraph_seq": ["gap ¶3->¶5"], "heading_seq": ["2->4"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 14965, "cite": "2008 ND 93", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14964, "cite": "2008 ND 92", "era": "2008", "flags": {"whitespace": ["36 blank-runs(3+)"]}}
-{"id": 14963, "cite": "2008 ND 94", "era": "2008", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "whitespace": ["48 blank-runs(3+)"]}}
+{"id": 14963, "cite": "2008 ND 94", "era": "2008", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["48 blank-runs(3+)"]}}
 {"id": 14962, "cite": "2008 ND 85", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14960, "cite": "2008 ND 97", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 14958, "cite": "2008 ND 86", "era": "2008", "flags": {"starpage_seq": ["*680 *513 *2006", "*2007 *2005 *2006"]}}
@@ -2291,7 +2285,7 @@
 {"id": 14946, "cite": "2008 ND 60", "era": "2008", "flags": {"whitespace": ["17 blank-runs(3+)"]}}
 {"id": 14930, "cite": "2008 ND 58", "era": "2008", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14929, "cite": "2008 ND 50", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 14928, "cite": "2008 ND 56", "era": "2008", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23"], "whitespace": ["29 blank-runs(3+)"]}}
+{"id": 14928, "cite": "2008 ND 56", "era": "2008", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["29 blank-runs(3+)"]}}
 {"id": 14925, "cite": "2008 ND 52", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 14916, "cite": "2008 ND 41", "era": "2008", "flags": {"heading_seq": ["2->4"]}}
 {"id": 14915, "cite": "2008 ND 40", "era": "2008", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
@@ -2338,7 +2332,7 @@
 {"id": 14839, "cite": "2007 ND 161", "era": "2007", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶18->¶20"], "heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 14838, "cite": "2007 ND 163", "era": "2007", "flags": {"heading_seq": ["2->4"], "whitespace": ["59 blank-runs(3+)"]}}
 {"id": 14836, "cite": "2007 ND 162", "era": "2007", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
-{"id": 14817, "cite": "2007 ND 160", "era": "2007", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
+{"id": 14817, "cite": "2007 ND 160", "era": "2007", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 14814, "cite": "2007 ND 148", "era": "2007", "flags": {"whitespace": ["43 blank-runs(3+)"]}}
 {"id": 14813, "cite": "2007 ND 144", "era": "2007", "flags": {"heading_seq": ["2->4"], "whitespace": ["47 blank-runs(3+)"]}}
 {"id": 14812, "cite": "2007 ND 146", "era": "2007", "flags": {"paragraph_seq": ["gap ¶34->¶36"], "heading_seq": ["2->5"], "whitespace": ["10 blank-runs(3+)"]}}
@@ -2424,7 +2418,7 @@
 {"id": 14684, "cite": "2007 ND 8", "era": "2007", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14683, "cite": "2007 ND 7", "era": "2007", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14682, "cite": "2007 ND 5", "era": "2007", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 14681, "cite": "2007 ND 3", "era": "2007", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 14681, "cite": "2007 ND 3", "era": "2007", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14680, "cite": "2007 ND 2", "era": "2007", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14679, "cite": "2007 ND 6", "era": "2007", "flags": {"paragraph_seq": ["gap ¶11->¶13"], "heading_seq": ["1->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 14676, "cite": "2007 ND 4", "era": "2007", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
@@ -2484,7 +2478,7 @@
 {"id": 14569, "cite": "2006 ND 155", "era": "2006", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14568, "cite": "2006 ND 160", "era": "2006", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14567, "cite": "2006 ND 159", "era": "2006", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
-{"id": 14566, "cite": "2006 ND 156", "era": "2006", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*431 *243 *1999"]}}
+{"id": 14566, "cite": "2006 ND 156", "era": "2006", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*431 *243 *1999"]}}
 {"id": 14564, "cite": "2006 ND 162", "era": "2006", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14554, "cite": "2006 ND 158", "era": "2006", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14556, "cite": "2006 ND 147", "era": "2006", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
@@ -2555,7 +2549,7 @@
 {"id": 14452, "cite": "2006 ND 33", "era": "2006", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 14451, "cite": "2006 ND 32", "era": "2006", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
 {"id": 14450, "cite": "2006 ND 31", "era": "2006", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
-{"id": 14425, "cite": "2006 ND 15", "era": "2006", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 14425, "cite": "2006 ND 15", "era": "2006", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14424, "cite": "2006 ND 12", "era": "2006", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14423, "cite": "2006 ND 11", "era": "2006", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14419, "cite": "2006 ND 29", "era": "2006", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -2610,9 +2604,9 @@
 {"id": 14313, "cite": "2005 ND 141", "era": "2005", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 14312, "cite": "2005 ND 137", "era": "2005", "flags": {"paragraph_seq": ["gap ¶13->¶15"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 14311, "cite": "2005 ND 139", "era": "2005", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
-{"id": 14309, "cite": "2005 ND 144", "era": "2005", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"]}}
+{"id": 14309, "cite": "2005 ND 144", "era": "2005", "flags": {"paragraph_seq": ["gap ¶12->¶18"]}}
 {"id": 14308, "cite": "2005 ND 136", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["27 blank-runs(3+)"]}}
-{"id": 14321, "cite": "2005 ND 134", "era": "2005", "flags": {"paragraph_seq": ["gap ¶32->¶38", "decrease ¶38->¶33"], "heading_seq": ["2->4"], "whitespace": ["21 blank-runs(3+)"]}}
+{"id": 14321, "cite": "2005 ND 134", "era": "2005", "flags": {"paragraph_seq": ["gap ¶32->¶38"], "heading_seq": ["2->4"], "whitespace": ["21 blank-runs(3+)"]}}
 {"id": 14305, "cite": "2005 ND 122", "era": "2005", "flags": {"starpage_seq": ["*407 *13 *408"]}}
 {"id": 14303, "cite": "2005 ND 125", "era": "2005", "flags": {"heading_seq": ["1->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 14302, "cite": "2005 ND 131", "era": "2005", "flags": {"heading_seq": ["2->5"], "whitespace": ["7 blank-runs(3+)"]}}
@@ -2624,7 +2618,7 @@
 {"id": 14272, "cite": "2005 ND 120", "era": "2005", "flags": {"whitespace": ["43 blank-runs(3+)"]}}
 {"id": 14273, "cite": "2005 ND 112", "era": "2005", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "heading_seq": ["3->5"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14271, "cite": "2005 ND 113", "era": "2005", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 14270, "cite": "2005 ND 114", "era": "2005", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31"], "heading_seq": ["2->5"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 14270, "cite": "2005 ND 114", "era": "2005", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "heading_seq": ["2->5"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 14269, "cite": "2005 ND 118", "era": "2005", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 14267, "cite": "2005 ND 116", "era": "2005", "flags": {"starpage_seq": ["*528 *478 *554"], "heading_seq": ["2->4"]}}
 {"id": 14266, "cite": "2005 ND 117", "era": "2005", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
@@ -2648,7 +2642,7 @@
 {"id": 14237, "cite": "2005 ND 84", "era": "2005", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14236, "cite": "2005 ND 85", "era": "2005", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14235, "cite": "2005 ND 83", "era": "2005", "flags": {"paragraph_seq": ["gap ¶21->¶24"], "whitespace": ["38 blank-runs(3+)"]}}
-{"id": 14234, "cite": "2005 ND 79", "era": "2005", "flags": {"paragraph_seq": ["gap ¶19->¶21", "decrease ¶21->¶20"], "starpage_seq": ["*515 *450 *2004", "*506 *453 *502"], "heading_seq": ["2->4"]}}
+{"id": 14234, "cite": "2005 ND 79", "era": "2005", "flags": {"paragraph_seq": ["gap ¶19->¶21"], "starpage_seq": ["*515 *450 *2004", "*506 *453 *502"], "heading_seq": ["2->4"]}}
 {"id": 14233, "cite": "2005 ND 80", "era": "2005", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 14232, "cite": "2005 ND 82", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 14231, "cite": "2005 ND 76", "era": "2005", "flags": {"paragraph_seq": ["gap ¶36->¶39"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
@@ -2669,7 +2663,7 @@
 {"id": 14206, "cite": "2005 ND 48", "era": "2005", "flags": {"starpage_seq": ["*24 *10 *25"]}}
 {"id": 14201, "cite": "2005 ND 50", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14200, "cite": "2005 ND 53", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["25 blank-runs(3+)"]}}
-{"id": 14198, "cite": "2005 ND 54", "era": "2005", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*446 *332 *910", "*446 *332 *492"]}}
+{"id": 14198, "cite": "2005 ND 54", "era": "2005", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*446 *332 *910", "*446 *332 *492"]}}
 {"id": 14197, "cite": "2005 ND 52", "era": "2005", "flags": {"whitespace": ["19 blank-runs(3+)"]}}
 {"id": 14203, "cite": "2005 ND 44", "era": "2005", "flags": {"starpage_seq": ["*155 *18 *19"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 14195, "cite": "2005 ND 42", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
@@ -2682,7 +2676,7 @@
 {"id": 14185, "cite": "2005 ND 40", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 14184, "cite": "2005 ND 32", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14182, "cite": "2005 ND 30", "era": "2005", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 14181, "cite": "2005 ND 26", "era": "2005", "flags": {"paragraph_seq": ["gap ¶33->¶84", "decrease ¶84->¶35", "gap ¶36->¶38"], "heading_seq": ["1->3", "3->15", "2->4"], "whitespace": ["68 blank-runs(3+)"]}}
+{"id": 14181, "cite": "2005 ND 26", "era": "2005", "flags": {"paragraph_seq": ["gap ¶33->¶84"], "heading_seq": ["1->3", "3->15", "2->4"], "whitespace": ["68 blank-runs(3+)"]}}
 {"id": 14180, "cite": "2005 ND 25", "era": "2005", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 14179, "cite": "2005 ND 19", "era": "2005", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 14178, "cite": "2005 ND 18", "era": "2005", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -2712,11 +2706,11 @@
 {"id": 14129, "cite": "2004 ND 201", "era": "2004", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14127, "cite": "2004 ND 204", "era": "2004", "flags": {"heading_seq": ["2->5"], "whitespace": ["29 blank-runs(3+)"]}}
 {"id": 14125, "cite": "2004 ND 202", "era": "2004", "flags": {"paragraph_seq": ["gap ¶6->¶8"], "starpage_seq": ["*2004 *2002 *2004", "*2004 *2001 *2004", "*2000 *1999 *2001"]}}
-{"id": 14124, "cite": "2004 ND 203", "era": "2004", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["5 blank-runs(3+)"]}}
+{"id": 14124, "cite": "2004 ND 203", "era": "2004", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 14122, "cite": "2004 ND 200", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 14120, "cite": "2004 ND 196", "era": "2004", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 14119, "cite": "2004 ND 195", "era": "2004", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 14118, "cite": "2004 ND 194", "era": "2004", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28", "gap ¶30->¶82"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 14119, "cite": "2004 ND 195", "era": "2004", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["5 blank-runs(3+)"]}}
+{"id": 14118, "cite": "2004 ND 194", "era": "2004", "flags": {"paragraph_seq": ["gap ¶22->¶28", "gap ¶30->¶82"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14117, "cite": "2004 ND 192", "era": "2004", "flags": {"heading_seq": ["2->5"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 14116, "cite": "2004 ND 193", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 14114, "cite": "2004 ND 185", "era": "2004", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
@@ -2736,7 +2730,7 @@
 {"id": 14088, "cite": "2004 ND 169", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["45 blank-runs(3+)"]}}
 {"id": 14087, "cite": "2004 ND 163", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["57 blank-runs(3+)"]}}
 {"id": 14086, "cite": "2004 ND 162", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["32 blank-runs(3+)"]}}
-{"id": 14084, "cite": "2004 ND 160", "era": "2004", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
+{"id": 14084, "cite": "2004 ND 160", "era": "2004", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 14083, "cite": "2004 ND 159", "era": "2004", "flags": {"starpage_seq": ["*528 *499 *659"], "heading_seq": ["1->3"]}}
 {"id": 14082, "cite": "2004 ND 156", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 14081, "cite": "2004 ND 161", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
@@ -2759,7 +2753,7 @@
 {"id": 14059, "cite": "2004 ND 136", "era": "2004", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14058, "cite": "2004 ND 128", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 14057, "cite": "2004 ND 140", "era": "2004", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
-{"id": 14055, "cite": "2004 ND 139", "era": "2004", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 14055, "cite": "2004 ND 139", "era": "2004", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 14054, "cite": "2004 ND 129", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 14051, "cite": "2004 ND 138", "era": "2004", "flags": {"starpage_seq": ["*506 *267 *2002", "*546 *267 *783"], "heading_seq": ["2->4"]}}
 {"id": 14050, "cite": "2004 ND 130", "era": "2004", "flags": {"whitespace": ["26 blank-runs(3+)"]}}
@@ -2794,7 +2788,7 @@
 {"id": 13998, "cite": "2004 ND 79", "era": "2004", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 13996, "cite": "2004 ND 82", "era": "2004", "flags": {"whitespace": ["29 blank-runs(3+)"]}}
 {"id": 13995, "cite": "2004 ND 78", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["25 blank-runs(3+)"]}}
-{"id": 13994, "cite": "2004 ND 77", "era": "2004", "flags": {"paragraph_seq": ["gap ¶34->¶85", "decrease ¶85->¶36"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
+{"id": 13994, "cite": "2004 ND 77", "era": "2004", "flags": {"paragraph_seq": ["gap ¶34->¶85"], "heading_seq": ["2->4"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 13993, "cite": "2004 ND 76", "era": "2004", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13991, "cite": "2004 ND 74", "era": "2004", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13989, "cite": "2004 ND 64", "era": "2004", "flags": {"starpage_seq": ["*483 *218 *1999"]}}
@@ -2811,7 +2805,7 @@
 {"id": 13970, "cite": "2004 ND 49", "era": "2004", "flags": {"whitespace": ["29 blank-runs(3+)"]}}
 {"id": 13984, "cite": "2004 ND 47", "era": "2004", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13969, "cite": "2004 ND 40", "era": "2004", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 13968, "cite": "2004 ND 46", "era": "2004", "flags": {"paragraph_seq": ["gap ¶31->¶82", "decrease ¶82->¶34"], "whitespace": ["16 blank-runs(3+)"]}}
+{"id": 13968, "cite": "2004 ND 46", "era": "2004", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 13967, "cite": "2004 ND 36", "era": "2004", "flags": {"heading_seq": ["4->7"]}}
 {"id": 13965, "cite": "2004 ND 41", "era": "2004", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 13964, "cite": "2004 ND 42", "era": "2004", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
@@ -2850,7 +2844,7 @@
 {"id": 13904, "cite": "2003 ND 182", "era": "2003", "flags": {"starpage_seq": ["*793 *467 *541", "*541 *530 *1997", "*794 *507 *1997"], "heading_seq": ["2->4"]}}
 {"id": 13903, "cite": "2003 ND 177", "era": "2003", "flags": {"paragraph_seq": ["gap ¶16->¶18"], "heading_seq": ["1->5", "5->10", "5->9", "9->11"], "whitespace": ["36 blank-runs(3+)"]}}
 {"id": 13902, "cite": "2003 ND 175", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
-{"id": 13901, "cite": "2003 ND 169", "era": "2003", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["27 blank-runs(3+)"]}}
+{"id": 13901, "cite": "2003 ND 169", "era": "2003", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["27 blank-runs(3+)"]}}
 {"id": 13900, "cite": "2003 ND 173", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13898, "cite": "2003 ND 166", "era": "2003", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13896, "cite": "2003 ND 170", "era": "2003", "flags": {"heading_seq": ["2->5"]}}
@@ -2870,11 +2864,11 @@
 {"id": 13865, "cite": "2003 ND 148", "era": "2003", "flags": {"heading_seq": ["2->4"]}}
 {"id": 13864, "cite": "2003 ND 146", "era": "2003", "flags": {"paragraph_seq": ["gap ¶12->¶14"], "heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
 {"id": 13850, "cite": "2003 ND 131", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 13863, "cite": "2003 ND 140", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8", "gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28", "gap ¶30->¶32"], "heading_seq": ["2->4"], "whitespace": ["27 blank-runs(3+)"]}}
+{"id": 13863, "cite": "2003 ND 140", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "gap ¶22->¶28", "gap ¶30->¶32"], "heading_seq": ["2->4"], "whitespace": ["27 blank-runs(3+)"]}}
 {"id": 13860, "cite": "2003 ND 138", "era": "2003", "flags": {"starpage_seq": ["*528 *499 *643"]}}
 {"id": 13859, "cite": "2003 ND 139", "era": "2003", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13858, "cite": "2003 ND 133", "era": "2003", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 13857, "cite": "2003 ND 136", "era": "2003", "flags": {"paragraph_seq": ["gap ¶1->¶8", "decrease ¶8->¶2", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 13857, "cite": "2003 ND 136", "era": "2003", "flags": {"paragraph_seq": ["gap ¶1->¶8"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13856, "cite": "2003 ND 129", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["28 blank-runs(3+)"]}}
 {"id": 13855, "cite": "2003 ND 135", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13854, "cite": "2003 ND 132", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["70 blank-runs(3+)"]}}
@@ -2903,12 +2897,12 @@
 {"id": 13818, "cite": "2003 ND 100", "era": "2003", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13816, "cite": "2003 ND 101", "era": "2003", "flags": {"starpage_seq": ["*389 *201 *510", "*510 *203 *331"]}}
 {"id": 13815, "cite": "2003 ND 104", "era": "2003", "flags": {"paragraph_seq": ["gap ¶31->¶33"], "heading_seq": ["2->4"], "whitespace": ["16 blank-runs(3+)"]}}
-{"id": 13814, "cite": "2003 ND 95", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 13814, "cite": "2003 ND 95", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 13822, "cite": "2003 ND 99", "era": "2003", "flags": {"whitespace": ["25 blank-runs(3+)"]}}
 {"id": 13813, "cite": "2003 ND 92", "era": "2003", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13811, "cite": "2003 ND 90", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 13810, "cite": "2003 ND 89", "era": "2003", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
-{"id": 13812, "cite": "2003 ND 91", "era": "2003", "flags": {"paragraph_seq": ["gap ¶24->¶26", "decrease ¶26->¶25"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
+{"id": 13812, "cite": "2003 ND 91", "era": "2003", "flags": {"paragraph_seq": ["gap ¶24->¶26"], "heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13809, "cite": "2003 ND 86", "era": "2003", "flags": {"whitespace": ["34 blank-runs(3+)"]}}
 {"id": 13806, "cite": "2003 ND 87", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 13802, "cite": "2003 ND 85", "era": "2003", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -2917,7 +2911,7 @@
 {"id": 13797, "cite": "2003 ND 72", "era": "2003", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13796, "cite": "2003 ND 78", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13794, "cite": "2003 ND 77", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
-{"id": 13793, "cite": "2003 ND 76", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 13793, "cite": "2003 ND 76", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13792, "cite": "2003 ND 73", "era": "2003", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13791, "cite": "2003 ND 74", "era": "2003", "flags": {"starpage_seq": ["*575 *527 *533"]}}
 {"id": 13789, "cite": "2003 ND 70", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["24 blank-runs(3+)"]}}
@@ -2930,12 +2924,12 @@
 {"id": 13761, "cite": "2003 ND 53", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["28 blank-runs(3+)"]}}
 {"id": 13760, "cite": "2003 ND 51", "era": "2003", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13759, "cite": "2003 ND 52", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
-{"id": 13758, "cite": "2003 ND 44", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
+{"id": 13758, "cite": "2003 ND 44", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13753, "cite": "2003 ND 45", "era": "2003", "flags": {"starpage_seq": ["*351 *11 *36", "*36 *10 *30", "*30 *10 *31"], "whitespace": ["19 blank-runs(3+)"]}}
-{"id": 13751, "cite": "2003 ND 43", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 13751, "cite": "2003 ND 43", "era": "2003", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13750, "cite": "2003 ND 48", "era": "2003", "flags": {"heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 13749, "cite": "2003 ND 38", "era": "2003", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 13746, "cite": "2003 ND 39", "era": "2003", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶14", "dup ¶18"], "heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 13746, "cite": "2003 ND 39", "era": "2003", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 13743, "cite": "2003 ND 36", "era": "2003", "flags": {"heading_seq": ["2->5"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 13742, "cite": "2003 ND 31", "era": "2003", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13741, "cite": "2003 ND 29", "era": "2003", "flags": {"whitespace": ["20 blank-runs(3+)"]}}
@@ -2971,7 +2965,7 @@
 {"id": 13696, "cite": "2002 ND 205", "era": "2002", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13692, "cite": "2002 ND 196", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 13686, "cite": "2002 ND 188", "era": "2002", "flags": {"starpage_seq": ["*718 *495 *1999"]}}
-{"id": 13685, "cite": "2002 ND 186", "era": "2002", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶24", "dup ¶28"], "heading_seq": ["2->5"], "whitespace": ["29 blank-runs(3+)"]}}
+{"id": 13685, "cite": "2002 ND 186", "era": "2002", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->5"], "whitespace": ["29 blank-runs(3+)"]}}
 {"id": 13684, "cite": "2002 ND 190", "era": "2002", "flags": {"whitespace": ["28 blank-runs(3+)"]}}
 {"id": 13683, "cite": "2002 ND 192", "era": "2002", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13682, "cite": "2002 ND 189", "era": "2002", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
@@ -3005,7 +2999,7 @@
 {"id": 13607, "cite": "2002 ND 133", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13606, "cite": "2002 ND 131", "era": "2002", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13604, "cite": "2002 ND 129", "era": "2002", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
-{"id": 13562, "cite": "2002 ND 54", "era": "2002", "flags": {"paragraph_seq": ["gap ¶1->¶3", "dup ¶16", "gap ¶16->¶18"]}}
+{"id": 13562, "cite": "2002 ND 54", "era": "2002", "flags": {"paragraph_seq": ["gap ¶1->¶3"]}}
 {"id": 13634, "cite": "2002 ND 124", "era": "2002", "flags": {"whitespace": ["22 blank-runs(3+)"]}}
 {"id": 13603, "cite": "2002 ND 121", "era": "2002", "flags": {"whitespace": ["19 blank-runs(3+)"]}}
 {"id": 13602, "cite": "2002 ND 118", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
@@ -3017,8 +3011,8 @@
 {"id": 13591, "cite": "2002 ND 114", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 13590, "cite": "2002 ND 110", "era": "2002", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13589, "cite": "2002 ND 115", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 13586, "cite": "2002 ND 101", "era": "2002", "flags": {"paragraph_seq": ["gap ¶35->¶86", "decrease ¶86->¶37", "gap ¶38->¶40"], "whitespace": ["24 blank-runs(3+)"]}}
-{"id": 13585, "cite": "2002 ND 100", "era": "2002", "flags": {"paragraph_seq": ["gap ¶6->¶8", "decrease ¶8->¶7"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 13586, "cite": "2002 ND 101", "era": "2002", "flags": {"paragraph_seq": ["gap ¶35->¶86"], "whitespace": ["24 blank-runs(3+)"]}}
+{"id": 13585, "cite": "2002 ND 100", "era": "2002", "flags": {"paragraph_seq": ["gap ¶6->¶8"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13582, "cite": "2002 ND 95", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 13580, "cite": "2002 ND 86", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13579, "cite": "2002 ND 80", "era": "2002", "flags": {"starpage_seq": ["*599 *587 *600"], "heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
@@ -3026,15 +3020,15 @@
 {"id": 13577, "cite": "2002 ND 84", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 13576, "cite": "2002 ND 79", "era": "2002", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 13575, "cite": "2002 ND 76", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
-{"id": 13574, "cite": "2002 ND 85", "era": "2002", "flags": {"paragraph_seq": ["dup ¶41", "decrease ¶44->¶41", "dup ¶42", "dup ¶44", "gap ¶42->¶44"]}}
-{"id": 13573, "cite": "2002 ND 82", "era": "2002", "flags": {"paragraph_seq": ["dup ¶6"], "heading_seq": ["2->5"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 13574, "cite": "2002 ND 85", "era": "2002", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶41 (text matches original)"]}}
+{"id": 13573, "cite": "2002 ND 82", "era": "2002", "flags": {"heading_seq": ["2->5"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13570, "cite": "2002 ND 78", "era": "2002", "flags": {"starpage_seq": ["*545 *532 *702"]}}
 {"id": 13569, "cite": "2002 ND 83", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["36 blank-runs(3+)"]}}
 {"id": 13568, "cite": "2002 ND 81", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 13561, "cite": "2002 ND 71", "era": "2002", "flags": {"paragraph_seq": ["gap ¶15->¶17"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13559, "cite": "2002 ND 68", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13567, "cite": "2002 ND 59", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
-{"id": 13566, "cite": "2002 ND 63", "era": "2002", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶38->¶89", "decrease ¶89->¶40"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
+{"id": 13566, "cite": "2002 ND 63", "era": "2002", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶38->¶89"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 13564, "cite": "2002 ND 60", "era": "2002", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13563, "cite": "2002 ND 62", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13557, "cite": "2002 ND 66", "era": "2002", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
@@ -3065,7 +3059,7 @@
 {"id": 13512, "cite": "2002 ND 32", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["24 blank-runs(3+)"]}}
 {"id": 13507, "cite": "2002 ND 14", "era": "2002", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 13503, "cite": "2002 ND 7", "era": "2002", "flags": {"starpage_seq": ["*530 *513 *545", "*541 *499 *2001"]}}
-{"id": 13502, "cite": "2002 ND 10", "era": "2002", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 13502, "cite": "2002 ND 10", "era": "2002", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13499, "cite": "2002 ND 6", "era": "2002", "flags": {"starpage_seq": ["*2000 *1997 *1999", "*548 *337 *2001"]}}
 {"id": 13497, "cite": "2002 ND 9", "era": "2002", "flags": {"starpage_seq": ["*1998 *1997 *2001", "*297 *30 *1997"]}}
 {"id": 13496, "cite": "2002 ND 5", "era": "2002", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
@@ -3100,11 +3094,11 @@
 {"id": 13448, "cite": "2001 ND 168", "era": "2001", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13447, "cite": "2001 ND 167", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13446, "cite": "2001 ND 169", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
-{"id": 13452, "cite": "2001 ND 156", "era": "2001", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 13452, "cite": "2001 ND 156", "era": "2001", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 13442, "cite": "2001 ND 155", "era": "2001", "flags": {"whitespace": ["18 blank-runs(3+)"]}}
 {"id": 13441, "cite": "2001 ND 153", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13440, "cite": "2001 ND 151", "era": "2001", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
-{"id": 13438, "cite": "2001 ND 146", "era": "2001", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->5"], "whitespace": ["30 blank-runs(3+)"]}}
+{"id": 13438, "cite": "2001 ND 146", "era": "2001", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->5"], "whitespace": ["30 blank-runs(3+)"]}}
 {"id": 13437, "cite": "2001 ND 152", "era": "2001", "flags": {"heading_seq": ["1->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13436, "cite": "2001 ND 150", "era": "2001", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
 {"id": 13435, "cite": "2001 ND 145", "era": "2001", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -3119,8 +3113,8 @@
 {"id": 13424, "cite": "2001 ND 139", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["22 blank-runs(3+)"]}}
 {"id": 13422, "cite": "2001 ND 136", "era": "2001", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13421, "cite": "2001 ND 133", "era": "2001", "flags": {"heading_seq": ["2->5"], "whitespace": ["6 blank-runs(3+)"]}}
-{"id": 13420, "cite": "2001 ND 132", "era": "2001", "flags": {"paragraph_seq": ["dup ¶16"], "whitespace": ["10 blank-runs(3+)"]}}
-{"id": 13419, "cite": "2001 ND 131", "era": "2001", "flags": {"paragraph_seq": ["gap ¶36->¶87", "decrease ¶87->¶38"], "heading_seq": ["2->4"], "whitespace": ["38 blank-runs(3+)"]}}
+{"id": 13420, "cite": "2001 ND 132", "era": "2001", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
+{"id": 13419, "cite": "2001 ND 131", "era": "2001", "flags": {"paragraph_seq": ["gap ¶36->¶87"], "heading_seq": ["2->4"], "whitespace": ["38 blank-runs(3+)"]}}
 {"id": 13418, "cite": "2001 ND 138", "era": "2001", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13417, "cite": "2001 ND 135", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13416, "cite": "2001 ND 137", "era": "2001", "flags": {"starpage_seq": ["*488 *391 *1998", "*259 *164 *283", "*283 *259 *283", "*283 *165 *283", "*488 *166 *2001"], "heading_seq": ["2->4"]}}
@@ -3178,16 +3172,16 @@
 {"id": 13322, "cite": "2001 ND 38", "era": "2001", "flags": {"heading_seq": ["1->10", "10->13", "2->4"], "whitespace": ["38 blank-runs(3+)"]}}
 {"id": 13318, "cite": "2001 ND 30", "era": "2001", "flags": {"whitespace": ["66 blank-runs(3+)"]}}
 {"id": 13317, "cite": "2001 ND 31", "era": "2001", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 13316, "cite": "2001 ND 29", "era": "2001", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"]}}
+{"id": 13316, "cite": "2001 ND 29", "era": "2001", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"]}}
 {"id": 13315, "cite": "2001 ND 32", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 13314, "cite": "2001 ND 36", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13313, "cite": "2001 ND 28", "era": "2001", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
 {"id": 13312, "cite": "2001 ND 34", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
-{"id": 13311, "cite": "2001 ND 35", "era": "2001", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 13311, "cite": "2001 ND 35", "era": "2001", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13309, "cite": "2001 ND 18", "era": "2001", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13308, "cite": "2001 ND 20", "era": "2001", "flags": {"paragraph_seq": ["gap ¶35->¶37"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13307, "cite": "2001 ND 21", "era": "2001", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "whitespace": ["10 blank-runs(3+)"]}}
-{"id": 13306, "cite": "2001 ND 17", "era": "2001", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18", "gap ¶18->¶20", "decrease ¶20->¶19"], "heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
+{"id": 13306, "cite": "2001 ND 17", "era": "2001", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 13305, "cite": "2001 ND 16", "era": "2001", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13303, "cite": "2001 ND 10", "era": "2001", "flags": {"starpage_seq": ["*528 *499 *1998", "*353 *295 *436", "*482 *353 *587"], "heading_seq": ["2->4"]}}
 {"id": 13302, "cite": "2001 ND 9", "era": "2001", "flags": {"whitespace": ["24 blank-runs(3+)"]}}
@@ -3207,7 +3201,7 @@
 {"id": 13278, "cite": "2000 ND 220", "era": "2000", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13275, "cite": "2000 ND 214", "era": "2000", "flags": {"paragraph_seq": ["gap ¶12->¶14", "gap ¶14->¶16"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13274, "cite": "2000 ND 212", "era": "2000", "flags": {"heading_seq": ["3->5"]}}
-{"id": 13291, "cite": "2000 ND 203", "era": "2000", "flags": {"paragraph_seq": ["dup ¶45", "decrease ¶48->¶45", "dup ¶46", "dup ¶47", "dup ¶48"]}}
+{"id": 13291, "cite": "2000 ND 203", "era": "2000", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶45 (text matches original)"]}}
 {"id": 13273, "cite": "2000 ND 202", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 13263, "cite": "2000 ND 196", "era": "2000", "flags": {"paragraph_seq": ["gap ¶1->¶3"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13262, "cite": "2000 ND 205", "era": "2000", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -3221,8 +3215,8 @@
 {"id": 13252, "cite": "2000 ND 194", "era": "2000", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13251, "cite": "2000 ND 192", "era": "2000", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
 {"id": 13250, "cite": "2000 ND 190", "era": "2000", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 13407, "cite": "2000 ND 189", "era": "2000", "flags": {"paragraph_seq": ["dup ¶26", "decrease ¶53->¶26", "dup ¶27", "dup ¶28", "dup ¶29", "dup ¶30", "dup ¶31", "dup ¶32"], "starpage_seq": ["*37 *32 *2000", "*205 *49 *185", "*185 *113 *515", "*55 *33 *76", "*36 *33 *34", "*34 *33 *2000"]}}
-{"id": 13283, "cite": "2000 ND 185", "era": "2000", "flags": {"paragraph_seq": ["dup ¶31", "decrease ¶39->¶31", "dup ¶32", "dup ¶33", "dup ¶34", "dup ¶35", "dup ¶36", "dup ¶37"], "starpage_seq": ["*371 *370 *518"]}}
+{"id": 13407, "cite": "2000 ND 189", "era": "2000", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶26 (text matches original)"], "starpage_seq": ["*37 *32 *2000", "*205 *49 *185", "*185 *113 *515", "*55 *33 *76", "*36 *33 *34", "*34 *33 *2000"]}}
+{"id": 13283, "cite": "2000 ND 185", "era": "2000", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶31 (text matches original)"], "starpage_seq": ["*371 *370 *518"]}}
 {"id": 13248, "cite": "2000 ND 183", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["34 blank-runs(3+)"]}}
 {"id": 13245, "cite": "2000 ND 187", "era": "2000", "flags": {"heading_seq": ["2->4"]}}
 {"id": 13242, "cite": "2000 ND 184", "era": "2000", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
@@ -3232,7 +3226,7 @@
 {"id": 13236, "cite": "2000 ND 177", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["8 blank-runs(3+)"]}}
 {"id": 13234, "cite": "2000 ND 174", "era": "2000", "flags": {"starpage_seq": ["*556 *472 *512"]}}
 {"id": 13240, "cite": "2000 ND 170", "era": "2000", "flags": {"paragraph_seq": ["gap ¶51->¶53"], "starpage_seq": ["*102 *70 *74", "*103 *65 *101", "*271 *102 *104", "*104 *85 *105", "*1999 *1997 *2000", "*246 *107 *421"], "heading_seq": ["2->4", "8->10"]}}
-{"id": 13233, "cite": "2000 ND 169", "era": "2000", "flags": {"paragraph_seq": ["gap ¶30->¶81", "decrease ¶81->¶32"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 13233, "cite": "2000 ND 169", "era": "2000", "flags": {"paragraph_seq": ["gap ¶30->¶81"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 13232, "cite": "2000 ND 168", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["16 blank-runs(3+)"]}}
 {"id": 13231, "cite": "2000 ND 167", "era": "2000", "flags": {"paragraph_seq": ["gap ¶42->¶44"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 13230, "cite": "2000 ND 166", "era": "2000", "flags": {"heading_seq": ["2->6"], "whitespace": ["43 blank-runs(3+)"]}}
@@ -3263,12 +3257,12 @@
 {"id": 13198, "cite": "2000 ND 134", "era": "2000", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13197, "cite": "2000 ND 131", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 13195, "cite": "2000 ND 130", "era": "2000", "flags": {"starpage_seq": ["*1999 *1998 *1999"]}}
-{"id": 13193, "cite": "2000 ND 129", "era": "2000", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*326 *297 *399", "*567 *487 *1999", "*568 *436 *2000"], "heading_seq": ["2->4"]}}
+{"id": 13193, "cite": "2000 ND 129", "era": "2000", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*326 *297 *399", "*567 *487 *1999", "*568 *436 *2000"], "heading_seq": ["2->4"]}}
 {"id": 13192, "cite": "2000 ND 132", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 13191, "cite": "2000 ND 133", "era": "2000", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13190, "cite": "2000 ND 127", "era": "2000", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 13185, "cite": "2000 ND 124", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
-{"id": 13184, "cite": "2000 ND 123", "era": "2000", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"], "heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 13184, "cite": "2000 ND 123", "era": "2000", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "heading_seq": ["2->4"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 13183, "cite": "2000 ND 122", "era": "2000", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 13181, "cite": "2000 ND 120", "era": "2000", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 13179, "cite": "2000 ND 115", "era": "2000", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
@@ -3285,7 +3279,7 @@
 {"id": 13163, "cite": "2000 ND 104", "era": "2000", "flags": {"whitespace": ["29 blank-runs(3+)"]}}
 {"id": 13162, "cite": "2000 ND 98", "era": "2000", "flags": {"paragraph_seq": ["gap ¶21->¶23"], "heading_seq": ["1->3"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 13161, "cite": "2000 ND 96", "era": "2000", "flags": {"paragraph_seq": ["gap ¶15->¶17", "gap ¶28->¶30"], "whitespace": ["4 blank-runs(3+)"]}}
-{"id": 13159, "cite": "2000 ND 97", "era": "2000", "flags": {"paragraph_seq": ["decrease ¶18->¶1"], "whitespace": ["36 blank-runs(3+)"]}}
+{"id": 13159, "cite": "2000 ND 97", "era": "2000", "flags": {"whitespace": ["36 blank-runs(3+)"]}}
 {"id": 13158, "cite": "2000 ND 93", "era": "2000", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 13156, "cite": "2000 ND 94", "era": "2000", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13155, "cite": "2000 ND 95", "era": "2000", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
@@ -3303,15 +3297,14 @@
 {"id": 13142, "cite": "2000 ND 75", "era": "2000", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13141, "cite": "2000 ND 72", "era": "2000", "flags": {"paragraph_seq": ["gap ¶2->¶4"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13131, "cite": "2000 ND 74", "era": "2000", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
-{"id": 13120, "cite": "2000 ND 64", "era": "2000", "flags": {"paragraph_seq": ["gap ¶32->¶38", "decrease ¶38->¶33"], "whitespace": ["71 blank-runs(3+)"]}}
+{"id": 13120, "cite": "2000 ND 64", "era": "2000", "flags": {"paragraph_seq": ["gap ¶32->¶38"], "whitespace": ["71 blank-runs(3+)"]}}
 {"id": 13118, "cite": "2000 ND 62", "era": "2000", "flags": {"paragraph_seq": ["gap ¶37->¶39", "gap ¶41->¶43"], "heading_seq": ["2->4"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 13117, "cite": "2000 ND 61", "era": "2000", "flags": {"paragraph_seq": ["gap ¶42->¶44", "gap ¶44->¶48"], "starpage_seq": ["*272 *40 *273"], "whitespace": ["31 blank-runs(3+)"]}}
-{"id": 13116, "cite": "2000 ND 60", "era": "2000", "flags": {"paragraph_seq": ["dup ¶13", "decrease ¶35->¶13", "dup ¶14", "dup ¶15", "dup ¶16", "dup ¶17", "gap ¶17->¶36"]}}
 {"id": 13114, "cite": "2000 ND 53", "era": "2000", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13113, "cite": "2000 ND 44", "era": "2000", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13112, "cite": "2000 ND 56", "era": "2000", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13111, "cite": "2000 ND 58", "era": "2000", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 13110, "cite": "2000 ND 45", "era": "2000", "flags": {"paragraph_seq": ["dup ¶23", "decrease ¶26->¶23", "dup ¶24", "dup ¶25", "dup ¶26"], "starpage_seq": ["*134 *94 *155"]}}
+{"id": 13110, "cite": "2000 ND 45", "era": "2000", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶23 (text matches original)"], "starpage_seq": ["*134 *94 *155"]}}
 {"id": 13108, "cite": "2000 ND 55", "era": "2000", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 13106, "cite": "2000 ND 59", "era": "2000", "flags": {"whitespace": ["22 blank-runs(3+)"]}}
 {"id": 13105, "cite": "2000 ND 54", "era": "2000", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
@@ -3356,7 +3349,7 @@
 {"id": 13047, "cite": "1999 ND 238", "era": "1999", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13044, "cite": "1999 ND 232", "era": "1999", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 13042, "cite": "1999 ND 243", "era": "1999", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 13041, "cite": "1999 ND 244", "era": "1999", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13", "dup ¶18"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 13041, "cite": "1999 ND 244", "era": "1999", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 13038, "cite": "1999 ND 236", "era": "1999", "flags": {"starpage_seq": ["*192 *189 *191"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 13050, "cite": "1999 ND 228", "era": "1999", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 13049, "cite": "1999 ND 226", "era": "1999", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -3421,15 +3414,15 @@
 {"id": 12945, "cite": "1999 ND 156", "era": "1999", "flags": {"starpage_seq": ["*1998 *1995 *1997"]}}
 {"id": 12944, "cite": "1999 ND 150", "era": "1999", "flags": {"starpage_seq": ["*508 *484 *1997", "*1998 *1997 *1999", "*1999 *1998 *1999", "*1998 *1997 *1999", "*1999 *1997 *1999", "*489 *334 *361"]}}
 {"id": 12943, "cite": "1999 ND 147", "era": "1999", "flags": {"starpage_seq": ["*545 *199 *486"]}}
-{"id": 12942, "cite": "1999 ND 148", "era": "1999", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶23", "dup ¶28"]}}
+{"id": 12942, "cite": "1999 ND 148", "era": "1999", "flags": {"paragraph_seq": ["gap ¶22->¶28"]}}
 {"id": 12941, "cite": "1999 ND 144", "era": "1999", "flags": {"starpage_seq": ["*481 *415 *1995", "*312 *180 *1998", "*482 *429 *1998", "*189 *181 *481", "*369 *183 *184", "*184 *126 *185"]}}
 {"id": 12940, "cite": "1999 ND 143", "era": "1999", "flags": {"paragraph_seq": ["gap ¶12->¶14"], "starpage_seq": ["*461 *257 *1997", "*543 *152 *333", "*333 *56 *432", "*432 *110 *386", "*386 *123 *171", "*448 *363 *1998"], "heading_seq": ["1->3"]}}
-{"id": 12939, "cite": "1999 ND 153", "era": "1999", "flags": {"paragraph_seq": ["dup ¶23"], "starpage_seq": ["*1998 *1997 *1998", "*278 *144 *1998", "*464 *447 *1997", "*418 *146 *574", "*574 *418 *1999"]}}
+{"id": 12939, "cite": "1999 ND 153", "era": "1999", "flags": {"starpage_seq": ["*1998 *1997 *1998", "*278 *144 *1998", "*464 *447 *1997", "*418 *146 *574", "*574 *418 *1999"]}}
 {"id": 12938, "cite": "1999 ND 149", "era": "1999", "flags": {"starpage_seq": ["*529 *136 *1999", "*406 *138 *1999"]}}
 {"id": 12937, "cite": "1999 ND 158", "era": "1999", "flags": {"starpage_seq": ["*474 *128 *576", "*467 *82 *576", "*382 *130 *494"]}}
 {"id": 12936, "cite": "1999 ND 157", "era": "1999", "flags": {"starpage_seq": ["*421 *124 *125"]}}
 {"id": 12935, "cite": "1999 ND 142", "era": "1999", "flags": {"paragraph_seq": ["gap ¶18->¶20"], "whitespace": ["8 blank-runs(3+)"]}}
-{"id": 12934, "cite": "1999 ND 140", "era": "1999", "flags": {"paragraph_seq": ["gap ¶12->¶18", "decrease ¶18->¶13"], "starpage_seq": ["*493 *477 *509", "*509 *358 *1998", "*358 *75 *413"]}}
+{"id": 12934, "cite": "1999 ND 140", "era": "1999", "flags": {"paragraph_seq": ["gap ¶12->¶18"], "starpage_seq": ["*493 *477 *509", "*509 *358 *1998", "*358 *75 *413"]}}
 {"id": 12933, "cite": "1999 ND 139", "era": "1999", "flags": {"starpage_seq": ["*318 *295 *396", "*396 *109 *1997"]}}
 {"id": 12965, "cite": "1999 ND 130", "era": "1999", "flags": {"paragraph_seq": ["gap ¶17->¶19"], "starpage_seq": ["*117 *72 *171", "*171 *99 *346", "*346 *28 *171", "*20 *18 *420", "*380 *100 *322", "*322 *276 *544"], "heading_seq": ["2->4"]}}
 {"id": 12964, "cite": "1999 ND 129", "era": "1999", "flags": {"starpage_seq": ["*418 *93 *1998", "*539 *498 *1997"], "heading_seq": ["2->4"]}}
@@ -3455,7 +3448,7 @@
 {"id": 12907, "cite": "1999 ND 115", "era": "1999", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 12906, "cite": "1999 ND 102", "era": "1999", "flags": {"heading_seq": ["3->5"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 12904, "cite": "1999 ND 105", "era": "1999", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
-{"id": 12902, "cite": "1999 ND 117", "era": "1999", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "starpage_seq": ["*475 *341 *926"]}}
+{"id": 12902, "cite": "1999 ND 117", "era": "1999", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "starpage_seq": ["*475 *341 *926"]}}
 {"id": 12901, "cite": "1999 ND 106", "era": "1999", "flags": {"starpage_seq": ["*704 *510 *705"]}}
 {"id": 12898, "cite": "1999 ND 98", "era": "1999", "flags": {"paragraph_seq": ["gap ¶14->¶16"], "whitespace": ["7 blank-runs(3+)"]}}
 {"id": 12897, "cite": "1999 ND 97", "era": "1999", "flags": {"paragraph_seq": ["gap ¶17->¶19"], "whitespace": ["7 blank-runs(3+)"]}}
@@ -3480,7 +3473,7 @@
 {"id": 12871, "cite": "1999 ND 68", "era": "1999", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12869, "cite": "1999 ND 65", "era": "1999", "flags": {"paragraph_seq": ["gap ¶1->¶3", "gap ¶27->¶29"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12867, "cite": "1999 ND 60", "era": "1999", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 12866, "cite": "1999 ND 63", "era": "1999", "flags": {"paragraph_seq": ["dup ¶6"], "heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 12866, "cite": "1999 ND 63", "era": "1999", "flags": {"heading_seq": ["2->4"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12862, "cite": "1999 ND 61", "era": "1999", "flags": {"heading_seq": ["2->4"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12861, "cite": "1999 ND 62", "era": "1999", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12859, "cite": "1999 ND 55", "era": "1999", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -3517,7 +3510,7 @@
 {"id": 12813, "cite": "1999 ND 13", "era": "1999", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12812, "cite": "1999 ND 12", "era": "1999", "flags": {"paragraph_seq": ["gap ¶20->¶22", "gap ¶39->¶41"], "heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
 {"id": 12811, "cite": "1999 ND 9", "era": "1999", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
-{"id": 12810, "cite": "1999 ND 11", "era": "1999", "flags": {"paragraph_seq": ["gap ¶19->¶21", "decrease ¶21->¶20"], "whitespace": ["3 blank-runs(3+)"]}}
+{"id": 12810, "cite": "1999 ND 11", "era": "1999", "flags": {"paragraph_seq": ["gap ¶19->¶21"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12808, "cite": "1999 ND 2", "era": "1999", "flags": {"starpage_seq": ["*454 *203 *498", "*498 *452 *545", "*523 *204 *288"]}}
 {"id": 12806, "cite": "1999 ND 8", "era": "1999", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 12805, "cite": "1999 ND 14", "era": "1999", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
@@ -3534,8 +3527,8 @@
 {"id": 12793, "cite": "1998 ND 220", "era": "1998", "flags": {"whitespace": ["18 blank-runs(3+)"]}}
 {"id": 12792, "cite": "1998 ND 219", "era": "1998", "flags": {"paragraph_seq": ["gap ¶14->¶16"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12791, "cite": "1998 ND 227", "era": "1998", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
-{"id": 12790, "cite": "1998 ND 225", "era": "1998", "flags": {"paragraph_seq": ["gap ¶38->¶40", "decrease ¶40->¶39"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
-{"id": 12789, "cite": "1998 ND 221", "era": "1998", "flags": {"paragraph_seq": ["decrease ¶31->¶1", "gap ¶23->¶25", "decrease ¶29->¶24"], "whitespace": ["13 blank-runs(3+)"]}}
+{"id": 12790, "cite": "1998 ND 225", "era": "1998", "flags": {"paragraph_seq": ["gap ¶38->¶40"], "heading_seq": ["2->4"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 12789, "cite": "1998 ND 221", "era": "1998", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
 {"id": 12788, "cite": "1998 ND 213", "era": "1998", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12787, "cite": "1998 ND 217", "era": "1998", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12786, "cite": "1998 ND 224", "era": "1998", "flags": {"starpage_seq": ["*161 *145 *146"], "whitespace": ["5 blank-runs(3+)"]}}
@@ -3543,9 +3536,9 @@
 {"id": 12784, "cite": "1998 ND 226", "era": "1998", "flags": {"heading_seq": ["1->4"], "whitespace": ["18 blank-runs(3+)"]}}
 {"id": 12782, "cite": "1998 ND 206", "era": "1998", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12783, "cite": "1998 ND 201", "era": "1998", "flags": {"paragraph_seq": ["gap ¶40->¶42"], "heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
-{"id": 12781, "cite": "1998 ND 200", "era": "1998", "flags": {"paragraph_seq": ["gap ¶15->¶17", "decrease ¶17->¶16"], "whitespace": ["2 blank-runs(3+)"]}}
-{"id": 12780, "cite": "1998 ND 203", "era": "1998", "flags": {"paragraph_seq": ["gap ¶19->¶21", "decrease ¶21->¶20"]}}
-{"id": 12779, "cite": "1998 ND 204", "era": "1998", "flags": {"paragraph_seq": ["gap ¶28->¶30", "decrease ¶30->¶29"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 12781, "cite": "1998 ND 200", "era": "1998", "flags": {"paragraph_seq": ["gap ¶15->¶17"], "whitespace": ["2 blank-runs(3+)"]}}
+{"id": 12780, "cite": "1998 ND 203", "era": "1998", "flags": {"paragraph_seq": ["gap ¶19->¶21"]}}
+{"id": 12779, "cite": "1998 ND 204", "era": "1998", "flags": {"paragraph_seq": ["gap ¶28->¶30"], "whitespace": ["2 blank-runs(3+)"]}}
 {"id": 12778, "cite": "1998 ND 198", "era": "1998", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12777, "cite": "1998 ND 197", "era": "1998", "flags": {"paragraph_seq": ["gap ¶19->¶22"], "whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12776, "cite": "1998 ND 202", "era": "1998", "flags": {"paragraph_seq": ["gap ¶15->¶17"], "whitespace": ["15 blank-runs(3+)"]}}
@@ -3558,12 +3551,12 @@
 {"id": 12769, "cite": "1998 ND 189", "era": "1998", "flags": {"paragraph_seq": ["gap ¶18->¶20"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 12768, "cite": "1998 ND 192", "era": "1998", "flags": {"paragraph_seq": ["gap ¶37->¶40"], "whitespace": ["30 blank-runs(3+)"]}}
 {"id": 12767, "cite": "1998 ND 190", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["1 blank-runs(3+)"]}}
-{"id": 12766, "cite": "1998 ND 188", "era": "1998", "flags": {"paragraph_seq": ["gap ¶30->¶32", "decrease ¶32->¶31"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 12766, "cite": "1998 ND 188", "era": "1998", "flags": {"paragraph_seq": ["gap ¶30->¶32"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12762, "cite": "1998 ND 180", "era": "1998", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 12761, "cite": "1998 ND 177", "era": "1998", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
-{"id": 12753, "cite": "1998 ND 173", "era": "1998", "flags": {"paragraph_seq": ["gap ¶1->¶3", "gap ¶4->¶6", "dup ¶6", "gap ¶12->¶18", "decrease ¶18->¶14", "dup ¶18", "gap ¶32->¶34"], "whitespace": ["9 blank-runs(3+)"]}}
+{"id": 12753, "cite": "1998 ND 173", "era": "1998", "flags": {"paragraph_seq": ["gap ¶1->¶3", "gap ¶4->¶6", "gap ¶12->¶18", "gap ¶32->¶34"], "whitespace": ["9 blank-runs(3+)"]}}
 {"id": 12748, "cite": "1998 ND 166", "era": "1998", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
-{"id": 12747, "cite": "1998 ND 171", "era": "1998", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶4", "dup ¶8"], "whitespace": ["1 blank-runs(3+)"]}}
+{"id": 12747, "cite": "1998 ND 171", "era": "1998", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12746, "cite": "1998 ND 168", "era": "1998", "flags": {"whitespace": ["20 blank-runs(3+)"]}}
 {"id": 12745, "cite": "1998 ND 172", "era": "1998", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 12744, "cite": "1998 ND 167", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
@@ -3571,7 +3564,7 @@
 {"id": 12742, "cite": "1998 ND 160", "era": "1998", "flags": {"paragraph_seq": ["gap ¶13->¶15"], "whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12741, "cite": "1998 ND 159", "era": "1998", "flags": {"paragraph_seq": ["gap ¶25->¶27"], "whitespace": ["15 blank-runs(3+)"]}}
 {"id": 12751, "cite": "1998 ND 154", "era": "1998", "flags": {"whitespace": ["21 blank-runs(3+)"]}}
-{"id": 12739, "cite": "1998 ND 148", "era": "1998", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶3", "dup ¶8"], "heading_seq": ["2->4"], "whitespace": ["44 blank-runs(3+)"]}}
+{"id": 12739, "cite": "1998 ND 148", "era": "1998", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "heading_seq": ["2->4"], "whitespace": ["44 blank-runs(3+)"]}}
 {"id": 12737, "cite": "1998 ND 149", "era": "1998", "flags": {"starpage_seq": ["*452 *388 *402", "*402 *128 *1997", "*516 *277 *1997", "*546 *521 *1995", "*373 *65 *545"]}}
 {"id": 12736, "cite": "1998 ND 153", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["23 blank-runs(3+)"]}}
 {"id": 12735, "cite": "1998 ND 155", "era": "1998", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
@@ -3601,7 +3594,7 @@
 {"id": 12681, "cite": "1998 ND 112", "era": "1998", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 12680, "cite": "1998 ND 120", "era": "1998", "flags": {"whitespace": ["23 blank-runs(3+)"]}}
 {"id": 12674, "cite": "1998 ND 101", "era": "1998", "flags": {"starpage_seq": ["*565 *562 *565"], "whitespace": ["24 blank-runs(3+)"]}}
-{"id": 12672, "cite": "1998 ND 106", "era": "1998", "flags": {"paragraph_seq": ["gap ¶29->¶80", "decrease ¶80->¶31"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
+{"id": 12672, "cite": "1998 ND 106", "era": "1998", "flags": {"paragraph_seq": ["gap ¶29->¶80"], "heading_seq": ["2->4"], "whitespace": ["17 blank-runs(3+)"]}}
 {"id": 12671, "cite": "1998 ND 103", "era": "1998", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 12670, "cite": "1998 ND 105", "era": "1998", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12668, "cite": "1998 ND 99", "era": "1998", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
@@ -3642,7 +3635,7 @@
 {"id": 12596, "cite": "1998 ND 26", "era": "1998", "flags": {"paragraph_seq": ["gap ¶31->¶33"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12590, "cite": "1998 ND 37", "era": "1998", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12587, "cite": "1998 ND 38", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 12589, "cite": "1998 ND 25", "era": "1998", "flags": {"paragraph_seq": ["gap ¶13->¶15", "decrease ¶39->¶14"]}}
+{"id": 12589, "cite": "1998 ND 25", "era": "1998", "flags": {"paragraph_seq": ["gap ¶13->¶15"]}}
 {"id": 12595, "cite": "1998 ND 23", "era": "1998", "flags": {"paragraph_seq": ["gap ¶12->¶14"], "whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12630, "cite": "1998 ND 16", "era": "1998", "flags": {"paragraph_seq": ["gap ¶2->¶4", "gap ¶10->¶12", "gap ¶33->¶35"], "heading_seq": ["2->4"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12623, "cite": "1998 ND 13", "era": "1998", "flags": {"paragraph_seq": ["gap ¶8->¶12"], "starpage_seq": ["*448 *172 *264", "*264 *172 *206", "*449 *207 *506", "*520 *506 *1997", "*540 *208 *1997"]}}
@@ -3650,9 +3643,9 @@
 {"id": 12621, "cite": "1998 ND 18", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["10 blank-runs(3+)"]}}
 {"id": 12607, "cite": "1998 ND 20", "era": "1998", "flags": {"paragraph_seq": ["gap ¶10->¶12"]}}
 {"id": 12606, "cite": "1998 ND 19", "era": "1998", "flags": {"paragraph_seq": ["gap ¶10->¶12"], "whitespace": ["7 blank-runs(3+)"]}}
-{"id": 12605, "cite": "1998 ND 17", "era": "1998", "flags": {"paragraph_seq": ["gap ¶24->¶38", "gap ¶39->¶45", "decrease ¶45->¶25"]}}
+{"id": 12605, "cite": "1998 ND 17", "era": "1998", "flags": {"paragraph_seq": ["gap ¶24->¶38", "gap ¶39->¶45"]}}
 {"id": 12604, "cite": "1998 ND 14", "era": "1998", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 12603, "cite": "1998 ND 7", "era": "1998", "flags": {"paragraph_seq": ["dup ¶37", "decrease ¶38->¶37", "dup ¶38"]}}
+{"id": 12603, "cite": "1998 ND 7", "era": "1998", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶37 (text matches original)"]}}
 {"id": 12602, "cite": "1998 ND 11", "era": "1998", "flags": {"paragraph_seq": ["gap ¶21->¶23"], "heading_seq": ["2->4"], "whitespace": ["25 blank-runs(3+)"]}}
 {"id": 12601, "cite": "1998 ND 12", "era": "1998", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12593, "cite": "1998 ND 4", "era": "1998", "flags": {"heading_seq": ["2->4"], "whitespace": ["19 blank-runs(3+)"]}}
@@ -3665,14 +3658,14 @@
 {"id": 12580, "cite": "1997 ND 244", "era": "1997", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12585, "cite": "1997 ND 240", "era": "1997", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12579, "cite": "1997 ND 243", "era": "1997", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
-{"id": 12582, "cite": "1997 ND 238", "era": "1997", "flags": {"paragraph_seq": ["gap ¶22->¶28", "decrease ¶28->¶24", "gap ¶24->¶26"], "whitespace": ["33 blank-runs(3+)"]}}
+{"id": 12582, "cite": "1997 ND 238", "era": "1997", "flags": {"paragraph_seq": ["gap ¶22->¶28"], "whitespace": ["33 blank-runs(3+)"]}}
 {"id": 12577, "cite": "1997 ND 237", "era": "1997", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12571, "cite": "1997 ND 235", "era": "1997", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
-{"id": 12636, "cite": "1997 ND 233", "era": "1997", "flags": {"paragraph_seq": ["dup ¶32", "decrease ¶37->¶32", "dup ¶33", "dup ¶34", "dup ¶35", "dup ¶36", "dup ¶37"], "starpage_seq": ["*645 *529 *645", "*552 *337 *345", "*552 *422 *465"]}}
+{"id": 12636, "cite": "1997 ND 233", "era": "1997", "flags": {"paragraph_seq": ["DUPLICATE-TEXT restart ¶32 (text matches original)"], "starpage_seq": ["*645 *529 *645", "*552 *337 *345", "*552 *422 *465"]}}
 {"id": 12575, "cite": "1997 ND 222", "era": "1997", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 12574, "cite": "1997 ND 226", "era": "1997", "flags": {"whitespace": ["7 blank-runs(3+)"]}}
 {"id": 12573, "cite": "1997 ND 232", "era": "1997", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
-{"id": 12572, "cite": "1997 ND 228", "era": "1997", "flags": {"paragraph_seq": ["gap ¶14->¶16", "dup ¶16", "gap ¶24->¶26"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 12572, "cite": "1997 ND 228", "era": "1997", "flags": {"paragraph_seq": ["gap ¶14->¶16", "gap ¶24->¶26"], "heading_seq": ["2->4"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12568, "cite": "1997 ND 230", "era": "1997", "flags": {"whitespace": ["15 blank-runs(3+)"]}}
 {"id": 12567, "cite": "1997 ND 231", "era": "1997", "flags": {"heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 12566, "cite": "1997 ND 223", "era": "1997", "flags": {"whitespace": ["13 blank-runs(3+)"]}}
@@ -3698,7 +3691,7 @@
 {"id": 12530, "cite": "1997 ND 192", "era": "1997", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12529, "cite": "1997 ND 190", "era": "1997", "flags": {"whitespace": ["11 blank-runs(3+)"]}}
 {"id": 12525, "cite": "1997 ND 179", "era": "1997", "flags": {"paragraph_seq": ["gap ¶31->¶33"], "whitespace": ["11 blank-runs(3+)"]}}
-{"id": 12524, "cite": "1997 ND 178", "era": "1997", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶35->¶39", "decrease ¶39->¶38"], "whitespace": ["6 blank-runs(3+)"]}}
+{"id": 12524, "cite": "1997 ND 178", "era": "1997", "flags": {"paragraph_seq": ["gap ¶23->¶25", "gap ¶35->¶39"], "whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12523, "cite": "1997 ND 180", "era": "1997", "flags": {"paragraph_seq": ["gap ¶1->¶3", "gap ¶23->¶25"], "heading_seq": ["2->4"], "whitespace": ["26 blank-runs(3+)"]}}
 {"id": 12527, "cite": "1997 ND 177", "era": "1997", "flags": {"whitespace": ["23 blank-runs(3+)"]}}
 {"id": 12522, "cite": "1997 ND 175", "era": "1997", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
@@ -3716,7 +3709,7 @@
 {"id": 12510, "cite": "1997 ND 154", "era": "1997", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12509, "cite": "1997 ND 164", "era": "1997", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12508, "cite": "1997 ND 162", "era": "1997", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
-{"id": 12507, "cite": "1997 ND 166", "era": "1997", "flags": {"paragraph_seq": ["gap ¶15->¶17", "decrease ¶25->¶16"], "whitespace": ["38 blank-runs(3+)"]}}
+{"id": 12507, "cite": "1997 ND 166", "era": "1997", "flags": {"paragraph_seq": ["gap ¶15->¶17"], "whitespace": ["38 blank-runs(3+)"]}}
 {"id": 12506, "cite": "1997 ND 161", "era": "1997", "flags": {"paragraph_seq": ["gap ¶21->¶23"], "whitespace": ["13 blank-runs(3+)"]}}
 {"id": 12505, "cite": "1997 ND 163", "era": "1997", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
 {"id": 12504, "cite": "1997 ND 153", "era": "1997", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
@@ -3750,7 +3743,7 @@
 {"id": 12457, "cite": "1997 ND 114", "era": "1997", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12456, "cite": "1997 ND 99", "era": "1997", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12452, "cite": "1997 ND 115", "era": "1997", "flags": {"whitespace": ["8 blank-runs(3+)"]}}
-{"id": 12451, "cite": "1997 ND 104", "era": "1997", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶4", "dup ¶8"], "whitespace": ["4 blank-runs(3+)"]}}
+{"id": 12451, "cite": "1997 ND 104", "era": "1997", "flags": {"paragraph_seq": ["gap ¶2->¶8"], "whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12450, "cite": "1997 ND 113", "era": "1997", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 12449, "cite": "1997 ND 103", "era": "1997", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12448, "cite": "1997 ND 112", "era": "1997", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
@@ -3780,7 +3773,7 @@
 {"id": 12416, "cite": "1997 ND 69", "era": "1997", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12414, "cite": "1997 ND 66", "era": "1997", "flags": {"whitespace": ["14 blank-runs(3+)"]}}
 {"id": 12413, "cite": "1997 ND 80", "era": "1997", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
-{"id": 12412, "cite": "1997 ND 63", "era": "1997", "flags": {"paragraph_seq": ["gap ¶21->¶23", "decrease ¶23->¶22"], "whitespace": ["56 blank-runs(3+)"]}}
+{"id": 12412, "cite": "1997 ND 63", "era": "1997", "flags": {"paragraph_seq": ["gap ¶21->¶23"], "whitespace": ["56 blank-runs(3+)"]}}
 {"id": 12428, "cite": "1997 ND 56", "era": "1997", "flags": {"whitespace": ["9 blank-runs(3+)"]}}
 {"id": 12426, "cite": "1997 ND 52", "era": "1997", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 12408, "cite": "1997 ND 57", "era": "1997", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
@@ -3788,8 +3781,8 @@
 {"id": 12405, "cite": "1997 ND 55", "era": "1997", "flags": {"whitespace": ["16 blank-runs(3+)"]}}
 {"id": 12404, "cite": "1997 ND 60", "era": "1997", "flags": {"heading_seq": ["2->4"], "whitespace": ["55 blank-runs(3+)"]}}
 {"id": 12402, "cite": "1997 ND 46", "era": "1997", "flags": {"paragraph_seq": ["gap ¶15->¶17"], "whitespace": ["5 blank-runs(3+)"]}}
-{"id": 12396, "cite": "1997 ND 49", "era": "1997", "flags": {"paragraph_seq": ["gap ¶30->¶81", "decrease ¶82->¶33"], "whitespace": ["11 blank-runs(3+)"]}}
-{"id": 12359, "cite": "1997 ND 3", "era": "1997", "flags": {"paragraph_seq": ["gap ¶2->¶8", "decrease ¶8->¶4", "dup ¶8", "gap ¶24->¶26"], "whitespace": ["14 blank-runs(3+)"]}}
+{"id": 12396, "cite": "1997 ND 49", "era": "1997", "flags": {"paragraph_seq": ["gap ¶30->¶81"], "whitespace": ["11 blank-runs(3+)"]}}
+{"id": 12359, "cite": "1997 ND 3", "era": "1997", "flags": {"paragraph_seq": ["gap ¶2->¶8", "gap ¶24->¶26"], "whitespace": ["14 blank-runs(3+)"]}}
 {"id": 12401, "cite": "1997 ND 43", "era": "1997", "flags": {"whitespace": ["57 blank-runs(3+)"]}}
 {"id": 12400, "cite": "1997 ND 41", "era": "1997", "flags": {"whitespace": ["26 blank-runs(3+)"]}}
 {"id": 12395, "cite": "1997 ND 44", "era": "1997", "flags": {"paragraph_seq": ["gap ¶7->¶9"], "whitespace": ["10 blank-runs(3+)"]}}
@@ -3800,7 +3793,7 @@
 {"id": 12370, "cite": "1997 ND 31", "era": "1997", "flags": {"whitespace": ["17 blank-runs(3+)"]}}
 {"id": 12369, "cite": "1997 ND 32", "era": "1997", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 12362, "cite": "1997 ND 34", "era": "1997", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
-{"id": 12387, "cite": "1997 ND 21", "era": "1997", "flags": {"paragraph_seq": ["gap ¶4->¶6", "dup ¶6", "gap ¶23->¶25"], "whitespace": ["5 blank-runs(3+)"]}}
+{"id": 12387, "cite": "1997 ND 21", "era": "1997", "flags": {"paragraph_seq": ["gap ¶4->¶6", "gap ¶23->¶25"], "whitespace": ["5 blank-runs(3+)"]}}
 {"id": 12386, "cite": "1997 ND 25", "era": "1997", "flags": {"paragraph_seq": ["gap ¶20->¶22"], "heading_seq": ["2->4"], "whitespace": ["12 blank-runs(3+)"]}}
 {"id": 12367, "cite": "1997 ND 14", "era": "1997", "flags": {"whitespace": ["12 blank-runs(3+)"]}}
 {"id": 12357, "cite": "1997 ND 20", "era": "1997", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
@@ -3808,7 +3801,7 @@
 {"id": 12355, "cite": "1997 ND 19", "era": "1997", "flags": {"starpage_seq": ["*223 *76 *269", "*269 *39 *557", "*224 *58 *129", "*365 *225 *357", "*357 *129 *542"]}}
 {"id": 12348, "cite": "1997 ND 18", "era": "1997", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 12347, "cite": "1997 ND 22", "era": "1997", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
-{"id": 12365, "cite": "1997 ND 11", "era": "1997", "flags": {"paragraph_seq": ["gap ¶31->¶82", "decrease ¶82->¶33", "gap ¶33->¶35"], "whitespace": ["20 blank-runs(3+)"]}}
+{"id": 12365, "cite": "1997 ND 11", "era": "1997", "flags": {"paragraph_seq": ["gap ¶31->¶82"], "whitespace": ["20 blank-runs(3+)"]}}
 {"id": 12385, "cite": "1997 ND 8", "era": "1997", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 12364, "cite": "1997 ND 2", "era": "1997", "flags": {"whitespace": ["10 blank-runs(3+)"]}}
 {"id": 12363, "cite": "1997 ND 7", "era": "1997", "flags": {"whitespace": ["33 blank-runs(3+)"]}}
@@ -4043,14 +4036,15 @@
 {"id": 8340, "cite": "301 N.W.2d 148", "era": "1981", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 8320, "cite": "300 N.W.2d 243", "era": "1980", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 8316, "cite": "300 N.W.2d 210", "era": "1980", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 8317, "cite": "300 N.W.2d 218", "era": "1980", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
-{"id": 8285, "cite": "299 N.W.2d 557", "era": "1980", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
+{"id": 8317, "cite": "300 N.W.2d 218", "era": "1980", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
+{"id": 8285, "cite": "299 N.W.2d 557", "era": "1980", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 8280, "cite": "298 N.W.2d 789", "era": "1980", "flags": {"whitespace": ["4 blank-runs(3+)"]}}
 {"id": 8352, "cite": "301 N.W.2d 604", "era": "1980", "flags": {"heading_seq": ["2->4"]}}
 {"id": 8266, "cite": "298 N.W.2d 372", "era": "1980", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
-{"id": 8261, "cite": "297 N.W.2d 769", "era": "1980", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
+{"id": 8261, "cite": "297 N.W.2d 769", "era": "1980", "flags": {"whitespace": ["6 blank-runs(3+)"]}}
 {"id": 8255, "cite": "297 N.W.2d 418", "era": "1980", "flags": {"whitespace": ["5 blank-runs(3+)"]}}
 {"id": 8254, "cite": "297 N.W.2d 409", "era": "1980", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
+{"id": 8249, "cite": "296 N.W.2d 490", "era": "1980", "flags": {"whitespace": ["3 blank-runs(3+)"]}}
 {"id": 20482, "cite": "298 N.W.2d 372", "era": "1980", "flags": {"whitespace": ["1 blank-runs(3+)"]}}
 {"id": 8235, "cite": "295 N.W.2d 122", "era": "1980", "flags": {"whitespace": ["2 blank-runs(3+)"]}}
 {"id": 8218, "cite": "294 N.W.2d 411", "era": "1980", "flags": {"whitespace": ["1 blank-runs(3+)"]}}

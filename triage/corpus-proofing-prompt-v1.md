@@ -55,6 +55,15 @@ Authoritative source for this era: {source_desc}
   meaning is untouched. Do NOT reflow the whole document.
 - `paragraph_seq` — a `[¶N]` marker out of sequence/duplicated/missing where the
   correct number is UNAMBIGUOUS from the surrounding markers; else flag.
+  CAUTION: a restart/repeat of low numbers mid-opinion (…¶11, then ¶1-9, then ¶12)
+  is USUALLY the opinion **quoting another numbered document** (a district court
+  order, statute, rule), NOT duplicated text. Before flagging: (a) does the
+  opinion's own numbering RESUME after the block (¶11→¶12)? then it's a quote — do
+  nothing; (b) is the repeated paragraph's TEXT the same as the original (true
+  duplicate) or different (quote)? (c) does the text before the restart introduce
+  a quote ("…order is as follows:", "provides:") or a citation follow it? Only a
+  restart whose text DUPLICATES the original and never resumes is a real defect
+  (typically a double-ingested "On Rehearing" section) — FLAG it, never auto-fix.
 - `heading_seq` — a section heading (I/II/III, A/B/C, "Part Two") mislabeled or out
   of order; verify against the source; flag if ambiguous.
 - `missing_text` — a line/phrase dropped at a page/column break, confirmed present
