@@ -45,6 +45,15 @@ Authoritative source for this era: {source_desc}
    Verify the count:
      python3 -c "import sqlite3;t=sqlite3.connect('opinions.db').execute('SELECT text_content FROM opinions WHERE id={id}').fetchone()[0];print(t.count(open('/tmp/oe.txt').read()))"
    Set `verified_count` to the measured number; DROP any proposal whose count != 1.
+
+5b. SOURCE_QUOTE — EVIDENCE BINDING (REQUIRED). Every proposal must include
+   `source_quote`: a VERBATIM span copied from the authoritative source that CONTAINS
+   `new_exact`'s corrected text (every word and digit you added/changed must literally
+   appear in `source_quote`). It is your proof the fix is real, not inferred. If you
+   cannot copy a source span containing your `new_exact`, you have NOT verified it —
+   emit a FLAG, not a proposal. Quote the source; never paraphrase or reconstruct from
+   memory. (A deterministic gate rejects any proposal whose added words/digits are
+   absent from its `source_quote`.)
 6. STAY IN YOUR LANE — footnotes are handled by a separate pipeline. Do NOT propose
    footnote edits; only `flag` a footnote anomaly if you see one.
 

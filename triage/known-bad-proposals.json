@@ -1,0 +1,44 @@
+[
+ {
+  "tag": "empty-delete",
+  "opinion_id": 19866,
+  "class": "paragraph_seq",
+  "old_exact": " In November 2023, the district court amended child support and entered judgment.",
+  "new_exact": ""
+ },
+ {
+  "tag": "digit-cite",
+  "opinion_id": 17945,
+  "class": "ocr_digit",
+  "old_exact": "2000 ND 203, \u00b6 14, 621 N.W.2d 314",
+  "new_exact": "2000 ND 203, \u00b6 14, 619 N.W.2d 501"
+ },
+ {
+  "tag": "backwards-split",
+  "opinion_id": 17940,
+  "class": "split_join",
+  "old_exact": "N.D.C.C. \u00a7 29-32.1-12, and Lebeau failed",
+  "new_exact": "N.D.C.C. \u00a7 29-32.1-\n12, and Lebeau failed"
+ },
+ {
+  "tag": "confabulation",
+  "opinion_id": 19614,
+  "class": "split_join",
+  "old_exact": "which of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter. ineffective assistance allege",
+  "new_exact": "which allege ineffective assistance of postconviction counsel. An applicant may not claim constitutionally ineffective assistance of postconviction counsel in proceedings under this chapter."
+ },
+ {
+  "tag": "heading-delete",
+  "opinion_id": 19647,
+  "class": "paragraph_seq",
+  "old_exact": "as the State alleged. B",
+  "new_exact": "as the State alleged."
+ },
+ {
+  "tag": "sig-indent",
+  "opinion_id": 17884,
+  "class": "whitespace",
+  "old_exact": " Gerald W. VandeWalle",
+  "new_exact": "     Gerald W. VandeWalle"
+ }
+]
