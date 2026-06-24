@@ -54,25 +54,15 @@ def extract_archive(path):
 
 
 def extract_westdoc(path):
-    """-> {num: body_text} best-effort from a West .doc (textutil)."""
-    try:
-        txt = subprocess.run(["textutil", "-convert", "txt", "-stdout", path],
-                             capture_output=True, text=True, timeout=60).stdout
-    except Exception:
-        return None
-    # footnote zone: before the "All Citations" footer
-    cut = txt.find("All Citations")
-    zone = txt[:cut] if cut > 0 else txt
-    # standalone "N" lines (1-2 digits) followed by body text; collect sequential
-    out = {}
-    lines = zone.split("\n")
-    for i, ln in enumerate(lines):
-        if re.fullmatch(r"\s*\d{1,2}\s*", ln):
-            num = int(ln.strip())
-            body = " ".join(x.strip() for x in lines[i + 1:i + 4]).strip()
-            if 1 <= num <= 40 and body and num not in out:
-                out[num] = body[:120]
-    return out
+    """-> {num: body_text} from a West .doc.
+
+    The .doc files are RTF; Westlaw encodes footnotes as bookmarked table rows,
+    which is authoritative. The old textutil ``N\\nbody`` heuristic over-counted
+    badly (e.g. 1893 ND 17 "36" phantom footnotes). Delegates to
+    ``westdoc_footnotes.extract_westdoc_rtf``.
+    """
+    from westdoc_footnotes import extract_westdoc_rtf
+    return extract_westdoc_rtf(path)
 
 
 def db_footnotes(text):
