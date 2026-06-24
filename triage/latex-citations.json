@@ -1,0 +1,534 @@
+[
+ {
+  "opinion_id": 5220,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 5278,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 5378,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 5487,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 13141,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 17583,
+  "cite": "2020 ND 15",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "94 Crothers, Justice. [¶1] Jim",
+   "voir dire. We affirm. [¶2] Wal",
+   "guilty on both counts. [¶3] On",
+   "venire or the jury. I [¶4] \"A"
+  ]
+ },
+ {
+  "opinion_id": 17594,
+  "cite": "2020 ND 36",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "VandeWalle, Justice. [¶1] Jil",
+   "or further findings. I [¶2] Ro",
+   "d this divorce action. [¶3] In",
+   "scipline the children. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 17601,
+  "cite": "2020 ND 33",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "VandeWalle, Justice. [¶1] Mar",
+   "2,314.35. We affirm. I [¶2] In",
+   "s caused by Pagenkopf. [¶3] In",
+   "d before the accident. [¶4] At"
+  ]
+ },
+ {
+  "opinion_id": 17641,
+  "cite": "2020 ND 100",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "VandeWalle, Justice. [¶1] Ric",
+   "counsel. We affirm. I [¶2] Dod",
+   "e counsel in May 2016. [¶3] In",
+   "denied Dodge's motion. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 17651,
+  "cite": "2020 ND 124",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "VandeWalle, Justice. [¶1] Ric",
+   "ll phone. We affirm. I [¶2] Po",
+   "ked on August 9, 2017. [¶3] Af",
+   "N.D.C.C. § 12-59-15. Π [¶4] Ou"
+  ]
+ },
+ {
+  "opinion_id": 17659,
+  "cite": "2020 ND 132",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "VandeWalle, Justice. [¶1] Jam",
+   "im.P. 11. We affirm. I [¶2] In",
+   "cted in federal court. [¶3] Kr",
+   "state plea agreement. [¶4] In"
+  ]
+ },
+ {
+  "opinion_id": 17663,
+  "cite": "2020 ND 153",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "37 Crothers, Justice. [¶1] Aim",
+   "or child. We affirm. I [¶2] No",
+   "warded parenting time. [¶3] In",
+   "so lives in Williston. [¶4] No"
+  ]
+ },
+ {
+  "opinion_id": 17786,
+  "cite": "2021 ND 42",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "00082 Tufte, Justice. [¶1] We",
+   "mand for new trials. I [¶2] Be",
+   "798, 800 (N.D. 1989). [¶3] Whe",
+   "gs for clear error). A [¶4] In"
+  ]
+ },
+ {
+  "opinion_id": 18082,
+  "cite": "2022 ND 183",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "20037 Tufte, Justice. [¶1] The",
+   "and attorney's fees. I [¶2] J.",
+   "uccessors in interest. [¶3] Th",
+   "the unpooled portions. [¶4] In"
+  ]
+ },
+ {
+  "opinion_id": 18139,
+  "cite": "2023 ND 23",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] He",
+   "ct court's judgment. I [¶2] He",
+   "or their two children. [¶3] He",
+   "d other bank accounts. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 18194,
+  "cite": "2023 ND 94",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "220380 Bahr, Justice. [¶1] Mic",
+   "counsel. We affirm. I [¶2] The",
+   "dsen's parenting time. [¶3] On",
+   "cond amended judgment. [¶4] On"
+  ]
+ },
+ {
+  "opinion_id": 18219,
+  "cite": "2023 ND 152",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "20343 Tufte, Justice. [¶1] Art",
+   "e victim. We affirm. I [¶2] On",
+   "sibility of parole. II [¶3] Ko",
+   "being made available. [¶4] In"
+  ]
+ },
+ {
+  "opinion_id": 18224,
+  "cite": "2023 ND 154",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "20321 Tufte, Justice. [¶1] Ter",
+   "e's will. We affirm. I [¶2] Re",
+   "gment, and a judgment. [¶3] Ca",
+   "titioning property. II [¶4] Ca"
+  ]
+ },
+ {
+  "opinion_id": 18234,
+  "cite": "2023 ND 220",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "230064 Bahr, Justice. [¶1] Ash",
+   "reverse and remand. I [¶2] The",
+   "to stay in the home.\" [¶3] The",
+   "nd drug paraphernalia. [¶4] De"
+  ]
+ },
+ {
+  "opinion_id": 18915,
+  "status": "SKIP_no_latex_sig"
+ },
+ {
+  "opinion_id": 19385,
+  "cite": "2019 ND 239",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "80416 Tufte, Justice. [¶1] Mar",
+   "evidence. We affirm. I [¶2] In",
+   "of Smith's girlfriend. [¶3] Sm",
+   "g under N.D.R.Ev. 403. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 19466,
+  "cite": "2020 ND 112",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "90301 Tufte, Justice. [¶1] Kin",
+   "ack of jurisdiction. I [¶2] Th",
+   "e denied QEP coverage. [¶3] QE",
+   "a duty to defend QEP. [¶4] Kin"
+  ]
+ },
+ {
+  "opinion_id": 19731,
+  "cite": "2023 ND 134",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "230019 Bahr, Justice. [¶1] Nic",
+   "affirm the judgment. I [¶2] Ni",
+   "ion to continue trial. [¶3] \"T",
+   "nd v. Lund , 2011 ND 53, ¶ 7, "
+  ]
+ },
+ {
+  "opinion_id": 19794,
+  "cite": "2023 ND 207",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "230189 Bahr, Justice. [¶1] Tho",
+   "elief from judgment. I [¶2] Th",
+   "Kaspari, 2022 ND 204. [¶3] The",
+   "lief from judgment. II [¶4] \"B"
+  ]
+ },
+ {
+  "opinion_id": 19798,
+  "cite": "2023 ND 210",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] Aa",
+   "g arrest. We affirm. I [¶2] Th",
+   "ble to house Anderson. [¶3] Af",
+   "r cleared for custody. [¶4] At"
+  ]
+ },
+ {
+  "opinion_id": 19851,
+  "cite": "2024 ND 109",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "#### Tufte, Justice. [¶1] Res",
+   "he entry statute. T - [¶2] Sum",
+   "y the district court. - [¶3] I",
+   "otections.<sup>1</sup> [¶4] Af"
+  ]
+ },
+ {
+  "opinion_id": 19853,
+  "cite": "2024 ND 110",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "7 ### Tufte, Justice. [¶1] How",
+   "er of the judgment. Ι [¶2] The",
+   "udhorse appeals. II - [¶3] Stu",
+   "ss to tell the truth. - [¶4] S"
+  ]
+ },
+ {
+  "opinion_id": 19865,
+  "cite": "2024 ND 121",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "3 #### Bahr, Justice. [¶1] Ric",
+   "Sargent. We affirm. I [¶2] Law",
+   "fic stop of the Tahoe. [¶3] Sa",
+   "t eventually complied. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 19920,
+  "cite": "2024 ND 171",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "372 ## Bahr, Justice. [¶1] Pla",
+   "ed to as \"Section 19.\" [¶3] Fr",
+   "g to boys upon death.\" [¶5] In",
+   "ron Mitzel's marriage. [¶6] In"
+  ]
+ },
+ {
+  "opinion_id": 19926,
+  "cite": "2024 ND 177",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "240223 ## Per Curiam. [¶1] J.M",
+   "re likely to continue. [¶2] Th",
+   "t of A.C.*, 2022 ND 123, ¶ 5, ",
+   "t of A.P.*, 2022 ND 131, ¶ 2, "
+  ]
+ },
+ {
+  "opinion_id": 19929,
+  "cite": "2024 ND 18",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] Er",
+   "witness. We affirm. I [¶2] On",
+   "ing officer testified. [¶3] Th",
+   "r's house to get help. [¶4] Go"
+  ]
+ },
+ {
+  "opinion_id": 19985,
+  "cite": "2024 ND 23",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] Ga",
+   "of Caleb C. Heath. I [¶2] Vio",
+   "chleve were suspended. [¶3] In",
+   "letters testamentary. [¶4] In"
+  ]
+ },
+ {
+  "opinion_id": 20000,
+  "cite": "2024 ND 30",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "#### McEvers, Justice. [¶1] Al",
+   "videntiary hearing. I [¶2] Ste",
+   "mpia's parenting time. [¶3] Th",
+   "W. to Williams's home. [¶4] Wi"
+  ]
+ },
+ {
+  "opinion_id": 20033,
+  "cite": "2024 ND 60",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "### Crothers, Justice. [¶1] Co",
+   "tence. We affirm. I - [¶2] On",
+   "le to apprehend them. - [¶3] H",
+   "p and arrested Henke. - [¶4] T"
+  ]
+ },
+ {
+  "opinion_id": 20043,
+  "cite": "2024 ND 7",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "230205 Bahr, Justice. [¶1] Rob",
+   "e with this opinion. I [¶2] Wi",
+   "time in the sentence. [¶3] Wil",
+   "denied the motions. II [¶4] Ru"
+  ]
+ },
+ {
+  "opinion_id": 20045,
+  "cite": "2024 ND 71",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "30212 Tufte, Justice. [¶1] Pla",
+   "injuries. We affirm. I [¶2] In",
+   "hicle in North Dakota. [¶3] Th",
+   "reversed and remanded. [¶4] On"
+  ]
+ },
+ {
+  "opinion_id": 20051,
+  "cite": "2024 ND 77",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] Tr",
+   "ht of first refusal. I [¶2] Sc",
+   "use of the lake home. [¶3] A t",
+   "me of 218,661 in 2022. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 20063,
+  "cite": "2024 ND 88",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "### Crothers, Justice. [¶1] Sp",
+   "es and legal costs. I [¶2] Spo",
+   "for unjust enrichment. [¶3] Th",
+   "s, including laches. - [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 20065,
+  "cite": "2024 ND 9",
+  "status": "SKIP_review",
+  "reason": "pdf_mismatch",
+  "bad_chunks": [
+   "230378 Bahr, Justice. [¶1] T.W",
+   "e received at trial. I [¶2] T.",
+   "s to serve in custody. [¶3] Th",
+   ".W.'s parental rights. [¶4] \"["
+  ]
+ },
+ {
+  "opinion_id": 20111,
+  "cite": "2025 ND 130",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "6 #### Bahr, Justice. [¶1] Kam",
+   "counsel. We affirm. Ι [¶2] In",
+   "oth class AA felonies. [¶3] Th",
+   "uest for a new lawyer. [¶4] Af"
+  ]
+ },
+ {
+  "opinion_id": 20115,
+  "cite": "2025 ND 134",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "1 ### Tufte, Justice. [¶1] Ori",
+   "ration requirement. Ι [¶2] On",
+   "s under the age of 6.\" [¶3] At",
+   "\" Berkley appeals. II [¶4] Ber"
+  ]
+ },
+ {
+  "opinion_id": 20116,
+  "cite": "2025 ND 135",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "#### Tufte, Justice. [¶1] Cza",
+   "e amended judgment. Ι [¶2] On",
+   "t from Neuens' estate. [¶3] Th",
+   "unity to cure default. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 20174,
+  "cite": "2025 ND 188",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "## McEvers, Justice. [¶1] Jos",
+   "urther proceedings. Ι [¶2] In",
+   "guilty in both cases. [¶3] At",
+   "ot at issue on appeal. [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 20180,
+  "cite": "2025 ND 193",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "### Crothers, Justice. [¶1] Jo",
+   "with this decision. Ι [¶2] Jos",
+   "ony from the children. [¶3] On",
+   "imely appeal. \\prod [¶4] Jos"
+  ]
+ },
+ {
+  "opinion_id": 20199,
+  "cite": "2025 ND 21",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "5 #### Bahr, Justice. [¶1] The",
+   "driving privileges. I [¶2] On",
+   "gal limit for driving. [¶3] Th",
+   "mpleting this report.\" [¶4] Th"
+  ]
+ },
+ {
+  "opinion_id": 20232,
+  "cite": "2025 ND 26",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "### Crothers, Justice. [¶1] Th",
+   "v. Romanick, 2023 ND 50, ¶ 27,",
+   "standard applied. *Id.* ¶ 28. ",
+   "e applicable test. *Id*. ¶ 40."
+  ]
+ },
+ {
+  "opinion_id": 20272,
+  "cite": "2025 ND 62",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "1 #### Bahr, Justice. [¶1] Cas",
+   "e claim. We affirm. Ι [¶2] On",
+   "the City's floodplain. [¶3] On",
+   "rmation Hoff provided. [¶4] La"
+  ]
+ },
+ {
+  "opinion_id": 20309,
+  "cite": "2025 ND 96",
+  "status": "SKIP_review",
+  "reason": "residual_markup",
+  "bad_chunks": [
+   "Jensen, Chief Justice. [¶1] Da",
+   "mount of any award. I [¶2] The",
+   "ll Van Beek's parents. [¶3] Th",
+   "was \\48,000 per year. [¶4] Dar"
+  ]
+ },
+ {
+  "opinion_id": 20420,
+  "status": "SKIP_no_latex_sig"
+ }
+]
