@@ -2,6 +2,24 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `headings-2026-06-24-b` — ambiguous heading reformats (3 opinions, 13 edits)
+
+The three heading opinions deferred from the first heading pass (ambiguous: parallel
+A/B/C sequences and encoding-artifact glyphs). Each resolved against its PDF.
+
+- **2022 ND 85** (id 19709, Energy Transfer): the `A An` ambiguity — `A` is the subsection
+  heading (PDF line 272), `An administrative agency...` is the block-quote text. Moved `A`
+  to its own line before [¶14]; moved `B` before [¶22]. (Agent proposed deleting `A`.)
+- **2025 ND 61** (id 20271, Jones v. Jones): two parallel A/B/C sequences (under II: A→¶6,
+  B→¶11, C→¶15; under III: A→¶17, B→¶18, C→¶24). All six moved to their own lines, mapped
+  to the correct paragraph via the PDF. `B`→¶11 had been pulled into the paragraph
+  (`provides, B If`); restored as a heading before [¶11], leaving `provides, If`.
+- **2024 ND 171** (id 19920, Mitzel v. Vogel Law Firm): five section headings stored as
+  encoding/markup artifacts (also a markup-cohort member), all standalone in the correct
+  position but wrong glyph: `В` (Cyrillic Ve)→`B` at ¶14/¶37, `$\mathsf{C}$` (LaTeX)→`C` at
+  ¶17/¶46, `Α` (Greek Alpha)→`A` at ¶35. The agent had proposed `Α`->`C`; PDF line 490
+  confirms the heading before [¶35] is `A`.
+
 ## Batch `scramble-bucket-2026-06-24` — pdfminer column-scrambles (3 opinions, 8 edits)
 
 Manual reconstruction of three scrambled opinions the reconciler couldn't auto-fix (its

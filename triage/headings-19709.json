@@ -1,0 +1,22 @@
+[
+ {
+  "opinion_id": 19709,
+  "class": "heading_seq",
+  "old_exact": "Id.\n\n[¶14] Under N.D.C.C. § 28-32-28: A An administrative agency may grant",
+  "new_exact": "Id.\n\nA\n\n[¶14] Under N.D.C.C. § 28-32-28: An administrative agency may grant",
+  "verified_count": 1,
+  "source": "2022ND85.pdf line 272: subheading 'A' is standalone immediately before [¶14] ('Under N.D.C.C. § 28-32-28:'). DB pulled it into ¶14 between the colon and the block quote 'An administrative agency may grant...'. Moved to its own line before ¶14.",
+  "confidence": "high",
+  "note": "Heading-reformat (the 'A An' ambiguity resolved: 'A' is the section heading, 'An administrative agency' is the block-quote text). Agent proposed deleting 'A', which would lose the heading."
+ },
+ {
+  "opinion_id": 19709,
+  "class": "heading_seq",
+  "old_exact": "to intervene. B\n\n[¶22]",
+  "new_exact": "to intervene.\n\nB\n\n[¶22]",
+  "verified_count": 1,
+  "source": "2022ND85.pdf line 419: subheading 'B' is standalone before [¶22]; DB merged it onto the prior sentence.",
+  "confidence": "high",
+  "note": "Heading-reformat (delete->MOVE)."
+ }
+]

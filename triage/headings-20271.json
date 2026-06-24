@@ -1,0 +1,20 @@
+[
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":"finding. A\n\n[¶6]","new_exact":"finding.\n\nA\n\n[¶6]",
+  "verified_count":1,"source":"2025ND61.pdf line 116: subheading 'A' (under section II) standalone before [¶6].","confidence":"high","note":"Heading-reformat (delete->MOVE); first A/B/C sequence under II."},
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":"been made.\n\n[¶11] Factor (i) of the best interest factors provides, B If","new_exact":"been made.\n\nB\n\n[¶11] Factor (i) of the best interest factors provides, If",
+  "verified_count":1,"source":"2025ND61.pdf line 209: subheading 'B' (under II) standalone before [¶11] ('Factor (i)...provides,' then block quote 'If the court finds...'). DB pulled 'B' into ¶11 between 'provides,' and 'If'. Moved before ¶11.","confidence":"high","note":"Heading-reformat: the 'provides, B If' ambiguity resolved — 'B' is the section heading, 'If...' is the block-quote text. Agent proposed deleting 'B'."},
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":"n Jones. C\n\n[¶15]","new_exact":"n Jones.\n\nC\n\n[¶15]",
+  "verified_count":1,"source":"2025ND61.pdf line 255: subheading 'C' (under II) standalone before [¶15].","confidence":"high","note":"Heading-reformat (delete->MOVE)."},
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":"104. A\n\n[¶17]","new_exact":"104.\n\nA\n\n[¶17]",
+  "verified_count":1,"source":"2025ND61.pdf line 274: subheading 'A' (under section III) standalone before [¶17].","confidence":"high","note":"Heading-reformat (delete->MOVE); second A/B/C sequence under III."},
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":" review. B\n\n[¶18]","new_exact":" review.\n\nB\n\n[¶18]",
+  "verified_count":1,"source":"2025ND61.pdf line 293: subheading 'B' (under III) standalone before [¶18].","confidence":"high","note":"Heading-reformat (delete->MOVE)."},
+ {"opinion_id":20271,"class":"heading_seq",
+  "old_exact":" estate. C\n\n[¶24]","new_exact":" estate.\n\nC\n\n[¶24]",
+  "verified_count":1,"source":"2025ND61.pdf line 367: subheading 'C' (under III) standalone before [¶24].","confidence":"high","note":"Heading-reformat (delete->MOVE)."}
+]

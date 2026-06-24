@@ -1,0 +1,52 @@
+[
+ {
+  "opinion_id": 19920,
+  "class": "ocr_char",
+  "old_exact": "\n\nВ\n\n[¶14]",
+  "new_exact": "\n\nB\n\n[¶14]",
+  "verified_count": 1,
+  "source": "2024ND171.pdf: standalone section heading 'B' before [¶14] (PDF-confirmed). DB stored it as an encoding/markup artifact.",
+  "confidence": "high",
+  "note": "Heading glyph artifact -> Latin 'B' (markup cohort: Cyrillic/Greek/LaTeX). Position already correct."
+ },
+ {
+  "opinion_id": 19920,
+  "class": "ocr_char",
+  "old_exact": "\n\n $\\mathsf{C}$ \n\n[¶17]",
+  "new_exact": "\n\nC\n\n[¶17]",
+  "verified_count": 1,
+  "source": "2024ND171.pdf: standalone section heading 'C' before [¶17] (PDF-confirmed). DB stored it as an encoding/markup artifact.",
+  "confidence": "high",
+  "note": "Heading glyph artifact -> Latin 'C' (markup cohort: Cyrillic/Greek/LaTeX). Position already correct."
+ },
+ {
+  "opinion_id": 19920,
+  "class": "ocr_char",
+  "old_exact": "\n\nΑ\n\n[¶35]",
+  "new_exact": "\n\nA\n\n[¶35]",
+  "verified_count": 1,
+  "source": "2024ND171.pdf: standalone section heading 'A' before [¶35] (PDF-confirmed). DB stored it as an encoding/markup artifact.",
+  "confidence": "high",
+  "note": "Heading glyph artifact -> Latin 'A' (markup cohort: Cyrillic/Greek/LaTeX). Position already correct."
+ },
+ {
+  "opinion_id": 19920,
+  "class": "ocr_char",
+  "old_exact": "\n\nВ\n\n[¶37]",
+  "new_exact": "\n\nB\n\n[¶37]",
+  "verified_count": 1,
+  "source": "2024ND171.pdf: standalone section heading 'B' before [¶37] (PDF-confirmed). DB stored it as an encoding/markup artifact.",
+  "confidence": "high",
+  "note": "Heading glyph artifact -> Latin 'B' (markup cohort: Cyrillic/Greek/LaTeX). Position already correct."
+ },
+ {
+  "opinion_id": 19920,
+  "class": "ocr_char",
+  "old_exact": "\n\n $\\mathsf{C}$ \n\n[¶46]",
+  "new_exact": "\n\nC\n\n[¶46]",
+  "verified_count": 1,
+  "source": "2024ND171.pdf: standalone section heading 'C' before [¶46] (PDF-confirmed). DB stored it as an encoding/markup artifact.",
+  "confidence": "high",
+  "note": "Heading glyph artifact -> Latin 'C' (markup cohort: Cyrillic/Greek/LaTeX). Position already correct."
+ }
+]
