@@ -1,0 +1,68 @@
+[
+ {
+  "opinion_id": 18011,
+  "class": "whitespace",
+  "old_exact": "Ali v. State,\n\n2019 ND 121, 926 N.W.2d 706.",
+  "new_exact": "Ali v. State,\n2019 ND 121, 926 N.W.2d 706.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND76.pdf (verified via pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB text contains two consecutive newlines after the semicolon-separated citation block (Ali v. State, followed by blank line then 2019 ND 121), while the authoritative PDF source shows only one newline between them. This is a mid-paragraph hard break artifact from ingestion/OCR processing. The citation line structure in the PDF is: 'Ali v. State,\\n2019 ND 121, 926 N.W.2d 706.' with a single line break, matching the new_exact value. Word content and all other aspects match perfectly after this fix.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "whitespace",
+  "old_exact": " Carlson, 2016 ND 130, ¶¶ 11-12, 881 N.W.2d 649\n\n(concluding",
+  "new_exact": " Carlson, 2016 ND 130, ¶¶ 11-12, 881 N.W.2d 649\n(concluding",
+  "verified_count": 1,
+  "source": "PDF pages 3-4, lines 129-130 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Extraneous blank line inserted within citation mid-flow. PDF shows parenthetical continuation directly after citation on next line with no blank. Mechanical whitespace defect.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17981,
+  "class": "whitespace",
+  "old_exact": " Gerald W. VandeWalle\n",
+  "new_exact": "     Gerald W. VandeWalle\n",
+  "verified_count": 1,
+  "source": "PDF line 59",
+  "confidence": "high",
+  "evidence": "Signature block indentation: DB has 1 space before name; PDF has 5 spaces (consistent formatting)",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17981,
+  "class": "whitespace",
+  "old_exact": " Daniel J. Crothers\n",
+  "new_exact": "     Daniel J. Crothers\n",
+  "verified_count": 1,
+  "source": "PDF line 60",
+  "confidence": "high",
+  "evidence": "Signature block indentation: DB has 1 space before name; PDF has 5 spaces",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17981,
+  "class": "whitespace",
+  "old_exact": " Lisa Fair McEvers\n",
+  "new_exact": "     Lisa Fair McEvers\n",
+  "verified_count": 1,
+  "source": "PDF line 61",
+  "confidence": "high",
+  "evidence": "Signature block indentation: DB has 1 space before name; PDF has 5 spaces",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17981,
+  "class": "whitespace",
+  "old_exact": " Jerod E. Tufte\n",
+  "new_exact": "     Jerod E. Tufte\n",
+  "verified_count": 1,
+  "source": "PDF line 62",
+  "confidence": "high",
+  "evidence": "Signature block indentation: DB has 1 space before name; PDF has 5 spaces",
+  "_verdict": "auto:whitespace_only"
+ }
+]

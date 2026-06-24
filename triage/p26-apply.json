@@ -1,0 +1,26 @@
+[
+ {
+  "opinion_id": 17991,
+  "class": "heading_seq",
+  "old_exact": " No. 20220027-20220030",
+  "new_exact": "Nos. 20220027-20220030",
+  "verified_count": 1,
+  "source": "Court's official PDF (pdftotext -layout extraction shows 'Nos. 20220027-20220030' on line 77)",
+  "confidence": "high",
+  "evidence": "The opinion addresses four children in four consolidated cases with case numbers 20220027-20220030. The correct abbreviation for plural 'Numbers' is 'Nos.' not singular 'No.' The source PDF clearly shows 'Nos.' (located at: sed -n '76,77p' shows centered heading with 'Nos. 20220027-20220030'). The DB has a transcription error with singular 'No.' which is grammatically incorrect for multiple docket numbers.",
+  "note": "This is a clear transcription/OCR error in the DB-ingested text. The PDF source positively shows the plural 'Nos.' abbreviation.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19701,
+  "class": "caption",
+  "old_exact": "Howard Malloy and Great Plains Potato\n\nProduction, LLP,\n\nv.\n\nJames Behrens,\n\nPlaintiffs and Appellees\n\nDefendant and Appellant",
+  "new_exact": "Howard Malloy and Great Plains Potato\nProduction, LLP, Plaintiffs and Appellees\nv.\nJames Behrens, Defendant and Appellant",
+  "verified_count": 1,
+  "source": "North Dakota Supreme Court PDF 2022ND43.pdf",
+  "confidence": "high",
+  "evidence": "PDF caption shows party roles (Plaintiffs and Appellees, Defendant and Appellant) on the same line as party names with column alignment. DB has these roles split onto separate lines with blank line separators between all elements. This is a split_join ingestion error that misformatted the caption structure.",
+  "note": "The proposed new_exact removes excessive blank lines and consolidates each party name with its role onto a single line, matching the authoritative PDF source structure. Column alignment padding has been normalized for plain-text format.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

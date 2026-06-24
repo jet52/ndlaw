@@ -1,0 +1,123 @@
+[
+ {
+  "opinion_id": 18011,
+  "class": "whitespace",
+  "old_exact": "Ali v. State,\n\n2019 ND 121, 926 N.W.2d 706.",
+  "new_exact": "Ali v. State,\n2019 ND 121, 926 N.W.2d 706.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND76.pdf (verified via pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB text contains two consecutive newlines after the semicolon-separated citation block (Ali v. State, followed by blank line then 2019 ND 121), while the authoritative PDF source shows only one newline between them. This is a mid-paragraph hard break artifact from ingestion/OCR processing. The citation line structure in the PDF is: 'Ali v. State,\\n2019 ND 121, 926 N.W.2d 706.' with a single line break, matching the new_exact value. Word content and all other aspects match perfectly after this fix.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "whitespace",
+  "old_exact": " Carlson, 2016 ND 130, ¶¶ 11-12, 881 N.W.2d 649\n\n(concluding",
+  "new_exact": " Carlson, 2016 ND 130, ¶¶ 11-12, 881 N.W.2d 649\n(concluding",
+  "verified_count": 1,
+  "source": "PDF pages 3-4, lines 129-130 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Extraneous blank line inserted within citation mid-flow. PDF shows parenthetical continuation directly after citation on next line with no blank. Mechanical whitespace defect.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18000,
+  "class": "split_join",
+  "old_exact": "961 N.W.2d 282\n (holding party moving for",
+  "new_exact": "961 N.W.2d 282 (holding party moving for",
+  "verified_count": 1,
+  "source": "Official PDF (/Users/jerod/refs/nd/opin/pdfs/2022/2022ND88.pdf) shows unbroken citation without line break between '282' and '(holding'",
+  "confidence": "high",
+  "note": "DB ingestion error: improper line break in citation mid-parenthetical. The PDF source shows 'Johnshoy, 2021 ND 108, 961 N.W.2d 282 (holding party moving for' on continuous lines. The DB inserted a line break after '282', fragmenting the citation and parenthetical.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18009,
+  "class": "split_join",
+  "old_exact": "882 N.W.2d 724\n (denying relief because petitioner",
+  "new_exact": "882 N.W.2d 724 (denying relief because petitioner",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND80.pdf (line 54, pdftotext -layout extraction)",
+  "confidence": "high",
+  "note": "DB has unwanted line break + leading space after citation number, breaking the parenthetical citation across lines. PDF source shows this on a single line at line 54. This is a mechanical ingestion/OCR artifact where the text wrapping was preserved as hard newlines instead of being reflowed.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "split_join",
+  "old_exact": "the misconduct had a prejudicial effect.\nId.\n Here, the prosecutor conceded his",
+  "new_exact": "the misconduct had a prejudicial effect. Id. Here, the prosecutor conceded his",
+  "verified_count": 1,
+  "source": "PDF page 3, line 103 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Short-form citation 'Id.' wrongly split to separate line. PDF shows all three phrases on one continuous line. Standard citation joining error.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17977,
+  "class": "split_join",
+  "old_exact": "966 N.W.2d\n904\n (quoting",
+  "new_exact": "966 N.W.2d\n904 (quoting",
+  "verified_count": 1,
+  "source": "2022ND45.pdf extracted via pdftotext -layout shows '904 (quoting' on same line; DB splits across lines with blank line between '904' and '(quoting'",
+  "confidence": "high",
+  "note": "Citation formatting issue: hard break inserted between reporter number and parenthetical. Source shows compact form on same line.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17977,
+  "class": "split_join",
+  "old_exact": "891 N.W.2d 760\n (citation omitted)",
+  "new_exact": "891 N.W.2d 760 (citation omitted)",
+  "verified_count": 1,
+  "source": "2022ND45.pdf extracted via pdftotext -layout shows '760 (citation omitted)' on same line; DB splits with hard break before '(citation omitted)'",
+  "confidence": "high",
+  "note": "Citation formatting issue: hard break inserted before parenthetical. Source shows compact form on same line.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19705,
+  "class": "split_join",
+  "old_exact": "documents.\"[¶4]",
+  "new_exact": "documents.\" [¶4]",
+  "verified_count": 1,
+  "source": "PDF source has space/newline between paragraphs 3 and 4; DB has them abutted",
+  "confidence": "high",
+  "note": "Paragraph 3 ends with closing quote, then paragraph 4 begins immediately without intervening whitespace. PDF shows proper separation with blank line between paragraphs.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "split_join",
+  "old_exact": "¶ 16, 739 N.W.2d 786\n (Motions for mistrial \"are within the broad discretion of",
+  "new_exact": "¶ 16, 739 N.W.2d 786 (Motions for mistrial \"are within the broad discretion of",
+  "verified_count": 1,
+  "source": "PDF pages 3-4, line 94 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Citation footnote reference split from parenthetical quotation across line boundary. PDF shows both on same line. Ingestion artifact from markdown → plain text pipeline.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "split_join",
+  "old_exact": "dimension.\"\nId.\n We have said:",
+  "new_exact": "dimension.\" Id. We have said:",
+  "verified_count": 1,
+  "source": "PDF page 3, line 114 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Short-form citation 'Id.' wrongly split to separate line. PDF shows phrase on one line. Matches pattern of split #2.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17981,
+  "class": "split_join",
+  "old_exact": "907 N.W.2d 361\n (\"It is a cardinal rule of",
+  "new_exact": "907 N.W.2d 361 (\"It is a cardinal rule of",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2022/2022ND56.pdf line 50",
+  "confidence": "high",
+  "evidence": "Citation split across line break: DB has newline+space before opening paren; PDF has quote immediately after citation. Ingestion error.",
+  "_verdict": "reject:unverified"
+ }
+]

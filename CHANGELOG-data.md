@@ -2,6 +2,31 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-p26-2026-06-24` — proofing fleet P26 (40 opinions, 2022 ND 90→48)
+
+Low-noise cycle (31/40 clean). Verifier: 6 auto / 7 review / 4 reject. Only 2 items
+applied after the consolidated triage; pytest + detector clean.
+
+- **2022 ND 58** (id 17991, heading_seq): consolidated-caption docket header
+  ` No. 20220027-20220030` -> `Nos. 20220027-20220030`. PDF (`2022ND58.pdf` line 77)
+  shows `Nos.` for the combined caption (each individual case is `No.`).
+- **2022 ND 43** (id 19701, caption): reflowed the blank-line-mangled caption to the
+  PDF two-column reading, word-multiset-preserving: `Howard Malloy and Great Plains
+  Potato Production, LLP, Plaintiffs and Appellees / v. / James Behrens, Defendant and
+  Appellant`.
+
+Not applied:
+- **4 signature-indent items** (id 17981, auto:whitespace_only) **rejected** — they would
+  re-indent the justice signature lines to 5 spaces to match the PDF's centered layout,
+  but the corpus convention is 1 leading space (604 vs 8 in a 2022 sample). Applying
+  would make the opinion an outlier; the DB deliberately normalizes presentational
+  indentation. (Triage lesson: `auto:whitespace_only` can still diverge from a
+  corpus-wide whitespace convention the verifier can't see.)
+- **11 citation/`Id.` reflow split_joins** (ids 17977, 17981, 17987, 18000, 18009, 18011,
+  19705) deferred to the citation-rejoin v2 worklist (`triage/p26-deferred-citemangle.json`)
+  per rule 10 — fragmented citations are owned by the systematic rejoin pass, not applied
+  ad hoc. These are the `\d\n (paren` / `,\n\n` residual rejoin v1 doesn't yet catch.
+
 ## Batch `scramble-2025ND92-2026-06-24` — 2025 ND 92 column-scramble repair (1 opinion, 3 edits)
 
 Manual-review item from `p567-flagged-manual.json`. The agent's original proposal

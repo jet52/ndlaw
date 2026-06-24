@@ -1,0 +1,81 @@
+[
+ {
+  "opinion_id": 18000,
+  "class": "split_join",
+  "old_exact": "961 N.W.2d 282\n (holding party moving for",
+  "new_exact": "961 N.W.2d 282 (holding party moving for",
+  "verified_count": 1,
+  "source": "Official PDF (/Users/jerod/refs/nd/opin/pdfs/2022/2022ND88.pdf) shows unbroken citation without line break between '282' and '(holding'",
+  "confidence": "high",
+  "note": "DB ingestion error: improper line break in citation mid-parenthetical. The PDF source shows 'Johnshoy, 2021 ND 108, 961 N.W.2d 282 (holding party moving for' on continuous lines. The DB inserted a line break after '282', fragmenting the citation and parenthetical.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18009,
+  "class": "split_join",
+  "old_exact": "882 N.W.2d 724\n (denying relief because petitioner",
+  "new_exact": "882 N.W.2d 724 (denying relief because petitioner",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND80.pdf (line 54, pdftotext -layout extraction)",
+  "confidence": "high",
+  "note": "DB has unwanted line break + leading space after citation number, breaking the parenthetical citation across lines. PDF source shows this on a single line at line 54. This is a mechanical ingestion/OCR artifact where the text wrapping was preserved as hard newlines instead of being reflowed.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17991,
+  "class": "heading_seq",
+  "old_exact": " No. 20220027-20220030",
+  "new_exact": "Nos. 20220027-20220030",
+  "verified_count": 1,
+  "source": "Court's official PDF (pdftotext -layout extraction shows 'Nos. 20220027-20220030' on line 77)",
+  "confidence": "high",
+  "evidence": "The opinion addresses four children in four consolidated cases with case numbers 20220027-20220030. The correct abbreviation for plural 'Numbers' is 'Nos.' not singular 'No.' The source PDF clearly shows 'Nos.' (located at: sed -n '76,77p' shows centered heading with 'Nos. 20220027-20220030'). The DB has a transcription error with singular 'No.' which is grammatically incorrect for multiple docket numbers.",
+  "note": "This is a clear transcription/OCR error in the DB-ingested text. The PDF source positively shows the plural 'Nos.' abbreviation.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17987,
+  "class": "split_join",
+  "old_exact": "the misconduct had a prejudicial effect.\nId.\n Here, the prosecutor conceded his",
+  "new_exact": "the misconduct had a prejudicial effect. Id. Here, the prosecutor conceded his",
+  "verified_count": 1,
+  "source": "PDF page 3, line 103 (pdftotext)",
+  "confidence": "high",
+  "evidence": "Short-form citation 'Id.' wrongly split to separate line. PDF shows all three phrases on one continuous line. Standard citation joining error.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19701,
+  "class": "caption",
+  "old_exact": "Howard Malloy and Great Plains Potato\n\nProduction, LLP,\n\nv.\n\nJames Behrens,\n\nPlaintiffs and Appellees\n\nDefendant and Appellant",
+  "new_exact": "Howard Malloy and Great Plains Potato\nProduction, LLP, Plaintiffs and Appellees\nv.\nJames Behrens, Defendant and Appellant",
+  "verified_count": 1,
+  "source": "North Dakota Supreme Court PDF 2022ND43.pdf",
+  "confidence": "high",
+  "evidence": "PDF caption shows party roles (Plaintiffs and Appellees, Defendant and Appellant) on the same line as party names with column alignment. DB has these roles split onto separate lines with blank line separators between all elements. This is a split_join ingestion error that misformatted the caption structure.",
+  "note": "The proposed new_exact removes excessive blank lines and consolidates each party name with its role onto a single line, matching the authoritative PDF source structure. Column alignment padding has been normalized for plain-text format.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17977,
+  "class": "split_join",
+  "old_exact": "966 N.W.2d\n904\n (quoting",
+  "new_exact": "966 N.W.2d\n904 (quoting",
+  "verified_count": 1,
+  "source": "2022ND45.pdf extracted via pdftotext -layout shows '904 (quoting' on same line; DB splits across lines with blank line between '904' and '(quoting'",
+  "confidence": "high",
+  "note": "Citation formatting issue: hard break inserted between reporter number and parenthetical. Source shows compact form on same line.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17977,
+  "class": "split_join",
+  "old_exact": "891 N.W.2d 760\n (citation omitted)",
+  "new_exact": "891 N.W.2d 760 (citation omitted)",
+  "verified_count": 1,
+  "source": "2022ND45.pdf extracted via pdftotext -layout shows '760 (citation omitted)' on same line; DB splits with hard break before '(citation omitted)'",
+  "confidence": "high",
+  "note": "Citation formatting issue: hard break inserted before parenthetical. Source shows compact form on same line.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]
