@@ -1,0 +1,42 @@
+[
+ {
+  "opinion_id": 20047,
+  "class": "heading_seq",
+  "old_exact": "Douglas A. Bahr Bahr, Justice, concurring specially.\n\n[¶11]",
+  "new_exact": "Douglas A. Bahr\n\nBahr, Justice, concurring specially.\n\n[¶11]",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "concurrence header fused to signature; reformat not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20047,
+  "class": "heading_seq",
+  "old_exact": "[¶13] Douglas A. Bahr Tufte, Justice, concurring in part and dissenting in part.",
+  "new_exact": "[¶13] Douglas A. Bahr\n\nTufte, Justice, concurring in part and dissenting in part.",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "dissent header fused to ¶13; reformat not delete.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20008,
+  "class": "heading_seq",
+  "old_exact": "reasonableness. F\n\n[¶24]",
+  "new_exact": "reasonableness.\n\nF\n\n[¶24]",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "heading F merged onto paragraph end; reformat.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 20039,
+  "class": "heading_seq",
+  "old_exact": "35.1(a)(3).\n\n[¶14]",
+  "new_exact": "35.1(a)(3).\n\nIV\n\n[¶14]",
+  "verified_count": 1,
+  "source": "court PDF",
+  "evidence": "PDF shows section IV before [¶14]; DB lacks it. Insert heading.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 20065,
+  "class": "whitespace",
+  "old_exact": "J.C. , minor child",
+  "new_exact": "J.C., minor child",
+  "verified_count": 1,
+  "source": "PDF caption, line 15",
+  "confidence": "high",
+  "note": "Extra space before comma in party caption",
+  "_verdict": "auto:whitespace_only"
+ }
+]

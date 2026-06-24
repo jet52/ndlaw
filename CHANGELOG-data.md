@@ -2,6 +2,41 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P14-P16 (53 opinions)
+
+Batches P14-P16 (119 opinions, 2024 ND 77 -> 2023 ND 208; crosses into the
+reporter/markdown-sourced era). Applied 199 items across 53 opinions (50 AUTO
+citation-newline + signature joins, 126 clean reorder/respace, 19 verified
+judgment, 4 corrected). Triage HARDENED post-P13: items touching LaTeX (`$`/`\ `),
+the FILED-IN-OFFICE header, footnote-calls `[N]`, or digit runs are pulled to
+deferred/manual regardless of alpha-word-delta. pytest run after apply (66 pass).
+
+- Word-order scrambles, Greek/Cyrillic heading-letter OCR (`Ι`->`I`, `П`->`II`,
+  `В`->`B`), OCR fixes (2024 ND 9 caption de-garble; 2023 ND 249 Willison/
+  acknowledged), missing-text restorations.
+- 5 heading reformats (corrected from agent deletes), incl. TWO concurrence/dissent
+  section headers (2024 ND 73 "Bahr, J., concurring specially." / "Tufte, J.,
+  concurring in part and dissenting in part.") moved to their own line, and a
+  PDF-confirmed section IV inserted before 2024 ND 66 ¶14.
+
+3 opinions skipped (18237/18240/18232): overlapping citation-newline edits in
+markdown-sourced records -> defer to the citation/markdown systematic cleanup.
+
+### THREE systematic text_content findings surfaced (NOT yet acted on)
+- **YAML frontmatter in 17,593 opinions** — markdown/reporter-sourced records carry
+  their `---\ntitle: ...\n---` header inside text_content (modern PDF-sourced ones
+  do not). Largest text_content contamination in the corpus; affects FTS/display/
+  redistribution. Architectural decision for the user.
+- **`FILED IN THE OFFICE OF THE CLERK OF SUPREME COURT <date> STATE OF NORTH DAKOTA`
+  page-headers in 482 opinions** — a clerk-stamp variant the earlier remover did not
+  match (often leads text_content or is fused mid-body). Dedicated pass warranted.
+- **LaTeX-encoded citations / `\ ` escapes in ~34 opinions** (e.g. `$Swanson\ v.\
+  Swanson\ , 2019\ ND\ 25, \ 9, ...$`; the `$\P$`/`$\mathsf{}$` family). The `¶`
+  is lost in the encoding. Needs a careful deterministic decoder, not ad-hoc agent
+  edits (one agent wrongly proposed ADDING spaces around `$\P$`).
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P11-P13 (49 opinions)
 
 Batches P11-P13 (120 opinions, 2024 ND 198 -> 78). Gate: 11 AUTO / 79 REVIEW /

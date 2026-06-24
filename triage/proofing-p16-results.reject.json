@@ -1,0 +1,171 @@
+[
+ {
+  "opinion_id": 19812,
+  "class": "split_join",
+  "old_exact": "application for post- conviction relief. Heywood argues the district court erred in denying his post- conviction relief",
+  "new_exact": "application for post-conviction relief. Heywood argues the district court erred in denying his post-conviction relief",
+  "verified_count": 1,
+  "source": "2023ND244.pdf extracted via pdftotext -layout; source shows 'post-' at line end (38) followed by 'conviction' at line start (39), repeated at lines 38-39",
+  "confidence": "high",
+  "note": "The DB text has spaced hyphen 'post- conviction' (2 instances) where the PDF shows a line break hyphen 'post-\\nconviction'. This is an ingestion artifact from pdftotext: hyphens at line boundaries should be rejoined without the space that replaced the newline.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19807,
+  "class": "ocr_char",
+  "old_exact": "shift initiated",
+  "new_exact": "Shift initiated",
+  "verified_count": 1,
+  "source": "PDF visual confirmation (page 2) + substantive logic: subject of clause after comma requires capital letter",
+  "confidence": "high",
+  "evidence": "The phrase appears in paragraph 5 as '[¶5] After the failed attempt to remove the ice with the mini excavator, shift initiated a conference call...' After a comma, the subject 'Shift' (the plaintiff company) must be capitalized. The source PDF (pdftotext output) has a line break: 'shift\\ninitiated' due to page layout, but the capitalized form 'Shift' is rendered in the PDF visual. The DB incorrectly joined these with lowercase 'shift'.",
+  "note": "This is an OCR/text-extraction artifact where the line break in the PDF caused 'Shift' to appear at the start of a new line in the source text extraction, losing its initial capital due to how the PDF extraction handled the line boundary.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 19805,
+  "class": "missing_text",
+  "old_exact": "meaning to related to be understood as this code are in provisions.",
+  "new_exact": "meaning to related provisions.",
+  "verified_count": 1,
+  "source": "PDF source lines 194-197 (¶11, N.D.C.C. § 1-02-07); page break between 'related' and 'provisions'",
+  "confidence": "high",
+  "note": "Garbled OCR sequence. DB text 'to be understood as this code are in' is corruption spanning a page break in PDF (line 194 ends 'related', line 197 starts 'provisions'). These are in different sentences; ingestion mangled the page break.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19804,
+  "class": "other",
+  "old_exact": "Neilan, 2021 ND 217, ¶ 23, 967 N.W.2d 765",
+  "new_exact": "Neilan, 2021 ND 217, ¶ 23",
+  "verified_count": 2,
+  "source": "PDF pages 4-5, paragraphs 19 and 25",
+  "confidence": "high",
+  "evidence": "Authoritative PDF shows citation without reporter reference in both paragraphs 19 and 25. DB includes extra '967 N.W.2d 765' (appearing twice) that does not appear in source.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18237,
+  "class": "whitespace",
+  "old_exact": "¶ 7\n. \"",
+  "new_exact": "¶ 7. \"",
+  "verified_count": 1,
+  "source": "PDF source shows paragraph cite and period on same line in rule section",
+  "confidence": "high",
+  "note": "Extra newline between paragraph marker and period in rule definition",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "Release and Settlement Agreement (\"Agreement\"). The",
+  "new_exact": "Release and Settlement Agreement (\"Agreement\"). The",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+201C/U+201D curly quotes",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "Agreement included a provision stating: \"If there are any disputes regarding the terms of this Agreement, the Parties agree to submit those disputes to Judge Karen Klein (ret.) for a binding decision.\"",
+  "new_exact": "Agreement included a provision stating: \"If there are any disputes regarding the terms of this Agreement, the Parties agree to submit those disputes to Judge Karen Klein (ret.) for a binding decision.\"",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+201C/U+201D curly quotes",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "provides: \"If a proceeding involving a claim referable to arbitration under an alleged agreement to arbitrate is pending in court, a motion under this section must be made in that court. Otherwise a motion under this section may be made in any court as provided in section 32-29.3-27.\" N.D.",
+  "new_exact": "provides: \"If a proceeding involving a claim referable to arbitration under an alleged agreement to arbitrate is pending in court, a motion under this section must be made in that court. Otherwise a motion under this section may be made in any court as provided in section 32-29.3-27.\" N.D.",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+201C/U+201D curly quotes",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "[¶6] \"An issue which is not properly raised in the pleadings but is tried by the express or implied consent of the parties will be treated in all respects as having been raised in the pleadings.\" Mertz",
+  "new_exact": "[¶6] \"An issue which is not properly raised in the pleadings but is tried by the express or implied consent of the parties will be treated in all respects as having been raised in the pleadings.\" Mertz",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+201C/U+201D curly quotes",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "Weikum filed a motion entitled \"Motion to Dismiss\" citing N.D.R.Civ.P.",
+  "new_exact": "Weikum filed a motion entitled \"Motion to Dismiss\" citing N.D.R.Civ.P.",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+201C/U+201D curly quotes",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "granting Rodney E. Pagel and Scott A. Hager's motion for summary judgment.",
+  "new_exact": "granting Rodney E. Pagel and Scott A. Hager's motion for summary judgment.",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+2019 smart apostrophe",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "opposed Weikum's motion to compel",
+  "new_exact": "opposed Weikum's motion to compel",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+2019 smart apostrophe",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19802,
+  "class": "ocr_char",
+  "old_exact": "district court's authority to \"compel arbitration,\" citing relevant",
+  "new_exact": "district court's authority to \"compel arbitration,\" citing relevant",
+  "verified_count": 1,
+  "source": "PDF authoritative source U+2019/U+201C/U+201D",
+  "confidence": "high",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18234,
+  "class": "whitespace",
+  "old_exact": ". . . . . The burden of",
+  "new_exact": ". . . . The burden of",
+  "verified_count": 1,
+  "source": "PDF source shows ellipsis with 4 spaced dots (. . . .) preceding 'The burden'; DB contains 5 spaced dots (. . . . .)",
+  "confidence": "high",
+  "note": "Ellipsis with incorrect dot count; PDF confirms 4-dot format used in the quoted passage from Illinois v. Rodriguez",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18230,
+  "class": "ocr_char",
+  "old_exact": "substantial rights.\"\nId.\n Nelson did not claim",
+  "new_exact": "substantial rights. Id. Nelson did not claim",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction",
+  "confidence": "high",
+  "evidence": "Stray UTF-8 encoded right double quotation mark (U+201D) appears after period in DB. Should be a space. PDF source shows space instead. Verified exact byte sequence in DB (e2 80 9d = UTF-8 for U+201D) and confirmed corrected form matches source verbatim.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19796,
+  "class": "split_join",
+  "old_exact": "of me.” to withdraw his plea because However, Morales",
+  "new_exact": "of me.” However, Morales",
+  "verified_count": 1,
+  "source": "2023 ND 209 PDF (pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "In the PDF, after the closing quotation mark of Morales' statement ending in 'of me.\"', the text immediately continues with 'However, Morales did not argue'. The DB incorrectly inserts ' to withdraw his plea because' between the quote and 'However'. This phrase belongs elsewhere in the opinion and was misplaced during ingestion, likely due to a page break artifact.",
+  "_verdict": "reject:unverified"
+ }
+]

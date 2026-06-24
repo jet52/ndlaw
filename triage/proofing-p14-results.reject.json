@@ -1,0 +1,169 @@
+[
+ {
+  "opinion_id": 20045,
+  "class": "split_join",
+  "old_exact": "[¶42] Daniel J. Crothers Bahr, Justice, dissenting.",
+  "new_exact": "[¶42] Daniel J. Crothers\n\n\n\nBahr, Justice, dissenting.",
+  "verified_count": 1,
+  "source": "PDF shows 'Daniel J. Crothers' as signature line for Crothers dissent (line 595), followed by blank lines, then 'Bahr, Justice, dissenting.' as separate header (line 599 with blank line 596-598 between)",
+  "confidence": "high",
+  "note": "DB incorrectly merged two separate structural elements: Crothers' dissent signature and Bahr's dissent header. The PDF clearly shows these on separate lines with multiple blank lines between them.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20044,
+  "class": "ocr_char",
+  "old_exact": "Recognizing their importance, *777 we have said that",
+  "new_exact": "Recognizing their importance, we have said that",
+  "verified_count": 1,
+  "source": "PDF: 2024ND132.pdf (verified as 2024 ND 70)",
+  "confidence": "high",
+  "note": "Westlaw-specific page marker *777 embedded mid-sentence in the Isaacson citation block. The authoritative PDF source does not contain this marker; the page break appears as structural whitespace/form-feed in the PDF but the marker itself is not part of the opinion text.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20044,
+  "class": "missing_text",
+  "old_exact": "2024 ND 9, ¶ 27, 2 N.W.3d 228",
+  "new_exact": "2024 ND 9, ¶ 27",
+  "verified_count": 1,
+  "source": "PDF: 2024ND132.pdf (verified as 2024 ND 70)",
+  "confidence": "high",
+  "note": "The reporter citation ', 2 N.W.3d 228' appears in the DB but not in the authoritative PDF source. Verified in both texts at paragraph 7. This appears to be an erroneous duplication or insertion during transcription, as the same case is already cited with full reporter information in paragraph 6.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20040,
+  "class": "split_join",
+  "old_exact": "non- unanimous",
+  "new_exact": "non-unanimous",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND67.pdf page 181, where the word is line-wrapped as 'non-' at end of line and 'unanimous' at start of next line",
+  "confidence": "high",
+  "evidence": "The PDF shows the hyphenated word 'non-' at the end of line 181, continuing to 'unanimous' at the start of line 182, indicating a line-wrapped compound adjective. The DB incorrectly includes a space after the hyphen: 'non- unanimous'. Standard formatting normalizes this to 'non-unanimous' (no space after hyphen in a compound adjective).",
+  "note": "The hyphenated word 'non-unanimous' is a single compound adjective modifying 'jury'. The space in 'non- ' appears to be an OCR/ingestion artifact from the line break in the PDF.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20039,
+  "class": "missing_text",
+  "old_exact": "\n[¶15] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr\n\nIV\n\n",
+  "new_exact": "\n[¶15] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr\n\n",
+  "verified_count": 1,
+  "source": "/tmp/src_2024ND66.txt lines 214-219",
+  "confidence": "high",
+  "evidence": "PDF signature block ends with justices' names (lines 214-218), followed only by blank lines and page number (line 223). Database has 'IV' inserted incorrectly after the signature block. The IV section heading belongs before [¶14], not after the signatures.",
+  "note": "Complementary to Proposal 1: removes the misplaced IV from the end.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20038,
+  "class": "split_join",
+  "old_exact": "by failing to allow for cross- examination of",
+  "new_exact": "by failing to allow for cross-examination of",
+  "verified_count": 1,
+  "source": "2024ND65.pdf - line-break hyphenation 'cross-\\nexamination' at page break",
+  "confidence": "high",
+  "evidence": "PDF shows 'cross-' at line end of page 2, 'examination' at start of ¶3. pdftotext converted the line-break hyphen to hyphen-space artifact.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20038,
+  "class": "split_join",
+  "old_exact": "in a 160- acre farmland",
+  "new_exact": "in a 160-acre farmland",
+  "verified_count": 1,
+  "source": "2024ND65.pdf - line-break hyphenation '160-\\nacre' at page 4-5 boundary",
+  "confidence": "high",
+  "evidence": "PDF shows '160-' at end of page 4, 'acre' at start of page 5 within ¶16. Standard hyphenation of numerals with units.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20038,
+  "class": "split_join",
+  "old_exact": "especially a closely- held business",
+  "new_exact": "especially a closely-held business",
+  "verified_count": 1,
+  "source": "2024ND65.pdf - line-break hyphenation 'closely-\\nheld' at page boundary",
+  "confidence": "high",
+  "evidence": "PDF shows 'closely-' at end of one line, 'held' at start of next in ¶25 (page 7-8 boundary). Standard compound adjective.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20011,
+  "class": "ocr_char",
+  "old_exact": "David Papenhausen, – Plaintifi",
+  "new_exact": "David Papenhausen, – Plaintiff",
+  "verified_count": 1,
+  "source": "PDF line 15: 'David Papenhausen,                                                Plaintiff'",
+  "confidence": "high",
+  "note": "OCR error: missing final 'f' in party name 'Plaintiff'",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20011,
+  "class": "missing_text",
+  "old_exact": "for the District of North Dakota.\n\n[¶19]",
+  "new_exact": "for the District of North Dakota.\n\n                                     IV\n\n[¶19]",
+  "verified_count": 1,
+  "source": "PDF lines 308-313: section marker 'IV' appears centered on line 311 between page 7 and paragraph 19",
+  "confidence": "high",
+  "note": "Section IV Roman numeral marker missing from DB; should appear between [¶18] conclusion and [¶19] start",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20011,
+  "class": "paragraph_seq",
+  "old_exact": "[¶35] Jon J. Jensen, C.J. Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Douglas A. Bahr",
+  "new_exact": "[¶35] Jon J. Jensen, C.J.\nDaniel J. Crothers\nLisa Fair McEvers\nJerod E. Tufte\nDouglas A. Bahr",
+  "verified_count": 1,
+  "source": "PDF lines 492-496: each justice name on separate line with 6-space indentation",
+  "confidence": "high",
+  "note": "Justices' signatures should appear on separate lines as in authoritative PDF, not run together",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20008,
+  "class": "other",
+  "old_exact": "was below the standard of reasonableness. B\n\n[¶12]",
+  "new_exact": "was below the standard of reasonableness.\n\n[¶12]",
+  "verified_count": 1,
+  "source": "PDF p. 5 shows section 'B' on separate centered line before ¶12; DB appends to ¶11 text",
+  "confidence": "high",
+  "note": "Ingestion artifact: structural section markers should appear on separate centered lines",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20008,
+  "class": "other",
+  "old_exact": "trial counsel's alleged error. C\n\n[¶14]",
+  "new_exact": "trial counsel's alleged error.\n\n[¶14]",
+  "verified_count": 1,
+  "source": "PDF p. 5 shows section 'C' on separate centered line before ¶14; DB appends to ¶13 text",
+  "confidence": "high",
+  "note": "Ingestion artifact: structural section markers should appear on separate centered lines",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20008,
+  "class": "ocr_char",
+  "old_exact": "laptop during D deliberations",
+  "new_exact": "laptop during deliberations",
+  "verified_count": 1,
+  "source": "PDF p. 5 shows section 'D' on separate centered line before ¶16; DB embeds it mid-sentence",
+  "confidence": "high",
+  "note": "CRITICAL ERROR: Section letter D is embedded in the middle of text 'during D deliberations' instead of appearing on separate line; breaks sentence grammar",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20008,
+  "class": "other",
+  "old_exact": "during their deliberations.\"). E\n\n[¶22]",
+  "new_exact": "during their deliberations.\").\n\n[¶22]",
+  "verified_count": 1,
+  "source": "PDF p. 8 shows section 'E' on separate centered line before ¶22; DB appends to ¶21 text",
+  "confidence": "high",
+  "note": "Ingestion artifact: structural section markers should appear on separate centered lines",
+  "_verdict": "reject:bad_anchor"
+ }
+]

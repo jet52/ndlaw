@@ -1,0 +1,169 @@
+[
+ {
+  "opinion_id": 20006,
+  "class": "split_join",
+  "old_exact": "R.L.- P.",
+  "new_exact": "R.L.-P.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND36.pdf (page 1, line 63-64: 'R.L.-\\nP.')",
+  "confidence": "high",
+  "evidence": "The DB text shows 'R.L.- P.' with a space after the hyphen. The authoritative PDF (pdftotext output) shows the citation broken across lines as 'R.L.-\\nP.', indicating the proper formatted text is 'R.L.-P.' with no space. This appears to be an OCR/text extraction artifact where the line break was incorrectly converted to a space. The correct case name is 'In re R.L.-P.' with the hyphen directly connecting L. and P.",
+  "_verdict": "reject:db_matches_pdf"
+ },
+ {
+  "opinion_id": 20005,
+  "class": "missing_text",
+  "old_exact": "He did not pay a license fee for FILED IN THE OFFICE OF THE CLERK OF SUPREME COURT FEBRUARY 22, 2024 STATE OF NORTH DAKOTA 2023",
+  "new_exact": "He did not pay a license fee for 2023",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2024/2024ND35.pdf (page 1-2)",
+  "confidence": "high",
+  "note": "This is page-break/header artifact. The filing header text was incorrectly inserted in the middle of paragraph 2 during OCR/ingestion. The PDF shows the page number '1' and page break between 'for' and '2023', not header text within the sentence.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20001,
+  "class": "split_join",
+  "old_exact": "district court made a mistake. D\n",
+  "new_exact": "district court made a mistake.\n\nD\n",
+  "verified_count": 1,
+  "source": "PDF pdftotext extracted lines 342-346: mistake. followed by blank line and page header, then centered 'D' on its own line",
+  "confidence": "high",
+  "note": "Section header D improperly fused to preceding period. PDF shows section heading as separate centered line after paragraph close.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 20000,
+  "class": "split_join",
+  "old_exact": "[¶34] Jon J. Jensen, C.J.Daniel J. CrothersLisa Fair McEversJerod E. TufteDouglas A. Bahr",
+  "new_exact": "[¶34] Jon J. Jensen, C.J.\nDaniel J. Crothers\nLisa Fair McEvers\nJerod E. Tufte\nDouglas A. Bahr",
+  "source": "williams_13.png (PDF page 13) - signature block clearly formatted with line breaks",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "PDF page 13 displays the signature in proper format with 'C.J.' ending the first line and each justice name on a separate line. Database concatenates all names without line breaks, creating a single run-on line that violates the visual formatting of the authoritative source.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19998,
+  "class": "split_join",
+  "old_exact": "and the defendant understands,' numerous determine consequences of pleading guilty",
+  "new_exact": "and determine that the defendant understands,' numerous consequences of pleading guilty",
+  "verified_count": 1,
+  "source": "/tmp/src_2024ND29.txt (PDF via pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "Paragraph 25 contains a long quoted passage from United States v. Hyde. The DB text has fused two parts of a sentence that should read 'and inform the defendant of, and determine that the defendant understands,' but appears in DB as 'and inform the defendant of, and the defendant understands,' with the word 'determine that the' omitted, and 'determine' misplaced later as 'numerous determine consequences' instead of 'numerous consequences'. The source PDF shows correct spacing and word order across line breaks (337-338: 'and\\n      determine that the defendant understands,'). The text must be reconstructed to restore the missing phrase.",
+  "note": "This error occurs in the long U.S. Supreme Court quote spanning lines 326-360 in the source. The error involves both word omission ('determine that') and text fusion with an incorrectly positioned word ('determine'). The curly quote character (U+2019) is preserved in both versions.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19994,
+  "class": "ocr_char",
+  "old_exact": "Bolenske v. Sandstrom, 2022 ND 148, ¶ 30, 978 N.W.2d 72",
+  "new_exact": "Bolinski v. Sandstrom, 2022 ND 148, ¶ 30, 978 N.W.2d 72",
+  "verified_count": 1,
+  "source": "PDF page 7; mutool renders 'Bolinski' clearly",
+  "confidence": "high",
+  "note": "The case name 'Bolinski v. Sandstrom' is a published opinion. DB transcription has final 'e' instead of final 'i'. PDF source confirms 'Bolinski' (ending in -i).",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19985,
+  "class": "ocr_char",
+  "old_exact": "[¶12] $ We have consistently",
+  "new_exact": "[¶12] We have consistently",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction vs. authoritative printed PDF (2024ND23.pdf page 7)",
+  "confidence": "high",
+  "evidence": "The printed PDF shows ¶12 beginning with 'We have consistently' (no dollar sign prefix). The DB contains an extraneous dollar sign immediately after the paragraph marker, likely an OCR artifact paired with the trailing $ from ¶11.",
+  "note": "Garbage character at paragraph boundary; ¶12 opening",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19974,
+  "class": "split_join",
+  "old_exact": "for appellate 'hearing' contemplates an jurisdiction purposes. \"The word opportunity to be heard.\"",
+  "new_exact": "for appellate jurisdiction purposes. \"The word 'hearing' contemplates an opportunity to be heard.\"",
+  "verified_count": 1,
+  "source": "PDF source_2024ND22.txt lines 220-230 (Aggie quote block)",
+  "confidence": "high",
+  "note": "OCR/ingestion error: The quoted phrase 'hearing' contemplates an was transposed and separated from its closing context. The correct phrasing restores the grammatical structure of the appellate jurisdiction quote from the Aggie case. Text in question: paragraph [¶12], discussing the Aggie precedent.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19952,
+  "class": "paragraph_seq",
+  "old_exact": "Dimmlers. A\n\n[¶27]",
+  "new_exact": "Dimmlers.\n\nA\n\n[¶27]",
+  "verified_count": 1,
+  "source": "PDF has section letter on own line; DB appends to end of prior paragraph",
+  "confidence": "high",
+  "note": "Subsection letter A should appear on separate line after period",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19952,
+  "class": "paragraph_seq",
+  "old_exact": "made. D\n\n[¶34]",
+  "new_exact": "made.\n\nD\n\n[¶34]",
+  "verified_count": 1,
+  "source": "PDF has section letter on own line; DB appends to end of prior paragraph",
+  "confidence": "high",
+  "note": "Subsection letter D should appear on separate line after period",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19952,
+  "class": "missing_text",
+  "old_exact": "court heard the parenting investigator's reports. The court found",
+  "new_exact": "court heard testimony regarding the parenting investigator's reports. The court found",
+  "verified_count": 1,
+  "source": "PDF page 20, ¶65: 'heard testimony regarding the parenting investigator's reports'",
+  "confidence": "high",
+  "note": "Paragraph 65 missing phrase 'testimony regarding' — DB has 'heard the' but should be 'heard testimony regarding the'",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19940,
+  "class": "split_join",
+  "old_exact": "of a post- conviction proceeding.'\"",
+  "new_exact": "of a post-conviction proceeding.'\"",
+  "verified_count": 1,
+  "source": "PDF source shows line-wrapped 'post-\\n      conviction' with no space after hyphen; DB incorrectly ingested as 'post- conviction' with space",
+  "confidence": "high",
+  "evidence": "Source PDF line 159-160 shows 'post-' at end of line and 'conviction' at start of next line with no intervening space. DB text has 'post- ' (dash-space) instead. The line-wrap artifact was misinterpreted as a space character during OCR/ingestion.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19907,
+  "class": "whitespace",
+  "old_exact": "in such action. . . . . 23. Notices",
+  "new_exact": "in such action. .... 23. Notices",
+  "verified_count": 1,
+  "source": "PDF pdftotext lines 108-111: standalone '....' separator before section 23. Notices",
+  "confidence": "high",
+  "note": "Spaced '. . . . .' is ingestion artifact from compact separator '....'. ND style requires compact form.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19896,
+  "class": "split_join",
+  "old_exact": "ts of an action or some part thereof; . . . . \"Under Section 28-27-02 ",
+  "new_exact": "ts of an action or some part thereof; .... \"Under Section 28-27-02 ",
+  "verified_count": 1,
+  "source": "PDF source (pdftotext -layout) line 114 shows compact '....' not spaced '. . . . '",
+  "confidence": "high",
+  "note": "Second ellipsis (4-dot) in statute quote within [¶6], following statute section 5. PDF shows compact form '....' on separate line 114. Both ellipses in statute quotation should use compact forms per ND court printing conventions.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 20054,
+  "class": "split_join",
+  "old_exact": "state- owned",
+  "new_exact": "state-owned",
+  "verified_count": 1,
+  "source": "PDF pdftotext rendering of /Users/jerod/refs/nd/opin/pdfs/2024/2024ND8.pdf shows word split across lines as 'state-' (line end) and 'owned' (line start); DB ingestion preserved the hyphen+space artifact from line-break handling",
+  "confidence": "high",
+  "note": "In paragraph [¶16], the hyphenated compound adjective 'state-owned' was rendered in the PDF as a line-break split ('state-' at end of line, 'owned' at start of next). The pdftotext tool converted this to 'state- owned' (hyphen+space). The corrected form is the compound 'state-owned' without space.",
+  "_verdict": "reject:db_matches_pdf"
+ }
+]
