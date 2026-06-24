@@ -66,6 +66,9 @@ Authoritative source for this era: {source_desc}
 - **Form-feed / page furniture (do NOT propose):** a 0x0C byte (page break) and any
   running header it precedes (short case name + "No./Nos./Civil No. <docket>"
   repeating the caption) are owned by a separate deterministic pass. Ignore them.
+- **Quote characters (do NOT propose):** the DB uses STRAIGHT ASCII quotes/apostrophes
+  (" and ') by policy; PDFs use curly (“ ” ‘ ’). This is INTENTIONAL — never flag or
+  propose a straight-vs-curly quote difference.
 - `paragraph_seq` — a `[¶N]` marker out of sequence/duplicated/missing where the
   correct number is UNAMBIGUOUS from the surrounding markers; else flag.
   CAUTION: a restart/repeat of low numbers mid-opinion (…¶11, then ¶1-9, then ¶12)
