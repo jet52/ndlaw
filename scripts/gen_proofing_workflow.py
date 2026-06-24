@@ -24,12 +24,19 @@ for ln in open("triage/corpus-structural-report.jsonl"):
     struct[r["id"]] = r["flags"]
 
 con = sqlite3.connect(DB)
-rows = con.execute(
-    "SELECT o.id, o.date_filed, "
-    "  (SELECT citation FROM citations c WHERE c.opinion_id=o.id ORDER BY is_primary DESC LIMIT 1) cite, "
-    "  (SELECT source_path FROM opinion_sources s WHERE s.opinion_id=o.id ORDER BY is_primary DESC LIMIT 1) src "
-    "FROM opinions o WHERE o.text_content IS NOT NULL AND o.text_content<>'' "
-    "ORDER BY o.date_filed DESC LIMIT ? OFFSET ?", (LIMIT, OFFSET)).fetchall()
+_cols = ("SELECT o.id, o.date_filed, "
+         "  (SELECT citation FROM citations c WHERE c.opinion_id=o.id ORDER BY is_primary DESC LIMIT 1) cite, "
+         "  (SELECT source_path FROM opinion_sources s WHERE s.opinion_id=o.id ORDER BY is_primary DESC LIMIT 1) src "
+         "FROM opinions o ")
+if "--ids" in sys.argv:
+    # re-run a specific id list (e.g. agents the workflow dropped); OFFSET/LIMIT ignored
+    ids = [int(x) for x in sys.argv[sys.argv.index("--ids") + 1].split(",")]
+    q = f"{_cols} WHERE o.id IN ({','.join('?' * len(ids))})"
+    rows = con.execute(q, ids).fetchall()
+else:
+    rows = con.execute(
+        _cols + "WHERE o.text_content IS NOT NULL AND o.text_content<>'' "
+        "ORDER BY o.date_filed DESC LIMIT ? OFFSET ?", (LIMIT, OFFSET)).fetchall()
 
 
 def era_source(cite, year, src):
