@@ -1,0 +1,36 @@
+[
+ {
+  "opinion_id": 19686,
+  "class": "split_join",
+  "old_exact": "V\n\nsupport,\n\nincluding\n\n[¶23] \"In a divorce action, the court has authority to order payment of post- expenses, under appropriate college minority circumstances.\"",
+  "new_exact": "V\n\n[¶23] \"In a divorce action, the court has authority to order payment of post-minority support, including college expenses, under appropriate circumstances.\"",
+  "verified_count": 1,
+  "source": "/tmp/src_2022ND204.txt (PDF extract, page 8-9, section V paragraph 23)",
+  "confidence": "high",
+  "note": "Single critical OCR/ingestion defect that fragmented a quoted sentence. The words 'support,' and 'including' were separated from the quote and placed before [¶23], while the quote text itself was corrupted (showing 'post- expenses, under appropriate college minority circumstances' instead of the correct 'post-minority support, including college expenses, under appropriate circumstances'). PDF rendering shows the complete correct quote spanning three lines: 'In a divorce action, the court has authority to order payment of post-\\nminority support, including college expenses, under appropriate\\ncircumstances.' Image-verified via mutool render of PDF page 8-9.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18072,
+  "class": "split_join",
+  "old_exact": "appropriate to the nature of the case.\" Curtiss v. Curtiss, 2016 ND 197, ¶ 8, \n886 N.W.2d 565",
+  "new_exact": "appropriate to the nature of the case.\" Curtiss v. Curtiss, 2016 ND 197, ¶ 8, 886 N.W.2d 565",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND172.pdf line 326-327",
+  "confidence": "high",
+  "evidence": "PDF shows citation continues on same line without break: '2016 ND 197, ¶ 8, 886 N.W.2d 565' whereas DB breaks between comma-space and reporter volume",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 18075,
+  "class": "split_join",
+  "old_exact": "process.\"\nId.\n\n(quoting",
+  "new_exact": "process.\" Id.\n(quoting",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND165.pdf (line 106)",
+  "confidence": "high",
+  "evidence": "DB has standalone 'Id.' on line 112 after closing quote on line 111. PDF source (pdftotext line 106) shows 'process.\" Id.' on same line, confirmed by visual inspection.",
+  "note": "The period ending the quoted material is followed by 'Id.' on the same line in the authoritative PDF source. In the DB, 'Id.' was incorrectly placed on a separate line with blank lines intervening.",
+  "_verdict": "reject:unverified"
+ }
+]

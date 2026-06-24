@@ -1,0 +1,26 @@
+[
+ {
+  "opinion_id": 19641,
+  "class": "ocr_char",
+  "old_exact": "post- conviction",
+  "new_exact": "post-conviction",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2022/2022ND115.pdf lines 41-42 shows 'post-' at end of line 41, 'conviction' at start of line 42; OCR artifact introduced unwanted space after hyphen",
+  "confidence": "high",
+  "evidence": "The PDF shows the word hyphenated across a line break: 'post-' ends line 41, 'conviction' begins line 42. The source text confirms it should be 'post-conviction' with no space (appears once in source, correctly formatted). The DB incorrectly has 'post- conviction' (with space after hyphen) — a classic OCR artifact from line-break hyphenation.",
+  "note": "Line 35 of DB. This is a straightforward OCR ingestion error where pdftotext preserved the hyphen but added a space when reconstituting the word across the line boundary.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18005,
+  "class": "whitespace",
+  "old_exact": "of the legislature. Midthun v. N.D. Workforce Safety Ins., 2009 ND 22, ¶ 10, \n",
+  "new_exact": "of the legislature. Midthun v. N.D. Workforce Safety Ins., 2009 ND 22, ¶ 10,\n",
+  "verified_count": 1,
+  "source": "PDF line 113 vs DB line 123: PDF source lacks trailing space",
+  "confidence": "high",
+  "evidence": "DB line 123 ends with comma-space-newline; PDF line 113 ends with comma-newline. Character-by-character comparison confirms PDF is authoritative source.",
+  "note": "Mechanical trailing whitespace removal. Single occurrence, verified in full text.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

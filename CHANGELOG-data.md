@@ -26,6 +26,27 @@ almost entirely this class), 8 LaTeX, 3 digit. Plus 2 markdown-mangle deletions
 (2023 ND 78, 2023 ND 16) held to the citation cohort. Detector 175/0; invariants
 24 ok / 2 known / 0 regressed; 66 tests pass.
 
+## Batch `proofing-review-approved-2026-06-24` / `corpus-proofing-2026-06-24` — proofing fleet P23-P25 (21 opinions)
+
+Batches P23-P25 (120 opinions, 2022 ND 209 -> 83), first cycle after the citation-
+rejoin pass + prompt rules 10-12. NOISE DROPPED SHARPLY: REVIEW 44 (was 281 last
+cycle); clean rate 25-31/40 per batch. Applied 27 items across 21 opinions (clean
+reorder/move/punct + 2 PDF-verified scrambles: 2022 ND 202 "placed into question
+the professional competence", 2022 ND 150 "argues it has identified"). pytest clean.
+
+DEFERRED (conservative, integrity-first):
+- Heading-letter deletes (2022 ND 157 A/B, 132 A/B, 85 "A An") -> manual reformat
+  queue; NOT deleted (avoids the delete-should-be-move error class; PDF-standalone
+  inconclusive).
+- 2022 ND 183 " V."->" v." held: PDF has " V." 2x (possible middle initials, not
+  just citation connectors) — letter-case change needs image confirmation.
+- 2022 ND 145 complementary quoted-passage move (probe not PDF-confirmed).
+- 15 residual cite-mangle (patterns the rejoin pass did not target, e.g. "303\n ("),
+  1 ellipsis-WIDEN (". . . ." -> ".   .   ." = pdftotext column padding, NOT real;
+  correctly rejected), 1 digit.
+
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `citation-rejoin-2026-06-24` — rejoin fragmented citations (1,629 opinions)
 
 Markdown/reporter-sourced opinions ingested citations split across lines with stray

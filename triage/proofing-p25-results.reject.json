@@ -1,0 +1,25 @@
+[
+ {
+  "opinion_id": 19642,
+  "class": "whitespace",
+  "old_exact": ". . . .",
+  "new_exact": "....",
+  "verified_count": 3,
+  "source": "pdftotext -layout on /Users/jerod/refs/nd/opin/pdfs/2022/2022ND118.pdf",
+  "confidence": "high",
+  "evidence": "Lines 134, 143, 159 contain spaced ellipsis '. . . .' which are ingestion artifacts from PDF extraction. North Dakota opinions use compact four-dot ellipsis format '....' per style convention. All three occurrences in the statute quotations (Section 65-04-32) are identical and should be collapsed to compact form.",
+  "note": "These appear within quoted statutory text at lines 134 ('petition for reconsideration. . . . The'), 143 ('reconsideration. . . . If the'), and 159 ('for rehearing. . . .') All three are the same pattern and occur once each in the document.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 18036,
+  "class": "split_join",
+  "old_exact": "18, 961 N.W.2d 303\n (\"[W]ithout",
+  "new_exact": "18, 961 N.W.2d 303 (\"[W]ithout",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction from /Users/jerod/refs/nd/opin/pdfs/2022/2022ND120.pdf",
+  "confidence": "high",
+  "evidence": "The DB text contains an erroneous hard line break after the reporter citation '961 N.W.2d 303' immediately before the opening parenthesis of the quotation '([W]ithout...'. The authoritative PDF shows this should be a single continuous line with a space (not newline) separating the reporter and the quote. The Abdi v. State citation block was incorrectly split across lines during ingestion/markdown processing.",
+  "_verdict": "reject:unverified"
+ }
+]

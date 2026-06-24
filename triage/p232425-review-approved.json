@@ -1,0 +1,278 @@
+[
+ {
+  "opinion_id": 18091,
+  "class": "whitespace",
+  "old_exact": "1The explanatory note to N.D.R.Civ.P. 25 states our rule is derived from Fed. R. Civ. P. 25. Federal",
+  "new_exact": "1 The explanatory note to N.D.R.Civ.P. 25 states our rule is derived from Fed. R. Civ. P. 25. Federal",
+  "verified_count": 1,
+  "source": "pdftotext -layout output, line 153 shows '1 The explanatory...' with space after footnote number",
+  "confidence": "high",
+  "note": "Footnote 1 begins without space between the number and the text. The authoritative PDF rendering shows a clear space character after the footnote call number."
+ },
+ {
+  "opinion_id": 18084,
+  "class": "whitespace",
+  "old_exact": "motive to kill [.]",
+  "new_exact": "motive to kill[.]",
+  "verified_count": 1,
+  "source": "Authoritative PDF (2022ND184.pdf) extracted via pdftotext showing 'motive to kill[.]' without space before bracket",
+  "confidence": "high",
+  "evidence": "PDF text rendering: 'motive to kill[.]' (no space). DB text has unwanted space between word and bracket citation marker."
+ },
+ {
+  "opinion_id": 18079,
+  "class": "whitespace",
+  "old_exact": "STATE OF NORTH DAKOTA\n\n\n2022 ND 181",
+  "new_exact": "STATE OF NORTH DAKOTA\n\n2022 ND 181",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND181.pdf",
+  "confidence": "high",
+  "note": "Extra blank line in caption section. Source PDF shows single blank line between 'STATE OF NORTH DAKOTA' and '2022 ND 181', but DB contains two blank lines."
+ },
+ {
+  "opinion_id": 18079,
+  "class": "whitespace",
+  "old_exact": "disqualified.\n\n\n 1",
+  "new_exact": "disqualified.\n\n\n\n 1",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND181.pdf",
+  "confidence": "high",
+  "note": "Missing blank line before page number. Source PDF shows three blank lines after 'disqualified.' before page number, but DB contains only two blank lines."
+ },
+ {
+  "opinion_id": 18072,
+  "class": "split_join",
+  "old_exact": " registration process set forth in R.C. 3127.35. See McGhan v.\n Vettel,\n122 Ohio St.3d 227, 2009–Ohio–2884,\n909 N.E.2d 1279, ¶",
+  "new_exact": " registration process set forth in R.C. 3127.35. See McGhan v. Vettel, 122 Ohio St.3d 227, 2009–Ohio–2884, 909 N.E.2d 1279, ¶",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND172.pdf lines 156-158",
+  "confidence": "high",
+  "evidence": "PDF shows citation rejoined: 'See McGhan v. Vettel, 122 Ohio St.3d 227, 2009–Ohio–2884, 909 N.E.2d 1279, ¶' on continuous lines, whereas DB breaks it across multiple lines"
+ },
+ {
+  "opinion_id": 18072,
+  "class": "split_join",
+  "old_exact": "Hays,\n2014-Ohio-3357, ¶ 15.",
+  "new_exact": "Hays, 2014-Ohio-3357, ¶ 15.",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND172.pdf line 166",
+  "confidence": "high",
+  "evidence": "PDF shows case name and citation on same line without intervening newline"
+ },
+ {
+  "opinion_id": 18072,
+  "class": "split_join",
+  "old_exact": "(quoting Baker v. Baker, 2019 ND 225, ¶ 7,\n932 N.W.2d 510).",
+  "new_exact": "(quoting Baker v. Baker, 2019 ND 225, ¶ 7, 932 N.W.2d 510).",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND172.pdf line 426",
+  "confidence": "high",
+  "evidence": "PDF shows citation continuous: '2019 ND 225, ¶ 7, 932 N.W.2d 510' without line break between comma and reporter volume"
+ },
+ {
+  "opinion_id": 19657,
+  "class": "whitespace",
+  "old_exact": "review.[¶9]",
+  "new_exact": "review. [¶9]",
+  "verified_count": 1,
+  "source": "PDF shows [¶9] as separate paragraph starting after [¶8]; all other paragraph transitions in DB have proper spacing between period and next paragraph marker",
+  "confidence": "high",
+  "evidence": "Comparison of all [¶N] transitions in DB shows consistent pattern: '.<newline(s)>[¶' or (when merged) '.<space>[¶'. The [¶8]-[¶9] transition is the only one with '.[¶' (no space). Visual inspection of PDF page 4 confirms [¶9] begins new paragraph.",
+  "note": "All other character differences between DB and PDF are intentional quote style differences (straight ASCII in DB vs. curly/typographic in PDF). This whitespace defect is the only substantive ingestion/OCR error."
+ },
+ {
+  "opinion_id": 18043,
+  "class": "whitespace",
+  "old_exact": "\n Gerald W. VandeWalle\n Daniel J. Crothers\n Lisa Fair McEvers\n Jerod E. Tufte",
+  "new_exact": "\n     Gerald W. VandeWalle\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2022/2022ND130.pdf shows proper right-aligned indentation with 5 spaces before each justice's name on the signature page",
+  "confidence": "high",
+  "note": "The justice names in the signature block are indented to align vertically. The DB contains only 1 space before each name, while the PDF source shows 5 spaces for proper alignment. This is a presentation/mechanical whitespace error, not a content error."
+ },
+ {
+  "opinion_id": 19674,
+  "class": "split_join",
+  "old_exact": "[¶2] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte",
+  "new_exact": "[¶2] Jon J. Jensen, C.J.\n     Gerald W. VandeWalle\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND162.pdf",
+  "confidence": "high",
+  "evidence": "The PDF source (lines 51-55) shows justice names formatted on separate indented lines following the ¶2 paragraph marker. The DB text incorrectly concatenates all justice names onto a single line. This is a line-break preservation error from OCR/ingestion processing.",
+  "note": "Justice names are centered and indented in the PDF. The DB collapsed the multi-line format to a single line. Restoring the correct line breaks with appropriate indentation (5 spaces per source formatting) restores fidelity to the printed original."
+ },
+ {
+  "opinion_id": 19672,
+  "class": "split_join",
+  "old_exact": "[¶12] We affirm the criminal judgment.\n\nIII\n\n[¶13] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte Jensen, Chief Justice, concurring.\n\n[¶14]",
+  "new_exact": "III\n\n[¶12] We affirm the criminal judgment.\n\n[¶13] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte\n\nJensen, Chief Justice, concurring.\n\n[¶14]",
+  "verified_count": 1,
+  "source": "2022 ND 160 PDF (pdftotext extract, lines 219-234)",
+  "confidence": "high",
+  "evidence": "PDF source clearly shows: (1) Section III header appearing BEFORE [¶12], not after; (2) [¶13] containing only the justice roster names (on separate indented lines in PDF, but consolidated to one line in plain-text DB format); (3) 'Jensen, Chief Justice, concurring.' appearing as a separate text element after [¶13], not part of the paragraph. The DB incorrectly merges 'Jensen, Chief Justice, concurring.' into [¶13] and places the III section header after [¶12] instead of before it.  The DB text shows the merged form occurs exactly once; the corrected form matches the PDF source precisely.",
+  "note": "This is a structural ingestion defect affecting paragraph-level organization. The justice names in the PDF are on separate indented lines; the correction preserves them on a single line (consistent with rest of DB format) while restoring the proper boundary between [¶13] and the concurrence header."
+ },
+ {
+  "opinion_id": 19666,
+  "class": "heading_seq",
+  "old_exact": "[¶10] No stipulation or agreement was filed with the district court. Further, this case is different from Brakke in that Tim Hamburger did not provide any excusable reason for the delay in moving to modify primary residential responsibility, which did not occur until May 2021 (20 months after T.L.H. began residing with him). Thus, we conclude the court did not err by refusing to retroactively terminate Tim Hamburger's child support obligation or recognize an obligation by Kimberly Hamburger. B",
+  "new_exact": "[¶10] No stipulation or agreement was filed with the district court. Further, this case is different from Brakke in that Tim Hamburger did not provide any excusable reason for the delay in moving to modify primary residential responsibility, which did not occur until May 2021 (20 months after T.L.H. began residing with him). Thus, we conclude the court did not err by refusing to retroactively terminate Tim Hamburger's child support obligation or recognize an obligation by Kimberly Hamburger.\n\nB",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND154.pdf",
+  "confidence": "high",
+  "note": "Section B heading improperly fused to end of ¶10. PDF shows ¶10 ending with 'Hamburger.' on line 157, then blank line 158, then 'B' alone on line 159. DB incorrectly appends 'B' to the paragraph."
+ },
+ {
+  "opinion_id": 19666,
+  "class": "heading_seq",
+  "old_exact": "See also Hagel v. Hagel, 2006 ND 181, ¶ 6, 721 N.W.2d 1 (noting N.D.C.C. § 14-08.1-01 governs when there is no court-ordered child support). D",
+  "new_exact": "See also Hagel v. Hagel, 2006 ND 181, ¶ 6, 721 N.W.2d 1 (noting N.D.C.C. § 14-08.1-01 governs when there is no court-ordered child support).\n\nD",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND154.pdf",
+  "confidence": "high",
+  "note": "Section D heading improperly fused to end of ¶12. PDF shows ¶12 ending with 'support).' on line 203, then blank line 204, then 'D' alone on line 205. DB incorrectly appends 'D' to the paragraph."
+ },
+ {
+  "opinion_id": 19666,
+  "class": "heading_seq",
+  "old_exact": "Thus, we conclude the court did not err in denying Tim Hamburger child support from May to September 2021. IV[¶14] Tim Hamburger states the district court erred by denying him an evidentiary hearing. He does not support his statement with any law or argument. We conclude he waived this issue on appeal. See Riemers v. Grand Forks Herald, 2004 ND 192, ¶ 11, 688 N.W.2d 167 (\"[A] party waives an issue by not providing supporting argument and, without supportive reasoning or citations to relevant authorities, an argument is without merit.\").",
+  "new_exact": "Thus, we conclude the court did not err in denying Tim Hamburger child support from May to September 2021.\n\nIV\n\n[¶14] Tim Hamburger states the district court erred by denying him an evidentiary hearing. He does not support his statement with any law or argument. We conclude he waived this issue on appeal. See Riemers v. Grand Forks Herald, 2004 ND 192, ¶ 11, 688 N.W.2d 167 (\"[A] party waives an issue by not providing supporting argument and, without supportive reasoning or citations to relevant authorities, an argument is without merit.\").",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND154.pdf",
+  "confidence": "high",
+  "note": "Section IV heading fused with ¶14. PDF shows ¶13 ending with '2021.' on line 219, then blank line 220, then 'IV' alone on line 221, then blank line 222, then '[¶14]' on line 223. DB incorrectly fuses 'IV' and '[¶14]'."
+ },
+ {
+  "opinion_id": 19661,
+  "class": "ocr_char",
+  "old_exact": "Smith, at 329,.",
+  "new_exact": "Smith, at 329.",
+  "verified_count": 1,
+  "source": "PDF extracted with pdftotext shows 'Smith, at 329.' (correct form without comma)",
+  "confidence": "high",
+  "note": "Extraneous comma appears before period in citation. The pattern 'X,.' is clearly an OCR/transcription error. Source confirms correct punctuation is period only."
+ },
+ {
+  "opinion_id": 19661,
+  "class": "whitespace",
+  "old_exact": "discussion[s] ... [are]",
+  "new_exact": "discussion[s] . . . [are]",
+  "verified_count": 1,
+  "source": "PDF source extracted shows properly spaced ellipsis '. . . ' (space-dot-space-dot-space-dot-space) per ND opinion style",
+  "confidence": "high",
+  "note": "Ellipsis spacing error: DB has compact three-dot form '...' but ND court opinions use spaced form '. . . '. This is an ingestion artifact where spaced ellipsis was compacted."
+ },
+ {
+  "opinion_id": 19659,
+  "class": "missing_text",
+  "old_exact": "five-part test: the failure to discover the evidence sooner must not be the [t]he evidence must have been discovered since the (1) defendant's trial; (2) result of a lack of diligence on the defendant's part; (3) (4) impeaching; and (5) probability of resulting in a different outcome. the evidence must be material to the issues at trial; the evidence must be neither cumulative nor merely the evidence must indicate that a new trial has a reasonable ",
+  "new_exact": "five-part test:\n\n      (1)   [t]he evidence must have been discovered since the\n      defendant's trial;\n      (2)   the failure to discover the evidence sooner must not be the\n      result of a lack of diligence on the defendant's part;\n      (3)   the evidence must be material to the issues at trial;\n      (4)   the evidence must be neither cumulative nor merely\n      impeaching; and\n      (5)   the evidence must indicate that a new trial has a reasonable\n      probability of resulting in a different outcome. ",
+  "verified_count": 1,
+  "source": "2022ND147.pdf via pdftotext, paragraph 12 (Marble v. State five-part test listing)",
+  "confidence": "high",
+  "evidence": "The DB text contains a severely garbled version of the five-part test from Marble v. State, 2015 MT 242, where the numbered list items are shuffled and jumbled out of order. The PDF source shows a properly formatted, legible five-part numbered list with correct ordering: (1) evidence discovered since trial, (2) failure to discover sooner not due to lack of diligence, (3) material to issues at trial, (4) neither cumulative nor merely impeaching, (5) indicates reasonable probability of different outcome. The DB version has items out of order and intermingled text fragments that are incoherent."
+ },
+ {
+  "opinion_id": 19644,
+  "class": "whitespace",
+  "old_exact": ". . . .",
+  "new_exact": "....",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND122.pdf",
+  "confidence": "high",
+  "evidence": "PDF source (line 176) shows compact four-dot ellipsis format '....' in ¶14 block quote. DB contains spaced form '. . . .' at position 7121 in the same location. ND style requires compact form per rule guidance."
+ },
+ {
+  "opinion_id": 19643,
+  "class": "split_join",
+  "old_exact": "with the judge (ALJ) presided over the law Commission. An administrative administrative hearing",
+  "new_exact": "with the Commission. An administrative law judge (ALJ) presided over the administrative hearing",
+  "verified_count": 1,
+  "source": "2022ND119.pdf lines 64-66: 'posting bond with the Commission. An administrative law judge (ALJ) presided over the administrative hearing'",
+  "confidence": "high",
+  "note": "Critical OCR/ingestion error in paragraph 3: text was corrupted with 'judge (ALJ) presided over the law Commission. An administrative administrative' instead of 'Commission. An administrative law judge (ALJ) presided over the administrative'. The phrase 'posting bond with the judge' is grammatically broken; correct reading is 'posting bond with the Commission.' Verified against PDF source."
+ },
+ {
+  "opinion_id": 19641,
+  "class": "ocr_char",
+  "old_exact": "post- conviction",
+  "new_exact": "post-conviction",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2022/2022ND115.pdf lines 41-42 shows 'post-' at end of line 41, 'conviction' at start of line 42; OCR artifact introduced unwanted space after hyphen",
+  "confidence": "high",
+  "evidence": "The PDF shows the word hyphenated across a line break: 'post-' ends line 41, 'conviction' begins line 42. The source text confirms it should be 'post-conviction' with no space (appears once in source, correctly formatted). The DB incorrectly has 'post- conviction' (with space after hyphen) — a classic OCR artifact from line-break hyphenation.",
+  "note": "Line 35 of DB. This is a straightforward OCR ingestion error where pdftotext preserved the hyphen but added a space when reconstituting the word across the line boundary."
+ },
+ {
+  "opinion_id": 18005,
+  "class": "whitespace",
+  "old_exact": "of the legislature. Midthun v. N.D. Workforce Safety Ins., 2009 ND 22, ¶ 10, \n",
+  "new_exact": "of the legislature. Midthun v. N.D. Workforce Safety Ins., 2009 ND 22, ¶ 10,\n",
+  "verified_count": 1,
+  "source": "PDF line 113 vs DB line 123: PDF source lacks trailing space",
+  "confidence": "high",
+  "evidence": "DB line 123 ends with comma-space-newline; PDF line 113 ends with comma-newline. Character-by-character comparison confirms PDF is authoritative source.",
+  "note": "Mechanical trailing whitespace removal. Single occurrence, verified in full text."
+ },
+ {
+  "opinion_id": 19640,
+  "class": "missing_text",
+  "old_exact": "from orders denying his application\n\n[¶1] Cody Atkins appeals for postconviction relief",
+  "new_exact": "[¶1] Cody Atkins appeals from orders denying his application for postconviction relief",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction matches /Users/jerod/refs/nd/opin/pdfs/2022/2022ND114.pdf",
+  "confidence": "high",
+  "note": "Orphaned line 37 in DB ('from orders denying his application') is separated from [¶1] by blank line, breaking the sentence. PDF shows these are continuous: '[¶1] Cody Atkins appeals from orders denying his application for postconviction relief'. This is a critical ingestion defect where text was misplaced during OCR/import, splitting the opening sentence of the first paragraph. The fix merges the orphaned text into the correct location in [¶1], restoring the complete sentence: 'Cody Atkins appeals from orders denying his application for postconviction relief and concluding he is a vexatious litigant.'"
+ },
+ {
+  "opinion_id": 18034,
+  "class": "split_join",
+  "old_exact": "determination.\nId.\n The appellant has the burden",
+  "new_exact": "determination. Id. The appellant has the burden",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2022/2022ND104.pdf lines ~200-201 show joined text",
+  "confidence": "high",
+  "evidence": "PDF pdftotext output shows: 'determination. Id. The appellant has the burden to prove the district court' on single logical line; DB incorrectly breaks after 'determination.' and 'Id.' creating three separate lines (202-204). Text split across line boundaries without justification.",
+  "note": "Lines 202-204 in DB: 'determination.\\nId.\\n The appellant...' Should be joined with periods and spaces per source. This is an ingestion line-break artifact."
+ },
+ {
+  "opinion_id": 18024,
+  "class": "split_join",
+  "old_exact": "Matter of Mees,\n465 N.W.2d\n172, 173",
+  "new_exact": "Matter of Mees, 465 N.W.2d\n172, 173",
+  "verified_count": 1,
+  "source": "PDF shows citation case name joined to reporter volume",
+  "confidence": "high",
+  "note": "Citation fragmented across lines; 'Matter of Mees,' joined to '465 N.W.2d' to match published layout"
+ },
+ {
+  "opinion_id": 19709,
+  "class": "split_join",
+  "old_exact": "commenced it provided administrative proceedings against TigerSwan, alleging investigative",
+  "new_exact": "commenced administrative proceedings against TigerSwan, alleging it provided investigative",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND85.pdf",
+  "confidence": "high",
+  "note": "Paragraph 2: Words are misplaced. The phrase 'it provided' appears incorrectly before 'administrative proceedings' in the DB, but in the authoritative PDF it correctly appears later in the sentence before 'investigative'. The PDF text reads: 'The Board commenced / administrative proceedings against TigerSwan, alleging it provided / investigative and security services'. This is an OCR/ingestion error where these words were joined incorrectly."
+ },
+ {
+  "opinion_id": 19684,
+  "class": "split_join",
+  "old_exact": "normal the professional business practice, placed competence",
+  "new_exact": "normal business practice, placed into question the professional competence",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND202.pdf paragraph 16",
+  "confidence": "high",
+  "note": "Misplaced phrase 'the professional' appears in wrong location. PDF shows 'normal business practice, placed into question the professional competence' with proper word order. This is an OCR or ingestion error where 'into question the professional' was fragmented and 'the professional' misplaced before 'business practice'."
+ },
+ {
+  "opinion_id": 19662,
+  "class": "split_join",
+  "old_exact": "Continental Resources argues identified constitutional",
+  "new_exact": "Continental Resources argues it has identified constitutional",
+  "verified_count": 1,
+  "source": "2022 ND 150 PDF, ¶13, line 203-204 of source text",
+  "confidence": "high",
+  "evidence": "The PDF clearly shows 'Continental Resources argues it has identified' on lines 203-204. The database text is missing 'it has', which creates a grammatical error and changes the meaning. This is an OCR/ingestion defect where words were dropped."
+ }
+]

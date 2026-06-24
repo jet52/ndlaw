@@ -1,0 +1,25 @@
+[
+ {
+  "opinion_id": 19657,
+  "class": "whitespace",
+  "old_exact": "review.[¶9]",
+  "new_exact": "review. [¶9]",
+  "verified_count": 1,
+  "source": "PDF shows [¶9] as separate paragraph starting after [¶8]; all other paragraph transitions in DB have proper spacing between period and next paragraph marker",
+  "confidence": "high",
+  "evidence": "Comparison of all [¶N] transitions in DB shows consistent pattern: '.<newline(s)>[¶' or (when merged) '.<space>[¶'. The [¶8]-[¶9] transition is the only one with '.[¶' (no space). Visual inspection of PDF page 4 confirms [¶9] begins new paragraph.",
+  "note": "All other character differences between DB and PDF are intentional quote style differences (straight ASCII in DB vs. curly/typographic in PDF). This whitespace defect is the only substantive ingestion/OCR error.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18043,
+  "class": "whitespace",
+  "old_exact": "\n Gerald W. VandeWalle\n Daniel J. Crothers\n Lisa Fair McEvers\n Jerod E. Tufte",
+  "new_exact": "\n     Gerald W. VandeWalle\n     Daniel J. Crothers\n     Lisa Fair McEvers\n     Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2022/2022ND130.pdf shows proper right-aligned indentation with 5 spaces before each justice's name on the signature page",
+  "confidence": "high",
+  "note": "The justice names in the signature block are indented to align vertically. The DB contains only 1 space before each name, while the PDF source shows 5 spaces for proper alignment. This is a presentation/mechanical whitespace error, not a content error.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

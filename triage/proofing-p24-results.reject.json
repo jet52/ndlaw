@@ -1,0 +1,82 @@
+[
+ {
+  "opinion_id": 19666,
+  "class": "heading_seq",
+  "old_exact": "Thus, we conclude the definition of \"[p]arent with primary residential responsibility\" in N.D. Admin. Code § 75-02-04.1-01(9) does not override the court's determination of primary residential responsibility as stated in an unambiguous judgment. C",
+  "new_exact": "Thus, we conclude the definition of \"[p]arent with primary residential responsibility\" in N.D. Admin. Code § 75-02-04.1-01(9) does not override the court's determination of primary residential responsibility as stated in an unambiguous judgment.\n\nC",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND154.pdf",
+  "confidence": "high",
+  "note": "Section C heading improperly fused to end of ¶11. PDF shows ¶11 ending with 'judgment.' on line 180, then blank line 181, then 'C' alone on line 182. DB incorrectly appends 'C' to the paragraph.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19662,
+  "class": "split_join",
+  "old_exact": "(citing it has United States",
+  "new_exact": "(citing United States",
+  "verified_count": 1,
+  "source": "2022 ND 150 PDF, ¶13, lines 206-210 of source text (across page break)",
+  "confidence": "high",
+  "evidence": "The PDF shows the citation '(citing' at the end of line 206, then a page break, then 'United States v. Salerno' resumes on line 210. The phrase 'it has' does not appear in the source; it is spurious text in the database, likely an erroneous insertion during OCR/ingestion processing.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19660,
+  "class": "split_join",
+  "old_exact": "and intentional and negligent committed defamation, civil conspiracy, malicious prosecution, abuse of process, infliction of emotional distress,",
+  "new_exact": "and committed defamation, civil conspiracy, malicious prosecution, abuse of process, intentional and negligent infliction of emotional distress,",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND148.pdf",
+  "confidence": "high",
+  "evidence": "PDF source shows the phrase correctly structured across a page break: 'Defendants denied him procedural and substantive due process, and' then after page header 'committed defamation, civil conspiracy, malicious prosecution, abuse of process, intentional and negligent infliction of emotional distress,'. DB mistakenly fused 'intentional and negligent' with 'committed' instead of keeping it with 'infliction of emotional distress'. This is a classic OCR/ingestion error where words were regrouped incorrectly.",
+  "note": "Located in [¶3]. The grammatical sense confirms: the clause should enumerate alleged violations in parallel structure: 'denied him [X], and [Y], and [Z]' where Y='committed defamation' and Z='intentional and negligent infliction of emotional distress'.",
+  "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 19652,
+  "class": "whitespace",
+  "old_exact": "ness, D.J., sitting in place of McEvers, J., disqualified.\n\n",
+  "new_exact": "ness, D.J., sitting in place of McEvers, J., disqualified.\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/markdown/2023/2023ND1.md",
+  "confidence": "high",
+  "note": "One extra trailing newline in DB (double newline vs. single newline at end of opinion). This is a mechanical formatting artifact, not a transcription error. The entire text content is otherwise identical to the authoritative source.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19648,
+  "class": "whitespace",
+  "old_exact": "\"non- criminal\"",
+  "new_exact": "\"non-criminal\"",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND134.pdf page 2 (¶3)",
+  "confidence": "high",
+  "evidence": "Rendered PDF shows 'non-criminal' as hyphenated compound adjective without space after hyphen. DB text erroneously includes space: '\"non- criminal\"'. This appears to be an OCR/ingestion artifact where the line-break hyphen in 'non-\\ncriminal' was converted to 'non- criminal' with an inserted space.",
+  "note": "Occurrence 1 in ¶3 at approximate byte position 1500. The phrase appears in legal argument about self-defense rendering Piker's actions 'non-criminal'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19648,
+  "class": "whitespace",
+  "old_exact": "\"non- criminal\"",
+  "new_exact": "\"non-criminal\"",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND134.pdf page 2 (¶6)",
+  "confidence": "high",
+  "evidence": "Same rendering issue as ¶3. The correct form is the hyphenated compound 'non-criminal' without space. This occurs in similar legal context discussing how self-defense renders conduct 'non-criminal'.",
+  "note": "Occurrence 2 in ¶6 at approximate byte position 2736. Both instances are identical and represent the same ingestion error.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 19644,
+  "class": "paragraph_seq",
+  "old_exact": "[¶17] The record supports the district court's decision. The court did not abuse its discretion in granting Lehnerz and her daughter a disorderly conduct restraining order against Christopher.\n\n[¶18] The order is affirmed.\n\n[¶19] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte\n\nIII\n",
+  "new_exact": "[¶17] The record supports the district court's decision. The court did not abuse its discretion in granting Lehnerz and her daughter a disorderly conduct restraining order against Christopher.\n\nIII\n\n[¶18] The order is affirmed.\n\n[¶19] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte\n\n",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND122.pdf",
+  "confidence": "high",
+  "evidence": "PDF source shows section heading 'III' on line 225, positioned before [¶18] on line 227. DB places 'III' on line 80 after the signature block [¶19]. The structural pattern (Section I before ¶2, Section II before ¶4) confirms III should appear before ¶18.",
+  "_verdict": "reject:unverified"
+ }
+]

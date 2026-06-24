@@ -1,0 +1,102 @@
+[
+ {
+  "opinion_id": 19640,
+  "class": "missing_text",
+  "old_exact": "from orders denying his application\n\n[¶1] Cody Atkins appeals for postconviction relief",
+  "new_exact": "[¶1] Cody Atkins appeals from orders denying his application for postconviction relief",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction matches /Users/jerod/refs/nd/opin/pdfs/2022/2022ND114.pdf",
+  "confidence": "high",
+  "note": "Orphaned line 37 in DB ('from orders denying his application') is separated from [¶1] by blank line, breaking the sentence. PDF shows these are continuous: '[¶1] Cody Atkins appeals from orders denying his application for postconviction relief'. This is a critical ingestion defect where text was misplaced during OCR/import, splitting the opening sentence of the first paragraph. The fix merges the orphaned text into the correct location in [¶1], restoring the complete sentence: 'Cody Atkins appeals from orders denying his application for postconviction relief and concluding he is a vexatious litigant.'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18034,
+  "class": "split_join",
+  "old_exact": "determination.\nId.\n The appellant has the burden",
+  "new_exact": "determination. Id. The appellant has the burden",
+  "verified_count": 1,
+  "source": "PDF source /Users/jerod/refs/nd/opin/pdfs/2022/2022ND104.pdf lines ~200-201 show joined text",
+  "confidence": "high",
+  "evidence": "PDF pdftotext output shows: 'determination. Id. The appellant has the burden to prove the district court' on single logical line; DB incorrectly breaks after 'determination.' and 'Id.' creating three separate lines (202-204). Text split across line boundaries without justification.",
+  "note": "Lines 202-204 in DB: 'determination.\\nId.\\n The appellant...' Should be joined with periods and spaces per source. This is an ingestion line-break artifact.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18024,
+  "class": "other",
+  "old_exact": "# Matter of Shane Lance Yates\n\nNorth Dakota Supreme Court\n974 N.W.2d 408; 2022 ND 103\nDecided 2022-05-12\n\n",
+  "new_exact": "",
+  "verified_count": 1,
+  "source": "PDF authoritative text; DB metadata header not in printed opinion",
+  "confidence": "high",
+  "note": "Markdown-style metadata (title, citation, decision date) prepended in DB but not present in official PDF; removed to match published source",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18024,
+  "class": "split_join",
+  "old_exact": "Matter of Yates,\n\n2022 ND 11, ¶ 5, 969 N.W.2d 195\n (holding there was no proper and reasonable",
+  "new_exact": "Matter of Yates,\n2022 ND 11, ¶ 5, 969 N.W.2d 195 (holding there was no proper and reasonable",
+  "verified_count": 1,
+  "source": "PDF shows citation joined on single line with opening parenthetical",
+  "confidence": "high",
+  "note": "Blank line removed before citation and opening parenthesis joined directly to citation (ingestion fragmentation error)",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18024,
+  "class": "split_join",
+  "old_exact": "Matter of Mees,\n465 N.W.2d\n172, 173",
+  "new_exact": "Matter of Mees, 465 N.W.2d\n172, 173",
+  "verified_count": 1,
+  "source": "PDF shows citation case name joined to reporter volume",
+  "confidence": "high",
+  "note": "Citation fragmented across lines; 'Matter of Mees,' joined to '465 N.W.2d' to match published layout",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18019,
+  "class": "split_join",
+  "old_exact": "818 N.W.2d 684\n (holding",
+  "new_exact": "818 N.W.2d 684 (holding",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND97.pdf page 2, rendered at 300dpi",
+  "confidence": "high",
+  "evidence": "PDF rendering shows '818 N.W.2d 684 (holding a party making a constitutional claim...' on continuous text flow with no line break between citation and parenthetical. The DB text incorrectly has a newline and space: '684\\n (holding', which is an OCR/ingestion artifact where a line break in the PDF layout was misinterpreted as a hard split in the citation.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 18019,
+  "class": "split_join",
+  "old_exact": "801\n (adverse",
+  "new_exact": "801 (adverse",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND97.pdf page 2, rendered at 300dpi",
+  "confidence": "high",
+  "evidence": "PDF rendering shows '776 N.W.2d 801 (adverse rulings alone are not evidence of bias)' on continuous text flow with no line break between citation and parenthetical. The DB text incorrectly has a newline and space: '801\\n (adverse', which is an OCR/ingestion artifact where a line break in the PDF layout was misinterpreted as a hard split in the citation.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19709,
+  "class": "split_join",
+  "old_exact": "commenced it provided administrative proceedings against TigerSwan, alleging investigative",
+  "new_exact": "commenced administrative proceedings against TigerSwan, alleging it provided investigative",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND85.pdf",
+  "confidence": "high",
+  "note": "Paragraph 2: Words are misplaced. The phrase 'it provided' appears incorrectly before 'administrative proceedings' in the DB, but in the authoritative PDF it correctly appears later in the sentence before 'investigative'. The PDF text reads: 'The Board commenced / administrative proceedings against TigerSwan, alleging it provided / investigative and security services'. This is an OCR/ingestion error where these words were joined incorrectly.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19709,
+  "class": "ocr_char",
+  "old_exact": "Under N.D.C.C. § 28-32-28: A An administrative agency",
+  "new_exact": "Under N.D.C.C. § 28-32-28: An administrative agency",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2022/2022ND85.pdf",
+  "confidence": "high",
+  "note": "Paragraph 14: Doubled article. The DB contains 'A An administrative agency' when the authoritative PDF clearly shows only 'An administrative agency' beginning the statute quote. The 'A' is a section header that belongs on its own line before [¶14], not embedded in the statute text. The simplest fix is to remove the extra 'A' article.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

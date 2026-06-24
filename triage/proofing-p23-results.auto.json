@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 18092,
+  "class": "whitespace",
+  "old_exact": "933 N.W.2d 916\n\n(stating the district court may only summarily dismiss",
+  "new_exact": "933 N.W.2d 916\n(stating the district court may only summarily dismiss",
+  "verified_count": 1,
+  "source": "PDF source (/Users/jerod/refs/nd/opin/pdfs/2022/2022ND192.pdf) shows no blank line between citation and parenthetical clause",
+  "confidence": "high",
+  "note": "Extra blank line between citation and parenthetical in ¶1 is an ingestion artifact; PDF shows direct line break without blank",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18091,
+  "class": "whitespace",
+  "old_exact": "1The explanatory note to N.D.R.Civ.P. 25 states our rule is derived from Fed. R. Civ. P. 25. Federal",
+  "new_exact": "1 The explanatory note to N.D.R.Civ.P. 25 states our rule is derived from Fed. R. Civ. P. 25. Federal",
+  "verified_count": 1,
+  "source": "pdftotext -layout output, line 153 shows '1 The explanatory...' with space after footnote number",
+  "confidence": "high",
+  "note": "Footnote 1 begins without space between the number and the text. The authoritative PDF rendering shows a clear space character after the footnote call number.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18084,
+  "class": "whitespace",
+  "old_exact": "motive to kill [.]",
+  "new_exact": "motive to kill[.]",
+  "verified_count": 1,
+  "source": "Authoritative PDF (2022ND184.pdf) extracted via pdftotext showing 'motive to kill[.]' without space before bracket",
+  "confidence": "high",
+  "evidence": "PDF text rendering: 'motive to kill[.]' (no space). DB text has unwanted space between word and bracket citation marker.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 18079,
+  "class": "whitespace",
+  "old_exact": "STATE OF NORTH DAKOTA\n\n\n2022 ND 181",
+  "new_exact": "STATE OF NORTH DAKOTA\n\n2022 ND 181",
+  "verified_count": 1,
+  "source": "pdftotext -layout /Users/jerod/refs/nd/opin/pdfs/2022/2022ND181.pdf",
+  "confidence": "high",
+  "note": "Extra blank line in caption section. Source PDF shows single blank line between 'STATE OF NORTH DAKOTA' and '2022 ND 181', but DB contains two blank lines.",
+  "_verdict": "auto:whitespace_only"
+ }
+]
