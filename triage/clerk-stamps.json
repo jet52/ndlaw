@@ -1,0 +1,29 @@
+[
+ {
+  "opinion_id": 17797,
+  "cite": "2021 ND 70",
+  "status": "OK_fusion_pdf",
+  "n_stamps": 1
+ },
+ {
+  "opinion_id": 19452,
+  "cite": "2019 ND 305",
+  "status": "OK_fusion_pdf",
+  "n_stamps": 1
+ },
+ {
+  "opinion_id": 19716,
+  "status": "SKIP_wordgate",
+  "n_stamps": 2,
+  "bad_removed": {
+   "DAKOTACorrected": 1,
+   "CourtO": 1
+  },
+  "bad_added": {
+   "DAKOTAO": 1
+  },
+  "unconfirmed": [
+   "DAKOTAO"
+  ]
+ }
+]

@@ -2,6 +2,27 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `clerk-stamps-2026-06-24` — court-clerk filing-stamp removal (1,864 opinions)
+
+Removed court-clerk filing metadata fused into text_content (administrative stamps,
+not the court's authored opinion) — user-approved after dry-run review. Two forms:
+standalone (`Filed M/D/YY by Clerk of Supreme Court`, usually paragraph-padded) and
+a per-page WATERMARK (`Corrected Opinion Filed MM/DD/YY by Clerk of the Supreme
+Court`) injected mid-word at every page break. `scripts/strip_clerk_stamps.py`.
+
+Date forms covered: numeric (M/D/YY, MM/DD/YYYY) and month-name (`April 5, 2024`),
+before and/or after "by Clerk", plus one OCR typo ("Courst"). Per-opinion gate: the
+alpha-word multiset removed must be ONLY stamp vocabulary; mid-word-fusion cases
+(stamp glued to a real word, e.g. "Supreme Courtnoticed" -> "noticed") that fail the
+strict gate are accepted only when the PDF confirms every rejoined token is real.
+
+Result: ~1,955 stamps removed across 1,864 opinions (1,810 strict-gate + 51
+PDF-verified fusion + 2 typo/comma variants + 1 hand-fixed). 2024 ND 218 (id19716)
+had a genuine caption/body merge ("DAKOTA"+"O'Neal") — hand-fixed with a paragraph
+break (not auto-stripped). Remaining match (id3419) is legitimate text (the LIKE
+spanned unrelated "Clerk of ..." and "Supreme Court" mentions), left as-is.
+Detector 175/0; invariants 24 ok / 2 known / 0 regressed; 66 tests pass.
+
 ## Batch `proofing-review-approved-2026-06-24` — proofing fleet P8-P10 + gap (46 opinions)
 
 Batches P8-P10 (123 opinions, 2025 ND 81 -> 2024 ND 199) + re-run of 3 P5-dropped

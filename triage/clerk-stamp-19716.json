@@ -1,0 +1,22 @@
+[
+ {
+  "opinion_id": 19716,
+  "class": "other",
+  "old_exact": "F NORTH DAKOTACorrected Opinion Filed 12/04/23 by Clerk of the Supreme CourtO’Neal v. Stat",
+  "new_exact": "F NORTH DAKOTA\n\nO’Neal v. Stat",
+  "verified_count": 1,
+  "source": "2024ND218.pdf",
+  "evidence": "clerk filing-stamp watermark fused at boundary; replace with paragraph break (avoids DAKOTA/O’Neal merge)",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19716,
+  "class": "other",
+  "old_exact": " a new trial. Filed by Clerk of Supreme Court 12/04/23[¶7] To prove ",
+  "new_exact": " a new trial.\n\n[¶7] To prove ",
+  "verified_count": 1,
+  "source": "2024ND218.pdf",
+  "evidence": "clerk filing-stamp watermark fused at boundary; replace with paragraph break (avoids DAKOTA/O’Neal merge)",
+  "confidence": "high"
+ }
+]
