@@ -1,7 +1,8 @@
-# Synopsis-leakage — final deferred 25 (after 2026-06-25 passes)
+# Synopsis-leakage — deferred tail (after 2026-06-25 passes)
 
-After the v2 (281), adjudicated-81 (75), and long-217 (201) passes, **25 opinions still carry
-a live `Synopsis` label**. Each needs handling beyond a mechanical strip. Three sub-classes:
+After the v2 (281), adjudicated-81 (75), and long-217 (201) passes, 25 opinions carried a live
+`Synopsis` label. Class B (3) was RESOLVED 2026-06-25 by order-text recovery (below), leaving
+**22 deferred**. Each needs handling beyond a mechanical strip.
 
 ## A. Lost-syllabus-header / numbered-point (20) — NOT a synopsis problem
 
@@ -20,15 +21,21 @@ IDs: 6418, 6420, 6424, 6427, 6439, 6441, 6450, 6458, 6471, 7249, 7459, 7503, 131
 (6441/6458/7249/13781 were the short ones deferred from the adjudicated-81 pass; the other 16
 are long.)
 
-## B. No-terminator West disciplinary summaries (3)
+## B. No-terminator West disciplinary summaries (3) — RESOLVED 2026-06-25
 
-West holding-summaries (`Attorney disciplinary proceeding was brought. The Supreme Court
-held...`) where `boundary()` found no following court element (no `Syllabus`/`Attorneys`/
-star-page/`Opinion\n` marker) — the disbarment ORDER likely follows in a form the detector
-misses. Need a custom terminator (e.g. `ORDER OF DISBARMENT` / `PER CURIAM` / `IT IS ORDERED`)
-then full-strip.
+NOT a strip problem: each opinion's ENTIRE `text_content` was the West `Synopsis` — the
+court ORDER body was never ingested (the West-doc parser dropped the ORDER for ORDER-format
+docs, same class as Disc. Bd. v. Johnson 481 N.W.2d 225). Full-stripping would have emptied
+them. Fixed by RECOVERING the full court order from each authoritative West .doc (batch
+`recover-disc-order-text-2026-06-25`); West furniture stripped, provenance unchanged
+(source_reporter stays `westlaw`). The Lince .doc was more complete than CourtListener's NW2d
+markdown (it carries the justice signature block).
 
-IDs: 9351, 10797, 20482.
+- id9351 (Lince) — `*444 ORDER OF DISBARMENT` + signatures, 177 -> 1159 chars.
+- id10797 (Goetz) — `*480 ORDER OF INTERIM SUSPENSION`, 296 -> 1225 chars.
+- id20482 (McMahon) — `*372 ORDER OF DISBARMENT` + concur line, 386 -> 1220 chars. (Shares
+  N.W.2d page 298/372 with Boedecker v. St. Alexius Hospital, id8266 — its `372.md` is
+  Boedecker, so the West .doc order body is the authoritative source here, not the page md.)
 
 ## C. Mixed / verify-first (2)
 

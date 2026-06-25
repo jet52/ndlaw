@@ -2,6 +2,21 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `recover-disc-order-text-2026-06-25` — recover dropped ORDER bodies (3 opinions)
+
+Three disciplinary opinions (id9351 *Lince*, id10797 *Goetz*, id20482 *McMahon*) whose ENTIRE
+`text_content` was the West `Synopsis` — the court ORDER body was never ingested (the West-doc
+parser dropped the ORDER for ORDER-format docs, the Disc. Bd. v. Johnson 481 N.W.2d 225 class).
+These surfaced as the 3 "no-terminator" items in `triage/SYNOPSIS-DEFERRED-25.md` (full-strip
+would have emptied them). Recovered the full court order from each authoritative West .doc
+(`*NNN ORDER OF …` body, West furniture stripped), matching the corpus West-doc order
+convention (id11076/id11239). Provenance unchanged (source_reporter stays `westlaw`, the West
+.doc stays primary — respecting the 2026-06-22 restore-source-reporter-westlaw decision). Lince
+177→1159 chars (incl. the justice signature block, which CourtListener's NW2d markdown lacked),
+Goetz 296→1225, McMahon 386→1220. McMahon shares N.W.2d page 298/372 with *Boedecker v. St.
+Alexius Hospital* (id8266) — that page's markdown is Boedecker, so the West .doc is the correct
+source. Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `synopsis-long-217-2026-06-25` — West Synopsis-leakage, long blocks (201 opinions)
 
 Worked the 217 long (≥400 char) Synopsis blocks (`triage/synopsis-217-decisions.json`), where
