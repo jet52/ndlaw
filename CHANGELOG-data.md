@@ -2,6 +2,29 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `synopsis-long-217-2026-06-25` — West Synopsis-leakage, long blocks (201 opinions)
+
+Worked the 217 long (≥400 char) Synopsis blocks (`triage/synopsis-217-decisions.json`), where
+the `Synopsis` label precedes a long span. Read each via `strip_synopsis_adjudicated.py`:
+
+- **193 label-only** — court-voice statement of the case ("This is an action…", "The facts are
+  not in dispute…", "Plaintiff, a minor…", "Action to determine adverse claims…"). The factual
+  record is in scope ([[project_redistribution_scope]]); removed ONLY the orphan `Synopsis`
+  label (9 chars), preserving all text.
+- **8 full strips** — long West holding-summaries (e.g. "In disciplinary proceedings… the
+  Supreme Court, Sand, J., held…", "On certified questions from the District Court…",
+  id14645's modern "Background:" block). Each removed span verified to terminate at a real
+  court element (`Syllabus by the Court` / `Attorneys and Law Firms`), removing the full West
+  summary + disposition + dissent notes; element-count invariants gated every write.
+- **16 deferred** — `Synopsis\n2.`/`\n3.` openings that turned out to be a *lost-syllabus-
+  header* defect (West parse dropped the `Syllabus by the Court` header and point 1, leaving
+  numbered court syllabus points under a stray label). Needs PDF-based header/point-1 recovery,
+  not a label strip. Logged with the rest of the deferred tail in `triage/SYNOPSIS-DEFERRED-25.md`.
+
+Detector 175/0, invariants 24/0, 66 tests. Synopsis-leakage queue: **695 of 720 cleared**
+(138 + 281 + 75 + 201); **25 deferred** (20 lost-syllabus-header, 3 no-terminator disciplinary
+summaries, 2 mixed/verify-first) — see `triage/SYNOPSIS-DEFERRED-25.md`.
+
 ## Batch `synopsis-adjudicated-81-2026-06-25` — West Synopsis-leakage, per-item adjudication (75 opinions)
 
 Per-item pass over the 81 short Synopsis blocks the strict v2 whitelist held back
