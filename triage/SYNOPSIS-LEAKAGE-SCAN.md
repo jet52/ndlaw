@@ -52,3 +52,30 @@ old (pre-1953) opinions, where the "statement of the case" could blur with West'
 Out of scope for synopsis-leakage (separate decisions): the 7,056 atty-labels / 6,964
 opinion-labels (cosmetic West section labels) and 11,563 star-pages (functional for pincite
 resolution — keep).
+
+## Progress
+
+- **2026-05-13** (`strip-westlaw-synopsis-2026-05-13`): 138 cleanest cases (short blocks
+  bounded directly by `Attorneys and Law Firms`, no syllabus between) via
+  `strip_west_synopsis.py`.
+- **2026-06-25** (`strip-west-synopsis-v2-2026-06-25`): 281 stripped via
+  `strip_west_synopsis_v2.py` — generalized terminator (first court element: syllabus incl.
+  OCR variants / star-page / Attorneys / Opinion, preserved verbatim) + strict West-editorial
+  whitelist (label / disposition / separate-opinion / cross-ref / rehearing) + element-count
+  invariants. This is the bulk of the short-block deferred set.
+
+### Remaining: 301 still carry a live `Synopsis` label
+- **217 long (≥400 chars)** — the `Synopsis` label precedes a long **factual statement of
+  the case** (findings of fact, stipulations, the will/contract text). The factual record is
+  IN scope ([[project_redistribution_scope]]); only the one-line West summary + the orphan
+  `Synopsis` label are strippable. Needs per-item boundary judgment (where the West
+  one-liner ends and the court/reporter statement of case begins).
+- **81 short (<400)** — factual/ambiguous short blocks the strict whitelist held back:
+  factual narratives (`This is an action...`, `Defendant was informed against...`,
+  `Facts:...`) where only the `Synopsis` label should go, plus a few borderline dispositions
+  the classifier rejected for safety (e.g. `Order denying a new trial reversed, and a new
+  trial ordered.`) that are genuinely strippable on review.
+- **3 no-marker** — no following court element detected; inspect individually.
+- A very-safe micro-pass available for all 301: strip ONLY the orphan `Synopsis\n` label
+  line, keeping all following text (the factual record). Removes the West section label
+  corpus-wide while deferring the harder "where does the West one-liner end" judgment.
