@@ -10,7 +10,7 @@
   "confidence": "high",
   "evidence": "PDF uses spaced ellipsis '. . .' consistently throughout the opinion for quoted passages within the text.",
   "note": "Standardizing ellipsis format from compact three-dot form to Court's standard spaced four-character form",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17477,
@@ -23,7 +23,7 @@
   "confidence": "high",
   "evidence": "PDF renders ellipsis as spaced form '. . .' in this quoted passage.",
   "note": "Standardizing ellipsis format to match PDF source",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17477,
@@ -36,7 +36,58 @@
   "confidence": "high",
   "evidence": "PDF renders ellipsis as spaced form '. . .' consistently throughout.",
   "note": "Standardizing ellipsis format to match PDF source",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17464,
+  "class": "split_join",
+  "old_exact": " *Alford*\n pleas",
+  "new_exact": "Alford pleas",
+  "source_quote": "er signing the agreement, Olson entered Alford pleas\nto accomplice to commit murder and two counts o",
+  "verified_count": 1,
+  "source": "2019ND135.pdf",
+  "confidence": "high",
+  "evidence": "DB has line break with italics markup around 'Alford'; PDF shows 'Alford pleas' on same line without markup. The original occurrence at paragraph 4, describing Alford pleas entered in the change of plea hearing.",
+  "note": "Ingestion artifact: italic markup (*Alford*) and unnecessary line break injected during conversion. PDF renders as plain text on single line.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17464,
+  "class": "split_join",
+  "old_exact": " *Alford*\n case",
+  "new_exact": "Alford case",
+  "source_quote": "he\npleas which are made pursuant to the Alford case, and that the guilty pleas are entered\nfreely an",
+  "verified_count": 1,
+  "source": "2019ND135.pdf",
+  "confidence": "high",
+  "evidence": "DB has line break with italics markup around 'Alford'; PDF shows 'Alford case' on same line without markup. Occurrence at paragraph 28, referring to the Alford case governing guilty pleas.",
+  "note": "Ingestion artifact: same pattern as proposal 1. Italic markup and line break injected during conversion. PDF renders as plain text.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17464,
+  "class": "whitespace",
+  "old_exact": "the\n\n*conduct*\n\n that produces",
+  "new_exact": "the conduct that produces",
+  "source_quote": "he accomplice intentionally promotes or facilitates the conduct that\n       produces the injury or death, even though the accomplice did not",
+  "verified_count": 1,
+  "source": "2019ND135.pdf",
+  "confidence": "high",
+  "evidence": "DB has excess blank lines and italic markup around 'conduct'; PDF shows normal text flow 'the conduct that' with line break only at layout margin (no blank lines, no markup). Same blockquote in paragraph 13.",
+  "note": "Ingestion artifact: same pattern as proposal 5. Excessive newlines and italic markup injected during conversion.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17463,
+  "class": "ocr_char",
+  "old_exact": "are-or reasonably should have been-completed",
+  "new_exact": "are—or\nreasonably should have been—completed",
+  "source_quote": "tasks tied to the traffic infraction are—or\nreasonably should have been—completed.\" Rodriguez, at 1614.",
+  "verified_count": 1,
+  "source": "PDF pdftotext -layout",
+  "confidence": "high",
+  "evidence": "The DB ingestion converted em-dashes (—) to ASCII hyphens (-) in this conditional phrase that spans a line break. The authoritative PDF shows em-dashes connecting the elements 'are' to 'or' and 'have been' to 'completed' as part of the legal conditional clause.",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 17463,
@@ -49,6 +100,18 @@
   "confidence": "high",
   "evidence": "The DB ingestion converted two em-dashes (—) to ASCII hyphens (-) in the quoted phrase discussing whether police conduct 'prolongs' the stop. Both em-dashes appear in the PDF source. The phrase spans line breaks and appears within quotes in the Rodriguez citation.",
   "_verdict": "reject:unverified"
+ },
+ {
+  "opinion_id": 17434,
+  "class": "caption",
+  "old_exact": "Julie Roubideaux LAVALLIE, Petitioner and Appellee v. STATE of North Dakota, Respondent and Appellant",
+  "new_exact": "Julie Roubideaux Lavallie, Petitioner and Appellee v. State of North Dakota, Respondent and Appellant",
+  "source_quote": "Julie Roubideaux Lavallie,                                Petitioner and Appellee\n\n         v.\n\nState of North Dakota,                                 Respondent and Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND100.pdf",
+  "confidence": "high",
+  "evidence": "PDF caption (page 1, lines 9-13) clearly shows title case 'Lavallie' and 'State'. DB header incorrectly renders party names with all-caps LAVALLIE and STATE, diverging from the authoritative PDF source.",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 17410,
@@ -86,7 +149,7 @@
   "confidence": "high",
   "evidence": "This is a quoted excerpt from N.D.C.C. § 12.1-32-08(1). The PDF source consistently renders ellipses with spacing ('. . .') rather than compact form ('...'). This difference is an ingestion/OCR artifact.",
   "note": "First occurrence in ¶4, part of the statutory quote.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17358,
@@ -99,7 +162,45 @@
   "confidence": "high",
   "evidence": "In ¶7, the opinion analyzes the phrase 'full restitution' from N.D. Const. art. I, § 25(1)(n). The PDF source renders this with spaced ellipsis ('. . .'), matching the pattern used throughout the court's published opinion.",
   "note": "Ellipsis formatting consistency with PDF source.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17358,
+  "class": "whitespace",
+  "old_exact": "account: ... (b) The ability of the defendant to restore the fruits of the criminal action or to pay",
+  "new_exact": "account: . . . (b) The ability of the defendant to restore the fruits of the criminal action or to pay",
+  "source_quote": "ll take into\n       account: . . . (b) The ability of the defendant to restore the fruits of the\n       criminal action",
+  "source": "PDF-authoritative pdftotext extract",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Second occurrence in ¶9, within the same block quote of the statute. The PDF shows '. . .' (spaced), DB shows '...' (compact).",
+  "note": "Second quoted excerpt from the statute in the ¶9 block quote.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17362,
+  "class": "whitespace",
+  "old_exact": "[C]ourts have ... held",
+  "new_exact": "[C]ourts have . . . held",
+  "source_quote": "2014 ND 202, ¶ 21, 855 N.W.2d\n647 (\"[C]ourts have . . . held that a trial court's use of a mechanical sentencing\nformula or policy as to",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2019/2019ND14.pdf",
+  "confidence": "high",
+  "evidence": "The DB text shows three compact dots '[C]ourts have ... held' while the authoritative PDF shows spaced ellipsis dots '[C]ourts have . . . held' (dot-space-dot-space-dot-space). This is an ingestion/OCR artifact where the space characters between dots were lost during transcription. The PDF shows the canonical spaced form with three dots separated by spaces, matching the typographic style of the printed opinion.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17363,
+  "class": "whitespace",
+  "old_exact": "individual ... [e]nters",
+  "new_exact": "individual . . . [e]nters",
+  "source_quote": "individual . . . [e]nters or remains in any place so enclosed as manifestly to exclude intruders.",
+  "source": "PDF page 3, paragraph [¶5]",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "PDF source (via pdftotext and image rendering at 300dpi) shows spaced ellipsis: period-SPACE-period-SPACE-period. DB has compact form: period-period-period. This is an ingestion artifact where the ellipsis spacing was lost during OCR/conversion.",
+  "note": "The ND Reporter style uses spaced ellipsis in quoted statute text. Verified at byte level: PDF is '. . . ' (5 bytes) while DB is '... ' (4 bytes).",
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17366,
@@ -114,6 +215,56 @@
   "_verdict": "reject:unverified"
  },
  {
+  "opinion_id": 17366,
+  "class": "ocr_char",
+  "old_exact": "v. ANDERSON & FERCHO, PLLP",
+  "new_exact": "v. Anderson & Fercho, PLLP",
+  "source_quote": "v.\n\nAnderson & Fercho, PLLP, William Fercho,",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND32.pdf",
+  "confidence": "high",
+  "evidence": "The PDF image (mutool draw -r 200) shows 'Anderson & Fercho' in title case. The pdftotext extraction confirms 'Anderson & Fercho, PLLP' (not all caps). The DB incorrectly has 'ANDERSON & FERCHO' in all caps in the caption line, which is an OCR capitalization error. Only 'DOES' in 'DOES 1-20 inclusive' should be in all caps per legal convention.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17368,
+  "class": "other",
+  "old_exact": "We\n\n *783\n\n conclude",
+  "new_exact": "We conclude",
+  "source_quote": "We conclude there was sufficient evidence upon\nwhich the district court could find Brakke failed to rebut the presumption that the\nnotice of suspension was delivered.",
+  "verified_count": 1,
+  "source": "authoritative PDF /Users/jerod/refs/nd/opin/pdfs/2019/2019ND34.pdf page 2",
+  "confidence": "high",
+  "evidence": "The PDF rendering shows no page break or reporter page marker in the middle of the sentence 'We conclude there was sufficient evidence...'. The DB text contains ' *783' surrounded by blank lines that split the continuous sentence. pdftotext -layout extraction confirms the text flows continuously without this marker. The marker appears to be an ingestion/OCR artifact incorrectly injected between 'We' and 'conclude'.",
+  "note": "Reporter page marker with extraneous line breaks removed. Text flows continuously in the authoritative PDF source.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17371,
+  "class": "other",
+  "old_exact": "*As a condition of operating a motor vehicle on a highway, or public or private area to which the public has a right of access to, you have consented to taking a test to determine whether you are under the influence of alcohol or drugs*\n\n . ",
+  "new_exact": "As a condition of operating a motor vehicle on a highway, or public or private area to which the public has a right of access to, you have consented to taking a test to determine whether you are under the influence of alcohol or drugs. ",
+  "source_quote": "As a condition of operating a motor vehicle on a highway, or public or private area to which the public has a right of access to, you have consented to taking a test to determine whether you are under the influence of alcohol or drugs. North Dakota law requires you to submit to a chemical test to determine whether you are under the influence of alcohol or drugs.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND50.pdf",
+  "confidence": "high",
+  "evidence": "The DB text contains emphasis asterisks (*text*) around the first emphasized phrase in the quoted advisory. The PDF source shows this same text with underline formatting (visual emphasis), not asterisks. Asterisks represent italics in markdown convention, but the PDF uses underline. The asterisks are an ingestion artifact. Additionally, the DB has an awkward fragmentation with blank lines and a stray period (' . ') after the first emphasis block that is not present in the continuous quoted text in the PDF.",
+  "note": "Removes incorrect emphasis markers (asterisks) that represented underline formatting using an italics convention, and consolidates the fragmented quoted text.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17371,
+  "class": "other",
+  "old_exact": "*and includes being arrested*\n\n . I must",
+  "new_exact": "and includes being arrested. I must",
+  "source_quote": "as DUI, and includes being arrested. I must also inform you that refusal to take the test directed by a law enforcement officer may result in a revocation of your driver's license",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND50.pdf",
+  "confidence": "high",
+  "evidence": "The DB text contains emphasis asterisks (*text*) around the second emphasized phrase in the quoted advisory. The PDF shows this with underline formatting. The asterisks are an ingestion artifact. The fragmented structure with blank lines and stray period (' . ') is not present in the continuous quoted text in the PDF.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
   "opinion_id": 17372,
   "class": "ocr_char",
   "old_exact": "first prong of the\n *Goebel*\n inquiry-focusing on characteristics and ",
@@ -126,6 +277,126 @@
   "_verdict": "reject:unverified"
  },
  {
+  "opinion_id": 17372,
+  "class": "ocr_char",
+  "old_exact": "ristics and conditions of the accused-that his lack of prior experienc",
+  "new_exact": "ristics and conditions of the accused—that his lack of prior experienc",
+  "source_quote": "characteristics and conditions of the accused—that his lack of prior experience with",
+  "verified_count": 1,
+  "source": "2019ND52.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows em-dash (U+2014); DB has ASCII hyphen (U+002D) connecting two independent clauses in ¶19.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17372,
+  "class": "ocr_char",
+  "old_exact": "erstand what, in fact, he was doing-what the consequences of the conve",
+  "new_exact": "erstand what, in fact, he was doing—what the consequences of the conve",
+  "source_quote": "or understand what, in fact, he was doing—what the consequences of the conversation",
+  "verified_count": 1,
+  "source": "2019ND52.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows em-dash (U+2014); DB has ASCII hyphen (U+002D) in ¶20 within a quoted court finding.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17372,
+  "class": "ocr_char",
+  "old_exact": " thus factors into the second prong-the details of the setting in whi",
+  "new_exact": " thus factors into the second prong—the details of the setting in whi",
+  "source_quote": "gratuitous Miranda warnings thus factors into the\nsecond prong—the details of the setting in which the confession",
+  "verified_count": 1,
+  "source": "2019ND52.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows em-dash (U+2014); DB has ASCII hyphen (U+002D) in ¶24 connecting 'prong' and 'details'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17379,
+  "class": "split_join",
+  "old_exact": "acting\n *pro se*\n , filed his seventh application for post-conviction",
+  "new_exact": "acting pro se, filed his seventh application for post-conviction",
+  "source_quote": "post-conviction relief, Gonzalez, acting pro se, filed his seventh application for post-conviction relief alleging the existence of newly discovered evidence.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND47.pdf",
+  "confidence": "high",
+  "evidence": "The DB text splits 'pro se' onto a separate line with italics markup (*pro se*) followed by a comma on the next line. The source PDF shows 'pro se,' inline within the sentence 'Gonzalez, acting pro se, filed his seventh application'.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17379,
+  "class": "split_join",
+  "old_exact": "district court\n *sua sponte*\n summarily denied his application, finding his seventh",
+  "new_exact": "district court sua sponte summarily denied his application, finding his seventh",
+  "source_quote": "district court sua sponte summarily denied his application, finding his seventh application for post-conviction relief was barred as a misuse of process under N.D.C.C. § 29-32.1-12(2).",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND47.pdf",
+  "confidence": "high",
+  "evidence": "The DB text splits 'sua sponte' onto a separate line with italics markup, breaking the phrase 'district court sua sponte summarily'. Source shows these words inline in [¶4].",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17379,
+  "class": "split_join",
+  "old_exact": "we agree the court erred in\n *sua sponte*\n summarily denying his application because",
+  "new_exact": "we agree the court erred in sua sponte summarily denying his application because",
+  "source_quote": "we agree the court erred in sua sponte summarily denying his application because it did not allow Gonzalez notice and the opportunity to file an answer brief",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND47.pdf",
+  "confidence": "high",
+  "evidence": "Second occurrence where 'sua sponte' is split across lines with italics markup. Source PDF shows 'sua sponte summarily' inline in [¶11].",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17379,
+  "class": "split_join",
+  "old_exact": "summary disposition\n *sua sponte*\n under N.D.C.C. § 29-32.1-09 before",
+  "new_exact": "summary disposition sua sponte under N.D.C.C. § 29-32.1-09 before",
+  "source_quote": "The district court may only grant summary disposition sua sponte under N.D.C.C. § 29-32.1-09 before the State responds.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND47.pdf",
+  "confidence": "high",
+  "evidence": "Third occurrence where 'sua sponte' is split across lines with italics markup. Source PDF shows 'disposition sua sponte under' inline in [¶13].",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17381,
+  "class": "other",
+  "old_exact": "expressly declared ... to be a joint tenancy",
+  "new_exact": "expressly declared . . . to be a joint tenancy",
+  "source_quote": "expressly declared . . . to be a joint tenancy",
+  "verified_count": 1,
+  "source": "PDF pdftotext output, joint tenancy definition (Paragraph 6)",
+  "confidence": "high",
+  "evidence": "PDF shows spaced three-dot ellipsis (. . .) while DB shows compact three-dot (...).",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17381,
+  "class": "other",
+  "old_exact": "available for ... recovery",
+  "new_exact": "available for . . . recovery",
+  "source_quote": "available for . . . recovery",
+  "verified_count": 1,
+  "source": "PDF pdftotext output, Estate of Grote case quotation (Paragraph 8)",
+  "confidence": "high",
+  "evidence": "PDF shows spaced three-dot ellipsis (. . .) within quoted material. DB omits spaces between dots.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17381,
+  "class": "other",
+  "old_exact": "denominator of which ... is one",
+  "new_exact": "denominator of which . . . is one",
+  "source_quote": "denominator of which . . . is one",
+  "verified_count": 1,
+  "source": "PDF pdftotext output, statute/rule citations section (Paragraph 9)",
+  "confidence": "high",
+  "evidence": "PDF shows spaced three-dot ellipsis (. . .) within statute definition. DB omits spaces between dots.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
   "opinion_id": 17383,
   "class": "whitespace",
   "old_exact": "§ 29-28-07(5), the State may appeal from \"[a]n order ... suppressing evidence",
@@ -135,7 +406,127 @@
   "source": "PDF source text (2019 ND 43)",
   "confidence": "high",
   "note": "Compact ellipsis corrected to spaced form per ND court publishing style. PDF uses '. . .' (spaced), DB has '...' (compact).",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17383,
+  "class": "whitespace",
+  "old_exact": "evidence ... when accompanied by a statement of the prosecuting attorney",
+  "new_exact": "evidence . . . when accompanied by a statement of the prosecuting attorney",
+  "source_quote": "suppressing evidence . . . when accompanied by a\nstatement of the prosecuting attorney asserting",
+  "verified_count": 1,
+  "source": "PDF source text (2019 ND 43)",
+  "confidence": "high",
+  "note": "Compact ellipsis corrected to spaced form per ND court publishing style. PDF uses '. . .' (spaced), DB has '...' (compact).",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17383,
+  "class": "whitespace",
+  "old_exact": "The Court ... conclude[d] as a matter of law",
+  "new_exact": "The Court . . . conclude[d] as a matter of law",
+  "source_quote": "The Court . . . conclude[d] as a matter of law that Vetter was, in\n          essence, threatened with an unlawful search",
+  "verified_count": 1,
+  "source": "PDF source text (2019 ND 43, block quote)",
+  "confidence": "high",
+  "note": "Compact ellipsis corrected to spaced form per ND court publishing style. Appears within block quote. PDF uses '. . .' (spaced), DB has '...' (compact).",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Montgomery v. Montgomery*",
+  "new_exact": "Montgomery v. Montgomery",
+  "class": "other",
+  "source_quote": "willfully and inexcusably violated a court order. Montgomery v.\nMontgomery, 2003 ND 135, ¶ 18, 667 N.W.2d 611.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) is a known ingestion artifact. The source PDF shows the plain case name 'Montgomery v. Montgomery' in normal typographic formatting. The asterisks must be removed to match the authoritative source.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Peterson v. Peterson*",
+  "new_exact": "Peterson v. Peterson",
+  "class": "other",
+  "source_quote": "court abused its discretion. Peterson v. Peterson, 2016 ND 157, ¶ 6, 883 N.W.2d 449.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) is a known ingestion artifact. The source PDF shows the plain case name in normal formatting. Asterisks must be removed.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Solwey v. Solwey*",
+  "new_exact": "Solwey v. Solwey",
+  "class": "other",
+  "source_quote": "failure to file a transcript of a hearing. Solwey v. Solwey,\n2018 ND 82, ¶ 7, 908 N.W.2d 690.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact. Source shows plain case name. Remove asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Fed. Land Bank of St. Paul v. Ziebarth*",
+  "new_exact": "Fed. Land Bank of St. Paul v. Ziebarth",
+  "class": "other",
+  "source_quote": "rights of the public and necessities of the occasion. Fed. Land Bank of St. Paul\nv. Ziebarth, 520 N.W.2d 51, 56 (N.D. 1994).",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact. The source PDF renders this case name in plain (non-italic) format. Asterisks must be removed.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*See*",
+  "new_exact": "See",
+  "class": "other",
+  "source_quote": "discretion. See In the Matter of Emelia Hirsch, 2017 ND 291, ¶ 8, 904 N.W.2d 740.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact around the citation signal 'See'. Source shows plain text. Remove asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*In the Matter of Emelia Hirsch*",
+  "new_exact": "In the Matter of Emelia Hirsch",
+  "class": "other",
+  "source_quote": "See In the Matter of Emelia Hirsch, 2017 ND 291, ¶ 8, 904 N.W.2d 740.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact. Source shows plain case name without asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Montgomery*",
+  "new_exact": "Montgomery",
+  "class": "other",
+  "source_quote": "misinterprets or misapplies the law. Montgomery, at ¶ 18. An inability to comply with an order",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact on case shorthand reference. Source shows 'Montgomery, at ¶ 18' without asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17385,
+  "old_exact": "*Peterson*",
+  "new_exact": "Peterson",
+  "class": "other",
+  "source_quote": "the alleged contemnor has the burden of proof. Peterson, at ¶ 6.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND48.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Markdown formatting (*...*) artifact on case shorthand reference. Source shows 'Peterson, at ¶ 6' without asterisks.",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 17385,
@@ -147,6 +538,18 @@
   "verified_count": 2,
   "confidence": "high",
   "evidence": "Markdown formatting (*...*) artifact on the citation signal 'Id.' Appears twice in the opinion. Both instances show plain 'Id.' in the source PDF without asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17388,
+  "class": "ocr_char",
+  "old_exact": "children-V.E.H.",
+  "new_exact": "children—V.E.H.",
+  "source_quote": "Iverson, two of the minor children—V.E.H. and J.J.H., as well as two of the older\nsiblings, filed affidavits in support of the requested modification.",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND45.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Hyphen (char 45) in DB should be em-dash (char 8212) per PDF. DB text 'children-V.E.H.' appears once; source PDF clearly shows em-dash separating the children's initials from the names.",
   "_verdict": "reject:bad_anchor"
  },
  {
@@ -185,7 +588,7 @@
   "confidence": "high",
   "evidence": "PDF shows spaced ellipsis '. . . ' in statutory citation; DB has compact '...'. Occurs in paragraph 12. Rule: match the source (PDF).",
   "note": "Citation to N.D.C.C. § 28-34-01 with quoted text from statute.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17391,
@@ -198,7 +601,7 @@
   "confidence": "high",
   "evidence": "PDF shows spaced ellipsis '. . . ' in statutory quote at paragraph 17; DB has compact '...'. This is the first instance of this statutory text.",
   "note": "Paragraph 17, first quotation of statute.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
  },
  {
   "opinion_id": 17391,
@@ -211,7 +614,121 @@
   "confidence": "high",
   "evidence": "PDF shows spaced ellipsis '. . . ' in second instance of statute quote at paragraph 19; DB has compact '...'. Same statutory text quoted twice in opinion.",
   "note": "Paragraph 19, second quotation of same statute.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17397,
+  "class": "split_join",
+  "old_exact": " *See*\n N.D.C.C. § 14-09-06.6(4).",
+  "new_exact": "See N.D.C.C. § 14-09-06.6(4).",
+  "source_quote": "e case\nfor modification and ordered an evidentiary hearing. See N.D.C.C. § 14-09-06.6(4).\n[¶4]   After an evidentiary hearing, the district court den",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND75.pdf (pdftotext -layout)",
+  "confidence": "high",
+  "evidence": "DB incorrectly places the italicized *See* on a separate line from the citation it introduces. Source PDF shows 'See' integrated with the citation on the same line as the preceding sentence.",
+  "note": "Citation split is a markdown ingestion artifact; should be rejoined as a single sentence.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17400,
+  "class": "ocr_char",
+  "old_exact": "contains two separate requests-a peremptory request for change of judge under N.D.C.C. § 29-15-21 and a request for recusal based on bias.",
+  "new_exact": "contains two separate requests—a peremptory request for change of judge under N.D.C.C. § 29-15-21 and a request for recusal based on bias.",
+  "source_quote": "contains\ntwo separate requests—a peremptory request for change of judge under N.D.C.C. §\n29-15-21 and a request for recusal based on bias.",
+  "verified_count": 1,
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2019/2019ND70.pdf",
+  "confidence": "high",
+  "evidence": "Database contains hyphen (0x2d) at 'requests-a' but PDF source contains UTF-8 em-dash (0xe2 0x80 0x94) at 'requests—a'. This is a clear OCR/ingestion defect. The em-dash is correct punctuation in legal writing (separating two independent clauses).",
+  "note": "Replacement of hyphen with em-dash in the phrase 'two separate requests—a peremptory request'. This is proper ND Supreme Court punctuation style.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17406,
+  "class": "whitespace",
+  "old_exact": "abating ... the danger ...",
+  "new_exact": "abating . . . the danger . . .",
+  "source": "/tmp/src_2019ND79.txt",
+  "source_quote": "there\nwere no legal alternatives for abating . . . the danger . . . [m]oreover, there has been",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "PDF source (pdftotext -layout) shows spaced ellipsis '. . .' format (four dots with spaces, per ND court style). DB ingestion artifact created compact three-dot '...' format. Ellipsis spacing is mechanical/formatting; the four-dot spaced form matches the printed source and matches ND court opinion convention.",
+  "note": "Per Rule 12 (ELLIPSES): ND opinions print compact four-dot form '....'; when DB shows spaced '. . . .' matching PDF, propose compact form for consistency with ND standard. Match source.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17407,
+  "class": "whitespace",
+  "old_exact": "plat ...",
+  "new_exact": "plat . . .",
+  "source_quote": "\"approved the subdivision of\nland on the attached plat . . . [and] accepted the dedication of all streets shown",
+  "verified_count": 1,
+  "source": "PDF page 3 (pdftotext rendered output, approximately line 93)",
+  "confidence": "high",
+  "evidence": "The PDF clearly renders spaced ellipsis '. . .' in the phrase 'on the attached plat . . . [and]'. The DB text has compact three-dot form '...' at the same location. The rendered PDF image (mutool draw, 300dpi) confirms the spaced dots in print.",
+  "note": "Ellipsis spacing: PDF source shows spaced dots '. . .' representing omitted text from the quoted dedication language, while DB has compact form '...'. This is an ingestion/transcription artifact.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17407,
+  "class": "whitespace",
+  "old_exact": "dedicated ...",
+  "new_exact": "dedicated . . .",
+  "source_quote": "finds that the streets were unambiguously\n       dedicated . . . \"to the public use, forever.\" The primary use of a street",
+  "verified_count": 1,
+  "source": "PDF page 5 (pdftotext rendered output, approximately line 220)",
+  "confidence": "high",
+  "evidence": "The PDF clearly renders spaced ellipsis '. . .' in the district court's quoted reasoning: 'were unambiguously dedicated . . . \"to the public use, forever.\"' The DB text has compact three-dot form '...' at the same location.",
+  "note": "Ellipsis spacing: PDF source shows spaced dots '. . .' representing omitted language from the quoted district court order, while DB has compact form '...'. This is an ingestion/transcription artifact.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17418,
+  "class": "whitespace",
+  "old_exact": "of the proceedings ... [and]",
+  "new_exact": "of the proceedings . . . [and]",
+  "source_quote": "the appellant must order a transcript of the\nproceedings . . . [and] the order for a transcript",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND85.pdf",
+  "confidence": "high",
+  "evidence": "Quoted text from N.D.R.App.R. 10(b)(1) uses spaced ellipsis (. . .) in source PDF; DB incorrectly renders as compact form (...). This is part of a direct quotation of the court rule.",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17418,
+  "class": "whitespace",
+  "old_exact": "transcript ... must be",
+  "new_exact": "transcript . . . must be",
+  "source_quote": "order for a transcript . . . must be filed with the clerk of the\nsupreme",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND85.pdf",
+  "confidence": "high",
+  "evidence": "Second ellipsis in same quoted rule text from N.D.R.App.R. 10(b)(1). Source shows spaced ellipsis (. . .); DB has compact form (...).",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17419,
+  "class": "split_join",
+  "old_exact": " *Interest of G.L.*, 2018 ND 176\n\n , ¶ 15,\n\n 915 N.W.2d 685\n\n ",
+  "new_exact": " Interest of G.L., 2018 ND 176, ¶ 15, 915 N.W.2d 685 ",
+  "source_quote": "chedule.\n[¶2]   We summarily reverse under N.D.R.App.P. 35.1(b) and remand for further\nproceedings. Interest of G.L., 2018 ND 176, ¶ 15, 915 N.W.2d 685 (holding a juvenile\ncourt may not delegate paren",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND88.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "note": "Citation was fragmented across multiple lines with stray blank lines; markdown asterisks (*Interest of G.L.*) removed to match authoritative PDF formatting",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17420,
+  "class": "other",
+  "old_exact": "agreement-a novation",
+  "new_exact": "agreement—a novation",
+  "source_quote": "conditions under which they agreed to continue with the agreement—a novation.\nYellowstone argues the Bearces continued with the",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND89.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "DB text uses ASCII hyphen (-) in 'agreement-a novation'; authoritative PDF uses em-dash (U+2014) in 'agreement—a novation'. This is an encoding/ingestion issue where the proper typographic em-dash was converted to a plain hyphen in the DB text.",
+  "note": "Single occurrence in both DB and source. The em-dash is the correct punctuation in legal writing to introduce a parenthetical explanation or appositive. DB character code: 45 (hyphen); PDF character code: 8212 (em-dash).",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 17422,
@@ -227,6 +744,58 @@
   "_verdict": "reject:unverified"
  },
  {
+  "opinion_id": 17425,
+  "class": "ocr_char",
+  "old_exact": "him guilty of aggravated assault-domestic violence, interference with telephone during an emergency call, and terrorizing. On appeal, Mohamud argues the district",
+  "new_exact": "him guilty of aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. On appeal, Mohamud argues the district",
+  "source_quote": "him guilty of aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. On appeal, Mohamud argues the district",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND101.pdf",
+  "confidence": "high",
+  "evidence": "Official PDF shows em-dash in compound adjective 'assault—domestic violence'; DB has hyphen. Appears in [¶1].",
+  "note": "First of three occurrences of this OCR error (all corrections consolidated under this proposal class). Em-dash (—) is standard for compound adjectives in legal writing; hyphen is OCR misread.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17425,
+  "class": "ocr_char",
+  "old_exact": "was charged with aggravated assault-domestic violence, interference with telephone during an emergency call, and terrorizing. These charges were related to",
+  "new_exact": "was charged with aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. These charges were related to",
+  "source_quote": "was charged with aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. These charges were related to",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND101.pdf",
+  "confidence": "high",
+  "evidence": "Official PDF shows 'assault—domestic violence' (with em-dash); second occurrence in [¶2].",
+  "note": "Second of three em-dash corrections; same OCR error pattern.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17425,
+  "class": "ocr_char",
+  "old_exact": "State re-charged Mohamud with aggravated assault-domestic violence, interference with telephone during an emergency call, and terrorizing. Mohamud was ordered to have no contact",
+  "new_exact": "State re-charged Mohamud with aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. Mohamud was ordered to have no contact",
+  "source_quote": "State re-charged Mohamud with aggravated assault—domestic violence, interference with telephone during an emergency call, and terrorizing. Mohamud was ordered to have no contact",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND101.pdf",
+  "confidence": "high",
+  "evidence": "Official PDF shows 'assault—domestic violence' (with em-dash); third occurrence in [¶3].",
+  "note": "Third and final occurrence of em-dash correction in same context.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17425,
+  "class": "ocr_char",
+  "old_exact": "extremely different outcomes-the latter of which results in an illegal sentence.",
+  "new_exact": "extremely different outcomes—the latter of which results in an illegal sentence.",
+  "source_quote": "extremely different outcomes—the latter of which results in an illegal sentence.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND101.pdf",
+  "confidence": "high",
+  "evidence": "Official PDF shows em-dash in 'outcomes—the' compound in [¶24]; OCR rendered as hyphen.",
+  "note": "Em-dash connects 'outcomes' and 'the' as single thought; standard legal typography.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
   "opinion_id": 17427,
   "class": "whitespace",
   "old_exact": "who is the exception ....\"",
@@ -236,7 +805,107 @@
   "source": "/tmp/src_2019ND108.txt (lines 240-243)",
   "confidence": "high",
   "evidence": "DB contains compact four-dot ellipsis (....)  after 'exception' in a quoted passage; PDF source shows spaced form (. . . .) which is ND court's published standard ellipsis format. The quotation is from Riley v. California (Supreme Court citation) in ¶12 of the opinion. Verified byte-exact: old_exact appears exactly once in DB text.",
-  "_verdict": "reject:unverified"
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17429,
+  "class": "ocr_char",
+  "old_exact": "employed-it",
+  "new_exact": "employed—it",
+  "source_quote": "be employed—it and they are mutually exclusive. Yet",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND107.pdf",
+  "confidence": "high",
+  "evidence": "The authoritative PDF source shows an em-dash (—) between 'employed' and 'it', but the DB contains a regular hyphen (-). This is a common OCR conversion error where a typographic em-dash is misread as a hyphen. The phrase appears in a block quote from an earlier ND case describing limitations of Rule 60(b)(6). The em-dash connects the complete phrase 'employed—it' meaning the clause logically continues ('employed, and it [they]...'). A single occurrence in the opinion body, byte-exact match confirmed.",
+  "note": "This is the only text-content difference found between the DB text and the authoritative PDF source. The difference in line/blank-line counts is formatting only (the DB uses markdown italics with asterisks for case citations; the source has plain text formatting with typeface on PDF). All numbers, amounts, dates, and legal citations are identical.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17431,
+  "class": "split_join",
+  "old_exact": "*State v. Noack*, 2007 ND 82\n\n , ¶ 8,\n\n 732 N.W.2d 389\n\n .",
+  "new_exact": "State v. Noack, 2007 ND 82, ¶ 8, 732 N.W.2d 389.",
+  "source_quote": "we do not consider because her arguments were inadequately articulated, supported, and briefed. State v. Noack, 2007 ND 82, ¶ 8, 732 N.W.2d 389.",
+  "verified_count": 1,
+  "source": "2019ND93.pdf (pdftotext layout mode)",
+  "confidence": "high",
+  "evidence": "Citation fragmented across multiple lines with four distinct errors: (1) asterisks around case name removed, (2) double blank lines removed (0x0a 0x0a), (3) spurious leading space before comma removed ('\\n , ' → ', '), (4) period moved to end of citation (from separate line with blank line before it). PDF shows single-line compact citation.",
+  "note": "Citation markup/formatting artifact; markdown or markdown-adjacent processing introduced markdown-emphasis syntax.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17441,
+  "class": "missing_text",
+  "old_exact": "best-interest factors states in part:",
+  "new_exact": "best-interest factors, states in part:",
+  "source_quote": "Further, N.D.C.C. § 14-09-06.2(1)(j) of the best-interest factors,\nstates in part:",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND109.pdf",
+  "confidence": "high",
+  "evidence": "Transcription error: missing comma after 'factors' in paragraph [¶8]. The PDF source clearly shows 'best-interest factors,' (with comma) followed by line break and 'states in part:', but the DB text omits the comma, creating 'factors states' which is syntactically incorrect. The statute citation ends properly with comma to introduce the indented statutory text.",
+  "note": "Located in [¶8], sentence discussing N.D.C.C. § 14-09-06.2(1)(j) best-interest factors for determining parental rights and responsibilities.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17448,
+  "class": "whitespace",
+  "old_exact": "based on the notes she took ... also had a few more",
+  "new_exact": "based on the notes she took . . . also had a few more",
+  "source_quote": "ng letter to Dr. Sens dated\n       April 24, 2013 based on the notes she took . . . also had a few more\n       questions as 2 hrs. was not enough . . . .\" (See Complaint, ¶ 34). Then\n       Ayling inv",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND114.pdf",
+  "confidence": "high",
+  "note": "Compact ellipsis (three dots) corrected to spaced form (. . .) matching source PDF",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17448,
+  "class": "whitespace",
+  "old_exact": "was not enough ....",
+  "new_exact": "was not enough . . . .",
+  "source_quote": " . also had a few more\n       questions as 2 hrs. was not enough . . . .\" (See Complaint, ¶ 34). Then\n       Ayling investigated the Pi Kappa Alpha fr",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND114.pdf",
+  "confidence": "high",
+  "note": "Compact ellipsis (four dots) corrected to spaced form (. . . .) matching source PDF",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17452,
+  "class": "other",
+  "old_exact": " *See*",
+  "new_exact": " See",
+  "source_quote": "N.D.R.App.P. 35.1(a)(4), (6), and (7). See Carlson v. State, 2018 ND 81, ¶ 7, 908",
+  "verified_count": 1,
+  "source": "PDF page 2, pdftotext line 44",
+  "confidence": "high",
+  "evidence": "DB contains markdown italics markup (*See*) which is ingestion contamination; the PDF source shows 'See' in text without asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17452,
+  "class": "other",
+  "old_exact": "*Carlson v. State*",
+  "new_exact": "Carlson v. State",
+  "source_quote": "See Carlson v. State, 2018 ND 81, ¶ 7, 908 N.W.2d 711 (dismissal is appropriate when",
+  "verified_count": 1,
+  "source": "PDF page 2, pdftotext lines 44-45",
+  "confidence": "high",
+  "evidence": "DB contains markdown italics markup (*Carlson v. State*) which is ingestion contamination; the PDF source shows the case name as plain text without asterisks.",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17453,
+  "class": "ocr_char",
+  "old_exact": "outcome-his",
+  "new_exact": "outcome—his",
+  "source_quote": "e confidence in the outcome—his decision to admit\nto the alleged violations",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND119.pdf",
+  "confidence": "high",
+  "evidence": "PDF source (pdftotext output) shows em-dash (U+2014) between 'outcome' and 'his'; DB contains ASCII hyphen (U+0045). Character-verified using Python ord() checks: PDF char ord=8212, DB char ord=45. This is the only substantive character-level difference in the opinion text when all whitespace and citation formatting artifacts are normalized. All proper names, dates, citations, paragraph structure, and substantive text are identical.",
+  "note": "This is punctuation (em-dash) connecting two independent clauses, not a quote character. The em-dash is the correct form in professional typesetting; the straight hyphen appears to be an OCR misrecognition during PDF-to-text ingestion.",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 17457,
@@ -276,6 +945,18 @@
  },
  {
   "opinion_id": 17459,
+  "class": "ocr_char",
+  "old_exact": "*Mills v. Rogers*, ",
+  "new_exact": "Mills v. Rogers, ",
+  "source_quote": "1985) (relying on Mills v. Rogers, 457 U.S. 291, 305 (1982) (citations omitted).",
+  "verified_count": 1,
+  "source": "/tmp/src_2019ND127.txt",
+  "confidence": "high",
+  "evidence": "Asterisks appear to be leftover markup (italics) from markdown or intermediate processing; source PDF shows plain case name without asterisks",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17459,
   "class": "ocr_digit",
   "old_exact": " 102 S.Ct. 2442, \n 73 L.Ed.2d 16\n\n",
   "new_exact": "",
@@ -285,6 +966,42 @@
   "confidence": "high",
   "evidence": "Source PDF shows citation as '457 U.S. 291, 305 (1982)' without the extra reporter citations; DB includes spurious '102 S.Ct. 2442' and '73 L.Ed.2d 16' that do not appear in published opinion",
   "_verdict": "reject:guard_digit_in_cite"
+ },
+ {
+  "opinion_id": 17459,
+  "class": "whitespace",
+  "old_exact": "as determined by the court ....",
+  "new_exact": "as determined by the court . . . .",
+  "source_quote": "as determined by the court\n. . . .\" (Emphasis added). This Court has determined insurance companies fall within",
+  "verified_count": 1,
+  "source": "/tmp/src_2019ND127.txt",
+  "confidence": "high",
+  "evidence": "North Dakota opinions standardly use spaced ellipsis form (. . . .) not compact form (....); source shows spaced form; DB shows compact form",
+  "_verdict": "reject:guard_ellipsis_widen"
+ },
+ {
+  "opinion_id": 17459,
+  "class": "ocr_char",
+  "old_exact": "or other recipient*\n as determined by the court",
+  "new_exact": "or other recipient as determined by the court",
+  "source_quote": "defendant make restitution to the victim or other recipient as determined by the court\n. . . .\"",
+  "verified_count": 1,
+  "source": "/tmp/src_2019ND127.txt",
+  "confidence": "high",
+  "evidence": "Stray asterisk after 'recipient' and unwanted line break in statute quote; source shows continuous text without asterisk or break",
+  "_verdict": "reject:bad_anchor"
+ },
+ {
+  "opinion_id": 17473,
+  "class": "ocr_char",
+  "old_exact": "541 N.W.2d 685",
+  "new_exact": "541 NW2d 685",
+  "source_quote": "Under the rule in Basin Electric\n       Power Coop. v. ND Workers Comp. Bureau, 541 NW2d 685 (ND 1996)",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND136.pdf",
+  "confidence": "high",
+  "evidence": "The PDF text extracted via pdftotext shows '541 NW2d 685' (without periods in the reporter abbreviation), which is the format used in the original court opinion. The database contains '541 N.W.2d 685' (with periods), which is an OCR or ingestion-phase reformatting error. The source document is authoritative; this is the only instance of this citation in the opinion.",
+  "_verdict": "reject:bad_anchor"
  },
  {
   "opinion_id": 19446,
