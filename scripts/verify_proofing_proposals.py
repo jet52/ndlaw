@@ -121,10 +121,21 @@ def guard(p, oe, ne):
     add = list((__import__("collections").Counter(_tokens(ne)) - __import__("collections").Counter(_tokens(oe))).elements())
     if rem and not add and all(_HEADING.fullmatch(w) for w in rem):
         return "review", "guard_probable_heading_move"
-    # G5 whitespace-only change that ADDS leading indentation -> corpus convention
-    #    varies; the verifier can't know the right indent. (signature-indent class)
+    # G5 whitespace-only change that ADDS leading indentation -> reject. The DB is
+    #    normalized flush-left (signature lines carry 1 leading space corpus-wide);
+    #    pdftotext -layout's 5-6 space centering is a rendering artifact that must never
+    #    be imported. Keeping the DB's flush-left form is the correct non-action.
     if re.sub(r"\s", "", oe) == re.sub(r"\s", "", ne) and _lead_ws(ne) > _lead_ws(oe):
-        return "review", "guard_whitespace_convention"
+        return "reject", "guard_whitespace_convention"
+    # G7 ellipsis widening (...-> . . .) -> reject. ND prints COMPACT ellipses; pdftotext
+    #    renders spaced dots from column padding, so the spaced form passes a "in PDF text"
+    #    test but is an extraction artifact. Compacting (. . . . -> ....) is the valid
+    #    direction and is NOT caught here (it falls through to review/auto).
+    if (re.sub(r"[.\s]", "", oe) == re.sub(r"[.\s]", "", ne)
+            and ("..." in oe or ". ." in oe or "..." in ne or ". ." in ne)):
+        gap = lambda s: max((len(g) for g in re.findall(r"\.( +)\.", s)), default=0)
+        if gap(ne) > gap(oe):
+            return "reject", "guard_ellipsis_widen"
     # G6 evidence-binding: if the proposal carries a source_quote, every token added
     #    by new_exact must appear in it. Catches confabulated reconstructions and
     #    text-layer digit guesses (the agent must point to the source).
