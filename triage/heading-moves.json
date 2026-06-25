@@ -1,0 +1,189 @@
+[
+ {
+  "opinion_id": 17766,
+  "class": "heading_seq",
+  "old_exact": ". I\n\n[¶2]",
+  "new_exact": ".\n\nI\n\n[¶2]",
+  "source_quote": "(PDF) 'I' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'III']; merged before [¶2]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19405,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶6]",
+  "new_exact": ".\n\nA\n\n[¶6]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II', 'III', 'IV']; merged before [¶6]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19405,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶7]",
+  "new_exact": ".\n\nB\n\n[¶7]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II', 'III', 'IV']; merged before [¶7]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶9]",
+  "new_exact": ".\n\nA\n\n[¶9]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶9]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶19]",
+  "new_exact": ".\n\nB\n\n[¶19]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶19]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". I\n\n[¶34]",
+  "new_exact": ".\n\nI\n\n[¶34]",
+  "source_quote": "(PDF) 'I' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶34]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶35]",
+  "new_exact": ".\n\nA\n\n[¶35]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶35]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶45]",
+  "new_exact": ".\n\nB\n\n[¶45]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶45]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶57]",
+  "new_exact": ".\n\nA\n\n[¶57]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶57]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19509,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶60]",
+  "new_exact": ".\n\nB\n\n[¶60]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II']; merged before [¶60]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19522,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶14]",
+  "new_exact": ".\n\nA\n\n[¶14]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'C', 'I', 'III', 'IV']; merged before [¶14]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19522,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶16]",
+  "new_exact": ".\n\nB\n\n[¶16]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'C', 'I', 'III', 'IV']; merged before [¶16]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19522,
+  "class": "heading_seq",
+  "old_exact": ". C\n\n[¶17]",
+  "new_exact": ".\n\nC\n\n[¶17]",
+  "source_quote": "(PDF) 'C' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'C', 'I', 'III', 'IV']; merged before [¶17]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19629,
+  "class": "heading_seq",
+  "old_exact": ". I\n\n[¶2]",
+  "new_exact": ".\n\nI\n\n[¶2]",
+  "source_quote": "(PDF) 'I' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'V']; merged before [¶2]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19629,
+  "class": "heading_seq",
+  "old_exact": ". II\n\n[¶7]",
+  "new_exact": ".\n\nII\n\n[¶7]",
+  "source_quote": "(PDF) 'II' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'V']; merged before [¶7]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19629,
+  "class": "heading_seq",
+  "old_exact": ". III\n\n[¶10]",
+  "new_exact": ".\n\nIII\n\n[¶10]",
+  "source_quote": "(PDF) 'III' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'V']; merged before [¶10]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19629,
+  "class": "heading_seq",
+  "old_exact": ". V\n\n[¶19]",
+  "new_exact": ".\n\nV\n\n[¶19]",
+  "source_quote": "(PDF) 'V' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'V']; merged before [¶19]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ }
+]

@@ -2,6 +2,32 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `citation-rejoin-v2-2026-06-24` — fragmented-citation rejoin v2 (2,416 opinions)
+
+Mechanization #1 to drain the per-round cite-reflow queue. Extended
+`scripts/rejoin_citations.py` with three patterns v1 missed (the dominant residual):
+PAREN_FRAG (`446\n (quoting` -> `446 (quoting` — a citation number/`)` orphaned from a
+following indented parenthetical), ID_PAREN (`Id.\n (` -> `Id. (`), REPORTER_NUM
+(`915 N.W.2d\n106` -> `915 N.W.2d 106`). Broadened the candidate scan to the whole corpus
+(the alpha+digit multiset gate guarantees content-preservation, so a broad scan is safe).
+Validated against the deferred reflow set (20/38 rejoined, 0 multiset violations; the rest
+were other classes — hyphenation/headings/signatures — correctly untouched) and sampled
+5,929 PAREN_FRAG + 525 REPORTER_NUM firings (all legitimate citation parentheticals,
+`(1961)`/`(3d Cir`/`N.D.\n1946`). Applied: **2,416 opinions, 0 skipped on the multiset
+gate, 7,264 stray chars removed.** Detector 175/0, invariants 24/0, 66 tests.
+
+## Batch `heading-moves-2026-06-24` — automated section-heading MOVES (5 opinions, 17 headings)
+
+Mechanization #2 (`scripts/heading_move.py`). Converts the recurring delete-vs-move trap
+into a safe automatic MOVE: drives off the court PDF's standalone-heading SET (robust to
+older PDFs that render ¶ numbers in the margin with no inline `[¶N]`), scans the DB for a
+heading letter merged onto the line before its `[¶N]`, and relocates it to its own line —
+never deletes. Verified: 0 false positives on already-fixed opinions (Dearinger 19647);
+the OCR-garbage letters (`T`, `$` in id 19509 Grenz) aren't heading-shaped so aren't
+matched, and a non-heading `VII` (id 19622, likely a "Title VII" reference) was correctly
+excluded as not-in-PDF-heading-set. Applied A/B/C/I/II/III/V moves across id 17766, 19405,
+19509 (Grenz, 7), 19522, 19629. Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `corpus-proofing-p28-30-2026-06-24` — concurrent fleet P28-30 (35 opinions, 2021 ND 165 → 2020 ND 75)
 
 First round on the hardened pipeline (3 fleets concurrent, 360 opinions, 228 clean).

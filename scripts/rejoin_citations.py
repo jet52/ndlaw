@@ -42,6 +42,16 @@ NAME_CITE = re.compile(r",[ \t]*\n[ \t]*(\d{4}[ ]+ND[ ])")
 # a digit/paren orphaned from trailing close-punctuation by a line break
 # (citation number before a terminal . ) ; or ,); never legit prose.
 NUM_PUNCT = re.compile(r"([\d)])[ \t]*\n[ \t]*([.);,])")
+# v2 residual patterns (the cohort v1 missed; same content-preserving guarantee):
+# 4. PAREN_FRAG  446\n (quoting -> 446 (quoting : a citation number/close-paren
+#    orphaned from a following parenthetical by an indented line break. Requires a
+#    digit or ')' before the break and an indented '(' after (the fragmentation
+#    signature); never collapses a paren that legitimately begins a flush line.
+PAREN_FRAG = re.compile(r"([\d)])[ \t]*\n[ \t]+(\()")
+# 5. ID_PAREN   Id.\n (quoting -> Id. (quoting  (short-form cite + parenthetical)
+ID_PAREN = re.compile(r"(\bId\.)[ \t]*\n[ \t]+(\()")
+# 6. REPORTER_NUM  915 N.W.2d\n106 -> 915 N.W.2d 106  (reporter then page on next line)
+REPORTER_NUM = re.compile(REPORTER + r"[ \t]*\n[ \t]*(\d)")
 # a rejoined neutral-cite chunk to PDF-verify: "YYYY ND N, ¶ P, VOL N.W.Xd PAGE"
 CITE_CHUNK = re.compile(r"\d{4} ND \d+,? ?¶+ ?[\d-]+,? ?\d+ N\.W\.\dd \d+")
 
@@ -55,6 +65,9 @@ def rejoin(t):
     t = NUM_REPORTER.sub(r"\1 \2", t)
     t = NAME_CITE.sub(r", \1", t)
     t = NUM_PUNCT.sub(r"\1\2", t)
+    t = PAREN_FRAG.sub(r"\1 \2", t)
+    t = ID_PAREN.sub(r"\1 \2", t)
+    t = REPORTER_NUM.sub(r"\1 \2", t)
     return t
 
 
@@ -80,10 +93,12 @@ def main():
     args = ap.parse_args()
     con = sqlite3.connect(args.db)
     ts = datetime.now(timezone.utc).isoformat()
-    # candidates: any of the three artifacts present
+    # candidates: scan every opinion with text. rejoin() is a no-op unless a
+    # fragmentation pattern fires, and the alpha+digit multiset gate guarantees any
+    # applied change is content-preserving — so a broad scan is safe and catches the
+    # v2 patterns (\d\n (paren, REPORTER\n page) that a narrow lone-comma filter missed.
     ids = [r[0] for r in con.execute(
-        "SELECT id FROM opinions WHERE text_content LIKE '%'||char(10)||','||char(10)||'%' "
-        "OR text_content LIKE '%'||char(10)||' ,'||char(10)||'%'").fetchall()]
+        "SELECT id FROM opinions WHERE text_content IS NOT NULL AND text_content<>''").fetchall()]
 
     report, applied, skipped = [], 0, 0
     tot_changes = 0
