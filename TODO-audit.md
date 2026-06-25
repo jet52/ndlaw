@@ -299,12 +299,18 @@ the intended case on every rebuild; audit baselines must stay in sync).
   19960243 (1997 ND 102), 19970039 (1997 ND 156). C = 1998 ND 171 (19980094) PDF text-layer
   scrambled (optional re-OCR). Source-tree only — DB bodies correct.
 
-### Dashboard as of v0.12.1 (2026-06-10)
+### Dashboard as of v1.1.0 (2026-06-25)
 
 cite_temporal / pinpoint_range / version_intervals / changelog_doc_sync **0**;
 parallel_pair **556**; para_continuity **520**; xref_resolve **759**;
-invariants 23/2/0. Digit-flip class CLOSED (1,025 print-verified corrections);
-TEXT_MISSING worked; stored-twice worked incl. markerless; dockets clean.
+invariants **24/2/0**; corpus **19,793**. Digit-flip class CLOSED (1,025
+print-verified corrections); TEXT_MISSING worked; stored-twice worked incl.
+markerless; dockets clean. **Synopsis-leakage CLOSED** (720/720). **Paragraph
+markers normalized corpus-wide** (`[¶ N]`→`[¶N]`, 85,109 markers; 52 OCR-garbled
+markers fixed, 26 deferred — `triage/GARBLED-MARKERS-REMAINING.md`). Proofing
+fleet at offset 2230 (2019→2017 done; ~14 trios to the 1997 target).
+(Prior snapshot, v0.12.1 2026-06-10: parallel_pair 556 / para_continuity 520 /
+xref_resolve 759 / invariants 23/2/0.)
 
 ### First-run baseline (2026-06-09, TSVs in `triage/audit-*-2026-06-09.tsv`)
 

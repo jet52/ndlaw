@@ -6,7 +6,7 @@
 > with `opinions.db.zip` + `.sha256` (gated on invariants, redistribution-scope,
 > git-clean, quick_check, row-floor), and the live server pulls it via
 > `deploy/update-db.sh` (sha256 verify, quick_check, atomic swap + `.bak` rollback +
-> health probe). 16 releases shipped (v0.1.0→v1.0.1). None of the items below exist
+> health probe). Releases shipped v0.1.0→v1.1.0 (latest 2026-06-25). None of the items below exist
 > (no `ndcourts_mcp/release/`, no `updater.py`, no `meta` table, no manifest, no
 > Actions workflow, no `update` CLI), and the ~800 MB patch-delta motivation is moot
 > (the zip ships full each time). **Action: retire or rewrite this file to the shipped

@@ -28,6 +28,11 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 | `review_casenames` | CLI | Review case-name diffs deferred from Westlaw ingest. |
 | `merge_westlaw_text` | CLI | Replace low-quality opinion text with clean Westlaw text. |
 | `strip_westlaw_synopsis` / `strip_westlaw_headnotes` | CLI | Remove leaked Westlaw editorial (Synopsis stub, West Headnotes, digest refs). |
+| `strip_west_synopsis_v2.py` | script | Generalized West `Synopsis`-block strip: terminates at the first court element (Syllabus incl. OCR variants / star-page / Attorneys / Opinion), preserved verbatim; element-count-gated. Cleared the deferred synopsis-leakage set the v1 tool couldn't reach. **The synopsis-leakage queue is now CLOSED (720/720, 0 live `Synopsis` labels corpus-wide).** |
+| `strip_synopsis_adjudicated.py` | script | Apply per-item adjudicated Synopsis dispositions: `full` (remove whole West-editorial block) vs `label` (remove only the orphan `Synopsis` label, keep court-voice factual record / counsel appearances). Same structural invariants as v2. |
+| `recover_disc_order_text.py` | script | Recover full court ORDER text for disciplinary opinions stored as West-synopsis-only (the parser-drops-ORDER-body class); pulls the order from the authoritative West `.doc`, West furniture stripped. |
+| `recover_lost_syllabus_header.py` | script | Restore the dropped `*NNN Syllabus by the Court.` header + leading syllabus point(s) from the West `.doc` (the `Synopsis\n2.` lost-header defect); alignment-checked, quote-normalized, body byte-identical. |
+| `despace_paragraph_markers.py` | script | Corpus-wide paragraph-marker normalization `[¶ N]`→`[¶N]` (the court prints no-space; image-verified). Digit-anchored so OCR-garbled forms are left for a per-item pass. Marker count invariant per opinion. |
 | `backfill_westlaw_paths` | CLI | Repair stale `opinion_sources.source_path` for Westlaw `.doc`s. |
 | `insert_supplemental_opinions` | CLI | (Legacy) insert separate rows for supplemental publications. **NB:** consolidation policy revised 2026-06-09 — see `merge_opinions` + TODO §15. |
 
@@ -57,6 +62,18 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 | `scripts/fix_sig_truncation_phase{1,2,4,5,6}_2026-06-21.py`, `scripts/fix_marker_garbled_2026-06-21.py` | scripts | **Signature-truncation fixers** (dry-run default; `--apply` logs to changelog). phase1 splice (single-opinion orphan→panel); marker-garbled repair (marker only); phase2 append (single-justice separate writing); phase4 **positional** majority-panel insert before a trailing notation (divergence guard: DB trailing justice must be in source panel); phase5 orphan-name replace; phase6 participation-note insert/append. Every restored name corroborated vs the court PDF. See TODO-reversion-recovery.md for the 8 remaining one-offs. |
 | `triage/shingle_selfsim_*` | script | Body-duplication detector (audit check #6): word-8-shingle self-similarity; catches markerless stored-twice bodies. Re-run after merge concatenations. |
 | `triage/digit_compare_*` + `digit_flip_candidates_*` + `render_flip_crops_*` | scripts | The print-verified digit-flip pipeline: per-¶ DB-vs-PDF digit compare → context-matched candidates → **render the printed glyphs** (never apply from the PDF text layer alone — 3/693 candidates were text-layer ToUnicode errors). |
+
+## Corpus-proofing fleet (transcription-fidelity proofread 2026→1997)
+The pipeline that proofreads every opinion against its authoritative source (court PDF / markdown), behind hard gates. A round = a trio of 120-opinion workflows; the cursor advances in date-DESC offset order.
+| Tool | Kind | Purpose |
+|------|------|---------|
+| `scripts/gen_proofing_workflow.py` | script | Generate a proofing workflow (`triage/corpus-proofing-pN.wf.js`) for `OFFSET COUNT`; `--ids` mode re-runs a specific id list. The hardened prompt is inline (mirrors `triage/corpus-proofing-prompt-v2.md`); rule 5b requires a verbatim `source_quote` for every proposal. |
+| `scripts/verify_proofing_proposals.py` | script | Route proposals through **7 deterministic guards** → `.auto` / `.review` / `.reject`: G1 digit-in-cite, G2 cite-fragment-introduced, G3 multiword-delete, G4 probable-heading-move, G5 leading-indent (reject), G6 source_quote evidence-binding (catches confabulation), G7 ellipsis-widen (reject; ND prints compact). Validated vs `triage/known-bad-proposals.json`. |
+| `scripts/consolidate_proofing_trio.py` | script | Consolidate a trio's verifier output into apply / heading / caption / defer buckets behind the **triple-evidence autosafe gate** (new ⊆ source_quote ⊆ PDF, net-word-removal ≤ 2, safe class, not ellipsis-spacing, not star-page-touching, not filing-stamp). |
+| `scripts/apply_proofing_proposals.py` | script | Apply a gated proposal set (byte-exact old→new, atomic per opinion, anchor-unique); logs one changelog row per edit. |
+| `scripts/heading_move.py` | script | PDF-heading-SET-driven MOVES for merged/misplaced section headings (the delete-vs-move trap); robust to margin-¶ PDFs. |
+| `scripts/rejoin_citations.py` | script | Citation-rejoin v2 — content-preserving repair of fragmented citations (`446\n (quoting`→`446 (quoting`), PAREN_FRAG / ID_PAREN / REPORTER_NUM); corpus-wide multiset-gated. |
+| `scripts/footnote_pincite_detector.py` | script | Regression detector for footnote/pincite resolution (PRESENT/MISSING); run after every batch alongside `invariants` + tests. |
 
 ## Citation graph
 | Tool | Kind | Purpose |
@@ -103,4 +120,4 @@ Quick reference to the durable tools in this repo, grouped by purpose. Most are 
 - **OCR cross-check (pre-1953 / no-PDF):** `quality_scan --rescan` → build cite list of `ocr_artifacts>0` lacking a Westlaw source → pull from Westlaw → drop zips in `~/refs/nd/opin/westlaw-incoming/<date>/` → `receive_westlaw --incoming <dir>` (dry-run) → review TSV → `--apply` → `quality_scan --rescan` → `invariants`.
 - **Modern OCR artifacts (1997+, `source='ND'`):** these are PDF→markdown conversion defects, NOT OCR — fix from the local court PDF (`~/refs/nd/opin/pdfs/`), not Westlaw. Worklist: `triage/ocr-pdf-reextract-worklist.tsv`.
 - **N.D. Reports consolidation:** audit shared-N.D.-cite groups → verify against bound `N.D./<vol>/_bound-volume.pdf` (offset drifts; calibrate with `mutool draw -r 130` + read printed page no.) → `merge_pair` + concatenate text + parallel cites + drop freed synthetic + drop self-cites → `invariants`. Policy + audit: TODO §15, `triage/nd-consolidation-audit-2026-06-09.md`.
-- **After any data change:** log to `changelog` (via `log_change`) + `CHANGELOG-data.md`; run `invariants` (target 23 ok / 2 known / 0 regressed).
+- **After any data change:** log to `changelog` (via `log_change`) + `CHANGELOG-data.md`; run `invariants` (target 24 ok / 2 known / 0 regressed).

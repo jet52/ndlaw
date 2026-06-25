@@ -88,7 +88,7 @@ baseline = reverted or new work.
 | validation | detector to re-run | documented baseline |
 |---|---|---|
 | OCR artifacts (`¡¿■£„`) | `quality_scan --rescan` | 0 corpus-wide ✓ (re-probed clean) |
-| garbled/OCR paragraph markers | grep `[IF`/`[I¶`/dotted `[¶ N.]` + `para_continuity` | 26 found 2026-06-21 — RESIDUE (0 ever marker-fixed), not reversions; clean up as QA |
+| garbled/OCR paragraph markers | grep `[IF`/`[I¶`/dotted `[¶ N.]` + `para_continuity` | 26 found 2026-06-21 — RESIDUE (0 ever marker-fixed), not reversions. **Largely cleared 2026-06-25 (v1.1.0): corpus-wide `[¶ N]`→`[¶N]` despace (85,109) + 52 OCR-garbled markers fixed; 26 harder ones now deferred in `triage/GARBLED-MARKERS-REMAINING.md`** (markup-split / digit-ambiguous / no-number — a distinct residue from the original 26). |
 | digit-flips (3↔8/5↔6 etc.) | `triage/digit_compare_*` (DB ¶ digits vs court PDF) | 0 after sweep (1,021 fixed) |
 | body stored twice / dedup | `triage/shingle_selfsim_*` | pre-1997 clean, 2 known |
 | substantive missing ¶ | `text-missing-measured` / substantive-missing detector | 219 spliced, 7 held |

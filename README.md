@@ -95,9 +95,9 @@ Claude](#connecting-to-claude) to wire it into an MCP client.
 
 ## What's in the database
 
-Counts below are as of 2026-05-18; rerun
+Counts below are as of 2026-06-25 (v1.1.0); rerun
 `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
-(~20,160, of which 39 are North Dakota Court of Appeals decisions and the
+(~19,793, of which 44 are North Dakota Court of Appeals decisions and the
 rest North Dakota Supreme Court).
 
 The "primary text source" is the source whose text is stored in
@@ -106,10 +106,10 @@ The "primary text source" is the source whose text is stored in
 
 | Era         | Opinions | Primary text source | Notes |
 |-------------|----------|---------------------|-------|
-| 1890–1952   | ~6,640   | Bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
-| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and court text from bound volumes; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | incremental validation of the residual is ongoing (see TODO-validation.md) |
-| 1997–2019   | ~5,980   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
-| 2020–present| ~1,570   | ndcourts.gov | N.W.2d where available |
+| 1890–1952   | ~6,520   | Bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
+| 1953–1996   | ~6,070   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and court text from bound volumes; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | incremental validation of the residual is ongoing (see TODO-validation.md) |
+| 1997–2019   | ~5,620   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
+| 2020–present| ~1,585   | ndcourts.gov | N.W.2d where available |
 
 See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
 and isn't redistributed in `text_content`. See
