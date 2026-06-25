@@ -1,0 +1,132 @@
+[
+ {
+  "oid": 7514,
+  "ctx": "[\u00b63, Decree of Dissolu",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 12624,
+  "ctx": "[\u00b6\\n *2]*\\n The relevant",
+  "class": "markup-split"
+ },
+ {
+  "oid": 12773,
+  "ctx": "[\u00b63'1] Larsen contends",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 12791,
+  "ctx": "[\u00b6\\n *26]*\\n We conclude",
+  "class": "markup-split"
+ },
+ {
+  "oid": 12932,
+  "ctx": "[\u00b6 Here, the declarant",
+  "class": "no-number"
+ },
+ {
+  "oid": 13177,
+  "ctx": "[\u00b6\\n *5] On*\\n April 13,",
+  "class": "markup-split"
+ },
+ {
+  "oid": 13562,
+  "ctx": "[\u00b6\\n *2]*\\n Under \u00a7 27-0",
+  "class": "markup-split"
+ },
+ {
+  "oid": 13641,
+  "ctx": "[\u00b6\\n *2]*\\n In March 199",
+  "class": "markup-split"
+ },
+ {
+  "oid": 13857,
+  "ctx": "[\u00b6\\n *2]*\\n During the s",
+  "class": "markup-split"
+ },
+ {
+  "oid": 13911,
+  "ctx": "[\u00b6]14, 660 N.W.2d 593.",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 13948,
+  "ctx": "[\u00b6\\n *2]*\\n Under Sectio",
+  "class": "markup-split"
+ },
+ {
+  "oid": 14010,
+  "ctx": "[\u00b6*\\n 1] David Ramage a",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 14532,
+  "ctx": "[\u00b615JCAROL RONNING KAP",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 14609,
+  "ctx": "[\u00b6\\n *6] The*\\n district",
+  "class": "markup-split"
+ },
+ {
+  "oid": 15105,
+  "ctx": "[\u00b6\\n *2]*\\n Clarice and ",
+  "class": "markup-split"
+ },
+ {
+  "oid": 15107,
+  "ctx": "[\u00b6\\n *1]*\\n Schipper Con",
+  "class": "markup-split"
+ },
+ {
+  "oid": 16396,
+  "ctx": "[\u00b6\\n *5]*\\n On an appeal",
+  "class": "markup-split"
+ },
+ {
+  "oid": 16531,
+  "ctx": "[\u00b6 Here the hearing tr",
+  "class": "no-number"
+ },
+ {
+  "oid": 16655,
+  "ctx": "[\u00b6\\n *2]*\\n In\\n *Dieterl",
+  "class": "markup-split"
+ },
+ {
+  "oid": 16656,
+  "ctx": "[\u00b61G] She argues the d",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 16659,
+  "ctx": "[\u00b6\\n *5]*\\n At the Janua",
+  "class": "markup-split"
+ },
+ {
+  "oid": 16766,
+  "ctx": "[\u00b6\\n *8]*\\n The district",
+  "class": "markup-split"
+ },
+ {
+  "oid": 16775,
+  "ctx": "[\u00b6103 Based on the rec",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 16777,
+  "ctx": "[\u00b6'29] The Honorable B",
+  "class": "digit-ambiguous"
+ },
+ {
+  "oid": 16815,
+  "ctx": "[\u00b6\\n *18] In Throlson,*",
+  "class": "markup-split"
+ },
+ {
+  "oid": 17024,
+  "ctx": "[\u00b6\\n *18]*\\n Majetic's a",
+  "class": "markup-split"
+ }
+]

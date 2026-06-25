@@ -2,6 +2,24 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `dedup-storedtwice-marker-2026-06-25` + `ocr-garbled-markers-batch2-2026-06-25` — deferred markers resolved + comprehensive marker sweep
+
+**The 5 deferred garbled markers, hand-reviewed against the court PDFs:**
+- id15794, id16543, id16642 — **stored-twice duplicate paragraphs**: the garbled marker headed
+  a corrupted second copy of a clean adjacent paragraph (PDF-image-verified the court has ONE
+  such paragraph, not two). Deleted the duplicate copy; sequences now contiguous.
+- id13427 — duplicate disposition sentence under garbled `[¶ T2]`; removed the dup + marker,
+  **footnotes 1-2 preserved**, clean `[¶12]` kept (PDF 2001 ND 154 verified).
+- id12623 — 4 markers garbled by `]`→`J` (`[¶ lJ`/`[¶9J`/`[¶ lOJ`/`[¶ ll]`→`[¶1]`/`[¶9]`/`[¶10]`/
+  `[¶11]`); all paragraph text present (verified complete vs markdown + PDF image).
+
+**Comprehensive sweep** (`ocr-garbled-markers-batch2`) caught a class the first scan missed
+(closing `]` garbled to `J`/`}`/`)`/`j`, or prefix `'`/`.`): **17 fixed**, all sequence-verified
+(`[¶7}`/`[¶9J`/`[¶'8]`/`[¶341 Dale`→`[¶N]`). **26 malformed markers remain deferred**
+(`triage/GARBLED-MARKERS-REMAINING.md`): 16 markup-split `[¶\n *N]*` (belong with the markup
+cohort), 8 digit-ambiguous, 2 no-number, plus 5 XREF non-markers (`[¶3 of syllabus` — leave).
+Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `ocr-garbled-markers-2026-06-25` — fix OCR-garbled paragraph markers (30 of 35)
 
 After despacing, 35 markers had the number itself OCR-garbled (digit misread as letters, e.g.
