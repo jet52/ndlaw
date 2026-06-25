@@ -66,3 +66,12 @@ triage/const-modern-batch/png/
 triage/const-pilot-2026-06-14/*.pdf
 triage/const-pilot-2026-06-14/caa-cache/
 triage/const-pilot-2026-06-14/markup-pages/
+
+# Stray scratch at repo root (use the session scratchpad dir, never the repo root):
+# accidental pdftotext / mutool / command-output dumps
+/page*.txt
+/out.txt
+/out.pdf
+/out.png
+/*.tmp
+/scratch*
