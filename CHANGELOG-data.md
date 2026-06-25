@@ -2,6 +2,29 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-p28-30-2026-06-24` — concurrent fleet P28-30 (35 opinions, 2021 ND 165 → 2020 ND 75)
+
+First round on the hardened pipeline (3 fleets concurrent, 360 opinions, 228 clean).
+Proposals now carry `source_quote` (100% compliance). Applied 35 opinions' worth of
+**double-evidenced** content fixes via a triple gate: `new_exact ⊆ source_quote ⊆ court PDF`
+AND net-word-removal ≤ 2 (excludes deletions/scrambles needing judgment). Classes:
+ocr_char, ocr_digit (prose), missing_text, split_join (word-restoration/reorder), whitespace,
+other. Detector 175/0, invariants 24/0, 66 tests.
+
+The verifier guards auto-handled ~48 items this round: **12 `guard_digit_in_cite`** (citation
+digit corruptions auto-rejected — incl. several that would have changed correct cites),
+**1 `guard_unverified_quote`** (a confabulated reconstruction caught by the source_quote
+binding — invisible to deterministic guards), **13 `guard_probable_heading_move`** (stray
+section-letter deletes flagged as moves, incl. the id 19509 Grenz multi-heading opinion),
+and 21 `guard_whitespace_convention` (signature indents demoted).
+
+Deferred (not applied this round): 38 content-preserving citation reflows ->
+citation-rejoin v2 (`triage/p28-30-defer-rejoin.json`); 70 items needing judgment
+(heading-moves, captions, multi-word deletions, items failing the triple gate) ->
+`triage/p28-30-manual.json`. A net-deletion gate-hole was caught in dry-run (a `". $9,000
+... Despite"->"."` deletion matched the weak `new⊆source_quote` test trivially); fixed by
+adding the net-word-removal guard before any apply.
+
 ## Batch `corpus-proofing-p27-2026-06-24` — proofing fleet P27 (11 opinions, 2022 ND 47 → 2021 ND 166)
 
 Low-noise cycle (96/120 clean). Verifier: 12 auto / 16 review / 12 reject. Applied 15 fixes

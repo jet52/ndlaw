@@ -1,0 +1,65 @@
+[
+ {
+  "opinion_id": 17687,
+  "class": "whitespace",
+  "old_exact": "[¶3] On",
+  "new_exact": "[¶3]  On",
+  "source_quote": "[¶3]  On April 2, 2020, Travisia Jonette Minor, A/K/A Travisia Martin, filed",
+  "source": "pdftotext extract of /Users/jerod/refs/nd/opin/pdfs/2020/2020ND190.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "DB text has single space after [¶3] marker while authoritative PDF rendering shows double space. This is the only non-citation divergence between DB and source text. Byte-position verification confirms DB position 6 is 'O' (first byte of 'On') while source position 6 is space character.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17665,
+  "class": "whitespace",
+  "old_exact": "see Avila v. Weaver,\n\n2019 ND 20, ¶ 12, 921 N.W.2d 450\n (\"'[T]his Court does not consider questions",
+  "new_exact": "see Avila v. Weaver,\n2019 ND 20, ¶ 12, 921 N.W.2d 450 (\"'[T]his Court does not consider questions",
+  "source_quote": "see Avila v. Weaver,\n2019 ND 20, ¶ 12, 921 N.W.2d 450 (\"'[T]his Court does not consider questions\nthat were not presented to the trial court",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND164.pdf",
+  "confidence": "high",
+  "evidence": "The DB text has an erroneous blank line between 'Weaver,' and '2019 ND' plus a line break before the opening parenthesis. The authoritative PDF shows the citation should continue on the same line with no blank line separator, and the opening parenthesis should immediately follow '450' with just a space.",
+  "note": "This is a citation formatting defect introduced during text extraction. The source shows proper citation continuity.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 19492,
+  "class": "whitespace",
+  "old_exact": "Section1,",
+  "new_exact": "Section 1,",
+  "source_quote": "Department of Health Environmental Health Section 1, to issue Meridian Energy Group, Inc.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND145.pdf",
+  "confidence": "high",
+  "evidence": "The DB text has 'Section1,' (missing space before footnote marker) while the authoritative PDF source shows 'Section 1,' (with space). This is a whitespace/ingestion error where the space before the superscript footnote number was lost. Located in ¶1 at byte position 1096 in the DB text.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17661,
+  "class": "ocr_char",
+  "old_exact": "1We have explained",
+  "new_exact": "1 We have explained",
+  "source": "Official PDF text (pdftotext -layout)",
+  "source_quote": "1 We have explained that \"[a] motion for reconsideration is not a formally recognized motion and is not one of the enumerated appealable orders listed in N.D.C.C. § 28-27-02.\" Waslaski v. State, 2013 ND 70, ¶ 7, 830 N.W.2d 228 (citing White v. Altru Health Sys., 2008 ND 48, ¶ 7, 746 N.W.2d 173)",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "PDF pdftotext output shows \"1 We have explained\" with space; DB has \"1We have explained\" without space. This is a footnote marker formatting issue. Character-by-character normalized comparison confirms this is the sole textual divergence—all subsequent mismatches cascade from this single missing space. The opinion substantive text is otherwise identical when accounting for intentional quote normalization (DB policy: straight ASCII quotes vs. PDF curly quotes) and citation formatting differences (footnote wrapping artifacts).",
+  "note": "Footnote marker \"1\" lacks space before \"We\". This appears to be OCR dropout of the space character after the footnote superscript/marker.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17656,
+  "class": "whitespace",
+  "old_exact": "¶ 21,\n\n914 N.W.2d 508",
+  "new_exact": "¶ 21,\n914 N.W.2d 508",
+  "source_quote": "oerced. See State v. Yost, 2018 ND 157, ¶ 21,\n914 N.W.2d 508. A sufficient factual basis was establi",
+  "source": "PDF pdftotext -layout",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "DB contains double newline (blank line) between citation and page number; source PDF shows single newline. This is a hard-break ingestion error.",
+  "note": "Mechanical whitespace fix to remove spurious blank line in citation.",
+  "_verdict": "auto:whitespace_only"
+ }
+]
