@@ -1,0 +1,152 @@
+[
+ {
+  "opinion_id": 12604,
+  "garbled": "[\u00b6 l]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 12606,
+  "garbled": "[\u00b6 l]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 12606,
+  "garbled": "[\u00b6 ll]",
+  "correct": "[\u00b611]"
+ },
+ {
+  "opinion_id": 12607,
+  "garbled": "[\u00b6 ll]",
+  "correct": "[\u00b611]"
+ },
+ {
+  "opinion_id": 12622,
+  "garbled": "[\u00b6 l]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 12622,
+  "garbled": "[\u00b6 ll]",
+  "correct": "[\u00b611]"
+ },
+ {
+  "opinion_id": 12630,
+  "garbled": "[\u00b6 l]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 12630,
+  "garbled": "[\u00b6 ll]",
+  "correct": "[\u00b611]"
+ },
+ {
+  "opinion_id": 12713,
+  "garbled": "[\u00b6 S]",
+  "correct": "[\u00b63]"
+ },
+ {
+  "opinion_id": 12931,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 13136,
+  "garbled": "[\u00b6 i]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 13212,
+  "garbled": "[\u00b6 S]",
+  "correct": "[\u00b68]"
+ },
+ {
+  "opinion_id": 13275,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 13864,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 14834,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 14839,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 15329,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 15864,
+  "garbled": "[\u00b6 IB]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 15884,
+  "garbled": "[\u00b6 S]",
+  "correct": "[\u00b68]"
+ },
+ {
+  "opinion_id": 15941,
+  "garbled": "[\u00b6 IS]",
+  "correct": "[\u00b613]"
+ },
+ {
+  "opinion_id": 16217,
+  "garbled": "[\u00b6 I]",
+  "correct": "[\u00b61]"
+ },
+ {
+  "opinion_id": 16602,
+  "garbled": "[\u00b6 \u00cd4]",
+  "correct": "[\u00b614]"
+ },
+ {
+  "opinion_id": 16622,
+  "garbled": "[\u00b6 IQ]",
+  "correct": "[\u00b610]"
+ },
+ {
+  "opinion_id": 16732,
+  "garbled": "[\u00b6 TO]",
+  "correct": "[\u00b610]"
+ },
+ {
+  "opinion_id": 16733,
+  "garbled": "[\u00b6 \u00cd5]",
+  "correct": "[\u00b615]"
+ },
+ {
+  "opinion_id": 16778,
+  "garbled": "[\u00b6 IS]",
+  "correct": "[\u00b619]"
+ },
+ {
+  "opinion_id": 16871,
+  "garbled": "[\u00b6 S]",
+  "correct": "[\u00b68]"
+ },
+ {
+  "opinion_id": 16919,
+  "garbled": "[\u00b6 IS]",
+  "correct": "[\u00b618]"
+ },
+ {
+  "opinion_id": 16948,
+  "garbled": "[\u00b6 S]",
+  "correct": "[\u00b68]"
+ },
+ {
+  "opinion_id": 16964,
+  "garbled": "[\u00b6 [\u00b64]",
+  "correct": "[\u00b64]"
+ }
+]

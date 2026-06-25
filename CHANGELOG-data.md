@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `ocr-garbled-markers-2026-06-25` — fix OCR-garbled paragraph markers (30 of 35)
+
+After despacing, 35 markers had the number itself OCR-garbled (digit misread as letters, e.g.
+`[¶ IB]`, `[¶ ll]`, `[¶ S]`). Fixed 30 by **sequence continuity** — the value is fixed by the
+neighbours (preceding N-1, following N+1, target absent ⇒ garbled = N), independent of the
+glyph; a duplicate-guard required the target number to be absent. Spot-verified against PDF
+images. Fixes: `[¶ IB]`→`[¶13]` (×7), `[¶ ll]`→`[¶11]`, `[¶ l]`/`[¶ i]`/`[¶ I]`→`[¶1]`,
+`[¶ S]`→`[¶3]`/`[¶8]`, `[¶ IS]`→`[¶13]`/`[¶18]`/`[¶19]`, `[¶ IQ]`/`[¶ TO]`→`[¶10]`,
+`[¶ Í4]`→`[¶14]`, `[¶ Í5]`→`[¶15]`, `[¶ [¶4]`→`[¶4]`. **5 deferred** (`triage/OCR-GARBLED-MARKERS.md`):
+id12623/13427/15794/16543/16642 — the opinion's numbering is itself off-by-one/duplicated
+relative to the court PDF (id15794's PDF has a genuine duplicate `[¶10]`), needing a full
+per-opinion renumber, not a single-marker fix. Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `despace-paragraph-markers-2026-06-25` — normalize `[¶ N]`→`[¶N]` corpus-wide (3,789 opinions)
 
 The court prints in-text paragraph markers with no space inside the brackets (`[¶1]`) —

@@ -1,0 +1,27 @@
+[
+ {
+  "opinion_id": 12623,
+  "garbled": "[\u00b6 ll]",
+  "reason": "prev=8 next=12"
+ },
+ {
+  "opinion_id": 13427,
+  "garbled": "[\u00b6 T2]",
+  "reason": "prev=11 next=12"
+ },
+ {
+  "opinion_id": 15794,
+  "garbled": "[\u00b6 \u00cd0]",
+  "reason": "prev=9 next=10"
+ },
+ {
+  "opinion_id": 16543,
+  "garbled": "[\u00b6 S]",
+  "reason": "prev=2 next=3"
+ },
+ {
+  "opinion_id": 16642,
+  "garbled": "[\u00b6 \u00cd\u00d3]",
+  "reason": "prev=9 next=10"
+ }
+]
