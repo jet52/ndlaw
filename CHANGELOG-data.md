@@ -2,6 +2,35 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `strip-west-synopsis-v2-2026-06-25` — West Synopsis-leakage strip, deferred set (281 opinions)
+
+Stripped residual West editorial `Synopsis` blocks from 281 West-sourced opinions — the
+deferred half of the synopsis-leakage scan (`triage/SYNOPSIS-LEAKAGE-SCAN.md`) that v1
+(`strip_west_synopsis.py`) could not handle. v1 only stripped blocks bounded *directly* by
+`Attorneys and Law Firms` with no court Syllabus between; the larger set has the West
+`Synopsis` note sitting immediately before the court `Syllabus by the Court` or a star-page.
+
+New applier `scripts/strip_west_synopsis_v2.py` generalizes the terminator to the FIRST
+following court element — a Syllabus label (incl. OCR variants `S[uy]l+[ai]bus`, e.g.
+`Sullabus`), a star-page (`**52`/`*329`), `Attorneys and Law Firms`, or `Opinion` — and
+preserves it verbatim. Removed spans are West editorial only: bare `Synopsis` labels (132),
+disposition notes (`Affirmed.`, `Judgment reversed and case remanded with directions.`),
+separate-opinion notices (`Burke, J., dissented.`), cross-references (`See, also, 167 N. W.
+366.`, `For former opinion, see 27 N. D. 391.`), and rehearing notes. Selection was strict:
+any block resembling a factual statement of the case (`This is an action...`, `Defendant was
+informed against...`, `Facts:...`) was held back for individual handling, per
+[[project_redistribution_scope]] (factual record stays) and [[project_court_syllabus]] (court
+Syllabus stays).
+
+Hard invariants gated every write: the removed span contains no court element, and the
+counts of syllabus-variants, star-pages, and `Attorneys and Law Firms` are byte-identical
+before and after — so only West editorial matter could be removed, never court text.
+Dry-run + per-terminator spot-checks (star-/attorneys-/opinion-terminated, 32 cases where the
+Synopsis block sits after the syllabus) confirmed clean joins. Of the 582 live-Synopsis
+opinions, 281 stripped here; the remainder (long blocks containing factual record, and ~80
+factual/ambiguous short blocks) stay deferred for per-item reading. Detector 175/0,
+invariants 24/0, 66 tests.
+
 ## Batches `caption-residual` + `ellipsis-compact-2026-06-24` — manual-residual drain (11 opinions)
 
 Drained the 188-item manual queue from fleet rounds P28-33 (see
