@@ -1,0 +1,63 @@
+[
+ {
+  "opinion_id": 19335,
+  "class": "whitespace",
+  "old_exact": "\nIN THE SUPREME",
+  "new_exact": "IN THE SUPREME",
+  "source_quote": "IN THE SUPREME\n\nSTATE OF NORTH DAKOTA",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/markdown/2018/2018ND83.md",
+  "confidence": "high",
+  "note": "Database has an extraneous leading blank line (newline before 'IN THE SUPREME COURT') that does not appear in the authoritative markdown source. The source begins directly with 'IN THE SUPREME COURT' (line 2, after the filing metadata on line 1).",
+  "_verdict": "review:no_pdf"
+ },
+ {
+  "opinion_id": 19320,
+  "class": "split_join",
+  "old_exact": "the three introduction of the challenged exhibits",
+  "new_exact": "the three challenged exhibits",
+  "source_quote": "v. Scialdone, 2005 ND 24, \u00b6 13, 691 N.W.2d 198. It is also undisputed that the three\nchallenged exhibits were available on the Attorney General's website, and Rolfson",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND51.pdf",
+  "confidence": "high",
+  "evidence": "The DB text contains the erroneous phrase 'the three introduction of the challenged exhibits' which is grammatically malformed and nonsensical. The PDF source clearly shows the correct text is simply 'the three challenged exhibits'. This is a word insertion/duplication error where 'introduction of' was incorrectly inserted, corrupting the sentence.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19294,
+  "class": "whitespace",
+  "old_exact": ". . . . ",
+  "new_exact": "....",
+  "source_quote": "impede the person's ability to protect their interest.\n       ....\n        There is no question but that Marque[e] Pacific gave a mortgage",
+  "verified_count": 1,
+  "source": "/tmp/src_2018ND28.txt lines 155-157",
+  "confidence": "high",
+  "note": "Spaced ellipsis artifact in ingestion. ND opinions use compact form with no spaces. Verified in source PDF rendering.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19293,
+  "class": "other",
+  "old_exact": "ily domiciled in this state shall register if the individual: . . . . b. Has pled guilty or nolo contendere to, or been adjudicated for or found guilty of, an offense in a court of this state for which registration is mandatory under this section or ",
+  "new_exact": "ily domiciled in this state shall register if the individual: .... b. Has pled guilty or nolo contendere to, or been adjudicated for or found guilty of, an offense in a court of this state for which registration is mandatory under this section or ",
+  "source_quote": "register if the\n                individual:\n                ....\n                b.      Has pled guilty or nolo contendere to, or been\n                        adjudicated for or found guilty of, an offense in a\n                        court of this state for which registration is",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND27.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "The PDF source shows a compact four-dot ellipsis (....) in the statutory text (page 4 of PDF), following the ND convention for ellipses per Bluebook and court style. The DB incorrectly converted this to spaced format (. . . .). Rule 11 specifies: 'ELLIPSES: ND opinions print the compact four-dot form \"....\"; if the DB shows a spaced \". . . .\" but the PDF shows \"....\", that spacing is an ingestion artifact \u2014 propose the compact form.' This is that exact case.",
+  "note": "This is the only substantive defect in the opinion. All other text matches the PDF source perfectly. The curly apostrophes in the PDF have been intentionally converted to straight apostrophes per DB policy (Rule 9), which is correct and not a defect.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17086,
+  "class": "whitespace",
+  "old_exact": ". . . . ",
+  "new_exact": "....",
+  "source_quote": "suspicion, abandoning the need to rely on objective factors.\n      ....\n              \"Once we endorse a subjective standard, based on a rather",
+  "source": "PDF line 404 (within \u00b634)",
+  "verified_count": 1,
+  "confidence": "high",
+  "note": "Spaced ellipsis (. . . . ) is an ingestion artifact. ND opinions use compact four-dot form (....) per typographic convention. PDF shows compact form.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

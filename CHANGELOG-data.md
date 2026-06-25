@@ -2,6 +2,19 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `trio-defer-applied-2026-06-25` — trio P34-36 deferred items worked (6 applied)
+
+Worked the 52 trio-deferred items (`triage/PROOFING-P34-36-DEFERRED.md`). **6 applied**: id19320
+(removed spurious "introduction of", PDF-verified), id19335 (leading-newline strip), 3 ellipsis
+compactions (`. . . .`→`....`, the allowed direction over-deferred by the gate), id19332 (MOVED
+section heading "II" to its own line — PDF-confirmed centered heading, not a delete). **45
+no-action**: 35 star-page removals rejected (the `*NNN` are real N.W.2d page markers, verified
+vs each cite — keep for pincites), 4 ellipsis widenings rejected (ND compact), 1 §-cite
+space-insertion rejected, and 3 "Filed by Clerk" restorations rejected (user decision: keep
+stripped per strip_clerk_stamps.py policy). **2 deferred**: id19311/id19314 (headings mashed
+mid-paragraph; markdown has same mashing — need PDF heading reconciliation). Detector 175/0,
+invariants 24/0, 66 tests.
+
 ## Batches `dedup-storedtwice-marker-2026-06-25` + `ocr-garbled-markers-batch2-2026-06-25` — deferred markers resolved + comprehensive marker sweep
 
 **The 5 deferred garbled markers, hand-reviewed against the court PDFs:**
