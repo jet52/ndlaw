@@ -1,4 +1,4 @@
-# ndcourts-mcp
+# ndlaw
 
 A Model Context Protocol (MCP) server for North Dakota Supreme Court
 opinions, 1890–present (plus a small number of North Dakota Court of
@@ -143,7 +143,7 @@ environment with shell access (Claude Code, or Claude Desktop with
 appropriate MCP servers) — run them for you. After install it will add
 the server to your Claude MCP config and verify it works.
 
-> Please help me install the `ndcourts-mcp` server from
+> Please help me install the `ndlaw` server from
 > `https://github.com/jet52/ndlaw` on my computer. Read the
 > repository's `README.md` and `NOTICE.md` first so you understand what
 > it is and what it redistributes. Then walk me through (or run for me,
@@ -175,7 +175,7 @@ the Python dependencies.
 irm https://astral.sh/uv/install.ps1 | iex
 
 git clone https://github.com/jet52/ndlaw.git
-cd ndcourts-mcp
+cd ndlaw
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
@@ -197,7 +197,7 @@ uv sync
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 git clone https://github.com/jet52/ndlaw.git
-cd ndcourts-mcp
+cd ndlaw
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
@@ -216,7 +216,7 @@ uv sync
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 git clone https://github.com/jet52/ndlaw.git
-cd ndcourts-mcp
+cd ndlaw
 
 # Download + extract every database release asset (opinions + primary-law corpora).
 # The corpus DBs ship from v0.11.0 on; opinions.db is the only one in older releases.
@@ -316,10 +316,10 @@ claude mcp add ndlaw -- uv --directory /absolute/path/to/ndlaw run ndcourts-mcp
 
 This stores the server in your user-level Claude Code config and makes it
 available in every project. Restart any active Claude Code session and the
-`ndcourts` server's tools will be available.
+`ndlaw` server's tools will be available.
 
 Alternative: a project-scoped `.mcp.json` in any project where you want
-ndcourts available. Create the file with:
+ndlaw available. Create the file with:
 
 ```json
 {
@@ -382,7 +382,7 @@ Claude Desktop is not available on Linux. Use Claude Code (above).
 
 Once connected, try a prompt like:
 
-> Use ndcourts to look up *State v. Boger*, 2021 ND 152.
+> Use ndlaw to look up *State v. Boger*, 2021 ND 152.
 
 The tool call should return the case metadata and (with `include_text=true`)
 the opinion text. For the full set of tools, see the
