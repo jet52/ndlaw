@@ -2,6 +2,26 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `recover-lost-syllabus-header-2026-06-25` — restore dropped syllabus headers (20 opinions) — SYNOPSIS QUEUE CLOSED
+
+The last 20 synopsis-leakage items (Class A in `triage/SYNOPSIS-DEFERRED-25.md`): `text_content`
+began `Synopsis\n2.` (or `\n3.`/`\n4.`) because the West-doc parse dropped the
+`*NNN Syllabus by the Court` header and the leading court syllabus point(s), leaving a stray
+West `Synopsis` label atop the surviving numbered points. NOT a strip — a restoration.
+
+`scripts/recover_lost_syllabus_header.py` prepended the dropped header + missing leading
+point(s) 1..(first-1) from the authoritative West .doc, removing the stray label. Per-opinion
+safety: the .doc's point `first` was alignment-checked (quote-normalized) against the DB's first
+surviving point; everything from that point onward is byte-identical (only the header + missing
+leading points were added). Doc curly quotes → straight (corpus convention); em/en-dash, §,
+nbsp, and embedded star-pages preserved; output matches the canonical intact form
+(`*NNN Syllabus by the Court.\n1. ...\n\xa0\n2. ...`). 15 opinions were missing point 1;
+6418/13532/13875 missing points 1-2; 13633/13781 missing 1-3.
+
+Detector 175/0, invariants 24/0, 66 tests. **The West synopsis-leakage queue is now CLOSED:
+720/720 cleared, 0 live `Synopsis` labels corpus-wide** (138 on 2026-05-13 + 281 v2 + 75
+adjudicated-81 + 201 long-217 + 3 order-recovery + 2 verify-first + 20 syllabus-header).
+
 ## Batch `synopsis-verify-first-2026-06-25` — West Synopsis, verify-first tail (2 opinions)
 
 The two "verify-first" deferrals from `triage/SYNOPSIS-DEFERRED-25.md`, each resolved by

@@ -1,25 +1,28 @@
 # Synopsis-leakage — deferred tail (after 2026-06-25 passes)
 
 After the v2 (281), adjudicated-81 (75), and long-217 (201) passes, 25 opinions carried a live
-`Synopsis` label. Class B (3, order-text recovery) and Class C (2, verify-first) were RESOLVED
-2026-06-25 (below), leaving **20 deferred — all Class A (lost-syllabus-header)**.
+`Synopsis` label. All three classes (A lost-syllabus-header ×20, B order-text recovery ×3,
+C verify-first ×2) were RESOLVED 2026-06-25 (below). **The synopsis-leakage queue is now CLOSED
+— 0 live `Synopsis` labels remain corpus-wide (720/720 cleared).**
 
-## A. Lost-syllabus-header / numbered-point (20) — NOT a synopsis problem
+## A. Lost-syllabus-header / numbered-point (20) — RESOLVED 2026-06-25 (batch `recover-lost-syllabus-header-2026-06-25`)
 
-`text_content` starts `Synopsis\n2. ...` (or `\n3.`/`\n4.`) — the West-doc parse dropped the
+`text_content` started `Synopsis\n2. ...` (or `\n3.`/`\n4.`) — the West-doc parse dropped the
 `Syllabus by the Court` header **and** the leading syllabus point(s), leaving the numbered
-court syllabus points with a stray `Synopsis` label on top. These read as genuine court
-syllabus propositions (numbered, legal holdings), terminated by `Attorneys and Law Firms`.
+court syllabus points with a stray `Synopsis` label on top. The surviving points and the
+opinion body were intact; the full syllabus was in the authoritative West .doc.
 
-**Remediation (per item):** check the court PDF / bound volume for the missing
-`Syllabus by the Court` header and point `1.` (and any others before the first surviving
-number); restore them; remove the stray `Synopsis` label. Do NOT blindly label-strip — that
-leaves the bigger header/point-1 defect.
+RESOLVED by `scripts/recover_lost_syllabus_header.py`: prepended the dropped
+`*NNN Syllabus by the Court.` header + the missing leading point(s) 1..(first-1) from the West
+.doc, removing the stray `Synopsis` label. The doc's point `first` was alignment-checked
+(quote-normalized) against the DB's first surviving point; everything from that point onward
+left byte-identical. Doc curly quotes normalized to straight (corpus convention); em/en-dash,
+§, nbsp, embedded star-pages preserved. Format matches the canonical intact form
+(`*NNN Syllabus by the Court.\n1. ...\n\xa0\n2. ...`).
 
 IDs: 6418, 6420, 6424, 6427, 6439, 6441, 6450, 6458, 6471, 7249, 7459, 7503, 13150, 13266,
-13532, 13618, 13633, 13781, 13875, 14029.
-(6441/6458/7249/13781 were the short ones deferred from the adjudicated-81 pass; the other 16
-are long.)
+13532, 13618, 13633, 13781, 13875, 14029. (15 missing point 1; 6418/13532/13875 missing 1-2;
+13633/13781 missing 1-3.)
 
 ## B. No-terminator West disciplinary summaries (3) — RESOLVED 2026-06-25
 
