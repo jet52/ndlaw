@@ -2,6 +2,31 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `corpus-proofing-p34-36-*-2026-06-25` — proofing fleet round (815 edits / ~146 opinions, 2019 ND 27 → 2017 ND 225)
+
+Proofing fleet trio P34/P35/P36 (offsets 1870/1990/2110, 360 opinions, ~17.6M tokens). 1,092
+proposals (100% source_quote), routed through `scripts/verify_proofing_proposals.py` (7 guards)
+then `scripts/consolidate_proofing_trio.py` into apply / heading / caption / defer buckets.
+
+- **`corpus-proofing-p34-36-2026-06-25`** (755 edits / 134 opinions) — triple-evidence autosafe
+  gate (new ⊆ source_quote ⊆ PDF, net-word-removal ≤ 2, class ∈ {ocr_char, ocr_digit,
+  missing_text, split_join, whitespace, other}, not ellipsis-spacing, not a star-page change,
+  not a filing-stamp). ocr_char 392 (markup/italic strip, em-dash, `Tufté`→`Tufte`, OCR garbage),
+  whitespace 203, split_join 122 (cite-reflow rejoins), other 25, ocr_digit 9, missing_text 4
+  (incl. a recovered payment table and a dropped concurrence byline).
+- **`corpus-proofing-p34-36-headings-2026-06-25`** (56 / 9) — `[¶ N]`→`[¶N]` marker spacing
+  matched to the authoritative markdown source (verified the source uses no-space markers) + 6
+  PDF-verified heading/marker moves (misplaced `[¶N]` to paragraph start; restored section
+  heading `V`).
+- **`corpus-proofing-p34-36-captions-2026-06-25`** (4 / 3) — de-all-caps party names
+  (`OIEN`→`Oien`, `STATE`→`State`, `MBULU`→`Mbulu`) + party-designation relocation, all
+  triple-evidence (new ⊆ source_quote ⊆ PDF).
+
+Deferred (52, `triage/PROOFING-P34-36-DEFERRED.md`): filing-stamp restorations (intentional
+strips), ellipsis-spacing, star-page-touching, net-removal>2/no_pdf, and 3 heading delete-vs-move
+traps (id19332/19311/19314). ~226 rejected by guards (digit-in-cite, ellipsis-widen,
+db-matches-pdf, confabulation). Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `recover-lost-syllabus-header-2026-06-25` — restore dropped syllabus headers (20 opinions) — SYNOPSIS QUEUE CLOSED
 
 The last 20 synopsis-leakage items (Class A in `triage/SYNOPSIS-DEFERRED-25.md`): `text_content`

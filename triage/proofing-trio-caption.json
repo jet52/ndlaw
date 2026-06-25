@@ -1,0 +1,51 @@
+[
+ {
+  "opinion_id": 19277,
+  "class": "caption",
+  "old_exact": "No. 20180150\n\nAppellant\n\nDAB, LLC,",
+  "new_exact": "No. 20180150\n\nDAB, LLC,\n\nAppellant",
+  "source_quote": "DAB, LLC,                                                Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND233.pdf",
+  "confidence": "high",
+  "evidence": "The PDF source shows 'DAB, LLC,' and 'Appellant' on the same line (opposite page margins), consistent with the pattern in all other case captions. The DB incorrectly placed 'Appellant' on a separate line BEFORE 'DAB, LLC,' (lines 33-35), when it should follow the pattern of other cases with the party name first (line 33) and status second (line 35). This is a caption parsing defect where the two-column PDF layout was not correctly interpreted during ingestion.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17202,
+  "class": "caption",
+  "old_exact": "Jason Wayne OIEN, Petitioner and Appellant",
+  "new_exact": "Jason Wayne Oien, Petitioner and Appellant",
+  "source_quote": "Jason Wayne Oien,                                          Petitioner and Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND150.pdf",
+  "confidence": "high",
+  "evidence": "Source PDF (lines 8-9) shows 'Jason Wayne Oien' with only initial capital, not all-caps 'OIEN' as in DB. DB caption contains 'OIEN' at index 14-17. Source establishes the party name is 'Oien' throughout the opinion body as well (lines 37, 38, 42, etc.). The all-caps rendering in DB caption is a capitalization error in the processed text.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17202,
+  "class": "caption",
+  "old_exact": "STATE of North Dakota, Respondent and Appellee",
+  "new_exact": "State of North Dakota, Respondent and Appellee",
+  "source_quote": "State of North Dakota,                                    Respondent and Appellee",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND150.pdf",
+  "confidence": "high",
+  "evidence": "Source PDF (lines 12-13) shows 'State of North Dakota' with only initial capital, not 'STATE' in all-caps as in DB. DB caption contains 'STATE of North Dakota' starting at index 48. The all-caps rendering is a capitalization error, matching the pattern of the 'OIEN' error in the same caption line.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17124,
+  "class": "caption",
+  "old_exact": "# STATE of North Dakota, Plaintiff and Appellee v. David MBULU, Defendant and Appellant",
+  "new_exact": "State of North Dakota, Plaintiff and Appellee v. David Mbulu, Defendant and Appellant",
+  "source_quote": "State of North Dakota,                                      Plaintiff and Appellee\n\n      v.\nDavid Mbulu,                                             Defendant and Appellant",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND73.pdf",
+  "confidence": "high",
+  "evidence": "DB caption incorrectly uses markdown prefix '#', capitalizes 'STATE' (from document header rather than case caption), and incorrectly capitalizes defendant name 'MBULU'. Source PDF shows proper case names with normal capitalization.",
+  "note": "Removes markdown contamination and corrects party name capitalization to match authoritative source.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

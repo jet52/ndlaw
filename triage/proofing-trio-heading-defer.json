@@ -1,0 +1,40 @@
+[
+ {
+  "opinion_id": 19332,
+  "class": "paragraph_seq",
+  "old_exact": "provided in N.D.R.Civ.P. 59(b)(1) and (4). II",
+  "new_exact": "provided in N.D.R.Civ.P. 59(b)(1) and (4).",
+  "source_quote": "provided in N.D.R.Civ.P. 59(b)(1) and (4).\n                                          II",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND62.pdf lines 55-56",
+  "confidence": "high",
+  "verified_count": 1,
+  "evidence": "DB has section heading 'II' appended to end of [\u00b64] paragraph text. PDF shows 'II' as a separate centered section heading on its own line. DB heading sequence is [I, III, IV, V]; PDF correctly has [I, II, III, IV, V]. Normalized text comparison confirms this is the only substantive error when quotes/whitespace are normalized.",
+  "note": "The section heading 'II' is incorrectly joined to the end of the [\u00b64] paragraph with '. II' rather than being on a separate line. This is a paragraph_seq (heading sequence) error where a structural element has been absorbed into preceding content.",
+  "_verdict": "review:guard_probable_heading_move"
+ },
+ {
+  "opinion_id": 19314,
+  "class": "paragraph_seq",
+  "old_exact": "[\u00b611] The district court did not abuse its discretion in granting the State's motion to quash subpoenas or deny the motion for a mistrial. We affirm the amended criminal\n\nV\n\njudgment and jury verdict",
+  "new_exact": "[\u00b611] The district court did not abuse its discretion in granting the State's motion to quash subpoenas or deny the motion for a mistrial. We affirm the amended criminal\njudgment and jury verdict",
+  "source_quote": "[\u00b611] The district court did not abuse its discretion in granting the State's motion to\nquash subpoenas or deny the motion for a mistrial. We affirm the amended criminal\njudgment and jury verdict.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2018/2018ND46.pdf",
+  "confidence": "high",
+  "evidence": "The section heading 'V' has been incorrectly placed in the middle of paragraph [\u00b611], breaking the sentence 'We affirm the amended criminal' across the section heading. The PDF shows the heading V should appear before [\u00b611], not within it. This is an ingestion artifact where the section heading got inserted into the paragraph text instead of being placed before the paragraph marker.",
+  "note": "Removes erroneous section heading 'V' and associated blank lines from middle of paragraph [\u00b611]. The heading V correctly belongs before this paragraph (after the IV section), not embedded within it.",
+  "_verdict": "review:guard_probable_heading_move"
+ },
+ {
+  "opinion_id": 19311,
+  "class": "paragraph_seq",
+  "old_exact": "\n\nIII\n\n",
+  "new_exact": "\n\n",
+  "source_quote": "Decker argues the evidence presented at trial was insufficient to convict him of disorderly conduct. \"In an appeal challenging the sufficiency of the evidence, we look only",
+  "verified_count": 1,
+  "source": "/tmp/src_2018ND43.txt",
+  "confidence": "high",
+  "evidence": "The PDF source transitions directly from [\u00b616] discussing insufficient evidence to the indented block quote defining the standard of review, without the section marker 'III' that appears in the DB.",
+  "_verdict": "review:guard_probable_heading_move"
+ }
+]
