@@ -1,0 +1,29 @@
+[
+ {
+  "opinion_id": 19501,
+  "class": "whitespace",
+  "old_exact": ". . . . ",
+  "new_exact": "....",
+  "source_quote": "for the following reasons:\n\n....\n\n(6) any other reason that justifies relief.\"",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND165.pdf",
+  "confidence": "high",
+  "evidence": "The PDF source (pdftotext -layout output) shows the compact four-dot ellipsis format '....' on a line by itself between the introductory text and item (6). The DB text shows this as spaced '. . . . ' (with spaces between dots). Per the ellipsis rule, ND opinions print the compact four-dot form; the spaced form is an OCR/ingestion artifact.",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p30"
+ },
+ {
+  "opinion_id": 19441,
+  "class": "whitespace",
+  "old_exact": ". . . .",
+  "new_exact": "....",
+  "source_quote": "implied contract for contribution.\n\n     ....\n\n           In addition to bringing a [statutory] noticed motion to compel",
+  "verified_count": 1,
+  "source": "PDF pdftotext 2019ND295.pdf; line 228",
+  "confidence": "high",
+  "evidence": "ND opinions use the compact ellipsis form '....' per Rule 12. The DB contains spaced ellipsis '. . . .' which is an ingestion/OCR artifact. The source PDF shows the correct compact form. This occurs once in [¶18].",
+  "note": "Ellipsis formatting standardization. The spaced form appears to be an ingestion defect; the authoritative PDF clearly shows the compact four-dot form without interior spaces.",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p31"
+ }
+]

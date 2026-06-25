@@ -1,0 +1,16 @@
+[
+ {
+  "opinion_id": 17447,
+  "why": "no_pdf_headings"
+ },
+ {
+  "opinion_id": 17482,
+  "why": "no_pdf_headings"
+ },
+ {
+  "opinion_id": 19622,
+  "L": "VII",
+  "marker": "[¶25]",
+  "why": "letter_not_a_pdf_heading"
+ }
+]

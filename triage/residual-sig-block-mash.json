@@ -1,0 +1,54 @@
+[
+ {
+  "opinion_id": 19550,
+  "class": "paragraph_seq",
+  "old_exact": "[¶14] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers Jerod E. Tufte",
+  "new_exact": "[¶14] Jon J. Jensen, C.J.\n      Gerald W. VandeWalle\n      Daniel J. Crothers\n      Lisa Fair McEvers\n      Jerod E. Tufte",
+  "source_quote": "[¶14] Jon J. Jensen, C.J.\n      Gerald W. VandeWalle\n      Daniel J. Crothers\n      Lisa Fair McEvers\n      Jerod E. Tufte",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND269.pdf",
+  "confidence": "high",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p29"
+ },
+ {
+  "opinion_id": 19475,
+  "class": "paragraph_seq",
+  "old_exact": "[¶11] Jon J. Jensen, C.J. Gerald W. VandeWalle Lisa Fair McEvers Jerod E. Tufte I concur in the result. Daniel J. Crothers",
+  "new_exact": "[¶11] Jon J. Jensen, C.J.\n      Gerald W. VandeWalle\n      Lisa Fair McEvers\n      Jerod E. Tufte\n\n      I concur in the result.\n      Daniel J. Crothers",
+  "source_quote": "[¶11] Jon J. Jensen, C.J.\n      Gerald W. VandeWalle\n      Lisa Fair McEvers\n      Jerod E. Tufte\n\n      I concur in the result.\n      Daniel J. Crothers",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND120.pdf",
+  "confidence": "high",
+  "note": "Signature block has collapsed line structure in DB; PDF source (pdftotext lines 130-136) shows proper line breaks and indentation for each justice's name and the concurrence line.",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p30"
+ },
+ {
+  "opinion_id": 19574,
+  "class": "paragraph_seq",
+  "old_exact": "[¶2] Jon J. Jensen, C.J. Gerald W. VandeWalle Daniel J. Crothers Jerod E. Tufte Lisa Fair McEvers",
+  "new_exact": "[¶2] Jon J. Jensen, C.J.\n     Gerald W. VandeWalle\n     Daniel J. Crothers\n     Jerod E. Tufte\n     Lisa Fair McEvers",
+  "source_quote": "[¶2] Jon J. Jensen, C.J.\n     Gerald W. VandeWalle\n     Daniel J. Crothers\n     Jerod E. Tufte\n     Lisa Fair McEvers",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND84.pdf",
+  "confidence": "high",
+  "evidence": "All judges' names appear on separate lines in the authoritative PDF source, with proper indentation maintained. The DB incorrectly joins all names on a single line.",
+  "note": "Restores court-published formatting for judges' names, which are listed on separate lines in the official opinion.",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p30"
+ },
+ {
+  "opinion_id": 19558,
+  "class": "paragraph_seq",
+  "old_exact": "[¶2] Jerod E. Tufte Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers",
+  "new_exact": "[¶2] Jon J. Jensen, C.J. Jerod E. Tufte Gerald W. VandeWalle Daniel J. Crothers Lisa Fair McEvers",
+  "source_quote": "[¶2]   Jon J. Jensen, C.J.\n       Jerod E. Tufte\n       Gerald W. VandeWalle\n       Daniel J. Crothers\n       Lisa Fair McEvers",
+  "source": "2020 ND 44 PDF (authoritative)",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "The authoritative PDF places Chief Justice Jon J. Jensen at the head of the judges list in paragraph 2. The DB incorrectly omits him from this roster, though his name does appear at the end of paragraph 1 where it does not belong.",
+  "_verdict": "review:pdf_confirmed",
+  "_b": "p31"
+ }
+]

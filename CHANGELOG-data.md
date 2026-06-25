@@ -2,6 +2,17 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `caption-residual` + `ellipsis-compact-2026-06-24` — manual-residual drain (11 opinions)
+
+Drained the 188-item manual queue from fleet rounds P28-33 (see
+`triage/RESIDUAL-DISPOSITION-2026-06-24.md`). Applied: 9 captions (designation relocation +
+`LAVALLIE`->`Lavallie`, triple-evidence verified) and 2 ellipsis compactions (DB spaced
+`. . . .` -> compact `....`, the valid direction). Resolved-no-action: 41 ellipsis-WIDEN
+(pdftotext column-padding artifact; ND prints compact) + 21 signature-indent (corpus is
+1-space) + stale Grenz heading-deletes (superseded by heading_move). ~66 genuine-judgment
+items (scrambles/missing_text/deletions failing the triple-evidence gate) documented for a
+focused pass. Detector 175/0, invariants 24/0, 66 tests.
+
 ## Batch `corpus-proofing-p31-33-2026-06-24` + `heading-moves-p31-33` — fleet round 2 (63 opinions, 2020 ND 80 → 2019 ND 9)
 
 Second concurrent fleet round (offsets 1510-1870; re-run after the monthly-spend cap was
