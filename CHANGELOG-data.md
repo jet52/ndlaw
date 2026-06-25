@@ -2,6 +2,34 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `synopsis-adjudicated-81-2026-06-25` — West Synopsis-leakage, per-item adjudication (75 opinions)
+
+Per-item pass over the 81 short Synopsis blocks the strict v2 whitelist held back
+(`triage/synopsis-81-decisions.json`). Each read against its terminator and adjudicated via
+`scripts/strip_synopsis_adjudicated.py` (same structural invariants as v2: removed span
+contains no court element; syllabus-variant / star-page / `Attorneys` counts byte-identical
+before/after):
+
+- **49 full strips** — whole block is West editorial the regex classifier missed:
+  dispositions the v1 patterns skipped (`Order denying a new trial reversed, and a new trial
+  ordered.`, `Judgment of the district court reversed and action dismissed.`), separate-opinion
+  notices (`Burke, J., dissented.`, `Teigen, J., dissented in part and filed opinion.`),
+  motions/answers (`Questions answered.`, `Motion to dismiss appeal denied...`), West
+  procedural-posture synopses (`The District Court of X County, [Judge], J., entered judgment
+  ... appealed. The Supreme Court held...`), and the two disbarment holding-summaries. The
+  court Syllabus / ORDER preserved verbatim in every case.
+- **26 label-only strips** — removed ONLY the orphan `Synopsis` label (9 chars), preserving
+  the court-voice factual record (`This is an action...`, `Defendant was informed against...`,
+  `Facts:...`) and counsel-appearance blocks that West mislabeled `Synopsis`. The label is
+  West's section furniture; the text it wrapped is in scope ([[project_redistribution_scope]]).
+- **6 deferred** — structural oddities needing a closer read: 4 where `Synopsis` sits *inside*
+  a numbered syllabus point (id6441/6458/7249/13781), a mixed dissent+appeal-from line
+  (id2312), and a non-participation note (id7135, verify it repeats in the body before strip).
+
+Detector 175/0, invariants 24/0, 66 tests. Synopsis-leakage queue: 494 cleared across all
+batches (138 on 2026-05-13 + 281 v2 + 75 here), 226 remaining (217 long factual-record-bearing
++ 6 deferred here + 3 no-marker).
+
 ## Batch `strip-west-synopsis-v2-2026-06-25` — West Synopsis-leakage strip, deferred set (281 opinions)
 
 Stripped residual West editorial `Synopsis` blocks from 281 West-sourced opinions — the
