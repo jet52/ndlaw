@@ -1,0 +1,63 @@
+[
+ {
+  "opinion_id": 17525,
+  "class": "whitespace",
+  "old_exact": "of $ 27,386.23. ",
+  "new_exact": "of $27,386.23. ",
+  "source_quote": "costs and attorney fees in the amount of $27,386.23. We conclude the district court",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND165.pdf",
+  "confidence": "high",
+  "evidence": "pdftotext extraction of authoritative PDF shows no space before dollar sign; DB has extraneous space inserted during ingestion",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17525,
+  "class": "whitespace",
+  "old_exact": "firm $ 27,386.23 for",
+  "new_exact": "firm $27,386.23 for",
+  "source_quote": "and the law firm $27,386.23 for its costs and attorney fees under N.D.C.C.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND165.pdf",
+  "confidence": "high",
+  "evidence": "pdftotext extraction of authoritative PDF shows no space before dollar sign; DB has extraneous space inserted during ingestion",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17525,
+  "class": "whitespace",
+  "old_exact": "of $ 1,000.00 should",
+  "new_exact": "of $1,000.00 should",
+  "source_quote": "damages in the amount of $1,000.00 should its actual damages be less than",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND165.pdf",
+  "confidence": "high",
+  "evidence": "pdftotext extraction of authoritative PDF shows no space before dollar sign; DB has extraneous space inserted during ingestion",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17525,
+  "class": "whitespace",
+  "old_exact": "than $ 1,000.00;",
+  "new_exact": "than $1,000.00;",
+  "source_quote": "actual damages be less than $1,000.00; Attorney's fees, costs and disbursements",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND165.pdf",
+  "confidence": "high",
+  "evidence": "pdftotext extraction of authoritative PDF shows no space before dollar sign; DB has extraneous space inserted during ingestion",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17558,
+  "class": "whitespace",
+  "old_exact": "Century Code :",
+  "new_exact": "Century Code:",
+  "source_quote": " 47-18-01 and 28-22-02(10) of the North Dakota Century Code:\n               Lot 10, Block 2",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2019/2019ND217.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows 'Century Code:' without space before colon in [¶2] factual background where statutes are cited.",
+  "note": "Space-before-punctuation is a formatting defect from OCR/ingestion processing.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

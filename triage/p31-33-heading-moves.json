@@ -1,0 +1,57 @@
+[
+ {
+  "opinion_id": 19424,
+  "class": "heading_seq",
+  "old_exact": ". III[¶7]",
+  "new_exact": ".\n\nIII\n\n[¶7]",
+  "source_quote": "(PDF) 'III' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'IV', 'VI']; merged before [¶7]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19447,
+  "class": "heading_seq",
+  "old_exact": ". II[¶10]",
+  "new_exact": ".\n\nII\n\n[¶10]",
+  "source_quote": "(PDF) 'II' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['I', 'II', 'III', 'V']; merged before [¶10]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19525,
+  "class": "heading_seq",
+  "old_exact": ". A\n\n[¶12]",
+  "new_exact": ".\n\nA\n\n[¶12]",
+  "source_quote": "(PDF) 'A' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II', 'III', 'IV']; merged before [¶12]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19525,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶16]",
+  "new_exact": ".\n\nB\n\n[¶16]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II', 'III', 'IV']; merged before [¶16]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ },
+ {
+  "opinion_id": 19525,
+  "class": "heading_seq",
+  "old_exact": ". B\n\n[¶22]",
+  "new_exact": ".\n\nB\n\n[¶22]",
+  "source_quote": "(PDF) 'B' is a standalone centered section heading",
+  "verified_count": 1,
+  "confidence": "high",
+  "source": "court PDF heading set ['A', 'B', 'I', 'II', 'III', 'IV']; merged before [¶22]",
+  "note": "heading-MOVE: letter relocated to its own line before its paragraph (not deleted)"
+ }
+]

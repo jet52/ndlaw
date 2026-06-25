@@ -2,6 +2,32 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-p31-33-2026-06-24` + `heading-moves-p31-33` — fleet round 2 (63 opinions, 2020 ND 80 → 2019 ND 9)
+
+Second concurrent fleet round (offsets 1510-1870; re-run after the monthly-spend cap was
+lifted mid-round — failed agents re-run via `--ids`, the 71 successes reused). 360 opinions
+proofed; **source_quote 100%**. First round fully driven by the mechanized pipeline:
+
+- **60 opinions** auto-applied via the triple-evidence gate (`new ⊆ source_quote ⊆ PDF`,
+  net-removal ≤2): ocr_char (markdown/LaTeX markup removal `*State v. X*`->`State v. X`,
+  `$State\ v.\ Tupa$`->`State v. Tupa`), split_join word-restorations/scramble reorders,
+  missing_text, whitespace.
+- **3 opinions / 5 section-heading MOVES** via `heading_move.py` (incl. fused `III[¶7]`).
+- Guards auto-routed the rest: `guard_digit_in_cite`, `guard_unverified_quote` (×2
+  confabulations — the source_quote binding catching fabricated reconstructions),
+  `guard_probable_heading_move`. 25 cite-reflows already cleared by rejoin v2.
+
+**Two gate improvements made mid-round (both caught in dry-run spot-checks, nothing bad
+applied):**
+1. **Ellipsis-widen exclusion** — 44 proposals widening `...`->`. . .` were routed away from
+   auto-apply. ND prints compact ellipses; pdftotext's spaced `. . .` is column-padding, so
+   the spaced form passes the `⊆ PDF` test but is an artifact (image-verify, don't auto-apply).
+2. **Broadened `guard_digit_in_cite` `_CITE`** to a generic `VOL REPORTER PAGE` matcher
+   covering regional/state reporters. Caught id 17521 changing `81 Cal.App.3d 614` ->
+   `146 Cal. Rptr. 535` — a citation digit change the ND/federal-only pattern missed.
+
+Detector 175/0, invariants 24/0, 66 tests (after each apply).
+
 ## Batch `citation-rejoin-v2-2026-06-24` — fragmented-citation rejoin v2 (2,416 opinions)
 
 Mechanization #1 to drain the per-round cite-reflow queue. Extended

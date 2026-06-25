@@ -1,0 +1,38 @@
+[
+ {
+  "opinion_id": 17619,
+  "class": "whitespace",
+  "old_exact": "State v. Bates,\n\n2007 ND 15, ¶ 6, 726 N.W.2d 595.",
+  "new_exact": "State v. Bates,\n2007 ND 15, ¶ 6, 726 N.W.2d 595.",
+  "source_quote": "court's discretion, and we reverse only for an abuse of discretion. State v. Bates,\n2007 ND 15, ¶ 6, 726 N.W.2d 595. A court abuses its discretion when it acts in",
+  "verified_count": 1,
+  "source": "/tmp/src_2020ND66.txt",
+  "confidence": "high",
+  "note": "Extra blank line inserted after citation name in DB; PDF shows citation on consecutive lines without blank line. This is a mechanical ingestion artifact where a newline was duplicated during OCR/markdown processing.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17591,
+  "class": "whitespace",
+  "old_exact": "413\n to",
+  "new_exact": "413 to",
+  "source_quote": "907 N.W.2d\n413 to support its argument that there was an imperfection in the plat",
+  "verified_count": 1,
+  "source": "PDF pdftotext extraction: /Users/jerod/refs/nd/opin/pdfs/2020/2020ND26.pdf",
+  "confidence": "high",
+  "evidence": "The DB contains an erroneous extra line break after the page number '413' in the citation '907 N.W.2d 413'. The authoritative PDF source (via pdftotext) shows the citation on a single line with no break between '413' and 'to'. The DB text has '413\\n to' (with a leading space on the continuation line) while the source has '413 to' (on the same line). This is a mechanical ingestion artifact from citation fragmentation in the markdown pipeline.",
+  "_verdict": "auto:whitespace_only"
+ },
+ {
+  "opinion_id": 17592,
+  "class": "whitespace",
+  "old_exact": "party.\nId.\n A district",
+  "new_exact": "party. Id. A district",
+  "source_quote": "that have been made by the party. Id. A district court is\nless compelled to provide relief under Rule 60 from a trial on the merits as",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2020/2020ND32.pdf",
+  "confidence": "high",
+  "evidence": "The PDF source shows 'party. Id. A district court is' as continuous text on line 129, while the DB has this split across three lines: 'party.' on line 130, 'Id.' on line 131, and ' A district court' on line 132. This is a mid-sentence line break that should be rejoined per rule 8 (whitespace - mid-sentence hard break to rejoin).",
+  "_verdict": "auto:whitespace_only"
+ }
+]

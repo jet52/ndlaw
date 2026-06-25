@@ -75,7 +75,12 @@ def core(s, n=45):
 
 
 # ---- deterministic guards (catch the agent error classes seen in production) ----
-_CITE = re.compile(r"\d+\s+N\.?\s?W\.?\s?\d?d|\d{4}\s+ND\s+\d+|\d+\s+(?:U\.S\.|F\.\s?\dd|S\.\s?Ct\.|L\.\s?Ed)|\b\d+(?:\.\d+)*-\d+")
+# citation context: ND neutral cite, statute/section number, OR the generic reporter
+# form "VOL REPORTER PAGE" (a number, 1-4 capitalized reporter-abbrev tokens, a number).
+# The generic form covers regional/state reporters (Cal.App.3d, Cal. Rptr., A.2d, So.2d,
+# S.W.2d, N.E.2d, P.3d, ...) that an explicit allow-list would miss — a digit change in
+# any of these must route to review, not auto-apply.
+_CITE = re.compile(r"\d{4}\s+ND\s+\d+|\b\d+(?:\.\d+)*-\d+|\b\d+\s+(?:[A-Z][A-Za-z]*\.?\s?){1,4}\d+")
 _TOK = re.compile(r"[A-Za-z]+|\d+")
 _HEADING = re.compile(r"[A-D]|[IVXLC]{1,4}")
 
