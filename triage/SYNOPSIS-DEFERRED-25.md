@@ -1,8 +1,8 @@
 # Synopsis-leakage — deferred tail (after 2026-06-25 passes)
 
 After the v2 (281), adjudicated-81 (75), and long-217 (201) passes, 25 opinions carried a live
-`Synopsis` label. Class B (3) was RESOLVED 2026-06-25 by order-text recovery (below), leaving
-**22 deferred**. Each needs handling beyond a mechanical strip.
+`Synopsis` label. Class B (3, order-text recovery) and Class C (2, verify-first) were RESOLVED
+2026-06-25 (below), leaving **20 deferred — all Class A (lost-syllabus-header)**.
 
 ## A. Lost-syllabus-header / numbered-point (20) — NOT a synopsis problem
 
@@ -37,15 +37,16 @@ markdown (it carries the justice signature block).
   N.W.2d page 298/372 with Boedecker v. St. Alexius Hospital, id8266 — its `372.md` is
   Boedecker, so the West .doc order body is the authoritative source here, not the page md.)
 
-## C. Mixed / verify-first (2)
+## C. Mixed / verify-first (2) — RESOLVED 2026-06-25 (batch `synopsis-verify-first-2026-06-25`)
 
-- **id2312** — `Synopsis\nRobinson, J., dissenting.\n \nAppeal from District Court, McHenry
-  County; A. G. Burr, Judge.` Mixed: the dissent notice is West editorial, but the
-  `Appeal from District Court...` line is often part of the reported opinion header. Split:
-  strip the dissent line, keep/relocate the appeal-from line.
-- **id7135** — `Synopsis\nStrutz, C.J., deeming himself disqualified, did not participate.`
-  A non-participation note. Verify it repeats in the opinion body before stripping — if it is
-  the ONLY record of who did not participate, that is a court fact to preserve, not strip.
+- **id2312** — verified the Robinson dissent is in the opinion body (`ROBINSON, J.\n\nI dissent
+  on the ground that...`), so the synopsis notice was redundant. Partial strip: removed
+  `Synopsis\nRobinson, J., dissenting.`, KEPT the `Appeal from District Court, McHenry County;
+  A. G. Burr, Judge.` line (court record, appears only here).
+- **id7135** — verified the non-participation fact repeats more fully in the opinion's
+  signature block (`ALVIN C. STRUTZ, C.J., deeming himself disqualified, did not participate;
+  NORBERT J. MUGGLI, District Judge ... sitting in his stead.`). Full strip of the redundant
+  West synopsis note; star-page + `Syllabus by the Court` preserved.
 
 ## Done this date (for context)
 695 distinct opinions cleared across all batches (138 on 2026-05-13 + 281 v2 + 75

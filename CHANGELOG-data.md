@@ -2,6 +2,23 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `synopsis-verify-first-2026-06-25` — West Synopsis, verify-first tail (2 opinions)
+
+The two "verify-first" deferrals from `triage/SYNOPSIS-DEFERRED-25.md`, each resolved by
+reading the opinion body first:
+- **id2312** (*Strand v. Larson*, 1920) — confirmed the Robinson dissent is in the body
+  (`ROBINSON, J.\n\nI dissent on the ground that...`); the synopsis notice was redundant.
+  Partial strip: removed `Synopsis\nRobinson, J., dissenting.`, KEPT the `Appeal from District
+  Court, McHenry County; A. G. Burr, Judge.` line (court record, appears only here).
+- **id7135** (*Application of Christianson*, 1972) — confirmed the non-participation fact
+  repeats more fully in the signature block (`ALVIN C. STRUTZ, C.J. ... did not participate;
+  NORBERT J. MUGGLI, District Judge ... sitting in his stead.`); full strip of the redundant
+  West synopsis note, star-page + Syllabus preserved.
+
+Element-count invariants gated both. Detector 175/0, invariants 24/0, 66 tests. Synopsis-
+leakage now **700/720 cleared**; 20 deferred, all Class A (lost-syllabus-header — needs PDF
+header/point-1 recovery), tracked in `triage/SYNOPSIS-DEFERRED-25.md`.
+
 ## Batch `recover-disc-order-text-2026-06-25` — recover dropped ORDER bodies (3 opinions)
 
 Three disciplinary opinions (id9351 *Lince*, id10797 *Goetz*, id20482 *McMahon*) whose ENTIRE
