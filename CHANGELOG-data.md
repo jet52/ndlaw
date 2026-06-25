@@ -2,6 +2,18 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `despace-paragraph-markers-2026-06-25` — normalize `[¶ N]`→`[¶N]` corpus-wide (3,789 opinions)
+
+The court prints in-text paragraph markers with no space inside the brackets (`[¶1]`) —
+image-verified against the bound PDFs (1997 ND 7 shows `[¶1]`/`[¶2]`/`[¶3]`; 2008 ND 115). The
+spaced form `[¶ N]` was an extraction artifact, proven by 1,360 opinions carrying BOTH forms
+within a single document. `scripts/despace_paragraph_markers.py` collapsed the space(s) between
+¶ and the paragraph number: **85,109 markers across 3,789 opinions** (2,429 spaced-only + 1,360
+mixed). Digit-anchored (`\[¶ +\d`), so ~40 OCR-garbled forms (`[¶ IB]`, `[¶ ll]`, `[¶ l]` —
+digit misreads) are untouched, left for the OCR-digit pass. Marker count invariant held per
+opinion (only spaces removed). Corpus now uniform: 0 residual spaced digit-markers. Detector
+175/0, invariants 24/0, 66 tests.
+
 ## Batches `corpus-proofing-p34-36-*-2026-06-25` — proofing fleet round (815 edits / ~146 opinions, 2019 ND 27 → 2017 ND 225)
 
 Proofing fleet trio P34/P35/P36 (offsets 1870/1990/2110, 360 opinions, ~17.6M tokens). 1,092
