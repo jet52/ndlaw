@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 19314,
+  "class": "heading_seq",
+  "old_exact": "\n\n[¶11] The district court did not abuse its discretion in granting",
+  "new_exact": "\n\nV\n\n[¶11] The district court did not abuse its discretion in granting",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2018ND46 lines 151-152",
+  "evidence": "Section heading 'V' belongs on its own line BEFORE [¶11] (PDF: IV/[¶10] ... V/[¶11]). Insert V before ¶11.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19314,
+  "class": "heading_seq",
+  "old_exact": "We affirm the amended criminal\n\nV\n\njudgment and jury verdict.",
+  "new_exact": "We affirm the amended criminal judgment and jury verdict.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2018ND46 lines 153-154",
+  "evidence": "Remove the SAME 'V' mistakenly mashed mid-sentence in [¶11] ('amended criminal V judgment'); PDF reads 'We affirm the amended criminal judgment and jury verdict.'",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19311,
+  "class": "heading_seq",
+  "old_exact": "\n\n[¶16] Decker argues the evidence presented at trial",
+  "new_exact": "\n\nIII\n\n[¶16] Decker argues the evidence presented at trial",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2018ND43 lines 298-299",
+  "evidence": "Section heading 'III' belongs on its own line BEFORE [¶16] (PDF: III / [¶16] Decker argues...insufficient). Insert III before ¶16.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19311,
+  "class": "heading_seq",
+  "old_exact": "to convict him of disorderly conduct.\n\nIII\n\n\"In an appeal challenging",
+  "new_exact": "to convict him of disorderly conduct.\n\n\"In an appeal challenging",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2018ND43 line 298",
+  "evidence": "Remove the SAME 'III' misplaced AFTER ¶16's first sentence (before the block quote); it was relocated to before ¶16.",
+  "confidence": "high"
+ }
+]

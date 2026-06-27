@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 12624,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *2]*\n The relevant facts on appeal are not disputed. Janice Schlotman's daughter, Debbie Landreth, and Lonnie Dean Otto were married and had two children, Krysty-na and Matthew. Janice Schlotman, the children's grandmother, and her husband, Earl Schlotman, the children's stepgrandfather, often provided care for the children, because Debbie and Lonnie had marital problems and because Debbie's military career resulted in her being stationed in faraway places such as Antarctica and New Zealand.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *2] marker, OCR/markup/page-artifact) immediately followed by clean [¶2] copy of identical paragraph(s); delete garbled copy. Block 502 chars.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 13857,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *2]*\n During the summer of 1987, Berg moved into McKechnie's trader home in Westhope and began living there with McKechnie and her daughter. At the time Berg moved into the trailer, he owned very little property. McKechnie owned the trailer home and furnishings and had money in the bank. McKechnie worked as a nurse at the Westhope Nursing Home. Berg had been working on fishing trawlers in Alaska and began working for Hams Well Service in Westhope. The parties maintained separate bank accounts until 1990, when they became engaged. They opened a joint bank account at that time, and although the parties never married, they maintained joint bank accounts in which they deposited their paychecks throughout the remainder of their relationship. McKechnie also deposited her child support payments, which ranged from $75 to $200 per month, in their joint accounts, as well as her tax refunds.\n\n[¶8] In 1992, Berg became employed with the Bobcat Company and the parties moved the trailer home to Bismarck. McKechnie also found employment in the area and the parties continued to live in the trailer home until it was sold in 1994. The parties purchased a lot near the Missouri River and used $10,000 of the proceeds of the sale of the trailer home to purchase the land. The deed to the lot was titled in the name of both McKechnie and Berg. The parties also obtained a construction loan in both of their names to build a house on the lot. Berg acted as the general contractor during the construction process, did some of the construction work himself, and hired subcontractors for the jobs he could not perform himself. The Bank of North Dakota holds a mortgage on the property, and mortgage payments were made from the parties' joint accounts. At the time of trial, the property was valued between $175,000 and $214,000, with $113,000 owing on the mortgage. While living together, the parties purchased various items of personal property from their joint accounts, including several vehicles, a camper, a boat, and a riding lawn mower.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *2] marker, OCR/markup/page-artifact) immediately followed by clean [¶2] copy of identical paragraph(s); delete garbled copy. Block 2042 chars.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 15105,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *2]*\n Clarice and Carlton Brummund were married in March 1994. Prior to their marriage, they entered into a pre\n\n *737\n\n nuptial agreement which included a listing of the property brought into the marriage by each party. Included in that property listing was farmland in Dickey County owned by Carlton Brummund.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *2] marker, OCR/markup/page-artifact) immediately followed by clean [¶2] copy of identical paragraph(s); delete garbled copy. Block 317 chars.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16655,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *2]*\n In\n *Dieterle v. Dieterle,*\n 2013 ND 71, ¶¶ 1, 39, 830 N.W.2d 571, we affirmed a judgment granting Shannon Dieterle and Hansen a divorce, awarding Dieterle primary responsibility of the parties' minor child, ordering Dieterle to pay Hansen spousal support, distributing the parties' marital property, and ordering the sale of the parties' ranch and equal distribution of the net proceeds from the sale. , We also remanded for the district court to issue a parenting plan consistent with the best interests of the minor child.\n *Id.*\n at ¶¶ 1, 20, 39.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *2] marker, OCR/markup/page-artifact) immediately followed by clean [¶2] copy of identical paragraph(s); delete garbled copy. Block 562 chars.",
+  "confidence": "high"
+ }
+]

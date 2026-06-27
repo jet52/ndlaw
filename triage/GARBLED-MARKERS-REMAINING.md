@@ -1,34 +1,36 @@
-# Garbled paragraph markers — remaining queue (after 2026-06-25 passes)
+# Garbled paragraph markers — queue CLOSED 2026-06-27
 
-This session fixed **52 garbled paragraph markers** across several classes:
-- 85,109 spaced `[¶ N]`→`[¶N]` (`despace-paragraph-markers`)
-- 30 glyph-garbled numbers `[¶ IB]`→`[¶13]` etc. (`ocr-garbled-markers`, sequence-determined)
-- 5 deferred resolved (`dedup-storedtwice-marker` + `ocr-garbled-markers`): 4 stored-twice
-  duplicate paragraphs (garbled copy) + id12623's 4 `]`→`J` markers
-- 17 closing-bracket/prefix garbles `[¶7}`/`[¶9J`/`[¶'8]`→`[¶N]` (`ocr-garbled-markers-batch2`,
-  sequence-verified)
+The 26 deferred malformed markers were worked to closure on 2026-06-27:
+**23 fixed, 2 correctly left alone, 1 deferred to full re-proof.**
+See `CHANGELOG-data.md` batches `*-2026-06-27`.
 
-**26 malformed markers remain** (`triage/garbled-markers-remaining.json`), in classes that need
-a dedicated careful pass — NOT mechanical:
+## Disposition
+### markup-split (16) — RESOLVED
+Re-checking each `[¶\n *N]*` against the paragraph sequence revealed two sub-classes:
+- **6 stored-twice duplicates** (deleted garbled copy): 12624, 13857, 15105, 16655,
+  12791, 17024. The garbled marker headed a corrupted first copy immediately followed
+  by a clean `[¶N]` copy of identical text.
+- **10 genuine repairs** `[¶\n *N]*`→`[¶N]` (sequence-confirmed; surrounding case-name
+  italics left for the markup-cohort pass): 13177, 13562, 13641, 13948, 14609, 15107,
+  16396, 16659, 16766, 16815.
 
-## markup-split (16) — entangled with markup contamination
-`[¶\n *N]*` — the marker is split across a newline with `*…*` markdown emphasis around the
-number (`[¶\n *2]*\n The relevant…`). The number is readable, but the fix must also strip the
-`*…*` markup, so these belong with the **markup cohort** cleanup ($…$ / \P / <sup> / ### /
-`*N]*`), not a standalone marker fix. IDs: 12624, 12791, 13177, 13562, 13641, 13857, 13948,
-14609, 15105, 15107, 16396, 16655, 16659, 16766, 16815, 17024.
+### digit-ambiguous (8) — RESOLVED
+- **dedups**: 12773 (`[¶3'1]`→clean ¶31 dup), 16775 (`[¶103`→clean ¶10 dup).
+- **repairs**: 14010 `*[¶*\n 1]`→`[¶1]`; 14532 `[¶15J`→`[¶15]` (PDF); 16656 `[¶1G]`→`[¶10]`
+  (PDF, G=0); 16777 `[¶'29]`→`[¶29]` (PDF).
+- **left alone (not in-text markers)**: 7514 `[¶3, Decree of Dissolution.]` (cross-ref to
+  a decree); 13911 `2003 ND 69, [¶]14, 660 N.W.2d 593` (pincite to a cited case — citation
+  class, routed to a citation pass).
 
-## digit-ambiguous (8) — need image verification / sequence reconciliation
-- id12773 `[¶3'1]` (→[¶31]?), id16656 `[¶1G]` (→[¶16]?), id16775 `[¶103` (between [¶9] and
-  [¶10] — possible stored-twice dup), id14532 `[¶15J` (prev=12 — markers 13-14 also off),
-  id16777 `[¶'29]` (prev=27 — 28 missing), id13911 `[¶]14, 660 N.W.2d` (a CITATION, not a
-  marker — likely leave), id14010 `[¶*\n 1]` (star+split), id7514 `[¶3, Decree` (reference).
+### no-number (2) — RESOLVED / DEFERRED
+- 16531 `[¶ Here the hearing`→`[¶28]` (PDF, single seq gap).
+- 12932 (1999 ND 138) — **DEFERRED**: pervasive OCR corruption, markers entangled with
+  rotten text (`[2] 9]` / `[3][¶`); needs a full re-proof. → `STRUCTURAL-MARKERS-QUEUE.md`.
 
-## no-number (2) — marker with no number
-- id12932 `[¶ Here, the declarant…`, id16531 `[¶ Here the hearing…` — the paragraph number is
-  absent entirely; need the PDF image + sequence to determine it.
+### XREF (5) — left alone (as before)
+`[¶N of syllabus` / `[¶N of H.B.` / `[¶N, Decree` in pre-1997 opinions (6739×2, 6751,
+6915, 9656) — cross-references in the court's text, not in-text markers.
 
-## XREF (5) — NOT markers, leave alone
-`[¶N of syllabus`, `[¶N of H.B.`, `[¶N, Decree` in pre-1997 opinions (id6739×2, 6751, 6915,
-9656) — these are cross-references to a paragraph ("¶3 of the syllabus, 144 N.W.2d…"), part of
-the court's text, not in-text markers.
+## Spillover
+Fixing the garbled glyphs exposed pre-existing missing/duplicate-marker (sequence)
+defects in several opinions → new `triage/STRUCTURAL-MARKERS-QUEUE.md`.

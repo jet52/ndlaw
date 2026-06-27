@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 16531,
+  "class": "paragraph_seq",
+  "old_exact": "[¶ Here the hearing",
+  "new_exact": "[¶28] Here the hearing",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF-image/text verified (manual 2026-06-27)",
+  "evidence": "PDF 2015ND179: '[¶28] Here the hearing transcript shows'; single seq gap (27->29).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16656,
+  "class": "paragraph_seq",
+  "old_exact": "[¶1G] She argues",
+  "new_exact": "[¶10] She argues",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF-image/text verified (manual 2026-06-27)",
+  "evidence": "PDF 2016ND40: '[¶10] She argues the district court also erred'; G=0; single seq gap (9->11).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16777,
+  "class": "paragraph_seq",
+  "old_exact": "[¶'29] The Honorable",
+  "new_exact": "[¶29] The Honorable",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF-image/text verified (manual 2026-06-27)",
+  "evidence": "PDF 2016ND168: '[¶29] The Honorable Benny A. Graff, S.J.'; stray apostrophe.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 14532,
+  "class": "paragraph_seq",
+  "old_exact": "[¶15JCAROL RONNING KAPSNER",
+  "new_exact": "[¶15] CAROL RONNING KAPSNER",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF-image/text verified (manual 2026-06-27)",
+  "evidence": "PDF 2006ND116: signature is '[¶15]'; J=] OCR, add space. (Signature lead-author/order discrepancy flagged separately.)",
+  "confidence": "high"
+ }
+]

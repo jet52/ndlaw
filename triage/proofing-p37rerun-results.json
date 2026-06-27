@@ -1,0 +1,212 @@
+[
+ {
+  "opinion_id": 17029,
+  "clean": false,
+  "coverage_note": "Full text comparison against authoritative PDF source (pdftotext plain text extraction confirmed against image-rendered pages). All seven proposed defects verified byte-exact in DB with source confirmation from PDF. Markup contamination flagged per rule 11 (not proposed). Quote character policy followed per rule 9.",
+  "proposals": [
+   {
+    "class": "split_join",
+    "old_exact": "The Kram-lichs have",
+    "new_exact": "The Kramlichs have",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "Its partners include the Kramlichs and the Hales. The Kramlichs have a 25 percent interest in the partnership.",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB text renders word-split as 'Kram-lichs' with mid-word hyphen; PDF and all rendered pages show 'Kramlichs' as continuous surname. Verified at Paragraph 2."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "was executéd almost",
+    "new_exact": "was executed almost",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "then Spectrum Care, was executed on May 28, 1999, and contains an arbitration clause.",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB text shows accent mark (é) on 'executéd'; PDF shows plain 'executed'. This is an OCR artifact (accent rendering error). Verified at Paragraph 2."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "signed the LLG operating",
+    "new_exact": "signed the LLC operating",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "Gary Kramlich signed the LLC operating agreement containing the arbitration clause and, assuming Glory Kramlich has a claim against the LLC",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB has 'LLG' (OCR misread C as G); PDF plainly shows 'LLC'. Verified at Paragraph 19."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "See Merest of W.O.,",
+    "new_exact": "See Interest of W.O.,",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "Courts may adjudicate actual controversies before a court. See Interest of W.O., 2004 ND 8, ¶ 10, 673 N.W.2d 264.",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB shows case name as 'Merest' (OCR misread 'Int' as 'Mer'); PDF plain text confirms 'Interest of W.O.' Verified at Paragraph 21."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "is abroad arbitration",
+    "new_exact": "is a broad arbitration",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "and we resolve any doubts concerning the scope of arbitrable issues in favor of arbitration when there is a broad arbitration clause and no limitations or exclusions.",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB shows fused word 'abroad' (missing space); PDF shows 'a broad' as two words. Verified at Paragraph 13."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "clause arid no",
+    "new_exact": "clause and no",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "and we resolve any doubts concerning the scope of arbitrable issues in favor of arbitration when there is a broad arbitration clause and no limitations or exclusions.",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB shows 'arid' (OCR misread 'and' with 'n' as 'r'); PDF shows 'and'. Verified at Paragraph 13."
+   },
+   {
+    "class": "split_join",
+    "old_exact": "the Somerset Minot, LLC operating",
+    "new_exact": "the Somerset-Minot, LLC operating",
+    "source": "2017ND204.pdf (authoritative PDF source)",
+    "source_quote": "Of course, the Somerset-Minot, LLC operating agreement requires that any claims raised by the Kramlichs",
+    "verified_count": 1,
+    "confidence": "high",
+    "evidence": "DB shows 'Somerset Minot' as two words without hyphen; PDF shows 'Somerset-Minot' with hyphen (consistent with caption and title page). Verified at Paragraph 15."
+   }
+  ],
+  "flags": [
+   {
+    "class": "other",
+    "location_quote": "*Real Builders**,*",
+    "description": "Markup contamination: double asterisks appear 3 times (lines 149, 170, 173). Italic markup pattern shows '*Real Builders**,*' instead of correct '*Real Builders,*' (extra asterisks around comma). Per rule 11, flagged but not proposed—separate deterministic pass owns cleanup of leftover markdown.",
+    "confidence": "high"
+   }
+  ],
+  "era": "2017"
+ },
+ {
+  "opinion_id": 17030,
+  "clean": false,
+  "proposals": [
+   {
+    "class": "ocr_char",
+    "old_exact": "Disciplinary .Board recommending .that",
+    "new_exact": "Disciplinary Board recommending that",
+    "source_quote": "recommendations of a hearing panel of the Disciplinary Board recommending that Ervin J. Lee",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Stray dots before 'Board' and 'that' are OCR artifacts not present in authoritative PDF source."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "in' North Dakota",
+    "new_exact": "in North Dakota",
+    "source_quote": "disbarred from the practice of law in North Dakota, effective immediately.",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Wrong curly quote character; PDF shows plain space before 'North Dakota'."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "September 23,1985",
+    "new_exact": "September 23, 1985",
+    "source_quote": "admitted to practice law in North Dakota on September 23, 1985. Lee was",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Missing space after comma in date; PDF shows proper spacing."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "á client",
+    "new_exact": "a client",
+    "source_quote": "was hired to represent a client in a family law matter. The client paid",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Diacritic accent on 'a' is OCR corruption; PDF shows plain 'a'."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "of .the $9,000",
+    "new_exact": "of the $9,000",
+    "source_quote": "of which was advance payment of fees. One-thousand dollars of the $9,000 was a loan",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Stray dot before 'the' is OCR artifact; PDF shows no dot."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "not used,'but",
+    "new_exact": "not used, but",
+    "source_quote": "A parenting investigator was not used, but Lee did not refund the money.",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Wrong curly quote; PDF shows comma with proper spacing."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "surrender! ]",
+    "new_exact": "surrender[]",
+    "source_quote": "lawyer shall . . . \"surrender[] papers and property to which the client is",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Exclamation mark and space are OCR corruption in bracket notation; PDF shows empty brackets."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "refund! ]",
+    "new_exact": "refund[]",
+    "source_quote": "entitled and refund[] any advance payment of fee or expense that has not",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Exclamation mark and space are OCR corruption in bracket notation; PDF shows empty brackets."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "$250, -",
+    "new_exact": "$250.",
+    "source_quote": "order him to pay costs of the disciplinary proceeding in the amount of $250. [¶2]",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Wrong punctuation (comma-hyphen); PDF shows period."
+   },
+   {
+    "class": "whitespace",
+    "old_exact": "2. . within",
+    "new_exact": "2.     within",
+    "source_quote": "1.      disbarment;         2.     within 10 days of signing the stipulation",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Extra dot in list numbering is OCR artifact; PDF shows proper spacing between item number and text."
+   },
+   {
+    "class": "ocr_char",
+    "old_exact": "immediately-",
+    "new_exact": "immediately.",
+    "source_quote": "from the practice of law in North Dakota, effective immediately. We order him",
+    "verified_count": 1,
+    "source": "/tmp/src_2017ND216.txt",
+    "confidence": "high",
+    "evidence": "Hyphen is OCR corruption; PDF shows period at end of sentence."
+   }
+  ],
+  "flags": [
+   {
+    "class": "ocr_digit",
+    "location_quote": "2015 ND 157, 864 N.W.2d 764.",
+    "description": "Citation number error: DB shows '2015 ND 157' but authoritative PDF clearly shows '2015 ND 182' for the second Disciplinary Board v. Lee citation in paragraph 2. This is a case citation, flagged as high-risk for independent verification and correction authority approval given the sensitivity of judicial citations.",
+    "confidence": "high"
+   }
+  ]
+ }
+]

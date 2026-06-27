@@ -1,0 +1,14 @@
+[
+ {
+  "opinion_id": 17030,
+  "class": "whitespace",
+  "old_exact": "September 23,1985",
+  "new_exact": "September 23, 1985",
+  "source_quote": "admitted to practice law in North Dakota on September 23, 1985. Lee was",
+  "verified_count": 1,
+  "source": "/tmp/src_2017ND216.txt",
+  "confidence": "high",
+  "evidence": "Missing space after comma in date; PDF shows proper spacing.",
+  "_verdict": "auto:whitespace_only"
+ }
+]

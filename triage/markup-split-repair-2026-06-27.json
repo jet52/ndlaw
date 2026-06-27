@@ -1,0 +1,112 @@
+[
+ {
+  "opinion_id": 13177,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *5] On*\n ",
+  "new_exact": "[¶5] On ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *5]...*' (markdown-emphasis-split) repaired to canonical '[¶5]'. Number sequence-confirmed (¶4 and ¶6 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 13562,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *2]*\n ",
+  "new_exact": "[¶2] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *2]...*' (markdown-emphasis-split) repaired to canonical '[¶2]'. Number sequence-confirmed (¶1 and ¶3 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 13641,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *2]*\n ",
+  "new_exact": "[¶2] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *2]...*' (markdown-emphasis-split) repaired to canonical '[¶2]'. Number sequence-confirmed (¶1 and ¶3 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 13948,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *2]*\n ",
+  "new_exact": "[¶2] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *2]...*' (markdown-emphasis-split) repaired to canonical '[¶2]'. Number sequence-confirmed (¶1 and ¶3 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 14609,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *6] The*\n ",
+  "new_exact": "[¶6] The ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *6]...*' (markdown-emphasis-split) repaired to canonical '[¶6]'. Number sequence-confirmed (¶5 and ¶7 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 15107,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *1]*\n ",
+  "new_exact": "[¶1] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *1]...*' (markdown-emphasis-split) repaired to canonical '[¶1]'. Number sequence-confirmed (¶0 and ¶2 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16396,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *5]*\n ",
+  "new_exact": "[¶5] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *5]...*' (markdown-emphasis-split) repaired to canonical '[¶5]'. Number sequence-confirmed (¶4 and ¶6 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16659,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *5]*\n ",
+  "new_exact": "[¶5] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *5]...*' (markdown-emphasis-split) repaired to canonical '[¶5]'. Number sequence-confirmed (¶4 and ¶6 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16766,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *8]*\n ",
+  "new_exact": "[¶8] ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *8]...*' (markdown-emphasis-split) repaired to canonical '[¶8]'. Number sequence-confirmed (¶7 and ¶9 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16815,
+  "class": "paragraph_seq",
+  "old_exact": "[¶\n *18] In Throlson,*\n ",
+  "new_exact": "[¶18] In Throlson, ",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair (sequence-verified, manual 2026-06-27)",
+  "evidence": "Broken paragraph marker '[¶\\n *18]...*' (markdown-emphasis-split) repaired to canonical '[¶18]'. Number sequence-confirmed (¶17 and ¶19 present, no duplicate). Surrounding case-name italics left for markup-cohort pass.",
+  "confidence": "high"
+ }
+]

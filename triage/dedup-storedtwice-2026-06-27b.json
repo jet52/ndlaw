@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 12791,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *26]*\n We conclude a reasoning mind reasonably could have found the weight of the evidence from the entire record established Saakian was not disabled when the Bureau initially dismissed his claim in November 1996.\n\n 2\n\nIll\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *26] marker) immediately followed by clean [¶26] copy of identical paragraph; delete garbled copy. 229 chars.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17024,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶\n *18]*\n Majetic's argument that the jury was not impartial cites the jurors' statements to the bailiff to support his claim. However, this record does not establish the precise nature of the jurors' statements to the bailiff. In another context involving an obvious error analysis, this Court recognized the need for an adequate record to establish a claimed error.\n *See Miller,*\n 2001 ND 132, ¶ 26, 631 N.W.2d 587 (discussing lack of record of courtroom configuration to support confrontation clause challenge). The adversarial system requires a record of the jurors' statements to establish a claimed biased jury. The record here does not clearly indicate the jurors' statements support a claim of jury partiality; nor does it support establishing a new rule, or logically extending an existing rule, for jury admonitions.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual verify 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken [¶\\n *18] marker) immediately followed by clean [¶18] copy of identical paragraph; delete garbled copy. 830 chars.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,35 @@
+[
+ {
+  "opinion_id": 12773,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶3'1] Larsen contends revocation of his license was excessive because the sexual relationship did not occur \"under the guise of treatment, as part of a physical examination, during psychiatric treatment or in exchange for drugs.\" Although he argues the revocation was excessive, during oral argument to the Board, when addressing the appropriate disciplinary action, he maintained no sanction was appropriate because no statutory violation had been established.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken marker) + clean [¶31] copy of identical paragraph; delete garbled. 464c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16775,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶103 Based on the record before us, this Court determines the district judge is necessary for effective judicial administration in Grand Forks and the Northeast Central Judicial District. We nevertheless acknowledge that reduction of the judicial budget in Senate Bill 2379 and the anticipated reductions in the forthcoming biennium likely will result in near-term reductions in force of judicial officers. District judges with full authority are- necessary for the effective judicial administration of the workload facing our courts with the current budget constraints.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (manual 2026-06-27)",
+  "evidence": "Stored-twice duplicate: garbled first copy (broken marker) + clean [¶10] copy of identical paragraph; delete garbled. 573c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 14010,
+  "class": "paragraph_seq",
+  "old_exact": "*[¶*\n 1]",
+  "new_exact": "[¶1]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker-repair first-para (manual 2026-06-27)",
+  "evidence": "Broken first marker '*[¶*\\n 1]' (markdown-emphasis-split) -> canonical '[¶1]'; first paragraph after author block, next markers 2,3,4.",
+  "confidence": "high"
+ }
+]

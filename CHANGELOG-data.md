@@ -2,6 +2,57 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batch `corpus-proofing-p37-2026-06-27` — fleet round P37 (789 edits / 92 opinions)
+
+Resumed the corpus-proofing fleet from the date-DESC cursor (2017 ND 223 → 2017 ND 92,
+offset 2244, 120 opinions). 118/120 agents returned (2 dropped on connection errors —
+2017 ND 204/216 — re-run separately); 912 proposals + 118 flags, 10 clean opinions.
+Verifier routed AUTO 12 / REVIEW 783 / REJECT 117; consolidate triple-evidence autosafe
+gate passed **788** (whitespace 135, ocr_char 483, split_join 154, ocr_digit 7,
+missing_text 5, other 4), all PDF-confirmed (new_exact verbatim in PDF, old not in PDF,
+net-word-removal ≤ 2). Examples: `Amo u nt`→`Amount`, `Dis-cipl,`→`Discipl.`,
+`holding- a suppler mental`→`holding a supplemental`, `[1126]`→`[¶26]` (garbled marker),
+`•[¶11]`→`[¶11]`, a PDF-verified dropped signature block restored (id17033 `[¶30]`).
+Plus: id16993 (one redundant overlapping proposal dropped + 1 residual `declar-ant`
+line-break fix the agent missed, PDF-verified) and id16957 (`[¶26]`→`[¶25]` renumber
+fixing a duplicate-26/missing-25 sequence, PDF-confirmed, no cascade). **6 deferred**
+(split_join across an N.W.2d star-page, e.g. `ap *225 pealed`→`appealed`): the naive
+rejoin deletes the functional `*NNN` pincite marker — routed to a star-page-aware rejoin
+pass. The 2 dropped agents (2017 ND 204/216) were re-run (`--ids`) and folded in (+18
+edits → batch total **807 edits / 94 opinions**). The 120 agent FLAGS (anomalies the
+gate did not auto-fix) are captured in `triage/p37-flags-2026-06-27.json`: 58 markup
+(separate pass) + 59 structural/citation routed to `STRUCTURAL-MARKERS-QUEUE.md` (incl.
+PDF-verified dropped signature blocks + 10 high-risk `ocr_digit` citation flags).
+Detector 176/0, invariants 24 ok/0 regressed, 76 tests.
+
+## Batches `*-2026-06-27` — garbled-marker remaining queue CLOSED (23 fixed)
+
+Worked the 26 deferred malformed markers (`triage/GARBLED-MARKERS-REMAINING.md`) to closure:
+**23 fixed, 2 correctly left alone, 1 deferred.**
+
+- **8 stored-twice duplicates deleted** (`dedup-storedtwice-marker-2026-06-27`,
+  `garbled-marker-clean-2026-06-27`): the garbled `[¶\n *N]` / `[¶3'1]` / `[¶103` marker headed a
+  corrupted FIRST copy (OCR errors, markdown `*…*`, page-number artifacts) immediately followed
+  by a clean `[¶N]` copy of identical text. Deleted the garbled copy. Surfaced when the
+  "markup-split" triage was re-checked against the paragraph sequence — 6 of the 16 nominal
+  markup-split items were actually dups, plus 12773 (¶31) and 16775 (¶10). ids 12624, 13857
+  (2-para block, OCR `trader`→`trailer`), 15105, 16655, 12791, 17024, 12773, 16775.
+- **15 marker repairs** (`markup-split-marker-repair-2026-06-27`, `garbled-marker-clean-2026-06-27`,
+  `garbled-marker-pdf-2026-06-27`): 10 markdown-emphasis-split `[¶\n *N]*`→`[¶N]`
+  (sequence-confirmed, surrounding case-name italics left for the markup-cohort pass); 14010
+  `*[¶*\n 1]`→`[¶1]`; and 4 PDF-image-verified: 16531 `[¶ `→`[¶28]`, 16656 `[¶1G]`→`[¶10]` (G=0),
+  16777 `[¶'29]`→`[¶29]`, 14532 `[¶15J`→`[¶15]` (J=]).
+- **2 left alone** (not in-text markers): 7514 `[¶3, Decree of Dissolution.]` (cross-reference to
+  a decree) and 13911 `2003 ND 69, [¶]14, 660 N.W.2d 593` (pincite to a cited case; citation
+  class — routed to a citation pass).
+- **1 deferred**: 12932 (1999 ND 138) — pervasive OCR corruption (`declar-declar-must`,
+  `subjecLto`, markers garbled as `[2] 9]` / `[3][¶`); piecemeal marker surgery unsafe, deferred
+  to a full re-proof.
+
+Newly surfaced adjacent **structural-marker defects** (missing/duplicate `[¶N]`, NOT garbled
+glyphs) logged to `triage/STRUCTURAL-MARKERS-QUEUE.md` for a focused pass. Detector 176/0,
+invariants 24 ok/0 regressed, 66 tests.
+
 ## Batch `trio-defer-applied-2026-06-25` — trio P34-36 deferred items worked (6 applied)
 
 Worked the 52 trio-deferred items (`triage/PROOFING-P34-36-DEFERRED.md`). **6 applied**: id19320

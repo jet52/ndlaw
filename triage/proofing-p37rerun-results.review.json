@@ -1,17 +1,5 @@
 [
  {
-  "opinion_id": 17030,
-  "class": "whitespace",
-  "old_exact": "September 23,1985",
-  "new_exact": "September 23, 1985",
-  "source_quote": "admitted to practice law in North Dakota on September 23, 1985. Lee was",
-  "verified_count": 1,
-  "source": "/tmp/src_2017ND216.txt",
-  "confidence": "high",
-  "evidence": "Missing space after comma in date; PDF shows proper spacing.",
-  "_verdict": "auto:whitespace_only"
- },
- {
   "opinion_id": 17029,
   "class": "split_join",
   "old_exact": "The Kram-lichs have",
@@ -26,13 +14,13 @@
  {
   "opinion_id": 17029,
   "class": "ocr_char",
-  "old_exact": "was execut\u00e9d almost",
+  "old_exact": "was executéd almost",
   "new_exact": "was executed almost",
   "source": "2017ND204.pdf (authoritative PDF source)",
   "source_quote": "then Spectrum Care, was executed on May 28, 1999, and contains an arbitration clause.",
   "verified_count": 1,
   "confidence": "high",
-  "evidence": "DB text shows accent mark (\u00e9) on 'execut\u00e9d'; PDF shows plain 'executed'. This is an OCR artifact (accent rendering error). Verified at Paragraph 2.",
+  "evidence": "DB text shows accent mark (é) on 'executéd'; PDF shows plain 'executed'. This is an OCR artifact (accent rendering error). Verified at Paragraph 2.",
   "_verdict": "review:pdf_confirmed"
  },
  {
@@ -53,7 +41,7 @@
   "old_exact": "See Merest of W.O.,",
   "new_exact": "See Interest of W.O.,",
   "source": "2017ND204.pdf (authoritative PDF source)",
-  "source_quote": "Courts may adjudicate actual controversies before a court. See Interest of W.O., 2004 ND 8, \u00b6 10, 673 N.W.2d 264.",
+  "source_quote": "Courts may adjudicate actual controversies before a court. See Interest of W.O., 2004 ND 8, ¶ 10, 673 N.W.2d 264.",
   "verified_count": 1,
   "confidence": "high",
   "evidence": "DB shows case name as 'Merest' (OCR misread 'Int' as 'Mer'); PDF plain text confirms 'Interest of W.O.' Verified at Paragraph 21.",
@@ -122,7 +110,7 @@
  {
   "opinion_id": 17030,
   "class": "ocr_char",
-  "old_exact": "\u00e1 client",
+  "old_exact": "á client",
   "new_exact": "a client",
   "source_quote": "was hired to represent a client in a family law matter. The client paid",
   "verified_count": 1,
@@ -184,7 +172,7 @@
   "class": "whitespace",
   "old_exact": "$250, -",
   "new_exact": "$250.",
-  "source_quote": "order him to pay costs of the disciplinary proceeding in the amount of $250. [\u00b62]",
+  "source_quote": "order him to pay costs of the disciplinary proceeding in the amount of $250. [¶2]",
   "verified_count": 1,
   "source": "/tmp/src_2017ND216.txt",
   "confidence": "high",

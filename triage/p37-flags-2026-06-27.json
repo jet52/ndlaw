@@ -1,0 +1,813 @@
+[
+ {
+  "opinion_id": 17040,
+  "class": "other",
+  "location_quote": "the Supreme Court affirmed.\n *Phillips v. State,*\n 2014 ND 100, 859 N.W.2d 929",
+  "description": "Markup contamination: asterisks around '*Phillips v. State,*' (markdown formatting for italics). The authoritative PDF shows 'Phillips v. State,' without asterisks. Per instructions, this is known contamination handled by a separate deterministic pass—flagging rather than proposing fix.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17039,
+  "class": "ocr_char",
+  "location_quote": "The purpose of our review ¾ to determine whether the case presents an infrequent harsh case",
+  "description": "OCR corruption of quote+word: DB has fraction character '¾' (U+00BE) where source has opening single quote (U+2018) followed by word 'is'. Full source text is: 'The purpose of our review 'is to determine whether...'. NOT PROPOSED due to rule against quote character proposals, but this is clearly OCR error corrupting both punctuation and a word."
+ },
+ {
+  "opinion_id": 17038,
+  "class": "other",
+  "location_quote": "*Leno v. Ehli,*",
+  "description": "Italics markup contamination: asterisks around case citation (these should be handled by separate markup-removal pass, not proposed here per rule 11)"
+ },
+ {
+  "opinion_id": 17038,
+  "class": "other",
+  "location_quote": "*Vandal**,*",
+  "description": "Italics markup contamination: malformed asterisks around case citation (appears to be '*Vandal**,*' suggesting broken italics markup; should be handled by separate pass per rule 11)"
+ },
+ {
+  "opinion_id": 17036,
+  "class": "ocr_digit",
+  "location_quote": "N.D.R. Prof. Conduct 1.16(e), Declining or Terminating",
+  "description": "Citation digit/letter ambiguity: DB shows '1.16(e)' (digit 1) but PDF pdftotext output shows 'l.16(e)' (lowercase L). This is a classic OCR confusion between the character 'l' and digit '1'. Without rendering the PDF to verify the actual glyph, cannot definitively determine which is correct. However, semantically 'Rule 1.16(e)' (digit 1) makes more sense than 'Rule l.16(e)' (letter l). Flagging as high-risk citation element that should be human-verified against the rendered PDF.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17034,
+  "class": "paragraph_seq",
+  "location_quote": "Lines 25-26: '[ITS] IT IS FURTHER ORDERED, that Matson must comply' with N.D.R. Lawyer Discipl. 6.3 regarding notice.' followed by Lines 27-28: '[¶8] IT IS FURTHER ORDERED, that Matson must comply with N.D.R. Lawyer Discipl. 6.3 regarding notice.'",
+  "description": "Duplicate paragraph [¶8] due to OCR error: the [ITS] marker on line 25 is a misreading of [¶8]. After correcting [ITS]→[¶8], both lines 25 and 27-28 will be identical [¶8] paragraphs with the same text. The PDF contains this content only once. Per rules, this duplication is not auto-fixed; it flags a structural ingestion artifact that should be manually resolved by removing the malformed [ITS] version (lines 25-26).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17031,
+  "class": "paragraph_seq",
+  "location_quote": "Lines 231-233 contain a [¶36] paragraph label with content nearly identical to [¶35], followed by page break (line 235: 'V') and then another [¶36] paragraph at line 237",
+  "description": "Potential duplicate/artifact paragraph: The DB contains two [¶36] labels. The first (lines 231-233) appears to be a duplicated/continued version of [¶35] with OCR errors ('finding. Stephen', 'N.D.C.C. § 47-16-02- was', 'pleadings, On'). The second [¶36] (line 237) is the actual final section. The PDF source shows only one [¶36] after section V, matching the second instance in the DB. This appears to be an OCR/markdown ingestion artifact creating a paragraph restart.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17031,
+  "class": "other",
+  "location_quote": "Line 217 ends with '; ' (semicolon-space)",
+  "description": "The DB text at end of [¶34] contains a semicolon followed by space before line break: 'counterclaim at trial. ;'. This may be a stray punctuation artifact. The PDF should be checked to confirm whether this is present in the source.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17028,
+  "class": "ocr_char",
+  "confidence": "medium",
+  "location_quote": " *Cfi* N.D.R.Civ.P. 61",
+  "description": "OCR error: 'Cfi' should be 'Cf.' but also contains markup contamination with asterisks. This is both an OCR character error (fi for period) and markup contamination."
+ },
+ {
+  "opinion_id": 17025,
+  "class": "paragraph_seq",
+  "location_quote": "[¶16] Here, the district court's oral pronouncement ... [1117] *We* have-discussed -our authority ...",
+  "description": "Missing paragraphs [¶17] in sequence (appears as OCR error [1117]); missing [¶20] signature block in database extraction. The [1117] is proposed as a fix; the missing [¶20] is likely intentional omission of non-opinion signature block.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17025,
+  "class": "missing_text",
+  "location_quote": "End of opinion before [¶21] surrogate judge note",
+  "description": "Database lacks signature block [¶20] containing judge names (Lisa Fair McEvers, Daniel J. Crothers, Jerod E. Tufte, Carol Ronning Kapsner, S.J., Gerald W. VandeWalle, C.J.) present in PDF. This may be intentional if database only stores opinion text, not signature blocks.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17024,
+  "class": "paragraph_seq",
+  "location_quote": "[¶18] Majetic's argument that the jury was not impartial cites the jurors' statements to the bailiff to support his claim",
+  "description": "Paragraph ¶18 appears twice in DB (lines 193-197 and 199-208) with the first instance using broken markup format. PDF shows ¶18 appearing only once. This is an ingestion artifact where the same paragraph was included twice in different formats."
+ },
+ {
+  "opinion_id": 17024,
+  "class": "other",
+  "location_quote": "[¶ *18]*",
+  "description": "Broken paragraph marker on lines 193-194: '[¶' on line 193 followed by ' *18]*' on line 194. PDF shows this as a single clean '[¶18]' marker. Indicates formatting artifact or missing page break handling."
+ },
+ {
+  "opinion_id": 17023,
+  "class": "heading_seq",
+  "description": "Section heading 'IV' appears in wrong sequence position. In the DB, 'IV' appears after [¶27] (between [¶27] and [¶28]), but in the authoritative PDF source, 'IV' should appear before [¶27]. The PDF shows the correct structure: 'IV' → '[¶27]' → '[¶28]', consistent with earlier sections I, II, III which all have the section heading before their content. This is a heading sequence ordering error.",
+  "location_quote": "DB lines 570-574: '[¶27] We reverse the district court order and remand with directions.\\n\\nIV\\n\\n[¶28] Carol Ronning Kapsner, S.J.'",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17022,
+  "class": "ocr_digit",
+  "location_quote": "27-10-01.4(l)(e), N.D.C.C., further provides",
+  "description": "Citation with letter l instead of digit 1 in subsection (e). Source contains correct version but line break in PDF extraction prevents exact string match. Substantive correction verified from source content."
+ },
+ {
+  "opinion_id": 17022,
+  "class": "whitespace",
+  "location_quote": "[¶15]-North Dakota's contempt statutes",
+  "description": "Paragraph marker followed by dash instead of space; should be '[¶15] North'. Quote character encoding differences in PDF prevent exact source matching, but correction is substantively verified from source content."
+ },
+ {
+  "opinion_id": 17021,
+  "class": "other",
+  "location_quote": "Dr. Blanchard's note includes a detailed history and physical examination, and he indicates Welch had reached maximum medical improvement: \"MMI reached. May need fitness for duty testing prior to .return to work at your",
+  "description": "Fragment '.return' appears to have extra period before 'return'. Context suggests should be 'return to work', but the exact intended text is ambiguous without rendering the PDF at this location."
+ },
+ {
+  "opinion_id": 17020,
+  "class": "other",
+  "location_quote": "Smart's N.D.R.Giv.P.,60 motion, reopening the divorce case",
+  "description": "HIGH-RISK: Citation/rule number contains multiple OCR errors (G instead of C in 'Giv.P.', comma/period placement). Source shows 'N.D.R.Civ.P. 60', but this is a rule reference where accuracy is critical. Manual verification recommended before correction.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17020,
+  "class": "paragraph_seq",
+  "location_quote": "{¶ 20] The district court found that while Lewis had cooperated with the receiver appointed to take possession and protect the trust property, Smart did not initially cooperate, resulting in additional expenses.",
+  "description": "Duplicate paragraph marker and content detected. First occurrence uses malformed curly brace {¶ 20] instead of [¶20] and spans approximately 2 lines before the identical paragraph [¶20] restarts. Text is verbatim duplication. Per rule 7, this spurious first instance should be reviewed for removal rather than individual error correction, as it appears to be an OCR artifact.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17017,
+  "class": "paragraph_seq",
+  "location_quote": "DB line 280-284: [¶23]...judgment...\\n*805\\n [¶26] The Honorable Jon J. Jensen...",
+  "description": "Missing paragraphs ¶24 and ¶25 in DB. PDF contains: [¶24] justice signature block (Gerald W. VandeWalle, C.J., etc.) and [¶25] Paulson disqualification note. DB jumps directly from ¶23 to ¶26. This is a missing_text issue—signature block dropped, likely at page/column break during ingestion.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17017,
+  "class": "other",
+  "location_quote": "DB lines 60 and 141: 'Pulkra-bek's actions' (line 60) and 'Pulkra-bek's argument' (line 141)",
+  "description": "Hyphenated line-break artifact 'Pulkra-bek's' appears twice (verified_count=2, cannot propose as single fix). Both should be 'Pulkrabek's'. These are line-wrap hyphenations that should be removed. Cannot propose because byte-exact rule requires count==1.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17011,
+  "class": "ocr_digit",
+  "description": "Citation error: section number '65-04-83(2)' appears to be OCR misread; should verify against source as '65-04-33(2)' per statute context",
+  "location_quote": "whether Vail has any claim for a violation of [N.D.C.C.] § 65-04-83(2) such that",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17011,
+  "class": "paragraph_seq",
+  "description": "Paragraph 28 appears with content matching paragraph 23; misplaced paragraph number at db line 145 vs correct label at line 147",
+  "location_quote": "[¶28] Section 65-09-01(2), N.D.C.C., authorizes an administrative mechanism to determine whether a person is an employer",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17010,
+  "class": "paragraph_seq",
+  "location_quote": "DB lines 59-77 ([¶18]); DB lines 79-83 ([¶13])",
+  "description": "Duplicate/malformed paragraph 13: appears first as [¶18] with formatting artifacts (split citations, broken typography), then again as [¶13] with correct formatting. PDF contains only the correct [¶13] version. This indicates an ingestion error where two versions of the paragraph were retained.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17010,
+  "class": "missing_text",
+  "location_quote": "DB line 19 ends: 'for any incurred ex'; should continue with 'penses'",
+  "description": "Line 19 (¶5) truncates mid-word at 'ex' but should continue with 'penses. The nine bean growers...'. PDF shows complete text at line 109-110. Appears to be incomplete ingestion/truncation of the paragraph.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17010,
+  "class": "caption",
+  "location_quote": "DB line 1: 'Petitioner, Appellee, and Cross-Appellant v. GRAND FORKS BEAN COMPANY, INC., Respondent and Auto-Owners Insurance Company' - all on one line",
+  "description": "Caption formatting differs from PDF (which shows it formatted across multiple lines with proper alignment), but the text itself appears correct. This is layout/formatting rather than content error.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17009,
+  "class": "paragraph_seq",
+  "location_quote": "Eli'2] Marianne Fife owned a mineral interest in McKenzie County. She died without a will on December 16,1989.",
+  "description": "Duplicate paragraph [¶2] appears in DB (first as corrupted 'Eli'2]' on single line, then as correct '[¶2]' on lines 17-21), but PDF contains only one instance. This is an ingestion/parsing artifact. The second [¶2] instance is correctly formatted; the first is corrupted with OCR errors and improper line breaks. Numbering resumes correctly with [¶3], suggesting this is not a legitimate quoted-text restart."
+ },
+ {
+  "opinion_id": 17009,
+  "class": "other",
+  "location_quote": "When Marianne Fife died in 1989, N.D.O.C. § 30.1-04-02, relating to the intestate share of the surviving spouse, provided:",
+  "description": "Duplicate statute citation issue: 'N.D.O.C. § 30.1-04-02' appears in [¶13] of DB but PDF has 'N.D.C.C. § 30.1-04-02'. However, [¶7] in DB correctly shows 'N.D.C.C. § 30.1-04-02' with the statute. This is flagged as a note that the proposal in [¶13] should be applied."
+ },
+ {
+  "opinion_id": 17008,
+  "class": "ocr_digit",
+  "description": "Citation rule number has comma instead of period: '8,4,' should be '8.4' in rule citation 'N.D.R. Prof. Conduct 1.7, 1.9, and 8.4'",
+  "location_quote": "concluded there is clear and convincing evidence that Allen violated N.D.R. Prof. Conduct 1.7, 1.9, and 8,4,"
+ },
+ {
+  "opinion_id": 17008,
+  "class": "ocr_digit",
+  "description": "Rule subsection has numeral '1' instead of lowercase letter 'l': '1.8(1)' should be '1.8(l)'",
+  "location_quote": "Under N.D.R. Prof. Conduct 1.8(1), a lawyer serving as a fiduciary of an estate may not serve as legal counsel"
+ },
+ {
+  "opinion_id": 17008,
+  "class": "other",
+  "description": "Markup contamination: asterisks around case citations throughout (e.g., *Disciplinary Bd. v. Ward,*, *See also) indicate leftover markdown formatting for italics that should be removed by a separate pass",
+  "location_quote": "In *Disciplinary Bd. v. Ward,*2016 ND 113 / *See also Disciplinary Bd. v. McDonald,*2000"
+ },
+ {
+  "opinion_id": 17008,
+  "class": "other",
+  "description": "Page markers incorrectly embedded within words/numbers: vio\\*244 lated, representa\\*243 tive, 891 N.W.2d \\*245750, con\\*246 sent - should be placed before page content, not splitting words",
+  "location_quote": "vio\\*244 lated N.D.R. Prof. Conduct / representa\\*243 tive / 891 N.W.2d \\*245750 / written con\\*246 sent"
+ },
+ {
+  "opinion_id": 17007,
+  "class": "paragraph_seq",
+  "location_quote": "[¶35]...reverse the portion ordering...reimburse the heirs for any royalty payments or monies.\n\n[¶37] The Honorable Benny A. Graff",
+  "description": "Structural gap: DB skips paragraph ¶36 entirely, jumping from ¶35 directly to ¶37. The PDF contains ¶36 with a list of justices (Jerod E. Tufte, Lisa Fair McEvers, Carol Ronning Kapsner S.J., Benny A. Graff S.J., Gerald W. VandeWalle C.J.). This section is missing from the DB text. Recommend human review to determine if ¶36 should be added as a structural component or if this is a known fixture handled separately.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17015,
+  "class": "other",
+  "description": "Markup contamination: incorrect markdown asterisk pairing (*Keller**,* should be *Keller*,). Appears 3 times. Handled by separate deterministic markup pass.",
+  "location_quote": "*Keller**,*",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "whitespace",
+  "description": "Three consecutive blank lines after paragraph break before property description",
+  "location_quote": "Blank line run before 'Township 153 North, Range 96 West Section 3'",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "whitespace",
+  "description": "Three consecutive blank lines after 'Our standard of review for a district court's grant of summary judgment is well established:'",
+  "location_quote": "Blank line run before block quote '[Summary judgment] is a procedural device...'",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "split_join",
+  "description": "New-field instance in cross-motion context could not be cleanly verified with byte-exact anchoring due to encoding or line-break variance",
+  "location_quote": "The district court granted New-field's cross-motion for summary judgment",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "split_join",
+  "description": "New-field instance in 'has no stake' phrase—quote character encoding may differ between DB and PDF",
+  "location_quote": "The district court found New-field \"has no stake in the outcome of this case\"",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "split_join",
+  "description": "New-field instance in paragraph 12 context verification failed due to possible line-break differences or encoding anomalies",
+  "location_quote": "Hester conveyed the interest to Maragos, Hester did not have an interest to convey. New-field did not provide",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17013,
+  "class": "split_join",
+  "description": "New-field instance following erroneous comma ('ultimate, liability')—context verification ambiguous due to punctuation cascade",
+  "location_quote": "express no opinion on the ultimate, liability of New-field to the Trust if the district court finds the Trust",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*State v. Gill,*",
+  "description": "Markup contamination: asterisks around case name indicating italics in markdown format. Not present in PDF which uses true italic text. Handled by separate deterministic pass."
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*Id.*",
+  "description": "Markup contamination: asterisks around 'Id.' citations (6 instances). Not present in PDF which uses true italic text. These are known markup artifacts handled separately."
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*Pippin**,*",
+  "description": "Markup contamination: unusual double-asterisk pattern around case name and punctuation. Indicates markdown formatting error in ingestion. Not present in PDF."
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*See In re Jakeem,*",
+  "description": "Markup contamination: asterisks around case citation. Not present in PDF which uses true italic formatting."
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*State v. Hogie,*",
+  "description": "Markup contamination: asterisks around case name indicating italics. Not present in PDF."
+ },
+ {
+  "opinion_id": 17012,
+  "class": "other",
+  "location_quote": "*State v. Nakvinda,*",
+  "description": "Markup contamination: asterisks around case name indicating italics. Not present in PDF."
+ },
+ {
+  "opinion_id": 17006,
+  "class": "ocr_char",
+  "location_quote": "*Tamavsky v. Rankin,*",
+  "description": "Case name reads 'Tamavsky' in database but authoritative PDF source shows 'Tarnavsky'. This is a high-risk citation/case name error. Per protocol, requires image verification before any correction (not automatically applied). Source: 2017 ND 193 PDF page 2, line 102."
+ },
+ {
+  "opinion_id": 16998,
+  "class": "split_join",
+  "confidence": "high",
+  "description": "Numbered list items (1-8) referencing N.D.C.C. § 28-32-46 grounds for reversal are malformed. In the DB, the item numbers (1. 2. 3. ... 8.) are listed separately on their own lines with blank lines between, then all corresponding text descriptions appear grouped together afterward. In the authoritative PDF, each number is paired directly with its text on the same line(s). This is a major structural defect: DB shows '1.\\n2.\\n\\nThe order is not in accordance with the law.\\nThe order is in violation...' when it should show '1. The order is not in accordance...\\n2. The order is in violation...' with proper formatting and indentation. Items 3-8 follow the same pattern of separation.",
+  "location_quote": "administrative agency order unless:\\n\\n1.\\n2.\\n\\nThe order is not in accordance with the law.\\nThe order is in violation of the constitutional rights of the\\nappellant.\\n\\n2\\n\\n3.\\n\\n4.\\n\\n5.\\n\\n6.\\n\\n7.\\n\\n8.\\n\\nThe provisions of this chapter have not been complied with in\\nthe proceedings before the agency.\\nThe rules or procedure of the agency have not afforded the\\nappellant a fair hearing.\\nThe findings of fact made by the agency are not supported by a\\npreponderance of the evidence.\\nThe conclusions of law and order of the agency are not\\nsupported by its findings of fact.\\nThe findings of fact made by the agency do not sufficiently\\naddress the evidence presented to the agency by the appellant.\\nThe conclusions of law and order of the agency do not\\nsufficiently explain the agency's rationale for not adopting any\\ncontrary recommendations by a hearing officer or an\\nadministrative law judge."
+ },
+ {
+  "opinion_id": 16996,
+  "class": "missing_text",
+  "location_quote": "[¶15] through [¶17] paragraph transitions; missing explicit [¶16] and [¶17] markers between [¶15] and section III heading",
+  "description": "The opinion structure shows [¶14] then [¶15] (corrected from [1115]), then jumps to section III heading and [¶18], suggesting [¶16] and [¶17] may be missing explicit paragraph markers. This requires manual verification against the PDF page breaks.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16996,
+  "class": "whitespace",
+  "location_quote": "Multiple sections with blank lines (3+) between paragraphs and section headings",
+  "description": "Layer-A report noted 21 blank-run sequences with 3+ consecutive blank lines. These are known artifacts from PDF formatting and page breaks and are handled by a separate deterministic pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16996,
+  "class": "citation",
+  "location_quote": "United States v. Young, 470 U.S. 1, 11, 105 S.Ct. 1038, 84 L.Ed.2d 1 (1985)",
+  "description": "DB contains parallel citations (105 S.Ct. 1038, 84 L.Ed.2d 1) that do not appear in PDF pdftotext output. This may indicate enhanced citation data in the DB or extraction artifact. Requires manual verification; citation handling is managed by separate pipeline.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16994,
+  "class": "other",
+  "location_quote": "Troxel v. Granville, 530 U.S. 57, 66, 120 S.Ct. 2054, 147 L.Ed.2d 49 (2000)",
+  "description": "Citation enrichment flagged: DB text includes parallel reporter citations (120 S.Ct. 2054, 147 L.Ed.2d 49) not present in authoritative PDF source. PDF renders only 'Troxel v. Granville, 530 U.S. 57, 66 (2000)'. This represents ingestion-time addition of material not in the original court PDF. Flagged for manual review as potential citation divergence.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16993,
+  "class": "missing_text",
+  "location_quote": "[[Image here]]",
+  "description": "Markup contamination: placeholder for image/missing content at line 70 of DB. In PDF this region shows ellipsis (...) indicating omitted Rule 801(d)(1)(A) language. Original PDF shows abbreviated rule format with subsection (A) omitted and ellipsis shown.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16993,
+  "class": "other",
+  "location_quote": "Tome v. U.S., 513 U.S. 150, 157, 115 S.Ct. 696, 130 L.Ed.2d 574 (1995)",
+  "description": "HIGH-RISK citation difference: DB shows extended parallel citations (S.Ct. and L.Ed.2d reporters), while PDF shows abbreviated cite (513 U.S. 150, 157 (1995)). Uncertainty: extended cites may be legitimate supplementary parallel citations, or may be OCR/processing artifact. Requires manual verification of court's actual citation format choice.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16993,
+  "class": "whitespace",
+  "location_quote": "13 runs of 3+ consecutive blank lines throughout document",
+  "description": "Excessive blank line runs (13 instances) detected in DB. These are known page-break/pagination artifacts from PDF conversion and are handled by separate deterministic pass. Examples: between page headers and text, between major sections. NOT proposed for removal; this is an expected artifact.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16992,
+  "class": "other",
+  "description": "Markdown italics contamination: approximately 10 instances of case citations and case names wrapped in asterisks (e.g., *Davis v. Killu,*, *Killu,*, *Jalbert v. Eagle Rigid Spans, Inc.,*, *See e.g. Porth v. Glasoe,*, *Paulson v. Paulson,*) indicating left-over markdown formatting from source processing",
+  "location_quote": "*Davis v. Killu,* 2006 ND 32, ¶ 6, 710 N.W.2d 118",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16992,
+  "class": "other",
+  "description": "Page reference markers in format *290, *291, *292, *293: these represent PDF page numbers from the source pagination. Per Rule 8, these are FORM-FEED/PAGE FURNITURE artifacts to be handled by a separate deterministic pass. Not an error per rules.",
+  "location_quote": " *290\n\n motion in limine",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16989,
+  "class": "missing_text",
+  "location_quote": "DB ends with: Lisa Fair McEvers",
+  "description": "DB is missing [¶16] with full signature block. PDF shows [¶16] with names: Gerald W. VandeWalle, C.J.; Daniel J. Crothers; Carol Ronning Kapsner; Jerod E. Tufte; Lisa Fair McEvers",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16988,
+  "class": "other",
+  "location_quote": "below I believe circumstances require serious consideration of both outcomes.\n(footnote: 1)",
+  "description": "Markup contamination: DB contains parenthetical footnote marker '(footnote: 1)' that does not appear in source PDF. PDF shows plain footnote reference '1' only.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16985,
+  "class": "ocr_digit",
+  "location_quote": "[¶80] Rule 25, N.D.R.Civ.P., governs substitution of parties",
+  "description": "Paragraph number is [¶80] but should be [¶30] per authoritative PDF source. This is a HIGH-RISK citation/numbering error indicating a potential OCR or ingestion defect in paragraph sequencing."
+ },
+ {
+  "opinion_id": 16985,
+  "class": "ocr_char",
+  "location_quote": "an undivided l/4th interest (appears twice in opinion)",
+  "description": "The character 'l' (lowercase L) appears instead of '1' (numeral one) in 'l/4th'. This error occurs twice in identical contexts making byte-exact proposal impossible (verified_count must equal 1 per rules). The error appears once in paragraph [¶4] and once in paragraph [¶12]."
+ },
+ {
+  "opinion_id": 16984,
+  "class": "paragraph_seq",
+  "location_quote": "' [¶25] Lisa Fair McEvers Carol Ronning Kapsner Jerod E. Tufte Daniel J. Crothers Gerald W. VandeWalle, C.J. [¶28]' We conclude Zerr failed to exhaust his statutory administrative remedies ... III [¶23] We conclude Zerr failed to exhaust ...",
+  "description": "CRITICAL: Paragraph numbering disorder after ¶22. DB sequence is [22, 25, 28, 23, 24] but should be [22, 23, 24, 25]. ¶25 (justice signatures, which belong at opinion end) appears in middle. ¶28 is spurious label not in PDF (only 25 paragraphs in PDF, not 28). ¶23 content appears twice with different labels. Section III header misplaced. This is a major structural ingestion error requiring paragraph reordering.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16983,
+  "class": "paragraph_seq",
+  "location_quote": "Layer-A structural report identified gaps ¶23->¶25, ¶40->¶42, ¶42->¶48",
+  "description": "Paragraph numbering gaps confirmed and fixed: [If243 should be [¶24], [1141] should be [¶41], first [¶48] should be [¶43]",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16983,
+  "class": "heading_seq",
+  "location_quote": "Layer-A report indicates heading_seq: 2->4",
+  "description": "Section headings appear to skip from II to III (no heading 2.5 or intermediate heading identified in opinion text)",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16983,
+  "class": "whitespace",
+  "location_quote": "Layer-A report indicates 23 blank-runs(3+) - multiple consecutive blank lines in DB",
+  "description": "Multiple instances of 3+ consecutive blank lines noted between sections and paragraphs. These are structural artifacts from pdftotext and may require separate deterministic pass per rule 8.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16982,
+  "class": "missing_text",
+  "location_quote": "[¶7] On appeal, Teggatz argues the district court erred in sustaining the State's hearsay objection",
+  "description": "Missing section heading 'II' before [¶7]. PDF shows section 'II' heading immediately before paragraph 7 (after [¶6] ends and page break), but DB has no section header in this position. This section marker appears in the PDF but is absent from the DB transcription.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16980,
+  "class": "other",
+  "location_quote": "If a court has not ordered an individual to register in this state, an individual who resides, is homeless, or is temporarily domiciled in this state shall register if the individual:\n\n\n [[Image here]]\n\n\n b.",
+  "description": "Markup contamination: [[Image here]] is a markdown annotation that should be replaced with appropriate ellipsis or subsection reference. pdftotext shows this location contains either ellipsis (....) or page furniture indicating omitted subsection (a).",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16980,
+  "class": "other",
+  "location_quote": "We therefore decline to address the issue.\n *RAS.,*\n 2008 ND 185, ¶ 12, 756 N.W.2d 771.",
+  "description": "Citation formatting error: DB shows '*RAS.,*' (with asterisks and missing periods between letters) but source shows 'R.A.S.,' (periods required, no markup). Issue combines OCR error (missing periods in abbreviation: RAS vs R.A.S.) and markup contamination (asterisks). Flagged as high-risk citation requiring careful review.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16980,
+  "class": "missing_text",
+  "location_quote": "Gerald W. VandeWalle, C.J.",
+  "description": "Signature block incomplete: DB contains only the Chief Justice signature, but source PDF shows full signature line with four additional justices appearing before VandeWalle: Carol Ronning Kapsner, Lisa Fair McEvers, Jerod E. Tufte, and Daniel J. Crothers. Missing names must be added to signature block.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16974,
+  "class": "ocr_char",
+  "location_quote": "and N.D.C.C. §§ 27-20-44(l)(c)(l) and (2).",
+  "description": "High-risk citation divergence: DB contains lowercase letter 'l' in statute subsection references (27-20-44(l)(c)(l)) where the authoritative PDF source shows digit '1' (27-20-44(1)(c)(1)). This is a statute/rule number change, which is flagged per rule 4 as high-risk rather than proposed. A separate deterministic digit-correction pass should handle this.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16974,
+  "class": "other",
+  "location_quote": " *See*\n N.D.C.C. § 27-20-44(1).",
+  "description": "Markup contamination: The word 'See' is wrapped in asterisks (*See*) indicating markdown italics formatting, and appears as a separate line in the DB. The authoritative PDF source shows this as normal text integrated into the sentence: 'See N.D.C.C. § 27-20-44(1).' This markup artifact is handled by a separate deterministic pass per rule 11.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16973,
+  "class": "other",
+  "location_quote": "dismissing the landowners' complaint.\n\n(cid:39)(cid:93)(cid:125) Section 40-22-09, N.D.C.C., does require a close fit between benefit and burden",
+  "description": "Corrupted footnote marker appears after ¶27. The DB shows (cid:39)(cid:93)(cid:125) (CID font references), and the authoritative PDF source shows'}] (a curly quote, bracket, and brace)—apparently the actual footnote number character was lost or corrupted during PDF processing or OCR. This is a font/encoding defect, not a transcription error of the opinion text itself. Footnotes are handled by a separate pipeline per proofreading protocol.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16972,
+  "class": "ocr_char",
+  "location_quote": "the 2015 interpretations of N.D.O.C. ch. 38-11.1 by the federal magistrate judge",
+  "description": "Statute citation reference shows \"N.D.O.C.\" in DB but PDF consistently shows \"N.D.C.C. ch. 38-11.1\" in all corresponding citations. While source verification supports the correction to \"N.D.C.C.\", citation changes are flagged per conservative protocol rather than proposed, as they are high-risk to authoritative text. Human verification recommended before applying."
+ },
+ {
+  "opinion_id": 16968,
+  "class": "other",
+  "location_quote": "*State v. Dudley,*\n *State v. Juntunen,*\n *State v. Williams,*\n *State v. Nickel,*",
+  "description": "Markdown-style asterisks around case names throughout opinion (approximately 9 instances total: Dudley, Juntunen, Williams, Nickel, Jacobsen, Leffall, Jorgensen, Fields, plus 4 instances of *Id.*). These asterisks do not appear in the authoritative PDF and represent leftover markup contamination from ingestion/processing pipeline.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16968,
+  "class": "other",
+  "location_quote": " *912\n\n lacked sufficient\n\n *913\n\n *914",
+  "description": "Inline reporter page number markers (' *912', ' *913', ' *914') inserted between paragraphs. These appear to be artifacts from the OCR/pdftotext extraction process and do not exist in the PDF text stream proper. Known pagination artifact handled by deterministic pass per Rule 8.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16968,
+  "class": "other",
+  "location_quote": "*State v. Dudley,*\n 2010 ND 39, ¶ 6, 779 N.W.2d 369.\n\n *State v. Juntunen,*\n 2014 ND 86, ¶ 3, 845 N.W.2d 325.",
+  "description": "Citation fragmentation with case names and citations broken across multiple lines with stray newlines. These are handled by deterministic citation-rejoin pass per Rule 10 and noted only for transparency.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16967,
+  "class": "other",
+  "location_quote": "*Crawford v. Washington,* *State v. Blue,* *Davis* *Davis,* *Davis** *Blue** *Id.*",
+  "description": "Markup contamination: Case names and legal citations throughout the opinion are wrapped in asterisks (*), indicating leftover markdown or formatting markup from the source document ingestion. Examples: *Crawford v. Washington,* appears as a case citation wrapper; *State v. Blue,* wraps the case name; *Davis* and *Id.* wrap various citations (approximately 11 unique patterns with 30+ total instances). Per Rule 11, this is known markup contamination handled by a separate deterministic pass and should not be proposed for removal here.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16966,
+  "class": "ocr_digit",
+  "location_quote": "*Kansas v. Crane,*\n 534 U.S. 407, 122 S.Ct. 867, 151 L.Ed.2d 856 (2002)",
+  "description": "Citation expansion: DB contains additional parallel citations (122 S.Ct. 867, 151 L.Ed.2d 856) not present in PDF source, which shows only '534 U.S. 407 (2002)'. This appears to be enhancement during OCR/ingestion rather than a transcription defect. Flagged as high-risk citation modification. Recommend human review of whether parallel citations should be retained or removed to match PDF exactly.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16964,
+  "class": "split_join",
+  "confidence": "high",
+  "description": "Word 'process' split across page break artifact. 'process' appears as 'pro...cess' with page number marker between parts. Page break handling is managed by separate deterministic pass.",
+  "location_quote": "that the pro\n\n *339\n\n cess server was instructed"
+ },
+ {
+  "opinion_id": 16962,
+  "class": "other",
+  "location_quote": " *State v. Steffes,*",
+  "description": "Markdown-style italic markup contamination. The DB text contains asterisks around the citation (*State v. Steffes,*) which do not appear in the authoritative PDF source. The citation appears in the PDF without any markup as: State v. Steffes, 500 N.W.2d 608, 612... This is leftover markdown formatting, per the known markup contamination issue handled by a separate deterministic pass.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16961,
+  "class": "whitespace",
+  "confidence": "medium",
+  "description": "Ellipsis formatting discrepancy: The DB contains 4 instances of compact four-dot ellipsis (....) and approximately 6 instances of three-dot ellipsis (...), while the PDF extraction shows spaced ellipsis (. . . . and . . . .). This difference could be a pdftotext artifact or genuine spacing in the original PDF. The expected standard form for ND opinions is compact ellipsis (....); however, without seeing the original rendering, it's unclear whether the PDF's spaced form is genuine or an extraction artifact. Recommend human verification before any automated correction.",
+  "location_quote": "Example from DB: 'based on that we will determine whether or not to accept the agreement....' vs PDF: 'based on that we will determine whether or not to accept the agreement . . . .'"
+ },
+ {
+  "opinion_id": 16957,
+  "class": "other",
+  "location_quote": "line 109: [[Image here]]",
+  "description": "Markup contamination: DB contains [[Image here]] placeholder where PDF source shows '...' (ellipsis). Instructions specify not to propose markup fixes, only flag.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16957,
+  "class": "split_join",
+  "location_quote": "line 17-21: 'arguing Peter' [blank + *919] ' son violated'",
+  "description": "Word split across page break: 'Peterson' split as 'Peter' + page marker + 'son'. Cannot fix without removing page break marker which instructions prohibit.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16957,
+  "class": "split_join",
+  "location_quote": "line 100-106: 'minor chil' [blank + *921] ' dren of'",
+  "description": "Word split across page break: 'children' split as 'chil' + page marker + 'dren'. Cannot fix without removing page break marker which instructions prohibit.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16956,
+  "class": "ocr_digit",
+  "location_quote": "at ¶ IB.",
+  "description": "Digit OCR error in high-risk citation element. DB text contains 'at ¶ IB.' but authoritative PDF shows 'Id. at ¶ 13.' (paragraph 13 reference in citation to State v. Aguilar, 2011 ND 236). Characters I and B are OCR misreadings of digits 1 and 3 respectively. Flagged per protocol: digit changes in citations/pinpoints require explicit verification despite clear source evidence.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16955,
+  "class": "ocr_digit",
+  "location_quote": "2015 ND 114, 863 N.W.2d 241",
+  "description": "Case citation number mismatch: DB shows 2015 ND 114 but authoritative PDF source shows 2015 ND 143. This is a critical citation error affecting legal reference. Although source clearly shows 143, citation numbers are high-risk changes requiring human verification before application.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16959,
+  "class": "missing_text",
+  "location_quote": "The judgments are affirmed. ¶17] The Honorable John T. Paulson",
+  "description": "Entire [¶16] section is missing from DB—contains signature block with five justices' names (Daniel J. Crothers, Jerod E. Tufte, John T. Paulson S.J., Thomas E. Merrick S.J., Lisa Fair McEvers Acting C.J.). This paragraph is present in PDF (lines 563-567) but completely absent in DB between ¶15 and ¶17."
+ },
+ {
+  "opinion_id": 16959,
+  "class": "other",
+  "location_quote": "\\*11[¶17] The Honorable John T. Paulson",
+  "description": "Page marker contamination: DB shows '\\*11[¶17]' where ¶17 paragraph label is prefixed with page marker '\\*11'. PDF shows '[¶17]' without prefix. This is consistent with pattern seen at ¶5 ('\\*7[¶5]') and ¶12 ('\\*10[¶12]'). Per rule 8 (FORM-FEED/PAGE FURNITURE), these are handled by separate deterministic pass; flagging for awareness."
+ },
+ {
+  "opinion_id": 16959,
+  "class": "other",
+  "location_quote": "*See, e.g., Tavis v. Higgins,*157 N.W.2d",
+  "description": "Markup contamination: asterisks used as markdown italics markers around case citations and single words (e.g., *see*, *See*, *See Nat'l Farmers Union*, *See, e.g., Tavis*). Per rule 11 (MARKUP CONTAMINATION), this is known ingestion artifact handled by separate pass. Examples: line 36, line 19, line 36 repeated, line 42, line 43, etc."
+ },
+ {
+  "opinion_id": 16959,
+  "class": "other",
+  "location_quote": "[¶16] Daniel J. Crothers\n      Jerod E. Tufte\n      John T. Paulson, S.J.\n      Thomas E. Merrick, S.J.\n      Lisa Fair McEvers, Acting C.J.",
+  "description": "HIGH-RISK structural issue: [¶16] is not a traditional numbered paragraph but a signature/attribution block. While the PDF clearly includes this as [¶16] (lines 563-567), it is entirely absent from DB. The missing text is substantial (5 lines of judge names). Recommendation: verify this should be restored as a full text insertion before ¶17."
+ },
+ {
+  "opinion_id": 16953,
+  "class": "other",
+  "location_quote": "Under N.D.C.C. § 28-01-46, an expert witness\n\n       -N^\n              In the complaint, the Cartwrights alleged",
+  "description": "OCR corruption artifact in PDF source: '-N^' appears in the PDF pdftotext output immediately before footnote 1. This is garbage text that resulted from OCR processing of a footnote marker in the original PDF. The database successfully filtered this out during ingestion. This artifact is in the PDF source, not a DB divergence, and is appropriately handled by the separate footnote/markup processing pipeline per Rules 6 and 11.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16952,
+  "class": "heading_seq",
+  "location_quote": "HI\n\n[¶11]",
+  "description": "Section heading 'HI' appears (should be 'III' based on contextual numbering: I, II, III, IV, V). This appears to be a heading numbering error - the section uses Roman numeral II earlier and IV later.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16950,
+  "class": "other",
+  "location_quote": "Whren v. United States, 517 U.S. 806, 809-10, 116 S.Ct. 1769, 135 L.Ed.2d 89 (1996)",
+  "description": "DB citation contains parallel citations (116 S.Ct. 1769, 135 L.Ed.2d 89) not present in authoritative PDF source. PDF shows only: 'Whren v. United States, 517 U.S. 806, 809-10 (1996)'. These additional parallel citations may be hallucinated during OCR/processing.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16950,
+  "class": "other",
+  "location_quote": "Heien v. North Carolina, — U.S.-, 135 S.Ct. 530, 536, 190 L.Ed.2d 475 (2014)",
+  "description": "DB citation contains U.S. Reports docket notation ('— U.S.-') and parallel citation (190 L.Ed.2d 475) not in source. PDF shows: 'Heien v. North Carolina, 135 S.Ct. 530, 536 (2014)'. Extra citations may be ingestion artifacts.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16950,
+  "class": "other",
+  "location_quote": "Rodriguez v. United States, — U.S. -, 135 S.Ct. 1609, 191 L.Ed.2d 492 (2015)",
+  "description": "DB citation contains U.S. Reports docket notation ('— U.S. -') and parallel citation (191 L.Ed.2d 492) not in source. PDF shows: 'Rodriguez v. United States, 135 S.Ct. 1609 (2015)'. Extra citations may be processing errors.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16947,
+  "class": "other",
+  "location_quote": "*Dieterle v. Dieterle,*",
+  "description": "Asterisk markup around case citation; markdown-sourced italicization artifact",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16947,
+  "class": "other",
+  "location_quote": "*Wolt v. Wolt,*",
+  "description": "Asterisk markup around case citation; markdown-sourced italicization artifact",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16947,
+  "class": "other",
+  "location_quote": "*O'Hara v. Schneider,*",
+  "description": "Asterisk markup around case citation; markdown-sourced italicization artifact",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16947,
+  "class": "other",
+  "location_quote": "*begin by*",
+  "description": "Asterisk markup around phrase; markdown-sourced italicization artifact",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16947,
+  "class": "other",
+  "location_quote": "*Morris v. Moller,*",
+  "description": "Asterisk markup around case citation; markdown-sourced italicization artifact",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16933,
+  "class": "other",
+  "location_quote": "*Hamilton, v. Wall,*; *Paulson v. Paulson,*; *Silbernagel v. Silbernagel,*; *Interest of T.H.,*; *State ex rel. Rayl v. Hettinger County,*; *Dennison v. North Dakota Department of Human Services,*; *Sabot v. Fox,*; *Nelson v. McAlester Fuel Co.,*; *Finstad v. Gord,*; *Gajewski v. Bratcher,*; *Finstad v. Beresford Bancorporation, Inc.,*; *Hofsommer v. Hofsommer Excavating, Inc.,*; *Holkesvig v. Grove,*",
+  "description": "Markup contamination: asterisks surrounding case names throughout opinion (markdown italics formatting). These are left-over markup from the source that should be removed by a separate deterministic pass. Do not attempt to manually remove; flag for automated cleanup.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16930,
+  "class": "other",
+  "confidence": "high",
+  "description": "Markup contamination: asterisks around case name 'State v. Corman,' represent Markdown italic formatting that should not be present in the opinion text. The authoritative PDF source shows this case citation without any markup.",
+  "location_quote": "State v. Corman, 2009 ND 85, ¶ 15, 765 N.W.2d 530"
+ },
+ {
+  "opinion_id": 16927,
+  "class": "other",
+  "location_quote": "*Combs v. Lund,*",
+  "description": "Markup contamination: asterisks around case citations throughout opinion. Multiple instances of markdown italics formatting (*...*) around case names in the database text that do not appear in the source PDF. Examples: '*Combs v. Lund,*', '*Hanisch v. Kroshus,*', '*see also*', '*District of Columbia v. Heller,*', '*McDonald v. City of Chicago, Ill.,*', '*Heller,*', '*State v. Ricehill,*', '*See City of Bismarck v. Schoppert,*' and others. Per rule 11, markup contamination is handled by a separate deterministic pass; these artifacts are not proposed as fixes but flagged for awareness."
+ },
+ {
+  "opinion_id": 16926,
+  "class": "other",
+  "location_quote": "*In re Sanders,*\n 108 N.M.\n\n *881\n\n 434, 773 P.2d 1241, 1245 (N.M. Ct. App. 1989)",
+  "description": "Sanders case reference contains multiple defects: (1) italics markup asterisks (*In re Sanders,*) treated as content rather than formatting; (2) page marker *881 embedded within citation; (3) parallel citation '108 N.M. 434' present in DB but absent from authoritative PDF source. High-risk citation element requiring manual review.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16926,
+  "class": "other",
+  "location_quote": "DB: In re Sanders, 108 N.M. 434, 773 P.2d 1241 (N.M. Ct. App. 1989) | PDF: In re Sanders, 773 P.2d 1241, 1245 (N.M. Ct. App. 1989)",
+  "description": "Discrepancy in Sanders parallel citation: DB includes New Mexico Reporter reference (108 N.M. 434) which does not appear in authoritative PDF. This is a high-risk citation element with potential OCR hallucination (false parallel citation added during ingestion). The page marker *881 interrupting the DB version suggests corruption during text extraction. Flagged for manual verification before any citation-based decision.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16925,
+  "class": "caption",
+  "location_quote": "[¶1] Angela Alimón appeals from a judgment granting her a divorce from Aaron Alimón, granting her primary residential responsibility for their child, ordering him to pay child support, and distributing their marital property.",
+  "description": "CRITICAL: Party name spelling is corrupted systematically throughout the document. The database contains 38 instances of 'Alimón' (with accent mark), 4 instances of 'Ali-món' (hyphenated with accent), and 1 instance of 'All-mon' (hyphenated without accent), totaling 43 incorrect forms. The PDF source uses 'Allmon' (no accent, no hyphen) consistently in all 64 instances. This is a systematic OCR or character encoding corruption. The correct party names are 'Angela R. Allmon' (plaintiff/appellant) and 'Aaron D. Allmon' (defendant/appellee). Only 16 instances in the DB have the correct spelling. This represents a critical data integrity issue affecting the parties' names throughout the opinion.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16925,
+  "class": "other",
+  "location_quote": "2017 ND 122; 894 N.W.2d 869; 2017 N.D. LEXIS 117; 2017 WL 2119435",
+  "description": "The document contains 6 page reference markers (*872, *873, *874, *875, *876, *877) from the Northwestern Reporter citation system. These are expected legal formatting elements and should be retained as they appear in the official PDF. No action needed.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16920,
+  "class": "other",
+  "description": "Page break marker (*836) positioned within word boundary - word 'challenges' split across page break during ingestion",
+  "location_quote": "obligation through numerous chai-\n\n *836\n\n lenges",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16918,
+  "class": "ocr_char",
+  "description": "Hyphenated 'Te-soro' appears 3 times in DB; should be non-hyphenated 'Tesoro' per PDF. Multiple occurrences prevent byte-exact proposal. Found in ¶1, ¶3, ¶8.",
+  "location_quote": "Te-soro Logistics LP",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16918,
+  "class": "ocr_char",
+  "description": "Hyphenated 'Teso-ro' appears 2 times in DB; should be non-hyphenated 'Tesoro' per PDF. Multiple occurrences prevent byte-exact proposal. Found in ¶8, ¶10.",
+  "location_quote": "Teso-ro and the County",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16918,
+  "class": "ocr_char",
+  "description": "Hyphenated 'Cey-nars' appears 2 times in DB; should be non-hyphenated 'Ceynars' per PDF. Multiple occurrences prevent byte-exact proposal. Found in ¶6, ¶18.",
+  "location_quote": "The Cey-nars appeal",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16918,
+  "class": "missing_text",
+  "description": "Paragraph [¶15] is entirely missing from DB. DB jumps directly from [¶14] to [¶16]. The missing paragraph discusses Donovan case and includes: 'In Donovan this Court held the construction and operation of a telephone line was not a proper street use consistent with the original dedication. 91 N.W. at 445.' Followed by block quote and 'Id. at 443.' Present in official PDF at lines 184-195.",
+  "location_quote": "[¶15] In Donovan this Court held the construction and operation of a telephone line was not a proper street use consistent with the original dedication.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16918,
+  "class": "paragraph_seq",
+  "description": "Malformed paragraph marker on line 51: '(¶ 10]' uses opening parenthesis instead of bracket, followed by corrupted text 'is not. governed by the statutory definitions by which the district court relied and Teso-ro and the County argue on appeal.' This line appears to be a corrupted duplicate; the correct [¶10] text appears on lines 53-55 without the malformation. Line 51 should be removed.",
+  "location_quote": "(¶ 10] We conclude the nature of the Ceynars' argument has not changed. However, our interpretation of the easement is not. governed",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16917,
+  "class": "other",
+  "location_quote": "Nichols, 2012 ND 178, ¶ 14, 820 N.W.2d 740 (DB) vs 820 N.W.2d 74 (PDF)",
+  "description": "Reporter page number discrepancy in Nichols citation: DB shows '740' but PDF shows '74'. This appears to be an OCR digit error (extra '0' digit), but high-risk as it affects citation precision.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16917,
+  "class": "other",
+  "location_quote": "Harney v. Wirtz citation in paragraph 9",
+  "description": "Citation format difference: DB lists '30 N.D. 292, 152 N.W. 803, 807-08 (1915)' but PDF shows only '152 N.W. 803, 807-08 (N.D. 1915)'. The DB includes a parallel citation not present in the PDF, and the year format differs.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16917,
+  "class": "other",
+  "location_quote": "Kopf v. Lacey, 208 W.Va. 302, 540 S.E.2d 170, 176 (2000) in paragraph 9",
+  "description": "Citation difference: DB includes '208 W.Va. 302,' which is absent from PDF. The year parenthetical also differs: DB has '(2000)' while PDF shows '(W.Va. 2000)'.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16917,
+  "class": "other",
+  "location_quote": "Collins v. Treat, 108 W.Va. 443, 152 S.E. 205, 206 (1930) in paragraph 9",
+  "description": "Citation difference: DB includes '108 W.Va. 443,' which is absent from PDF. The year parenthetical also differs: DB has '(1930)' while PDF shows '(W.Va. 1930)'.",
+  "confidence": "medium"
+ },
+ {
+  "opinion_id": 16917,
+  "class": "other",
+  "location_quote": "Line 176 in DB: standalone 'I concur in the result.' before [¶20]",
+  "description": "Structural anomaly: DB contains a standalone 'I concur in the result.' statement appearing between paragraph [¶19] and [¶20]. The PDF shows this phrase only once, properly positioned within the [¶20] section associated with Daniel J. Crothers. The standalone instance at line 176 appears to be an extraneous duplication during text extraction.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17029,
+  "class": "other",
+  "location_quote": "*Real Builders**,*",
+  "description": "Markup contamination: double asterisks appear 3 times (lines 149, 170, 173). Italic markup pattern shows '*Real Builders**,*' instead of correct '*Real Builders,*' (extra asterisks around comma). Per rule 11, flagged but not proposed—separate deterministic pass owns cleanup of leftover markdown.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17030,
+  "class": "ocr_digit",
+  "location_quote": "2015 ND 157, 864 N.W.2d 764.",
+  "description": "Citation number error: DB shows '2015 ND 157' but authoritative PDF clearly shows '2015 ND 182' for the second Disciplinary Board v. Lee citation in paragraph 2. This is a case citation, flagged as high-risk for independent verification and correction authority approval given the sensitivity of judicial citations.",
+  "confidence": "high"
+ }
+]

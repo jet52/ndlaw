@@ -1,0 +1,73 @@
+[
+ {
+  "opinion_id": 17006,
+  "class": "split_join",
+  "old_exact": "ap\n\n *225\n\n pealed the Board",
+  "new_exact": "appealed the Board",
+  "source_quote": "Sorenson appealed the Board's decision, and the district court affirmed.",
+  "verified_count": 1,
+  "source": "2017 ND 193 (PDF via pdftotext)",
+  "confidence": "high",
+  "note": "Word split across page break: 'ap' and 'pealed' should be 'appealed'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16980,
+  "class": "split_join",
+  "old_exact": "impose sexu\n\n *456\n\n al offender",
+  "new_exact": "impose sexual offender",
+  "source_quote": "that only a judge can impose sexual offender\nregistration, and that the statutory requirement",
+  "verified_count": 1,
+  "source": "PDF: 2017ND167.pdf line ~112",
+  "confidence": "high",
+  "note": "Word 'sexual' split with page number (*456) inserted between syllables; OCR/page break artifact",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16972,
+  "class": "split_join",
+  "old_exact": "and or\n\n\n *410\n\n\n derly",
+  "new_exact": "and orderly",
+  "source_quote": "interest of judicial economy and orderly procedure, we will only answer certified questions",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2017/2017ND169.pdf",
+  "confidence": "high",
+  "evidence": "Word \"orderly\" split across page break with page number artifact inserted in middle; PDF shows \"and orderly procedure\" as single phrase",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16952,
+  "class": "split_join",
+  "old_exact": "personal representa\n\n *260\n\n tive of the estate",
+  "new_exact": "personal representative of the estate",
+  "source_quote": "In 1975 Nanne C. Nickey died and her daughter Elsie M. Furlinger was later appointed personal representative of the estate. On February 22, 1982,",
+  "verified_count": 1,
+  "source": "PDF extracted via pdftotext",
+  "confidence": "high",
+  "note": "Word split across page marker *260 - 'representa' and 'tive' should be joined as 'representative'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16952,
+  "class": "split_join",
+  "old_exact": "contention El\n\n *262\n\n sie M.",
+  "new_exact": "contention Elsie M.",
+  "source_quote": "N.D.C.C. \u00a7 38-18.1-06(2) (2006), because nothing in the record supported their contention Elsie M. Furlinger's address of record included the zip code",
+  "verified_count": 1,
+  "source": "PDF extracted via pdftotext",
+  "confidence": "high",
+  "note": "Word split across page marker *262 - 'El' and 'sie' should be joined as 'Elsie'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16920,
+  "class": "split_join",
+  "old_exact": "chai-\n\n *836\n\n lenges ...",
+  "new_exact": "challenges . . .",
+  "source_quote": "obligation through numerous challenges . . . would defeat the limited finality",
+  "source": "/tmp/src_2017ND125.txt",
+  "confidence": "high",
+  "verified_count": 1,
+  "_verdict": "review:pdf_confirmed"
+ }
+]

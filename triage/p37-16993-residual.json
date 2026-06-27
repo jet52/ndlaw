@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16993,
+  "class": "ocr_char",
+  "old_exact": "the declar-ant is unavailable",
+  "new_exact": "the declarant is unavailable",
+  "source_quote": "admitted when the declarant is\nunavailable as a witness",
+  "verified_count": 1,
+  "source": "PDF 2017ND195 lines 81-82",
+  "evidence": "Line-break hyphenation artifact: 'declar-ant'->'declarant' (PDF confirms; same defect fixed twice elsewhere in this opinion).",
+  "confidence": "high"
+ }
+]

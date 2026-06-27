@@ -12,9 +12,12 @@ Worked the 52 deferred items:
   pincite resolution), 4 ellipsis WIDENINGS (ND prints compact), id19289 §-cite space-insertion
   (would break a statute number), and the **3 filing-stamp restorations** (user decision
   2026-06-25: keep stripped — clerk stamps are procedural metadata, per strip_clerk_stamps.py).
-- **2 deferred**: id19311, id19314 — section headings (`III`, `V`) mashed mid-paragraph; the
-  authoritative markdown has the same mashing, so they need careful PDF-based heading
-  reconciliation (delete-vs-move trap), not the agent's delete. Tracked here.
+- **2 deferred → RESOLVED 2026-06-27** (batch `heading-move-2026-06-27`): id19311 (`III`) and
+  id19314 (`V`) — both were MOVES, not deletes. PDF confirmed each heading belongs on its own
+  line before the next paragraph (19314: `V` before [¶11]; 19311: `III` before [¶16]); the DB had
+  each mashed mid-paragraph. Removed from the wrong spot + inserted at the right spot. Heading
+  sequences now contiguous (19314: I–V; 19311: I–IV). The agent's proposed *delete* would have
+  lost a real heading — the delete-vs-move trap, avoided.
 
 ---
 
