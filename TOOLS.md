@@ -74,6 +74,7 @@ The pipeline that proofreads every opinion against its authoritative source (cou
 | `scripts/heading_move.py` | script | PDF-heading-SET-driven MOVES for merged/misplaced section headings (the delete-vs-move trap); robust to margin-¶ PDFs. |
 | `scripts/rejoin_citations.py` | script | Citation-rejoin v2 — content-preserving repair of fragmented citations (`446\n (quoting`→`446 (quoting`), PAREN_FRAG / ID_PAREN / REPORTER_NUM); corpus-wide multiset-gated. |
 | `scripts/footnote_pincite_detector.py` | script | Regression detector for footnote/pincite resolution (PRESENT/MISSING); run after every batch alongside `invariants` + tests. |
+| `scripts/marker_triage.py` | script | **Unified `[¶N]` marker-anomaly detector** (replaces the per-session one-off marker scripts). Read-only corpus sweep: finds every non-clean marker, infers the intended number from the paragraph SEQUENCE, and routes to → **auto** (glyph repair, digits intact, sequence-confirmed — drop-in for `apply_proofing_proposals.py`), **dedup** (stored-twice garbled copy + clean `[¶N]`; review-gated per rule 7), **needs_pdf** (number must be inferred / ambiguous sequence — digit changes never auto-applied), **not_marker** (XREF / citation pincite, suppressed), **markup_wrap** (clean marker in stray `*…*`, deferred to markup cohort), **structural** (`--structural`: clean-marker gaps/dups; noisy worklist). Run after ingest/fleet/merge. Tested by `tests/test_marker_triage.py`. |
 
 ## Citation graph
 | Tool | Kind | Purpose |
