@@ -1,0 +1,35 @@
+[
+ {
+  "opinion_id": 17009,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶2] Marianne Fife owned a mineral interest in McKenzie County. She died without a will on December 16,1989. Upon her death, Marianne Fife was an Idaho resident and was survived by her spouse, Richard A. Fife, and her three children, Anne Fahey, Timothy Fife, and Richard D. Fife. Richard A. Fife died in 1997, and was survived by his wife Joanne Fife,\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (dup ¶2 (compact copy) vs clean spaced [¶2])",
+  "evidence": "Stored-twice duplicate (dup ¶2 (compact copy) vs clean spaced [¶2]); garbled/mislabeled copy deleted, clean copy kept. 354c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17020,
+  "class": "dedup_storedtwice",
+  "old_exact": "{¶ 20] The district court found that while Lewis had cooperated with the receiver appointed to take possession and protect the trust property, Smart did not initially cooperate, resulting in additional expenses. The court also found that of the eight watches Smart turned over to the receiver, none were confirmed to be Rolexes and the receiver reported the watches had a total value of $400 to $500. The court found the location of remaining watches was unknown at that time.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (curly {¶ 20] copy vs clean [¶20])",
+  "evidence": "Stored-twice duplicate (curly {¶ 20] copy vs clean [¶20]); garbled/mislabeled copy deleted, clean copy kept. 478c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17010,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶18] Rule 24, N.D.R.Civ.P., allows for intervention as a matter of right and for permissive intervention.\n *White v. T.P. Motel, L.L.C.,*\n 2015 ND 118, ¶ 19, 863 N.W.2d 915;\n *Skogen v. Hemen Twp. Bd. of Twp. Supervisors,*\n 2010 ND 92, ¶ 7, 782 N.W.2d 638. We construe N.D.R.Civ.P. 24 liberally, and intervention historically has been liberally' granted in North Dakota.\n\n *White**,*\n at ¶ 22;\n *Eichhorn v. Waldo Twp. Bd. of Supervisors,*\n 2006 ND 214, ¶ 13, 723 N.W.2d 112;\n\n *Skogen**,*\n at ¶ 7;\n *Braatelien v.*\n\n *262\n\n*Burns,*\n 74 N.D. 29, 32, 19 N.W.2d 827, 828 (1945).\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup ([¶18] Rule 24 mislabeled dup of clean [¶13] Rule 24)",
+  "evidence": "Stored-twice duplicate ([¶18] Rule 24 mislabeled dup of clean [¶13] Rule 24); garbled/mislabeled copy deleted, clean copy kept. 579c.",
+  "confidence": "high"
+ }
+]

@@ -2685,13 +2685,12 @@
   "oid": 14274,
   "dups": [],
   "missing": [
-   11,
    18
   ],
   "min": 2,
   "max": 19,
   "mono": 1.0,
-  "n_markers": 16
+  "n_markers": 17
  },
  {
   "oid": 14309,
@@ -4259,17 +4258,6 @@
   "n_markers": 33
  },
  {
-  "oid": 15988,
-  "dups": [],
-  "missing": [
-   3
-  ],
-  "min": 1,
-  "max": 8,
-  "mono": 1.0,
-  "n_markers": 7
- },
- {
   "oid": 16000,
   "dups": [
    68
@@ -5231,17 +5219,6 @@
   "n_markers": 36
  },
  {
-  "oid": 16567,
-  "dups": [],
-  "missing": [
-   19
-  ],
-  "min": 1,
-  "max": 24,
-  "mono": 1.0,
-  "n_markers": 23
- },
- {
   "oid": 16597,
   "dups": [
    8
@@ -5882,13 +5859,12 @@
   "oid": 16796,
   "dups": [],
   "missing": [
-   9,
    13
   ],
   "min": 1,
   "max": 14,
   "mono": 1.0,
-  "n_markers": 12
+  "n_markers": 13
  },
  {
   "oid": 16799,
@@ -5995,13 +5971,12 @@
   "oid": 16898,
   "dups": [],
   "missing": [
-   5,
    11
   ],
   "min": 1,
   "max": 22,
   "mono": 1.0,
-  "n_markers": 20
+  "n_markers": 21
  },
  {
   "oid": 16913,
@@ -6017,30 +5992,6 @@
   "n_markers": 18
  },
  {
-  "oid": 16918,
-  "dups": [
-   16
-  ],
-  "missing": [
-   15
-  ],
-  "min": 1,
-  "max": 22,
-  "mono": 1.0,
-  "n_markers": 22
- },
- {
-  "oid": 16933,
-  "dups": [],
-  "missing": [
-   11
-  ],
-  "min": 1,
-  "max": 12,
-  "mono": 1.0,
-  "n_markers": 11
- },
- {
   "oid": 16942,
   "dups": [],
   "missing": [
@@ -6050,81 +6001,6 @@
   "max": 28,
   "mono": 1.0,
   "n_markers": 27
- },
- {
-  "oid": 16957,
-  "dups": [
-   26
-  ],
-  "missing": [
-   25
-  ],
-  "min": 1,
-  "max": 29,
-  "mono": 1.0,
-  "n_markers": 29
- },
- {
-  "oid": 16959,
-  "dups": [],
-  "missing": [
-   10,
-   16
-  ],
-  "min": 1,
-  "max": 18,
-  "mono": 1.0,
-  "n_markers": 16
- },
- {
-  "oid": 16966,
-  "dups": [],
-  "missing": [
-   11,
-   12
-  ],
-  "min": 1,
-  "max": 13,
-  "mono": 1.0,
-  "n_markers": 11
- },
- {
-  "oid": 16976,
-  "dups": [],
-  "missing": [
-   12
-  ],
-  "min": 1,
-  "max": 15,
-  "mono": 1.0,
-  "n_markers": 14
- },
- {
-  "oid": 16983,
-  "dups": [
-   48
-  ],
-  "missing": [
-   24,
-   41,
-   43
-  ],
-  "min": 1,
-  "max": 50,
-  "mono": 0.98,
-  "n_markers": 48
- },
- {
-  "oid": 16984,
-  "dups": [],
-  "missing": [
-   26,
-   27
-  ],
-  "min": 1,
-  "max": 28,
-  "mono": 0.96,
-  "n_markers": 26
  },
  {
   "oid": 16985,
@@ -6182,135 +6058,6 @@
   "max": 80,
   "mono": 0.97,
   "n_markers": 33
- },
- {
-  "oid": 16993,
-  "dups": [],
-  "missing": [
-   12
-  ],
-  "min": 1,
-  "max": 30,
-  "mono": 1.0,
-  "n_markers": 29
- },
- {
-  "oid": 16994,
-  "dups": [],
-  "missing": [
-   17
-  ],
-  "min": 1,
-  "max": 19,
-  "mono": 1.0,
-  "n_markers": 18
- },
- {
-  "oid": 16996,
-  "dups": [],
-  "missing": [
-   15
-  ],
-  "min": 1,
-  "max": 23,
-  "mono": 1.0,
-  "n_markers": 22
- },
- {
-  "oid": 17006,
-  "dups": [],
-  "missing": [
-   8,
-   22
-  ],
-  "min": 1,
-  "max": 26,
-  "mono": 1.0,
-  "n_markers": 24
- },
- {
-  "oid": 17007,
-  "dups": [],
-  "missing": [
-   17,
-   36
-  ],
-  "min": 1,
-  "max": 37,
-  "mono": 1.0,
-  "n_markers": 35
- },
- {
-  "oid": 17010,
-  "dups": [
-   18
-  ],
-  "missing": [
-   51
-  ],
-  "min": 1,
-  "max": 52,
-  "mono": 0.98,
-  "n_markers": 52
- },
- {
-  "oid": 17011,
-  "dups": [
-   28
-  ],
-  "missing": [],
-  "min": 1,
-  "max": 38,
-  "mono": 0.97,
-  "n_markers": 39
- },
- {
-  "oid": 17017,
-  "dups": [],
-  "missing": [
-   24,
-   25
-  ],
-  "min": 1,
-  "max": 26,
-  "mono": 1.0,
-  "n_markers": 24
- },
- {
-  "oid": 17025,
-  "dups": [],
-  "missing": [
-   17,
-   20
-  ],
-  "min": 1,
-  "max": 21,
-  "mono": 1.0,
-  "n_markers": 19
- },
- {
-  "oid": 17031,
-  "dups": [
-   36
-  ],
-  "missing": [],
-  "min": 1,
-  "max": 39,
-  "mono": 1.0,
-  "n_markers": 40
- },
- {
-  "oid": 17033,
-  "dups": [],
-  "missing": [
-   26,
-   30,
-   31
-  ],
-  "min": 1,
-  "max": 32,
-  "mono": 1.0,
-  "n_markers": 29
  },
  {
   "oid": 17045,

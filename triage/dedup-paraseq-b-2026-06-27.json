@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 17034,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶8] IT IS FURTHER ORDERED, that Matson must comply' with N.D.R. Lawyer Discipl. 6.3 regarding notice.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup ([ITS]->¶8 created dup, comply' garbled copy)",
+  "evidence": "Stored-twice ¶8: garbled first copy (comply') + clean [¶8]. 104c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17031,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶36] With regard to attorney's fees awarded for Loren and Richard Zundel's motion for judgment\n *on*\n the pleadings, it appears from the parties' briefs and order granting judgment on the pleadings that a majority of the parties' argument and court's discussion involved the interpretation of N.D.C.C. § 47-16-02. Because we conclude Judge Narum abused his discretion in finding. Stephen Zundel's counterclaim relating to N.D.C.C. § 47-16-02- was frivolous, we reverse that part of the judgment awarding Loren and Richard Zundel attorney's fees. We remand to the district court to redetermine the award of attorney's fees related to the frivolous counterclaims disposed of on the motion for judgment on the pleadings, On remand, the court may receive additional evidence related to attorney's fees for Loren and Richard Zundel's motion for judgment on the pleadings.\n\nV\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (first [¶36] duplicates [¶35])",
+  "evidence": "Stored-twice: first [¶36] is a garbled duplicate of [¶35]; real ¶36 ('We have considered') kept. 872c.",
+  "confidence": "high"
+ }
+]

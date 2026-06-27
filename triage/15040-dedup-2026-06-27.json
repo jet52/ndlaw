@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 15040,
+  "class": "dedup_storedtwice",
+  "old_exact": "(¶ 6] The district court had jurisdiction under N.D. Const, art. YI, § 8, and N.D.C.C. § 27-05-06. The appeal was timely under N.D.R.App.P. 4(a). This Court has jurisdiction under N.D. Const, art VI, §§ 2 and 6, N.D.C.C. § 28-27-02, and N.D.R.Civ.P. 23(e)(4).\n\nII\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (garbled (¶ 6] copy + clean [¶6])",
+  "evidence": "Stored-twice ¶6: garbled '(¶ 6]' copy (Const,/YI artifacts) + clean [¶6]. 265c.",
+  "confidence": "high"
+ }
+]

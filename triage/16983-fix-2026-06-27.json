@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 16983,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶2] On October 9, 2014, Friesz shot Geno Jassmann in a home in Mandan, causing his death. While Jassmann was still breathing, Friesz lit the home on fire and left. Friesz was subsequently charged with murder, a class AA felony, and arson, a class B felony, alleging Friesz had intentionally caused the death of another human being and had willfully started the fire.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup",
+  "evidence": "Stored-twice ¶2 (compact copy) + clean [¶2]. 369c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16983,
+  "class": "paragraph_seq",
+  "old_exact": "[¶48] Under N.D.C.C. § 12.1-21-01",
+  "new_exact": "[¶43] Under N.D.C.C. § 12.1-21-01",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND177 line 463",
+  "evidence": "Early [¶48] between ¶42 and ¶44 is mislabeled ¶43 (PDF [¶43]='Under N.D.C.C. § 12.1-21-01...person is guilty of arson'). Fills missing 43, removes early dup-48.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 16984,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶25] Lisa Fair McEvers\nCarol Ronning Kapsner\nJerod E. Tufte\nDaniel J. Crothers\nGerald W. VandeWalle, C.J.\n\n[¶28]' We conclude Zerr failed to exhaust his statutory administrative remedies and the district court did not err in dismissing the action based on lack of subject matter jurisdiction. We further conclude that not opening mail received is not equivalent to not receiving mail and that the district court did not err in dismissing the action for failure to state a claim for relief.\n\nIII\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND175 (¶25 signature belongs at end; ¶28 dups ¶23)",
+  "evidence": "Removed misplaced [¶25] signature block + [¶28] (dup of [¶23]) from between ¶22 and ¶23. 497c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16984,
+  "class": "missing_text",
+  "old_exact": "The judgment is affirmed.\n\nGerald W. VandeWalle, C.J.\n",
+  "new_exact": "The judgment is affirmed.\n\n[¶25] Lisa Fair McEvers\n      Carol Ronning Kapsner\n      Jerod E. Tufte\n      Daniel J. Crothers\n      Gerald W. VandeWalle, C.J.\n",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND175 lines 241-245",
+  "evidence": "End had only bare 'Gerald W. VandeWalle, C.J.'; restored full [¶25] signature (McEvers, Kapsner, Tufte, Crothers, VandeWalle C.J.) verbatim from PDF, 6-space indent.",
+  "confidence": "high"
+ }
+]

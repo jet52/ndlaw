@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 16952,
+  "class": "heading_seq",
+  "old_exact": "\n\nHI\n\n",
+  "new_exact": "\n\nIII\n\n",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence (I,II,_,IV,V); OCR III->HI",
+  "evidence": "Section heading 'HI' is OCR of 'III' (DB headings I,II,HI,IV,V). Fix to III.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17023,
+  "class": "heading_seq",
+  "old_exact": "\n\n[¶27] We reverse the district court order and remand with directions.",
+  "new_exact": "\n\nIV\n\n[¶27] We reverse the district court order and remand with directions.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND212 line 404",
+  "evidence": "Heading IV belongs before [¶27] (PDF: IV / [¶27] We reverse...). Insert before ¶27.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17023,
+  "class": "heading_seq",
+  "old_exact": "remand with directions.\n\nIV\n\n[¶28] Carol Ronning Kapsner",
+  "new_exact": "remand with directions.\n\n[¶28] Carol Ronning Kapsner",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND212",
+  "evidence": "Remove the SAME IV misplaced after [¶27] (before signature [¶28]).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17011,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶28] Section 65-09-01(2), N.D.C.C., authorizes an administrative mechanism to determine whether a person is an employer required to obtain workers' compensation coverage under N.D.C.C. title 65. Under N.D.C.C. § 65-04-22.1, if WSI determines an independent contractor with a valid identification number issued by the Labor Commissioner under N.D.C.C. § 34-05-01.4 is an employee for purposes of workforce safety and insurance premiums, WSI may not require the employer to retroactively pay any interest, penalty or delinquency fee to the date the employment relationship began unless WSI decides the employer entered the relationship willfully and intentionally with the purpose of avoiding payment of premiums. Section 65-02-25, N.D.C.C., grants an employer amnesty from criminal prosecution under certain conditions for willfully misrepresenting payroll.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND202 (¶23=Section 65-09-01, ¶28=federal court)",
+  "evidence": "Mislabeled stored-twice: early '[¶28] Section 65-09-01...' duplicates clean [¶23]; real ¶28 is 'The federal court explained'. Delete dup. 859c.",
+  "confidence": "high"
+ }
+]

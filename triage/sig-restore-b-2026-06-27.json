@@ -1,0 +1,35 @@
+[
+ {
+  "opinion_id": 17010,
+  "class": "missing_text",
+  "old_exact": "\n\n[¶52] The Honorable William A. Herauf",
+  "new_exact": "\n\n[¶51] Jerod E. Tufte\n      Daniel J. Crothers, Acting C.J.\n      William A. Neumann, S.J.\n      William A. Herauf, D.J.\n      Daniel S. El-Dweek, D.J.\n\n[¶52] The Honorable William A. Herauf",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND201 lines 705-709",
+  "evidence": "Dropped signature block [¶51] restored VERBATIM from PDF (names+designations, 6-space indent); inserted before the surrogate/Jensen note. Star-page preserved.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17017,
+  "class": "missing_text",
+  "old_exact": "§ 12.1-23-02.\n\n*805\n\n [¶26] The Honorable Jon J. Jensen",
+  "new_exact": "§ 12.1-23-02.\n\n[¶24] Gerald W. VandeWalle, C.J.\n      Carol Ronning Kapsner, S.J.\n      Lisa Fair McEvers\n      Daniel J. Crothers\n      John T. Paulson, S.J.\n\n[¶25] The Honorable John T. Paulson, S.J., sitting in place of Tufte, J., disqualified.\n\n*805\n\n [¶26] The Honorable Jon J. Jensen",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND203 lines 346-352",
+  "evidence": "Dropped signature block [¶24]+[¶25] restored VERBATIM from PDF (names+designations, 6-space indent); inserted before the surrogate/Jensen note. Star-page preserved.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17007,
+  "class": "missing_text",
+  "old_exact": "royalty payments or monies.\n\n[¶37] The Honorable Benny A. Graff",
+  "new_exact": "royalty payments or monies.\n\n[¶36] Jerod E. Tufte\n      Lisa Fair McEvers\n      Carol Ronning Kapsner, S.J.\n      Benny A. Graff, S.J.\n      Gerald W. VandeWalle, C.J.\n\n[¶37] The Honorable Benny A. Graff",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND198 lines 432-436",
+  "evidence": "Dropped signature block [¶36] restored VERBATIM from PDF (names+designations, 6-space indent); inserted before the surrogate/Jensen note. Star-page preserved.",
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,68 @@
+[
+ {
+  "opinion_id": 14274,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 11]",
+  "new_exact": "[¶11]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 11] Under N.D. Stds. Imposi' -> [¶11]; digits unchanged, ¶10 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 15988,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 3]",
+  "new_exact": "[¶3]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 3] The conditions ordered b' -> [¶3]; digits unchanged, ¶2 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16482,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 1]",
+  "new_exact": "[¶1]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 1] Ellen Williams appeals f' -> [¶1]; digits unchanged, ¶0 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16567,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 19]",
+  "new_exact": "[¶19]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 19] A recognized treatise o' -> [¶19]; digits unchanged, ¶18 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16796,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 9]",
+  "new_exact": "[¶9]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 9] Rule 54(b), N.D.R.Civ.P.' -> [¶9]; digits unchanged, ¶8 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16898,
+  "class": "paragraph_seq",
+  "old_exact": "(¶ 5]",
+  "new_exact": "[¶5]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "marker_triage: glyph repair (digits intact, sequence-confirmed)",
+  "evidence": "Malformed marker '(¶ 5] Under N.D.C.C. § 28-32-4' -> [¶5]; digits unchanged, ¶4 precedes, only bracket/markup junk stripped.",
+  "confidence": "high"
+ }
+]

@@ -19,6 +19,44 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batches `parenmarker-repair` + `*-2026-06-27` — marker_triage paren/curly patch + finds
+
+Patched `marker_triage.py` to catch mismatched-bracket marker corruptions `(¶ N]` / `{¶ N]`
+(broadened ANCHOR + `norm_para`; a legit `(¶ N)` parenthetical cross-ref is routed to
+not_marker, not flagged). Added 3 test cases (13 total) + fixed an out-dir-creation bug.
+The patch immediately surfaced 7 corpus defects the old version missed:
+- **6 paren-marker glyph repairs** (`parenmarker-repair-2026-06-27`): `(¶ N]`→`[¶N]`
+  (digits intact, sequence-confirmed, not duplicated) — ids 14274, 15988, 16482, 16567,
+  16796, 16898.
+- **1 stored-twice dedup** (`dedup-storedtwice-marker-2026-06-27`): 15040 garbled `(¶ 6]`
+  copy (`Const,`/`YI` artifacts) + clean `[¶6]`.
+Post-fix sweep: 0 auto / 0 dedup / 1 needs_pdf (the deferred OCR-rotten 12932) / 0 unknown.
+Detector 176/0, invariants 24 ok/0, 79 tests.
+
+## Batches `*-2026-06-27` — P37 paragraph_seq + heading_seq flags (16 flags / 15 opinions)
+
+Worked all 16 P37 `paragraph_seq`/`heading_seq` flags to closure; every opinion now has a
+contiguous, dup-free marker sequence. Same duplicate-vs-missing discipline (PDF-verified):
+
+- **3 more dropped signature blocks restored** (`sig-restore-2026-06-27`, verbatim from PDF):
+  17010 `[¶51]` (Tufte, Crothers Acting C.J., Neumann S.J., Herauf D.J., El-Dweek D.J.),
+  17017 `[¶24]`+`[¶25]` (VandeWalle C.J. panel + Paulson note; `*805` star-page preserved),
+  17007 `[¶36]` (Tufte, McEvers, Kapsner S.J., Graff S.J., VandeWalle C.J.). 16984 also had
+  its `[¶25]` signature misplaced mid-opinion + a bare end-tail — relocated to the end, full
+  block restored.
+- **8 stored-twice / mislabeled-duplicate deletions** (`dedup-storedtwice-marker-2026-06-27`,
+  `paraseq-mixed`): 17009 (¶2), 17020 (`{¶ 20]` curly), 17034 (`[ITS]`→¶8 dup), 17031 (first
+  `[¶36]` dups ¶35), 17010 (`[¶18] Rule 24` dups ¶13), 17011 (`[¶28] Section` dups ¶23),
+  16983 (¶2), 16984 (`[¶28]` dups ¶23).
+- **Renumbers** (`paraseq-mixed`, `16983-fix`): 16983 early `[¶48]`→`[¶43]` (fills the gap).
+- **Heading fixes**: 16952 `HI`→`III` (OCR); 17023 `IV` moved from after `[¶27]` to before it
+  (PDF order).
+- **No action**: 17024 (already fixed in the P37 batch); 16918/17025 (done earlier).
+
+Note: ~half these `paragraph_seq` flags were duplicate/mislabeled markers, not true gaps —
+restoring would have duplicated text. `marker_triage.py` gap: it misses paren/curly-corrupted
+`(¶`/`{¶` markers (anchor matches `[¶`/`*[¶`). Detector 176/0, invariants 24 ok/0, 76 tests.
+
 ## Batch `missingtext-rest-2026-06-27` — remaining P37 missing_text flags resolved
 
 Worked the last of the 9 P37 `missing_text` flags. Genuine restorations (2):
