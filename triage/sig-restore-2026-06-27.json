@@ -1,0 +1,46 @@
+[
+ {
+  "opinion_id": 17025,
+  "class": "missing_text",
+  "old_exact": "\n\n[¶21] The Honorable Jon J. Jensen",
+  "new_exact": "\n\n[¶20] Lisa Fair McEvers\n      Daniel J. Crothers\n      Jerod E. Tufte\n      Carol Ronning Kapsner, S.J.\n      Gerald W. VandeWalle, C.J.\n\n[¶21] The Honorable Jon J. Jensen",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND213 lines 273-277",
+  "evidence": "Dropped signature block [¶20] restored VERBATIM from PDF (justice names + designations); 6-space continuation indent per corpus convention.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16989,
+  "class": "missing_text",
+  "old_exact": "Discipl. 4.5(B).\n\nLisa Fair McEvers\n",
+  "new_exact": "Discipl. 4.5(B).\n\n[¶16] Gerald W. VandeWalle, C.J.\n      Daniel J. Crothers\n      Carol Ronning Kapsner\n      Jerod E. Tufte\n      Lisa Fair McEvers\n",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND182 lines 99-103",
+  "evidence": "Dropped signature block [¶16] restored VERBATIM from PDF (justice names + designations); 6-space continuation indent per corpus convention.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16980,
+  "class": "missing_text",
+  "old_exact": "reversed.\n\nGerald W. VandeWalle, C.J.\n",
+  "new_exact": "reversed.\n\n[¶28] Carol Ronning Kapsner\n      Lisa Fair McEvers\n      Jerod E. Tufte\n      Daniel J. Crothers\n      Gerald W. VandeWalle, C.J.\n",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND167 lines 338-342",
+  "evidence": "Dropped signature block [¶28] restored VERBATIM from PDF (justice names + designations); 6-space continuation indent per corpus convention.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16959,
+  "class": "missing_text",
+  "old_exact": "decision or are without merit. The judgments are affirmed.\n\n\\*11[¶17] The Honorable John T. Paulson",
+  "new_exact": "decision or are without merit. The judgments are affirmed.\n\n[¶16] Daniel J. Crothers\n      Jerod E. Tufte\n      John T. Paulson, S.J.\n      Thomas E. Merrick, S.J.\n      Lisa Fair McEvers, Acting C.J.\n\n\\*11[¶17] The Honorable John T. Paulson",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND148 lines 563-567",
+  "evidence": "Dropped signature block [¶16] restored VERBATIM from PDF (justice names + designations); 6-space continuation indent per corpus convention.",
+  "confidence": "high"
+ }
+]

@@ -52,7 +52,7 @@
   "class": "split_join",
   "old_exact": "contention El\n\n *262\n\n sie M.",
   "new_exact": "contention Elsie M.",
-  "source_quote": "N.D.C.C. \u00a7 38-18.1-06(2) (2006), because nothing in the record supported their contention Elsie M. Furlinger's address of record included the zip code",
+  "source_quote": "N.D.C.C. § 38-18.1-06(2) (2006), because nothing in the record supported their contention Elsie M. Furlinger's address of record included the zip code",
   "verified_count": 1,
   "source": "PDF extracted via pdftotext",
   "confidence": "high",
@@ -69,5 +69,12 @@
   "confidence": "high",
   "verified_count": 1,
   "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 17010,
+  "class": "split_join_starpage",
+  "old_exact": "for any incurred ex\n\n *260\n\n penses.",
+  "new_exact_intent": "expenses (rejoin, preserve *260 star-page)",
+  "note": "2017 ND 201: word split across N.W.2d star-page *260; not missing text (flag misdiagnosed). PDF line 110 = expenses."
  }
 ]

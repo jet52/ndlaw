@@ -2,6 +2,61 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+## Batches `*-2026-06-27` (16918, 2017 ND 112) — flag misdiagnosis corrected + cleanup
+
+Worked the P37 flags for 2017 ND 112. The fleet flagged `[¶15]` as "entirely missing"
+(DB jumps 14→16) — **misdiagnosis**: the DB had a **duplicate `[¶16]`**, the first of which
+("In *Donovan* this Court held…") is the PDF's `[¶15]`, mislabeled. Inserting the
+described paragraph would have DUPLICATED the Donovan holding. Fix = renumber the first
+`[¶16]`→`[¶15]` (`p37-marker-renumber-2026-06-27`); sequence now 1–22 contiguous. (Lesson:
+verify every "missing_text" flag against the PDF before restoring.) Also in 16918:
+- stored-twice dup deleted (`dedup-storedtwice-marker-2026-06-27`): corrupted `(¶ 10]`
+  copy (paren marker, `Teso-ro`/`is not.` artifacts) + clean `[¶10]` copy.
+- 6 party-name line-break de-hyphenations (`hyphenation-name-2026-06-27`): `Te-soro`/
+  `Teso-ro`→`Tesoro` (×4), `Cey-nars`→`Ceynars` (×2); PDF has 32 Tesoro / 26 Ceynars,
+  zero hyphenated. (Multiple occurrences → global replace, logged per name.)
+
+Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
+`[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
+
+## Batch `missingtext-rest-2026-06-27` — remaining P37 missing_text flags resolved
+
+Worked the last of the 9 P37 `missing_text` flags. Genuine restorations (2):
+- **16982** (2017 ND 171) — missing section heading `II` before `[¶7]` inserted (DB had
+  I,III,IV,V; PDF I,II,III,IV). Sequence now I–V.
+- **16993** (2017 ND 195) — `[[Image here]]` (WPD image placeholder) → `...`, the compact
+  ellipsis the PDF prints for the omitted Rule 801(d)(1)(A) subsection (lines 130-133).
+
+Misdiagnosed by the fleet (no text was missing) — corrected, not restored:
+- **16996** (2017 ND 190) — **false alarm**: DB markers 1–23 contiguous, [¶14]–[¶19] match
+  PDF verbatim ([1115]→[¶15] already fixed in the P37 batch). No action.
+- **17010** (2017 ND 201) — not truncated: "expenses" is split across N.W.2d star-page
+  (`ex` `*260` `penses`), "penses" present. → star-page rejoin queue
+  (`triage/p37-defer-starpage-2026-06-27.json`, now 7), NOT a restoration.
+
+**Tally of the 9 missing_text flags: 6 genuine fixes** (4 signature blocks +1 heading
++1 ellipsis), **3 misdiagnosed** (16918 duplicate-marker renumber, 16996 false alarm,
+17010 star-page split). ~⅓ misdiagnosis rate — reinforces: verify every missing_text
+flag against the PDF before restoring (a naive restore duplicates text). Detector 176/0,
+invariants 24 ok/0 regressed, 76 tests.
+
+## Batch `sig-restore-2026-06-27` — dropped signature blocks restored (4)
+
+Restored four dropped/incomplete signature blocks flagged by the P37 fleet
+(`triage/p37-flags-2026-06-27.json`), each VERBATIM from the court PDF (justice names +
+designations, 6-space continuation indent per corpus convention); marker sequences now
+contiguous:
+- **17025** (2017 ND 213) — missing `[¶20]` (McEvers, Crothers, Tufte, Kapsner S.J.,
+  VandeWalle C.J.) inserted before the `[¶21]` surrogate note.
+- **16989** (2017 ND 182) — DB had only the trailing "Lisa Fair McEvers"; restored the
+  `[¶16]` marker + VandeWalle C.J./Crothers/Kapsner/Tufte above it.
+- **16980** (2017 ND 167) — DB had only "Gerald W. VandeWalle, C.J."; restored `[¶28]` +
+  Kapsner/McEvers/Tufte/Crothers above it.
+- **16959** (2017 ND 148) — missing `[¶16]` (Crothers, Tufte, Paulson S.J., Merrick S.J.,
+  McEvers Acting C.J.) inserted before the `\*11[¶17]` surrogate note (the `\*11`
+  star-page escape left for the markup pass). Surrogate panel (Paulson/Merrick S.J.).
+Detector 176/0, invariants 24 ok/0 regressed, 76 tests.
+
 ## Batch `corpus-proofing-p37-2026-06-27` — fleet round P37 (789 edits / 92 opinions)
 
 Resumed the corpus-proofing fleet from the date-DESC cursor (2017 ND 223 → 2017 ND 92,

@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 16982,
+  "class": "heading_seq",
+  "old_exact": "peace officer.\n\n[¶7] On appeal, Teggatz argues the district court erred in s",
+  "new_exact": "peace officer.\n\nII\n\n[¶7] On appeal, Teggatz argues the district court erred in s",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND171 line 102",
+  "evidence": "Missing section heading 'II' before [¶7] (DB headings I,III,IV,V; PDF I,II,III,IV with II before ¶7). Insert on its own line.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16993,
+  "class": "missing_text",
+  "old_exact": "[[Image here]]",
+  "new_exact": "...",
+  "source_quote": "and the statement:\n       ...\n              (B) is consistent",
+  "verified_count": 1,
+  "source": "PDF 2017ND195 lines 130-133",
+  "evidence": "WPD image placeholder where PDF prints '...' for omitted Rule 801(d)(1)(A) subsection. ND compact ellipsis.",
+  "confidence": "high"
+ }
+]

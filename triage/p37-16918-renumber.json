@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16918,
+  "class": "paragraph_seq",
+  "old_exact": "[¶16] In\n\n *Donovan*\n\n this Court held",
+  "new_exact": "[¶15] In\n\n *Donovan*\n\n this Court held",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND112 line 184",
+  "evidence": "Duplicate [¶16] in DB (14,16,16,17): the first ('In Donovan...') is PDF [¶15], mislabeled. Renumber to [¶15]; text fully present, NOT a missing paragraph (flag misdiagnosed). Fixes the duplicate; sequence now 14,15,16,17.",
+  "confidence": "high"
+ }
+]

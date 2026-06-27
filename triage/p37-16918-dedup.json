@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16918,
+  "class": "dedup_storedtwice",
+  "old_exact": "(¶ 10] We conclude the nature of the Ceynars' argument has not changed. However, our interpretation of the easement is not governed by the statutory definitions by which the district court relied and Teso-ro and the County argue on appeal.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup; PDF 2017ND112 (one [¶10])",
+  "evidence": "Stored-twice duplicate: corrupted first copy '(¶ 10]' (paren marker, Teso-ro/is not. artifacts) + clean [¶10] copy of identical paragraph. Delete corrupt copy. 241 chars.",
+  "confidence": "high"
+ }
+]
