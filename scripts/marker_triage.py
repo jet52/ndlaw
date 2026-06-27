@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sqlite3
 from collections import Counter
@@ -41,7 +42,7 @@ from collections import Counter
 CLEAN = re.compile(r"\[¶(\d+)\]")
 # any marker-ish anchor: an optional leading '*', then '[¶', possibly with a
 # newline/star before the number. We locate every '[¶' (and '*[¶') and inspect it.
-ANCHOR = re.compile(r"\*?\[¶")
+ANCHOR = re.compile(r"\*?[\[\(\{]¶")  # [¶ / *[¶ / (¶ / {¶ (mismatched-bracket corruption)
 
 # XREF / citation forms that are the court's prose, not in-text markers.
 XREF = re.compile(r"\[¶\d+(?:\s+of\b|,\s*(?:Decree|H\.B|S\.B|the syllabus)|\s+of\s+(?:the\s+)?syllabus)")
@@ -55,7 +56,7 @@ def norm_para(s: str) -> str:
     forms) — never the prose that follows it — so a same-line clean marker and a
     next-line garbled marker compare equal on their paragraph text.
     """
-    s = re.sub(r"\*?\[¶[^\]]*\]\*?", "", s)  # [^\]] spans newlines -> catches "[¶\n *2]"
+    s = re.sub(r"\*?[\[\(\{]¶[^\]\}]*[\]\}]\*?", "", s)  # [¶..]/(¶..]/{¶..} incl. internal-newline
     s = s.replace("*", "")
     return re.sub(r"\s+", " ", s).strip()
 
@@ -68,7 +69,7 @@ def clean_markers(t: str):
 def parse_anomaly(t: str, i: int):
     """At anchor start i, return (kind, digits, blob, blob_end, inner_text).
 
-    kind ∈ {clean, markup_split, bracket_glyph, letter_num, no_number, unknown}
+    kind ∈ {clean, markup_split, bracket_glyph, letter_num, no_number, paren_ref, unknown}
     digits = the consecutive-digit number found (str) or None.
     blob = the exact malformed marker text to replace (for repairs).
     inner_text = text captured after the number but inside the emphasis (e.g. ' On').
@@ -78,6 +79,14 @@ def parse_anomaly(t: str, i: int):
     m = re.match(r"\[¶(\d+)\]", win)
     if m:
         return ("clean", m.group(1), m.group(0), i + m.end(), "")
+    # wrong-open-bracket marker: "(¶ 10]" / "{¶ 20]" — mismatched brackets are an OCR/
+    # ingestion corruption (digits intact). A legit "(¶ 21)" parenthetical cross-reference
+    # closes with ')' and is NOT a marker -> paren_ref (skipped, not unknown).
+    if win[:2] in ("(¶", "{¶"):
+        m = re.match(r"[\(\{]¶ ?(\d+)[\]\}]", win)
+        if m:
+            return ("bracket_glyph", m.group(1), m.group(0), i + m.end(), "")
+        return ("paren_ref", None, win[:6], i + 2, "")
     # markup-wrap: a CLEAN [¶N] whose only defect is surrounding *…* emphasis
     # (e.g. "*[¶18] We*\n", "*[¶12]*\n"). Number intact -> markup-cohort, not a
     # marker-number defect; route to its own worklist, never propose here.
@@ -154,6 +163,9 @@ def main():
                 continue
 
             # not-a-marker?
+            if kind == "paren_ref":
+                not_marker.append({"oid": oid, "ctx": ctx, "why": "parenthetical cross-ref '(¶ N)'"})
+                continue
             if XREF.match(t[i:]) or PINCITE.match(t[i:]):
                 not_marker.append({"oid": oid, "ctx": ctx, "why": "xref/pincite"})
                 continue
@@ -243,6 +255,7 @@ def main():
                                    "n_markers": len(clean_nums)})
 
     out = args.out_dir.rstrip("/")
+    os.makedirs(out, exist_ok=True)
     def dump(name, data):
         p = f"{out}/{name}"
         json.dump(data, open(p, "w"), ensure_ascii=False, indent=1)

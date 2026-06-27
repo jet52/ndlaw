@@ -32,6 +32,11 @@ CASES = {
     108: ("text [¶3 of syllabus, 144 N.W.2d at 752.] more.", "SKIP"),                          # XREF
     109: ("See Wagner, 2003 ND 69, [¶]14, 660 N.W.2d 593. text.", "SKIP"),                     # citation pincite
     110: ("[¶4] a.\n\n*[¶5]*\n wrapped clean marker.\n\n[¶6] c.", "DEFER"),                    # markup-wrap
+    # paren/curly-corrupted markers (mismatched brackets) — stored-twice dedups
+    111: ("[¶9] a.\n\n(¶ 10] We conclude the duplicated paragraph text here.\n\n[¶10] We conclude the duplicated paragraph text here.\n\n[¶11] b.", "DEDUP"),
+    112: ("[¶19] a.\n\n{¶ 20] The district court found the duplicated text here.\n\n[¶20] The district court found the duplicated text here.\n\n[¶21] b.", "DEDUP"),
+    # legit parenthetical cross-ref "(¶ 21)" must NOT be treated as a marker
+    113: ("[¶4] As we held (¶ 21) earlier, the rule applies.\n\n[¶5] b.", "SKIP"),
 }
 
 BUCKET_FILE = {
