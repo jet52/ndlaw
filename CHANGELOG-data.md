@@ -2,6 +2,21 @@
 
 Changes applied to the opinions database after import from CourtListener and ndcourts.gov sources. All corrections are recorded in the `changelog` SQLite table and can be reverted with `python -m ndcourts_mcp.cleanup revert <batch>`.
 
+---
+## ▶ Release v1.1.1 (2026-06-27) — correction release
+
+Corpus 19,807 opinions (unchanged count; text corrections only). **2,623 corrections** this
+cycle: corpus-proofing fleet rounds P37+P38 (94+71 opinions), full triage of all P37+P38 agent
+flags (signatures restored, markers de-duplicated/repaired, citation/statute OCR fixed,
+image-verified high-risk numbers), garbled-marker queue closed, and two deterministic sweeps —
+**1,323 star-page word-splits rejoined** (991 opinions) and **51 inline 2026-scraper page-footers
+removed** (13 opinions). New tooling: `marker_triage.py`, `fix_2026_page_footers.py`,
+`fix_starpage_word_splits.py`. Invariants 24 ok / 0 regressed; detector 176/0; 79 tests.
+Pending queues (markup cohort decision, structural-markers, fleet continuation) in
+`TODO-validation.md`. Batch detail below.
+
+---
+
 ## Batches `*-2026-06-27` (16918, 2017 ND 112) — flag misdiagnosis corrected + cleanup
 
 Worked the P37 flags for 2017 ND 112. The fleet flagged `[¶15]` as "entirely missing"

@@ -100,6 +100,14 @@ The definitive test of "text in effect at moment T" is corpus-level, not per-pro
 - **Build:** for each snapshot date, assemble every provision's then-effective version, render full text, diff against that year's printed compilation. Every seam error, wrong effective date, missed amendment (#4), or coverage hole surfaces as a diff. Green diffs at 1925 / 1954 / 1973 / current = validation complete.
 - This is the single strongest evidence the point-in-time claim is reliable. Scaffolding is independent (can build alongside 1/2); it runs meaningfully only after 1–4 land.
 
+### 6. Broad audit of the ndconst.org DokuWiki against the ndlaw MCP const data  *(scoped 2026-06-26)*
+A standalone wiki at **ndconst.org** renders the ND Constitution as a DokuWiki, including a point-in-time `/date/<YYYY-MM-DD>/<article>/<section>` snapshot tree (**158 snapshot dates, 1889-11-02 → 2026-04-04**) plus ~1,149 current-text pages. **The wiki entirely predates the ndlaw MCP / `constitution.db` project.** Its content was produced by a mix of **hand fixing/editing and automated generation** — so it is an *independent* rendering of the same material, not derived from our pipeline, and may hold (a) hand-made corrections our DB lacks, or (b) errors our DB has since fixed. Either direction is worth surfacing.
+
+- **Goal:** a bidirectional reconciliation — for each provision × effective-date, diff the wiki's then-effective text against the MCP's `lookup_authority(..., as_of_date=T)` output. Divergences feed both directions: real wiki corrections become candidate DB fixes; DB-correct/wiki-wrong cases confirm the DB and (if the wiki is kept) become wiki edits.
+- **Method:** the wiki snapshots are populated at the **article level** (e.g. `/date/1998-12-03/artvi` renders Art. VI with all section headings; deeper `…/sec7` permutations are empty 200-renders — see the crawl-trap note below). Pull article-level page text per (article, date), map to provisions, diff against the as-of reconstruction. The 14 official compilations in #5 are the *authoritative* arbiter when wiki and DB disagree.
+- **Source preservation:** do this audit (or at least archive the `/date/` tree) **before** any deletion/regeneration of the wiki snapshots. As of 2026-06-26 the `/date/` tree is de-indexed at the web layer (`robots.txt` + an `.htaccess` `RewriteRule ^date(/|$) - [G]` 410) to stop a crawler-trap load problem, but the pages are **not** deleted; the deletion-vs-regenerate-from-MCP decision is deferred pending this audit. If deleted, the step-1 tarball (`/root/dokuwiki-date-*.tar.gz` on the ndconst host) is the source of record.
+- **Relation to #5:** this is a *second external snapshot ladder* — denser in dates than the printed compilations but lower-authority (independent provenance, partly hand-edited). Run it as a cross-check alongside the #5 harness, not as a substitute for the official compilations.
+
 ---
 
 ## Recommended sequence  *(re-ranked 2026-06-14 after the census/alignment prototypes)*
@@ -110,6 +118,7 @@ The definitive test of "text in effect at moment T" is corpus-level, not per-pro
 4. **Acquire NDCC Replacement Vol 13 (1981) disposition table**, then **crosswalk (#1)** — alignment auto-fills the 93 confident mappings + validates the table; the table resolves the ~98 rewritten provisions. A2 (`lineage`) schema.
 5. **Amendment-event dedup (#3)** — unblocked by #1.
 6. **Snapshot-diff harness (#5)** — acceptance test; green diffs = done. Snapshot ladder is richer than first scoped: **14 compilations on disk 1889–1981** (`~/refs/nd/const/processed/*.md`: 1889, 1895×2, 1899, 1905, 1907, 1913×2, 1919, 1925, 1954, 1961, 1973, 1981), not just 1925/1954/1973.
+7. **DokuWiki audit (#6)** — independent cross-check; low priority and lower-authority (partly hand-edited, predates the MCP). Run alongside #5; must precede any deletion of the ndconst.org `/date/` tree.
 
 Prototypes built 2026-06-14: `triage/const_amendment_census_2026-06-14.py`, `triage/const_crosswalk_align_2026-06-14.py` (+ their TSVs). Read-only; no DB change, no changelog entry.
 

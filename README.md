@@ -95,7 +95,7 @@ Claude](#connecting-to-claude) to wire it into an MCP client.
 
 ## What's in the database
 
-Counts below are as of 2026-06-25 (v1.1.0); rerun
+Counts below are as of 2026-06-27 (v1.1.1); rerun
 `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
 (~19,793, of which 44 are North Dakota Court of Appeals decisions and the
 rest North Dakota Supreme Court).

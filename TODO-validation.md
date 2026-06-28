@@ -8,6 +8,50 @@ Progress map for reaching full two-source validation of every ND Supreme Court o
 
 **The DB is the source of truth, but `merge_nd_metadata` (not year-gated) was silently overwriting validated scalar corrections from the contaminated `~/refs` source on every weekly run.** 418 scalar corrections found reverted; 309 restored + a `merge` write-guard + the `corrections_not_reverted` invariant now in place. **BODY text was NOT an active leak** — the weekly ingest is incremental/year-gated (only adds the current year, never touches old bodies) and merge doesn't write `text_content`; the "26 garbled markers" are residue, not reversions. Phase 0 body write-guard added anyway as insurance against a full ingest. Full plan + running checklist: **`TODO-reversion-recovery.md`** (body re-validation is now QA confirmation, not urgent recovery). This gates the authoritative-text goal — corrections that don't stick aren't corrections.
 
+## ★ PENDING QUEUES — handoff 2026-06-27 (corpus-proofing fleet + flag triage)
+
+Shipped as **v1.1.1** (correction release). This session: ran fleet rounds **P37+P38**
+(120 opinions each, date-DESC), triaged **all P37+P38 agent flags** to closure, closed the
+garbled-marker queue, built `scripts/marker_triage.py` (unified `[¶N]` anomaly detector,
+tested), and ran two deterministic corpus sweeps. **2,623 corrections on 2026-06-27.**
+Per-batch detail in `CHANGELOG-data.md` (batches `*-2026-06-27`). Open items, in priority order:
+
+1. **★ DECISION NEEDED — markup cohort (`*…*` italic markdown).** **109,222 emphasis pairs
+   across 3,859 opinions** (~half the corpus) — leftover markdown italics, mostly around case
+   names (`*State v. Smith*`). **Policy question for the user: strip to plain text, or preserve
+   case-name emphasis (and in what form)?** Once decided it's a deterministic pass: strip the
+   emphasis `*` but **PRESERVE `*NNN` star-page markers** (distinguish `\*[A-Za-z]…\*` emphasis
+   from `\*\d` star-page) and handle malformed variants (`*Case**,*`). Largest remaining
+   text-quality issue.
+
+2. **Structural-markers (432 candidates, `triage/marker-triage-structural.json`).** Clean-marker
+   gaps/dups — *mostly* legitimate quoted-order restarts, plus some genuine missing/dup markers.
+   Each needs per-PDF verification + restart-discrimination ([[feedback_paragraph_restart_discrimination]]).
+   **NOT bulk-safe.** Recommend folding into the proofing fleet rather than a standalone sweep.
+   Regenerate with `scripts/marker_triage.py --structural`.
+
+3. **Fleet continuation.** P1–P38 done = all of **2017–2026** (contiguous). **Next batch =
+   2016 ND 254 → 2016 ND 122** (recompute next 120 uncovered ids from `corpus-proofing-p*.wf.js`
+   BATCH arrays vs `ORDER BY date_filed DESC`; no cursor file). gen → `verify_proofing_proposals.py`
+   → `consolidate_proofing_trio.py` → `apply_proofing_proposals.py`. See `triage/corpus-proofing-PLAN.md`.
+
+4. **⚠ 2026-scraper page-footer leak — WIRE INTO INGEST.** The 2026 scraper folded centered
+   page-footer numbers inline ("noted 4 the"). Fixed the current batch with
+   `scripts/fix_2026_page_footers.py` (51 leaks / 13 opinions, safe + reusable) — **but the
+   scraper/ingest will reintroduce them on the next weekly run.** Add centered-page-number
+   stripping to extraction (or run the script post-ingest each week).
+
+5. **91 ambiguous star-page splits** (common-word fragment, e.g. `in *214 forming`) — need PDF to
+   disambiguate. The 1,323 high-confidence splits are already fixed
+   (`scripts/fix_starpage_word_splits.py`, **marker-before-word convention — ratify or change**;
+   revertible by batch).
+
+6. **Cosmetic (low-priority, deferred per `corpus-proofing-PLAN.md`):** 3+ blank-line runs and
+   3-dot/4-dot ellipsis normalization. Blank-line cleanup last.
+
+**New tools:** `scripts/marker_triage.py` (+ `tests/test_marker_triage.py`),
+`scripts/fix_2026_page_footers.py`, `scripts/fix_starpage_word_splits.py` — all in `TOOLS.md`.
+
 ## ★ PRIORITY TODO (set 2026-05-27 PM)
 
 1. ~~**Docket completeness — recover empty `docket_number` fields.**~~ **DONE 2026-05-27** (batch `recover-dockets-2026-05-27`). Recovered **465/465 modern** (1997+) from the `ND-neutral` markdown caption (`No./Nos. YYYYNNNN`, year-validated; 16 consolidated comma-joined) and **56/67 gap-era** (1953–96, court-archive filename docket == body `Civ./Cr.` number, comma-tolerant; stored native `Civ. NNNN`); **11 deferred** (Westlaw admin orders, likely genuinely docketless). **Normalized 4,910 blank-string → NULL.** Final empties 5,083, all NULL (pre-1953 5,072 + 11 gap; **1997+ now 0**). 5,431 changelog rows; invariants 22/2/0. Detail in CHANGELOG-data.md.
