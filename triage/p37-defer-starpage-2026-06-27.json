@@ -76,5 +76,26 @@
   "old_exact": "for any incurred ex\n\n *260\n\n penses.",
   "new_exact_intent": "expenses (rejoin, preserve *260 star-page)",
   "note": "2017 ND 201: word split across N.W.2d star-page *260; not missing text (flag misdiagnosed). PDF line 110 = expenses."
+ },
+ {
+  "opinion_id": 16957,
+  "class": "split_join_starpage",
+  "old_exact": "arguing Peter [*919] son",
+  "new_exact_intent": "Peterson (rejoin, preserve *919)",
+  "note": "2017 ND 155: word 'Peterson' split across N.W.2d star-page *919."
+ },
+ {
+  "opinion_id": 16957,
+  "class": "split_join_starpage",
+  "old_exact": "minor chil [*921] dren",
+  "new_exact_intent": "children (rejoin, preserve *921)",
+  "note": "2017 ND 155: 'children' split across *921."
+ },
+ {
+  "opinion_id": 16964,
+  "class": "split_join_starpage",
+  "old_exact": "pro\\n\\n *339\\n\\n cess",
+  "new_exact_intent": "process (rejoin, preserve *339)",
+  "note": "2017 ND ?: 'process' split across *339."
  }
 ]

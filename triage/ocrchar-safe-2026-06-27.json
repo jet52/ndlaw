@@ -1,0 +1,57 @@
+[
+ {
+  "opinion_id": 16972,
+  "class": "ocr_char",
+  "old_exact": "N.D.O.C. ch. 38-11.1",
+  "new_exact": "N.D.C.C. ch. 38-11.1",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency/index (manual 2026-06-27)",
+  "evidence": "O-for-C OCR: DB has N.D.O.C. 1x vs N.D.C.C. 71x (the outlier).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16974,
+  "class": "ocr_char",
+  "old_exact": "27-20-44(l)(c)(l) and (2)",
+  "new_exact": "27-20-44(1)(c)(1) and (2)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency/index (manual 2026-06-27)",
+  "evidence": "Statute subsection letter-l->digit-1 (×2); trailing '(2)' confirms numbered subsections.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17006,
+  "class": "ocr_char",
+  "old_exact": "Tamavsky v. Rankin",
+  "new_exact": "Tarnavsky v. Rankin",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency/index (manual 2026-06-27)",
+  "evidence": "Case-name OCR rn->m: our index has Tarnavsky v. Rankin (2009 ND 149).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17028,
+  "class": "ocr_char",
+  "old_exact": "Cfi",
+  "new_exact": "Cf.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency/index (manual 2026-06-27)",
+  "evidence": "Ligature 'fi'->'.' in the signal 'Cf.' (italicized *Cf.* N.D.R.Civ.P. 61).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17022,
+  "class": "ocr_char",
+  "old_exact": "[¶15]-North Dakota",
+  "new_exact": "[¶15] North Dakota",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency/index (manual 2026-06-27)",
+  "evidence": "Marker followed by hyphen instead of space.",
+  "confidence": "high"
+ }
+]

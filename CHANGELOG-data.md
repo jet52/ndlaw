@@ -19,6 +19,30 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batch `ocrchar-flags-2026-06-27` — P37 ocr_char/split_join/whitespace/caption flags (26)
+
+Worked the 26 remaining P37 flags. **11 applied** (each corroborated by DB internal consistency,
+our own metadata, or PDF image — not a lone stale PDF):
+- 16972 `N.D.O.C.`→`N.D.C.C.` (DB has N.D.C.C. ×71 vs N.D.O.C. ×1);
+- 16974 `27-20-44(l)(c)(l)`→`(1)(c)(1)` (trailing `(2)` confirms numbered subsections);
+- 16985 `l/4th`→`1/4th` ×2 (one-fourth interest); 17022 `[¶15]-North`→`[¶15] North`;
+- 17006 `Tamavsky`→`Tarnavsky` (rn→m; our index has Tarnavsky v. Rankin = 2009 ND 149);
+- 17028 `Cfi`→`Cf.` (fi-ligature for period in the signal);
+- 17013 `New-field`→`Newfield` ×8 (DB has Newfield ×21 unhyphenated);
+- 17039 `¾`→`'is` (PDF p141: "review 'is to determine"; straight quote per policy);
+- **16925 `Alimón`→`Allmon` ×38** (systematic party-name OCR ll→li/o→ó; confirmed 3 ways:
+  caption image "Angela R. Allmon / Aaron D. Allmon", CL case_name "Allmon v. Allmon", pdftotext ×46).
+
+**No-action:** 16918 (Te-soro/Cey-nars already fixed earlier); 17010 (caption multi-line
+*formatting* only, text correct); 17013 "ultimate liability" (already correct, no comma).
+**Deferred — star-page rejoin** (`triage/p37-defer-starpage-2026-06-27.json`, now 10): 16957 ×2
+(Peter|son, chil|dren across *919/*921), 16964 (pro|cess across *339).
+**Deferred — cosmetic** (blank-line-run / ellipsis pass): 16983, 16993, 16996, 17013 ×2 (3+ blank
+lines), 16961 (3-dot vs 4-dot ellipsis). **Deferred — complex:** 16998 (quoted §28-32-46 list:
+item numbers 1–8 split from their text; needs PDF-based reconstruction).
+
+Detector 176/0, invariants 24 ok/0, 79 tests.
+
 ## Batch `strip-injected-parallels-2026-06-27` — ingest-added U.S.-cite parallels removed (2)
 
 16966 (2017 ND 153) and 16996 (2017 ND 190): the DB carried factually-correct S.Ct./L.Ed.2d

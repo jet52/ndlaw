@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 17039,
+  "class": "ocr_char",
+  "old_exact": "review ¾ to determine",
+  "new_exact": "review 'is to determine",
+  "source_quote": "of our review 'is to determine whether the case presents an \"infrequent harsh case\"",
+  "verified_count": 1,
+  "source": "PDF 2017ND229 line 141",
+  "evidence": "Bad glyph ¾ (U+00BE) encodes opening-quote+'is'; PDF reads \"review 'is to determine\". Straight apostrophe per DB quote policy.",
+  "confidence": "high"
+ }
+]
