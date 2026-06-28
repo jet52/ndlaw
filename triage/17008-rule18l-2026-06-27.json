@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 17008,
+  "class": "ocr_char",
+  "old_exact": "Prof. Conduct 1.8(1), a lawyer serving as a fiduciary",
+  "new_exact": "Prof. Conduct 1.8(l), a lawyer serving as a fiduciary",
+  "source_quote": "(l) Neither a lawyer serving as a fiduciary of an estate, trust, or conservatorship nor the lawyer's firm may serve as legal counsel for the fiduciary",
+  "verified_count": 1,
+  "source": "ndlaw MCP: N.D.R. Prof. Conduct 1.8 (as of 2017-08-02)",
+  "evidence": "Rule 1.8 subsections are lettered (a)-(l); subsection (l) is the lawyer-as-fiduciary prohibition matching the cite context. DB digit-1 -> letter-l.",
+  "confidence": "high"
+ }
+]

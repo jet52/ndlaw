@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 16966,
+  "class": "citation",
+  "old_exact": ", 122 S.Ct. 867, 151 L.Ed.2d 856",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "court PDF (image-verified) + user inspection 2026-06-27",
+  "evidence": "Kansas v. Crane: court prints '534 U.S. 407 (2002)' only (PDF p5 image + user-confirmed); strip ingest-added S.Ct./L.Ed.2d parallels.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16996,
+  "class": "citation",
+  "old_exact": ", 105 S.Ct. 1038, 84 L.Ed.2d 1",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "court PDF (image-verified) + user inspection 2026-06-27",
+  "evidence": "United States v. Young: court prints '470 U.S. 1, 11 (1985)' only (PDF p7 image + user-confirmed); strip ingest-added parallels.",
+  "confidence": "high"
+ }
+]

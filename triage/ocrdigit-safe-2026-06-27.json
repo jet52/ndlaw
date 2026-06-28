@@ -1,0 +1,57 @@
+[
+ {
+  "opinion_id": 16956,
+  "class": "ocr_char",
+  "old_exact": "at ¶ IB.",
+  "new_exact": "at ¶ 13.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency + PDF (manual 2026-06-27)",
+  "evidence": "OCR letters 'IB'->'13' in pincite to State v. Aguilar; DB token invalid, pincite sequence (¶12,¶13) corroborates.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16985,
+  "class": "paragraph_seq",
+  "old_exact": "[¶80] Rule 25",
+  "new_exact": "[¶30] Rule 25",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency + PDF (manual 2026-06-27)",
+  "evidence": "Marker [¶80]->[¶30]: DB's own sequence has gap at 30 + stray 80 between ¶29 and ¶31.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17008,
+  "class": "ocr_char",
+  "old_exact": "and 8,4, We order",
+  "new_exact": "and 8.4. We order",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency + PDF (manual 2026-06-27)",
+  "evidence": "Rule cite punctuation: '8,4,'->'8.4.' (DB renders rule 8.4 correctly elsewhere).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17011,
+  "class": "ocr_char",
+  "old_exact": "§ 65-04-83(2)",
+  "new_exact": "§ 65-04-33(2)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency + PDF (manual 2026-06-27)",
+  "evidence": "Statute OCR 83->33: DB itself has 65-04-33 22x vs 65-04-83 1x (the outlier).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 17022,
+  "class": "ocr_char",
+  "old_exact": "27-10-01.4(l)(e)",
+  "new_exact": "27-10-01.4(1)(e)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "internal-consistency + PDF (manual 2026-06-27)",
+  "evidence": "Subsection letter-l->digit-1: DB itself uses 27-10-01.4(1) 8x.",
+  "confidence": "high"
+ }
+]

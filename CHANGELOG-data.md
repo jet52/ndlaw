@@ -19,6 +19,45 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batch `strip-injected-parallels-2026-06-27` — ingest-added U.S.-cite parallels removed (2)
+
+16966 (2017 ND 153) and 16996 (2017 ND 190): the DB carried factually-correct S.Ct./L.Ed.2d
+parallels on two U.S. Supreme Court cites that the court's opinion does NOT print (image-verified
+PDF p5/p7 + user inspection: court cites only "Kansas v. Crane, 534 U.S. 407 (2002)" and
+"United States v. Young, 470 U.S. 1, 11 (1985)"). Stripped the ingest-added parallels for fidelity
+to the court's text. **Class note:** ~1,937 opinions carry a `U.S. N, N S.Ct.` parallel pattern,
+but the large majority are legitimate (the court printed them); the contamination is only the
+PDF-divergent subset, which the proofing fleet flags per-opinion (these 2 came from P37). NOT
+bulk-strippable. Detector 176/0, invariants 24 ok/0, 79 tests.
+
+## Batch `ocrdigit-safe-2026-06-27` — P37 ocr_digit/citation flags (ALL 11 resolved: 8 fixed, 3 no-action)
+
+Worked the 11 P37 `ocr_digit`/`citation` flags with rule-4 discipline (citation digits verified
+independently; internal DB consistency weighted over a lone PDF digit). **5 applied** (each
+corroborated by the DB's own text, not a possibly-stale `~/refs` PDF):
+- 16956 `at ¶ IB.`→`at ¶ 13.` (OCR letters; pincite sequence ¶12,¶13);
+- 16985 `[¶80]`→`[¶30]` (DB's own marker sequence: gap at 30 + stray 80);
+- 17008 `8,4,`→`8.4.` (rule-cite punctuation; DB renders 8.4 correctly elsewhere);
+- 17011 `§ 65-04-83(2)`→`§ 65-04-33(2)` (DB has 65-04-33 ×22 vs 65-04-83 ×1);
+- 17022 `27-10-01.4(l)(e)`→`27-10-01.4(1)(e)` (DB uses 27-10-01.4(1) ×8);
+- 17008 `1.8(1)`→`1.8(l)` (ndlaw MCP: N.D.R. Prof. Conduct 1.8 is lettered (a)–(l); subsection
+  (l) is the lawyer-as-fiduciary prohibition matching the cite context — DB digit-1 → letter-l).
+
+**3 no-action — DB already correct, flag wrong:**
+- 16955 (Foster): flag/pdftotext/`~/refs` render said "2015 ND 143", but the **official PDF
+  (user-confirmed, docket 20150143) and our graph say 2015 ND 114** (Foster = 114 = 863 N.W.2d
+  241; 2015 ND 143 is *State v. Smith*). The `~/refs` copy is a stale/typo'd version. DB right.
+- 17030 (Lee): same pattern — DB "2015 ND 157" matches Lee + 864 N.W.2d 764 in our graph; the
+  `~/refs` render's "182" is *Howe reinstatement*. DB right.
+- 17036: DB "Rule 1.16" correct; pdftotext misreads digit-1 as letter-l.
+
+  Lesson: a DB cite matching BOTH case name AND parallel reporter in our curated graph outweighs
+  a single PDF's rendered digit (court typo or stale `~/refs` version). Do not "correct" a
+  graph-consistent cite from one PDF.
+
+**16966 + 16996** (DB-added U.S.-cite parallels) resolved separately — see
+`strip-injected-parallels-2026-06-27` above. Detector 176/0, invariants 24 ok/0, 79 tests.
+
 ## Batches `parenmarker-repair` + `*-2026-06-27` — marker_triage paren/curly patch + finds
 
 Patched `marker_triage.py` to catch mismatched-bracket marker corruptions `(¶ N]` / `{¶ N]`
