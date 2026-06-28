@@ -1,1 +1,88 @@
-[]
+[
+ {
+  "opinion_id": 16866,
+  "class": "caption",
+  "old_exact": "CITY OF GRAND FORKS, Plaintiff and Appellee v. Fritz Thomas OPP",
+  "new_exact": "City of Grand Forks, Plaintiff and Appellee v. Fritz Thomas Opp",
+  "source_quote": "City of Grand Forks, Plaintiff and Appellee v. Fritz Thomas Opp, Defendant and Appellant",
+  "verified_count": 1,
+  "source": "PDF lines 9-12",
+  "confidence": "high",
+  "evidence": "Official case caption in PDF shows proper capitalization; body text consistently uses 'City of Grand Forks' not 'CITY OF GRAND FORKS'.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16904,
+  "class": "caption",
+  "old_exact": "Garron GONZALEZ",
+  "new_exact": "Garron Gonzalez",
+  "source_quote": "Garron Gonzalez,",
+  "verified_count": 1,
+  "source": "PDF line 9 (case caption)",
+  "confidence": "high",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16904,
+  "class": "caption",
+  "old_exact": "STATE of North Dakota",
+  "new_exact": "State of North Dakota",
+  "source_quote": "State of North Dakota,",
+  "verified_count": 1,
+  "source": "PDF line 12 (case caption)",
+  "confidence": "high",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19216,
+  "class": "caption",
+  "old_exact": "Dennis Merle Snyder,\n\nv.\n\nAppellee\n\nDirector, North Dakota Department of Transportation,\n\nAppellant",
+  "new_exact": "Dennis Merle Snyder,\n\nAppellee\n\nv.\n\nDirector, North Dakota Department of Transportation,\n\nAppellant",
+  "source_quote": "Dennis Merle Snyder,                                                   Appellee\n\n      v.\nDirector, North Dakota Department of Transportation,                  Appellant",
+  "verified_count": 1,
+  "source": "PDF pdftotext -layout output",
+  "confidence": "high",
+  "evidence": "PDF shows party designations (Appellee/Appellant) on the same lines as party names via column alignment. DB has them separated and in wrong order, causing normalized text to read 'Snyder, v. Appellee Director...' instead of 'Snyder, Appellee v. Director...'. Reordering restores the correct party-designation associations.",
+  "note": "Caption structure reorganized to move Appellee immediately after Dennis Merle Snyder and Appellant immediately after Director; this ensures proper textual sequence matching the source PDF.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19219,
+  "class": "caption",
+  "old_exact": "Appellant\n\nJames R. Lowe,",
+  "new_exact": "James R. Lowe, Appellant",
+  "source_quote": "James R. Lowe,                                                     Appellant",
+  "verified_count": 1,
+  "source": "PDF line 9 of 2017ND4.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows 'James R. Lowe,' on left with 'Appellant' on same line to the right (space-aligned), but DB extraction placed 'Appellant' before the party name on a separate line with blank line between them. PDF structure: party name first, then role designation on same line.",
+  "note": "Caption element order corrected from PDF extraction error where text direction/layout was misinterpreted",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19219,
+  "class": "caption",
+  "old_exact": "North Dakota Workforce Safety & Insurance,\n\nAppellee",
+  "new_exact": "North Dakota Workforce Safety & Insurance, Appellee",
+  "source_quote": "North Dakota Workforce Safety & Insurance,                          Appellee",
+  "verified_count": 1,
+  "source": "PDF line 12 of 2017ND4.pdf",
+  "confidence": "high",
+  "evidence": "PDF shows 'North Dakota Workforce Safety & Insurance,' on left with 'Appellee' on same line to the right (space-aligned), but DB extraction placed 'Appellee' on a separate line with blank line between them. Matches pattern seen with Appellant fix.",
+  "note": "Caption element order corrected from PDF extraction error, consistent with Appellant fix",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 19227,
+  "class": "caption",
+  "old_exact": "Plaintiff and Appellee\n\nEduCap, Inc.,",
+  "new_exact": "EduCap, Inc.,\n\nPlaintiff and Appellee",
+  "source": "pdftotext extract of /Users/jerod/refs/nd/opin/pdfs/2017/2017ND57.pdf",
+  "source_quote": "EduCap, Inc.,                                             Plaintiff and Appellee",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "The DB caption has placed the plaintiff's designation ('Plaintiff and Appellee') before the party name ('EduCap, Inc.,'). The authoritative PDF rendering shows the correct caption layout with the party name followed by its designation on the same visual line. Both the party name and designation are correct; only their sequence is wrong in the DB.",
+  "note": "This is a caption structure error from OCR/ingestion processing. The plaintiff's designation and party name have been split and reversed. The corrected version follows standard caption format (party name first, designation second) and matches the PDF layout.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

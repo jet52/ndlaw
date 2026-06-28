@@ -19,6 +19,26 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batch `corpus-proofing-p38-2026-06-27` — fleet round P38 (330 edits / 71 opinions)
+
+Fleet round P38 = next 120 uncovered (the 14 new 2026 ND ~117–129 folded in + continuation
+2017 ND ~91 → 2017 ND 1). 119/120 returned (1 dropped: 2017 ND 84, re-run separately); 442
+proposals, 75 flags, 38 clean. Verifier → consolidate triple-evidence autosafe gate passed **323**
+(ocr_char 188, split_join 99, whitespace 24, other 6, ocr_digit 4, missing_text 1, +1 heading
+`Ill`→`III`), all PDF-confirmed. Examples: `reyenues`→`revenues`, `Bur gum`→`Burgum`,
+`Rath-bun`→`Rathbun`, `(N.D.1995)`→`(N.D. 1995)`, `[[Image here]]`→`....`, and a PDF-verified
+prose reconstruction (id16829 garbled pro-hac-vice clause).
+- **7 captions** (`corpus-proofing-p38-captions-2026-06-27`, PDF-caption-verified): de-all-caps
+  16866 (City of Grand Forks), 16904 (Gonzalez/State); designation reorders 19216 (Snyder=Appellee),
+  19219 (Lowe=Appellant), 19227 (EduCap=Plaintiff/Appellee).
+- **3 HEADING "renumbers" were actually stored-twice dups** (same trap as 16918): 16868/16892 a
+  `[¶18]` copy of `[¶13]`, 16896 a `[¶8]` copy of `[¶3]` — DELETED the dup (renumber would have
+  created a duplicate), not renumbered. (`dedup-storedtwice-marker-2026-06-27`.)
+- **13 deferred**: 12 star-page word-splits → star-page rejoin queue (now 22); the 13th was the
+  Ill→III heading (applied).
+
+Detector 176/0, invariants 24 ok/0 regressed, 79 tests. 1 agent (2017 ND 84) re-running.
+
 ## Batch `ocrchar-flags-2026-06-27` — P37 ocr_char/split_join/whitespace/caption flags (26)
 
 Worked the 26 remaining P37 flags. **11 applied** (each corroborated by DB internal consistency,

@@ -1,1 +1,157 @@
-[]
+[
+ {
+  "opinion_id": 16836,
+  "class": "split_join",
+  "old_exact": "a materi\n\n *872\n\n al-variation in terms suggests a variation in meaning.",
+  "new_exact": "a material variation in terms suggests a variation in meaning.",
+  "source_quote": "A word or\nphrase is presumed to bear the same meaning throughout a text; a material variation\nin terms suggests a variation in meaning.\" Antonin Scalia & Bryan A. Garner,\nReading the Law: The Interpretation of Legal Texts 170 (2012).",
+  "verified_count": 1,
+  "source": "/tmp/src_2017ND31.txt",
+  "confidence": "high",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16842,
+  "class": "other",
+  "old_exact": "decision sus\\*911 pending or revoking",
+  "new_exact": "decision suspending or revoking",
+  "source": "2017ND30.pdf",
+  "source_quote": "governs our review of an administrative decision suspending or revoking a driver's license. E.g., Koehly v. Levi, 2016 ND 202",
+  "confidence": "high",
+  "verified_count": 1,
+  "note": "Page break artifact: \\*911 (reporter page marker) incorrectly interrupts word 'suspending'",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16876,
+  "class": "split_join",
+  "old_exact": "chai-\n\n *727\n\n lenged ",
+  "new_exact": "challenged ",
+  "source_quote": "pplication.\n[\u00b612] Here, Myers' April 2015 application for postconviction relief challenged the\nlegality of his sentence ",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2017/2017ND66.pdf",
+  "confidence": "high",
+  "evidence": "The word 'challenged' was incorrectly split across lines during OCR/text extraction, appearing as 'chai-' followed by a page marker and blank lines, then ' lenged'. The PDF shows it as a complete word 'challenged'. Single occurrence.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16883,
+  "class": "whitespace",
+  "old_exact": "The dis\n\n *763\n\n trict court",
+  "new_exact": "The district court",
+  "source_quote": "The district court denied Gaede's motion, ruling",
+  "verified_count": 1,
+  "source": "/tmp/src_2017ND69.txt line 78",
+  "confidence": "high",
+  "note": "Word 'district' split across page break with page number footer; should be rejoined",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16887,
+  "class": "split_join",
+  "old_exact": "work per\n\n *168\n\n formed",
+  "new_exact": "work performed",
+  "source_quote": "street repairs and utility work performed were incidental to the water and sewer repairs under N.D.C.C. \u00a7 40-22-01",
+  "verified_count": 1,
+  "source": "2017ND72.pdf",
+  "confidence": "high",
+  "evidence": "Word split across page break (page marker *168 in DB); PDF shows continuous text 'work performed'; this is ingestion artifact",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16890,
+  "class": "heading_seq",
+  "old_exact": "Ill\n\n[\u00b67]",
+  "new_exact": "III\n\n[\u00b67]",
+  "source_quote": "III\n[\u00b67] The resolution of this case depends on the proper",
+  "verified_count": 1,
+  "source": "PDF p.4, Section III heading",
+  "confidence": "high",
+  "note": "Roman numeral: \"Ill\" should be \"III\"",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16891,
+  "class": "split_join",
+  "old_exact": "Con\n\n *202\n\n rad",
+  "new_exact": "Conrad",
+  "source": "PDF pdftotext",
+  "source_quote": "The court concluded Conrad met her burden of showing \"a legitimate dispute on a fairly unique underlying issue of property or civil law,\"",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Word 'Conrad' is split across page boundary in DB: 'Con' at end of page 202 and 'rad' at beginning of page 203; PDF shows continuous word 'Conrad'.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16891,
+  "class": "split_join",
+  "old_exact": "dis\n\n *203\n\n missed",
+  "new_exact": "dismissed",
+  "source": "PDF pdftotext",
+  "source_quote": "and therefore dismissed the criminal charges under the civil dispute doctrine.",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Word 'dismissed' is split across page boundary in DB: 'dis' at end of page 203 and 'missed' at beginning of page 204; PDF shows continuous word 'dismissed'.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16895,
+  "class": "split_join",
+  "old_exact": "property dam\n\n *886\n\n age",
+  "new_exact": "property damage",
+  "source_quote": "which includes personal injury, malpractice, property damage, administrative appeals,\ncondemnation, and eminent domain matters.",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2017/2017ND86.pdf",
+  "confidence": "high",
+  "evidence": "Word split across page break with page marker interrupting. Source shows word properly joined on continuous text.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16898,
+  "class": "ocr_char",
+  "old_exact": "Ac\\*893 cording to the officer",
+  "new_exact": "According to the officer",
+  "source_quote": "slow in reacting to questioning. According to the officer, Opp admitted consuming",
+  "verified_count": 1,
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2017/2017ND101.pdf",
+  "confidence": "high",
+  "note": "Page break artifact - asterisk with page number embedded in middle of word",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16909,
+  "class": "split_join",
+  "old_exact": "deny\n\n *506\n\n ing",
+  "new_exact": "denying",
+  "source_quote": "explanation for denying North",
+  "verified_count": 1,
+  "source": "2017ND110.pdf",
+  "confidence": "high",
+  "evidence": "Word split across page break with embedded page marker (*506)",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16909,
+  "class": "split_join",
+  "old_exact": "sum\n\n *502\n\n mary",
+  "new_exact": "summary",
+  "source_quote": "moved for summary judgment,",
+  "verified_count": 1,
+  "source": "2017ND110.pdf",
+  "confidence": "high",
+  "evidence": "Word split across page break with embedded page marker (*502)",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16910,
+  "class": "split_join",
+  "old_exact": "unsuc\n\n *507\n\n cessfully",
+  "new_exact": "unsuccessfully",
+  "source": "/tmp/src_2017ND111.txt",
+  "source_quote": "Since this Court affirmed his conviction Everett has unsuccessfully filed numerous applications for post-conviction relief",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "The word 'unsuccessfully' is fractured across a page break in the DB (line 11 ends with 'unsuc', line 13 contains page marker ' *507', line 15 begins with ' cessfully'). The PDF source shows the word as a complete, continuous 'unsuccessfully'. This is a mechanical rejoin of a word split during PDF ingestion.",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

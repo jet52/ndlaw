@@ -1,0 +1,35 @@
+[
+ {
+  "opinion_id": 16868,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶18] We next determine whether the district court erred by refusing to consider the evidence that was before it relating to O'Hara's pre-judgment domestic violence. The district court did not strike the affidavits in which Schneider alleged O'Hara's pre-judgment domestic violence—it simply expressly refused to consider that evidence in its analysis. Whether a district court properly applies North Dakota case law is a question of law. See Serr v. Serr, 2008 ND 56, ¶ 19, 746 N.W.2d 416.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (mislabeled dup copy)",
+  "evidence": "Stored-twice: dup copy mislabeled '[¶18] We' duplicates clean '[¶13] We'; delete dup (NOT renumber — would create duplicate). 492c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16892,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶18] When the district court denied Mark Rath's motion for reconsideration, it necessarily confirmed its order granting the restraining order. Because we issued our mandate prior to the district court denying Mark Rath's motion for reconsideration, which confirmed the restraining order, the district court possessed the requisite subject matter jurisdiction to issue its order. Therefore, the district court's order granting the restraining order is valid and it did not abuse its discretion in denying Mark Rath's motion for reconsideration.\n\nIV.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (mislabeled dup copy)",
+  "evidence": "Stored-twice: dup copy mislabeled '[¶18] Wh' duplicates clean '[¶13] Wh'; delete dup (NOT renumber — would create duplicate). 551c.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16896,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶8] Under N.D. Sup. Ct. Admin. R. 7.2, notice of a written consultation with attorneys and judges and other interested persons in the Northeast Judicial District was posted February 15, 2017, on the website of the Supreme Court regarding the vacancy created by Judge McClintock's retirement in Judgeship No. 2. Notice was\n\n *887\n\n also electronically provided to all presiding judges of the state. Written comments on the vacancy were permitted through March 17, 2017. This procedure is sufficient for purposes of the consultation required under Section 27-05-02.1, N.D.C.C.\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup (mislabeled dup copy)",
+  "evidence": "Stored-twice: dup copy mislabeled '[¶8] Und' duplicates clean '[¶3] Und'; delete dup (NOT renumber — would create duplicate). 577c.",
+  "confidence": "high"
+ }
+]

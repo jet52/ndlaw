@@ -97,5 +97,89 @@
   "old_exact": "pro\\n\\n *339\\n\\n cess",
   "new_exact_intent": "process (rejoin, preserve *339)",
   "note": "2017 ND ?: 'process' split across *339."
+ },
+ {
+  "opinion_id": 16836,
+  "class": "split_join_starpage",
+  "old_exact": "a materi\n\n *872\n\n al-variation in terms suggests a variation in meaning.",
+  "new_exact_intent": "a material variation in terms suggests a variation in meaning.",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16842,
+  "class": "split_join_starpage",
+  "old_exact": "decision sus\\*911 pending or revoking",
+  "new_exact_intent": "decision suspending or revoking",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16876,
+  "class": "split_join_starpage",
+  "old_exact": "chai-\n\n *727\n\n lenged ",
+  "new_exact_intent": "challenged ",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16883,
+  "class": "split_join_starpage",
+  "old_exact": "The dis\n\n *763\n\n trict court",
+  "new_exact_intent": "The district court",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16887,
+  "class": "split_join_starpage",
+  "old_exact": "work per\n\n *168\n\n formed",
+  "new_exact_intent": "work performed",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16891,
+  "class": "split_join_starpage",
+  "old_exact": "Con\n\n *202\n\n rad",
+  "new_exact_intent": "Conrad",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16891,
+  "class": "split_join_starpage",
+  "old_exact": "dis\n\n *203\n\n missed",
+  "new_exact_intent": "dismissed",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16895,
+  "class": "split_join_starpage",
+  "old_exact": "property dam\n\n *886\n\n age",
+  "new_exact_intent": "property damage",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16898,
+  "class": "split_join_starpage",
+  "old_exact": "Ac\\*893 cording to the officer",
+  "new_exact_intent": "According to the officer",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16909,
+  "class": "split_join_starpage",
+  "old_exact": "deny\n\n *506\n\n ing",
+  "new_exact_intent": "denying",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16909,
+  "class": "split_join_starpage",
+  "old_exact": "sum\n\n *502\n\n mary",
+  "new_exact_intent": "summary",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16910,
+  "class": "split_join_starpage",
+  "old_exact": "unsuc\n\n *507\n\n cessfully",
+  "new_exact_intent": "unsuccessfully",
+  "note": "p38 star-page word-split"
  }
 ]

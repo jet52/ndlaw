@@ -1,1 +1,39 @@
-[]
+[
+ {
+  "opinion_id": 16868,
+  "class": "paragraph_seq",
+  "old_exact": "[\u00b618] We next determine whether the district court erred by refusing to consider the evidence that was before it relating to O'Hara's pre-judgment domestic violence.",
+  "new_exact": "[\u00b613] We next determine whether the district court erred by refusing to consider the evidence that was before it relating to O'Hara's pre-judgment domestic violence.",
+  "source_quote": "[\u00b613] We next determine whether the district court erred by refusing to consider the evidence that was before it relating to O'Hara's pre-judgment domestic violence.",
+  "source": "PDF /Users/jerod/refs/nd/opin/pdfs/2017/2017ND53.pdf",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "Paragraph numbering error: \u00b613 in the opinion was mislabeled as \u00b618 in DB. PDF shows correct sequence \u00b612 \u2192 \u00b613 \u2192 \u00b614. DB shows \u00b612 \u2192 \u00b618 (wrong) \u2192 \u00b613 (duplicate) \u2192 \u00b614 (correct).",
+  "note": "This is the beginning of section B where the court determines whether the district court erred by refusing to consider pre-judgment domestic violence evidence.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16892,
+  "class": "paragraph_seq",
+  "old_exact": "[\u00b618]",
+  "new_exact": "[\u00b613]",
+  "source_quote": "[\u00b613] When the district court denied Mark Rath's motion for reconsideration, it necessarily confirmed its order granting the restraining order.",
+  "verified_count": 1,
+  "source": "2017ND80.pdf",
+  "confidence": "high",
+  "evidence": "PDF paragraph sequence shows \u00b612, \u00b613, \u00b614... in correct order. DB incorrectly labels this paragraph as \u00b618, creating a non-existent paragraph number. PDF line 127 shows [\u00b613] at this location.",
+  "_verdict": "review:pdf_confirmed"
+ },
+ {
+  "opinion_id": 16896,
+  "class": "paragraph_seq",
+  "old_exact": "[\u00b68] Under N.D. Sup. Ct. Admin. R. 7.2, notice of a written consultation",
+  "new_exact": "[\u00b63] Under N.D. Sup. Ct. Admin. R. 7.2, notice of a written consultation",
+  "source": "/Users/jerod/refs/nd/opin/pdfs/2017/2017ND85.pdf",
+  "source_quote": "[\u00b63] Under N.D. Sup. Ct. Admin. R. 7.2, notice of a written consultation with attorneys and judges and other interested persons in the Northeast Judicial District was posted February 15, 2017, on the website of the Supreme Court regarding the vacancy created by Judge McClintock's retirement in Judgeship No. 2.",
+  "verified_count": 1,
+  "confidence": "high",
+  "evidence": "PDF lines 31-34 show this paragraph labeled as [\u00b63], not [\u00b68]. DB line 13 incorrectly labels this consultation notice paragraph as [\u00b68], then duplicates it correctly labeled as [\u00b63] at line 19. The PDF shows \u00b61, \u00b62, \u00b63, \u00b64... in correct sequence; DB shows \u00b61, \u00b62, \u00b68 (wrong), \u00b63, \u00b64... with [\u00b68] appearing again correctly later at line 35",
+  "_verdict": "review:pdf_confirmed"
+ }
+]

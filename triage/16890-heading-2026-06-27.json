@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16890,
+  "class": "heading_seq",
+  "old_exact": "\n\nIll\n\n[¶7]",
+  "new_exact": "\n\nIII\n\n[¶7]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence; OCR Ill->III",
+  "evidence": "Heading 'Ill' (I+l+l) is OCR of 'III' before [¶7].",
+  "confidence": "high"
+ }
+]
