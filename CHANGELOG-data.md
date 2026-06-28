@@ -19,6 +19,22 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batches `fix-2026-page-footers` + `fix-starpage-word-splits` (2026-06-27) — two deterministic queue sweeps
+
+**2026 page-footer leak** (`fix-2026-page-footers-2026-06-27`, `scripts/fix_2026_page_footers.py`):
+the 2026 scraper folded centered page-footer numbers inline ("noted 4 the"). Deterministic fix —
+for each PDF centered lone-digit footer, take the exact bracketing words and remove only that
+"W1 F W2"->"W1 W2" match. **51 leaks across 13 opinions** (2026 ND batch). Reusable for future scrapes.
+
+**Star-page word-splits** (`fix-starpage-word-splits-2026-06-27`, `scripts/fix_starpage_word_splits.py`):
+discovered the `\n\n *NNN\n\n` form is the NORMAL pre-1953 star-page rendering (6,660 correct
+word-boundary markers), NOT a defect. Only genuine mid-word splits are defects ("re *287 demption"
+= "redemption"). Fixed **1,323 splits across 991 opinions** with a two-part genuine-split test
+(joined token appears whole elsewhere in the opinion AND neither fragment is a common word) +
+**marker-before-word convention** (pincite-safe; CONVENTION CHOICE — revertible by batch if a
+different placement is preferred). 91 common-word-fragment cases deferred (ambiguous: "in *214
+forming"). Subsumes the prior 27-item star-page queue. Detector 176/0, invariants 24 ok/0, 79 tests.
+
 ## Batches `p38-flags-*-2026-06-27` — P38 flags triaged (45 substantive; 30 markup→cohort)
 
 Worked all 75 P38 agent flags. 30 markup "other" → markup cohort. Of 45 substantive:
