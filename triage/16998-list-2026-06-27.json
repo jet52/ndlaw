@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16998,
+  "class": "missing_text",
+  "old_exact": "order unless:\n\n1.\n2.\n\nThe order is not in accordance with the law.\nThe order is in violation of the constitutional rights of the\nappellant.\n\n2\n\n3.\n\n4.\n\n5.\n\n6.\n\n7.\n\n8.\n\nThe provisions of this chapter have not been complied with in\nthe proceedings before the agency.\nThe rules or procedure of the agency have not afforded the\nappellant a fair hearing.\nThe findings of fact made by the agency are not supported by a\npreponderance of the evidence.\nThe conclusions of law and order of the agency are not\nsupported by its findings of fact.\nThe findings of fact made by the agency do not sufficiently\naddress the evidence presented to the agency by the appellant.\nThe conclusions of law and order of the agency do not\nsufficiently explain the agency's rationale for not adopting any\ncontrary recommendations by a hearing officer or an\nadministrative law judge.\n\nN.D.C.C. § 28-32-46.",
+  "new_exact": "order unless:\n\n1. The order is not in accordance with the law.\n2. The order is in violation of the constitutional rights of the appellant.\n3. The provisions of this chapter have not been complied with in the proceedings before the agency.\n4. The rules or procedure of the agency have not afforded the appellant a fair hearing.\n5. The findings of fact made by the agency are not supported by a preponderance of the evidence.\n6. The conclusions of law and order of the agency are not supported by its findings of fact.\n7. The findings of fact made by the agency do not sufficiently address the evidence presented to the agency by the appellant.\n8. The conclusions of law and order of the agency do not sufficiently explain the agency's rationale for not adopting any contrary recommendations by a hearing officer or an administrative law judge.\n\nN.D.C.C. § 28-32-46.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND183 lines 98-119 (N.D.C.C. § 28-32-46)",
+  "evidence": "Two-column extraction scramble: list numbers 1-8 were grouped separately from their bodies (+ page-footer '2'). Reconstructed the §28-32-46 list verbatim from PDF, each item rejoined.",
+  "confidence": "high"
+ }
+]
