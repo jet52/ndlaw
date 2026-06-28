@@ -19,6 +19,30 @@ verify every "missing_text" flag against the PDF before restoring.) Also in 1691
 Note: `marker_triage.py` does NOT catch paren-corrupted `(¶ N]` markers (ANCHOR matches
 `[¶`/`*[¶` only) — candidate enhancement. Detector 176/0, invariants 24 ok/0, 76 tests.
 
+## Batches `p38-flags-*-2026-06-27` — P38 flags triaged (45 substantive; 30 markup→cohort)
+
+Worked all 75 P38 agent flags. 30 markup "other" → markup cohort. Of 45 substantive:
+- **Names/abbrev/punct** (`p38-flags-ocr`): 16863 ROMANICK→Romanick / N.D.C.G.→N.D.C.C. /
+  Ku-kowski→Kukowski; 16877 Dale Y.→Dale V. Sandstrom; 16887 Freeman v.→period / $…,66→.66;
+  16906 Detonáis→Delonais ×17 / Albert-son→Albertson / Ad-dai→Addai; 16857 statute
+  52-01-01(17)(a)(l)→(1) ×11 (em-dash + letter-l; NDCC uses no "(l)").
+- **Image-verified high-risk** (`p38-flags-num`, `strip-injected-parallels`): 16877 "2.6 years"→
+  "2.5 years" (image p6), 16890 "820 acres"→"320 acres" (image p3); 16905 stripped injected
+  S.Ct./L.Ed.2d parallels off Strickland & Hill (court prints U.S.-only, image-confirmed).
+- **Signatures** (`sig-restore`): 16858 [¶26], 16871 [¶27] restored verbatim from PDF.
+- **Dups** (`dedup-storedtwice-marker`): 16857 [¶18]-copy-of-[¶13] deleted (same trap; NOT renumber).
+- **Captions** (`p38-flags-caption`): 16878 (strip markdown '#' + de-all-caps), 19236 & 19226
+  (designation reorders, PDF-verified); 16890 legal-description fractions (SEjiNEji→SE1/4NE1/4,
+  SféSW/Q→S1/2SW1/4, SE]4→SE1/4, image-confirmed).
+- **2026 page-footer leak** (`p38-flags-pagenum`): 20531 (2026 ND 126) — 5 inline page numbers
+  removed (`needed 1 Stephanie`→`needed Stephanie`, `Jacobs- 3 Raak`→`Jacobs-Raak`, etc.).
+  ⚠ Possible systemic 2026-scraper artifact — spot-check other new-2026 opinions.
+
+**No-action:** 19212/19224/19225 filing-date stamps (intentionally stripped — strip_clerk_stamps
+policy); 16868/16892 (already fixed in P38 main). **Deferred:** star-page word-splits 16838/16901/
+16916×2/16886 → queue (now 27); cosmetic ellipsis 16890/16903, ampersand-markup 16858, quote
+"good'. and" 16890. Detector 176/0, invariants 24 ok/0, 79 tests.
+
 ## Batch `corpus-proofing-p38-2026-06-27` — fleet round P38 (330 edits / 71 opinions)
 
 Fleet round P38 = next 120 uncovered (the 14 new 2026 ND ~117–129 folded in + continuation

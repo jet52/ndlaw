@@ -181,5 +181,35 @@
   "old_exact": "unsuc\n\n *507\n\n cessfully",
   "new_exact_intent": "unsuccessfully",
   "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16838,
+  "class": "split_join_starpage",
+  "old_exact": "origi\n\n *885\n\n nal",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16901,
+  "class": "split_join_starpage",
+  "old_exact": "be\n\n *181\n\n half",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16916,
+  "class": "split_join_starpage",
+  "old_exact": "Craw\n\n *772\n\n ford",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16916,
+  "class": "split_join_starpage",
+  "old_exact": "re\n\n *774\n\n fused",
+  "note": "p38 star-page word-split"
+ },
+ {
+  "opinion_id": 16886,
+  "class": "split_join_starpage",
+  "old_exact": "val\n\n *154\n\n ley",
+  "note": "p38 star-page word-split"
  }
 ]

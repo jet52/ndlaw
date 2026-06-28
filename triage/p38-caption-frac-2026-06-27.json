@@ -1,0 +1,68 @@
+[
+ {
+  "opinion_id": 16878,
+  "class": "caption",
+  "old_exact": "# In the MATTER OF the Application for DISCIPLINARY ACTION AGAINST Richard L. HAGAR, Judge of the District Court.",
+  "new_exact": "In the Matter of the Application for Disciplinary Action Against Richard L. Hagar, Judge of the District Court.",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Caption: strip markdown '#' + de-all-caps to match PDF.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19236,
+  "class": "caption",
+  "old_exact": "Plaintiff and Appellant\n\nGalen Paul Rufus,",
+  "new_exact": "Galen Paul Rufus,\n\nPlaintiff and Appellant",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Caption: designation 'Plaintiff and Appellant' relocated after the party name (PDF layout).",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 19226,
+  "class": "caption",
+  "old_exact": "Brent William Ueckert,\n\nv.\n\nDirector, North Dakota Department\nof Transportation,\n\nNo. 20160152\n\nAppellant\n\nAppellee",
+  "new_exact": "Brent William Ueckert,\n\nAppellant\n\nv.\n\nDirector, North Dakota Department\nof Transportation,\n\nAppellee\n\nNo. 20160152",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Caption: designations relocated next to parties (Ueckert=Appellant, Director=Appellee) per PDF.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16890,
+  "class": "ocr_char",
+  "old_exact": "(SEjiNEji)",
+  "new_exact": "(SE1/4NE1/4)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Legal-description fraction garbled by OCR; image p3 confirms.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16890,
+  "class": "ocr_char",
+  "old_exact": "(SféSW/Q",
+  "new_exact": "(S1/2SW1/4)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Legal-description fraction garbled by OCR; image p3 confirms.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16890,
+  "class": "ocr_char",
+  "old_exact": "(SE]4)",
+  "new_exact": "(SE1/4)",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF caption/image (manual 2026-06-27)",
+  "evidence": "Legal-description fraction garbled by OCR; image p3 confirms.",
+  "confidence": "high"
+ }
+]

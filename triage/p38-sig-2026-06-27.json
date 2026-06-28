@@ -1,0 +1,24 @@
+[
+ {
+  "opinion_id": 16858,
+  "class": "missing_text",
+  "old_exact": "to the State.\n\n*544\n\n [¶27] The Honorable Jerod E. Tufte",
+  "new_exact": "to the State.\n\n[¶26] Lisa Fair McEvers\n      Daniel J. Crothers\n      Carol Ronning Kapsner\n      Gerald W. VandeWalle, C.J.\n\n*544\n\n [¶27] The Honorable Jerod E. Tufte",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND25 lines 383-387",
+  "evidence": "Dropped [¶26] signature restored verbatim from PDF; *544 star-page preserved.",
+  "confidence": "high"
+ },
+ {
+  "opinion_id": 16871,
+  "class": "missing_text",
+  "old_exact": "with prejudice.\n\nI concur in the result.\n\n[¶28]",
+  "new_exact": "with prejudice.\n\n[¶27] Carol Ronning Kapsner\n      Lisa Fair McEvers\n      Daniel J. Crothers\n      Gerald W. VandeWalle, C.J.\n      I concur in the result.\n\n[¶28]",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "PDF 2017ND49 lines 441-445",
+  "evidence": "Dropped [¶27] signature (4 justices) restored before the existing 'I concur in the result.'; verbatim from PDF.",
+  "confidence": "high"
+ }
+]

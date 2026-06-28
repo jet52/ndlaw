@@ -1,0 +1,509 @@
+[
+ {
+  "oid": 16838,
+  "class": "split_join",
+  "location_quote": "(emphasis in origi\n\n *885\n\n nal)",
+  "description": "Word 'original' is split across page break artifact. DB has the word fragmented as '(emphasis in origi' at line 80, then page marker ' *885' at line 82, then ' nal)' at line 84. PDF source shows continuous '(emphasis in original)' on lines 218-219. This appears to be an ingestion artifact where the page break (form-feed) and page number marker split the word. Flagged rather than proposed because correcting it would require removing page furniture ( *885 marker), which is handled by separate deterministic pass per instructions.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16856,
+  "class": "other",
+  "location_quote": "Structural: Multiple extra blank lines (triple newlines) between section descriptions in the easement",
+  "description": "The DB contains 3+ consecutive blank lines between 'Section 9', 'Section 10', and 'Section 15' descriptions, while PDF shows single-line spacing with indentation. This appears to be a layout artifact that may be handled by a separate deterministic pass. Not proposed as fixes per rules."
+ },
+ {
+  "oid": 16856,
+  "class": "other",
+  "location_quote": "Layer-A structural: heading_seq issue noted in brief; opinion sections appear intact",
+  "description": "Initial brief mentioned heading_seq: 2->4 and whitespace: 15 blank-runs(3+). These appear to be known artifacts. Opinion structure (I, II, III A/B, IV A/B/C, V, VI) is present and intact in both versions."
+ },
+ {
+  "oid": 16857,
+  "class": "ocr_digit",
+  "location_quote": "§ 52-01-01(17)(a)(l) shows new corporate officers do not need to file",
+  "description": "Systemic citation error affecting 9 instances: statute number uses lowercase letter 'l' instead of digit '1' in '52-01-01(17)(a)(l)'. Should be '52-01-01(17)(a)(1)' throughout. Appears in ¶1 (twice), ¶2, ¶6, ¶7, ¶9 (twice), ¶10, ¶11, ¶12. High-risk: every instance of this statute citation in the opinion is affected.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16857,
+  "class": "ocr_char",
+  "location_quote": "§ 52—01—01(17)(a)(l) shows new corporate officers do not need",
+  "description": "Citation format error in ¶1: '52—01—01(17)(a)(l)' uses em-dashes (—) instead of hyphens and lowercase 'l' instead of digit '1'. Correct form is '52-01-01(17)(a)(1)'. This is a distinct variant from the more common 9-instance lowercase 'l' error, combining em-dash corruption with the digit error.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16857,
+  "class": "ocr_char",
+  "location_quote": "N.D.C.C. § 52—01—01 (17)(a)(l) does not require Jesse Jahner",
+  "description": "Citation format error in ¶4: '52—01—01 (17)(a)(l)' uses em-dashes and adds an extra space before '(17)', plus lowercase 'l' instead of digit '1'. Correct form is '52-01-01(17)(a)(1)' with no space. Combined OCR corruption of punctuation and structure.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16857,
+  "class": "paragraph_seq",
+  "location_quote": "[¶18] We affirm the district court's judgment affirming Job Service's \"Notice of Determination\"",
+  "description": "Duplicate affirming paragraph: Both [¶18] and [¶13] present in DB with substantively identical text (same judgment affirmation). PDF shows only [¶13] at the conclusion. Paragraph numbering is non-sequential (jumps from ¶12 to ¶18). [¶18] appears to be a mis-numbered duplicate from OCR/extraction error. Opinion should contain ¶1-¶15 total, not ¶1-¶15 plus errant ¶18.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16858,
+  "class": "whitespace",
+  "location_quote": "Cody Oil\n *&*\n Gas Corporation. Zavanna, LLC,",
+  "description": "Page break artifact with corrupted ampersand rendering. Text is split as 'Cody Oil' [line break] '*&*' [line break] 'Gas Corporation' instead of flowing as 'Cody Oil & Gas Corporation'. The '*&*' marker appears to be OCR corruption of the page break region. While the fix is clear (join text, remove '*&*' line), this requires removing page furniture, which is flagged per rule 8.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16858,
+  "class": "missing_text",
+  "location_quote": "[¶25] In view of our disposition of this case... [¶27] The Honorable Jerod E. Tufte was not a member of the Court",
+  "description": "Missing paragraph [¶26]: The entire judicial signature block (signature line) is absent from the DB text. The opinion jumps from the conclusion at [¶25] directly to the supplemental statement at [¶27]. The source PDF clearly shows [¶26] containing the five judges' names and titles (Lisa Fair McEvers, Daniel J. Crothers, Dale V. Sandstrom S.J., Carol Ronning Kapsner, Gerald W. VandeWalle C.J.), which is required for opinion authenticity. This is a substantial structural omission.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16860,
+  "class": "other",
+  "location_quote": "In Wilson, 743 S.E.2d at 759-60 (footnotes omitted), the South Carolina Supreme Court",
+  "description": "Citation court identification error: DB identifies Wilson case as from South Carolina Supreme Court, but source indicates Georgia Supreme Court (Ga. 2013). HIGH-RISK: Citation accuracy must be verified.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16860,
+  "class": "other",
+  "location_quote": "In Wilson, 743 S.E.2d at 763, the South Carolina Supreme Court explained",
+  "description": "Citation court identification error (second occurrence): DB again misidentifies Wilson case court. Both instances in opinion affected.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16860,
+  "class": "other",
+  "location_quote": "See Wilson v. Dallas, 403 S.C. 411, 743 S.E.2d 746, 758-67 (2013)",
+  "description": "Citation error: DB includes South Carolina reporter (403 S.C. 411) and incomplete court designation. Source shows 'Wilson v. Dallas, 743 S.E.2d 746, 758-67 (Ga. 2013)'. Reporter citations diverge significantly - verify correct citation against original case.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16863,
+  "class": "split_join",
+  "location_quote": "Sheriff Ku-kowski knowingly refused ... and Sheriff Kukowski willfully created ... Both Ku-kowski and Nason had",
+  "description": "The hyphenated form 'Ku-kowski' appears twice in the DB (lines 13 and 25), making it unsuitable as a byte-exact anchor for a single proposal. This represents a split-word OCR artifact where the same person's name is hyphenated at different points across the document. Cannot propose as individual fix; requires manual review of both instances. Both should be 'Kukowski' per PDF source."
+ },
+ {
+  "oid": 16863,
+  "class": "caption",
+  "location_quote": "the Honorable Lolita G. Hartl ROMANICK, Judge of the District Court",
+  "description": "Party name capitalization: DB shows all-caps 'ROMANICK' but PDF source shows mixed-case 'Romanick' in the caption. This is a high-risk correction involving a named party (defendant/respondent). Source: PDF caption shows 'The Honorable Lolita G. Hartl Romanick,' (proper name, mixed case)."
+ },
+ {
+  "oid": 16863,
+  "class": "ocr_char",
+  "location_quote": "imposed by law under N.D.C.G. § 12.1-11-06",
+  "description": "Statute code abbreviation error: DB shows 'N.D.C.G.' (with G) but PDF source shows 'N.D.C.C.' (North Dakota Century Code). This is a high-risk correction involving a statutory citation. OCR likely confused C with G. Source: PDF line 280 shows 'N.D.C.C. § 12.1-11-06'."
+ },
+ {
+  "oid": 16863,
+  "class": "other",
+  "location_quote": "within the period fixed by the applicable limitations statute. [[Image here]] \"The prosecution is only required to show",
+  "description": "Markup contamination: DB shows '[[Image here]]' as a markdown placeholder/artifact, but PDF source shows '....' (four-dot ellipsis). This appears to be an OCR/markdown ingestion artifact. Per transcription protocol, markup contamination is handled by a separate deterministic pass; flagged for awareness but not proposed for correction."
+ },
+ {
+  "oid": 16867,
+  "class": "other",
+  "location_quote": "Id. at 119, 122 S.Ct. 587",
+  "description": "DB contains parallel reporter citations (S.Ct., N.W.2d) in 'Id. at' and 'See' citations that do not appear in the authoritative PDF source. Five instances found: (1) 'Id. at 119, 122 S.Ct. 587' (2) 'Id. at 120-21, 122 S.Ct. 587' (3) 'Id. at 121, 122 S.Ct. 587' (4) 'Id. at 120 n. 6, 122 S.Ct. 587' (5) 'See Knights, 534 U.S. at 121, 122 S.Ct. 587'. These appear to be post-ingestion enrichments or citation augmentation that diverge from the published opinion.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16868,
+  "class": "paragraph_seq",
+  "location_quote": "Lines 60-65 of DB text: '[¶13] We next determine whether the district court erred by refusing to consider the evidence that was before it relating to O'Hara's pre-judgment domestic violence. The district court did not strike the affidavits in which Schneider alleged O'Hara's pre-judgment domestic violence—it simply expressly refused to consider that evidence in its analysis. Whether a district court properly applies North Dakota case law is a question of law. See Serr v. Serr, 2008 ND 56, ¶ 19, 746 N.W.2d 416.'",
+  "description": "Duplicate ¶13 paragraph following the mislabeled ¶18 (which should be ¶13). The same paragraph appears twice with identical content but different formatting (line breaks and spacing). PDF contains this paragraph only once at its correct position as ¶13. This duplicate is an OCR/ingestion artifact resulting from the mislabeling on line 58. Per transcription rules, duplicated text that resumes normal numbering thereafter is flagged rather than auto-fixed.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16869,
+  "class": "other",
+  "description": "Citation format discrepancy: Parallel reporters omitted in PDF",
+  "location_quote": "Town of Colchester v. Reduction Assocs., Inc., 34 Conn.Supp. 177, 382 A.2d 1333, 1336 (1977)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16869,
+  "class": "other",
+  "description": "Citation format discrepancy: First reporter (319 N.J.Super. 514) omitted in PDF; court designation changed from (Ct. App. Div. 1999) to (N.J. Super. Ct. App. Div. 1999)",
+  "location_quote": "Tumino v. Long Beach Twp., 319 N.J.Super. 514, 725 A.2d 1173, 1180 (Ct. App. Div. 1999)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16869,
+  "class": "other",
+  "description": "Citation format discrepancy: First reporter (184 Mont. 249) omitted in PDF; court designation format changed from (1979) to (Mont. 1979)",
+  "location_quote": "Billings Assoc. Plumbing, Heating and Cooling Contractors v. State Bd. of Plumbers, 184 Mont. 249, 602 P.2d 597, 599 (1979)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16869,
+  "class": "other",
+  "description": "Citation format discrepancy: First reporter (84 Mont. 478) omitted in PDF; court designation format changed from (1929) to (Mont. 1929)",
+  "location_quote": "State ex rel. Brooks v. Cook, 84 Mont. 478, 276 P. 958, 961 (1929)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16871,
+  "class": "missing_text",
+  "location_quote": "between [¶26] 'We affirm the district court's order' and [¶28] 'The Honorable Jerod E. Tufte was not a member'",
+  "description": "Entire [¶27] paragraph missing from DB. PDF shows [¶27] contains justice signature block: 'Carol Ronning Kapsner / Lisa Fair McEvers / Daniel J. Crothers / Gerald W. VandeWalle, C.J. / I concur in the result. / Dale V. Sandstrom, S.J.' This is a substantive structural element listing judges who concurred in the opinion.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16871,
+  "class": "paragraph_seq",
+  "location_quote": "[¶26] line 168 followed directly by [¶28] line 172, with 'I concur in the result.' at line 170 in between",
+  "description": "Paragraph sequence broken: [¶26] → (missing [¶27]) → [¶28]. The 'I concur' statement properly belongs within the missing [¶27] justice signature block.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16877,
+  "class": "ocr_digit",
+  "location_quote": "you wouldn't serve 2.6 years plus another 2.5 years",
+  "description": "DB shows '2.6 years' but PDF shows '2.5 years' at line 270. Critical digit error in sentencing discussion—5 misread as 6. HIGH-RISK NUMBER: verify before applying.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16877,
+  "class": "ocr_char",
+  "location_quote": "Surrogate Judge Dale Y. Sandstrom, sitting.",
+  "description": "DB shows 'Dale Y. Sandstrom' but PDF shows 'Dale V. Sandstrom' at line 407. Letter substitution (Y vs V) in judge's middle initial. HIGH-RISK PARTY NAME: verify before applying.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16877,
+  "class": "other",
+  "location_quote": "his counsel's representa / tion fell below",
+  "description": "Word 'representation' split across page break: DB has 'representa' at line 9, page marker *729 at line 11, then 'tion' at line 13. This is structural formatting from the source PDF layout, not an OCR defect. Page break marker appears intentional. FLAG for review—do not auto-fix as it involves page break handling.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16878,
+  "class": "caption",
+  "location_quote": "# In the MATTER OF the Application for DISCIPLINARY ACTION AGAINST Richard L. HAGAR, Judge of the District Court. Judicial Conduct Commission, Petitioner v. Richard L. HAGAR, Respondent",
+  "description": "The opening caption line (line 1) contains multiple issues: (1) markdown heading symbol (#) suggesting processing artifact, (2) inconsistent capitalization with all-caps for MATTER, DISCIPLINARY ACTION, and HAGAR, while the PDF source shows proper mixed case (Matter, Disciplinary Action, Hagar). This appears to be formatting contamination from how the text was extracted/processed rather than the court's official published text.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16878,
+  "class": "other",
+  "location_quote": "Case shows page markers throughout: *737, *738, *739, *740, *741, *742 embedded in text flow",
+  "description": "Page reference markers (asterisk followed by page numbers) are present in the DB text embedded between paragraphs. These are expected artifacts per rules (page furniture handled by separate deterministic pass) and should be ignored. Noted for completeness but no action required.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16885,
+  "class": "other",
+  "location_quote": "Line 9: 'Birchfield v. North Dakota, - U.S. -, 136 S.Ct. 2160, 195 L.Ed.2d 560 (2016)'",
+  "description": "The DB includes supplemental citation components (U.S. report and L.Ed.2d parallel citation) not present in the authoritative PDF. While I am proposing removal of these, the source of this contamination suggests possible markup handling or citation-enhancement processing in the ingestion pipeline that should be reviewed.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16886,
+  "class": "whitespace",
+  "location_quote": "\"alluvial val\" followed by \" *154\" page marker, then \"ley floor,\"",
+  "description": "Word 'valley' split across page break (lines 126-128). This is an ingestion artifact from page break handling. Recommend manual review to determine if this should be rejoined or preserved as page-break artifact.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 16887,
+  "class": "ocr_digit",
+  "location_quote": "$24,599,66",
+  "description": "Dollar amount in cost summary appears as $24,599,66 (comma decimal separator) in DB but source PDF shows $24,599.66 (period decimal separator). This is a high-risk numerical value requiring manual verification before correction.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16887,
+  "class": "ocr_char",
+  "location_quote": "Freeman v,",
+  "description": "Citation shows 'Freeman v,' (comma) in DB but source PDF shows 'Freeman v.' (period). This is a high-risk citation format requiring manual verification. Citation is Freeman v. Trimble, 21 N.D. 1, 11-12, 129 N.W. 83, 87-88 (1910).",
+  "confidence": "high"
+ },
+ {
+  "oid": 16890,
+  "class": "ocr_digit",
+  "confidence": "high",
+  "description": "Property acreage number error: 820 vs 320 acres in legal property description. Flagged as high-risk numeric change requiring verification.",
+  "location_quote": "under the 820 acres described—not the specific minerals associated with a specific patch of the 320 acres"
+ },
+ {
+  "oid": 16890,
+  "class": "ocr_char",
+  "confidence": "high",
+  "description": "Property description legal fractions severely garbled by OCR. Multiple errors: SEjiNEji (should SE1/4NE1/4), SféSW/Q (should S1/2SW1/4), SE]4 (should SE1/4), plus missing conjunction \"and\".",
+  "location_quote": "Southeast Quarter of Northeast Quarter (SEjiNEji), Lot One (1), South Half of Southwest Quarter (SféSW/Q and Southeast Quarter (SE]4) of Section Three (3)"
+ },
+ {
+  "oid": 16890,
+  "class": "missing_text",
+  "confidence": "medium",
+  "description": "Potential quote character cluster corruption: \"good'. and\" in DB vs \"good and\" in PDF. Verify whether this is curly/straight quote handling or actual missing text.",
+  "location_quote": "and other good'. and valuable considerations, in hand paid by T.H. Richardson of St. Paul, Minnesota"
+ },
+ {
+  "oid": 16890,
+  "class": "whitespace",
+  "confidence": "high",
+  "description": "Ellipsis spacing artifact: \".,. \" (dots-comma-period-space) in DB vs \". . . \" (proper spaced dots) in PDF. Ingestion formatting error from PDF layout.",
+  "location_quote": "of St. Paul, Minnesota .,. hereinafter called assignee, . . ."
+ },
+ {
+  "oid": 16892,
+  "class": "paragraph_seq",
+  "location_quote": "[¶18] When the district court denied Mark Rath's motion for reconsideration, it necessarily confirmed its order granting the restraining order... [followed by] IV. [¶13] When the district court denied Mark Rath's motion for reconsideration, it necessarily confirmed its order granting the restraining order...",
+  "description": "Duplicate paragraph content and numbering anomaly. The content of ¶13 appears twice in DB: first mislabeled as [¶18], then again as [¶13]. This creates duplicate IV. section headings (appears twice in DB, once in PDF). PDF shows clean sequence ¶12→¶13→¶14 with single IV. heading. This is an OCR/ingestion duplication error where the same paragraph was transcribed twice with different formatting and incorrect labeling on the first occurrence.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16901,
+  "class": "other",
+  "location_quote": "N.D.C.C. § 28-0146",
+  "description": "Statute citation malformed: '28-0146' appears 5 times throughout DB (lines 21, 25, 27, 25 again, 21 again), should be '28-01-46' per authoritative PDF. Flagged as high-risk: multiple instances of citation number requiring validation."
+ },
+ {
+  "oid": 16901,
+  "class": "other",
+  "location_quote": "Haugenoe v. Barnbrick",
+  "description": "Proper name in legal citation: DB shows 'Barnbrick' but PDF authoritative source shows 'Bambrick'. High-risk OCR error in defendant surname within case name (1 occurrence, line 37)."
+ },
+ {
+  "oid": 16901,
+  "class": "split_join",
+  "location_quote": "be\n\n *181\n\n half",
+  "description": "Word 'behalf' split across page break: 'be' at end of line 13, page marker ' *181' (page reference artifact), then 'half' at line 17. Combines word splitting with page furniture; flagged for separate deterministic pass per rules."
+ },
+ {
+  "oid": 16902,
+  "class": "other",
+  "location_quote": "and ... a timely objection",
+  "description": "Ellipsis formatting divergence: DB shows compact '...' (3 dots) while PDF shows spaced '. . . .' (3 dots with spaces). The rule specifies to fix when DB is spaced and PDF is compact, but here the PDF is spaced. Flagging rather than proposing since the specific rule does not cover this case and ellipsis normalization is handled separately per instructions.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 16903,
+  "class": "other",
+  "location_quote": "[[Image here]]",
+  "description": "Image placeholder artifact on DB line 87. The source PDF line 228 contains '....' (four dots), which appears to represent an ellipsis or omission marker in the testimony. The text extraction process could not properly convert this to text and the DB shows a placeholder instead. This is a known artifact that should be handled by the separate form-feed/page-furniture pass.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 16903,
+  "class": "whitespace",
+  "location_quote": "A. ... a motion for discovery",
+  "description": "Ellipsis formatting differs between DB and source. DB line 90 shows 'A. ... a motion' (three compact dots) while source line 229 shows 'A. . . . a motion' (four spaced dots with spaces between each dot). This discrepancy is entangled with the image placeholder on the previous line and the change from PDF layout (separate line 228 with dots) to consolidated DB text. The source shows the compact form '..... ' on its own line (228) followed by the spaced form '....  ' in the answer continuation (229). Recommend manual review to ensure proper representation.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 16905,
+  "class": "ocr_digit",
+  "description": "Strickland v. Washington citation contains extra reporter information in DB not present in PDF extraction",
+  "location_quote": "Strickland v. Washington, 466 U.S. 668, 687, 104 S.Ct. 2052, 80 L.Ed.2d 674 (1984)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16905,
+  "class": "ocr_digit",
+  "description": "Hill v. Lockhart citation contains extra reporter information in DB (106 S.Ct. 366, 88 L.Ed.2d 203) not present in PDF extraction which shows only U.S. reporter",
+  "location_quote": "In Hill v. Lockhart, 474 U.S. 52, 59, 106 S.Ct. 366, 88 L.Ed.2d 203 (1985)",
+  "confidence": "high"
+ },
+ {
+  "oid": 16906,
+  "class": "ocr_char",
+  "location_quote": "David Detonáis (\"Deto-náis\"); and Eric Detonáis... Detonáis stabbed Tesafaye... Detonáis during the fight",
+  "description": "Character name 'Detonáis' appears 17 times in DB with accent mark and hyphenated form 'Deto-náis'. PDF shows consistent spelling 'Delonais' (without accent, without hyphen) throughout. Multi-occurrence systematic OCR error requiring bulk replacement rather than single-point edits."
+ },
+ {
+  "oid": 16906,
+  "class": "split_join",
+  "location_quote": "Albert-son testified she heard Addai say... Albert-son testified Delonais said he had been stabbed",
+  "description": "Witness name appears 2 times in DB as 'Albert-son' (hyphenated). PDF consistently shows 'Albertson' (no hyphen). Multi-occurrence split-word error requiring systematic correction."
+ },
+ {
+  "oid": 16906,
+  "class": "split_join",
+  "location_quote": "Ad-dai alleges in his 2015 application... At the eviden-tiary hearing",
+  "description": "Name 'Ad-dai' appears 2 times in DB (separate from the 'Ad-dai's' proposal). PDF shows 'Addai' consistently. These instances should be corrected in conjunction with other Addai-related systematic replacements."
+ },
+ {
+  "oid": 16915,
+  "class": "other",
+  "location_quote": "Strickland v. Washington, 466 U.S. 668, 687-96, 104 S.Ct. 2052, 80 L.Ed.2d 674 (1984)",
+  "description": "DB contains extra parallel citations (104 S.Ct. 2052, 80 L.Ed.2d 674) not present in source PDF. Source shows minimal citation form: (466 U.S. 668, 687-96 (1984)). This appears to be an ingestion-time enhancement, not OCR error.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16915,
+  "class": "other",
+  "location_quote": "Hill v. Lockhart, 474 U.S. 52, 58, 106 S.Ct. 366, 88 L.Ed.2d 203 (1985)",
+  "description": "DB contains extra parallel citations (106 S.Ct. 366, 88 L.Ed.2d 203) not present in source PDF. Source shows minimal citation form: (474 U.S. 52, 58 (1985)). Consistent pattern suggests DB normalization of citations beyond source.",
+  "confidence": "high"
+ },
+ {
+  "oid": 16915,
+  "class": "other",
+  "location_quote": "*767 (between paragraphs 5 and conclusion of ¶5); *769 (between ¶12 and its continuation)",
+  "description": "Page number markers embedded in text (*767, *769). Standard legal formatting convention to mark printed page breaks. Likely intentional preservation of source layout rather than OCR artifacts. No action recommended unless policy is to remove all page markers.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 16916,
+  "class": "split_join",
+  "location_quote": "legal limit. Craw\n\n *772\n\n ford requested an administrative hearing",
+  "description": "Word 'Crawford' split across page break marker: page marker '*772' inserted in middle of word, creating 'Craw' + marker + 'ford'. Source shows complete word."
+ },
+ {
+  "oid": 16916,
+  "class": "split_join",
+  "location_quote": "whether driver knowingly re\n\n *774\n\n fused to submit to test",
+  "description": "Word 'refused' split across page break marker: page marker '*774' inserted in middle of word, creating 're' + marker + 'fused'. Source shows complete word."
+ },
+ {
+  "oid": 19209,
+  "class": "other",
+  "description": "Filing date is missing from DB: the phrase 'Filed 2/6/17 by Clerk of Supreme Court' appears clearly at the top of the authoritative PDF but is absent from the DB text. This is administrative metadata and may be intentionally handled by a separate process, but it represents a divergence from the source. Flagged rather than proposed due to high-risk date element (2/6/17).",
+  "location_quote": "Filed 2/6/17 by Clerk of Supreme Court",
+  "confidence": "high"
+ },
+ {
+  "oid": 19212,
+  "class": "missing_text",
+  "location_quote": "DB begins with: \\nIN THE SUPREME COURT\\n\\nSTATE OF NORTH DAKOTA\\n\\n2017 ND 2 — but should begin with filing date",
+  "description": "The filing date 'Filed 1/26/17 by Clerk of Supreme Court' appears at the top of the PDF but is missing from the beginning of the DB text. This is official metadata that appears in the authoritative court document.",
+  "confidence": "high"
+ },
+ {
+  "oid": 19218,
+  "class": "other",
+  "confidence": "high",
+  "description": "Signature block formatting divergence: In the source PDF, justices' names appear on separate lines with 6-space indentation after Chief Justice VandeWalle. In the DB, all names are consolidated onto a single line. All names and content are correct; this is a formatting/layout difference between source and DB text.",
+  "location_quote": "[¶2] Gerald W. VandeWalle, C.J. Lisa Fair McEvers Daniel J. Crothers Jerod E. Tufte Carol Ronning Kapsner"
+ },
+ {
+  "oid": 19224,
+  "class": "missing_text",
+  "location_quote": "Filed 3/7/17 by Clerk of Supreme Court",
+  "description": "This filing date line appears at the very beginning of the authoritative PDF source document but is absent from the DB text. It may be metadata/publication information that is intentionally excluded from the opinion body, but it appears prominently in the published PDF and represents content present in the authoritative source but missing from the DB.",
+  "confidence": "medium"
+ },
+ {
+  "oid": 19225,
+  "class": "missing_text",
+  "location_quote": "Filed 1/26/17 by Clerk of Supreme Court",
+  "description": "The filing metadata line 'Filed 1/26/17 by Clerk of Supreme Court' appears at the beginning of the authoritative PDF source but is absent from the DB text. This is a potential missing_text issue; however, it contains a date and should be flagged as HIGH-RISK for human review. The omission may be intentional (date stored separately) or a genuine ingestion gap. Confirm whether this line should be included in text_content for full fidelity to the published opinion.",
+  "confidence": "high"
+ },
+ {
+  "oid": 19226,
+  "class": "caption",
+  "location_quote": "Brent William Ueckert, ... Appellant (DB lines 8, 17) vs Brent William Ueckert, Appellant (PDF line 9)",
+  "description": "Case caption structure diverges: DB has separated party role designations ('Appellant', 'Appellee') onto their own lines (DB lines 17, 19), but PDF shows them on the same lines as party names (PDF lines 9, 13), right-aligned. This is a structural change that affects how the caption is presented.",
+  "confidence": "high"
+ },
+ {
+  "oid": 19236,
+  "class": "caption",
+  "confidence": "high",
+  "location_quote": "Galen Paul Rufus,                                        Plaintiff and Appellant\n\n      v.\nState of North Dakota,                                 Defendant and Appellee",
+  "description": "In the authoritative source PDF, party names and party labels appear on the same line: 'Galen Paul Rufus,' followed by spaces and then 'Plaintiff and Appellant' on the same line; and 'State of North Dakota,' followed by spaces and then 'Defendant and Appellee' on the same line. In the database, these elements are split across separate lines with blank lines between them, and the party labels (Plaintiff and Appellant / Defendant and Appellee) precede the party names rather than following them. DB structure: lines 8 (Plaintiff and Appellant), blank, 10 (Galen Paul Rufus,), blank, 12 (v.), blank, 14 (State of North Dakota,), blank, 16 (Defendant and Appellee). Source structure: line 9 has party name and label together; line 12 has other party name and label together."
+ },
+ {
+  "oid": 20521,
+  "class": "other",
+  "location_quote": "his wife by phone. Pope admitted both allegations at the revocation hearing.",
+  "description": "Footnote marker '1' appears inline in DB after 'revocation hearing.' but on a separate centered line in PDF (line 63). The DB positions it as 'revocation hearing. 1' while the PDF shows it on its own line. This is a footnote positioning anomaly; footnotes are handled by separate pipeline."
+ },
+ {
+  "oid": 20521,
+  "class": "other",
+  "location_quote": "N.W.3d 164. Because the allegations supporting a dismissed charge",
+  "description": "Footnote marker '2' appears inline in DB as 'Because 2 the allegations' but on a separate centered line in PDF (line 102). The PDF shows the marker on its own line between 'Because' and 'the allegations', suggesting a page-break footnote. Footnote positioning anomaly."
+ },
+ {
+  "oid": 20521,
+  "class": "other",
+  "location_quote": "three of them forged, and the district court considered the letters in determining the sentence.",
+  "description": "Footnote marker '3' appears inline in DB as 'district court 3 considered' but on a separate centered line in PDF (line 142). The PDF positions it on its own line between the two clauses. Footnote positioning anomaly."
+ },
+ {
+  "oid": 20521,
+  "class": "other",
+  "location_quote": "inferences that evidence supports. Hamilton, 2023 ND 233, ¶ 11; Hoverson, 2006 ND 49, ¶¶ 38–42.",
+  "description": "Footnote marker '4' appears inline in DB as '¶¶ 38–42. 4' but on a separate centered line in PDF (line 179). The PDF shows it on its own line after the citation and before [¶13]. Footnote positioning anomaly."
+ },
+ {
+  "oid": 20522,
+  "class": "other",
+  "description": "Judge signature block formatting differs between source and DB: The PDF shows each judge's name on a separate indented line ([¶3] Lisa Fair McEvers, C.J. / Jerod E. Tufte / Jon J. Jensen / Douglas A. Bahr / Mark A. Friese), but the DB text presents all names on a single line separated by spaces. This could represent a lost whitespace structure during ingestion or an intentional content normalization. Given that judge names are high-risk items and the structural significance of signature blocks in judicial opinions, this divergence warrants human review.",
+  "location_quote": "[¶3] Lisa Fair McEvers, C.J. Jerod E. Tufte Jon J. Jensen Douglas A. Bahr Mark A. Friese",
+  "confidence": "high"
+ },
+ {
+  "oid": 20529,
+  "class": "other",
+  "location_quote": "Although Friesz's application indicated 1 \"Chris Barret[t]'s confession to the robbery\" was attached",
+  "description": "Footnote marker anomaly: The superscript footnote marker '1' appears inline in the text as 'indicated 1 \"Chris...' when in the PDF it is on a separate line preceding the quoted text. This is a footnote integration artifact, not a substantive transcription error. The marker should be handled by the footnote pipeline.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "Jesse Clooten claimed he needed 1 Stephanie Clooten to sign a certificate of occupancy",
+  "description": "Page number '1' captured as inline text between 'needed' and 'Stephanie'. PDF source shows line break (page footer) at this location, not a digit in running text. The corrected text should read 'needed Stephanie Clooten to sign'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "derived solely from Zillow documents 2 and lacks the support of expert analysis",
+  "description": "Page number '2' captured as inline text between 'documents' and 'and'. PDF source shows page break/footer at this location. Should read 'documents and lacks'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "Id. (quoting Jacobs- 3 Raak v. Raak, 2020 ND 107, ¶ 21, 942 N.W.2d 879)",
+  "description": "Page number '3' embedded in case citation 'Jacobs- 3 Raak'. PDF shows page break between 'Jacobs-' and 'Raak'. Correct case name is 'Jacobs-Raak v. Raak'. This is a high-risk citation element requiring separate handling.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "conceded not asking Stephanie Clooten for the certificate of 4 occupancy until after the deadline expired",
+  "description": "Page number '4' captured between 'of' and 'occupancy'. PDF shows page break at this location. Should read 'of occupancy until'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "The district court 6 must have some factual basis for determining the loss or injury suffered",
+  "description": "Page number '6' captured between 'court' and 'must'. PDF shows page break/footer at this location. Should read 'court must have'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "mortgage would have been. The district 7 court found Stephanie Clooten suffered monetary damages",
+  "description": "Page number '7' captured between 'district' and 'court'. PDF shows page break at this location. Should read 'district court found'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20531,
+  "class": "ocr_digit",
+  "location_quote": "those orders enumerated in N.D.C.C. § 28-27-02 are 8 appealable.\" Morales, ¶ 16",
+  "description": "Page number '8' captured between 'are' and 'appealable'. PDF shows page break/footer at this location. Should read 'are appealable'.",
+  "confidence": "high"
+ },
+ {
+  "oid": 20532,
+  "class": "other",
+  "confidence": "high",
+  "description": "Page number '1' has been improperly embedded in the text as part of 'should be 1 followed.' The text appears on the page break between pages 1 and 2. The correct text should read 'should be followed' without the embedded page number. This is a page furniture artifact: the PDF contains 'should be' followed by form-feed (\\x0c), centered page number '1', then 'followed.' The page number should not appear in the opinion text.",
+  "location_quote": "that course should be 1 followed"
+ }
+]

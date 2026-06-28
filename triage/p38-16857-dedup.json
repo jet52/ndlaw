@@ -1,0 +1,13 @@
+[
+ {
+  "opinion_id": 16857,
+  "class": "dedup_storedtwice",
+  "old_exact": "[¶18] We affirm the district court's judgment affirming Job Service's \"Notice of Determination\" stating Jesse Jahner's and Vance Jahner's services qualify as employment under N.D.C.C. § 52-01-01(17).\n\n",
+  "new_exact": "",
+  "source_quote": "",
+  "verified_count": 1,
+  "source": "sequence+text dedup",
+  "evidence": "Stored-twice: [¶18] copy of [¶13] (mislabeled); delete dup. 201c.",
+  "confidence": "high"
+ }
+]
