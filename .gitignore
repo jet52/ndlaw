@@ -1,0 +1,95 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.db
+*.db.bak-*
+*.db-journal
+*.db-shm
+*.db-wal
+.claude/
+*.egg-info/
+node_modules/
+package-lock.json
+input-data/
+.remember/
+*.docx
+worklists/
+# corpus DB release artifacts (shipped via GitHub releases, not the repo)
+*.db.zip
+*.db.zip.sha256
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.nvim/
+
+# Python tooling caches
+*.pyo
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Build artifacts
+dist/
+build/
+
+# OS noise
+Thumbs.db
+desktop.ini
+
+# Local environment / secrets
+.env
+.envrc
+
+# Project-scoped MCP config (per-user absolute paths)
+.mcp.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# paragraph-marker re-OCR working tree (PDFs, marker output, reporter docs — scratch)
+triage/cite-audit-2026-05-29/para-markers/
+
+# court field-validation source (large binary; kept local, see TODO #5)
+input-data/court-opinions-report-*.xlsx
+*.json.bak-*
+
+# const point-in-time campaign — rendered/cached media (scratch; scripts & .md are tracked)
+triage/const-modern-batch/png/
+triage/const-pilot-2026-06-14/*.pdf
+triage/const-pilot-2026-06-14/caa-cache/
+triage/const-pilot-2026-06-14/markup-pages/
+
+# Stray scratch at repo root (use the session scratchpad dir, never the repo root):
+# accidental pdftotext / mutool / command-output dumps
+/page*.txt
+/out.txt
+/out.pdf
+/out.png
+/*.tmp
+/scratch*
+
+# regenerable panel-rebuild dry-run / cross-check artifacts
+# (reproduce via scripts/panel_dryrun.py + scripts/panel_crosscheck.py)
+triage/panel-extract-dryrun-*.json
+triage/panel-crosscheck-*.json
+
+# Internal working scratch — not distributed (kept locally on the maintainer's disk).
+# Only the live independent-audit sample is tracked.
+triage/*
+!triage/audit-sample-2026-07-19.tsv
+!triage/audit-sample-2026-07-19.provenance.txt
+
+# Dated per-session handoff logs — kept locally, not part of the public repo
+HANDOFF-2026-*.md
+westlaw-quickcheck-sample.js
+
+# DB snapshot backups (large, local rollback points)
+*.bak

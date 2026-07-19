@@ -1,0 +1,54 @@
+# Caddyfile — public ndcourts-mcp behind TLS + Basic Auth + rate limiting.
+#
+# Replace the three placeholders: YOUR_EMAIL, mcp.YOURDOMAIN.com, and the
+# bcrypt hash(es) under basic_auth. See deploy/SETUP.md for the full walk-through.
+
+{
+	# Email for the Let's Encrypt account (TLS is automatic).
+	email YOUR_EMAIL@example.com
+
+	# Throttle unauthenticated floods BEFORE checking credentials.
+	# (rate_limit comes from the caddy-ratelimit plugin — see SETUP.md)
+	order rate_limit before basic_auth
+}
+
+mcp.YOURDOMAIN.com {
+	# --- Abuse protection: per-client-IP request rate limit ---
+	# Generous on purpose: one MCP session makes several requests
+	# (initialize, tools/list, then each tool call), so a tight limit
+	# would break normal interactive use. Tune to taste.
+	rate_limit {
+		zone mcp {
+			key    {http.request.remote_ip}
+			events 120
+			window 1m
+		}
+	}
+
+	# Cap request bodies — MCP JSON-RPC payloads are tiny.
+	request_body {
+		max_size 256KB
+	}
+
+	# --- Access control: HTTP Basic Auth ---
+	# Generate each hash with:  caddy hash-password
+	# One line per user: <username> <bcrypt-hash>. Add/remove to grant/revoke.
+	basic_auth {
+		teammate1 REPLACE_WITH_BCRYPT_HASH
+	}
+
+	# --- Proxy to the localhost-only app (systemd binds 127.0.0.1:8000) ---
+	reverse_proxy 127.0.0.1:8000 {
+		# Flush immediately so MCP's SSE streaming isn't buffered.
+		flush_interval -1
+	}
+
+	# Access log — fail2ban watches this for repeated 401s.
+	log {
+		output file /var/log/caddy/ndcourts-mcp.log {
+			roll_size 10MiB
+			roll_keep 5
+		}
+		format json
+	}
+}
