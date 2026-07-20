@@ -75,6 +75,20 @@ if [ -n "$ag_dest" ]; then
 else
   say "WARN: cannot resolve dest for AG opinions DB — skipping"
 fi
+# JEAC opinions — separate immutable-doc DB (like AG); resolve via jeac_corpus.
+jeac_dest="$(as_run_user "$VENV/bin/python" -c "from ndcourts_mcp.jeac_corpus import resolve_jeac_db_path; print(resolve_jeac_db_path())" 2>/dev/null)" || jeac_dest=""
+if [ -n "$jeac_dest" ]; then
+  ROWS+=("jeac|jeac_opinions.db|SELECT COUNT(*) FROM jeac_opinions|20|0|$jeac_dest")
+else
+  say "WARN: cannot resolve dest for JEAC opinions DB — skipping"
+fi
+# Figures — reproduced-figure image DB; resolve via figures_corpus.
+fig_dest="$(as_run_user "$VENV/bin/python" -c "from ndcourts_mcp.figures_corpus import resolve_figures_db_path; print(resolve_figures_db_path())" 2>/dev/null)" || fig_dest=""
+if [ -n "$fig_dest" ]; then
+  ROWS+=("fig|figures.db|SELECT COUNT(*) FROM opinion_figures|20|0|$fig_dest")
+else
+  say "WARN: cannot resolve dest for figures DB — skipping"
+fi
 
 STAGE="$(mktemp -d "${TMPDIR:-/tmp}/ndcourts-db.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
