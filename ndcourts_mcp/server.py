@@ -1,5 +1,6 @@
 """MCP server for North Dakota Supreme Court opinions."""
 
+import datetime
 import os
 import re
 import sqlite3
@@ -1734,6 +1735,311 @@ def find_opinions_construing(authority: str, limit: int = 50) -> dict:
         conn.close()
 
 
+_REORG_SOURCE = (
+    "1981 constitutional reorganization (N.D.C.C. Replacement Vol. 13 disposition tables)"
+)
+
+
+def _const_crosswalk_available(conn, alias) -> bool:
+    q = f"{alias}." if alias and alias != "main" else ""
+    return conn.execute(
+        f"SELECT 1 FROM {q}sqlite_master WHERE type='table' AND name='const_crosswalk'"
+    ).fetchone() is not None
+
+
+def _const_crosswalk_links(conn, alias, cite):
+    """Return (predecessors, successors) for a constitutional cite across the 1981
+    reorganization, as lists of the linked live provisions' citations.
+
+    predecessors: original §-cites that were renumbered *into* a modern cite
+    (populated only for a modern ``art.`` cite).
+    successors: modern art./§ cites an original §-cite / amendment article became
+    (populated for an original §-cite or ``amend. art.`` cite); ``('__appendix__',)``
+    signals the provision was retained in the appendix with no live successor.
+    """
+    q = f"{alias}." if alias and alias != "main" else ""
+    if cite.startswith("N.D. Const. art."):
+        preds = [r["old_cite"] for r in conn.execute(
+            f"SELECT DISTINCT old_cite FROM {q}const_crosswalk "
+            f"WHERE new_cite=? AND source_table='parallel' AND new_kind='modern'", (cite,))]
+        return preds, []
+    rows = conn.execute(
+        f"SELECT DISTINCT new_cite, new_kind FROM {q}const_crosswalk WHERE old_cite=?",
+        (cite,),
+    ).fetchall()
+    live = [r["new_cite"] for r in rows if r["new_kind"] == "modern" and r["new_cite"]]
+    if not live and any(r["new_kind"] in ("appendix", "appendix_amendment") for r in rows):
+        return [], ["__appendix__"]
+    return [], live
+
+
+_AMD_ROMAN = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def _amend_number_key(num) -> int | None:
+    """Normalize an amendment number ('XLIII' / '43' / 'Amd. I') to an int."""
+    s = (num or "").replace("Amd.", "").strip()
+    if re.fullmatch(r"\d+", s):
+        return int(s)
+    if s and re.fullmatch(r"[IVXLCDM]+", s):
+        v = 0
+        for i, ch in enumerate(s):
+            n = _AMD_ROMAN[ch]
+            v += -n if i + 1 < len(s) and _AMD_ROMAN[s[i + 1]] > n else n
+        return v
+    return None
+
+
+def _amend_affected_covers(affected: str, cites: list[str]) -> bool:
+    """Does an *unlinked* amendment-index row's ``affected`` string cover any of
+    ``cites``? Old-numbering conventions only (the unlinked rows are all
+    pre-1981): bare numbers / ranges = original sections; 'Art. N' / bare Roman
+    = articles of amendment. Precision-first — used only for rows that have no
+    linked counterpart anywhere."""
+    want_secs, want_amds = set(), set()
+    for c in cites:
+        m = re.fullmatch(r"N\.D\. Const\. § (\d+)", c)
+        if m:
+            want_secs.add(int(m.group(1)))
+        m = re.fullmatch(r"N\.D\. Const\. amend\. art\. ([IVXLCDM]+[A-Z]?)", c)
+        if m:
+            want_amds.add(m.group(1))
+    for tok in (t.strip() for t in (affected or "").split(",")):
+        m = re.fullmatch(r"(\d+)-(\d+)", tok)
+        if m and want_secs & set(range(int(m.group(1)), int(m.group(2)) + 1)):
+            return True
+        if re.fullmatch(r"\d+", tok) and int(tok) in want_secs:
+            return True
+        m = re.fullmatch(r"(?:Art\.\s*)?([IVXLCDM]+[A-Z]?)", tok)
+        if m and m.group(1) in want_amds:
+            return True
+    return False
+
+
+def _const_merged_amendments(conn, alias, prov_id, citation):
+    """One coherent amendment chronology for a constitutional provision across
+    the 1981 renumbering seam (TODO-const-history-validation.md #3).
+
+    Merges three event families: (a) session-law events keyed to the original
+    §-numbering, (b) ndconst.org events keyed to the modern art./§ numbering,
+    and (c) the pre-1981 amendment-index rows that could not be linked at ingest
+    (their old-§ targets were not in the modern provision index) — attached here
+    only when the measure has no linked row anywhere. Events recorded under both
+    numberings for the same measure are deduplicated by normalized amendment
+    number + effective-date proximity (<= 550 days, so a deferred effective date
+    like amend. 53's 1939-07-01 merges with its 1938 election-keyed twin, while
+    same-numbered events years apart — the amendment-I identity conflict — stay
+    distinct). Session-law rows win on effective_date/authority; ndconst.org
+    rows contribute source_url/subject."""
+    q = f"{alias}." if alias and alias != "main" else ""
+    ev_sql = ("SELECT action, effective_date, raw_date, election_date, affected, "
+              "amendment_number, authority, source_url, raw FROM {q}amendments "
+              "WHERE provision_id {op} ORDER BY COALESCE(effective_date,'0000-01-01')")
+
+    def fetch(where_op, args, recorded_under):
+        out = []
+        for r in conn.execute(ev_sql.format(q=q, op=where_op), args):
+            d = dict(r)
+            d["recorded_under"] = recorded_under
+            out.append(d)
+        return out
+
+    events = fetch("= ?", (prov_id,), citation)
+
+    # crosswalk counterparts (both parallel- and amendment-table links)
+    if citation.startswith("N.D. Const. art."):
+        cp_cites = [r[0] for r in conn.execute(
+            f"SELECT DISTINCT old_cite FROM {q}const_crosswalk "
+            f"WHERE new_cite=? AND new_kind='modern'", (citation,))]
+    else:
+        cp_cites = [r[0] for r in conn.execute(
+            f"SELECT DISTINCT new_cite FROM {q}const_crosswalk "
+            f"WHERE old_cite=? AND new_kind='modern' AND new_cite IS NOT NULL",
+            (citation,))]
+    for cite in cp_cites:
+        r = conn.execute(f"SELECT id FROM {q}provisions WHERE citation=?", (cite,)).fetchone()
+        if r:
+            events += fetch("= ?", (r["id"],), cite)
+
+    # unlinked amendment-index rows, attached only for measures with no linked
+    # row anywhere. A linked row suppresses an unlinked twin only when their
+    # dates are close ("same measure"); the amendment-I identity conflict (the
+    # 1889 census event vs the 1894 lottery amendment, same number) stays
+    # distinct. Combined numbers ("5 & 6") expand to every number they name.
+    def number_keys(num):
+        keys = set()
+        for tok in re.findall(r"\d+|[IVXLCDM]+", (num or "").replace("Amd.", "")):
+            k = _amend_number_key(tok)
+            if k is not None:
+                keys.add(k)
+        return keys
+
+    def day(d):
+        try:
+            return datetime.date.fromisoformat(d).toordinal()
+        except (TypeError, ValueError):
+            return None
+
+    linked_dates: dict[int, list] = {}
+    for num, eff in conn.execute(
+            f"SELECT DISTINCT amendment_number, effective_date FROM {q}amendments "
+            f"WHERE provision_id IS NOT NULL"):
+        for k in number_keys(num):
+            linked_dates.setdefault(k, []).append(day(eff))
+
+    def has_linked_twin(num, eff):
+        d = day(eff)
+        for k in number_keys(num):
+            for ld in linked_dates.get(k, ()):
+                if d is None or ld is None or abs(d - ld) <= 550:
+                    return True
+        return False
+
+    probe_cites = [citation] + cp_cites
+    for r in conn.execute(ev_sql.format(q=q, op="IS NULL"), ()):
+        if has_linked_twin(r["amendment_number"], r["effective_date"]):
+            continue
+        if _amend_affected_covers(r["affected"], probe_cites):
+            d = dict(r)
+            d["recorded_under"] = "(amendment index)"
+            events.append(d)
+
+    # dedup: cluster by normalized number + effective-date proximity
+    groups: dict = {}
+    for e in events:
+        k = _amend_number_key(e["amendment_number"])
+        groups.setdefault(k if k is not None else (e["amendment_number"], e["effective_date"]),
+                          []).append(e)
+    merged = []
+    for _, grp in groups.items():
+        grp.sort(key=lambda e: e["effective_date"] or "0000-01-01")
+        clusters, cur = [], []
+        for e in grp:
+            d = day(e["effective_date"])
+            if cur:
+                prev = next((day(x["effective_date"]) for x in reversed(cur)
+                             if day(x["effective_date"]) is not None), None)
+                if d is not None and prev is not None and abs(d - prev) > 550:
+                    clusters.append(cur)
+                    cur = []
+            cur.append(e)
+        if cur:
+            clusters.append(cur)
+        for cl in clusters:
+            base = next((e for e in cl if e["authority"]), cl[0])
+            dates = sorted({e["effective_date"] for e in cl if e["effective_date"]})
+            out = {
+                "amendment_number": base["amendment_number"],
+                "action": base["action"],
+                "effective_date": base["effective_date"],
+                "election_date": next((e["election_date"] for e in cl if e["election_date"]), None),
+                "affected": max((e["affected"] or "" for e in cl), key=len) or None,
+                "subject": max((e["raw"] or "" for e in cl), key=len) or None,
+                "authority": next((e["authority"] for e in cl if e["authority"]), None),
+                "source_url": next((e["source_url"] for e in cl if e["source_url"]), None),
+                "recorded_under": sorted({e["recorded_under"] for e in cl}),
+            }
+            if len(dates) > 1:
+                out["effective_date_variants"] = dates
+            merged.append(out)
+    merged.sort(key=lambda e: e["effective_date"] or "0000-01-01")
+    return merged
+
+
+# Articles replaced WHOLESALE after the 1981 reorganization, reusing their
+# section numbers for rewritten/renumbered content. A reverse lookup that
+# chains an original cite through its 1981 slot to a date at or past the
+# replacement is slot-faithful but may no longer show the original content —
+# no official post-1981 disposition table has been captured (the 1997 art V
+# revision rewrote sections; text similarity cannot establish lineage — same
+# doctrine as the 1981 crosswalk), so content-level chaining is NOT asserted.
+_CONST_ARTICLE_REPLACEMENTS = {
+    "IV": ("1986-12-01", "the 1986 legislative-article revision (measures #119/#120)"),
+    "V": ("1997-07-01", "the 1997 executive-article replacement (measure #135)"),
+    "VII": ("1982-07-08", "the 1982 home-rule article (measure #110)"),
+}
+
+
+def _const_replacement_caveat(linked_cite, linked_row, as_of_date):
+    """A caveat sentence when a crosswalk-returned successor version postdates a
+    wholesale article replacement (content may have moved/been rewritten)."""
+    m = re.match(r"N\.D\. Const\. art\. ([IVXL]+),", linked_cite or "")
+    if not m:
+        return None
+    rep = _CONST_ARTICLE_REPLACEMENTS.get(m.group(1))
+    if not rep:
+        return None
+    rep_date, measure = rep
+    start = linked_row["effective_start"] if linked_row else None
+    if not start or start < rep_date:
+        return None
+    if as_of_date is not None and as_of_date < rep_date:
+        return None
+    eve = (datetime.date.fromisoformat(rep_date)
+           - datetime.timedelta(days=1)).isoformat()
+    return (f" CAVEAT: article {m.group(1)} was replaced wholesale effective "
+            f"{rep_date} by {measure}, reusing its section numbers for rewritten "
+            f"content — the text shown follows the 1981-slot lineage but may no "
+            f"longer carry the original section's content. The slot's "
+            f"pre-replacement text is available with as_of_date='{eve}'. No "
+            f"official post-1981 disposition table has been captured; "
+            f"content-level lineage past {rep_date} is not asserted.")
+
+
+def _const_crosswalk_resolve(conn, alias, lookup_cite, as_of_date):
+    """When a constitutional cite has no captured version covering ``as_of_date``
+    because of the 1981 renumbering, follow ``const_crosswalk`` to the linked
+    provision. Returns a dict with an optional ``row`` (the linked version to
+    auto-return) + ``provenance``, and/or a ``note``; or ``None`` if inapplicable.
+    """
+    if not _const_crosswalk_available(conn, alias):
+        return None
+    q = f"{alias}." if alias and alias != "main" else ""
+    key = corpus.resolve_cite_key(conn, alias, lookup_cite)
+    prov = conn.execute(
+        f"SELECT citation FROM {q}provisions WHERE cite_key=?", (key,)
+    ).fetchone() if key else None
+    if not prov:
+        return None
+    cite = prov["citation"]
+    is_modern = cite.startswith("N.D. Const. art.")
+    preds, succs = _const_crosswalk_links(conn, alias, cite)
+    links = preds if is_modern else succs
+    if links == ["__appendix__"]:
+        return {"note": (
+            f"{cite} was repealed and retained in the appendix in the 1981 "
+            f"constitutional reorganization; it has no successor in the modern "
+            f"article/section text. (Crosswalk: N.D.C.C. Replacement Vol. 13.)")}
+    if not links:
+        return None
+    if len(set(links)) == 1:
+        linked = links[0]
+        linked_row = corpus.lookup_provision_version(conn, alias, linked, as_of_date)
+        if linked_row:
+            if is_modern:
+                note = (f"{cite} did not exist on {as_of_date}. Showing its predecessor "
+                        f"{linked} — the provision renumbered to {cite} in the 1981 "
+                        f"constitutional reorganization — as it read on {as_of_date}.")
+            else:
+                note = (f"{cite} was renumbered to {linked} in the 1981 constitutional "
+                        f"reorganization. Showing {linked} as it read on {as_of_date}.")
+                caveat = _const_replacement_caveat(linked, linked_row, as_of_date)
+                if caveat:
+                    note += caveat
+            return {"row": linked_row, "provenance": {
+                "requested_citation": cite, "returned_provision": linked,
+                "relation": "predecessor" if is_modern else "successor",
+                "linked_via": _REORG_SOURCE, "note": note}}
+        return {"note": (
+            f"{cite} links to {linked} across the 1981 reorganization, but no captured "
+            f"text of {linked} covers {as_of_date}.")}
+    rel = "predecessors" if is_modern else "successors"
+    return {"note": (
+        f"{cite} maps across the 1981 reorganization to multiple {rel} "
+        f"({', '.join(sorted(set(links)))}); look one up directly to read its text. "
+        f"(Crosswalk: N.D.C.C. Replacement Vol. 13.)")}
+
+
 @mcp.tool()
 def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
     """Retrieve the text of a ND constitutional, statutory, court-rule, or
@@ -1744,6 +2050,13 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
     given (ISO ``YYYY-MM-DD``), returns the version in force on that date; this
     is what lets you read a statute "as the court applied it" in an older
     opinion. Omit ``as_of_date`` for the current text.
+
+    For the Constitution, the 1889<->1981 renumbering is bridged automatically: a
+    modern cite (``art. V, § 2``) at a pre-1981 date returns its original-section
+    predecessor (``§ 72``), and an original §-cite (or ``amend. art.``) at a
+    post-1981 date returns its modern successor — each with ``requested_citation``,
+    ``returned_provision``, ``relation``, and a ``note`` explaining the link
+    (source: NDCC Replacement Vol. 13 disposition tables).
 
     Returns the provision text, heading, effective window, enacting/amending
     authority, source URL, and a count of opinions construing it. If the
@@ -1771,33 +2084,46 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
         lookup_cite = _best_cite(conn, alias, spec, citation)
         row = corpus.lookup_provision_version(conn, alias, lookup_cite, as_of_date)
         warning = None
+        provenance = None
         if not row and as_of_date:
-            # No captured version covers as_of_date. If the provision exists,
-            # return its earliest captured version with a clear warning rather
-            # than nothing — full historical text before that date may not yet
-            # be captured (the amendment chronology is in get_authority_history).
-            q = f"{alias}."
-            stored_key = corpus.resolve_cite_key(conn, alias, lookup_cite)
-            prov = conn.execute(
-                f"SELECT id FROM {q}provisions WHERE cite_key = ?",
-                (stored_key,),
-            ).fetchone() if stored_key else None
-            if prov:
-                row = conn.execute(
-                    f"SELECT p.citation, p.heading, p.status, v.* "
-                    f"FROM {q}provisions p JOIN {q}provision_versions v "
-                    f"  ON v.provision_id = p.id WHERE p.id = ? "
-                    f"ORDER BY COALESCE(v.effective_start,'0000-01-01') ASC LIMIT 1",
-                    (prov["id"],),
-                ).fetchone()
-                if row:
-                    warning = (
-                        f"No captured text is dated on or before {as_of_date}; "
-                        f"returning the earliest captured version (effective "
-                        f"{row['effective_start']}). Earlier text may exist but is "
-                        f"not yet captured — see get_authority_history for the "
-                        f"amendment chronology."
-                    )
+            # No captured version covers as_of_date. For the Constitution, first
+            # try the 1889<->1981 renumbering crosswalk: a modern cite at a
+            # pre-reorganization date (or an original §-cite / amendment article at
+            # a post-reorg date) resolves to its linked provision's then-current
+            # text, with provenance.
+            cw = _const_crosswalk_resolve(conn, alias, lookup_cite, as_of_date) \
+                if ckind == "const" else None
+            if cw and cw.get("row"):
+                row = cw["row"]
+                provenance = cw["provenance"]
+            else:
+                # Fall back to the provision's earliest captured version with a
+                # clear warning rather than nothing — full historical text before
+                # that date may not yet be captured (see get_authority_history).
+                q = f"{alias}."
+                stored_key = corpus.resolve_cite_key(conn, alias, lookup_cite)
+                prov = conn.execute(
+                    f"SELECT id FROM {q}provisions WHERE cite_key = ?",
+                    (stored_key,),
+                ).fetchone() if stored_key else None
+                if prov:
+                    row = conn.execute(
+                        f"SELECT p.citation, p.heading, p.status, v.* "
+                        f"FROM {q}provisions p JOIN {q}provision_versions v "
+                        f"  ON v.provision_id = p.id WHERE p.id = ? "
+                        f"ORDER BY COALESCE(v.effective_start,'0000-01-01') ASC LIMIT 1",
+                        (prov["id"],),
+                    ).fetchone()
+                    if row:
+                        warning = (
+                            f"No captured text is dated on or before {as_of_date}; "
+                            f"returning the earliest captured version (effective "
+                            f"{row['effective_start']}). Earlier text may exist but is "
+                            f"not yet captured — see get_authority_history for the "
+                            f"amendment chronology."
+                        )
+                if cw and cw.get("note"):
+                    warning = (warning + " " if warning else "") + cw["note"]
         if not row:
             asof = f" in force on {as_of_date}" if as_of_date else ""
             return {"found": False, "citation": citation, "corpus": ckind,
@@ -1840,6 +2166,14 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 result["jeac_opinions_construing"] = n_jeac
         if warning:
             result["warning"] = warning
+        if provenance:
+            # The returned text is a provision linked across the 1981 reorganization,
+            # not the literal citation asked for — say so explicitly.
+            result["requested_citation"] = provenance["requested_citation"]
+            result["returned_provision"] = provenance["returned_provision"]
+            result["relation"] = provenance["relation"]
+            result["linked_via"] = provenance["linked_via"]
+            result["note"] = provenance["note"]
         # NDCC subsection pinpoint: if the citation carries a glued subsection
         # path (e.g. "§ 12.1-20-03(2)(a)"), resolve it against the structured
         # subsection index and return just that subtree's text.
@@ -1986,13 +2320,21 @@ def get_authority_history(citation: str) -> dict:
         ).fetchall()
         # Amendment events — the full chronology, including amendments whose
         # prior full text has not yet been captured as a provision_version.
+        # For the constitution, merge the parallel chronologies (session-law
+        # events under the original §-numbering + ndconst.org events under the
+        # modern numbering + the unlinked pre-1981 index rows) into one deduped
+        # timeline across the 1981 renumbering seam.
+        merged_events = None
+        if ckind == "const" and _const_crosswalk_available(conn, alias):
+            merged_events = _const_merged_amendments(conn, alias, prov["id"],
+                                                     prov["citation"])
         amendments = conn.execute(
             f"""SELECT action, effective_date, raw_date, election_date, affected,
                        amendment_number, authority, source_url, raw
                 FROM {q}amendments WHERE provision_id = ?
                 ORDER BY COALESCE(effective_date, '0000-01-01')""",
             (prov["id"],),
-        ).fetchall()
+        ).fetchall() if merged_events is None else []
         result = {
             "found": True,
             "corpus": ckind,
@@ -2011,8 +2353,9 @@ def get_authority_history(citation: str) -> dict:
                 }
                 for v in versions
             ],
-            "amendment_count": len(amendments),
-            "amendments": [
+            "amendment_count": len(merged_events if merged_events is not None
+                                   else amendments),
+            "amendments": merged_events if merged_events is not None else [
                 {
                     "amendment_number": a["amendment_number"],
                     "action": a["action"],
@@ -2026,17 +2369,42 @@ def get_authority_history(citation: str) -> dict:
                 for a in amendments
             ],
         }
-        if versions and not amendments:
+        has_events = bool(result["amendments"])
+        if versions and not has_events:
             result["note"] = (
                 "No amendment events recorded; the captured version is the text "
                 "as published. (Amendment chronology may be incomplete for v1.)"
             )
-        elif amendments:
+        elif has_events:
             result["note"] = (
                 "Amendment events list the chronology; full prior text is only "
                 "available for captured_versions. Use lookup_authority(..., "
                 "as_of_date=) to read a captured version."
             )
+            if merged_events is not None:
+                result["note"] += (
+                    " Events recorded under this provision's pre-1981 and modern "
+                    "numberings are merged into one timeline (see each event's "
+                    "recorded_under)."
+                )
+        # 1889<->1981 renumbering lineage: link an original §-cite / amendment
+        # article to its modern home, or a modern cite to its original predecessor.
+        if ckind == "const" and _const_crosswalk_available(conn, alias):
+            preds, succs = _const_crosswalk_links(conn, alias, prov["citation"])
+            reorg = {}
+            if preds:
+                reorg["renumbered_from"] = sorted(set(preds))
+            if succs == ["__appendix__"]:
+                reorg["renumbered_to"] = "repealed / retained in appendix (no modern successor)"
+            elif succs:
+                reorg["renumbered_to"] = sorted(set(succs))
+            if reorg:
+                reorg["source"] = _REORG_SOURCE
+                reorg["note"] = (
+                    "The 1981 reorganization renumbered the Constitution; read either "
+                    "citation at any date via lookup_authority(..., as_of_date=)."
+                )
+                result["reorganization"] = reorg
         return result
     finally:
         conn.close()

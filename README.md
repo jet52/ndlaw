@@ -77,9 +77,19 @@ server-side multi-corpus delivery. Both constitutional layers are
 `as_of_date`-queryable: the modern layer by its article/§ citation (e.g.
 `lookup_authority("N.D. Const. art. VIII, § 6", as_of_date="1990-01-01")`) and the
 historical layer by its original 1889 citation (e.g. `lookup_authority("N.D.
-Const. § 82", as_of_date="1945-01-01")`); the two numbering schemes are not yet
-cross-linked. The primary-law corpora are newer and less exhaustively validated
-than the opinions corpus.
+Const. § 82", as_of_date="1945-01-01")`). The two numbering schemes are
+cross-linked through the official 1981 disposition tables (NDCC Replacement
+Vol. 13): a modern cite at a pre-1981 date returns its original-section
+predecessor, and an original §-cite at a post-1981 date returns its modern
+successor — each answer carries provenance (`requested_citation`,
+`returned_provision`, `relation`, a source note), and lookups that would land
+past a wholesale article replacement (1982/1986/1997) say so rather than
+implying content continuity. `get_authority_history` merges the pre- and
+post-1981 amendment chronologies into one timeline per provision. The
+primary-law corpora are newer and less exhaustively validated than the
+opinions corpus, though the constitution layer has now been verified
+section-by-section against the official annotated apparatus and every usable
+printed compilation 1889–1989.
 
 | Tool                  | Purpose                                                                         |
 |-----------------------|---------------------------------------------------------------------------------|
