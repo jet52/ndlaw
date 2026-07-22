@@ -39,6 +39,30 @@ CORPORA: dict[str, dict[str, str]] = {
 # Far-future sentinel for "still in force" so BETWEEN comparisons are total.
 OPEN_ENDED = "9999-12-31"
 
+# Provision → provision cross-reference edges, extracted from version text by
+# ``xref_extract`` (jetcite). Edges live in the SOURCE provision's DB and are
+# keyed by version (point-in-time) with canonical-citation targets (re-ingest
+# safe, resolved across corpora via the cross-link contract). Fully derived —
+# rebuildable at any time from text.
+XREF_SCHEMA = """
+    CREATE TABLE IF NOT EXISTS provision_xrefs (
+        id INTEGER PRIMARY KEY,
+        provision_id INTEGER NOT NULL REFERENCES provisions(id),
+        version_id INTEGER NOT NULL REFERENCES provision_versions(id),
+        to_corpus TEXT NOT NULL,      -- 'ndcc' | 'admin' | 'const' | 'rule'
+        to_citation TEXT NOT NULL,    -- canonical (jetcite normalized) cite
+        to_cite_key TEXT NOT NULL,    -- corpus.cite_key(to_citation)
+        raw_text TEXT NOT NULL,       -- the reference as printed
+        UNIQUE(version_id, to_citation)
+    );
+    CREATE INDEX IF NOT EXISTS idx_xrefs_version
+        ON provision_xrefs(version_id);
+    CREATE INDEX IF NOT EXISTS idx_xrefs_provision
+        ON provision_xrefs(provision_id);
+    CREATE INDEX IF NOT EXISTS idx_xrefs_target
+        ON provision_xrefs(to_corpus, to_cite_key);
+"""
+
 
 def resolve_corpus_db_path(corpus: str) -> Path:
     """Locate a corpus DB file independent of working directory or install layout.
@@ -269,6 +293,7 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
     pv_cols = {r[1] for r in conn.execute("PRAGMA table_info(provision_versions)")}
     if "html" not in pv_cols:
         conn.execute("ALTER TABLE provision_versions ADD COLUMN html TEXT")
+    conn.executescript(XREF_SCHEMA)
     conn.commit()
 
 

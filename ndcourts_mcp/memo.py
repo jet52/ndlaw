@@ -82,24 +82,15 @@ def extract_syllabus(text: str) -> list[str] | None:
 
 # --- citing sentence (citator) ----------------------------------------------
 
-def citing_context(text: str, cite_str: str, before: int = 260, after: int = 220) -> dict:
-    """Locate ``cite_str`` in a citing opinion and return surrounding context + ¶.
+def context_window(text: str, idx: int, end: int,
+                   before: int = 260, after: int = 220) -> str:
+    """A ¶-bounded, whitespace-collapsed context window around ``text[idx:end]``.
 
-    Returns ``{found, paragraph, context}``. The context is a window around the
-    cite, NOT trimmed on ". " — legal abbreviations ("v.", "N.W.", initials)
-    create false sentence breaks, and a treatment verb usually sits *before*
-    the case name ("We overrule X v. Y, <cite>"), so naive trimming would drop
-    the very signal we need. The window is bounded by paragraph markers so it
-    never bleeds across ¶s, and is always returned for human verification."""
-    idx = text.find(cite_str)
-    end = idx + len(cite_str)
-    if idx < 0:
-        pat = re.sub(r"\s+", r"\\s+", re.escape(cite_str))
-        m = re.search(pat, text)
-        if not m:
-            return {"found": False}
-        idx, end = m.start(), m.end()
-
+    The window is NOT trimmed on ". " — legal abbreviations ("v.", "N.W.",
+    initials) create false sentence breaks, and a treatment verb usually sits
+    *before* the case name ("We overrule X v. Y, <cite>"), so naive trimming
+    would drop the very signal we need. It is bounded by paragraph markers so
+    it never bleeds across ¶s."""
     start = max(0, idx - before)
     # Don't cross a paragraph boundary on the left: start after the nearest
     # preceding [¶N] marker if one falls inside the window.
@@ -112,9 +103,25 @@ def citing_context(text: str, cite_str: str, before: int = 260, after: int = 220
     nm = text.find("[¶", end, stop)
     if nm != -1:
         stop = nm
+    return re.sub(r"\s+", " ", text[start:stop]).strip()
 
-    context = re.sub(r"\s+", " ", text[start:stop]).strip()
-    return {"found": True, "paragraph": find_paragraph(text, idx), "context": context}
+
+def citing_context(text: str, cite_str: str, before: int = 260, after: int = 220) -> dict:
+    """Locate ``cite_str`` in a citing opinion and return surrounding context + ¶.
+
+    Returns ``{found, paragraph, context}``; see ``context_window`` for the
+    windowing rules. The context is always returned for human verification."""
+    idx = text.find(cite_str)
+    end = idx + len(cite_str)
+    if idx < 0:
+        pat = re.sub(r"\s+", r"\\s+", re.escape(cite_str))
+        m = re.search(pat, text)
+        if not m:
+            return {"found": False}
+        idx, end = m.start(), m.end()
+
+    return {"found": True, "paragraph": find_paragraph(text, idx),
+            "context": context_window(text, idx, end, before, after)}
 
 
 # --- treatment signal (conservative) ----------------------------------------

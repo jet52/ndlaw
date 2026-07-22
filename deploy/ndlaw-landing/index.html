@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ndlaw — North Dakota primary law over MCP</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 44rem;
+         margin: 3rem auto; padding: 0 1.25rem; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  .sub { color: #555; margin-top: 0; }
+  code, pre { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .92em;
+              background: #f4f4f2; border-radius: 4px; }
+  code { padding: .1em .35em; }
+  pre { padding: .8em 1em; overflow-x: auto; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  a { color: #1a5276; }
+  .note { border-left: 3px solid #c9a227; padding: .5em 1em; background: #fbf7ec; margin: 1.5rem 0; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;
+           color: #666; font-size: .9em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #16181d; color: #d8d8d4; }
+    code, pre { background: #23262d; }
+    a { color: #7fb3d5; }
+    .note { background: #24211a; border-color: #c9a227; }
+    footer { border-color: #333; color: #999; }
+  }
+</style>
+</head>
+<body>
+<h1>ndlaw</h1>
+<p class="sub">North Dakota primary law as an MCP server — free, public, no account required.</p>
+
+<p>This endpoint gives AI assistants (Claude, and any MCP-capable client)
+citation-verified access to North Dakota primary legal authority:</p>
+<ul>
+  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (~19,800 opinions, full text, citation graph)</li>
+  <li><strong>Constitution of North Dakota</strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
+  <li><strong>N.D. Century Code</strong>, <strong>court rules</strong>, and <strong>administrative code</strong> — versioned provisions</li>
+  <li><strong>Attorney General opinions</strong> (1942–present) and <strong>Judicial Ethics Advisory Committee opinions</strong></li>
+</ul>
+
+<h2>Connect</h2>
+<p>MCP endpoint (Streamable HTTP):</p>
+<pre>https://ndlaw.org/mcp</pre>
+<p>Claude Code:</p>
+<pre>claude mcp add --transport http ndlaw https://ndlaw.org/mcp</pre>
+<p>Claude.ai / Claude Desktop: add a custom connector with the URL above.
+Any other MCP client: point its HTTP transport at the same URL.</p>
+
+<div class="note">
+<strong>Fair use.</strong> This is a shared public server on modest hardware.
+Per-IP limits apply (roughly one request per second sustained); heavier
+traffic is temporarily banned, not queued. If you need bulk data, don't
+scrape the API — download the whole database below.
+</div>
+
+<h2>Bulk data</h2>
+<p>The complete SQLite databases are free to download and republish
+(<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>):
+<a href="https://github.com/jet52/ndlaw/releases/latest">github.com/jet52/ndlaw/releases</a>.
+Run the server locally with the same package.</p>
+
+<h2>Caveats</h2>
+<p>The data is compiled from public sources (court PDFs, CourtListener,
+ndcourts.gov, ndlegis.gov) with extensive validation, but it is not an
+official publication of the State of North Dakota or its courts. Verify
+against the official source before filing.</p>
+
+<footer>
+  Related: <a href="https://ndconst.org">ndconst.org</a> — the Constitution of
+  North Dakota as an annotated wiki, built from the same corpus.
+</footer>
+</body>
+</html>

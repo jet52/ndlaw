@@ -8,6 +8,39 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v2.1.0 — 2026-07-22
+
+Research-tools + citation-graph release, and the first release serving the
+free public endpoint at **https://ndlaw.org/mcp** (no account required).
+
+**New server tools:**
+- **`get_notes_of_decisions`** — an annotated "Notes of Decisions" view of a
+  provision: every citing opinion with its citing sentences (¶ pinpoints),
+  subsection outline, and depth-of-treatment signals.
+- **`check_draft`** — one-call cite-check of a draft opinion or brief:
+  citation/quotation verification, citator pass, authority currency.
+- **`get_provision_xrefs`** — the provision-to-provision cross-reference
+  graph (what a provision cites and everything that cites it, across
+  corpora).
+
+**Citation graph (opinions + AG databases):**
+- **Pre-1981 constitution cites captured.** 1,747 old-numbering (1889
+  sequential) N.D. Const. cites extracted across the opinions corpus and 521
+  across the Attorney General corpus. Constitution lookups now union these
+  era-gated through the renumbering crosswalk: e.g. art. X, § 18 surfaces
+  its § 185 anti-gift-clause line back to the 1890s (43 court opinions and
+  132 AG opinions, up from 11/86); art. VI, § 5 correctly excludes pre-1976
+  § 89 cites (a different provision before the judicial article).
+  Old-form citations are labeled `cited_as` in results.
+- ndcourts.gov opinion links repaired and backfilled (44 URLs; dead
+  document-ids from court PDF re-uploads re-resolved).
+
+**Public deployment (deploy/):**
+- Apache vhost, fail2ban rate-limit jails, systemd resource caps, and
+  landing page for an unauthenticated public endpoint; the server now
+  advertises rate-limit etiquette to connected LLM clients when
+  `NDCOURTS_RATE_NOTE=1`.
+
 ## v2.0.1 — 2026-07-20
 
 Constitution corpus + server feature release; the other database assets are
