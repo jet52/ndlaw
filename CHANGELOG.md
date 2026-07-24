@@ -8,6 +8,35 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v2.1.1 — 2026-07-23
+
+Data-correction release. No server-code changes; every correction ships in the
+database assets (`opinions.db`).
+
+**Citation graph fully reconciled.** 604 citation edges adjudicated across the
+citation-reconcile and antecedent-witness review queues — nearly all confirmed,
+with a handful re-pointed to the correct target and a few false cross-state
+edges (shared reporter page) suppressed. The manual review queues are now empty.
+
+**Text-flow cleanup.**
+- 2,112 leaked PDF page numbers removed from 474 opinions (each a page number
+  glued onto the following page's first line by the text-extraction era);
+  genuine footnotes preserved.
+- 1,543 PDF-aligned mid-sentence page-break gaps rejoined (whitespace-only; the
+  opinion token streams are unchanged).
+
+**Footnote recovery (Phase 2c).** Recovered footnote numbers and de-garbled/
+de-interleaved footnotes in a set of 1978–2014 opinions, all verified against
+the court PDFs and West reporter sources (e.g. 1999 ND 143's 23 footnotes,
+2014 ND 197's dissent footnote and microgram OCR fixes).
+
+**`[[Image here]]` restorations complete.** Closed the last 36 image-extraction
+placeholders across 24 opinions — dropped section headings, omission-asterisk
+rows, a legal land description, four numeric caseload tables (verified
+cell-by-cell), and a footnote whose content the court's own PDF prints as
+"[IMAGES IN ORIGINAL OPINION NOT REPRODUCED HERE.]". Every restoration is
+court-PDF-verified; zero placeholders remain corpus-wide.
+
 ## v2.1.0 — 2026-07-22
 
 Research-tools + citation-graph release, and the first release serving the
