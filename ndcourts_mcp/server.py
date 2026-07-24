@@ -9,7 +9,7 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
-from . import (ag_corpus, corpus, draftcheck, figures_corpus, jeac_corpus,
+from . import (ag_corpus, corpus, draftcheck, figures_corpus, jeac_corpus, tables_corpus,
                memo, notes, proofread, research)
 from .db import DEFAULT_DB_PATH, get_connection
 
@@ -153,6 +153,10 @@ def _conn_with_corpora() -> sqlite3.Connection:
         pass
     try:
         figures_corpus.attach_figures(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        tables_corpus.attach_tables(conn, read_only=True)
     except Exception:
         pass
     return conn
@@ -4323,6 +4327,55 @@ def get_opinion_figure_image(citation: str, fig_index: int = 1):
             return {"error": f"No figure {fig_index} for {citation}"}
         fmt = "jpeg" if row["ext"] == "jpeg" else "png"
         return Image(data=row["image"], format=fmt)
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_opinion_tables(citation: str, format: str = "markdown") -> dict:
+    """Return the reconstructed data tables in an opinion, structured for reading.
+
+    Some opinions contain numeric tables (apportionment counts, tax-redemption
+    schedules, caseload statistics) that flat opinion text renders as a scrambled
+    column of numbers. Those tables are reconstructed from a geometry-bearing
+    source and served here structured. The opinion's own text_content carries the
+    same table inline as a fixed-width block under a "[Table N]" anchor; this tool
+    gives you a cleaner rendering for display or parsing.
+
+    Args:
+        citation: A legal citation like "113 N.W.2d 679" or "1999 ND 226".
+        format: "markdown" (default), "html", "monospace", or "cells" (raw grid).
+
+    Returns an empty list if the opinion has no reconstructed tables (or tables.db
+    is not installed).
+    """
+    import json as _json
+    col = {"markdown": "render_markdown", "html": "render_html",
+           "monospace": "render_monospace", "cells": "cells_json"}.get(format, "render_markdown")
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        if not tables_corpus.attach_tables(conn, read_only=True):
+            return {"citation": citation, "tables": [], "note": "tables.db not installed"}
+        oid_row = conn.execute(
+            "SELECT opinion_id FROM citations WHERE citation = ? LIMIT 1",
+            (citation.strip(),)).fetchone()
+        if not oid_row:
+            return {"citation": citation, "tables": [], "note": "citation not found"}
+        rows = conn.execute(
+            f"SELECT table_index, caption, ncols, {col} AS body "
+            "FROM tbl.opinion_tables WHERE opinion_id = ? ORDER BY table_index",
+            (oid_row["opinion_id"],)).fetchall()
+        return {
+            "citation": citation,
+            "count": len(rows),
+            "format": format,
+            "tables": [
+                {"table_index": r["table_index"], "caption": r["caption"],
+                 "columns": r["ncols"],
+                 "content": _json.loads(r["body"]) if format == "cells" else r["body"]}
+                for r in rows
+            ],
+        }
     finally:
         conn.close()
 

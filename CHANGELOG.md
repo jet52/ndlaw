@@ -8,6 +8,44 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v2.1.2 — 2026-07-24
+
+Data release: nine new opinions, a panel-data correction, and continued
+text-fidelity cleanup. Adds one server tool (`get_opinion_tables`) and one new
+database asset (`tables.db`); all other changes ship in `opinions.db`.
+
+**New opinions.** The nine opinions filed 2026-07-23 (**2026 ND 145–153**):
+*State v. Quam*, *Wano Township v. North Dakota Public Service Commission*,
+*State v. Eastgate*, *State v. Fox*, *Interest of M.W.*, *Childers v. Childers*,
+*Paola v. State*, *State v. Engelking*, and *Interest of R.W.* Corpus now 19,832
+opinions.
+
+**Panel data corrected (justice names).** Restored 1,174 panel fields across
+1,001 opinions where a metadata-merge bug had reverted verified panel corrections
+to their raw source values — e.g. Justice Mary Muehlen Maring reverting to the OCR
+typo "Making", with her middle name splitting into a phantom panel member. The
+merge write-guard now protects panel membership and voting records, so the
+reversion cannot recur.
+
+**Leaked page numbers removed (mid-paragraph).** 2,101 running PDF page numbers
+stranded inside paragraphs by the text-extraction era — the complement to last
+release's clean-boundary sweep — removed from 431 opinions, with the split
+sentences rejoined. Each removal is gated on the court PDF (the number must equal
+that page's sequential number *and* sit at that page's text boundary), so footnote
+markers and citation digits are never touched. (First observed in *State v.
+Boger*, 2021 ND 152.)
+
+**Wrapped citations rejoined.** 256 neutral-cite years and reporter volumes that
+extraction had stranded on their own line (`Varty v. Varty, / 2019 / ND 49` →
+`2019 ND 49`; `… Ins. Co., / 256 / F.3d 587` → `256 F.3d 587`) merged back into
+the citation. Whitespace-only — the opinion token streams are unchanged.
+
+**Numeric tables reconstructed, plus a new tool.** 34 tables across 15 opinions
+that flat extraction had linearized into one-value-per-line runs were rebuilt as
+aligned fixed-width blocks in the opinion text. A new **`get_opinion_tables`**
+tool serves them as structured data (markdown / HTML / cells) from the new
+**`tables.db`** release asset.
+
 ## v2.1.1 — 2026-07-23
 
 Data-correction release. No server-code changes; every correction ships in the
