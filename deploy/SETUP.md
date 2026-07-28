@@ -198,6 +198,11 @@ installed package resolves it, so the server serves it with no unit/env change.
 Publishing is the deliberate editorial gate; everything downstream is mechanical
 and gated (sha256 verify, `quick_check`, count floor, live `/mcp` probe, rollback).
 
+**Cadence: once a week, on Friday.** Publish-and-deploy runs weekly after the
+Friday scrape+ingest; DB corrections made during the week queue locally and ship
+together. Off-cycle deploys are for a regression in served data or code, not for
+work that merely finished mid-week.
+
 **Code-only releases.** A release that ships **no** DB assets (a patch that
 changes only server code) deploys without re-uploading the ~600 MB of DBs.
 `self-update.sh` detects the absent `opinions.db.zip`, skips `update-db.sh`
@@ -208,13 +213,17 @@ updater is what processes the next release, so this behavior applies to releases
 made *after* the version that introduced it; the introducing release itself must
 still carry the DB assets.
 
-**Publishing new releases** is done from the private build repository, which
-holds the validation pipeline. That build gates on invariants + a
-redistribution-scope scan, zips + sha256s each database, and creates the
-`v<version>` GitHub release here. **The deployed server updates itself** — the
-`ndcourts-update.timer` fires `self-update.sh` daily, which detects the new tag,
-pins + reinstalls the code, swaps the DBs, restarts, and health-probes (with
-auto-rollback). No manual step is required on the box.
+**One command, from the repo on your build machine:**
+
+```bash
+NDCOURTS_SSH=jerod@mcp.YOURDOMAIN.com deploy/push-db.sh
+```
+
+This runs `scripts/make_release.sh --publish` (gates on invariants + redistribution
+scope + clean tree; zips; sha256s; **pushes the release commit and pins the tag to
+it**; creates the `v<version>` GitHub release) and then SSHes in to run
+`deploy/self-update.sh` on the server, which pins the code to the new tag,
+reinstalls, swaps the DB, restarts, and health-probes.
 
 > **The venv is a non-editable install** (`uv pip install .`, not `-e .`), so a
 > `git pull`/`checkout` alone does **not** change the running code — you must
@@ -285,10 +294,9 @@ sudo apt-get install -y msmtp msmtp-mta        # provides /usr/sbin/sendmail
 Without an MTA, deploys still happen — results just go to journald
 (`journalctl -u ndcourts-update`) instead of email.
 
-**Manual trigger.** To deploy immediately instead of waiting for the daily
-timer, run `sudo systemctl start ndcourts-update.service` on the server. To
-trigger it over SSH non-interactively, give the login user passwordless sudo for
-just that script:
+**Laptop one-command path** (`deploy/push-db.sh`) SSHes in and runs
+`sudo self-update.sh`. For that to work non-interactively, give the SSH login
+user passwordless sudo for just that script:
 
 ```bash
 echo 'jerod ALL=(root) NOPASSWD: /srv/ndcourts/ndcourts-mcp/deploy/self-update.sh' \

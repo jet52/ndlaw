@@ -96,8 +96,9 @@ def get_jeac_connection(
         ).fetchone()
         if not have:
             raise FileNotFoundError(
-                f"JEAC opinions database at {db_path} has no schema; install the "
-                f"jeac_opinions.db release asset."
+                f"JEAC opinions database at {db_path} has no schema; install "
+                f"the jeac_opinions.db release asset, or build it from source "
+                f"if you have the ingest pipeline."
             )
     return conn
 
@@ -120,7 +121,7 @@ def create_jeac_schema(conn: sqlite3.Connection) -> None:
             text_content TEXT,              -- full opinion text
             text_source TEXT,               -- 'pdf-text' | 'ocr'
             source_url TEXT,                -- absolute ndcourts.gov PDF URL
-            source_path TEXT,               -- local cache under ~/refs/nd/jeac/
+            source_path TEXT,               -- path to the locally cached source PDF
             scraped_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now')),
             UNIQUE(opinion_number)
         );

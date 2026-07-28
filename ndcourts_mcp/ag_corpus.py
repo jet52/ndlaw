@@ -107,8 +107,9 @@ def get_ag_connection(
         ).fetchone()
         if not have:
             raise FileNotFoundError(
-                f"AG opinions database at {db_path} has no schema; install the "
-                f"ag_opinions.db release asset."
+                f"AG opinions database at {db_path} has no schema; install "
+                f"the ag_opinions.db release asset, or build it from source "
+                f"if you have the ingest pipeline."
             )
     return conn
 
@@ -131,7 +132,7 @@ def create_ag_schema(conn: sqlite3.Connection) -> None:
             text_source TEXT,               -- 'pdf-text' | 'ocr' | NULL
             ocr_quality INTEGER,            -- artifact count for OCR text; NULL for pdf-text
             source_url TEXT,                -- absolute AG PDF URL (authoritative copy)
-            source_path TEXT,               -- local cached PDF under ~/refs/nd/ag/
+            source_path TEXT,               -- path to the locally cached source PDF
             scraped_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now')),
             UNIQUE(opinion_number)
         );

@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS opinion_tables (
   render_monospace TEXT NOT NULL,       -- == the inline block in text_content
   render_markdown  TEXT NOT NULL,
   render_html      TEXT NOT NULL,
-  source        TEXT                    -- e.g. westlaw-doc:<file>
+  source        TEXT                    -- provenance tag for the table's origin
 );
 CREATE INDEX IF NOT EXISTS ix_tbl_oid ON opinion_tables(opinion_id);
 CREATE UNIQUE INDEX IF NOT EXISTS ix_tbl_oid_idx ON opinion_tables(opinion_id, table_index);

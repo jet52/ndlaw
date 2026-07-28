@@ -114,8 +114,10 @@ for row in "${ROWS[@]}"; do
   [ "$n" -ge "$floor" ] 2>/dev/null || die "$name: row count $n below floor $floor (wrong/empty/truncated DB?)"
   rm -f "$dbfile-wal" "$dbfile-shm"
   say "  $name ok (quick_check ok, rows=$n) -> $dest"
-  # Integrity here is quick_check + sha256 + row-floor above; the corpus itself
-  # is validated (invariants + audit gates) in the private build before release.
+  # Integrity here is quick_check + sha256 + row-floor above. The corpus itself
+  # is validated (invariants + audit gates) in the private build before release;
+  # `invariants` is deliberately NOT a shipped module, so re-checking it here
+  # could only ever no-op.
   [ "$name" = "opinions" ] && rm -f "$STAGE/$dbfile-wal" "$STAGE/$dbfile-shm"
   SWAP+=("$STAGE/$dbfile|$dest|$name")
 done
