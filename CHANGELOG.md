@@ -8,6 +8,57 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v2.2.0 — 2026-07-28
+
+Data release. No new opinions (the court filed none this cycle). The work is text
+fidelity, filing dates, and the internal identifier sequence.
+
+**Cited case names restored (439 spans, 274 opinions).** Where a reporter shortened
+the name of a case the court *cites* — `State ex rel. Standish v. Nomland` printed as
+`State v. Nomland`, `Bank of Park River v. Norton` as `Bank v. Norton`, `New York L.
+Ins. Co. v. Fletcher` as `Insurance Co. v. Fletcher` — the court's own wording is
+restored. Each restoration was confirmed twice: against a transcription of the bound
+volume and against the volume's printed page itself, and applied only where both
+agree. The reporter citation inside each span was never missing, so no citation
+changed; what improves is the party name the court actually wrote.
+
+Sixteen were held back rather than applied — twelve where the splice point was not
+unique, four where restoring one site would have left the opinion spelling a name two
+ways.
+
+**Filing dates corrected (385).** A systematic reconciliation of every opinion's
+filing date against the printed page, the reporter's own metadata, and — where they
+exist — the court's published opinion page and its position in the court's own
+`YYYY ND n` sequence. Agreement across the compared set rose from 97.3% to 99.6%.
+
+The method matters for trust: no date was changed on a single source. A printed date
+line and a transcription of that same line are not independent witnesses, so
+corrections required a genuinely separate one — the span of dates in the surrounding
+reporter volume, an independent editorial file, or, for 1997 and later, the court's
+own sequence, where the opinions numbered *n−1* and *n+1* bracket the date opinion *n*
+must fall in. That test reversed several corrections that the printed page alone would
+have gotten wrong.
+
+**Nine printed date errors registered rather than "fixed".** Where the volume itself
+carries an impossible date — one opinion prints "Nov. 14, 2000" above a body
+discussing 2007 events and its own 2007 docket number — the printed text is preserved
+verbatim and the error recorded, so the served date is right without misrepresenting
+what the reporter published.
+
+**Panel membership (10 opinions).** A district judge sitting by designation —
+"GEO. THOM, JR., District Judge" — had been parsed as two separate justices, giving
+those opinions a six-member panel on a court that seats five. Corrected in both the
+panel and the voting record.
+
+**Internal identifiers resequenced.** The provisional `YYYY ND n` identifiers assigned
+to pre-1997 opinions are ordered by filing date and reporter page; the date
+corrections above moved that ordering, so the sequence was recomputed in full (3,632
+identifiers). These remain provisional editorial identifiers, distinct from the
+court's native neutral citations, and are marked as such.
+
+**Citation graph rebuilt** against the corrected text: 358,215 extracted citations and
+126,709 resolved links.
+
 ## v2.1.2 — 2026-07-24
 
 Data release: nine new opinions, a panel-data correction, and continued

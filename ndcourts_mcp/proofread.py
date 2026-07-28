@@ -59,6 +59,13 @@ _FOOTNOTES_HEADER = re.compile(r"\n[ \t]*FOOTNOTES[ \t]*\n")
 _BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
 _BRACKET_CALL = re.compile(r"\[(\d{1,3})\]")              # inline [N] call (not [¶ N])
 _COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
+# Repaired West/CL period form (batch `footnote-def-join-2026-07-24`): the label
+# and its orphaned period rejoined onto the body line — "1. See ABA Standards
+# ..." — which is what the court's archive HTML itself renders. Unlike the split
+# form it is NOT self-identifying: a quoted statutory subsection opens the same
+# way, so a match counts as a body only when the footnote's CALL survives earlier
+# in the text (see `_labelled_bodies`).
+_LABELLED_NOTE = re.compile(r"(?m)^(\d{1,3})\.[ \t]+(?=\S)")
 
 # Citation-string shapes used to pull a cite out of a free-text query.
 _CITE_PATTERNS = [
@@ -198,9 +205,16 @@ def footnote_structure(text: str) -> dict:
     Footnote bodies are stored in the linear text detached from the ``[¶]``
     paragraph that carries the call marker. Storage format varies by source
     lineage; this dispatches across them, returning a uniform
-    ``{"bodies": [(num, start, end), ...], "call_para": {num: ¶_or_None}}``
-    (bodies sorted by position). ``call_para`` is ``None`` when the call marker
-    did not survive (attached superscript, or a format that drops calls).
+    ``{"bodies": [(num, start, end), ...], "call_para": {num: ¶_or_None},
+    "call_at": {num: offset}, "detached": bool}`` (bodies sorted by position).
+    ``call_para`` is ``None`` when the call marker did not survive (attached
+    superscript, or a format that drops calls).
+
+    ``call_at`` is the call marker's byte offset — the same site ``call_para``
+    names, kept unrounded so `locate_structure` can read the reporter page off
+    it. ``detached`` is ``True`` when the bodies live in a trailing section
+    rather than at the position where they were printed, which makes a body's
+    own offset useless for pagination.
 
     Formats, in precedence order:
 
@@ -226,7 +240,39 @@ def _section_footnotes(text: str) -> dict | None:
         opens = [(int(m.group(1)), fh.end() + m.start())
                  for m in _COLON_NOTE.finditer(text[fh.end():]) if int(m.group(1)) >= 1]
         if opens:
-            return {"bodies": _spans(text, opens), "call_para": {}}
+            return {"bodies": _spans(text, opens), "call_para": {},
+                    "call_at": {}, "detached": True}
+        # Relocated form (batch `footnote-relocate-2026-07-25`): "N. body" openers
+        # inside the FOOTNOTES section, calls left inline in the body as [N].
+        # When the heading is present the SECTION is authoritative — otherwise a
+        # quoted statutory subsection earlier in the opinion ("1. The court shall
+        # ...") could be taken for footnote 1's body.
+        opens = [(int(m.group(1)), fh.end() + m.start())
+                 for m in _LABELLED_NOTE.finditer(text[fh.end():])]
+        if opens:
+            seen, uniq = set(), []
+            for num, pos in opens:
+                if num not in seen:
+                    seen.add(num)
+                    uniq.append((num, pos))
+            call_para, call_at = {}, {}
+            for num, _ in uniq:
+                # Same discipline as the standalone path: a surviving bare-number
+                # call line is authoritative; an inline [N] counts only when it is
+                # UNIQUE before the heading, since "[1]" also occurs as a quote
+                # alteration (2016 ND 249, where the real call is at ¶4 and a
+                # spurious [1] sits at ¶16).
+                pos = next((m.start() for m in _STANDALONE_NUM.finditer(text[:fh.start()])
+                            if int(m.group(1)) == num), None)
+                if pos is None:
+                    hits = [m for m in _BRACKET_CALL.finditer(text, 0, fh.start())
+                            if int(m.group(1)) == num]
+                    pos = hits[0].start() if len(hits) == 1 else None
+                if pos is not None:
+                    call_para[num] = find_paragraph(text, pos, markers)
+                    call_at[num] = pos
+            return {"bodies": _spans(text, uniq), "call_para": call_para,
+                    "call_at": call_at, "detached": True}
     # NOTES form: line-anchored "[N]" bodies after a NOTES header; the call is
     # the earliest inline "[N]" before the header.
     nh = _NOTES_HEADER.search(text)
@@ -235,7 +281,7 @@ def _section_footnotes(text: str) -> dict | None:
         opens = [(int(m.group(1)), nh.end() + m.start())
                  for m in _BRACKET_NOTE.finditer(sec)]
         if opens:
-            call_para = {}
+            call_para, call_at = {}, {}
             for num, _ in opens:
                 if num in call_para:
                     continue
@@ -243,7 +289,9 @@ def _section_footnotes(text: str) -> dict | None:
                            if int(m.group(1)) == num), None)
                 if cm is not None:
                     call_para[num] = find_paragraph(text, cm.start(), markers)
-            return {"bodies": _spans(text, opens), "call_para": call_para}
+                    call_at[num] = cm.start()
+            return {"bodies": _spans(text, opens), "call_para": call_para,
+                    "call_at": call_at, "detached": True}
     return None
 
 
@@ -258,29 +306,63 @@ def _spans(text: str, opens: list) -> list:
     return out
 
 
+def _labelled_bodies(text: str, occ: list) -> list:
+    """Repaired ``N. body`` footnote openers, confirmed by a surviving call.
+
+    ``N. `` at the start of a line is ambiguous on its face — a quoted statutory
+    subsection looks identical — so an opener counts only when footnote ``N``'s
+    CALL appears earlier in the text, either as the inline ``[N]`` marker (batch
+    `footnote-ref-inline-2026-07-24`) or as a still-unrepaired bare-number line.
+    First occurrence per number wins, so a later numbered list cannot displace
+    the real body."""
+    bare_at = {}
+    for num, ls, _after, _period in occ:
+        bare_at.setdefault(num, ls)
+    out, seen = [], set()
+    for m in _LABELLED_NOTE.finditer(text):
+        num = int(m.group(1))
+        if not (1 <= num <= 60) or num in seen:
+            continue
+        called = any(int(c.group(1)) == num
+                     for c in _BRACKET_CALL.finditer(text, 0, m.start()))
+        if not called and bare_at.get(num, len(text)) >= m.start():
+            continue
+        seen.add(num)
+        out.append((num, m.start(), m.end()))
+    return out
+
+
 def _standalone_footnotes(text: str) -> dict:
-    """West/CL-OCR period form + tail-after-last-``[¶]`` standalone bodies."""
+    """West/CL-OCR period form, its repaired ``N. body`` shape, and
+    tail-after-last-``[¶]`` standalone bodies."""
     occ = []  # (num, line_start, after_line, is_period_form)
     for m in _STANDALONE_NUM.finditer(text):
         num = int(m.group(1))
         if 1 <= num <= 60:
             period = bool(re.match(r"\s*\.\s", text[m.end():m.end() + 12]))
             occ.append((num, m.start(), m.end(), period))
-    if not occ:
-        return {"bodies": [], "call_para": {}}
+
+    labelled = _labelled_bodies(text, occ)
+    if not occ and not labelled:
+        return {"bodies": [], "call_para": {}, "call_at": {}, "detached": False}
 
     markers = paragraph_markers(text)
     last_para = markers[-1][1] if markers else -1
 
     body_at = {}  # line_start -> num, for occurrences that open a footnote body
+    after_of = {}  # line_start -> offset just past the opener
     for num, ls, after, period in occ:
         if period or (markers and ls > last_para):
             body_at[ls] = num
+            after_of[ls] = after
+    for num, ls, after in labelled:
+        body_at[ls] = num
+        after_of[ls] = after
 
     body_lines = sorted(body_at)
     bodies = []
     for k, ls in enumerate(body_lines):
-        after = next(a for n, l, a, p in occ if l == ls)
+        after = after_of[ls]
         end = body_lines[k + 1] if k + 1 < len(body_lines) else len(text)
         boundary = _BODY_BOUNDARY.search(text, after, end)
         if boundary:
@@ -299,12 +381,13 @@ def _standalone_footnotes(text: str) -> dict:
 
     body_nums = {n for n, _, _ in bodies}
     body_start = {n: ls for n, ls, _ in bodies}
-    call_para = {}
+    call_para, call_at = {}, {}
     for num, ls, after, period in occ:
         if ls in body_at:
             continue
         if num in body_nums and num not in call_para:
             call_para[num] = find_paragraph(text, ls, markers)
+            call_at[num] = ls
     # Fallback: an inline ``[N]`` call (ndcourts modern lineage) for a confirmed
     # footnote whose call did not survive as a bare-line marker. Gated against
     # bracketed quote-alterations (``[t]he``, a quoted ``[1]``): ``N`` must be a
@@ -313,7 +396,9 @@ def _standalone_footnotes(text: str) -> dict:
         hits = [m for m in _BRACKET_CALL.finditer(text) if int(m.group(1)) == num]
         if len(hits) == 1 and hits[0].start() < body_start[num]:
             call_para[num] = find_paragraph(text, hits[0].start(), markers)
-    return {"bodies": bodies, "call_para": call_para}
+            call_at[num] = hits[0].start()
+    return {"bodies": bodies, "call_para": call_para,
+            "call_at": call_at, "detached": False}
 
 
 def star_page_before(text: str, offset: int) -> int | None:
@@ -334,13 +419,29 @@ def locate_structure(text: str, offset: int, struct: dict | None = None) -> dict
     Returns ``{"paragraph", "footnote", "in_footnote", "reporter_page"}``. When
     the offset lands inside a footnote body, ``paragraph`` is the footnote's
     *call* paragraph (not the body's preceding marker) and ``footnote`` is its
-    number; ``paragraph`` may be ``None`` if the call site is unrecoverable."""
+    number; ``paragraph`` may be ``None`` if the call site is unrecoverable.
+
+    **Reporter page inside a footnote comes from the CALL SITE** (JT ruling
+    2026-07-26), not from the body's own offset: a note prints at the foot of the
+    page carrying its call. This matters because the bodies of a relocated
+    opinion sit in a trailing ``FOOTNOTES`` section, so scanning from the body
+    would report the opinion's LAST page for every footnote in it.
+
+    When the call did not survive, a *detached* body has no usable position at
+    all and the page is ``None`` — better than a page known to be wrong. An
+    inline body still sits where it was printed, so it keeps the scan."""
     struct = struct if struct is not None else footnote_structure(text)
     for num, start, end in struct["bodies"]:
         if start <= offset < end:
+            call_at = struct.get("call_at", {}).get(num)
+            if call_at is not None:
+                page = star_page_before(text, call_at)
+            elif struct.get("detached"):
+                page = None
+            else:
+                page = star_page_before(text, offset)
             return {"paragraph": struct["call_para"].get(num), "footnote": num,
-                    "in_footnote": True,
-                    "reporter_page": star_page_before(text, offset)}
+                    "in_footnote": True, "reporter_page": page}
     return {"paragraph": find_paragraph(text, offset), "footnote": None,
             "in_footnote": False, "reporter_page": star_page_before(text, offset)}
 
