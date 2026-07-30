@@ -595,8 +595,8 @@ wheels = [
 ]
 
 [[package]]
-name = "ndcourts-mcp"
-version = "1.9.0"
+name = "ndlaw-mcp"
+version = "3.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastmcp" },

@@ -1,13 +1,13 @@
 # ndlaw
 
 A Model Context Protocol (MCP) server for North Dakota Supreme Court
-opinions, 1890–present (plus a small number of North Dakota Court of
-Appeals decisions). Built on SQLite with FTS5 full-text search and
-served via [FastMCP](https://github.com/jlowin/fastmcp). Includes a web
-opinion browser with multi-source diff/merge tools.
+opinions, 1889–present (plus a small number of North Dakota Court of
+Appeals decisions). Coverage is complete since statehood (November 2,
+1889); the court issued its first opinions in 1890. Built on SQLite with
+FTS5 full-text search and served via
+[FastMCP](https://github.com/jlowin/fastmcp).
 
-The opinions corpus currently contains **~19,800 opinions** with **114,000+
-citation links** between them, with per-release corrections summarized in the
+The opinions corpus currently contains **<!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->126,709<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
 release notes. Where the court's own print contains an
 apparent typo, the text is preserved verbatim and the case is recorded in a
 shipped `print_anomalies` table (with the apparent intended reading and
@@ -64,7 +64,7 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | ~19,800 opinions, 114,000+ citation links, 1890–present |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->126,709<!-- /COUNT --> citation links, 1889–present |
 | `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
 | `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
 | `rules.db`        | ND court rules | ~650 rule provisions |
@@ -234,7 +234,7 @@ uv sync
 Confirm the database is wired correctly:
 
 ```bash
-sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # ~19,800
+sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # exact count
 # Primary-law corpora (if you downloaded them):
 sqlite3 constitution.db "SELECT COUNT(*) FROM provisions"    # ~496
 sqlite3 statutes.db     "SELECT COUNT(*) FROM provisions"    # ~29,100
@@ -272,7 +272,7 @@ Then `git pull` to pick up any code changes since the release was cut.
 **MCP server (stdio mode, for Claude Desktop / Claude Code):**
 
 ```bash
-uv run ndcourts-mcp
+uv run ndlaw-mcp
 ```
 
 ---
@@ -293,7 +293,7 @@ avoid double-backslash escaping.
 One-liner from any directory:
 
 ```bash
-claude mcp add ndlaw -- uv --directory /absolute/path/to/ndlaw run ndcourts-mcp
+claude mcp add ndlaw -- uv --directory /absolute/path/to/ndlaw run ndlaw-mcp
 ```
 
 This stores the server in your user-level Claude Code config and makes it
@@ -310,7 +310,7 @@ ndlaw available. Create the file with:
       "type": "stdio",
       "command": "uv",
       "args": ["--directory", "/absolute/path/to/ndlaw",
-               "run", "ndcourts-mcp"]
+               "run", "ndlaw-mcp"]
     }
   }
 }
@@ -326,7 +326,7 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
     "ndlaw": {
       "command": "uv",
       "args": ["--directory", "/absolute/path/to/ndlaw",
-               "run", "ndcourts-mcp"]
+               "run", "ndlaw-mcp"]
     }
   }
 }
@@ -348,7 +348,7 @@ otherwise use the full path, e.g.
     "ndlaw": {
       "command": "uv",
       "args": ["--directory", "C:/Users/you/ndlaw",
-               "run", "ndcourts-mcp"]
+               "run", "ndlaw-mcp"]
     }
   }
 }
@@ -386,15 +386,15 @@ The only thing the app itself needs is three environment variables:
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `NDCOURTS_TRANSPORT` | `http` (Streamable HTTP) or `sse`; anything else = stdio | `stdio` |
-| `NDCOURTS_HOST` | bind address — keep `127.0.0.1` so only the local proxy can reach it | `127.0.0.1` |
-| `NDCOURTS_PORT` | bind port | `8000` |
-| `NDCOURTS_DB` | path to `opinions.db` on the server | bundled / app-data |
-| `NDCOURTS_CONST_DB` | path to `constitution.db` (ND Constitution corpus) | bundled / app-data |
-| `NDCOURTS_NDCC_DB` | path to `statutes.db` (N.D.C.C. corpus) | bundled / app-data |
-| `NDCOURTS_RULE_DB` | path to `rules.db` (court-rules corpus) | bundled / app-data |
-| `NDCOURTS_ADMIN_DB` | path to `admincode.db` (Admin. Code corpus) | bundled / app-data |
-| `NDCOURTS_AG_DB` | path to `ag_opinions.db` (Attorney General opinions) | bundled / app-data |
+| `NDLAW_TRANSPORT` | `http` (Streamable HTTP) or `sse`; anything else = stdio | `stdio` |
+| `NDLAW_HOST` | bind address — keep `127.0.0.1` so only the local proxy can reach it | `127.0.0.1` |
+| `NDLAW_PORT` | bind port | `8000` |
+| `NDLAW_DB` | path to `opinions.db` on the server | bundled / app-data |
+| `NDLAW_CONST_DB` | path to `constitution.db` (ND Constitution corpus) | bundled / app-data |
+| `NDLAW_NDCC_DB` | path to `statutes.db` (N.D.C.C. corpus) | bundled / app-data |
+| `NDLAW_RULE_DB` | path to `rules.db` (court-rules corpus) | bundled / app-data |
+| `NDLAW_ADMIN_DB` | path to `admincode.db` (Admin. Code corpus) | bundled / app-data |
+| `NDLAW_AG_DB` | path to `ag_opinions.db` (Attorney General opinions) | bundled / app-data |
 
 The MCP endpoint is **`/mcp`** (no trailing slash — `/mcp/` issues a 307
 redirect, which some clients mishandle on POST).
@@ -405,19 +405,19 @@ data-editing CLIs are not exposed over MCP.
 ### Run it as a service (systemd)
 
 ```ini
-# /etc/systemd/system/ndcourts-mcp.service
+# /etc/systemd/system/ndlaw-mcp.service
 [Unit]
-Description=ndcourts-mcp (Streamable HTTP)
+Description=ndlaw-mcp (Streamable HTTP)
 After=network.target
 
 [Service]
 User=ndcourts
-WorkingDirectory=/srv/ndcourts/ndcourts-mcp
-Environment=NDCOURTS_TRANSPORT=http
-Environment=NDCOURTS_HOST=127.0.0.1
-Environment=NDCOURTS_PORT=8000
-Environment=NDCOURTS_DB=/srv/ndcourts/opinions.db
-ExecStart=/srv/ndcourts/ndcourts-mcp/.venv/bin/ndcourts-mcp
+WorkingDirectory=/srv/ndcourts/ndlaw-mcp
+Environment=NDLAW_TRANSPORT=http
+Environment=NDLAW_HOST=127.0.0.1
+Environment=NDLAW_PORT=8000
+Environment=NDLAW_DB=/srv/ndcourts/opinions.db
+ExecStart=/srv/ndcourts/ndlaw-mcp/.venv/bin/ndlaw-mcp
 Restart=on-failure
 
 [Install]
@@ -456,7 +456,7 @@ the client reaches the server.
 
 The weekly pipeline regenerates `opinions.db`. Because it is served
 read-only, deploying an update is just: copy the new file to the server,
-then `systemctl restart ndcourts-mcp`.
+then `systemctl restart ndlaw-mcp`.
 
 ### Public VPS test (open internet)
 
@@ -470,7 +470,7 @@ Auth + rate limiting + fail2ban** — use the ready-to-run Ubuntu templates in
   with the rate-limit plugin, `ufw`, SSH hardening, fail2ban, client config).
 - [`deploy/Caddyfile`](deploy/Caddyfile) — auto-HTTPS, per-IP `rate_limit`,
   `basic_auth`, and `flush_interval -1` so MCP's SSE streaming isn't buffered.
-- [`deploy/ndcourts-mcp.service`](deploy/ndcourts-mcp.service) — hardened
+- [`deploy/ndlaw-mcp.service`](deploy/ndlaw-mcp.service) — hardened
   systemd unit bound to localhost.
 - [`deploy/fail2ban/`](deploy/fail2ban/) — filter + jail that ban IPs on
   repeated `401`s.

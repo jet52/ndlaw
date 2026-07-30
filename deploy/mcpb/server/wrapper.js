@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// ndcourts-mcp .mcpb wrapper.
+// ndlaw-mcp .mcpb wrapper.
 //
 // Loads the bundled mcp-remote IN-PROCESS via dynamic import, after rewriting
 // process.argv to look like mcp-remote was invoked directly. This avoids
@@ -14,11 +14,11 @@ const { pathToFileURL } = require("url");
 
 const url = process.env.MCP_URL;
 
-console.error(`[ndcourts-wrapper] starting (node ${process.version}, pid ${process.pid})`);
+console.error(`[ndlaw-wrapper] starting (node ${process.version}, pid ${process.pid})`);
 
 if (!url) {
   console.error(
-    "[ndcourts-wrapper] missing MCP_URL. " +
+    "[ndlaw-wrapper] missing MCP_URL. " +
     "Check the extension's configuration in Claude Desktop."
   );
   process.exit(2);
@@ -29,7 +29,7 @@ const mcpRemoteEntry = path.join(
 );
 
 if (!fs.existsSync(mcpRemoteEntry)) {
-  console.error(`[ndcourts-wrapper] bundled mcp-remote not found at ${mcpRemoteEntry}`);
+  console.error(`[ndlaw-wrapper] bundled mcp-remote not found at ${mcpRemoteEntry}`);
   process.exit(4);
 }
 
@@ -43,10 +43,10 @@ process.argv = [
   url,
 ];
 
-console.error(`[ndcourts-wrapper] importing bundled mcp-remote in-process`);
+console.error(`[ndlaw-wrapper] importing bundled mcp-remote in-process`);
 
 import(pathToFileURL(mcpRemoteEntry).href).catch((err) => {
-  console.error(`[ndcourts-wrapper] import failed: ${err && err.message}`);
+  console.error(`[ndlaw-wrapper] import failed: ${err && err.message}`);
   if (err && err.stack) console.error(err.stack);
   process.exit(5);
 });

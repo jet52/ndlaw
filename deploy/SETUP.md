@@ -1,6 +1,6 @@
 # Public VPS deployment (Ubuntu)
 
-Serve `ndcourts-mcp` over Streamable HTTP from an Ubuntu server on the open
+Serve `ndlaw-mcp` over Streamable HTTP from an Ubuntu server on the open
 internet. The opinion data is public (CC0), so access control here is abuse
 prevention, not secrecy. Two access models:
 
@@ -14,13 +14,13 @@ prevention, not secrecy. Two access models:
   walk-through below implements this; claude.ai connectors can't use it.
 
 ```
-Internet ──TLS──▶ Caddy :443 ──localhost──▶ ndcourts-mcp 127.0.0.1:8000
-                  basic_auth                 NDCOURTS_TRANSPORT=http
+Internet ──TLS──▶ Caddy :443 ──localhost──▶ ndlaw-mcp 127.0.0.1:8000
+                  basic_auth                 NDLAW_TRANSPORT=http
                   rate_limit                 read-only opinions.db
 ufw: 22/80/443 only   ·   fail2ban bans repeated 401s
 ```
 
-Files in this dir: `bootstrap.sh`, `Caddyfile`, `ndcourts-mcp.service`,
+Files in this dir: `bootstrap.sh`, `Caddyfile`, `ndlaw-mcp.service`,
 `fail2ban/`, `mcp-apache.conf` (for the [alternative](#alternative-alongside-an-existing-web-server)).
 
 ## 0. Assumptions
@@ -75,7 +75,7 @@ sudo -u ndcourts bash -lc 'curl -LsSf https://astral.sh/uv/install.sh | sh'
 sudo -u ndcourts bash -lc '
   cd /srv/ndcourts
   git clone https://github.com/jet52/ndlaw.git
-  cd ndcourts-mcp
+  cd ndlaw-mcp
   ~/.local/bin/uv venv
   ~/.local/bin/uv pip install .
 '
@@ -99,21 +99,21 @@ sudo -u ndcourts bash -lc '
 > self-update) — see §8. The server's `attach_corpora()` serves whatever corpus
 > DBs are present, each placed where the installed package resolves it, so no
 > extra config is needed. To pull them on first install, run
-> `sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh` once the service is up.
+> `sudo /srv/ndcourts/ndlaw-mcp/deploy/update-db.sh` once the service is up.
 
 ## 3. Run it as a service
 
 ```bash
-sudo cp /srv/ndcourts/ndcourts-mcp/deploy/ndcourts-mcp.service /etc/systemd/system/
+sudo cp /srv/ndcourts/ndlaw-mcp/deploy/ndlaw-mcp.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now ndcourts-mcp
+sudo systemctl enable --now ndlaw-mcp
 # verify it bound to localhost and answers MCP:
 curl -sL -X POST http://127.0.0.1:8000/mcp \
   -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
   -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"probe","version":"0"}}}'
 ```
 
-You should see a JSON-RPC result naming the `ndcourts` server.
+You should see a JSON-RPC result naming the `ndlaw` server.
 
 ## 4. Caddy (TLS + Basic Auth + rate limit)
 
@@ -138,7 +138,7 @@ Configure it:
 # create a bcrypt hash for each user
 caddy hash-password            # prompts for the password, prints the hash
 
-sudo cp /srv/ndcourts/ndcourts-mcp/deploy/Caddyfile /etc/caddy/Caddyfile
+sudo cp /srv/ndcourts/ndlaw-mcp/deploy/Caddyfile /etc/caddy/Caddyfile
 sudo nano /etc/caddy/Caddyfile  # set email, domain, and paste the hash(es)
 sudo mkdir -p /var/log/caddy && sudo chown caddy:caddy /var/log/caddy
 sudo systemctl reload caddy
@@ -160,10 +160,10 @@ Lock SSH to keys only — edit `/etc/ssh/sshd_config`: set
 
 ```bash
 sudo apt install -y fail2ban
-sudo cp /srv/ndcourts/ndcourts-mcp/deploy/fail2ban/filter.d/caddy-ndcourts.conf /etc/fail2ban/filter.d/
-sudo cp /srv/ndcourts/ndcourts-mcp/deploy/fail2ban/jail.d/caddy-ndcourts.conf  /etc/fail2ban/jail.d/
+sudo cp /srv/ndcourts/ndlaw-mcp/deploy/fail2ban/filter.d/caddy-ndlaw.conf /etc/fail2ban/filter.d/
+sudo cp /srv/ndcourts/ndlaw-mcp/deploy/fail2ban/jail.d/caddy-ndlaw.conf  /etc/fail2ban/jail.d/
 sudo systemctl restart fail2ban
-sudo fail2ban-client status caddy-ndcourts
+sudo fail2ban-client status caddy-ndlaw
 ```
 
 ## 7. Connect a client
@@ -216,21 +216,27 @@ still carry the DB assets.
 **One command, from the repo on your build machine:**
 
 ```bash
-NDCOURTS_SSH=jerod@mcp.YOURDOMAIN.com deploy/push-db.sh
+NDLAW_SSH=<your-ssh-host> deploy/push-db.sh
 ```
 
-This runs `scripts/make_release.sh --publish` (gates on invariants + redistribution
-scope + clean tree; zips; sha256s; **pushes the release commit and pins the tag to
-it**; creates the `v<version>` GitHub release) and then SSHes in to run
-`deploy/self-update.sh` on the server, which pins the code to the new tag,
-reinstalls, swaps the DB, restarts, and health-probes.
+Four stages: `scripts/make_release.sh` builds and verifies the DB assets (no
+publishing); `scripts/publish.sh --public` pushes dev, then builds the public code
+subset from `publish/manifest.tsv` and pushes ONLY that; `gh release create` pins
+the `v<version>` tag to the resulting **public** commit and attaches the assets;
+then it SSHes in to run `deploy/self-update.sh`, which pins the code to the new
+tag, reinstalls, swaps the DBs, restarts, and health-probes.
+
+**The tag must be pinned to a public commit, never a dev one.** This script used to
+call `make_release.sh --publish`, which ran `git push origin "$BRANCH"` — on a
+machine where `origin` is the public repo and the work is on the private dev
+remote, that publishes the whole private history. `--publish` is retired.
 
 > **The venv is a non-editable install** (`uv pip install .`, not `-e .`), so a
 > `git pull`/`checkout` alone does **not** change the running code — you must
 > `uv pip install .` again. `self-update.sh` does this; a bare `update-db.sh`
 > does not (it only swaps the DB). If you ever pull code by hand, reinstall:
-> `sudo -u ndcourts bash -lc 'cd /srv/ndcourts/ndcourts-mcp && uv pip install .'`
-> then `sudo systemctl restart ndcourts-mcp`.
+> `sudo -u ndcourts bash -lc 'cd /srv/ndcourts/ndlaw-mcp && uv pip install .'`
+> then `sudo systemctl restart ndlaw-mcp`.
 
 **Server side only** (publishing the release separately, or pulling on the box).
 `deploy/update-db.sh` downloads each shipped DB from the latest release,
@@ -242,8 +248,8 @@ to `.bak` if the probe fails**. Run it as **root** (the `ndcourts` home is not
 readable by your login user, so `sudo -u ndcourts` fails its venv preflight):
 
 ```bash
-sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh --dry-run   # download + validate only
-sudo /srv/ndcourts/ndcourts-mcp/deploy/update-db.sh             # validate, swap, health-check
+sudo /srv/ndcourts/ndlaw-mcp/deploy/update-db.sh --dry-run   # download + validate only
+sudo /srv/ndcourts/ndlaw-mcp/deploy/update-db.sh             # validate, swap, health-check
 ```
 
 > Don't `unzip -o` over the live `opinions.db` by hand: it overwrites an open
@@ -257,15 +263,15 @@ The update is a few seconds of downtime (a restart drops live MCP sessions).
 
 Let the server poll GitHub nightly and deploy any new release on its own, with
 an email on each deploy/rollback. Publishing stays the human gate; the box does
-the rest. Components live in `deploy/`: `self-update.sh`, `ndcourts-update.service`,
-`ndcourts-update.timer`.
+the rest. Components live in `deploy/`: `self-update.sh`, `ndlaw-update.service`,
+`ndlaw-update.timer`.
 
 ```bash
 # 1. systemd units
-sudo cp /srv/ndcourts/ndcourts-mcp/deploy/ndcourts-update.{service,timer} /etc/systemd/system/
+sudo cp /srv/ndcourts/ndlaw-mcp/deploy/ndlaw-update.{service,timer} /etc/systemd/system/
 
 # 2. (optional) email target — kept out of the repo
-echo 'MAIL_TO=you@example.com' | sudo tee /etc/ndcourts-update.env
+echo 'MAIL_TO=you@example.com' | sudo tee /etc/ndlaw-update.env
 
 # 3. seed the marker with the currently-deployed tag so the first run is a no-op
 #    until something newer ships
@@ -275,11 +281,11 @@ echo "$(curl -fsS -o /dev/null -w '%{url_effective}' -L \
 
 # 4. enable the timer
 sudo systemctl daemon-reload
-sudo systemctl enable --now ndcourts-update.timer
-systemctl list-timers ndcourts-update.timer        # confirm next fire time
+sudo systemctl enable --now ndlaw-update.timer
+systemctl list-timers ndlaw-update.timer        # confirm next fire time
 
 # dry test (forces a real check now; no-op if already current):
-sudo systemctl start ndcourts-update.service && journalctl -u ndcourts-update -n 20 --no-pager
+sudo systemctl start ndlaw-update.service && journalctl -u ndlaw-update -n 20 --no-pager
 ```
 
 **Email** uses the `sendmail -t` interface, so any MTA works. Lightweight option —
@@ -292,16 +298,16 @@ sudo apt-get install -y msmtp msmtp-mta        # provides /usr/sbin/sendmail
 ```
 
 Without an MTA, deploys still happen — results just go to journald
-(`journalctl -u ndcourts-update`) instead of email.
+(`journalctl -u ndlaw-update`) instead of email.
 
 **Laptop one-command path** (`deploy/push-db.sh`) SSHes in and runs
 `sudo self-update.sh`. For that to work non-interactively, give the SSH login
 user passwordless sudo for just that script:
 
 ```bash
-echo 'jerod ALL=(root) NOPASSWD: /srv/ndcourts/ndcourts-mcp/deploy/self-update.sh' \
-  | sudo tee /etc/sudoers.d/ndcourts-selfupdate
-sudo chmod 440 /etc/sudoers.d/ndcourts-selfupdate
+echo 'jerod ALL=(root) NOPASSWD: /srv/ndcourts/ndlaw-mcp/deploy/self-update.sh' \
+  | sudo tee /etc/sudoers.d/ndlaw-selfupdate
+sudo chmod 440 /etc/sudoers.d/ndlaw-selfupdate
 ```
 
 > **Scope of autonomy:** auto-deploy runs only *after* you publish a release, and
@@ -352,7 +358,7 @@ server {
     ssl_certificate     /etc/letsencrypt/live/mcp.yourdomain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/mcp.yourdomain.com/privkey.pem;
 
-    auth_basic           "ndcourts MCP";
+    auth_basic           "ndlaw MCP";
     auth_basic_user_file /etc/nginx/mcp.htpasswd;
 
     location / {

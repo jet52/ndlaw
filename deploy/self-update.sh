@@ -25,18 +25,18 @@
 # Config via env (defaults match deploy/SETUP.md's /srv/ndcourts layout):
 #   APP_HOME, REPO, RUN_USER, SERVICE, SLUG, MARKER, MAIL_TO, MAIL_FROM, LOCK
 # Set MAIL_TO (and configure a sendmail-compatible MTA) to get email; without
-# it, results go to journald only (journalctl -u ndcourts-update).
+# it, results go to journald only (journalctl -u ndlaw-update).
 set -euo pipefail
 
 APP_HOME="${APP_HOME:-/srv/ndcourts}"
-REPO="${REPO:-$APP_HOME/ndcourts-mcp}"
+REPO="${REPO:-$APP_HOME/ndlaw-mcp}"
 RUN_USER="${RUN_USER:-ndcourts}"
-SERVICE="${SERVICE:-ndcourts-mcp}"
+SERVICE="${SERVICE:-ndlaw-mcp}"
 SLUG="${SLUG:-jet52/ndlaw}"
 MARKER="${MARKER:-$APP_HOME/.deployed-release}"
 MAIL_TO="${MAIL_TO:-}"
-MAIL_FROM="${MAIL_FROM:-ndcourts-update@$(hostname -f 2>/dev/null || hostname)}"
-LOCK="${LOCK:-/run/ndcourts-update.lock}"
+MAIL_FROM="${MAIL_FROM:-ndlaw-update@$(hostname -f 2>/dev/null || hostname)}"
+LOCK="${LOCK:-/run/ndlaw-update.lock}"
 PORT="${PORT:-8000}"                                       # local health-probe port
 REPO_BASE="${REPO_BASE:-https://github.com/$SLUG/releases/latest/download}"
 
@@ -129,6 +129,13 @@ main() {
   sudo -u "$RUN_USER" bash -lc "cd '$REPO' && PATH=\"\$HOME/.local/bin:\$PATH\" uv pip install . >/dev/null 2>&1" \
     || { notify "ndlaw deploy FAILED ($tag): pip install" \
          "uv pip install . failed on $host deploying $tag. Code is checked out at $tag but not installed; service still on prior code. Investigate."; exit 1; }
+
+  # 1b) Refresh the static landing page so the per-release stamped counts
+  # (scripts/stamp_counts.py, push-db stage 0) reach the live site. Non-fatal.
+  if [ -d /var/www/ndlaw.org ] && [ -d "$REPO/deploy/ndlaw-landing" ]; then
+    cp "$REPO"/deploy/ndlaw-landing/* /var/www/ndlaw.org/ \
+      || log "WARN: landing-page refresh failed (site serves the previous copy)"
+  fi
 
   # 2) Activate the new code. Two paths, chosen by whether the release ships DBs.
   if release_has_db_assets; then

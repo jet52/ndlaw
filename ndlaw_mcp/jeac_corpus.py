@@ -70,7 +70,7 @@ def canonical_jeac_cite(opinion_number: str) -> str:
 
 def resolve_jeac_db_path() -> Path:
     """Locate jeac_opinions.db (mirrors ag_corpus.resolve_ag_db_path)."""
-    env = os.environ.get("NDCOURTS_JEAC_DB")
+    env = os.environ.get("NDLAW_JEAC_DB") or os.environ.get("NDCOURTS_JEAC_DB")
     if env:
         return Path(env).expanduser()
     bundled = Path(__file__).resolve().parent.parent / JEAC_CORPUS["file"]

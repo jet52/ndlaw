@@ -24,7 +24,7 @@ FIG_CORPUS = {"file": "figures.db", "alias": "fig", "label": "ND opinion figures
 
 def resolve_figures_db_path() -> Path:
     """Locate figures.db independent of working directory (mirrors resolve_ag_db_path)."""
-    env = os.environ.get("NDCOURTS_FIGURES_DB")
+    env = os.environ.get("NDLAW_FIGURES_DB") or os.environ.get("NDCOURTS_FIGURES_DB")
     if env:
         return Path(env).expanduser()
     bundled = Path(__file__).resolve().parent.parent / FIG_CORPUS["file"]

@@ -1,4 +1,4 @@
-# Caddyfile — public ndcourts-mcp behind TLS + Basic Auth + rate limiting.
+# Caddyfile — public ndlaw-mcp behind TLS + Basic Auth + rate limiting.
 #
 # Replace the three placeholders: YOUR_EMAIL, mcp.YOURDOMAIN.com, and the
 # bcrypt hash(es) under basic_auth. See deploy/SETUP.md for the full walk-through.
@@ -45,7 +45,7 @@ mcp.YOURDOMAIN.com {
 
 	# Access log — fail2ban watches this for repeated 401s.
 	log {
-		output file /var/log/caddy/ndcourts-mcp.log {
+		output file /var/log/caddy/ndlaw-mcp.log {
 			roll_size 10MiB
 			roll_keep 5
 		}

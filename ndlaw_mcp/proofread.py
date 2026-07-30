@@ -56,6 +56,33 @@ _REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+\
 #   FOOTNOTES form: "\nFOOTNOTES\n\n1:\n\nbody"        (calls do not survive OCR)
 _NOTES_HEADER = re.compile(r"\n[ \t]*NOTES[ \t]*\n")
 _FOOTNOTES_HEADER = re.compile(r"\n[ \t]*FOOTNOTES[ \t]*\n")
+# Separate-writing author line ("LEVINE, Justice, dissenting.") — ends a
+# per-writing FOOTNOTES section (convention ratified by JT 2026-07-29:
+# each writing keeps its own section, numbering as printed). The canonical
+# pattern; web_templates builds its line-matcher from this string.
+WRITING_SEP_PAT = (
+    r"(?:\[\*\d+\]\s+)?"
+    r"(?!The\b|Honorable\b|Hon\.)[A-Z][A-Za-z'’ .-]{1,40},\s+"
+    r"(?:Acting\s+|Chief\s+|Surrogate\s+|District\s+)*"
+    r"(?:Justice|Judge|C\.\s?J\.|J\.)"
+    r"(?:[,.]?\s*\(?(?:respectfully\s+|specially\s+)*"
+    r"(?:concurring|dissenting|writing\s+separately)[^.\n]{0,50}\.?"
+    r"|\.)\s*$")
+# Matches a full author line in either form: with participle ("LEVINE,
+# Justice, dissenting.", "ERICKSTAD, Chief Justice, respectfully
+# dissenting.", "VOGEL, Judge (dissenting).", "MESCHKE, Justice, writing
+# separately.") or bare ("ERICKSTAD, Chief Justice." — Sakellson's dissent
+# opens this way, the header having already said who dissents). A leading
+# star-page marker is allowed ("[*452] LEVINE, Justice, concurring in
+# result." — Wiederholt). The name part carries no comma, which excludes
+# "Appeal from ..., Judge." caption lines; header furniture ("Erickstad,
+# C.J., filed dissenting opinion.", "VandeWalle, J., concurred specially.")
+# fails both branches, as do signature lines ("MESCHKE and GIERKE, JJ.,
+# concur.") and judge-designation footnote bodies ("The Honorable Eugene A.
+# Burdick, Surrogate Judge." — Finch v. Backes fn 2). Match against the RAW
+# line — a tab-leading (block-quoted) author line is quoted text, not a
+# boundary.
+_WRITING_SEP = re.compile(r"(?m)^" + WRITING_SEP_PAT)
 _BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
 _BRACKET_CALL = re.compile(r"\[(\d{1,3})\]")              # inline [N] call (not [¶ N])
 _COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
@@ -247,31 +274,53 @@ def _section_footnotes(text: str) -> dict | None:
         # When the heading is present the SECTION is authoritative — otherwise a
         # quoted statutory subsection earlier in the opinion ("1. The court shall
         # ...") could be taken for footnote 1's body.
-        opens = [(int(m.group(1)), fh.end() + m.start())
-                 for m in _LABELLED_NOTE.finditer(text[fh.end():])]
-        if opens:
-            seen, uniq = set(), []
-            for num, pos in opens:
+        #
+        # Per-writing sections (JT 2026-07-29): an opinion carries ONE section
+        # per writing, each ending at the next separate-writing author line;
+        # numbering restarts per writing, so ``bodies`` may repeat a number.
+        # ``call_para``/``call_at`` are keyed by the body's START offset here
+        # (unique), with the legacy num key kept as a fallback for callers.
+        heads = list(_FOOTNOTES_HEADER.finditer(text))
+        all_bodies, call_para, call_at = [], {}, {}
+        prev_end = 0
+        for k, hm in enumerate(heads):
+            limit = heads[k + 1].start() if k + 1 < len(heads) else len(text)
+            sep = _WRITING_SEP.search(text, hm.end(), limit)
+            reg_end = sep.start() if sep else limit
+            opens, seen = [], set()
+            for m in _LABELLED_NOTE.finditer(text, hm.end(), reg_end):
+                num = int(m.group(1))
                 if num not in seen:
                     seen.add(num)
-                    uniq.append((num, pos))
-            call_para, call_at = {}, {}
-            for num, _ in uniq:
-                # Same discipline as the standalone path: a surviving bare-number
-                # call line is authoritative; an inline [N] counts only when it is
-                # UNIQUE before the heading, since "[1]" also occurs as a quote
-                # alteration (2016 ND 249, where the real call is at ¶4 and a
-                # spurious [1] sits at ¶16).
-                pos = next((m.start() for m in _STANDALONE_NUM.finditer(text[:fh.start()])
-                            if int(m.group(1)) == num), None)
-                if pos is None:
-                    hits = [m for m in _BRACKET_CALL.finditer(text, 0, fh.start())
+                    opens.append((num, m.start()))
+            spans = []
+            for j, (num, pos) in enumerate(opens):
+                end = opens[j + 1][1] if j + 1 < len(opens) else reg_end
+                spans.append((num, pos, end))
+            for num, pos, _ in spans:
+                # Same discipline as the standalone path: a surviving bare-
+                # number call line is authoritative; an inline [N] counts only
+                # when it is UNIQUE in this writing's span (2016 ND 249: the
+                # real call is at ¶4 and a spurious [1] sits at ¶16). The call
+                # search window is this writing's text: [prev section end,
+                # this heading).
+                cp = next((prev_end + m.start() for m in
+                           _STANDALONE_NUM.finditer(text[prev_end:hm.start()])
+                           if int(m.group(1)) == num), None)
+                if cp is None:
+                    hits = [m for m in _BRACKET_CALL.finditer(
+                                text, prev_end, hm.start())
                             if int(m.group(1)) == num]
-                    pos = hits[0].start() if len(hits) == 1 else None
-                if pos is not None:
-                    call_para[num] = find_paragraph(text, pos, markers)
-                    call_at[num] = pos
-            return {"bodies": _spans(text, uniq), "call_para": call_para,
+                    cp = hits[0].start() if len(hits) == 1 else None
+                if cp is not None:
+                    call_para[pos] = find_paragraph(text, cp, markers)
+                    call_at[pos] = cp
+                    call_para.setdefault(num, call_para[pos])
+                    call_at.setdefault(num, cp)
+            all_bodies.extend(spans)
+            prev_end = reg_end
+        if all_bodies:
+            return {"bodies": all_bodies, "call_para": call_para,
                     "call_at": call_at, "detached": True}
     # NOTES form: line-anchored "[N]" bodies after a NOTES header; the call is
     # the earliest inline "[N]" before the header.
@@ -433,14 +482,18 @@ def locate_structure(text: str, offset: int, struct: dict | None = None) -> dict
     struct = struct if struct is not None else footnote_structure(text)
     for num, start, end in struct["bodies"]:
         if start <= offset < end:
-            call_at = struct.get("call_at", {}).get(num)
+            # start-keyed first (per-writing sections repeat numbers), num
+            # fallback for the legacy single-section paths
+            cm = struct.get("call_at", {})
+            call_at = cm.get(start, cm.get(num))
             if call_at is not None:
                 page = star_page_before(text, call_at)
             elif struct.get("detached"):
                 page = None
             else:
                 page = star_page_before(text, offset)
-            return {"paragraph": struct["call_para"].get(num), "footnote": num,
+            pm = struct.get("call_para", {})
+            return {"paragraph": pm.get(start, pm.get(num)), "footnote": num,
                     "in_footnote": True, "reporter_page": page}
     return {"paragraph": find_paragraph(text, offset), "footnote": None,
             "in_footnote": False, "reporter_page": star_page_before(text, offset)}

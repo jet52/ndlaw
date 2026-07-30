@@ -46,7 +46,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS ix_tbl_oid_idx ON opinion_tables(opinion_id, t
 
 
 def resolve_tables_db_path() -> Path:
-    env = os.environ.get("NDCOURTS_TABLES_DB")
+    env = os.environ.get("NDLAW_TABLES_DB") or os.environ.get("NDCOURTS_TABLES_DB")
     if env:
         return Path(env).expanduser()
     bundled = Path(__file__).resolve().parent.parent / TBL_CORPUS["file"]

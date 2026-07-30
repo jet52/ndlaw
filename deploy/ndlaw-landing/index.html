@@ -34,7 +34,7 @@
 <p>This endpoint gives AI assistants (Claude, and any MCP-capable client)
 citation-verified access to North Dakota primary legal authority:</p>
 <ul>
-  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (~19,800 opinions, full text, citation graph)</li>
+  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions, full text, citation graph)</li>
   <li><strong>Constitution of North Dakota</strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
   <li><strong>N.D. Century Code</strong>, <strong>court rules</strong>, and <strong>administrative code</strong> — versioned provisions</li>
   <li><strong>Attorney General opinions</strong> (1942–present) and <strong>Judicial Ethics Advisory Committee opinions</strong></li>
@@ -47,6 +47,15 @@ citation-verified access to North Dakota primary legal authority:</p>
 <pre>claude mcp add --transport http ndlaw https://ndlaw.org/mcp</pre>
 <p>Claude.ai / Claude Desktop: add a custom connector with the URL above.
 Any other MCP client: point its HTTP transport at the same URL.</p>
+
+<h2>Look up a citation</h2>
+<form action="/cite" method="get">
+  <input type="text" name="q" size="28" placeholder="2020 ND 30"
+         aria-label="Citation" style="font-size:1em; padding:.35em .5em;">
+  <button type="submit" style="font-size:1em; padding:.35em .8em;">Go</button>
+</form>
+<p class="sub" style="font-size:.9em;">Accepted forms:
+2020 ND 30 · 604 N.W.2d 458 · 13 N.D. 359</p>
 
 <div class="note">
 <strong>Fair use.</strong> This is a shared public server on modest hardware.

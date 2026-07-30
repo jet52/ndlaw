@@ -39,11 +39,11 @@ def resolve_ag_db_path() -> Path:
 
     Resolution order mirrors ``db.resolve_db_path`` /
     ``corpus.resolve_corpus_db_path``:
-      1. ``NDCOURTS_AG_DB`` env var.
+      1. ``NDLAW_AG_DB`` env var (deprecated ``NDCOURTS_AG_DB`` fallback).
       2. The file bundled alongside the source tree / release tarball.
       3. The per-user data directory.
     """
-    env = os.environ.get("NDCOURTS_AG_DB")
+    env = os.environ.get("NDLAW_AG_DB") or os.environ.get("NDCOURTS_AG_DB")
     if env:
         return Path(env).expanduser()
     bundled = Path(__file__).resolve().parent.parent / AG_CORPUS["file"]

@@ -6,7 +6,7 @@
 # statutes / admincode). The server's corpus.attach_corpora() serves whatever
 # corpus DBs are present, so the ONLY thing needed to light up a new corpus on
 # the live server is to land its file where the installed package looks — which
-# this script does by querying ndcourts_mcp.corpus.resolve_corpus_db_path (no
+# this script does by querying ndlaw_mcp.corpus.resolve_corpus_db_path (no
 # systemd-unit/env change required, even though self-update.sh does not reinstall
 # the unit).
 #
@@ -29,8 +29,8 @@ set -euo pipefail
 
 APP_HOME="${APP_HOME:-/srv/ndcourts}"
 DB_PATH="${DB_PATH:-$APP_HOME/opinions.db}"
-VENV="${VENV:-$APP_HOME/ndcourts-mcp/.venv}"
-SERVICE="${SERVICE:-ndcourts-mcp}"
+VENV="${VENV:-$APP_HOME/ndlaw-mcp/.venv}"
+SERVICE="${SERVICE:-ndlaw-mcp}"
 PORT="${PORT:-8000}"
 MIN_OPINIONS="${MIN_OPINIONS:-19000}"   # floor; current corpus ~19,792
 REPO_BASE="${REPO_BASE:-https://github.com/jet52/ndlaw/releases/latest/download}"
@@ -46,7 +46,7 @@ command -v sqlite3 >/dev/null || die "sqlite3 not found"
 # The systemd service runs as this user (no User= ⇒ root). Corpus DB paths are
 # resolved per-user (platformdirs keys off $HOME), so they MUST be resolved as the
 # SERVICE user — resolving as root (this script's user) places them under
-# /root/.local/share where the ndcourts service cannot read them.
+# /root/.local/share where the service user cannot read them.
 RUN_USER="$(systemctl show "$SERVICE" -p User --value 2>/dev/null)"
 [ -n "$RUN_USER" ] || RUN_USER=root
 RUN_HOME="$(getent passwd "$RUN_USER" | cut -d: -f6)"; [ -n "$RUN_HOME" ] || RUN_HOME=/root
@@ -55,7 +55,7 @@ as_run_user() { sudo -u "$RUN_USER" env HOME="$RUN_HOME" "$@"; }
 # Resolve where the INSTALLED package expects a corpus DB (env -> bundled -> user
 # data), AS THE SERVICE USER so $HOME-based user-data paths match what the running
 # service opens.
-resolve() { as_run_user "$VENV/bin/python" -c "from ndcourts_mcp import corpus; print(corpus.resolve_corpus_db_path('$1'))" 2>/dev/null; }
+resolve() { as_run_user "$VENV/bin/python" -c "from ndlaw_mcp import corpus; print(corpus.resolve_corpus_db_path('$1'))" 2>/dev/null; }
 
 # Manifest rows: name|dbfile|count_sql|floor|required|dest
 declare -a ROWS=()
@@ -69,28 +69,28 @@ for spec in "const:constitution.db:150" "rule:rules.db:500" "ndcc:statutes.db:25
 done
 # AG opinions is a separate immutable-doc DB (not in corpus.CORPORA); resolve via
 # ag_corpus and count ag_opinions rather than provisions.
-ag_dest="$(as_run_user "$VENV/bin/python" -c "from ndcourts_mcp.ag_corpus import resolve_ag_db_path; print(resolve_ag_db_path())" 2>/dev/null)" || ag_dest=""
+ag_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.ag_corpus import resolve_ag_db_path; print(resolve_ag_db_path())" 2>/dev/null)" || ag_dest=""
 if [ -n "$ag_dest" ]; then
   ROWS+=("ag|ag_opinions.db|SELECT COUNT(*) FROM ag_opinions|6000|0|$ag_dest")
 else
   say "WARN: cannot resolve dest for AG opinions DB — skipping"
 fi
 # JEAC opinions — separate immutable-doc DB (like AG); resolve via jeac_corpus.
-jeac_dest="$(as_run_user "$VENV/bin/python" -c "from ndcourts_mcp.jeac_corpus import resolve_jeac_db_path; print(resolve_jeac_db_path())" 2>/dev/null)" || jeac_dest=""
+jeac_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.jeac_corpus import resolve_jeac_db_path; print(resolve_jeac_db_path())" 2>/dev/null)" || jeac_dest=""
 if [ -n "$jeac_dest" ]; then
   ROWS+=("jeac|jeac_opinions.db|SELECT COUNT(*) FROM jeac_opinions|20|0|$jeac_dest")
 else
   say "WARN: cannot resolve dest for JEAC opinions DB — skipping"
 fi
 # Figures — reproduced-figure image DB; resolve via figures_corpus.
-fig_dest="$(as_run_user "$VENV/bin/python" -c "from ndcourts_mcp.figures_corpus import resolve_figures_db_path; print(resolve_figures_db_path())" 2>/dev/null)" || fig_dest=""
+fig_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.figures_corpus import resolve_figures_db_path; print(resolve_figures_db_path())" 2>/dev/null)" || fig_dest=""
 if [ -n "$fig_dest" ]; then
   ROWS+=("fig|figures.db|SELECT COUNT(*) FROM opinion_figures|20|0|$fig_dest")
 else
   say "WARN: cannot resolve dest for figures DB — skipping"
 fi
 
-STAGE="$(mktemp -d "${TMPDIR:-/tmp}/ndcourts-db.XXXXXX")"
+STAGE="$(mktemp -d "${TMPDIR:-/tmp}/ndlaw-db.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
 cd "$STAGE"
 

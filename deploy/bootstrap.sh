@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-shot bootstrap for ndcourts-mcp on a fresh Ubuntu 22.04/24.04 droplet.
+# One-shot bootstrap for ndlaw-mcp on a fresh Ubuntu 22.04/24.04 droplet.
 # Run as root. Idempotent: re-running after a partial failure is safe.
 #
 # Required env vars (skip all four if MCP_SKIP_CADDY=1):
@@ -38,7 +38,7 @@ fi
 MCP_REPO="${MCP_REPO:-https://github.com/jet52/ndlaw.git}"
 MCP_DB_URL="${MCP_DB_URL:-https://github.com/jet52/ndlaw/releases/latest/download/opinions.db.zip}"
 APP_HOME=/srv/ndcourts
-APP_DIR=$APP_HOME/ndcourts-mcp
+APP_DIR=$APP_HOME/ndlaw-mcp
 DB_PATH=$APP_HOME/opinions.db
 
 log() { printf '\n\033[1;36m==>\033[0m %s\n' "$*"; }
@@ -90,7 +90,7 @@ fi
 
 # ---------- 6. venv + install ----------
 log "venv + pip install"
-if [[ ! -x "$APP_DIR/.venv/bin/ndcourts-mcp" ]]; then
+if [[ ! -x "$APP_DIR/.venv/bin/ndlaw-mcp" ]]; then
   as_ndcourts "cd '$APP_DIR' && ~/.local/bin/uv venv"
 fi
 as_ndcourts "cd '$APP_DIR' && ~/.local/bin/uv pip install ."
@@ -111,9 +111,9 @@ fi
 
 # ---------- 8. systemd unit ----------
 log "systemd unit"
-install -m 0644 "$APP_DIR/deploy/ndcourts-mcp.service" /etc/systemd/system/ndcourts-mcp.service
+install -m 0644 "$APP_DIR/deploy/ndlaw-mcp.service" /etc/systemd/system/ndlaw-mcp.service
 systemctl daemon-reload
-systemctl enable --now ndcourts-mcp
+systemctl enable --now ndlaw-mcp
 
 # wait briefly for the socket, then probe
 for _ in 1 2 3 4 5 6 7 8 9 10; do
@@ -125,7 +125,7 @@ if ! curl -fsS -X POST http://127.0.0.1:8000/mcp \
       -H 'Accept: application/json, text/event-stream' \
       -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"bootstrap","version":"0"}}}' \
       >/dev/null; then
-  echo "WARN: local MCP probe failed — check: journalctl -u ndcourts-mcp -n 50" >&2
+  echo "WARN: local MCP probe failed — check: journalctl -u ndlaw-mcp -n 50" >&2
 fi
 
 if [[ "${MCP_SKIP_CADDY:-0}" != "1" ]]; then
@@ -179,8 +179,8 @@ ufw status | grep -q "Status: active" || ufw --force enable
 
 # ---------- 12. fail2ban ----------
 log "fail2ban (Caddy jail)"
-install -m 0644 "$APP_DIR/deploy/fail2ban/filter.d/caddy-ndcourts.conf" /etc/fail2ban/filter.d/caddy-ndcourts.conf
-install -m 0644 "$APP_DIR/deploy/fail2ban/jail.d/caddy-ndcourts.conf"   /etc/fail2ban/jail.d/caddy-ndcourts.conf
+install -m 0644 "$APP_DIR/deploy/fail2ban/filter.d/caddy-ndlaw.conf" /etc/fail2ban/filter.d/caddy-ndlaw.conf
+install -m 0644 "$APP_DIR/deploy/fail2ban/jail.d/caddy-ndlaw.conf"   /etc/fail2ban/jail.d/caddy-ndlaw.conf
 systemctl enable --now fail2ban
 systemctl restart fail2ban
 
@@ -192,13 +192,13 @@ cat <<EOF
 
 \033[1;32mApp install complete (Caddy skipped).\033[0m
 
-  ndcourts-mcp is listening on 127.0.0.1:8000 — wire your existing web
+  ndlaw-mcp is listening on 127.0.0.1:8000 — wire your existing web
   server to it as a reverse proxy. See deploy/mcp-apache.conf for an
   Apache vhost template, or apply the equivalent in nginx.
 
   Useful:
-    systemctl status ndcourts-mcp
-    journalctl -u ndcourts-mcp -f
+    systemctl status ndlaw-mcp
+    journalctl -u ndlaw-mcp -f
     ss -ltnp 'sport = :8000'
 EOF
 else
@@ -210,14 +210,14 @@ cat <<EOF
   User:      $MCP_USER
 
   Probe from your laptop:
-    claude mcp add --transport http ndcourts https://$MCP_DOMAIN/mcp \\
+    claude mcp add --transport http ndlaw https://$MCP_DOMAIN/mcp \\
       --header "Authorization: Basic \$(printf '$MCP_USER:<password>' | base64)"
 
   Useful:
-    systemctl status ndcourts-mcp caddy fail2ban
-    journalctl -u ndcourts-mcp -f
-    tail -f /var/log/caddy/ndcourts-mcp.log
-    fail2ban-client status caddy-ndcourts
+    systemctl status ndlaw-mcp caddy fail2ban
+    journalctl -u ndlaw-mcp -f
+    tail -f /var/log/caddy/ndlaw-mcp.log
+    fail2ban-client status caddy-ndlaw
 
   Reminder: harden SSH separately —
     /etc/ssh/sshd_config:  PasswordAuthentication no   PermitRootLogin no

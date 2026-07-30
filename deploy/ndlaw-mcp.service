@@ -1,25 +1,25 @@
-# systemd unit — ndcourts-mcp over Streamable HTTP, bound to localhost.
-# Install to /etc/systemd/system/ndcourts-mcp.service (see deploy/SETUP.md).
+# systemd unit — ndlaw-mcp over Streamable HTTP, bound to localhost.
+# Install to /etc/systemd/system/ndlaw-mcp.service (see deploy/SETUP.md).
 #
 # Adjust User/paths if you don't use the /srv/ndcourts layout from SETUP.md.
 
 [Unit]
-Description=ndcourts-mcp (MCP server, Streamable HTTP)
+Description=ndlaw-mcp (MCP server, Streamable HTTP)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=ndcourts
 Group=ndcourts
-WorkingDirectory=/srv/ndcourts/ndcourts-mcp
+WorkingDirectory=/srv/ndcourts/ndlaw-mcp
 
 # Transport + bind. Host stays on localhost — only Caddy is public.
-Environment=NDCOURTS_TRANSPORT=http
-Environment=NDCOURTS_HOST=127.0.0.1
-Environment=NDCOURTS_PORT=8000
-Environment=NDCOURTS_DB=/srv/ndcourts/opinions.db
+Environment=NDLAW_TRANSPORT=http
+Environment=NDLAW_HOST=127.0.0.1
+Environment=NDLAW_PORT=8000
+Environment=NDLAW_DB=/srv/ndcourts/opinions.db
 
-ExecStart=/srv/ndcourts/ndcourts-mcp/.venv/bin/ndcourts-mcp
+ExecStart=/srv/ndcourts/ndlaw-mcp/.venv/bin/ndlaw-mcp
 Restart=on-failure
 RestartSec=2
 

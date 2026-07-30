@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ndcourts-mcp = "ndcourts_mcp.server:main"
+ndcourts-mcp = "ndlaw_mcp.server:main"
 
 [tool.setuptools.packages.find]
-include = ["ndcourts_mcp*"]
+include = ["ndlaw_mcp*", "ndcourts_mcp*"]

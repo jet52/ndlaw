@@ -13,7 +13,7 @@ from . import (ag_corpus, corpus, draftcheck, figures_corpus, jeac_corpus, table
                memo, notes, proofread, research)
 from .db import DEFAULT_DB_PATH, get_connection
 
-# Public deployments (ndlaw.org) set NDCOURTS_RATE_NOTE=1 so connected LLM
+# Public deployments (ndlaw.org) set NDLAW_RATE_NOTE=1 so connected LLM
 # clients are told to pace themselves. MCP has no protocol-level rate
 # negotiation, but clients DO read server instructions — this is the one
 # channel that reaches the model before it plans its tool calls. Keep the
@@ -30,7 +30,7 @@ _RATE_NOTE = (
     "through everything, and reuse results already in context. For bulk "
     "analysis, download the full CC0 database from "
     "https://github.com/jet52/ndlaw/releases instead of crawling this API."
-) if os.environ.get("NDCOURTS_RATE_NOTE") else ""
+) if os.environ.get("NDLAW_RATE_NOTE") or os.environ.get("NDCOURTS_RATE_NOTE") else ""
 
 mcp = FastMCP(
     "ndlaw",
@@ -222,7 +222,8 @@ def _opinion_summary(row) -> dict:
         "court": row["court"],
     }
     # Include enriched fields when available
-    for field in ("case_type", "highlight", "unanimous", "disposition"):
+    for field in ("case_type", "highlight", "unanimous", "disposition",
+                  "date_rehearing"):
         try:
             val = row[field]
             if val is not None:
@@ -304,7 +305,7 @@ def _cite_payload(conn, row) -> dict:
     """Canonical-citation block shared by verify_citation / get_parallel_citations."""
     rows = _citation_rows(conn, row["id"])
     ordered, synthetic = proofread.order_citations(rows)
-    return {
+    payload = {
         "canonical_case_name": row["case_name"],
         "case_name_full": row["case_name_full"],
         "date_filed": row["date_filed"],
@@ -321,6 +322,10 @@ def _cite_payload(conn, row) -> dict:
         "formatted": proofread.format_redbook(row["case_name"], ordered, row["date_filed"]),
         **_best_url(row),
     }
+    reh = _col(row, "date_rehearing")
+    if reh:
+        payload["date_rehearing"] = reh
+    return payload
 
 
 @mcp.tool()
@@ -574,7 +579,7 @@ def get_database_stats() -> dict:
         # its text has been cross-checked against a named authority
         # (cross_checked), found divergent and fixed (corrected), or accepted
         # as the only obtainable source with that limitation recorded
-        # (single_source_accepted). See ndcourts_mcp/validation_status.py.
+        # (single_source_accepted). See ndlaw_mcp/validation_status.py.
         validated_by_decade = []
         try:
             validated_by_decade = conn.execute(
@@ -785,7 +790,7 @@ def get_citing_opinions(citation: str, limit: int = 20) -> list[dict]:
 
     Returns opinions that reference the given citation in their text,
     ordered by date (newest first). Requires citation extraction to have
-    been run (python -m ndcourts_mcp.cite_extract).
+    been run (python -m ndlaw_mcp.cite_extract).
 
     Args:
         citation: A legal citation like "2024 ND 156" or "585 N.W.2d 129".
@@ -1300,6 +1305,8 @@ def case_summary(citation: str) -> dict:
             "case_name": row["case_name"],
             "case_name_full": row["case_name_full"],
             "date_filed": row["date_filed"],
+            **({"date_rehearing": _col(row, "date_rehearing")}
+               if _col(row, "date_rehearing") else {}),
             "author": row["author"],
             "per_curiam": bool(row["per_curiam"]),
             "court": row["court"],
@@ -1365,6 +1372,15 @@ def get_subsequent_history(citation: str) -> dict:
             "date_filed": row["date_filed"],
             "docket_number": docket or None,
         }
+        reh = _col(row, "date_rehearing")
+        if reh:
+            base["date_rehearing"] = reh
+            base["rehearing_note"] = (
+                "This record is a composite: the original opinion and an "
+                "opinion (or order) on rehearing are printed together. "
+                "date_filed is the original decision date; date_rehearing "
+                "is the printed rehearing date."
+            )
         if not docket:
             base["related"] = []
             base["note"] = "No docket number recorded; cannot link related opinions."
@@ -4380,6 +4396,14 @@ def get_opinion_tables(citation: str, format: str = "markdown") -> dict:
         conn.close()
 
 
+# Citation-URL web interface (PLAN-web-interface.md): mounts /2020ND30-style
+# opinion pages, /cite resolver, and /citing//cited subpages on the same app
+# that serves /mcp. No-op for stdio transport (routes are never hit).
+from . import web as _web  # noqa: E402  (needs mcp + DB_PATH defined above)
+
+_web.register(mcp, DB_PATH)
+
+
 def main():
     """Run the MCP server.
 
@@ -4387,18 +4411,18 @@ def main():
     subprocess — they pass no env, so this path is unchanged). For a
     remote/team deployment set:
 
-      NDCOURTS_TRANSPORT=http   serve Streamable HTTP (or `sse`)
-      NDCOURTS_HOST=127.0.0.1   bind address (default localhost-only;
+      NDLAW_TRANSPORT=http   serve Streamable HTTP (or `sse`)
+      NDLAW_HOST=127.0.0.1   bind address (default localhost-only;
                                 front it with a TLS+auth reverse proxy)
-      NDCOURTS_PORT=8000        bind port
+      NDLAW_PORT=8000        bind port
 
     The server exposes read-only tools; auth/TLS belong in the proxy.
     """
-    transport = os.environ.get("NDCOURTS_TRANSPORT", "stdio").lower()
+    transport = (os.environ.get("NDLAW_TRANSPORT") or os.environ.get("NDCOURTS_TRANSPORT", "stdio")).lower()
     if transport in ("http", "streamable-http", "sse"):
         norm = "sse" if transport == "sse" else "http"
-        host = os.environ.get("NDCOURTS_HOST", "127.0.0.1")
-        port = int(os.environ.get("NDCOURTS_PORT", "8000"))
+        host = os.environ.get("NDLAW_HOST") or os.environ.get("NDCOURTS_HOST", "127.0.0.1")
+        port = int(os.environ.get("NDLAW_PORT") or os.environ.get("NDCOURTS_PORT", "8000"))
         print(
             f"ndcourts-mcp: serving {norm} on {host}:{port} "
             "(front with a TLS+auth reverse proxy; tools are read-only)",

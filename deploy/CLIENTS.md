@@ -1,4 +1,4 @@
-# Connecting Claude clients to a remote ndcourts-mcp
+# Connecting Claude clients to a remote ndlaw-mcp
 
 The server (see [SETUP.md](SETUP.md)) speaks Streamable HTTP behind TLS.
 Access is by **capability URL**: the URL the admin sends you contains an

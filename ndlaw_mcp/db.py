@@ -11,17 +11,23 @@ def resolve_db_path() -> Path:
     """Locate opinions.db independent of working directory or install layout.
 
     Resolution order:
-      1. ``NDCOURTS_DB`` environment variable (explicit override).
+      1. ``NDLAW_DB`` environment variable (explicit override; the deprecated
+         pre-v3.0.0 ``NDCOURTS_DB`` still works as a fallback).
       2. ``opinions.db`` bundled alongside the source tree / release tarball.
-      3. The per-user data directory (where a pip/uvx install keeps it).
+      3. The per-user data directory (where a pip/uvx install keeps it); a DB
+         left in the deprecated ``ndcourts-mcp`` data dir is still found.
     """
-    env = os.environ.get("NDCOURTS_DB")
+    env = os.environ.get("NDLAW_DB") or os.environ.get("NDCOURTS_DB")
     if env:
         return Path(env).expanduser()
     bundled = Path(__file__).resolve().parent.parent / "opinions.db"
     if bundled.exists():
         return bundled
-    return user_data_path("ndcourts-mcp", appauthor=False) / "opinions.db"
+    data = user_data_path("ndlaw-mcp", appauthor=False) / "opinions.db"
+    legacy = user_data_path("ndcourts-mcp", appauthor=False) / "opinions.db"
+    if not data.exists() and legacy.exists():
+        return legacy
+    return data
 
 
 DEFAULT_DB_PATH = resolve_db_path()
@@ -40,7 +46,7 @@ def get_connection(
     if must_exist and not Path(db_path).exists():
         raise FileNotFoundError(
             f"opinions.db not found at {db_path}. Download the database release "
-            f"asset or set NDCOURTS_DB to its location (see the README 'Quick "
+            f"asset or set NDLAW_DB to its location (see the README 'Quick "
             f"start'). Pass must_exist=False to create a new database."
         )
     if read_only:
