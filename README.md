@@ -7,7 +7,7 @@ Appeals decisions). Coverage is complete since statehood (November 2,
 FTS5 full-text search and served via
 [FastMCP](https://github.com/jlowin/fastmcp).
 
-The opinions corpus currently contains **<!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->126,709<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
+The opinions corpus currently contains **<!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->126,813<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
 release notes. Where the court's own print contains an
 apparent typo, the text is preserved verbatim and the case is recorded in a
 shipped `print_anomalies` table (with the apparent intended reading and
@@ -64,7 +64,7 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->126,709<!-- /COUNT --> citation links, 1889–present |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->19,870<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->126,813<!-- /COUNT --> citation links, 1889–present |
 | `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
 | `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
 | `rules.db`        | ND court rules | ~650 rule provisions |
