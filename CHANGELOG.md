@@ -8,6 +8,47 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.1.0 — 2026-08-01
+
+- **Web**: citation-URL interface serves **all 18 rule sets** (v3.0.x
+  hardcoded six, leaving 310 rule provisions with no URL), plus a short
+  URL form for every provision in all four corpora (`/ndrappp4`,
+  `/ndcc12.1-20-03`, `/ndconstarti8`, `/ndac75-02-04.1-01`); 44,104 of
+  44,104 provisions now resolve. `/cited` pages list every cited
+  authority type, grouped, and resolve 1889-numbering constitutional
+  cites through the crosswalk. Subdivision cites resolve at any depth.
+- **Citation graph**: N.D. Sup. Ct. Admin. Order cites newly extracted
+  (jetcite 2.7.4), incl. the COVID-19 jury-trial suspension (Order 25);
+  N.D.R. Proc. R. pattern fixed; 9 Lawyer Sanctions standards re-cited
+  (`1 0` → `1.0`), unblocking 258 orphaned graph citations.
+- **Data**: ~90 print/PDF-verified text corrections queued since
+  v3.0.1 — five inside-pool hold classes closed (atomic
+  sibling-divergence, bracket/invisible/italics seams, digit-letter
+  confusables) and head-pool atomic tranches 1–10 (21 opinions:
+  bunched-label lists restored to N.D.C.C. § 28-32-46 and others,
+  West-inserted parallels removed from quotes, deposition Q./A. blocks
+  reassembled).
+- **AG opinions**: 2026-L-02 and 2026-L-03 ingested (6,753 total).
+- **Ops**: weekly pipeline gains AG/JEAC freshness watches and a
+  figure watch (embedded images in new opinions' PDFs); update-db.sh
+  learns the tables.db corpus.
+- 527 tests, 102 invariants (2 new: `short_key_unique`,
+  `provision_has_web_url`).
+
+## v3.0.1 — 2026-07-30
+
+- Deploy fix over v3.0.0: the public `pyproject.toml` had missed the
+  ndcourts→ndlaw rename (caught by the cutover health probe). v3.0.0
+  retracted.
+
+## v3.0.0 — 2026-07-30
+
+- **Citation-URL web interface** (ndlaw.org): every opinion and
+  provision addressable by citation-shaped URL across all 7 corpora;
+  ratified disclaimer + official-source links; renderer fixes.
+- ~460 data corrections; full citation-graph rebuild (357,944 outbound
+  / 126,821 inbound edges).
+
 ## v2.2.0 — 2026-07-28
 
 Data release. No new opinions (the court filed none this cycle). The work is text

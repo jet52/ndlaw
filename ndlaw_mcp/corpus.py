@@ -111,6 +111,117 @@ def cite_key(citation: str) -> str:
     return s
 
 
+def short_key(citation: str) -> str:
+    """``cite_key`` with its spaces removed — the compact single-token form
+    of a citation, used by the short URLs (``/ndrappp4``).
+
+    Whitespace is the only thing separating the two forms, so this is also
+    what ``resolve_cite_key``'s second tier compares. Verified 2026-07-31
+    across all 44,104 provisions in the four corpora: short keys are unique
+    within each corpus AND across all four, and none collides with the
+    opinion neutral-cite token pattern (``\\d{4}nd\\d+``).
+    """
+    return cite_key(citation).replace(" ", "")
+
+
+# ---------------------------------------------------------------------------
+# court-rule sets
+# ---------------------------------------------------------------------------
+
+# Every canonical citation prefix in the rules corpus. Verified to partition
+# rules.db exactly (661/661 provisions, 2026-07-31); ``ingest_rules`` maps its
+# mirror directories onto these and a test asserts the two stay in step.
+RULE_SET_PREFIXES: tuple[str, ...] = (
+    "N.D.R.App.P.",
+    "N.D.R.Civ.P.",
+    "N.D.R.Crim.P.",
+    "N.D.R.Ev.",
+    "N.D.R.Juv.P.",
+    "N.D.R.Ct.",
+    "N.D.R. Prof. Conduct",
+    "N.D. Code Jud. Conduct",
+    "N.D.R. Lawyer Discipl.",
+    "Admission to Practice R.",
+    "N.D.R. Continuing Legal Educ.",
+    "N.D. Stds. Imposing Lawyer Sanctions",
+    "N.D. Sup. Ct. Admin. R.",
+    "N.D. Sup. Ct. Admin. Order",
+    "R. Jud. Conduct Comm.",
+    "N.D.R. Proc. R.",
+    "N.D.R. Local Ct. Pr.",
+    "N.D. Local Ct. R.",
+    "Ltd. Practice of Law by Law Students R.",
+)
+
+# URL slugs that are not the mechanical ``short_key`` of their prefix: the six
+# friendly slugs v3.0.x served (kept so published links keep working) and the
+# two mirror directory names that diverge from the citation they produce.
+# Every one 301s to the canonical slug.
+RULE_SET_SLUG_ALIASES: dict[str, str] = {
+    "civ": "ndrcivp",
+    "crim": "ndrcrimp",
+    "app": "ndrappp",
+    "ev": "ndrev",
+    "ct": "ndrct",
+    "juv": "ndrjuvp",
+    "ndrcontinuinglegaled": "ndrcontinuinglegaleduc",
+    "rltdpracticeoflawbylawstudents": "ltdpracticeoflawbylawstudentsr",
+}
+
+# Rule-set spellings the citation graph carries that the corpus does not.
+# jetcite normalizes what the court PRINTED, so these are real variants in the
+# opinions, not extraction errors — mapped at serve time rather than rewritten
+# in ``text_citations`` (the extracted form stays as extracted).
+RULE_PREFIX_ALIASES: dict[str, str] = {
+    "N.D. Admission to Practice R.": "Admission to Practice R.",
+    "N.D.R. Continuing Legal Ed.": "N.D.R. Continuing Legal Educ.",
+    "N.D.R. Jud. Conduct Commission": "R. Jud. Conduct Comm.",
+}
+
+
+def rule_set_slug(prefix: str) -> str:
+    """Canonical URL slug for a rule-set prefix ('N.D.R.App.P.' ->
+    'ndrappp'). Mechanically derived, so ``/rule/<slug>/<num>`` and the short
+    ``/<slug><num>`` are the same two facts in the same spelling."""
+    return short_key(prefix)
+
+
+def rule_sets() -> dict[str, str]:
+    """slug -> canonical prefix, for every rule set in the corpus."""
+    return {rule_set_slug(p): p for p in RULE_SET_PREFIXES}
+
+
+def split_rule_citation(citation: str) -> tuple[str, str] | None:
+    """'N.D.R.App.P. 4' -> ('ndrappp', '4'), or None if no rule set matches.
+    Longest prefix wins ('N.D. Sup. Ct. Admin. Order' before '... Admin. R.'
+    can never mis-split, but 'N.D.R.Ct.' vs 'N.D.R.Ct. appendix' would)."""
+    for prefix in sorted(RULE_SET_PREFIXES, key=len, reverse=True):
+        if citation.startswith(prefix + " "):
+            return rule_set_slug(prefix), citation[len(prefix) + 1:]
+    return None
+
+
+def cite_variants(citation: str) -> list[str]:
+    """The canonical citation plus every alternate spelling the citation
+    graph may carry for it. Queries against ``text_citations.normalized``
+    should match on all of them or they undercount (7 opinions cite
+    'N.D. Admission to Practice R. 3'; the corpus stores no such string)."""
+    out = [citation]
+    for foreign, canon in RULE_PREFIX_ALIASES.items():
+        if citation.startswith(canon + " "):
+            out.append(foreign + citation[len(canon):])
+    return out
+
+
+def canonical_cite(citation: str) -> str:
+    """Map an alternate rule-set spelling onto the corpus's canonical one;
+    returns ``citation`` unchanged when it is already canonical."""
+    for foreign, canon in RULE_PREFIX_ALIASES.items():
+        if citation.startswith(foreign + " "):
+            return canon + citation[len(foreign):]
+    return citation
+
+
 def resolve_cite_key(
     conn: sqlite3.Connection, corpus_alias: str, citation: str
 ) -> str | None:

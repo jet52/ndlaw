@@ -13,6 +13,20 @@ URL scheme (canonical = the opinion's primary citation):
     /{canonical}/citing  paginated citing list (50/page); /cited likewise
     /cite/{free text}    resolver -> 301 to canonical (also /cite?q=)
 
+Provisions (Phase B) answer to a structured path and a short one, both 200:
+
+    /rule/{set}/{num}    /rule/ndrappp/4  — canonical; also /ndcc/, /ndac/,
+                         /const/{art}/{sec}
+    /{shortkey}          /ndrappp4, /ndcc12.1-20-03, /ndconstarti8 — the
+                         citation as one token, carrying <link rel=canonical>
+                         to the structured form
+
+The short key is ``corpus.short_key`` (``cite_key`` minus spaces), so it needs
+no grammar: normalize the token, look it up. Verified unique across all 44,104
+provisions in the four corpora and disjoint from opinion tokens (2026-07-31).
+Rule-set slugs come from ``corpus.RULE_SET_PREFIXES`` — all 18 sets, not the
+six that v3.0.x hardcoded; the old friendly slugs 301 to the canonical ones.
+
 Loose forms (case, hyphens, spaces, parallel cites, pre-1997 synthetic
 neutral cites) 301-redirect to canonical. Shared reporter pages render a
 disambiguation page; each candidate links ``?id=<opinion id>``.
@@ -26,6 +40,8 @@ import html
 import os
 import re
 import sqlite3
+import sys
+from urllib.parse import quote
 
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, RedirectResponse, Response
@@ -173,27 +189,53 @@ def _ndcc_official_url(section: str) -> str:
 
 
 _ROMAN = re.compile(r"^[IVXLC]+$", re.IGNORECASE)
-_RULE_SETS = {"civ": "N.D.R.Civ.P.", "crim": "N.D.R.Crim.P.",
-              "app": "N.D.R.App.P.", "ev": "N.D.R.Ev.",
-              "ct": "N.D.R.Ct.", "juv": "N.D.R.Juv.P."}
+_CONST_CITE = re.compile(r"^N\.D\. Const\. art\. ([IVXLC]+), § (.+)$")
+# Constitutional provisions that no article/section path can name: the
+# 1889-numbering sections ('N.D. Const. § 148'), the preamble, the Schedule,
+# and the standalone amendment articles. 218 + 26 + 21 real provisions.
+_CONST_SHORT_ONLY = re.compile(
+    r"^N\.D\. Const\. (?:§ \d+[\w.]*|pmbl\.|Schedule, § \d+[\w.]*"
+    r"|amend\. art\. [IVXLC]+)$")
+
+
+def _prov_url(corpus_name: str, citation: str) -> str | None:
+    """Canonical page path for a provision, or None when this corpus and
+    citation shape have no page. Rule numbers can contain spaces
+    ('N.D.R.Civ.P. Table B'), so the number is percent-encoded."""
+    if corpus_name == "ndcc" and citation.startswith("N.D.C.C. § "):
+        return "/ndcc/" + quote(citation[11:])
+    if corpus_name == "admin" and citation.startswith("N.D.A.C. § "):
+        return "/ndac/" + quote(citation[11:])
+    if corpus_name == "const":
+        m = _CONST_CITE.match(citation)
+        if m:
+            return f"/const/{m.group(1)}/{quote(m.group(2))}"
+        # For provisions no article/section path can name, the short form IS
+        # the canonical URL — and /{short}/construing follows from the
+        # bare-token route without a new route shape. A three-segment
+        # /const/148/construing could not be told apart from /const/I/8.
+        if _CONST_SHORT_ONLY.match(citation):
+            return _short_url(citation)
+        return None
+    if corpus_name == "rule":
+        split = corpus.split_rule_citation(corpus.canonical_cite(citation))
+        if split:
+            return f"/rule/{split[0]}/{quote(split[1])}"
+    return None
+
+
+def _short_url(citation: str) -> str:
+    """The compact single-token URL for a provision ('/ndrappp4')."""
+    return "/" + corpus.short_key(citation)
 
 
 def _prov_link(corpus_name: str, citation: str) -> str:
-    """Cross-reference list item: link corpora that have pages."""
+    """Cross-reference list item: link corpora that have pages. The citation
+    is displayed as the citing document spelled it; only the href is
+    canonicalized."""
     esc = html.escape(citation)
-    if corpus_name == "ndcc" and citation.startswith("N.D.C.C. § "):
-        return (f'<a href="/ndcc/{html.escape(citation[11:])}">{esc}</a>')
-    if corpus_name == "admin" and citation.startswith("N.D.A.C. § "):
-        return (f'<a href="/ndac/{html.escape(citation[11:])}">{esc}</a>')
-    m = re.match(r"^N\.D\. Const\. art\. ([IVXLC]+), § (.+)$", citation)
-    if corpus_name == "const" and m:
-        return (f'<a href="/const/{m.group(1)}/{html.escape(m.group(2))}">'
-                f"{esc}</a>")
-    for slug, prefix in _RULE_SETS.items():
-        if corpus_name == "rule" and citation.startswith(prefix + " "):
-            num = citation[len(prefix) + 1:]
-            return (f'<a href="/rule/{slug}/{html.escape(num)}">{esc}</a>')
-    return esc
+    url = _prov_url(corpus_name, citation)
+    return f'<a href="{url}">{esc}</a>' if url else esc
 
 
 def _ndac_official_url(section: str) -> str:
@@ -213,32 +255,141 @@ def _rule_official_fn(ver):
     return web_templates.OFFICIAL_FALLBACK["rule"]
 
 
+def _spec_for(corpus_name: str, citation: str):
+    """(corpus_name, citation, canonical path, official-url fn) — everything a
+    provision page needs, derived from the corpus and citation alone. Every
+    URL form funnels through here, so all of them render identical pages."""
+    canon = _prov_url(corpus_name, citation)
+    if canon is None:
+        return None
+    if corpus_name == "ndcc":
+        official = lambda ver, s=citation[11:]: _ndcc_official_url(s)  # noqa: E731
+    elif corpus_name == "admin":
+        official = lambda ver, s=citation[11:]: _ndac_official_url(s)  # noqa: E731
+    elif corpus_name == "const":
+        official = lambda ver: web_templates.OFFICIAL_FALLBACK["const"]  # noqa: E731
+    else:
+        official = _rule_official_fn
+    return (corpus_name, citation, canon, official)
+
+
 def _prov_spec(kind: str, params: dict):
     """(corpus_name, citation, canon, official_fn) for a provision URL,
     or None when the URL can't name a provision."""
     if kind == "ndcc":
-        sec = params["section"]
-        return ("ndcc", f"N.D.C.C. § {sec}", f"/ndcc/{sec}",
-                lambda ver, s=sec: _ndcc_official_url(s))
+        return _spec_for("ndcc", f"N.D.C.C. § {params['section']}")
     if kind == "ndac":
-        sec = params["section"]
-        return ("admin", f"N.D.A.C. § {sec}", f"/ndac/{sec}",
-                lambda ver, s=sec: _ndac_official_url(s))
+        return _spec_for("admin", f"N.D.A.C. § {params['section']}")
     if kind == "const":
         art = params["art"].upper()
         if not _ROMAN.match(art):
             return None
-        sec = params["sec"]
-        return ("const", f"N.D. Const. art. {art}, § {sec}",
-                f"/const/{art}/{sec}",
-                lambda ver: web_templates.OFFICIAL_FALLBACK["const"])
+        return _spec_for("const", f"N.D. Const. art. {art}, § {params['sec']}")
     if kind == "rule":
-        prefix = _RULE_SETS.get(params["set"].lower())
+        slug = params["set"].lower()
+        prefix = corpus.rule_sets().get(
+            corpus.RULE_SET_SLUG_ALIASES.get(slug, slug))
         if not prefix:
             return None
-        num = params["num"]
-        return ("rule", f"{prefix} {num}",
-                f"/rule/{params['set'].lower()}/{num}", _rule_official_fn)
+        return _spec_for("rule", f"{prefix} {params['num']}")
+    return None
+
+
+# ---------------------------------------------------------------------------
+# short-form URLs (/ndrappp4) — one flat namespace over every corpus
+# ---------------------------------------------------------------------------
+
+# short key -> (corpus name, canonical citation). Built lazily and cached for
+# the process: the corpus only changes via the weekly self-update, which
+# restarts the service (the same assumption _STAMP rests on).
+_SHORT_INDEX: dict[str, tuple[str, str]] | None = None
+
+
+def _build_short_index() -> dict[str, tuple[str, str]]:
+    """Index every provision in every installed corpus by its short key.
+
+    Keys were verified unique within and across all four corpora (44,104
+    provisions, 2026-07-31), but a future ingest could introduce a clash, so a
+    collision drops BOTH entries: an ambiguous short URL must 404 rather than
+    guess. ``invariants`` carries the standing zero-collision check.
+    """
+    idx: dict[str, tuple[str, str]] = {}
+    clashed: set[str] = set()
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            return idx
+        for name in attached:
+            al = corpus.CORPORA[name]["alias"]
+            try:
+                rows = conn.execute(
+                    f"SELECT cite_key, citation FROM {al}.provisions "
+                    "WHERE corpus = ?", (name,)).fetchall()
+            except sqlite3.OperationalError:
+                continue                # corpus DB without the expected schema
+            for row in rows:
+                short = row["cite_key"].replace(" ", "")
+                entry = (name, row["citation"])
+                if idx.get(short, entry) != entry:
+                    clashed.add(short)
+                idx[short] = entry
+    finally:
+        conn.close()
+    for short in clashed:
+        idx.pop(short, None)
+        print(f"web: ambiguous short key {short!r} — dropped from short URLs",
+              file=sys.stderr)
+    return idx
+
+
+def _short_index() -> dict[str, tuple[str, str]]:
+    global _SHORT_INDEX
+    if _SHORT_INDEX is None:
+        _SHORT_INDEX = _build_short_index()
+    return _SHORT_INDEX
+
+
+def _reset_short_index() -> None:
+    """Drop the cached index (tests that swap corpus DBs mid-process)."""
+    global _SHORT_INDEX
+    _SHORT_INDEX = None
+
+
+_SUBDIVISION = re.compile(r"\s*\([^()]*\)\s*$")
+
+# Deepest subdivision chain the resolver will peel off a citation before
+# giving up. Sized well above the corpus's observed maximum (5, in
+# text_citations as of 2026-07-31) because the cost of being too high is one
+# extra dict miss and the cost of being too low is a silent 404.
+_MAX_SUBDIVISION_DEPTH = 12
+
+
+def _provision_spec_for_text(text: str):
+    """Resolve free text or a short token to a provision spec, or None.
+
+    Trailing subdivisions are stripped so a pinpoint reaches its provision
+    ('N.D.R.App.P. 4(a)' -> rule 4). The subdivision is dropped rather than
+    carried as a fragment: provision bodies have no subsection anchors yet, and
+    a fragment that scrolls nowhere is worse than none.
+    """
+    idx = _short_index()
+    t = re.sub(r"\s+", " ", text).strip()
+    # Strip until the text stops changing rather than a fixed number of times:
+    # a count bounds the DEPTH it can resolve, and silently 404s anything
+    # deeper. The graph carries citations 5 subdivisions deep
+    # ('Rule 32(f)(3)(A)(iii), N.D.R.Crim.P.'), and nothing stops a future one
+    # from going deeper still. The cap is only a runaway guard — _SUBDIVISION
+    # is anchored and shrinks the string every pass, so it cannot spin.
+    for _ in range(_MAX_SUBDIVISION_DEPTH + 1):
+        hit = idx.get(corpus.short_key(corpus.canonical_cite(t)))
+        if hit:
+            return _spec_for(*hit)
+        stripped = _SUBDIVISION.sub("", t)
+        if stripped == t:
+            return None
+        t = stripped
     return None
 
 
@@ -294,6 +445,37 @@ def _document_page(request: Request, kind: str, number: str) -> Response:
         conn.close()
 
 
+def _find_provision(conn, alias: str, name: str, citation: str):
+    """The provision row for ``citation`` — exact match first, then by
+    ``cite_key`` so spacing, punctuation, and case variants of the same
+    citation all land on the same page."""
+    row = conn.execute(
+        f"SELECT id, citation, heading, status FROM {alias}.provisions "
+        "WHERE corpus=? AND citation=?", (name, citation)).fetchone()
+    if row is not None:
+        return row
+    key = corpus.resolve_cite_key(conn, alias, citation)
+    if key is None:
+        return None
+    return conn.execute(
+        f"SELECT id, citation, heading, status FROM {alias}.provisions "
+        "WHERE corpus=? AND cite_key=?", (name, key)).fetchone()
+
+
+def _construing_variants(citation: str) -> tuple[list[str], str]:
+    """(bound parameters, SQL placeholder list) covering every spelling the
+    citation graph uses for ``citation`` — see corpus.cite_variants."""
+    variants = corpus.cite_variants(citation)
+    return variants, ",".join("?" * len(variants))
+
+
+def _construing_count(conn, citation: str) -> int:
+    variants, marks = _construing_variants(citation)
+    return conn.execute(
+        "SELECT COUNT(DISTINCT opinion_id) FROM text_citations "
+        f"WHERE normalized IN ({marks})", variants).fetchone()[0]
+
+
 def _prov_page(request: Request, name: str, citation: str, canon: str,
                official_fn) -> Response:
     """Phase B provision page (PLAN-web-interface §4.2) — version text
@@ -310,11 +492,14 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         if name not in attached:        # corpus NAMES, not ATTACH aliases
             return _not_found(request, citation)
         al = corpus.CORPORA[name]["alias"]
-        prov = conn.execute(
-            f"SELECT id, citation, heading, status FROM {al}.provisions "
-            "WHERE corpus=? AND citation=?", (name, citation)).fetchone()
+        prov = _find_provision(conn, al, name, citation)
         if not prov:
             return _not_found(request, citation)
+        # a cite_key hit can spell the citation differently from the URL
+        # ('/rule/ndrcivp/tableb' -> 'N.D.R.Civ.P. Table B'); the corpus's own
+        # spelling governs the heading, the counts, and rel=canonical.
+        citation = prov["citation"]
+        canon = _prov_url(name, citation) or canon
         versions = conn.execute(
             f"""SELECT id, effective_start, effective_end,
                        source_authority, source_url
@@ -337,9 +522,7 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         text = conn.execute(
             f"SELECT text_content FROM {al}.provision_versions "
             "WHERE id=?", (ver["id"],)).fetchone()[0]
-        construing = conn.execute(
-            "SELECT COUNT(DISTINCT opinion_id) FROM text_citations "
-            "WHERE normalized=?", (citation,)).fetchone()[0]
+        construing = _construing_count(conn, citation)
         try:
             xrefs_out = conn.execute(
                 f"SELECT COUNT(*) FROM {al}.provision_xrefs "
@@ -374,7 +557,8 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
 """
         h1 = citation + (f" — {prov['heading']}" if prov["heading"] else "")
         return _html(request, web_templates.page(
-            citation, body, h1=h1, official_url=official_fn(ver)))
+            citation, body, h1=h1, official_url=official_fn(ver),
+            canonical=canon))
     finally:
         conn.close()
 
@@ -394,18 +578,16 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
         if name not in attached:
             return _not_found(request, citation)
         al = corpus.CORPORA[name]["alias"]
-        prov = conn.execute(
-            f"SELECT id, citation, heading FROM {al}.provisions "
-            "WHERE corpus=? AND citation=?", (name, citation)).fetchone()
+        prov = _find_provision(conn, al, name, citation)
         if not prov:
             return _not_found(request, citation)
+        citation = prov["citation"]
+        canon = _prov_url(name, citation) or canon
         back = (f'<p class="meta"><a href="{canon}">'
                 f"← {html.escape(citation)}</a></p>")
 
         if sub == "construing":
-            total = conn.execute(
-                "SELECT COUNT(DISTINCT opinion_id) FROM text_citations "
-                "WHERE normalized=?", (citation,)).fetchone()[0]
+            total = _construing_count(conn, citation)
             pages = max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE)
             try:
                 pageno = int(request.query_params.get("page", "1"))
@@ -413,13 +595,14 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
                 pageno = 0
             if not (1 <= pageno <= pages):
                 return _not_found(request, f"{citation} construing page")
+            variants, marks = _construing_variants(citation)
             oids = [r[0] for r in conn.execute(
-                """SELECT DISTINCT tc.opinion_id FROM text_citations tc
+                f"""SELECT DISTINCT tc.opinion_id FROM text_citations tc
                    JOIN opinions o ON o.id = tc.opinion_id
-                   WHERE tc.normalized=?
+                   WHERE tc.normalized IN ({marks})
                    ORDER BY o.date_filed DESC, o.id
                    LIMIT ? OFFSET ?""",
-                (citation, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
+                (*variants, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
             pager = ""
             if pages > 1:
                 parts = []
@@ -485,7 +668,8 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
             title = f"Cross-references — {citation}"
         return _html(request, web_templates.page(
             title, body, h1=title,
-            official_url=official_fn(None)))
+            official_url=official_fn(None),
+            canonical=f"{canon}/{sub}"))
     finally:
         conn.close()
 
@@ -507,7 +691,7 @@ def _opinion_page(conn, request: Request, row) -> Response:
         (oid,)).fetchone()[0]
     cites_out_n = conn.execute(
         "SELECT COUNT(*) FROM cited_by WHERE citing_opinion_id = ?",
-        (oid,)).fetchone()[0]
+        (oid,)).fetchone()[0] + _noncase_authority_count(conn, oid)
     canon = canonical_path(conn, oid)
 
     def col(name):
@@ -587,8 +771,12 @@ def _not_found(request: Request, token: str) -> Response:
 <p>Accepted citation forms:</p>
 <p><code>2020 ND 30</code> · <code>604 N.W.2d 458</code> ·
 <code>13 N.D. 359</code> — as URLs: <code>/2020ND30</code>,
-<code>/NW2d/604/458</code>, <code>/ND/13/359</code>, or
-<code>/cite/&lt;citation&gt;</code>.</p>
+<code>/NW2d/604/458</code>, <code>/ND/13/359</code>.</p>
+<p>Statutes, rules, the Constitution, and the administrative code:
+<code>/ndcc/12.1-20-03</code> · <code>/rule/ndrappp/4</code> ·
+<code>/const/I/8</code> · <code>/ndac/75-02-04.1-01</code>, or the short form
+<code>/ndrappp4</code>.</p>
+<p>Anything else: <code>/cite/&lt;citation&gt;</code>.</p>
 """
     return _html(request, web_templates.page("Not found", body, h1="Not found"),
                  status=404, max_age=3600)
@@ -636,6 +824,130 @@ def _link_list(conn, oids: list[int]) -> str:
     return f'<ul class="candidates">{"".join(items)}</ul>'
 
 
+_AUTH_SECTIONS = (("constitution", "Constitution", "const"),
+                  ("statute", "Statutes", "ndcc"),
+                  ("court_rule", "Court rules", "rule"),
+                  ("regulation", "Administrative code", "admin"))
+
+
+def _natkey(s: str):
+    return [int(p) if p.isdigit() else p for p in re.split(r"(\d+)", s)]
+
+
+def _noncase_authority_count(conn, oid: int) -> int:
+    """Distinct cited authorities beyond in-corpus case edges: provisions
+    (statutes/const/rules/admin code) plus out-of-corpus cases (deduped by
+    parallel group)."""
+    prov = conn.execute(
+        "SELECT COUNT(DISTINCT normalized) FROM text_citations "
+        "WHERE opinion_id = ? AND cite_type != 'case'", (oid,)).fetchone()[0]
+    other = conn.execute(
+        """SELECT COUNT(DISTINCT COALESCE('g' || parallel_group,
+                                          'n' || normalized))
+           FROM text_citations
+           WHERE opinion_id = ? AND cite_type = 'case'
+             AND normalized NOT IN (SELECT citation FROM citations)""",
+        (oid,)).fetchone()[0]
+    return prov + other
+
+
+_OLDCONST = re.compile(r"^N\.D\. Const\. § \d+[\w.]*$")
+
+
+def _const_item(conn, citation: str) -> str:
+    """Constitution list item: modern art/§ cites link directly; 1889-
+    numbering cites resolve through const.const_crosswalk to the modern
+    provision ('N.D. Const. § 148 — now art. VIII, § 2')."""
+    if not _OLDCONST.match(citation):
+        return _prov_link("const", citation)
+    try:
+        row = conn.execute(
+            "SELECT new_cite FROM const.const_crosswalk "
+            "WHERE old_cite = ? AND new_cite IS NOT NULL "
+            "ORDER BY new_kind = 'modern' DESC LIMIT 1",
+            (citation,)).fetchone()
+    except sqlite3.Error:
+        row = None
+    esc = html.escape(citation)
+    if row is None:
+        return esc
+    new_cite = row["new_cite"]
+    m = re.match(r"^N\.D\. Const\. art\. ([IVXLC]+), § (.+)$", new_cite)
+    tail = html.escape(new_cite[12:])  # strip "N.D. Const. "
+    if m:
+        tail = (f'<a href="/const/{m.group(1)}/{html.escape(m.group(2))}">'
+                f"{tail}</a>")
+    return f'{esc} <span class="meta">— now {tail}</span>'
+
+
+def _authority_sections(conn, oid: int) -> str:
+    """Non-case authorities cited by an opinion, grouped by type, plus
+    out-of-corpus cases — the /cited page's sections above the in-corpus
+    case list (which cited_by alone can't provide)."""
+    by_type: dict[str, list[str]] = {}
+    for r in conn.execute(
+            "SELECT DISTINCT cite_type, normalized FROM text_citations "
+            "WHERE opinion_id = ? AND cite_type != 'case'", (oid,)):
+        by_type.setdefault(r["cite_type"], []).append(r["normalized"])
+    if by_type.get("constitution"):
+        try:  # 1889-numbering crosswalk lives in the const corpus DB
+            corpus.attach_corpora(conn, read_only=True)
+        except Exception:
+            pass
+    parts = []
+    for ctype, label, corpus_name in _AUTH_SECTIONS:
+        cites = sorted(by_type.get(ctype, []), key=_natkey)
+        if not cites:
+            continue
+        if ctype == "constitution":
+            items = "".join(f"<li>{_const_item(conn, c)}</li>"
+                            for c in cites)
+        else:
+            items = "".join(f"<li>{_prov_link(corpus_name, c)}</li>"
+                            for c in cites)
+        parts.append(f'<h2>{label}</h2>'
+                     f'<ul class="candidates">{items}</ul>')
+    # out-of-corpus cases: one entry per parallel group, named where jetcite
+    # captured an antecedent, linked to the external source when known
+    groups: dict = {}
+    order = []
+    for r in conn.execute(
+            """SELECT normalized, parallel_group, antecedent_name, url
+               FROM text_citations
+               WHERE opinion_id = ? AND cite_type = 'case'
+                 AND normalized NOT IN (SELECT citation FROM citations)
+               ORDER BY id""", (oid,)):
+        key = ("g", r["parallel_group"]) if r["parallel_group"] is not None \
+            else ("n", r["normalized"])
+        g = groups.get(key)
+        if g is None:
+            g = {"name": r["antecedent_name"], "cites": [], "url": r["url"]}
+            groups[key] = g
+            order.append(g)
+        if r["normalized"] not in g["cites"]:
+            g["cites"].append(r["normalized"])
+        if not g["url"] and r["url"]:
+            g["url"] = r["url"]
+        if not g["name"] and r["antecedent_name"]:
+            g["name"] = r["antecedent_name"]
+    if order:
+        items = []
+        for g in sorted(order, key=lambda g: _natkey(
+                (g["name"] or "") + " " + g["cites"][0])):
+            label = ", ".join(g["cites"])
+            if g["name"]:
+                label = f'<i>{html.escape(g["name"])}</i>, {html.escape(label)}'
+            else:
+                label = html.escape(label)
+            if g["url"]:
+                label = (f'<a href="{html.escape(g["url"], quote=True)}">'
+                         f"{label}</a>")
+            items.append(f"<li>{label}</li>")
+        parts.append(f'<h2>Other cases</h2>'
+                     f'<ul class="candidates">{"".join(items)}</ul>')
+    return "".join(parts)
+
+
 def _sub_page(request: Request, cite: str, direction: str) -> Response:
     conn = _conn()
     try:
@@ -654,6 +966,9 @@ def _sub_page(request: Request, cite: str, direction: str) -> Response:
         total = conn.execute(
             f"SELECT COUNT(*) FROM cited_by WHERE {col_match} = ?",
             (oid,)).fetchone()[0]
+        display_total = total
+        if direction == "cited":
+            display_total = total + _noncase_authority_count(conn, oid)
         pages = max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE)
         try:
             pageno = int(request.query_params.get("page", "1"))
@@ -677,9 +992,16 @@ def _sub_page(request: Request, cite: str, direction: str) -> Response:
             if pageno < pages:
                 parts.append(f'<a href="{canon}/{direction}?page={pageno+1}">older →</a>')
             pager = f'<p class="pager">{" · ".join(parts)}</p>'
+        sections = cases_h2 = ""
+        if direction == "cited":
+            if pageno == 1:
+                sections = _authority_sections(conn, oid)
+            if sections or pages > 1 or pageno > 1:
+                cases_h2 = "<h2>Cases</h2>"
         body = (f'<p class="meta"><a href="{canon}">'
-                f"← {html.escape(row['case_name'])}</a> · {total} total</p>"
-                + _link_list(conn, oids) + pager)
+                f"← {html.escape(row['case_name'])}</a> · "
+                f"{display_total} total</p>"
+                + sections + cases_h2 + _link_list(conn, oids) + pager)
         return _html(request, web_templates.page(
             f"{label} {row['case_name']}", body,
             h1=f"{label} {row['case_name']}",
@@ -715,6 +1037,13 @@ def register(mcp, db_path=None) -> None:
     _STAMP = _build_stamp(_DB_PATH)
 
     async def _resolve_free(request: Request, q: str) -> Response:
+        """The /cite resolver: any citation in any corpus, however spelled,
+        301s to its canonical page. Provisions are tried first — no provision
+        short key can spell an opinion neutral cite, so the order is safe and
+        it keeps 'N.D.C.C. § …' out of the opinion extractor."""
+        spec = _provision_spec_for_text(q)
+        if spec is not None:
+            return _redirect(spec[2])
         cite = free_text_to_cite(q)
         if cite is None:
             return _not_found(request, q)
@@ -737,21 +1066,39 @@ def register(mcp, db_path=None) -> None:
     async def cite_query(request: Request) -> Response:
         return await _resolve_free(request, request.query_params.get("q", ""))
 
+    def _alias_redirect(kind: str, params: dict, sub: str | None) -> str | None:
+        """Legacy/mirror rule slugs ('/rule/civ/56') 301 to the canonical
+        slug rather than serving a second copy of the page."""
+        if kind != "rule":
+            return None
+        slug = params["set"].lower()
+        canon_slug = corpus.RULE_SET_SLUG_ALIASES.get(slug)
+        if canon_slug is None:
+            return None
+        tail = f"/{sub}" if sub else ""
+        return f"/rule/{canon_slug}/{quote(params['num'])}{tail}"
+
     def _prov_routes(kind, *segs):
         path = "/" + kind + "".join("/{%s}" % g for g in segs)
 
         async def prov(request: Request) -> Response:
+            alias = _alias_redirect(kind, request.path_params, None)
+            if alias:
+                return _redirect(alias)
             spec = _prov_spec(kind, request.path_params)
             if spec is None:
                 return _not_found(request, request.url.path)
             return _prov_page(request, *spec)
 
         async def prov_sub(request: Request) -> Response:
+            sub = request.path_params["sub"]
+            alias = _alias_redirect(kind, request.path_params, sub)
+            if alias:
+                return _redirect(alias)
             spec = _prov_spec(kind, request.path_params)
             if spec is None:
                 return _not_found(request, request.url.path)
-            return _prov_sub(request, *spec,
-                             request.path_params["sub"])
+            return _prov_sub(request, *spec, sub)
 
         mcp.custom_route(path, methods=["GET"])(prov)
         mcp.custom_route(path + "/{sub}", methods=["GET"])(prov_sub)
@@ -805,19 +1152,31 @@ def register(mcp, db_path=None) -> None:
         mcp.custom_route(f"/{fam}/{{vol}}/{{page}}", methods=["GET"])(rp)
         mcp.custom_route(f"/{fam}/{{vol}}/{{page}}/{{sub}}", methods=["GET"])(rs)
 
+    # One bare token serves two namespaces: opinion neutral cites (/2020ND30)
+    # and provision short keys (/ndrappp4, /ndcc12.1-20-03). They cannot
+    # collide — an opinion token always leads with four digits, no provision
+    # short key does — so the order is a formality, not a precedence rule.
     @mcp.custom_route("/{token}", methods=["GET"])
     async def bare_token(request: Request) -> Response:
         token = request.path_params["token"]
         cite = token_to_cite(token)
-        if cite is None:
-            return _not_found(request, token)
-        return _serve_cite(request, cite, request.url.path)
+        if cite is not None:
+            return _serve_cite(request, cite, request.url.path)
+        spec = _provision_spec_for_text(token)
+        if spec is not None:
+            return _prov_page(request, *spec)
+        return _not_found(request, token)
 
     @mcp.custom_route("/{token}/{sub}", methods=["GET"])
     async def bare_token_sub(request: Request) -> Response:
         token = request.path_params["token"]
         sub = request.path_params["sub"]
         cite = token_to_cite(token)
-        if cite is None or sub not in ("citing", "cited"):
-            return _not_found(request, f"{token}/{sub}")
-        return _sub_page(request, cite, sub)
+        if cite is not None:
+            if sub not in ("citing", "cited"):
+                return _not_found(request, f"{token}/{sub}")
+            return _sub_page(request, cite, sub)
+        spec = _provision_spec_for_text(token)
+        if spec is not None and sub in ("construing", "xrefs"):
+            return _prov_sub(request, *spec, sub)
+        return _not_found(request, f"{token}/{sub}")

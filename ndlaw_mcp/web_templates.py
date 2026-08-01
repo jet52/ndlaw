@@ -122,15 +122,24 @@ def disclaimer_html(official_url: str | None = None) -> str:
 
 
 def page(title: str, body: str, *, h1: str | None = None,
-         official_url: str | None = None) -> str:
-    """Wrap ``body`` (already-safe HTML) in the shared page shell."""
+         official_url: str | None = None, canonical: str | None = None) -> str:
+    """Wrap ``body`` (already-safe HTML) in the shared page shell.
+
+    ``canonical`` names the preferred URL when a document is reachable at more
+    than one (a provision answers to both ``/rule/ndrappp/4`` and the short
+    ``/ndrappp4``); both serve 200, and this is what tells a tool which one to
+    quote."""
+    link = ""
+    if canonical:
+        link = (f'\n<link rel="canonical" '
+                f'href="{html.escape(canonical, quote=True)}">')
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>{html.escape(title)}</title>
+<title>{html.escape(title)}</title>{link}
 <style>{_STYLE}</style>
 </head>
 <body>

@@ -89,6 +89,13 @@ if [ -n "$fig_dest" ]; then
 else
   say "WARN: cannot resolve dest for figures DB — skipping"
 fi
+# Tables — reproduced numeric-table DB; resolve via tables_corpus.
+tbl_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.tables_corpus import resolve_tables_db_path; print(resolve_tables_db_path())" 2>/dev/null)" || tbl_dest=""
+if [ -n "$tbl_dest" ]; then
+  ROWS+=("tbl|tables.db|SELECT COUNT(*) FROM opinion_tables|100|0|$tbl_dest")
+else
+  say "WARN: cannot resolve dest for tables DB — skipping"
+fi
 
 STAGE="$(mktemp -d "${TMPDIR:-/tmp}/ndlaw-db.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
