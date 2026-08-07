@@ -14,7 +14,8 @@ only the corpus's closed marker grammar (fidelity spike 2026-07-28,
 - ``FOOTNOTES`` heading + inline ``[N]`` refs + ``N.`` bodies (ratified
   footnote convention) → bidirectional links, gated on the heading and the
   collected footnote numbers so bracketed numbers elsewhere stay text.
-- ``Syllabus by the Court`` → ``<h2>``.
+- Standalone section-furniture lines (``Syllabus of/by the Court``,
+  ``Synopsis``, ``Attorneys and Law Firms``, ``Opinion``) → ``<h2>``.
 - ``[Figure N: …]`` captions → styled paragraph.
 - Lines that begin with whitespace are *continuations* of the previous line
   (the CL-era converter split italic spans and their following cites onto
@@ -157,18 +158,32 @@ def page(title: str, body: str, *, h1: str | None = None,
 
 _H2_LABELS = {"Concurrence", "Dissent", "On Rehearing", "Concurrence in Part"}
 _MD_HEAD = re.compile(r"^##\s*(.+?)\s*$")
-_SYLLABUS = re.compile(r"^Syllabus by the Court\.?$")
+# standalone section-furniture lines render as headings (JT 2026-08-06, the
+# syllabus-restore eyeball round): both syllabus forms as printed, plus the
+# West structural labels the texts carry. Full-line anchored so body prose
+# mentioning "opinion" is never caught.
+_SYLLABUS = re.compile(
+    r"^(?:Syllabus (?:of|by) the Court\.?"
+    r"|Synopsis"
+    r"|Attorneys and Law Firms"
+    r"|Opinion)$")
 _FOOTNOTES_HEAD = re.compile(r"^FOOTNOTES?$")
 _FIGURE = re.compile(r"^\[Figure \d+")
-_FN_BODY = re.compile(r"^(\d{1,3})\.\s")
+# body opener, both notations: the `[nN]` corpus form and the legacy `N.`
+_FN_BODY = re.compile(r"^(?:\[n(\d{1,3})\]|(\d{1,3})\.)\s")
 _PARA = re.compile(r"\[¶\s?(\d+)\]")
 _STAR = re.compile(r"\[\*(\d+)\]")
-# second-series star pages in dual-paginated West texts (**846 = the N.W.
-# page where [*747] is the N.D. page) — bare by corpus convention (only the
-# ambiguous single-star series was bracketed). Styled like [*N], own anchor
-# namespace. (?<![\w*]) keeps *** omissions out; (?![\d*]) bounds the number.
-_STAR2 = re.compile(r"(?<![\w*])\*\*(\d{1,4})(?![\d*])")
-_FN_REF = re.compile(r"\[(\d{1,3})\]")
+# Second-series star page in dual-paginated West texts. BRACKETED as of
+# 2026-08-04 (JT: both series in square brackets) — the storage now matches
+# what this renderer always displayed. The bare `**NNN` form is gone from the
+# corpus; nothing should reintroduce it.
+_STAR2 = re.compile(r"\[\*\*(\d{1,4})\]")
+# Inline footnote CALL — the sigilled `[nN]` form only (JT 2026-08-04). The
+# bare `[N]` must not be linked: treatise subdivisions (`§ 34.11[5]`),
+# bracketed pages (`490 U.S. [163]`) and the courts' own enumerators
+# ("described in [1] or [2]") share that shape, and linking them silently
+# turned the court's own text into footnote references.
+_FN_REF = re.compile(r"\[n(\d{1,3})\]")
 # West italics: *span* where the span starts with a letter/quote/paren and
 # contains a letter. (?<![\w*]) / (?![\w*]) keep ** star pages and ***
 # omissions out; the no-digit start keeps "[*458] text [*463]" out.
@@ -238,10 +253,15 @@ def _collect_footnote_sections(lines: list[str]):
         limit = heads[k + 1] if k + 1 < len(heads) else len(lines)
         end = limit
         for j in range(h + 1, limit):
-            if WRITING_SEP.match(lines[j]):
+            # a following writing ends the section — byline form, or the
+            # signature-form concurrence ("I concur in the result." + name)
+            # that WRITING_SEP cannot see (JT web review 2026-08-06)
+            if WRITING_SEP.match(lines[j]) or re.match(
+                    r"I (?:respectfully )?(?:concur|dissent)",
+                    lines[j].strip()):
                 end = j
                 break
-        nums = {m.group(1) for ln2 in lines[h + 1:end]
+        nums = {(m.group(1) or m.group(2)) for ln2 in lines[h + 1:end]
                 if (m := _FN_BODY.match(ln2.strip()))}
         sections.append((h, nums, end))
     return sections
@@ -294,6 +314,72 @@ def render_body(text: str) -> str:
     lines = _logical_lines(text)
     sections = _collect_footnote_sections(lines)
     head_idxs = {h for h, _, _ in sections}
+
+    # Headingless opinions (the 2026-08-05 witness batches) carry `[nN]`
+    # definitions with no FOOTNOTES heading to section them. When no heading
+    # exists, every line-leading `[nN]` label is a definition anchor and the
+    # inline calls link to it (JT 2026-08-05) — first occurrence per number
+    # wins, matching the sectioned path's duplicate discipline.
+    headless_defs: dict[str, int] = {}
+    if not sections:
+        for i, ln in enumerate(lines):
+            if ln.startswith("\t"):
+                continue  # tab-opened = quoted material, never a def anchor
+            m = re.match(r"\[n(\d{1,3})\]\s", ln.strip())
+            if m and m.group(1) not in headless_defs:
+                headless_defs[m.group(1)] = i
+
+    # A body may span several paragraphs (quoted policy text, a./b. lists):
+    # every line from one opener to the next keeps the fn styling and the ↩
+    # back-link sits on the body's LAST paragraph (JT 2026-08-05).
+    # {line_idx: (kind, n, is_last)} for the headingless path.
+    headless_rng: dict[int, tuple[str, str, bool]] = {}
+    if headless_defs:
+        order = sorted((i, n) for n, i in headless_defs.items())
+        for k, (i, n) in enumerate(order):
+            end = order[k + 1][0] if k + 1 < len(order) else len(lines)
+            # Contract 9 places defs at the end of their WRITING, so a
+            # following separate writing (byline or signature-form
+            # concurrence) is NOT def-body continuation — 10 fleet opinions
+            # carry one (the 2021 ND 228 ↩ landed after "I concur in the
+            # result. Gerald W. VandeWalle"; JT web review 2026-08-06)
+            for j in range(i + 1, end):
+                s = lines[j].strip()
+                if WRITING_SEP.match(lines[j]) or re.match(
+                        r"I (?:respectfully )?(?:concur|dissent)", s):
+                    end = j
+                    break
+            last_nb = max((j for j in range(i, end) if lines[j].strip()),
+                          default=i)
+            headless_rng[i] = ("open", n, last_nb == i)
+            for j in range(i + 1, end):
+                headless_rng[j] = ("cont", n, j == last_nb)
+
+    # sectioned-path body ranges, same one-opener-to-the-next rule
+    sec_rng: dict[int, tuple[str, int, str, bool]] = {}
+    for k, (h, nums, end) in enumerate(sections):
+        openers: list[tuple[int, str]] = []
+        seen_nums: set[str] = set()
+        for i2 in range(h + 1, end):
+            if lines[i2].startswith("\t"):
+                # tab-opened = quoted material inside a def body (Wold's
+                # fn5 committee list), never a def opener — stripping the
+                # tab made inner list numbers steal the anchors from the
+                # real defs below (JT web review 2026-08-06)
+                continue
+            bm2 = _FN_BODY.match(lines[i2].strip())
+            if bm2:
+                n2 = bm2.group(1) or bm2.group(2)
+                if n2 in nums and n2 not in seen_nums:
+                    seen_nums.add(n2)
+                    openers.append((i2, n2))
+        for j2, (i2, n2) in enumerate(openers):
+            bend = openers[j2 + 1][0] if j2 + 1 < len(openers) else end
+            last_nb = max((j3 for j3 in range(i2, bend) if lines[j3].strip()),
+                          default=i2)
+            sec_rng[i2] = ("open", k, n2, last_nb == i2)
+            for j3 in range(i2 + 1, bend):
+                sec_rng[j3] = ("cont", k, n2, j3 == last_nb)
 
     def sec_prefix(k: int) -> str:
         # section 1 keeps the legacy unsuffixed ids (#fn1); later writings'
@@ -382,8 +468,7 @@ def render_body(text: str) -> str:
             return f'<span class="star" id="star{n}">[*{n}]</span>'
 
         def star2_sub(m: re.Match) -> str:
-            # displayed bracketed like [*N] (JT 2026-07-28); the brackets are
-            # display-layer only — the stored text keeps the bare **N form
+            # stored and displayed bracketed (JT 2026-08-04)
             n = m.group(1)
             if n in seen_star2:
                 return f'<span class="star">[**{n}]</span>'
@@ -414,18 +499,28 @@ def render_body(text: str) -> str:
             continue
 
         if in_sec is not None:
-            bm = _FN_BODY.match(stripped)
-            n = bm.group(1) if bm else None
-            if (n and n in sections[in_sec][1]
-                    and (in_sec, n) not in seen_fn):
-                seen_fn.add((in_sec, n))
-                pre = sec_prefix(in_sec)
-                cut = esc.find(f"{n}.")
-                body_esc = esc[cut + len(n) + 1:] if cut >= 0 else esc
-                back = (f'<a href="#fnref{pre}{n}">↩</a> '
-                        if (in_sec, n) in seen_ref else "")
-                out.append(f'<p class="fn" id="fn{pre}{n}"><b>{n}.</b>'
-                           f"{body_esc} {back}</p>")
+            rng = sec_rng.get(i)
+            if rng:
+                kind, sk, n, last = rng
+                pre = sec_prefix(sk)
+                back = (f' <a href="#fnref{pre}{n}">↩</a>'
+                        if last and (sk, n) in seen_ref else "")
+                if kind == "open":
+                    seen_fn.add((sk, n))
+                    # strip the stored label — the renderer supplies its own
+                    # "N." Both notations: `[nN]` and the legacy `N.`
+                    lbl = f"[n{n}]"
+                    cut = esc.find(lbl)
+                    if cut >= 0:
+                        body_esc = esc[cut + len(lbl):]
+                    else:
+                        cut = esc.find(f"{n}.")
+                        body_esc = esc[cut + len(n) + 1:] if cut >= 0 else esc
+                    out.append(f'<p class="fn" id="fn{pre}{n}"><b>{n}.</b>'
+                               f"{body_esc}{back}</p>")
+                else:
+                    # continuation paragraph of a multi-paragraph body
+                    out.append(f'<p class="fn">{esc}{back}</p>')
                 continue
         elif sections:
             def ref_sub(m: re.Match) -> str:
@@ -440,6 +535,41 @@ def render_body(text: str) -> str:
                 return (f'<a class="fn-ref"{anchor} href="#fn{pre}{n}">'
                         f"<sup>[{n}]</sup></a>")
             esc = _FN_REF.sub(ref_sub, esc)
+        elif headless_defs:
+            rng = headless_rng.get(i)
+            if rng:
+                kind, n, last = rng
+                back = (f' <a href="#fnref{n}">↩</a>'
+                        if last and ("h", n) in seen_ref else "")
+                if kind == "open":
+                    # definition opener: anchor + renderer-supplied label
+                    lbl = f"[n{n}]"
+                    cut = esc.find(lbl)
+                    body_esc = esc[cut + len(lbl):] if cut >= 0 else esc
+                    out.append(f'<p class="fn" id="fn{n}"><b>{n}.</b>'
+                               f"{body_esc}{back}</p>")
+                else:
+                    # continuation paragraph of a multi-paragraph body
+                    out.append(f'<p class="fn">{esc}{back}</p>')
+                continue
+
+            def href_sub(m: re.Match) -> str:
+                n = m.group(1)
+                if n not in headless_defs or headless_defs[n] <= i:
+                    return m.group(0)   # no def below to land on
+                anchor = ("" if ("h", n) in seen_ref
+                          else f' id="fnref{n}"')
+                seen_ref.add(("h", n))
+                return (f'<a class="fn-ref"{anchor} href="#fn{n}">'
+                        f"<sup>[{n}]</sup></a>")
+            esc = _FN_REF.sub(href_sub, esc)
+
+        # Any `[nN]` still standing is a footnote this renderer cannot link —
+        # a legacy-form or duplicate site. Display it the way the pre-notation
+        # text read rather than leaking the sigil: a line-leading label
+        # becomes "N.", an inline call a bare superscript.
+        esc = re.sub(r"^\[n(\d{1,3})\](\s)", r"<b>\1.</b>\2", esc)
+        esc = _FN_REF.sub(lambda m: f"<sup>[{m.group(1)}]</sup>", esc)
 
         out.append(f"<p>{esc}</p>")
 

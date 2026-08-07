@@ -942,7 +942,9 @@ def verify_quotation(citation: str, quote: str) -> dict:
         suffix = proofread.pinpoint_suffix(located)
         if suffix and primary:
             result["pinpoint"] = f"{primary}, {suffix}"
-        rep = proofread.reporter_pinpoint(cite_rows, located.get("reporter_page"))
+        rep = proofread.reporter_pinpoint(
+            cite_rows, located.get("reporter_page"),
+            located.get("reporter_page_2"), text)
         if rep:
             result["reporter_pinpoint"] = rep
         if located.get("in_footnote") and located.get("paragraph") is None:
@@ -1029,7 +1031,9 @@ def get_pinpoint(
         suffix = proofread.pinpoint_suffix(located)
         if suffix and primary:
             base["pinpoint"] = f"{primary}, {suffix}"
-        rep = proofread.reporter_pinpoint(cite_rows, located.get("reporter_page"))
+        rep = proofread.reporter_pinpoint(
+            cite_rows, located.get("reporter_page"),
+            located.get("reporter_page_2"), text)
         if rep:
             base["reporter_pinpoint"] = rep
         para = located.get("paragraph")

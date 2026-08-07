@@ -48,8 +48,9 @@ _BODY_BOUNDARY = re.compile(r"\[¶\s*\d+\]|\[\*\d{2,4}\]")
 # pincite into a cited source), never this opinion's pagination. See
 # ``star_page_reformat`` for the one-time conversion + the ingest hook.
 _STAR_PAGE = re.compile(r"\[\*(\d{2,4})\]")
+_STAR_PAGE2 = re.compile(r"\[\*\*(\d{1,4})\]")   # dual-paginated second series
 # Volume + reporter prefix of a regional/official cite, for page pinpoints.
-_REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+\d+")
+_REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+(\d+)")
 
 # ndcourts-markdown footnote sections (distinct from the West/CL period form):
 #   NOTES form:     "\nNOTES\n[1] body\n\n[2] body"   (calls survive inline as [N])
@@ -84,7 +85,12 @@ WRITING_SEP_PAT = (
 # boundary.
 _WRITING_SEP = re.compile(r"(?m)^" + WRITING_SEP_PAT)
 _BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
-_BRACKET_CALL = re.compile(r"\[(\d{1,3})\]")              # inline [N] call (not [¶ N])
+# Inline footnote call. `[nN]` is the corpus notation (JT 2026-08-04): a bare
+# `[N]` cannot serve, because treatise subdivisions (`§ 34.11[5]`), bracketed
+# pages (`490 U.S. [163]`) and the courts' own enumerators (`described in [1]
+# or [2]`) share that shape. The bare form is still accepted — the notation
+# pass only reached opinions with a FOOTNOTES heading.
+_BRACKET_CALL = re.compile(r"\[n?(\d{1,3})\]")             # inline call (not [¶ N])
 _COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
 # Repaired West/CL period form (batch `footnote-def-join-2026-07-24`): the label
 # and its orphaned period rejoined onto the body line — "1. See ABA Standards
@@ -92,7 +98,12 @@ _COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
 # form it is NOT self-identifying: a quoted statutory subsection opens the same
 # way, so a match counts as a body only when the footnote's CALL survives earlier
 # in the text (see `_labelled_bodies`).
-_LABELLED_NOTE = re.compile(r"(?m)^(\d{1,3})\.[ \t]+(?=\S)")
+_LABELLED_NOTE = re.compile(r"(?m)^(?:\[n(\d{1,3})\]|(\d{1,3})\.)[ \t]+(?=\S)")
+
+
+def _note_num(m: "re.Match") -> int:
+    """Footnote number from a `_LABELLED_NOTE` match, either notation."""
+    return int(m.group(1) or m.group(2))
 
 # Citation-string shapes used to pull a cite out of a free-text query.
 _CITE_PATTERNS = [
@@ -289,7 +300,7 @@ def _section_footnotes(text: str) -> dict | None:
             reg_end = sep.start() if sep else limit
             opens, seen = [], set()
             for m in _LABELLED_NOTE.finditer(text, hm.end(), reg_end):
-                num = int(m.group(1))
+                num = _note_num(m)
                 if num not in seen:
                     seen.add(num)
                     opens.append((num, m.start()))
@@ -369,7 +380,7 @@ def _labelled_bodies(text: str, occ: list) -> list:
         bare_at.setdefault(num, ls)
     out, seen = [], set()
     for m in _LABELLED_NOTE.finditer(text):
-        num = int(m.group(1))
+        num = _note_num(m)
         if not (1 <= num <= 60) or num in seen:
             continue
         called = any(int(c.group(1)) == num
@@ -437,24 +448,32 @@ def _standalone_footnotes(text: str) -> dict:
         if num in body_nums and num not in call_para:
             call_para[num] = find_paragraph(text, ls, markers)
             call_at[num] = ls
-    # Fallback: an inline ``[N]`` call (ndcourts modern lineage) for a confirmed
-    # footnote whose call did not survive as a bare-line marker. Gated against
-    # bracketed quote-alterations (``[t]he``, a quoted ``[1]``): ``N`` must be a
-    # confirmed body, ``[N]`` must be unique in the opinion, and precede the body.
+    # Fallback: an inline ``[N]``/``[nN]`` call for a confirmed footnote whose
+    # call did not survive as a bare-line marker. Gated against bracketed
+    # quote-alterations (``[t]he``, a quoted ``[1]``): ``N`` must be a
+    # confirmed body and the call unique BEFORE the body opener. The window
+    # must stop at the body: the ``[nN]`` notation deliberately uses one token
+    # for the call and the definition label, so a whole-text search would
+    # always find two and refuse (the 2026-08-05 headingless batch exposed
+    # this — same window discipline as the FOOTNOTES-heading path).
     for num in body_nums - call_para.keys():
-        hits = [m for m in _BRACKET_CALL.finditer(text) if int(m.group(1)) == num]
-        if len(hits) == 1 and hits[0].start() < body_start[num]:
+        hits = [m for m in _BRACKET_CALL.finditer(text, 0, body_start[num])
+                if int(m.group(1)) == num]
+        if len(hits) == 1:
             call_para[num] = find_paragraph(text, hits[0].start(), markers)
             call_at[num] = hits[0].start()
     return {"bodies": bodies, "call_para": call_para,
             "call_at": call_at, "detached": False}
 
 
-def star_page_before(text: str, offset: int) -> int | None:
-    """Reporter page number for ``offset`` — the last ``*NNN`` star-page marker
-    at or before it. ``None`` when the opinion carries no star pages."""
+def star_page_before(text: str, offset: int, series: int = 1) -> int | None:
+    """Reporter page for ``offset`` — the last star-page marker at or before it.
+
+    ``series=1`` reads ``[*NNN]``, ``series=2`` the second series ``[**NNN]``
+    carried by dual-paginated West texts. ``None`` when that series is absent."""
     page = None
-    for m in _STAR_PAGE.finditer(text):
+    rx = _STAR_PAGE if series == 1 else _STAR_PAGE2
+    for m in rx.finditer(text):
         if m.start() <= offset:
             page = int(m.group(1))
         else:
@@ -462,10 +481,59 @@ def star_page_before(text: str, offset: int) -> int | None:
     return page
 
 
+def star_series_reporters(text: str, cite_rows: list[dict]) -> dict[int, tuple[str, str]]:
+    """Which reporter each star-page series belongs to: ``{series: (vol, rep)}``.
+
+    Necessary because the marker's SHAPE does not tell you: measured against
+    each opinion's own cite bands, ``[*NNN]`` sits in the N.W. band alone in
+    14,350 opinions but the N.D. Reports band alone in 893 — the dual-paginated
+    old West texts, which are exactly the ones also carrying ``[**NNN]``.
+
+    Assignment is by first page, not by band: the bands overlap in precisely the
+    dual case (1941 ND 80 is ``1 N.W.2d 335`` / ``71 N.D. 363``, and 363 falls
+    inside both). A series' LOWEST marker is the page the opinion opens on in
+    that reporter, so each series takes the cite whose first page it starts at.
+    A series is left unassigned rather than guessed when nothing fits."""
+    cites = []
+    for r in cite_rows:
+        m = _REPORTER_CITE.match(r.get("citation", ""))
+        if m:
+            cites.append((m.group(1), m.group(2), int(m.group(3))))
+    if not cites:
+        return {}
+    out: dict[int, tuple[str, str]] = {}
+    taken: set[int] = set()
+    mins = {}
+    for s, rx in ((1, _STAR_PAGE), (2, _STAR_PAGE2)):
+        vals = [int(m.group(1)) for m in rx.finditer(text)]
+        if vals:
+            mins[s] = min(vals)
+    if len(cites) == 1:
+        # nothing to disambiguate; the sole reporter owns whatever is present
+        for s in mins:
+            out[s] = (cites[0][0], cites[0][1])
+        return out
+    # closest first page wins, and a series cannot start before its reporter does
+    for s in sorted(mins, key=lambda s: mins[s]):
+        best, best_d = None, None
+        for i, (vol, rep, fp) in enumerate(cites):
+            if i in taken or mins[s] < fp - 2:
+                continue
+            d = mins[s] - fp
+            if best_d is None or d < best_d:
+                best, best_d = i, d
+        if best is not None:
+            taken.add(best)
+            out[s] = (cites[best][0], cites[best][1])
+    return out
+
+
 def locate_structure(text: str, offset: int, struct: dict | None = None) -> dict:
     """Resolve ``offset`` to its structural pinpoint fields.
 
-    Returns ``{"paragraph", "footnote", "in_footnote", "reporter_page"}``. When
+    Returns ``{"paragraph", "footnote", "in_footnote", "reporter_page",
+    "reporter_page_2"}`` — the second field is the dual-pagination ``[**NNN]``
+    series, ``None`` in the ~97% of opinions that carry only one series. When
     the offset lands inside a footnote body, ``paragraph`` is the footnote's
     *call* paragraph (not the body's preceding marker) and ``footnote`` is its
     number; ``paragraph`` may be ``None`` if the call site is unrecoverable.
@@ -488,15 +556,20 @@ def locate_structure(text: str, offset: int, struct: dict | None = None) -> dict
             call_at = cm.get(start, cm.get(num))
             if call_at is not None:
                 page = star_page_before(text, call_at)
+                page2 = star_page_before(text, call_at, series=2)
             elif struct.get("detached"):
-                page = None
+                page = page2 = None
             else:
                 page = star_page_before(text, offset)
+                page2 = star_page_before(text, offset, series=2)
             pm = struct.get("call_para", {})
             return {"paragraph": pm.get(start, pm.get(num)), "footnote": num,
-                    "in_footnote": True, "reporter_page": page}
+                    "in_footnote": True, "reporter_page": page,
+                    "reporter_page_2": page2}
     return {"paragraph": find_paragraph(text, offset), "footnote": None,
-            "in_footnote": False, "reporter_page": star_page_before(text, offset)}
+            "in_footnote": False,
+            "reporter_page": star_page_before(text, offset),
+            "reporter_page_2": star_page_before(text, offset, series=2)}
 
 
 def pinpoint_suffix(located: dict) -> str | None:
@@ -512,9 +585,35 @@ def pinpoint_suffix(located: dict) -> str | None:
     return None
 
 
-def reporter_pinpoint(cite_rows: list[dict], page: int | None) -> str | None:
+def reporter_pinpoint(cite_rows: list[dict], page: int | None,
+                      page2: int | None = None,
+                      text: str | None = None) -> str | None:
     """``604 N.W.2d at 458`` from an opinion's parallel cites and a star page.
-    Prefers the regional N.W. reporter; ``None`` if no page or no page cite."""
+
+    With ``text`` and a dual-paginated opinion, BOTH series are resolved and
+    paired with the right reporter, returning e.g.
+    ``71 N.D. at 363, 1 N.W.2d at 335``.
+
+    Passing ``text`` matters: without it this function paired the star page with
+    the FIRST reporter cite, which fabricates a pinpoint wherever `[*NNN]` is
+    the N.D. page — 1941 ND 80 reported ``1 N.W.2d at 363`` though that volume
+    opens at 335. A page is dropped rather than mislabelled when its reporter
+    cannot be identified."""
+    if page is None and page2 is None:
+        return None
+    if text is not None:
+        owners = star_series_reporters(text, cite_rows)
+        parts = []
+        for s, p in ((1, page), (2, page2)):
+            if p is None or s not in owners:
+                continue
+            vol, rep = owners[s]
+            parts.append((rep, f"{vol} {rep} at {p}"))
+        if parts:
+            # the regional N.W. reporter leads, per the documented preference
+            parts.sort(key=lambda kv: 0 if "W" in kv[0] else 1)
+            return ", ".join(p for _, p in parts)
+        return None
     if page is None:
         return None
     for r in cite_rows:

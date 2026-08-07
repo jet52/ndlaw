@@ -166,6 +166,15 @@ sudo systemctl restart fail2ban
 sudo fail2ban-client status caddy-ndlaw
 ```
 
+Note what fail2ban can and cannot do. Its jails are per-source, so they stop a
+noisy single client but are structurally blind to a distributed swarm — during
+the 2026-08-03 incident, 1,481 concurrent connections arrived from 1,481
+distinct IPs holding at most three connections each, and no per-IP threshold
+low enough to bite would have spared real users. See
+`deploy/anti-scrape/README.md` for the mitigations that do work against that
+pattern (kernel conntrack limits, Apache accept-queue and timeout tuning, and
+collapsing a wiki's combinatorial URL space).
+
 ## 7. Connect a client
 
 Preset the credential header so the client never hits the 401 challenge
