@@ -82,8 +82,11 @@ WRITING_SEP_PAT = (
 # concur.") and judge-designation footnote bodies ("The Honorable Eugene A.
 # Burdick, Surrogate Judge." — Finch v. Backes fn 2). Match against the RAW
 # line — a tab-leading (block-quoted) author line is quoted text, not a
-# boundary.
-_WRITING_SEP = re.compile(r"(?m)^" + WRITING_SEP_PAT)
+# boundary. SPACE-led lines DO match (`^ *`, spaces only, never tab): 134
+# separators in the 2019–24 band are stored with one leading space
+# (space-led-separators-census-2026-08-09), and a matcher blind to it let a
+# per-writing FOOTNOTES section run past the boundary into the next writing.
+_WRITING_SEP = re.compile(r"(?m)^ *" + WRITING_SEP_PAT)
 _BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
 # Inline footnote call. `[nN]` is the corpus notation (JT 2026-08-04): a bare
 # `[N]` cannot serve, because treatise subdivisions (`§ 34.11[5]`), bracketed

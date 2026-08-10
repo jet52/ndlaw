@@ -944,7 +944,7 @@ def verify_quotation(citation: str, quote: str) -> dict:
             result["pinpoint"] = f"{primary}, {suffix}"
         rep = proofread.reporter_pinpoint(
             cite_rows, located.get("reporter_page"),
-            located.get("reporter_page_2"), text)
+            located.get("reporter_page_2"), row["text_content"])
         if rep:
             result["reporter_pinpoint"] = rep
         if located.get("in_footnote") and located.get("paragraph") is None:

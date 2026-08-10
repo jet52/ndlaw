@@ -236,7 +236,10 @@ def _logical_lines(text: str) -> list[str]:
 # FOOTNOTES section (convention ratified by JT 2026-07-29: each writing keeps
 # its own FOOTNOTES section, numbering as printed, placed at the end of that
 # writing). Shared by the renderer and the section-lift tooling.
-WRITING_SEP = re.compile("^" + proofread.WRITING_SEP_PAT)
+# `^ *` (spaces only, never tab): space-led separators exist in storage
+# (134 sites, 2019–24 band) and must still read as boundaries; a tab-led
+# author line is block-quoted text and must keep failing.
+WRITING_SEP = re.compile("^ *" + proofread.WRITING_SEP_PAT)
 
 
 def _collect_footnote_sections(lines: list[str]):
@@ -402,26 +405,39 @@ def render_body(text: str) -> str:
     seen_ref: set[tuple[int, str]] = set()
     seen_fn: set[tuple[int, str]] = set()
     out: list[str] = ['<div class="body">']
-    in_quote = False
+    quote_depth = 0
+
+    def set_quote_depth(want: int):
+        """Open/close <blockquote> so the nesting matches the leading-tab count.
+
+        Contract 7 stores one tab per quote level, and a quotation that quotes
+        something further in — a statute's lettered subdivisions, an opinion
+        quoting a record that quotes a rule — carries two or three. Rendering
+        every depth as one flat <blockquote> loses the structure the court set:
+        2021 ND 190 ¶7 prints its N.D.C.C. 30.1-19-03(2) body at one level and
+        its `a.`/`b.` items at the next (JT, 2026-08-09).
+        """
+        nonlocal quote_depth
+        while quote_depth < want:
+            out.append("<blockquote>")
+            quote_depth += 1
+        while quote_depth > want:
+            out.append("</blockquote>")
+            quote_depth -= 1
 
     def close_quote():
-        nonlocal in_quote
-        if in_quote:
-            out.append("</blockquote>")
-            in_quote = False
+        set_quote_depth(0)
 
     for i, raw in enumerate(lines):
         stripped = raw.strip()
         if not stripped:
             continue
         # Contract 7: tab-leading paragraph = block quote; consecutive quote
-        # paragraphs (blank lines between) group into one <blockquote>
-        is_quote = raw.startswith("\t")
-        if is_quote and not in_quote:
-            out.append("<blockquote>")
-            in_quote = True
-        elif not is_quote:
-            close_quote()
+        # paragraphs (blank lines between) group into one <blockquote>, and a
+        # deeper tab run nests inside the level above it.
+        depth = len(raw) - len(raw.lstrip("\t"))
+        is_quote = depth > 0
+        set_quote_depth(depth)
         esc = html.escape(raw.lstrip("\t") if is_quote else raw, quote=False)
 
         m = _MD_HEAD.match(stripped)
@@ -495,7 +511,7 @@ def render_body(text: str) -> str:
         # a heading (JT 2026-07-29) — after the marker substitutions so a
         # leading [*N] keeps its anchor
         if WRITING_SEP.match(raw):
-            out.append(f'<h2 class="byline">{esc}</h2>')
+            out.append(f'<h2 class="byline">{esc.lstrip(" ")}</h2>')
             continue
 
         if in_sec is not None:
