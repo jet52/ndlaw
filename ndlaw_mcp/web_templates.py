@@ -44,6 +44,7 @@ _STYLE = """
          margin: 2.5rem auto; padding: 0 1.25rem; line-height: 1.55; color: #1a1a1a; }
   h1 { font-size: 1.35rem; margin-bottom: .2rem; line-height: 1.3; }
   h2 { font-size: 1.1rem; margin-top: 1.8rem; }
+  h3.section { font-size: 1rem; margin: 1.5rem 0 .3rem; text-align: center; }
   a { color: #1a5276; }
   .meta { color: #444; font-size: .95em; margin: .15rem 0; }
   .meta b { color: #1a1a1a; }
@@ -193,9 +194,15 @@ _FN_REF = re.compile(r"\[n(\d{1,3})\]")
 # (?!\*) keeps ** pairs out, and the 250-char content cap keeps a
 # mis-paired stray star from minting an absurd page-long "span"
 # (italicized law-review titles, the longest genuine class, run ~160).
+# `$` is in the opening class because emphasis legitimately begins with it:
+# forfeiture case names (*State v. $33,000.00 U.S. Currency*) and appropriation
+# amounts the court italicized (2018 ND 189 ¶ 29, archive `<em>$300,000 to an
+# organization that provides workplace safety</em>`). 8 such spans across 4
+# opinions rendered as literal asterisks until it was added. Digits stay OUT —
+# a leading digit is a star page, not a span.
 _ITAL = re.compile(
     r"(?<![\w*])\*(?=[^*\n]*[A-Za-z])"
-    r"([A-Za-z(\"'‘“§][^*\n]{0,250}?[^\s*]|[A-Za-z])(?<!\[)\*(?!\*)")
+    r"([A-Za-z(\"'‘“§$][^*\n]{0,250}?[^\s*]|[A-Za-z])(?<!\[)\*(?!\*)")
 
 
 _BARE_ITAL_LINE = re.compile(r"^\*[^*\n]{1,80}\*[,.;:]?$")
@@ -240,6 +247,78 @@ def _logical_lines(text: str) -> list[str]:
 # (134 sites, 2019–24 band) and must still read as boundaries; a tab-led
 # author line is block-quoted text and must keep failing.
 WRITING_SEP = re.compile("^ *" + proofread.WRITING_SEP_PAT)
+
+
+# Top-level section numeral on its own line — "I", "II.", "XI". The corpus
+# stores section furniture as bare lines in every era (census 2026-08-09:
+# 4,576 opinions, zero heading forms), so heading-ness is a RENDER decision
+# (JT 2026-08-14: renderer-side, storage untouched).
+_ROMAN_LINE = re.compile(r"^(?=[IVX])(X{0,3})(IX|IV|V?I{0,3})\.?$")
+
+
+def _roman_val(s: str) -> int:
+    s = s.rstrip(".")
+    vals = {"I": 1, "V": 5, "X": 10}
+    total, prev = 0, 0
+    for ch in reversed(s):
+        v = vals[ch]
+        total = total - v if v < prev else total + v
+        prev = max(prev, v)
+    return total
+
+
+def _roman_section_heads(lines: list[str], sections) -> set[int]:
+    """Line indexes to render as ``<h3 class="section">`` (JT 2026-08-14).
+
+    Top-level Roman section numerals sit one level below the ``<h2>``
+    byline. Promotion is deliberately strict — a missed heading renders as
+    the plain ``<p>`` it always was, but a wrongly promoted enumerator
+    would restyle the court's quoted material — so every gate errs toward
+    NOT promoting:
+
+    * modern-format opinions only (a ``[¶N]`` marker present). Pre-1997
+      texts quote complaints and findings with column-0 Roman paragraph
+      enumerators ("XI." / "That Defendant has not…"), the exact false
+      positive; the modern band tab-indents quotes (Contract 7).
+    * column 0 only — a tab-led numeral is inside a block quote.
+    * outside FOOTNOTE sections.
+    * strict arithmetic sequence from I within a writing segment
+      (WRITING_SEP resets; a fresh "I" may also restart a run mid-segment,
+      e.g. an appended rehearing), with at least two members — a lone "I"
+      is as likely an OCR fragment as a heading. Sequences broken by a
+      mis-stored sibling (census 2026-08-14: ~640 lines corpus-wide, the
+      space-led/one-line storage defect queues) stay plain paragraphs and
+      heal automatically as those storage repairs land.
+    """
+    if not any("[¶" in ln for ln in lines):
+        return set()
+    fn_ranges = [(h, end) for h, _, end in sections]
+    seg = 0
+    seg_at: list[int] = []
+    for raw in lines:
+        if WRITING_SEP.match(raw):
+            seg += 1
+        seg_at.append(seg)
+    cands: list[tuple[int, int]] = []          # (line_idx, numeral value)
+    for i, raw in enumerate(lines):
+        s = raw.strip()
+        if (s and not raw.startswith("\t") and _ROMAN_LINE.match(s)
+                and not any(h < i < e for h, e in fn_ranges)):
+            cands.append((i, _roman_val(s)))
+    expected: dict[int, int] = {}
+    ok: dict[int, int] = {}                    # line_idx -> segment
+    for i, v in cands:
+        sg = seg_at[i]
+        if v == 1:
+            expected[sg] = 2
+            ok[i] = sg
+        elif expected.get(sg) == v:
+            expected[sg] = v + 1
+            ok[i] = sg
+    per_seg: dict[int, int] = {}
+    for sg in ok.values():
+        per_seg[sg] = per_seg.get(sg, 0) + 1
+    return {i for i, sg in ok.items() if per_seg[sg] >= 2}
 
 
 def _collect_footnote_sections(lines: list[str]):
@@ -317,6 +396,7 @@ def render_body(text: str) -> str:
     lines = _logical_lines(text)
     sections = _collect_footnote_sections(lines)
     head_idxs = {h for h, _, _ in sections}
+    roman_heads = _roman_section_heads(lines, sections)
 
     # Headingless opinions (the 2026-08-05 witness batches) carry `[nN]`
     # definitions with no FOOTNOTES heading to section them. When no heading
@@ -348,8 +428,14 @@ def render_body(text: str) -> str:
             # result. Gerald W. VandeWalle"; JT web review 2026-08-06)
             for j in range(i + 1, end):
                 s = lines[j].strip()
-                if WRITING_SEP.match(lines[j]) or re.match(
-                        r"I (?:respectfully )?(?:concur|dissent)", s):
+                # a [¶N] body paragraph is never definition continuation
+                # either — 1999 ND 150 stores its ¶30 signature panel AFTER
+                # the defs, and the fn2 body swallowed it plus the following
+                # label line, parking the ↩ on "Concurrence" (JT web review
+                # 2026-08-14)
+                if (WRITING_SEP.match(lines[j])
+                        or re.match(r"I (?:respectfully )?(?:concur|dissent)", s)
+                        or re.match(r"\[¶\d+\]", s)):
                     end = j
                     break
             last_nb = max((j for j in range(i, end) if lines[j].strip()),
@@ -449,6 +535,10 @@ def render_body(text: str) -> str:
             continue
         if i in head_idxs:
             out.append(f"<h2>{html.escape(stripped)}</h2>")
+            continue
+        if i in roman_heads:
+            # top-level section numeral, one level below the byline <h2>
+            out.append(f'<h3 class="section">{html.escape(stripped)}</h3>')
             continue
         if _FIGURE.match(stripped):
             out.append(f'<p class="figure">{esc}</p>')

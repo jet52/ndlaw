@@ -107,18 +107,58 @@ def _flex_prefix_pattern(prefix: str) -> str:
 # marker for every set is generated from its canonical prefix). Federal sets
 # are included so a bare "Rule 12" following a federal-rules discussion is not
 # attributed to the ND set.
+# Longest form first: rule_set_markers keeps the longer of two markers that
+# start together and drops the contained one, so "North Dakota Rules of
+# Appellate Procedure" must be offered alongside the bare "Rules of Appellate
+# Procedure". Only Civ.P. carried its spelled-out state form; without the
+# rest, "Rule 32(a)(8)(A) of the North Dakota Rules of Appellate Procedure"
+# left "North Dakota " sitting in the trailing gap, the trailing attribution
+# was rejected, and the ladder fell back to whatever set was mentioned
+# earlier in the document.
 _SPELLED_MARKERS = {
     "N.D.R.Civ.P.": [r"North Dakota Rules of Civil Procedure",
                      r"Rules of Civil Procedure"],
-    "N.D.R.Crim.P.": [r"Rules of Criminal Procedure"],
-    "N.D.R.Ev.": [r"Rules of Evidence"],
-    "N.D.R.App.P.": [r"Rules of Appellate Procedure"],
-    "N.D.R.Ct.": [r"Rules of Court"],
-    "N.D.R.Juv.P.": [r"Rules of Juvenile Procedure"],
-    "N.D. Sup. Ct. Admin. R.": [r"Administrative Rule"],
-    "N.D. Sup. Ct. Admin. Order": [r"Administrative Order"],
-    "N.D.R. Prof. Conduct": [r"Rules of Professional Conduct"],
-    "N.D. Code Jud. Conduct": [r"Code of Judicial Conduct"],
+    "N.D.R.Crim.P.": [r"North Dakota Rules of Criminal Procedure",
+                      r"Rules of Criminal Procedure"],
+    "N.D.R.Ev.": [r"North Dakota Rules? of Evidence",
+                  r"Rules? of Evidence"],
+    "N.D.R.App.P.": [r"North Dakota Rules of Appellate Procedure",
+                     r"Rules of Appellate Procedure"],
+    "N.D.R.Ct.": [r"North Dakota Rules of Court",
+                  r"Rules of Court"],
+    "N.D.R.Juv.P.": [r"North Dakota Rules of Juvenile Procedure",
+                     r"Rules of Juvenile Procedure"],
+    "N.D. Sup. Ct. Admin. R.": [
+        r"North Dakota Supreme Court Administrative Rules?",
+        r"Supreme Court Administrative Rules?",
+        r"Administrative Rule"],
+    "N.D. Sup. Ct. Admin. Order": [
+        r"North Dakota Supreme Court Administrative Orders?",
+        r"Supreme Court Administrative Orders?",
+        r"Administrative Order"],
+    "N.D.R. Prof. Conduct": [r"North Dakota Rules of Professional Conduct",
+                             r"Rules of Professional Conduct"],
+    "N.D. Code Jud. Conduct": [r"North Dakota Code of Judicial Conduct",
+                               r"Code of Judicial Conduct"],
+    # The four sets below use THIS corpus's citation prefixes (ingest_rules
+    # PREFIXES), which differ from jetcite's canonicals for the same sets
+    # ("Admission to Practice R." vs jetcite's "N.D. Admission to Practice
+    # R."; "Educ." vs "Ed."; "R. Jud. Conduct Comm." vs "N.D.R. Jud.
+    # Conduct Commission") — the attribution result is compared against
+    # provision citations here, so it must match the corpus, not jetcite.
+    # Spelled vocabulary kept in lockstep with jetcite's _SPELLED_MARKERS
+    # (jetcite TODO, "six ND rule sets have no spelled-out marker").
+    "N.D.R. Lawyer Discipl.": [r"North Dakota Rules for Lawyer Discipline",
+                               r"Rules for Lawyer Discipline"],
+    "Admission to Practice R.": [
+        r"North Dakota Admission to Practice Rules?",
+        r"Admission to Practice Rules?"],
+    "N.D.R. Continuing Legal Educ.": [
+        r"North Dakota Rules for Continuing Legal Education",
+        r"Rules for Continuing Legal Education"],
+    "R. Jud. Conduct Comm.": [
+        r"North Dakota Rules of the Judicial Conduct Commission",
+        r"Rules of the Judicial Conduct Commission"],
     "Fed. R. Civ. P.": [r"Federal Rules of Civil Procedure"],
     "Fed. R. Crim. P.": [r"Federal Rules of Criminal Procedure"],
     "Fed. R. Evid.": [r"Federal Rules of Evidence"],
@@ -129,7 +169,10 @@ _CORE_RULE_SETS = (
     "N.D.R.Civ.P.", "N.D.R.Crim.P.", "N.D.R.Ev.", "N.D.R.App.P.",
     "N.D.R.Ct.", "N.D.R.Juv.P.", "N.D. Sup. Ct. Admin. R.",
     "N.D. Sup. Ct. Admin. Order", "N.D.R. Prof. Conduct",
-    "N.D. Code Jud. Conduct", "Fed. R. Civ. P.", "Fed. R. Crim. P.",
+    "N.D. Code Jud. Conduct",
+    "N.D.R. Lawyer Discipl.", "Admission to Practice R.",
+    "N.D.R. Continuing Legal Educ.", "R. Jud. Conduct Comm.",
+    "Fed. R. Civ. P.", "Fed. R. Crim. P.",
     "Fed. R. Evid.", "Fed. R. App. P.",
 )
 
@@ -159,11 +202,20 @@ def rule_set_markers(text: str) -> list[tuple[int, int, str]]:
 
 _RULE_NUM_BOUNDARY = r"(?!\d)(?!\.\d)(?![A-Za-z])"
 
-# What may sit between "Rule 60(b)" and a trailing set marker: an optional
-# parenthetical pinpoint, commas/space, an optional "of the". Anything more
-# ("Rule 12 and N.D.R.Ev. 403") rejects the trailing attribution.
+# What may sit between "Rule 60(b)" and a trailing set marker: a subdivision
+# chain, commas/space, an optional "of the". Anything more ("Rule 12 and
+# N.D.R.Ev. 403") rejects the trailing attribution.
+#
+# The chain repeats: a rule number carries as many levels as the rule has, and
+# briefs cite them in full — "Rule 32(a)(8)(A) of the North Dakota Rules of
+# Appellate Procedure", "Rule 3.4(b)(1)(C) of the North Dakota Rules of
+# Court". Allowing only one parenthetical rejected those, and the ladder then
+# fell through to the nearest PRECEDING marker — attributing Rule 32 to
+# whichever set happened to be mentioned earlier. That is the failure this
+# module's doctrine forbids: an unsure reference is dropped or reported
+# ambiguous, never guessed.
 _TRAILING_GAP_RE = re.compile(
-    r"[\s,]*(?:\([^)]{1,20}\))?[\s,]*(?:of\s+the\s+)?$"
+    r"[\s,]*(?:\([^)]{1,20}\))*[\s,]*(?:of\s+the\s+)?$"
 )
 
 

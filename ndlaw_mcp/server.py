@@ -2554,8 +2554,10 @@ def _inbound_xref_where(as_of_date: str | None) -> tuple[str, list]:
     """SQL fragment selecting citing VERSIONS in force (current or at a date)."""
     if as_of_date is None:
         return "v.effective_end IS NULL", []
+    # Half-open windows: a version ending on D was not in force on D (see
+    # corpus.lookup_provision_version).
     return ("COALESCE(v.effective_start,'0000-01-01') <= ? "
-            "AND COALESCE(v.effective_end, ?) >= ?",
+            "AND COALESCE(v.effective_end, ?) > ?",
             [as_of_date, corpus.OPEN_ENDED, as_of_date])
 
 
@@ -2744,15 +2746,76 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 row = cw["row"]
                 provenance = cw["provenance"]
             else:
-                # Fall back to the provision's earliest captured version with a
-                # clear warning rather than nothing — full historical text before
-                # that date may not yet be captured (see get_authority_history).
+                # A dated lookup can miss three different ways, and they need
+                # different answers (the 2026-08-07 bug collapsed all three
+                # into "return the earliest version", serving 1987 text for a
+                # 2026 query on a repealed rule):
+                #   1. as_of predates our earliest capture — a capture gap;
+                #      the earliest version plus a warning is the best answer.
+                #   2. as_of falls between versions — a window gap (repeal-
+                #      and-readoption seam); report not in force, with the
+                #      flanking dates.
+                #   3. as_of is on/after the final effective_end of a
+                #      provision with no open version — repealed/expired;
+                #      report that and return no operative text.
                 q = f"{alias}."
+                cw_note = cw["note"] if cw and cw.get("note") else None
                 stored_key = corpus.resolve_cite_key(conn, alias, lookup_cite)
                 prov = conn.execute(
-                    f"SELECT id FROM {q}provisions WHERE cite_key = ?",
-                    (stored_key,),
+                    f"SELECT id, citation, heading, status FROM {q}provisions "
+                    f"WHERE cite_key = ?", (stored_key,),
                 ).fetchone() if stored_key else None
+                b = conn.execute(
+                    f"SELECT MIN(COALESCE(effective_start,'0000-01-01')) AS lo, "
+                    f"       MAX(COALESCE(effective_end,'9999-12-31')) AS hi, "
+                    f"       COUNT(*) AS n, "
+                    f"       SUM(effective_end IS NULL) AS open_n "
+                    f"FROM {q}provision_versions WHERE provision_id = ?",
+                    (prov["id"],),
+                ).fetchone() if prov else None
+                if b and b["n"] and as_of_date >= b["lo"]:
+                    base = {
+                        "found": True, "corpus": ckind,
+                        "citation": prov["citation"],
+                        "heading": prov["heading"],
+                        "status": prov["status"],
+                        "as_of_date": as_of_date,
+                        "in_force": False, "text": None,
+                    }
+                    if not b["open_n"] and as_of_date >= b["hi"]:
+                        verb = ("repealed" if prov["status"] == "repealed"
+                                else "no longer in force")
+                        base["final_effective_end"] = b["hi"]
+                        base["warning"] = (
+                            f"{prov['citation']} was {verb} effective "
+                            f"{b['hi']}; no text was in force on {as_of_date}."
+                            f" See get_authority_history for the amendment "
+                            f"chronology."
+                            + (f" {cw_note}" if cw_note else ""))
+                        return base
+                    pred = conn.execute(
+                        f"SELECT effective_start, effective_end "
+                        f"FROM {q}provision_versions WHERE provision_id = ? "
+                        f"AND effective_end IS NOT NULL AND effective_end <= ? "
+                        f"ORDER BY effective_end DESC LIMIT 1",
+                        (prov["id"], as_of_date)).fetchone()
+                    nxt = conn.execute(
+                        f"SELECT MIN(COALESCE(effective_start,'0000-01-01')) AS s "
+                        f"FROM {q}provision_versions WHERE provision_id = ? "
+                        f"AND COALESCE(effective_start,'0000-01-01') > ?",
+                        (prov["id"], as_of_date)).fetchone()
+                    if pred and nxt and nxt["s"]:
+                        base["warning"] = (
+                            f"No version of {prov['citation']} was in force "
+                            f"on {as_of_date}: the version effective "
+                            f"{pred['effective_start']} ended "
+                            f"{pred['effective_end']}, and the next took "
+                            f"effect {nxt['s']}. See get_authority_history."
+                            + (f" {cw_note}" if cw_note else ""))
+                        return base
+                # capture gap: fall back to the provision's earliest captured
+                # version with a clear warning rather than nothing — earlier
+                # text may exist but is not yet captured.
                 if prov:
                     row = conn.execute(
                         f"SELECT p.citation, p.heading, p.status, v.* "
@@ -2769,8 +2832,8 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                             f"not yet captured — see get_authority_history for the "
                             f"amendment chronology."
                         )
-                if cw and cw.get("note"):
-                    warning = (warning + " " if warning else "") + cw["note"]
+                if cw_note:
+                    warning = (warning + " " if warning else "") + cw_note
         if not row:
             asof = f" in force on {as_of_date}" if as_of_date else ""
             return {"found": False, "citation": citation, "corpus": ckind,
@@ -3139,7 +3202,7 @@ def search_authority(
                 params: tuple = (query, limit)
             else:
                 where = ("COALESCE(v.effective_start,'0000-01-01') <= ? "
-                         "AND COALESCE(v.effective_end, ?) >= ?")
+                         "AND COALESCE(v.effective_end, ?) > ?")
                 params = (query, as_of_date, corpus.OPEN_ENDED, as_of_date, limit)
             sql = (
                 f"SELECT p.citation, p.heading, v.effective_start, v.effective_end, "

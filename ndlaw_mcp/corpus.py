@@ -446,13 +446,18 @@ def lookup_provision_version(
             f"WHERE p.cite_key = ?"
         )
         return conn.execute(sql, (key,)).fetchone()
+    # Version windows are half-open [start, end): a version's effective_end is
+    # its successor's effective_start (the seam invariant pins end[i] ==
+    # start[i+1]), so a version that ends on date D is NOT in force on D.
+    # `end > ?`, not `>=` — the inclusive form returned repealed text on the
+    # repeal's own effective date (PROJECT.md, lookup_authority bug 2026-08-07).
     sql = (
         f"SELECT p.citation, p.heading, p.status, v.* "
         f"FROM {q}provisions p JOIN {q}provision_versions v "
         f"  ON v.provision_id = p.id "
         f"WHERE p.cite_key = ? "
         f"  AND COALESCE(v.effective_start, '0000-01-01') <= ? "
-        f"  AND COALESCE(v.effective_end, ?) >= ? "
+        f"  AND COALESCE(v.effective_end, ?) > ? "
         f"ORDER BY v.effective_start DESC LIMIT 1"
     )
     return conn.execute(sql, (key, as_of_date, OPEN_ENDED, as_of_date)).fetchone()
