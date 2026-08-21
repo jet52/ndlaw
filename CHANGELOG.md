@@ -8,6 +8,62 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.3.2 — 2026-08-21
+
+- **Data**: the week's ruling-queue waves — West Synopsis residue stripped
+  (911 sites, body-guarded), West-added parallel citations stripped (2,475
+  sites / 780 opinions), West editorial rewrites restored to the court's
+  words, nested blockquotes to print depth (35 opinions), Reporter's Notes
+  reordered to print (20), space-led separators normalized (134), caption
+  comma-glue (11). Caption arc completed: party/label rows regrouped (1,484
+  opinions) and row geometry ruled to the slip (206 + head-span 83). OCR:
+  corpus-wide JOIN/possessive repair (~900 sites) and the two-witness
+  lineage repair (247 opinions / 715 sites). Signature-panel restorations
+  (~190 opinions). G2 shatter eyeball tier drained (184 → 0).
+- **Corrections pipeline**: clerk-corrected opinions now detected
+  automatically — a repaired ndcourts.gov link means the Clerk replaced the
+  PDF; the new weekly probe diffs the re-issued slip and files findings.
+  First catch applied same-day: 2026 ND 111 (treatise-cite period) and
+  2026 ND 123 (No. 20260172 caption respondent).
+- **Citation graph**: full rebuild under jetcite 2.12.0.
+- **Web**: footer now reports the data-refresh date and
+  opinions-current-through date on every page.
+- **N.D.A.C.**: 20 chapter-repeal sections applied (state-PDF-confirmed).
+- Corpus: 20,105 opinions, current through 2026-08-20.
+
+## v3.3.1 — 2026-08-14
+
+- **Data**: block-quote restoration arc — Tier 1 (2019 zero-tab cohort) and
+  archive-authorized Tier 2 slices applied; CourtListener word-order
+  scrambles restored; mid-citation paragraph breaks joined under Contract
+  13. CL-markdown paragraph-shatter repair began (pilot + G12 per-seam
+  wave). Orphan-bracket residue drained. Caption furniture stripped with
+  related-docket harvest; missing/one-line signature panels restored.
+- **Citation graph**: short-form rule cites re-extracted.
+- **N.D.A.C.**: db-vs-mirror sweep confirmed admincode current.
+
+## v3.3.0 — 2026-08-10
+
+- **Data**: header apparatus drained corpus-wide (CourtListener citation
+  headers, glued caption headers, Court of Appeals headers — ~1,050
+  opinions); 2020+ reflow holds released after engine gate fixes;
+  mid-citation breaks joined; self-citation-edge audit closed 4 defects.
+- **Citation graph**: jetcite 2.10.1 — archaic bare reporter forms
+  (`16 Pac. 931`, `1 Sup. Ct. 389`) newly extracted, ~9,000 sites.
+- **N.D.A.C.**: July 2026 supplement applied, including the emergency
+  kratom scheduling (§ 61-13-01-03) spliced from the published chapter
+  PDFs.
+
+## v3.2.0 — 2026-08-07
+
+- **Data**: NW2d-era syllabus gap closed — "Syllabus by the Court" restored
+  to ~1,012 opinions (5,182 paragraphs) from the bound reports; table-page
+  opinions ingested (corpus → 20,098); 2020+ reflow engine's first
+  5,200-opinion sweep applied.
+- **Statutes**: N.D.C.C. repeal modeling ratified — repealed sections carry
+  a closed prior version plus an open repeal-notation version (3,506 rows),
+  matching print.
+
 ## v3.1.0 — 2026-08-01
 
 - **Web**: citation-URL interface serves **all 18 rule sets** (v3.0.x
