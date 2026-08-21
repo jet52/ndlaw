@@ -58,6 +58,10 @@ _STAMP = "dev"
 
 _NEUTRAL_TOKEN = re.compile(r"^(\d{4})[\s_-]*nd[\s_-]*(app)?[\s_-]*(\d{1,4})$",
                             re.IGNORECASE)
+# Internal opinion id as a URL token ("/id5780", "/cite/id5780"): the ids
+# are how work logs, worklists, and changelog rows name opinions, so a page
+# must be reachable from one. Never canonical — always 301 to the citation.
+_ID_TOKEN = re.compile(r"^id[\s_-]*(\d{1,7})$", re.IGNORECASE)
 _ND_LOOSE = re.compile(r"^(\d{1,2})\s*n\.?\s*d\.?\s*(\d{1,4})$", re.IGNORECASE)
 _NW_LOOSE = re.compile(r"^(\d{1,4})\s*n\.?\s*w\.?\s*(2d|3d)?\.?\s*(\d{1,4})$",
                        re.IGNORECASE)
@@ -99,6 +103,12 @@ def _html(request: Request, content: str, *, status: int = 200,
 def _redirect(path: str) -> Response:
     return RedirectResponse(path, status_code=301,
                             headers=_headers(max_age=86400))
+
+
+def token_to_id(token: str) -> int | None:
+    """'id5780' / 'id 5780' / 'id-5780' -> 5780, else None."""
+    m = _ID_TOKEN.match(token.strip())
+    return int(m.group(1)) if m else None
 
 
 def token_to_cite(token: str) -> str | None:
@@ -545,7 +555,7 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
             history = (f"<h2>History</h2><table class=\"meta\">"
                        f"<tr><th>from</th><th>to</th><th>authority</th>"
                        f"</tr>{hrows}</table>")
-        paras = web_templates.render_provision_body(text)
+        paras = web_templates.render_provision_body(text, anchors=(name == "rule"))
         body = f"""
 <p class="meta">{' · '.join(meta)}</p>
 <div class="counts">
@@ -780,6 +790,22 @@ def _not_found(request: Request, token: str) -> Response:
 """
     return _html(request, web_templates.page("Not found", body, h1="Not found"),
                  status=404, max_age=3600)
+
+
+def _id_redirect(request: Request, opinion_id: int,
+                 sub: str | None = None) -> Response:
+    """/id<N> -> 301 to the opinion's canonical citation page."""
+    conn = _conn()
+    try:
+        if conn.execute("SELECT 1 FROM opinions WHERE id = ?",
+                        (opinion_id,)).fetchone() is None:
+            return _not_found(request, f"id{opinion_id}")
+        path = canonical_path(conn, opinion_id)
+    finally:
+        conn.close()
+    if path == f"/cite/id{opinion_id}":     # no primary cite: nothing to go to
+        return _not_found(request, f"id{opinion_id}")
+    return _redirect(path + (f"/{sub}" if sub else ""))
 
 
 def _serve_cite(request: Request, cite: str, current_path: str) -> Response:
@@ -1029,18 +1055,45 @@ def _build_stamp(db_path) -> str:
         return f"dev-{code_v}"
 
 
+def _data_stamp(db_path) -> str | None:
+    """Footer data-currency line: DB-file mtime = when this instance's data
+    was last refreshed (each release installs a new file), plus
+    MAX(date_filed) = how current the corpus itself is."""
+    import datetime
+    try:
+        refreshed = datetime.date.fromtimestamp(os.path.getmtime(db_path))
+        conn = get_connection(db_path, read_only=True)
+        try:
+            latest = conn.execute(
+                "SELECT MAX(date_filed) FROM opinions").fetchone()[0]
+        finally:
+            conn.close()
+        parts = [f"Data last refreshed {refreshed:%B %-d, %Y}"]
+        if latest:
+            y, m, d = (int(x) for x in latest.split("-"))
+            parts.append(f"opinions current through "
+                         f"{datetime.date(y, m, d):%B %-d, %Y}")
+        return " · ".join(parts) + "."
+    except Exception:
+        return None
+
+
 def register(mcp, db_path=None) -> None:
     """Attach the web routes to the FastMCP app. Called from server.main()."""
     global _DB_PATH, _STAMP
     if db_path is not None:
         _DB_PATH = db_path
     _STAMP = _build_stamp(_DB_PATH)
+    web_templates.set_data_stamp(_data_stamp(_DB_PATH))
 
     async def _resolve_free(request: Request, q: str) -> Response:
         """The /cite resolver: any citation in any corpus, however spelled,
         301s to its canonical page. Provisions are tried first — no provision
         short key can spell an opinion neutral cite, so the order is safe and
         it keeps 'N.D.C.C. § …' out of the opinion extractor."""
+        oid = token_to_id(q)
+        if oid is not None:
+            return _id_redirect(request, oid)
         spec = _provision_spec_for_text(q)
         if spec is not None:
             return _redirect(spec[2])
@@ -1159,6 +1212,9 @@ def register(mcp, db_path=None) -> None:
     @mcp.custom_route("/{token}", methods=["GET"])
     async def bare_token(request: Request) -> Response:
         token = request.path_params["token"]
+        oid = token_to_id(token)
+        if oid is not None:
+            return _id_redirect(request, oid)
         cite = token_to_cite(token)
         if cite is not None:
             return _serve_cite(request, cite, request.url.path)
@@ -1171,6 +1227,11 @@ def register(mcp, db_path=None) -> None:
     async def bare_token_sub(request: Request) -> Response:
         token = request.path_params["token"]
         sub = request.path_params["sub"]
+        oid = token_to_id(token)
+        if oid is not None:
+            if sub not in ("citing", "cited"):
+                return _not_found(request, f"{token}/{sub}")
+            return _id_redirect(request, oid, sub)
         cite = token_to_cite(token)
         if cite is not None:
             if sub not in ("citing", "cited"):

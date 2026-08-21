@@ -212,6 +212,24 @@ def create_schema(conn: sqlite3.Connection) -> None:
         CREATE INDEX IF NOT EXISTS idx_text_citations_normalized ON text_citations(normalized);
         CREATE INDEX IF NOT EXISTS idx_text_citations_cite_type ON text_citations(cite_type);
 
+        -- Related-case docket links harvested from caption furniture
+        -- ((CONSOLIDATED W/…) / (cross-ref. …) clerk parentheticals) before
+        -- the 2026-08-14 caption strip; caption_furniture.py is the parser.
+        -- relation: 'consolidated' | 'cross-reference' | 'related' (docket
+        -- reference whose relation the clerk left unstated).
+        CREATE TABLE IF NOT EXISTS related_dockets (
+            id INTEGER PRIMARY KEY,
+            opinion_id INTEGER NOT NULL REFERENCES opinions(id),
+            docket TEXT NOT NULL,
+            relation TEXT NOT NULL,
+            raw TEXT NOT NULL,
+            source TEXT NOT NULL DEFAULT 'caption',
+            UNIQUE(opinion_id, docket, relation)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_related_dockets_opinion ON related_dockets(opinion_id);
+        CREATE INDEX IF NOT EXISTS idx_related_dockets_docket ON related_dockets(docket);
+
         -- Reverse index: which opinions cite which
         CREATE TABLE IF NOT EXISTS cited_by (
             id INTEGER PRIMARY KEY,

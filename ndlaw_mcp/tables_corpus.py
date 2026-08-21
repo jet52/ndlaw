@@ -17,6 +17,7 @@ display ``cite``) and ``table_index`` (matches the inline ``[Table N]``).
 from __future__ import annotations
 
 import json
+import re
 import os
 import sqlite3
 from html import escape as _h
@@ -85,8 +86,18 @@ def _split(grid: list[list[str]]):
         title, body = grid[0][0], grid[1:]
     ncol = max(len(r) for r in body)
     body = [r + [""] * (ncol - len(r)) for r in body]
-    # drop fully-empty rows (extraction spacers), keeping at least a header
+    # drop fully-empty rows (extraction spacers), keeping at least a header —
+    # EXCEPT a leading all-empty row, which is the source's way of saying "no
+    # header row": render_monospace/markdown/html then draw no header rule
+    # (2026-08-17: the four archive-table splices of the quote reflow are
+    # data-first tables — a net-income computation, a jury vote tally)
+    lead_empty = bool(body) and ncol > 1 and not any(c.strip() for c in body[0])
     body = [r for r in body if any(c.strip() for c in r)] or body
+    if lead_empty and body and any(re.search(r"\d", c) for c in body[0]):
+        # …and only when the first REAL row is data (carries a digit): an
+        # empty spacer above a worded header row (8132's elector list) is
+        # still a spacer
+        body = [[""] * ncol] + body
     # drop trailing columns that are empty in every row
     while ncol > 1 and all(r[ncol - 1].strip() == "" for r in body):
         ncol -= 1
@@ -125,9 +136,16 @@ def render_markdown(grid: list[list[str]]) -> str:
     lines = []
     if title:
         lines += [f"**{esc(title)}**", ""]
-    lines.append("| " + " | ".join(esc(c) for c in body[0]) + " |")
-    lines.append("| " + " | ".join("---" for _ in range(ncol)) + " |")
-    for r in body[1:]:
+    if ncol > 1 and not any(c.strip() for c in body[0]):
+        # headerless: markdown needs a header row, so an empty one carries the rule
+        lines.append("| " + " | ".join(" " for _ in range(ncol)) + " |")
+        lines.append("| " + " | ".join("---" for _ in range(ncol)) + " |")
+        body = body[1:]
+    else:
+        lines.append("| " + " | ".join(esc(c) for c in body[0]) + " |")
+        lines.append("| " + " | ".join("---" for _ in range(ncol)) + " |")
+        body = body[1:]
+    for r in body:
         lines.append("| " + " | ".join(esc(c) for c in r) + " |")
     return "\n".join(lines)
 
@@ -137,11 +155,15 @@ def render_html(grid: list[list[str]]) -> str:
     parts = ['<table class="opinion-html-table">']
     if title:
         parts.append(f"<caption>{_h(title)}</caption>")
-    parts.append("<thead><tr>"
-                 + "".join(f"<th>{_h(c)}</th>" for c in body[0])
-                 + "</tr></thead>")
+    if ncol > 1 and not any(c.strip() for c in body[0]):
+        body = body[1:]                      # headerless: no <thead>
+    else:
+        parts.append("<thead><tr>"
+                     + "".join(f"<th>{_h(c)}</th>" for c in body[0])
+                     + "</tr></thead>")
+        body = body[1:]
     parts.append("<tbody>")
-    for r in body[1:]:
+    for r in body:
         parts.append("<tr>" + "".join(f"<td>{_h(c)}</td>" for c in r) + "</tr>")
     parts.append("</tbody></table>")
     return "".join(parts)

@@ -33,7 +33,7 @@ from __future__ import annotations
 import html
 import re
 
-from ndlaw_mcp import proofread
+from ndlaw_mcp import proofread, rule_subsections
 
 # ---------------------------------------------------------------------------
 # page shell
@@ -55,6 +55,8 @@ _STYLE = """
   .pm { text-decoration: none; color: inherit; font-weight: bold; }
   .pm:hover { color: #1a5276; }
   .star { color: #8a6d1a; font-size: .85em; vertical-align: super; }
+  del.redline { text-decoration: line-through; color: #8b2500; }
+  ins.redline { text-decoration: underline; color: #1a5f2a; }
   .fn-ref { text-decoration: none; }
   .fn { font-size: .93em; }
   .figure { font-style: italic; color: #555; }
@@ -77,6 +79,7 @@ _STYLE = """
     a { color: #7fb3d5; }
     .counts { background: #23262d; }
     .star { color: #c9a227; }
+    del.redline { color: #e07a5f; } ins.redline { color: #7fd58a; }
     .figure { color: #999; }
     blockquote { border-color: #444; }
     footer { border-color: #333; color: #999; }
@@ -109,6 +112,18 @@ OFFICIAL_FALLBACK = {
     "ag": "https://attorneygeneral.nd.gov/",
     "jeac": "https://www.ndcourts.gov/committees/judicial-ethics-advisory-committee",
 }
+
+
+# Data-currency line for the footer, set once at server startup by
+# web.register() (DB-file mtime + MAX(date_filed)). None outside the
+# server (CLI renderers, tests that never call register), and the footer
+# then omits the line rather than guessing.
+DATA_STAMP: str | None = None
+
+
+def set_data_stamp(stamp: str | None) -> None:
+    global DATA_STAMP
+    DATA_STAMP = stamp
 
 
 def disclaimer_html(official_url: str | None = None) -> str:
@@ -147,7 +162,7 @@ def page(title: str, body: str, *, h1: str | None = None,
 <body>
 {f'<h1>{html.escape(h1)}</h1>' if h1 else ''}
 {body}
-<footer>{disclaimer_html(official_url)}</footer>
+<footer>{disclaimer_html(official_url)}{f'<br>{html.escape(DATA_STAMP)}' if DATA_STAMP else ''}</footer>
 </body>
 </html>
 """
@@ -179,6 +194,14 @@ _STAR = re.compile(r"\[\*(\d+)\]")
 # what this renderer always displayed. The bare `**NNN` form is gone from the
 # corpus; nothing should reintroduce it.
 _STAR2 = re.compile(r"\[\*\*(\d{1,4})\]")
+# Redline notation (JT 2026-08-17): where the court PRINTED a struck/underlined
+# amendment — a quoted bill in session-law form, a rule-amendment order — the
+# storage keeps both states in CriticMarkup: `{--struck--}` and `{++added++}`.
+# The braces are collision-free in this corpus (0 hits before adoption); the
+# renderer shows them as <del>/<ins>. Struck spans are the court's text too
+# (an opinion may argue from the deleted words), so nothing is dropped.
+_CRITIC_DEL = re.compile(r"\{--(.+?)--\}", re.S)
+_CRITIC_INS = re.compile(r"\{\+\+(.+?)\+\+\}", re.S)
 # Inline footnote CALL — the sigilled `[nN]` form only (JT 2026-08-04). The
 # bare `[N]` must not be linked: treatise subdivisions (`§ 34.11[5]`),
 # bracketed pages (`490 U.S. [163]`) and the courts' own enumerators
@@ -289,6 +312,16 @@ def _roman_section_heads(lines: list[str], sections) -> set[int]:
       mis-stored sibling (census 2026-08-14: ~640 lines corpus-wide, the
       space-led/one-line storage defect queues) stay plain paragraphs and
       heal automatically as those storage repairs land.
+    * one sequence exception (JT 2026-08-14, 2017 ND 152): a numeral
+      EQUAL to the last accepted one — the court's own duplicate section
+      heading, confirmed against the slip PDF — promotes too, but only
+      when body content (a ``[¶N]`` line) still follows it. The census of
+      the whole class is 18 lines: 15 are genuine duplicate headings
+      flanked by body paragraphs; 3 are stray trailing numerals after the
+      signature block at end-of-document (a storage artifact, not a
+      heading), and the content-follows condition is exactly what
+      separates them. ``expected`` does not advance on a duplicate, so a
+      court that recovers its numbering afterward still sequences.
     """
     if not any("[¶" in ln for ln in lines):
         return set()
@@ -305,16 +338,30 @@ def _roman_section_heads(lines: list[str], sections) -> set[int]:
         if (s and not raw.startswith("\t") and _ROMAN_LINE.match(s)
                 and not any(h < i < e for h, e in fn_ranges)):
             cands.append((i, _roman_val(s)))
+    def _body_follows(i: int) -> bool:
+        sg = seg_at[i]
+        for j in range(i + 1, len(lines)):
+            if seg_at[j] != sg:
+                return False
+            if lines[j].lstrip().startswith("[¶"):
+                return True
+        return False
+
     expected: dict[int, int] = {}
+    last: dict[int, int] = {}                  # segment -> last accepted value
     ok: dict[int, int] = {}                    # line_idx -> segment
     for i, v in cands:
         sg = seg_at[i]
         if v == 1:
             expected[sg] = 2
+            last[sg] = 1
             ok[i] = sg
         elif expected.get(sg) == v:
             expected[sg] = v + 1
+            last[sg] = v
             ok[i] = sg
+        elif last.get(sg) == v and _body_follows(i):
+            ok[i] = sg                         # duplicate heading; expected stays
     per_seg: dict[int, int] = {}
     for sg in ok.values():
         per_seg[sg] = per_seg.get(sg, 0) + 1
@@ -379,7 +426,10 @@ def _extract_table_blocks(text: str):
                 continue
             nxt = lines[j + 1].strip() if j + 1 < len(lines) else ""
             nxt2 = lines[j + 2].strip() if j + 2 < len(lines) else ""
-            if nxt and (_DASH_RULE.match(nxt) or _DASH_RULE.match(nxt2)):
+            if nxt and (_DASH_RULE.match(nxt) or _DASH_RULE.match(nxt2)
+                        # headerless title pattern (2026-08-17): title, blank,
+                        # then rows with two-space column gaps and no rule
+                        or (len(blk) == 2 and re.search(r"\S {2,}\S", nxt))):
                 blk.append(lines[j])
                 j += 1
                 continue
@@ -592,6 +642,8 @@ def render_body(text: str) -> str:
             sp = " " if (nxt.isalnum() or nxt == "(") else ""
             return f"<em>{m.group(1)}</em>{sp}"
         esc = _ITAL.sub(_ital_sub, esc)
+        esc = _CRITIC_DEL.sub(r'<del class="redline">\1</del>', esc)
+        esc = _CRITIC_INS.sub(r'<ins class="redline">\1</ins>', esc)
         esc = _PARA.sub(para_sub, esc)
         esc = _STAR.sub(star_sub, esc)
         esc = _STAR2.sub(star2_sub, esc)
@@ -687,13 +739,21 @@ def render_body(text: str) -> str:
 _BOLD = re.compile(r"\*\*([^*\n]+)\*\*")
 
 
-def render_provision_body(text: str) -> str:
+def render_provision_body(text: str, *, anchors: bool = False) -> str:
     """Provision text -> HTML. The rules corpus stores markdown-lite:
     ``**bold**`` subdivision labels and ``> ``/``> > `` indent levels
     (N.D.C.C./N.D.A.C. text is plain and passes through unchanged).
-    Escape first; then only the closed grammar transforms."""
+    Escape first; then only the closed grammar transforms.
+
+    ``anchors=True`` (rules corpus only) stamps each subdivision paragraph
+    with a stable id derived from its pincite path — ``id="e-1"`` for
+    Rule X(e)(1) — and makes the printed label a self-link, so
+    ``/ndrcivp56#e-1`` scrolls to the subsection. Ids come from
+    ``rule_subsections.anchor_map``, which anchors nothing unless the
+    whole version parses clean (a wrong anchor is worse than none)."""
+    amap = rule_subsections.anchor_map(text) if anchors else {}
     out = []
-    for ln in text.split("\n"):
+    for idx, ln in enumerate(text.split("\n")):
         if not ln.strip():
             continue
         depth = 0
@@ -702,6 +762,20 @@ def render_provision_body(text: str) -> str:
             ln = ln[2:] if ln.startswith("> ") else ""
         esc = html.escape(ln.strip())
         esc = _BOLD.sub(r"<strong>\1</strong>", esc)
+        aid = ""
+        a = amap.get(idx)
+        if a:
+            aid = f' id="{a}"'
+            # the paragraph's leading printed label becomes its self-link;
+            # first occurrence only, and the label text is escape-inert
+            label = f"({a.rsplit('-', 1)[-1]})"
+            for cand in (label, label.upper()):
+                pos = esc.find(cand)
+                if pos >= 0:
+                    esc = (esc[:pos]
+                           + f'<a class="pm" href="#{a}">{cand}</a>'
+                           + esc[pos + len(cand):])
+                    break
         cls = f' class="ind{min(depth, 4)}"' if depth else ""
-        out.append(f"<p{cls}>{esc}</p>")
+        out.append(f"<p{cls}{aid}>{esc}</p>")
     return "".join(out)

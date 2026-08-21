@@ -7,7 +7,7 @@ Appeals decisions). Coverage is complete since statehood (November 2,
 FTS5 full-text search and served via
 [FastMCP](https://github.com/jlowin/fastmcp).
 
-The opinions corpus currently contains **<!-- COUNT:opinions -->20,102<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,075<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
+The opinions corpus currently contains **<!-- COUNT:opinions -->20,105<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,097<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
 release notes. Where the court's own print contains an
 apparent typo, the text is preserved verbatim and the case is recorded in a
 shipped `print_anomalies` table (with the apparent intended reading and
@@ -64,7 +64,7 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,102<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,075<!-- /COUNT --> citation links, 1889–present |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,105<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,097<!-- /COUNT --> citation links, 1889–present |
 | `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
 | `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
 | `rules.db`        | ND court rules | ~650 rule provisions |
@@ -109,10 +109,11 @@ Claude](#connecting-to-claude) to wire it into an MCP client.
 
 ## What's in the database
 
-Counts below are as of 2026-06-27 (v1.1.1); rerun
-`sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` to get the live total
-(~19,793, of which 44 are North Dakota Court of Appeals decisions and the
-rest North Dakota Supreme Court).
+Counts below are as of 2026-08-21; the corpus total is
+**<!-- COUNT:opinions -->20,105<!-- /COUNT --> opinions** (of which 80 are
+North Dakota Court of Appeals decisions and the rest North Dakota Supreme
+Court) — rerun `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` for
+the live total.
 
 The "primary text source" is the source whose text is stored in
 `text_content`; other sources for the same opinion are recorded in
@@ -120,10 +121,10 @@ The "primary text source" is the source whose text is stored in
 
 | Era         | Opinions | Primary text source | Notes |
 |-------------|----------|---------------------|-------|
-| 1890–1952   | ~6,520   | Bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
-| 1953–1996   | ~6,070   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and court text from bound volumes; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | incremental validation of the residual is ongoing |
-| 1997–2019   | ~5,620   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
-| 2020–present| ~1,585   | ndcourts.gov | N.W.2d where available |
+| 1890–1952   | ~6,530   | Bound N.D. Reports (vols 1–79, ~5,700); CourtListener N.W./N.W.2d OCR for the rest | court-authored "Syllabus by the Court" recovered from the bound reports |
+| 1953–1996   | ~6,300   | Court-sourced archive.ndcourts.gov (N.W.2d index, ~vol 139+ ≈ 1966 on, ~4,800) and court text from bound volumes; CourtListener N.W.2d OCR for the residual pre-~1965 slice (~1,200) | incremental validation of the residual is ongoing |
+| 1997–2019   | ~5,650   | ndcourts.gov | archive.ndcourts.gov and CourtListener N.W.2d cross-recorded |
+| 2020–present| ~1,630   | ndcourts.gov | N.W.2d where available |
 
 See [`NOTICE.md`](NOTICE.md) for what each source contributes and what is
 and isn't redistributed in `text_content`. See

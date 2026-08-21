@@ -654,6 +654,33 @@ def _norm_words(s: str) -> list[str]:
     return s.split()
 
 
+# Storage notation that a quotation never carries (CLAUDE.md § Text
+# conventions): star pages `[*NNN]` / `[**NNN]`, footnote sigils `[nN]`,
+# paragraph markers `[¶N]`, the italic-run asterisks, and the CriticMarkup
+# redline sigils `{--` `--}` `{++` `++}` (the words inside stay — both states
+# are the court's text). A genuine marker STANDS ALONE, but the italics `*`
+# hugs its word (`*Miller*,`), so the view strips per token, not per gap.
+_NOTATION = re.compile(
+    r"\[\*\*?\d{1,4}\]|\[n\d+\]|\[¶\s?\d+\]|\{--|--\}|\{\+\+|\+\+\}|\*")
+
+
+def _notation_view(text: str) -> tuple[str, list[int]]:
+    """``text`` with storage notation removed plus an offset map: ``idx[i]``
+    is the original offset of stripped character ``i`` (``idx[len]`` = the
+    original length, so a match end maps too). Used only after the plain
+    search fails, so an opinion without notation pays nothing."""
+    out, idx, last = [], [], 0
+    for m in _NOTATION.finditer(text):
+        seg = text[last:m.start()]
+        out.append(seg)
+        idx.extend(range(last, m.start()))
+        last = m.end()
+    out.append(text[last:])
+    idx.extend(range(last, len(text)))
+    idx.append(len(text))
+    return "".join(out), idx
+
+
 def locate_quote(text: str, quote: str) -> dict:
     """Locate ``quote`` within ``text``.
 
@@ -662,18 +689,24 @@ def locate_quote(text: str, quote: str) -> dict:
     ``paragraph``, and ``matched_text``. When only a near match exists it
     carries ``closest_text``, ``paragraph``, ``similarity``, and a word-level
     ``differences`` diff. ``case_mismatch`` flags a match that differs only in
-    capitalization."""
+    capitalization.
+
+    Storage notation is transparent: a quotation that spans a star page,
+    footnote call, paragraph marker, italic run or redline sigil still
+    matches verbatim (``spans_notation`` is set and ``matched_text`` is the
+    stored slice, notation included). Offsets are always in ``text``'s own
+    coordinates."""
     quote = quote.strip()
     if not quote:
         return {"found": False, "verbatim": False, "error": "empty quote"}
 
     struct = footnote_structure(text)
-    pattern = _build_quote_regex(quote)
+    # the quote itself may carry italics asterisks copied from a rendering
+    pattern = _build_quote_regex(_NOTATION.sub("", quote) or quote)
 
     m = re.search(pattern, text)
     if m:
         return _hit(text, m, True, struct)
-
     m = re.search(pattern, text, re.IGNORECASE)
     if m:
         res = _hit(text, m, False, struct)
@@ -681,6 +714,24 @@ def locate_quote(text: str, quote: str) -> dict:
         res["note"] = "Matches except for capitalization."
         return res
 
+    view, idx = _notation_view(text)
+    if view != text:
+        for flags, verbatim in ((0, True), (re.IGNORECASE, False)):
+            mv = re.search(pattern, view, flags)
+            if mv:
+                start, end = idx[mv.start()], idx[mv.end()]
+                res = {"found": True, "verbatim": verbatim,
+                       "char_start": start, "char_end": end,
+                       "matched_text": text[start:end],
+                       "spans_notation": True}
+                res.update(locate_structure(text, start, struct))
+                if not verbatim:
+                    res["case_mismatch"] = True
+                    res["note"] = "Matches except for capitalization."
+                return res
+        res = _fuzzy(view, _NOTATION.sub("", quote) or quote, struct,
+                     idx=idx, orig=text)
+        return res
     return _fuzzy(text, quote, struct)
 
 
@@ -697,9 +748,13 @@ def _hit(text: str, m: re.Match, verbatim: bool, struct: dict) -> dict:
     return res
 
 
-def _fuzzy(text: str, quote: str, struct: dict | None = None) -> dict:
+def _fuzzy(text: str, quote: str, struct: dict | None = None,
+           idx: list[int] | None = None, orig: str | None = None) -> dict:
     """Word-level near-match search anchored on the quote's most distinctive
-    words, so a dropped/changed word surfaces with the actual text + ¶."""
+    words, so a dropped/changed word surfaces with the actual text + ¶.
+
+    With ``idx``/``orig`` the search runs over a notation-stripped view and
+    every offset/structure lookup is mapped back into ``orig``."""
     words = [(mt.group(0), mt.start(), mt.end()) for mt in re.finditer(r"\S+", text)]
     if not words:
         return {"found": False, "verbatim": False, "similarity": 0.0,
@@ -740,6 +795,11 @@ def _fuzzy(text: str, quote: str, struct: dict | None = None) -> dict:
     char_start = words[start][1]
     char_end = words[end - 1][2]
     closest = text[char_start:char_end]
+    if idx is not None and orig is not None:
+        char_start, char_end = idx[char_start], idx[char_end]
+        struct_text = orig
+    else:
+        struct_text = text
     diff = [d for d in difflib.ndiff(qwords, [w for w, _, _ in words[start:end]])
             if d[0] in "+-"]
     res = {
@@ -751,7 +811,7 @@ def _fuzzy(text: str, quote: str, struct: dict | None = None) -> dict:
         "note": "Not found verbatim; closest passage shown with word-level diff "
                 "(- quote, + opinion).",
     }
-    res.update(locate_structure(text, char_start, struct))
+    res.update(locate_structure(struct_text, char_start, struct))
     # Tier 3: a very high word-similarity miss whose only divergence is an
     # intra-word character substitution (or soft-hyphen line break) is almost
     # certainly an OCR artifact in the stored text, not a misquote. Flag it so

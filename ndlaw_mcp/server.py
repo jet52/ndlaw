@@ -2955,15 +2955,41 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                         f"{row['citation']} (some complex sections — compacts, "
                         f"schedules — are stored whole); read it within the full text."
                     )
-        # Rules are stored whole-rule; subsection pinpoints are not separately
-        # retrievable. If the caller asked for one, return the full rule but say
-        # so rather than silently dropping the pinpoint. (Statutes/const use "§"
-        # for the section itself, so only flag the court-rule corpus.)
+        # Court-rule subsection pinpoint: a parenthesized chain glued to the
+        # rule number ("N.D.R.Civ.P. 56(e)(1)") resolves against the rules
+        # subsection index exactly like the NDCC branch above, and carries the
+        # web anchor ("e-1") that deep-links the provision page. §-style rule
+        # pinpoints ("Admin. R. 22, § 3(c)") and versions the precision gate
+        # held out of the index fall back to the whole-rule note. (Statutes/
+        # const use "§" for the section itself, so only flag the rule corpus.)
         if ckind == "rule" and _PINPOINT_RE.search(citation):
-            result["note"] = (
-                "Subsection-level retrieval is not supported; returning the full "
-                f"text of {row['citation']}. Read the relevant subsection within it."
-            )
+            tail = ""
+            tok = spec.get("token")
+            if tok:
+                idx = citation.find(tok)
+                if idx >= 0:
+                    m = re.match(r"((?:\([0-9a-zA-Z]{1,4}\))+)", citation[idx + len(tok):])
+                    if m:
+                        tail = m.group(1)
+            subs = corpus.lookup_subsection(
+                conn, alias, row["citation"], tail, as_of_date) if tail else []
+            if subs:
+                pin = corpus.normalize_pincite(tail)
+                result["pinpoint"] = {
+                    "pincite": f"{row['citation']}{pin}",
+                    "anchor": corpus.pincite_to_anchor(pin),
+                    "text": " ".join(s["text"] for s in subs),
+                    "subsections": [
+                        {"pincite": s["pincite"], "label": s["printed_label"], "text": s["text"]}
+                        for s in subs
+                    ],
+                }
+            else:
+                result["note"] = (
+                    f"Subsection not separately indexed for {row['citation']}; "
+                    "returning the full rule text. Read the relevant subsection "
+                    "within it."
+                )
         return result
     finally:
         conn.close()

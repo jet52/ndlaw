@@ -475,6 +475,17 @@ def normalize_pincite(pin: str) -> str:
     return "".join(f"({m.group(1).lower()})" for m in _PIN_TOKEN.finditer(pin.strip()))
 
 
+def pincite_to_anchor(pin: str) -> str:
+    """A pincite path's URL-fragment form: '(e)(1)' -> 'e-1'.
+
+    The same ids the web renderer stamps on rule subdivision paragraphs
+    (web_templates.render_provision_body), so /ndrcivp56#e-1 scrolls to
+    Rule 56(e)(1). Accepts anything normalize_pincite accepts."""
+    if not pin:
+        return ""
+    return "-".join(m.group(1).lower() for m in _PIN_TOKEN.finditer(pin.strip()))
+
+
 def lookup_subsection(
     conn: sqlite3.Connection,
     corpus_alias: str,
