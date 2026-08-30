@@ -1,0 +1,4589 @@
+"""MCP server for North Dakota Supreme Court opinions."""
+
+import datetime
+import os
+import re
+import sqlite3
+import sys
+from pathlib import Path
+
+from fastmcp import FastMCP
+
+from . import (ag_corpus, corpus, draftcheck, figures_corpus, jeac_corpus, tables_corpus,
+               memo, notes, proofread, research)
+from .db import DEFAULT_DB_PATH, get_connection
+
+# Public deployments (ndlaw.org) set NDLAW_RATE_NOTE=1 so connected LLM
+# clients are told to pace themselves. MCP has no protocol-level rate
+# negotiation, but clients DO read server instructions — this is the one
+# channel that reaches the model before it plans its tool calls. Keep the
+# numbers in sync with deploy/fail2ban/jail.d/apache-ndlaw.conf.
+_RATE_NOTE = (
+    " ETIQUETTE FOR THIS SHARED PUBLIC SERVER: it runs on modest hardware, "
+    "free for everyone. Issue tool calls sequentially, not in parallel "
+    "bursts, and stay under roughly one request per second sustained "
+    "(hard per-IP limits: 60/minute, 900/15 minutes; exceeding them gets "
+    "the IP temporarily banned at the firewall — requests then fail at the "
+    "network level, not with a retryable error). Plan research to minimize "
+    "calls: prefer one targeted lookup_authority/lookup_opinion over "
+    "repeated broad searches, use limit= parameters instead of paging "
+    "through everything, and reuse results already in context. For bulk "
+    "analysis, download the full CC0 database from "
+    "https://github.com/jet52/ndlaw/releases instead of crawling this API."
+) if os.environ.get("NDLAW_RATE_NOTE") or os.environ.get("NDCOURTS_RATE_NOTE") else ""
+
+mcp = FastMCP(
+    "ndlaw",
+    instructions=(
+        "North Dakota primary law. Opinions (1889–present): use lookup_opinion "
+        "for citation-based retrieval, search_opinions for full-text search, and "
+        "get_citing_opinions to find cases that cite a given opinion. Constitution, "
+        "court rules, statutes (N.D.C.C.), and administrative code (where installed): "
+        "use lookup_authority for the text of a provision (with as_of_date for the "
+        "version in force on a given date), get_authority_history for its amendment "
+        "history, get_provision_xrefs for the cross-references between provisions "
+        "(what a provision cites and everything that cites it, across corpora), "
+        "search_authority for full-text search across these sources, and "
+        "get_notes_of_decisions for an annotated notes-of-decisions view of the "
+        "opinions applying a provision (citing sentences, subsection outline, "
+        "treatment-depth signals), and check_draft for a one-call cite-check of "
+        "a draft opinion or brief (citation/quotation verification, citator "
+        "pass, authority currency). "
+        "Attorney General opinions (where installed): use search_ag_opinions for "
+        "full-text search, lookup_ag_opinion for a specific opinion by number, and "
+        "get_ag_opinions_citing for the AG opinions that cite a given authority, "
+        "and get_court_opinions_citing_ag for the court opinions that cite a given "
+        "AG opinion; lookup_authority also reports how many AG opinions construe a "
+        "provision. Judicial Ethics Advisory Committee opinions (where installed): "
+        "use search_jeac_opinions / lookup_jeac_opinion for the committee's "
+        "advisory opinions on the Code of Judicial Conduct (recusal, campaign "
+        "conduct, extra-judicial activities), get_jeac_opinions_citing for the "
+        "opinions construing a canon or rule, and get_court_opinions_citing_jeac "
+        "for court references to the committee." + _RATE_NOTE
+    ),
+)
+
+DB_PATH = DEFAULT_DB_PATH
+
+COURTLISTENER_BASE = "https://www.courtlistener.com"
+
+# A subsection pinpoint trailing a court-rule citation, e.g. "§ 3(c)", "(c)",
+# "subsec. 2" — used to tell the caller we returned the whole rule, not the cited
+# subsection (rules are stored whole-rule).
+_PINPOINT_RE = re.compile(r"\(\s*[0-9a-zA-Z]{1,4}\s*\)|§|\bsubsec|\bsubdiv", re.I)
+
+# A trailing subsection pinpoint on a *court-rule* cite, to be stripped so the
+# whole rule resolves: a "§ …"/"subsec."/"subdiv." clause, or a parenthesized
+# "(c)" group, at the end of the string. Rule-only — N.D.C.C./const use "§" for
+# the section identifier itself, so this must never run against those corpora.
+_RULE_PINPOINT_TAIL_RE = re.compile(
+    r"\s*(?:,\s*)?(?:(?:§|subsec\.?|subdiv\.?|subdivision)\s*[\w.()\-]*|\([0-9a-zA-Z]{1,4}\))\s*$",
+    re.I,
+)
+
+
+def _strip_rule_pinpoint(citation: str) -> str:
+    """Drop a trailing subsection pinpoint from a court-rule citation.
+
+    "N.D. Sup. Ct. Admin. R. 22, § 3(c)" -> "N.D. Sup. Ct. Admin. R. 22";
+    "N.D. Code Jud. Conduct canon 1, § 3(c)" -> "...canon 1" (the parser's
+    prefix+number canonical would drop the "canon" word, so stripping the
+    pinpoint off the *raw* cite and resolving that is what makes pinpoints work
+    for every rule set, not just the clean "prefix number" ones)."""
+    prev = None
+    out = citation
+    while out != prev:
+        prev = out
+        out = _RULE_PINPOINT_TAIL_RE.sub("", out).rstrip()
+    return out
+
+
+def _best_cite(conn, alias: str, spec: dict, citation: str) -> str:
+    """The citation string to resolve a provision by: raw first, then fallbacks.
+
+    Try the caller's raw citation first — ``corpus.resolve_cite_key`` matches it
+    space-insensitively, which already handles the common forms and, crucially,
+    any provision whose *stored* citation has idiosyncratic formatting (a 4th
+    admin segment like ``10-01-01-01``, a stray space, …) that a regex-rebuilt
+    canonical can't reproduce. On a miss, for court rules drop a trailing
+    subsection pinpoint and retry (rules are stored whole-rule). Finally fall
+    back to the parser's ``exact`` canonical, which rescues alias/word-order
+    variants the raw form can't match ("AR 22", "Rule 56 NDRCivP"). Preferring
+    canonical first would regress the raw/idiosyncratic class; raw first costs
+    at most a couple of extra indexed lookups.
+    """
+    if corpus.resolve_cite_key(conn, alias, citation):
+        return citation
+    if spec.get("kind") == "court_rule":
+        stripped = _strip_rule_pinpoint(citation)
+        if stripped != citation and corpus.resolve_cite_key(conn, alias, stripped):
+            return stripped
+    exact = spec.get("exact")
+    if exact and corpus.resolve_cite_key(conn, alias, exact):
+        return exact
+    return citation
+
+
+# Map a normalize_authority() kind to a versioned-law corpus name (corpus.CORPORA).
+KIND_TO_CORPUS = {
+    "constitution": "const",
+    "court_rule": "rule",
+    "statute": "ndcc",
+    "admin": "admin",
+}
+
+
+def _conn_with_corpora() -> sqlite3.Connection:
+    """Opinions connection with every available primary-law corpus ATTACHed.
+
+    Missing corpus DBs are skipped, so this works on a chambers install that
+    has only some corpora (or none — then it behaves like get_connection)."""
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        corpus.attach_corpora(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        ag_corpus.attach_ag(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        jeac_corpus.attach_jeac(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        figures_corpus.attach_figures(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        tables_corpus.attach_tables(conn, read_only=True)
+    except Exception:
+        pass
+    return conn
+
+
+def _ag_attached(conn: sqlite3.Connection) -> bool:
+    """True if the ND Attorney General opinions corpus is attached to ``conn``."""
+    return "ag" in {r["name"] for r in conn.execute("PRAGMA database_list")}
+
+
+def _attached_corpora(conn: sqlite3.Connection) -> dict[str, str]:
+    """Return {corpus_name: alias} for corpora currently attached to ``conn``."""
+    present = {r["name"] for r in conn.execute("PRAGMA database_list")}
+    return {
+        name: meta["alias"]
+        for name, meta in corpus.CORPORA.items()
+        if meta["alias"] in present
+    }
+
+
+def _add_modified(payload, row):
+    """Contract 6b: an opinion the court re-issued under the same neutral
+    cite carries the later date in date_modified (+ modified_kind)."""
+    dm = _col(row, "date_modified")
+    if dm:
+        payload["date_modified"] = dm
+        payload["modified_kind"] = _col(row, "modified_kind")
+    return payload
+
+
+def _col(row, name):
+    """Safely read a column that may be absent from a leaner SELECT."""
+    try:
+        return row[name]
+    except (IndexError, KeyError):
+        return None
+
+
+def _best_url(row) -> dict:
+    """Return the best available source URL, preferring the court's own site.
+
+    ndcourts.gov (`opinion_url`) is the North Dakota courts' official copy and
+    is preferred whenever present — *regardless of which source the text came
+    from*. A 1997+ opinion whose text was sourced from West reporter still links to
+    its ndcourts.gov page, because the URL is stored independently of
+    `source_reporter`. Falls back to the CourtListener cluster URL, fully
+    qualified from the stored relative path. Returns {} if neither exists
+    (e.g. pre-1997 opinions, where ndcourts.gov has no page).
+
+    Shape: {"url": str, "url_source": "ndcourts.gov" | "courtlistener"}.
+    """
+    gov = _col(row, "opinion_url")
+    if gov:
+        return {"url": gov, "url_source": "ndcourts.gov"}
+    cl = _col(row, "absolute_url")
+    if cl:
+        url = cl if cl.startswith("http") else COURTLISTENER_BASE + cl
+        return {"url": url, "url_source": "courtlistener"}
+    return {}
+
+
+def _opinion_summary(row) -> dict:
+    """Format an opinion row as a summary dict (no full text)."""
+    result = {
+        "id": row["id"],
+        "case_name": row["case_name"],
+        "case_name_full": row["case_name_full"],
+        "date_filed": row["date_filed"],
+        "author": row["author"],
+        "per_curiam": bool(row["per_curiam"]),
+        "docket_number": row["docket_number"],
+        "judges": row["judges"],
+        "court": row["court"],
+    }
+    # Include enriched fields when available
+    for field in ("case_type", "highlight", "unanimous", "disposition",
+                  "date_rehearing", "date_modified", "modified_kind"):
+        try:
+            val = row[field]
+            if val is not None:
+                result[field] = bool(val) if field == "unanimous" else val
+        except (IndexError, KeyError):
+            pass
+    result.update(_best_url(row))
+    return result
+
+
+def _get_citations(conn, opinion_id: int) -> list[str]:
+    rows = conn.execute(
+        "SELECT citation FROM citations WHERE opinion_id = ? ORDER BY is_primary DESC",
+        (opinion_id,),
+    ).fetchall()
+    return [r["citation"] for r in rows]
+
+
+def _citation_rows(conn, opinion_id: int) -> list[dict]:
+    rows = conn.execute(
+        "SELECT citation, reporter, is_primary FROM citations WHERE opinion_id = ?",
+        (opinion_id,),
+    ).fetchall()
+    return [{"citation": r["citation"], "reporter": r["reporter"],
+             "is_primary": r["is_primary"]} for r in rows]
+
+
+def _resolve_opinion(conn, query: str):
+    """Resolve a query to a single opinion row.
+
+    Tries a citation match first (the query may embed a cite); falls back to
+    case-name match. Returns (row, matched_by, candidates) where matched_by is
+    'citation' | 'case_name' | None, and candidates is a list of summary dicts
+    when a case-name query is ambiguous (row is None in that case)."""
+    cite = proofread.extract_cite(query)
+    if cite:
+        row = conn.execute(
+            """SELECT o.* FROM opinions o
+               JOIN citations c ON c.opinion_id = o.id
+               WHERE c.citation = ?""",
+            (cite,),
+        ).fetchone()
+        if row:
+            return row, "citation", []
+
+    name = query.strip()
+    exact = conn.execute(
+        "SELECT * FROM opinions WHERE lower(case_name) = lower(?) ORDER BY date_filed",
+        (name,),
+    ).fetchall()
+    if len(exact) == 1:
+        return exact[0], "case_name", []
+    if len(exact) > 1:
+        return None, None, [_name_candidate(conn, r) for r in exact[:10]]
+
+    like = conn.execute(
+        "SELECT * FROM opinions WHERE case_name LIKE ? ORDER BY date_filed LIMIT 11",
+        (f"%{name}%",),
+    ).fetchall()
+    if len(like) == 1:
+        return like[0], "case_name", []
+    if len(like) > 1:
+        return None, None, [_name_candidate(conn, r) for r in like[:10]]
+
+    return None, None, []
+
+
+def _name_candidate(conn, row) -> dict:
+    ordered, synthetic = proofread.order_citations(_citation_rows(conn, row["id"]))
+    return {
+        "id": row["id"],
+        "case_name": row["case_name"],
+        "date_filed": row["date_filed"],
+        "citations": [r["citation"] for r in ordered] + synthetic,
+    }
+
+
+def _cite_payload(conn, row) -> dict:
+    """Canonical-citation block shared by verify_citation / get_parallel_citations."""
+    rows = _citation_rows(conn, row["id"])
+    ordered, synthetic = proofread.order_citations(rows)
+    payload = {
+        "canonical_case_name": row["case_name"],
+        "case_name_full": row["case_name_full"],
+        "date_filed": row["date_filed"],
+        "author": row["author"],
+        "per_curiam": bool(row["per_curiam"]),
+        "court": row["court"],
+        "docket_number": row["docket_number"],
+        "cites_redbook": [
+            {"cite": r["citation"], "reporter": r["reporter"],
+             "is_primary": bool(r["is_primary"])}
+            for r in ordered
+        ],
+        "synthetic_cites": synthetic,
+        "formatted": proofread.format_redbook(row["case_name"], ordered, row["date_filed"]),
+        **_best_url(row),
+    }
+    reh = _col(row, "date_rehearing")
+    if reh:
+        payload["date_rehearing"] = reh
+    _add_modified(payload, row)
+    return payload
+
+
+@mcp.tool()
+def lookup_opinion(citation: str, include_text: bool = False, text_limit: int = 5000) -> dict:
+    """Look up an opinion by any citation (neutral cite, N.W.2d, N.W., etc.).
+
+    Returns metadata and all known citations. Text is excluded by default
+    to keep responses manageable — use include_text=True for the first
+    text_limit characters, or get_opinion_text() to read in chunks.
+
+    Args:
+        citation: A legal citation like "2024 ND 156", "585 N.W.2d 129", etc.
+        include_text: Include opinion text in the response (default False).
+        text_limit: Max characters of text to include (default 5000). Use get_opinion_text for full text.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row = conn.execute(
+            """SELECT o.* FROM opinions o
+               JOIN citations c ON c.opinion_id = o.id
+               WHERE c.citation = ?""",
+            (citation.strip(),),
+        ).fetchone()
+
+        if not row:
+            return {"error": f"No opinion found for citation: {citation}"}
+
+        result = _opinion_summary(row)
+        result["citations"] = _get_citations(conn, row["id"])
+        result["text_length"] = len(row["text_content"])
+
+        if include_text:
+            text = row["text_content"]
+            if len(text) > text_limit:
+                result["text"] = text[:text_limit]
+                result["text_truncated"] = True
+                result["text_remaining"] = len(text) - text_limit
+            else:
+                result["text"] = text
+                result["text_truncated"] = False
+
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_opinion_text(citation: str, offset: int = 0, limit: int = 10000) -> dict:
+    """Read opinion text in chunks.
+
+    Use this to read long opinions in manageable pieces. Start with offset=0
+    and advance by the limit to paginate through the text.
+
+    Args:
+        citation: A legal citation like "2024 ND 156".
+        offset: Character offset to start reading from (default 0).
+        limit: Maximum characters to return (default 10000, max 50000).
+    """
+    limit = min(limit, 50000)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row = conn.execute(
+            """SELECT o.text_content FROM opinions o
+               JOIN citations c ON c.opinion_id = o.id
+               WHERE c.citation = ?""",
+            (citation.strip(),),
+        ).fetchone()
+
+        if not row:
+            return {"error": f"No opinion found for citation: {citation}"}
+
+        text = row["text_content"]
+        chunk = text[offset : offset + limit]
+
+        return {
+            "citation": citation,
+            "total_length": len(text),
+            "offset": offset,
+            "chunk_length": len(chunk),
+            "has_more": offset + limit < len(text),
+            "text": chunk,
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def search_opinions(
+    query: str,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    author: str | None = None,
+    limit: int = 20,
+) -> list[dict]:
+    """Full-text search across all opinions.
+
+    Returns matching opinions ranked by relevance with snippets.
+    Use this to find opinions on a topic, legal issue, or factual pattern.
+
+    Args:
+        query: Search terms (supports AND, OR, NOT, quoted phrases).
+        date_from: Filter to opinions filed on or after this date (YYYY-MM-DD).
+        date_to: Filter to opinions filed on or before this date (YYYY-MM-DD).
+        author: Filter by authoring justice's last name.
+        limit: Maximum results to return (default 20, max 50).
+    """
+    limit = min(limit, 50)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        sql = """
+            SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) as snippet,
+                   rank
+            FROM opinions_fts
+            JOIN opinions o ON o.id = opinions_fts.rowid
+            WHERE opinions_fts MATCH ?
+        """
+        params: list = [query]
+
+        if date_from:
+            sql += " AND o.date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            sql += " AND o.date_filed <= ?"
+            params.append(date_to)
+        if author:
+            sql += " AND o.author LIKE ?"
+            params.append(f"%{author}%")
+
+        sql += " ORDER BY rank LIMIT ?"
+        params.append(limit)
+
+        rows = conn.execute(sql, params).fetchall()
+
+        results = []
+        for row in rows:
+            result = _opinion_summary(row)
+            result["citations"] = _get_citations(conn, row["id"])
+            result["snippet"] = row["snippet"]
+            results.append(result)
+
+        return results
+    finally:
+        conn.close()
+
+
+
+@mcp.tool()
+def list_opinions_by_date(
+    date_from: str,
+    date_to: str,
+    author: str | None = None,
+    limit: int = 50,
+) -> list[dict]:
+    """List opinions filed within a date range.
+
+    Returns opinions in reverse chronological order.
+
+    Args:
+        date_from: Start date (YYYY-MM-DD).
+        date_to: End date (YYYY-MM-DD).
+        author: Optional filter by authoring justice's last name.
+        limit: Maximum results (default 50, max 200).
+    """
+    limit = min(limit, 200)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        sql = """SELECT * FROM opinions
+                 WHERE date_filed >= ? AND date_filed <= ?"""
+        params: list = [date_from, date_to]
+
+        if author:
+            sql += " AND author LIKE ?"
+            params.append(f"%{author}%")
+
+        sql += " ORDER BY date_filed DESC LIMIT ?"
+        params.append(limit)
+
+        rows = conn.execute(sql, params).fetchall()
+
+        results = []
+        for row in rows:
+            result = _opinion_summary(row)
+            result["citations"] = _get_citations(conn, row["id"])
+            results.append(result)
+
+        return results
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_database_stats() -> dict:
+    """Get summary statistics about the opinion database.
+
+    Returns counts, date range, and top authors.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        total = conn.execute("SELECT COUNT(*) as n FROM opinions").fetchone()["n"]
+        date_range = conn.execute(
+            "SELECT MIN(date_filed) as earliest, MAX(date_filed) as latest FROM opinions"
+        ).fetchone()
+        citations_count = conn.execute(
+            "SELECT COUNT(*) as n FROM citations"
+        ).fetchone()["n"]
+
+        top_authors = conn.execute(
+            """SELECT author, COUNT(*) as n FROM opinions
+               WHERE author IS NOT NULL
+               GROUP BY author ORDER BY n DESC LIMIT 15"""
+        ).fetchall()
+
+        by_decade = conn.execute(
+            """SELECT (CAST(substr(date_filed, 1, 3) AS INTEGER) * 10) || '0s' as decade,
+                      COUNT(*) as n
+               FROM opinions
+               GROUP BY decade ORDER BY decade"""
+        ).fetchall()
+
+        # Maintainer-only tables. The distribution build drops them: the
+        # served corpus is the court's own text, and where a witness copy of
+        # that text was obtained is a development-pipeline fact, not a
+        # property of the opinion. Each block below is therefore OPTIONAL —
+        # absent table means the key is omitted from the payload entirely,
+        # never reported as zero. See scripts/make_release.sh.
+        def _optional(sql, one=False):
+            try:
+                cur = conn.execute(sql)
+                return cur.fetchone() if one else cur.fetchall()
+            except sqlite3.OperationalError:
+                return None
+
+        # Acquisition-source breakdown (dev builds only)
+        by_source = _optional(
+            """SELECT source_reporter, COUNT(*) as n FROM opinions
+               WHERE source_reporter IS NOT NULL AND source_reporter != ''
+               GROUP BY source_reporter ORDER BY n DESC"""
+        )
+
+        # Correction count (dev builds only)
+        corrections_row = _optional("SELECT COUNT(*) as n FROM changelog", one=True)
+        corrections = corrections_row["n"] if corrections_row else None
+
+        # Data freshness from provenance (dev builds only)
+        last_runs = _optional(
+            """SELECT operation, timestamp, rows_affected, notes
+               FROM provenance ORDER BY timestamp DESC LIMIT 5"""
+        )
+
+        # Quality summary (dev builds only)
+        quality = _optional(
+            """SELECT AVG(overall_score) as avg_score,
+                      MIN(overall_score) as min_score,
+                      MAX(overall_score) as max_score
+               FROM quality_scores""", one=True
+        )
+
+        # Cited-by count
+        cited_by_count = conn.execute(
+            "SELECT COUNT(*) as n FROM cited_by"
+        ).fetchone()["n"]
+
+        # Validation coverage by decade: an opinion counts as validated when
+        # its text has been cross-checked against a named authority
+        # (cross_checked), found divergent and fixed (corrected), or accepted
+        # as the only obtainable source with that limitation recorded
+        # (single_source_accepted). See ndlaw_mcp/validation_status.py.
+        validated_by_decade = None
+        try:
+            validated_by_decade = conn.execute(
+                """SELECT (CAST(substr(o.date_filed, 1, 3) AS INTEGER) * 10) || '0s' AS decade,
+                          COUNT(*) AS total,
+                          SUM(CASE WHEN v.crosscheck_state IN
+                              ('cross_checked', 'corrected', 'single_source_accepted')
+                              THEN 1 ELSE 0 END) AS validated
+                   FROM opinions o
+                   LEFT JOIN validation_status v ON v.opinion_id = o.id
+                   GROUP BY decade ORDER BY decade"""
+            ).fetchall()
+        except sqlite3.OperationalError:
+            pass  # validation_status not present in this DB build
+
+        stats = {
+            "total_opinions": total,
+            "total_citations": citations_count,
+            "cited_by_links": cited_by_count,
+            "earliest": date_range["earliest"],
+            "latest": date_range["latest"],
+            "top_authors": [
+                {"author": r["author"], "count": r["n"]} for r in top_authors
+            ],
+            "by_decade": [
+                {"decade": r["decade"], "count": r["n"]} for r in by_decade
+            ],
+        }
+
+        # Optional maintainer-only sections. A key is present only when the
+        # build it came from actually carries the table; a distribution build
+        # omits the key rather than reporting an empty or zero value.
+        if validated_by_decade:
+            stats["validated_by_decade"] = [
+                {"decade": r["decade"], "total": r["total"],
+                 "validated": r["validated"],
+                 "pct": round(100.0 * r["validated"] / r["total"], 1) if r["total"] else 0.0}
+                for r in validated_by_decade
+            ]
+        if by_source:
+            stats["by_source"] = [
+                {"source": r["source_reporter"], "count": r["n"]} for r in by_source
+            ]
+        if corrections is not None:
+            stats["corrections_applied"] = corrections
+        if quality is not None and quality["avg_score"] is not None:
+            stats["quality"] = {
+                "avg_score": round(quality["avg_score"], 1),
+                "min_score": quality["min_score"],
+                "max_score": quality["max_score"],
+            }
+        if last_runs:
+            stats["recent_pipeline_runs"] = [
+                {"operation": r["operation"], "timestamp": r["timestamp"],
+                 "rows_affected": r["rows_affected"], "notes": r["notes"]}
+                for r in last_runs
+            ]
+        return stats
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def justice_info(
+    justice: str,
+    citation: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+) -> dict:
+    """Get justice information — voting record for a specific case, or
+    aggregate statistics across cases.
+
+    If citation is provided, returns the voting record for that opinion.
+    Otherwise, returns aggregate stats (authorship count, dissent rate, etc.)
+    for the justice across all cases (optionally filtered by date range).
+
+    Only covers opinions from 1997–present (neutral-cite era with voting data).
+
+    Args:
+        justice: Justice's last name (e.g., "Tufte", "Crothers").
+        citation: Optional citation for a specific opinion's voting record.
+        date_from: Optional start date (YYYY-MM-DD) for aggregate stats.
+        date_to: Optional end date (YYYY-MM-DD) for aggregate stats.
+    """
+    import json as _json
+
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        # Single-opinion voting record
+        if citation:
+            row = conn.execute(
+                """SELECT o.case_name, o.date_filed, o.author, o.voting_record,
+                          o.all_justices, o.unanimous
+                   FROM opinions o
+                   JOIN citations c ON c.opinion_id = o.id
+                   WHERE c.citation = ?""",
+                (citation.strip(),),
+            ).fetchone()
+
+            if not row:
+                return {"error": f"No opinion found for citation: {citation}"}
+
+            return {
+                "citation": citation,
+                "case_name": row["case_name"],
+                "date_filed": row["date_filed"],
+                "author": row["author"],
+                "unanimous": bool(row["unanimous"]) if row["unanimous"] is not None else None,
+                "justices": _json.loads(row["all_justices"]) if row["all_justices"] else None,
+                "voting_record": _json.loads(row["voting_record"]) if row["voting_record"] else None,
+            }
+
+        # Aggregate stats
+        sql = """SELECT voting_record, author, date_filed FROM opinions
+                 WHERE all_justices LIKE ?"""
+        params: list = [f"%{justice}%"]
+
+        if date_from:
+            sql += " AND date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            sql += " AND date_filed <= ?"
+            params.append(date_to)
+
+        rows = conn.execute(sql, params).fetchall()
+
+        total = 0
+        authored = 0
+        majority = 0
+        dissent = 0
+        concurring = 0
+        separate = 0
+
+        for row in rows:
+            vr = _json.loads(row["voting_record"]) if row["voting_record"] else {}
+            vote = None
+            for name, v in vr.items():
+                if name.lower() == justice.lower():
+                    vote = v
+                    break
+            if vote is None:
+                continue
+            total += 1
+            if vote == "majority":
+                majority += 1
+            elif vote == "dissent":
+                dissent += 1
+            elif vote == "concurring":
+                concurring += 1
+            elif vote == "separate":
+                separate += 1
+            if row["author"] and row["author"].lower() == justice.lower():
+                authored += 1
+
+        return {
+            "justice": justice,
+            "cases_participated": total,
+            "authored": authored,
+            "majority": majority,
+            "dissent": dissent,
+            "concurring": concurring,
+            "separate": separate,
+            "dissent_rate": round(dissent / total, 3) if total else 0,
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def search_by_case_type(
+    case_type: str,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    limit: int = 30,
+) -> list[dict]:
+    """Search opinions by case type classification.
+
+    Case types include values like 'Appeal - Criminal - Misc. Felony',
+    'Appeal - Civil - Constitutional Law', 'Original Jurisdiction', etc.
+    Partial matches are supported.
+
+    Args:
+        case_type: Case type to search for (partial match, case-insensitive).
+        date_from: Optional start date (YYYY-MM-DD).
+        date_to: Optional end date (YYYY-MM-DD).
+        limit: Maximum results (default 30, max 100).
+    """
+    limit = min(limit, 100)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        sql = "SELECT * FROM opinions WHERE case_type LIKE ?"
+        params: list = [f"%{case_type}%"]
+
+        if date_from:
+            sql += " AND date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            sql += " AND date_filed <= ?"
+            params.append(date_to)
+
+        sql += " ORDER BY date_filed DESC LIMIT ?"
+        params.append(limit)
+
+        rows = conn.execute(sql, params).fetchall()
+        results = []
+        for row in rows:
+            result = _opinion_summary(row)
+            result["citations"] = _get_citations(conn, row["id"])
+            results.append(result)
+        return results
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_citing_opinions(citation: str, limit: int = 20) -> list[dict]:
+    """Find opinions that cite a given opinion.
+
+    Returns opinions that reference the given citation in their text,
+    ordered by date (newest first). Requires citation extraction to have
+    been run (python -m ndlaw_mcp.cite_extract).
+
+    Args:
+        citation: A legal citation like "2024 ND 156" or "585 N.W.2d 129".
+        limit: Maximum results (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        # Find the cited opinion
+        row = conn.execute(
+            "SELECT opinion_id FROM citations WHERE citation = ?", (citation,)
+        ).fetchone()
+        if not row:
+            return {"error": f"No opinion found for citation: {citation}"}
+        cited_id = row["opinion_id"]
+
+        # Get citing opinions via cited_by
+        citing_rows = conn.execute(
+            """SELECT o.*, cb.citation as matched_citation
+               FROM cited_by cb
+               JOIN opinions o ON o.id = cb.citing_opinion_id
+               WHERE cb.cited_opinion_id = ?
+               ORDER BY o.date_filed DESC
+               LIMIT ?""",
+            (cited_id, limit),
+        ).fetchall()
+
+        results = []
+        for r in citing_rows:
+            result = _opinion_summary(r)
+            result["citations"] = _get_citations(conn, r["id"])
+            result["matched_citation"] = r["matched_citation"]
+            results.append(result)
+
+        return results
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def verify_citation(query: str, expected_case_name: str | None = None) -> dict:
+    """Verify a citation or case name and return its canonical form.
+
+    Confirms the case exists and returns the exact case name, filing date,
+    authoring justice, and the full parallel-cite set in Redbook order, plus a
+    ready-to-paste formatted citation. Catches wrong volume/page, wrong year,
+    and name drift. If expected_case_name is supplied alongside a citation, the
+    name as-written is compared to the canonical name and any drift is flagged.
+
+    Args:
+        query: A citation ("2024 ND 156", "585 N.W.2d 129") or a case name.
+        expected_case_name: Optional — the case name as it appears in the draft,
+            to check against the canonical name for drift.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, query)
+        if row is None:
+            result = {"found": False, "query": query}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {query}"
+            return result
+
+        result = {"found": True, "matched_by": matched_by}
+        result.update(_cite_payload(conn, row))
+
+        if expected_case_name:
+            result["expected_case_name"] = expected_case_name
+            result["name_matches"] = proofread.names_match(
+                expected_case_name, row["case_name"]
+            )
+            result["name_similarity"] = proofread.name_similarity(
+                expected_case_name, row["case_name"]
+            )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_parallel_citations(citation: str) -> dict:
+    """Return the complete parallel-cite set for a case, in Redbook order.
+
+    Feed any one citation (or a case name) and get every known parallel cite so
+    a draft's missing neutral or N.W. parallel can be auto-filled. Synthetic
+    back-assigned [YYYY ND nnn] identifiers for pre-1997 opinions are returned
+    separately and never folded into the formatted citation.
+
+    Args:
+        citation: Any citation ("44 N.W. 301", "1 N.D. 1") or a case name.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, _matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+        result = {"found": True}
+        result.update(_cite_payload(conn, row))
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def verify_quotation(citation: str, quote: str) -> dict:
+    """Confirm a quoted passage appears verbatim in a case, with pinpoint ¶.
+
+    Locates the quote in the opinion text. Differences in whitespace, curly vs.
+    straight quotes, and dash style are treated as still-verbatim; dropped,
+    changed, or inserted words are flagged with a word-level diff and the
+    closest actual text. Returns the pinpoint paragraph (¶) when the opinion
+    carries paragraph markers (generally 1997+ opinions).
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+        quote: The quoted passage attributed to the case.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found_opinion": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        located = proofread.locate_quote(row["text_content"], quote)
+        cite_rows = _citation_rows(conn, row["id"])
+        primary = proofread.primary_cite(cite_rows)
+        result = {
+            "found_opinion": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": primary,
+        }
+        result.update(located)
+        suffix = proofread.pinpoint_suffix(located)
+        if suffix and primary:
+            result["pinpoint"] = f"{primary}, {suffix}"
+        rep = proofread.reporter_pinpoint(
+            cite_rows, located.get("reporter_page"),
+            located.get("reporter_page_2"), row["text_content"])
+        if rep:
+            result["reporter_pinpoint"] = rep
+        if located.get("in_footnote") and located.get("paragraph") is None:
+            result["paragraph_note"] = (
+                f"Quote is in footnote {located['footnote']}, whose call site "
+                "could not be recovered from the stored text; cite n."
+                f"{located['footnote']} (paragraph unavailable)."
+            )
+        elif located.get("paragraph") is None and not located.get("in_footnote"):
+            result["paragraph_note"] = (
+                "No paragraph markers in this opinion (typical of pre-1997 "
+                "text); pinpoint by ¶ is unavailable."
+            )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_pinpoint(
+    citation: str,
+    paragraph: int | None = None,
+    quote: str | None = None,
+) -> dict:
+    """Resolve a pinpoint: paragraph number → its text, or quote → its ¶.
+
+    Provide exactly one of `paragraph` or `quote`. With `paragraph`, returns
+    that ¶'s text and a pinpoint cite. With `quote`, locates the passage and
+    returns the ¶ it lives in (with verbatim status). Paragraph pinpoints
+    require ¶ markers, present on most 1997+ opinions but not pre-1997 text.
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+        paragraph: Paragraph number to retrieve (e.g. 5 for ¶ 5).
+        quote: A quoted passage whose paragraph should be located.
+    """
+    if (paragraph is None) == (quote is None):
+        return {"error": "Provide exactly one of `paragraph` or `quote`."}
+
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found_opinion": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        text = row["text_content"]
+        cite_rows = _citation_rows(conn, row["id"])
+        primary = proofread.primary_cite(cite_rows)
+        base = {
+            "found_opinion": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": primary,
+        }
+
+        if paragraph is not None:
+            extracted = proofread.extract_paragraph(text, paragraph)
+            if extracted is None:
+                if not proofread.paragraph_markers(text):
+                    base["error"] = (
+                        "No paragraph markers in this opinion (typical of "
+                        "pre-1997 text); cannot pinpoint by ¶."
+                    )
+                else:
+                    base["error"] = f"Paragraph ¶{paragraph} not found."
+                return base
+            para_text, truncated = extracted
+            base.update({
+                "paragraph": paragraph,
+                "pinpoint": f"{primary}, ¶ {paragraph}" if primary else None,
+                "text": para_text,
+                "truncated": truncated,
+            })
+            return base
+
+        located = proofread.locate_quote(text, quote)
+        base.update(located)
+        suffix = proofread.pinpoint_suffix(located)
+        if suffix and primary:
+            base["pinpoint"] = f"{primary}, {suffix}"
+        rep = proofread.reporter_pinpoint(
+            cite_rows, located.get("reporter_page"),
+            located.get("reporter_page_2"), text)
+        if rep:
+            base["reporter_pinpoint"] = rep
+        para = located.get("paragraph")
+        if para is not None:
+            extracted = proofread.extract_paragraph(text, para)
+            if extracted is not None:
+                base["paragraph_text"], base["paragraph_truncated"] = extracted
+        return base
+    finally:
+        conn.close()
+
+
+def _scan_treatment(conn, cited_oid: int, scan_limit: int):
+    """Scan opinions citing ``cited_oid`` for sentence-local treatment signals.
+
+    Shared by check_treatment and detect_overruled_in_draft. Returns
+    ``(total_citing, scanned, signal_counts, entries)`` where each entry has the
+    citing case/cite/date, paragraph, citing context, and conservative signal.
+    """
+    total = conn.execute(
+        "SELECT COUNT(*) AS n FROM cited_by WHERE cited_opinion_id = ?",
+        (cited_oid,),
+    ).fetchone()["n"]
+    citing_rows = conn.execute(
+        """SELECT o.id, o.case_name, o.date_filed, o.text_content,
+                  cb.citation AS matched_citation
+           FROM cited_by cb
+           JOIN opinions o ON o.id = cb.citing_opinion_id
+           WHERE cb.cited_opinion_id = ?
+           ORDER BY o.date_filed DESC
+           LIMIT ?""",
+        (cited_oid, scan_limit),
+    ).fetchall()
+
+    entries = []
+    counts = {memo.NEGATIVE: 0, memo.DISTINGUISHED: 0,
+              memo.POSITIVE: 0, memo.NEUTRAL: 0}
+    for r in citing_rows:
+        ctx = memo.citing_context(r["text_content"], r["matched_citation"])
+        context = ctx.get("context") if ctx.get("found") else None
+        signal = memo.classify_treatment(context) if context else memo.NEUTRAL
+        counts[signal] += 1
+        entries.append({
+            "citing_case": r["case_name"],
+            "citing_citation": r["matched_citation"],
+            "date_filed": r["date_filed"],
+            "paragraph": ctx.get("paragraph"),
+            "context": context,
+            "signal": signal,
+        })
+    return total, len(citing_rows), counts, entries
+
+
+@mcp.tool()
+def check_treatment(citation: str, limit: int = 50, scan_limit: int = 300) -> dict:
+    """Citator: how later opinions have treated a case (KeyCite/Shepard's-style).
+
+    Aggregates opinions citing the target and, for each, returns the citing
+    sentence, its paragraph, and a CONSERVATIVE, NON-AUTHORITATIVE treatment
+    signal scanned from that sentence alone. Possible-negative and
+    distinguished items are surfaced first so they are never truncated away.
+
+    IMPORTANT: signals are heuristic — a citing sentence may use a treatment
+    word about a different case. This is NOT a "still good law" verdict. Always
+    read the returned sentence and the full citing opinion before relying on it.
+
+    Args:
+        citation: A citation or case name identifying the case to check.
+        limit: Max citing entries to return (default 50, max 200).
+        scan_limit: Max (most-recent) citing opinions to scan for signals
+            (default 300) — counts are reported over the scanned set.
+    """
+    limit = min(limit, 200)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        total, scanned, counts, entries = _scan_treatment(conn, row["id"], scan_limit)
+
+        # Stable: newest-first within each signal bucket, negatives surfaced first.
+        entries.sort(key=lambda e: e["date_filed"] or "", reverse=True)
+        entries.sort(key=lambda e: memo.SIGNAL_ORDER[e["signal"]])
+
+        return {
+            "found": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": proofread.primary_cite(_citation_rows(conn, row["id"])),
+            "total_citing": total,
+            "scanned": scanned,
+            "signal_counts": counts,
+            "citations": entries[:limit],
+            "returned": min(limit, len(entries)),
+            "note": (
+                "Treatment signals are heuristic and sentence-local, NOT a "
+                "still-good-law verdict. A citing sentence may use a treatment "
+                "word about a different case. Read each sentence — and the full "
+                "citing opinion — before relying on it. Possible-negative and "
+                "distinguished items are listed first."
+            ),
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_cited_authorities(citation: str) -> dict:
+    """Outbound authorities a case relies on, grouped by type.
+
+    Maps the authority graph around a case: cited cases (in-corpus ND opinions
+    resolved to name/date/oid; others with a source URL), statutes (N.D.C.C.),
+    court rules, constitutional provisions, and regulations — each with an
+    official-source link where available.
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        tcs = conn.execute(
+            """SELECT normalized, cite_type, jurisdiction, raw_text, url
+               FROM text_citations WHERE opinion_id = ?
+               ORDER BY cite_type, jurisdiction, normalized""",
+            (row["id"],),
+        ).fetchall()
+
+        other_cases, statutes, court_rules, constitution, regulations = (
+            [], [], [], [], []
+        )
+        # Resolved in-corpus cases are deduped by opinion id: a case cited by
+        # both its neutral and N.W. parallel is ONE authority, not two. The
+        # canonical `cite` prefers the neutral form; the rest go in
+        # `parallel_cites`. The subject opinion's own id is excluded (a case is
+        # not an authority it cites).
+        cases_by_oid: dict[int, dict] = {}
+        cases_order: list[dict] = []
+        for t in tcs:
+            entry = {"cite": t["normalized"], "url": t["url"]}
+            if t["cite_type"] == "case":
+                resolved = conn.execute(
+                    """SELECT o.id, o.case_name, o.date_filed
+                       FROM citations c JOIN opinions o ON o.id = c.opinion_id
+                       WHERE c.citation = ?""",
+                    (t["normalized"],),
+                ).fetchone()
+                if resolved:
+                    roid = resolved["id"]
+                    if roid == row["id"]:
+                        continue
+                    d = cases_by_oid.get(roid)
+                    if d is None:
+                        d = {
+                            "case_name": resolved["case_name"],
+                            "date_filed": resolved["date_filed"],
+                            "oid": roid,
+                            "url": t["url"],
+                            "_cites": [],
+                        }
+                        cases_by_oid[roid] = d
+                        cases_order.append(d)
+                    if t["normalized"] not in d["_cites"]:
+                        d["_cites"].append(t["normalized"])
+                else:
+                    other_cases.append({**entry, "jurisdiction": t["jurisdiction"]})
+            elif t["cite_type"] == "statute":
+                statutes.append(entry)
+            elif t["cite_type"] == "court_rule":
+                court_rules.append(entry)
+            elif t["cite_type"] == "constitution":
+                constitution.append(entry)
+            elif t["cite_type"] == "regulation":
+                regulations.append(entry)
+
+        # Finalize deduped cases: canonical cite (neutral preferred) + parallels.
+        def _is_neutral(cite: str) -> bool:
+            parts = cite.split()
+            return len(parts) >= 3 and parts[1] == "ND" and parts[0].isdigit()
+
+        cases = []
+        for d in cases_order:
+            cites = d.pop("_cites")
+            neutral = [x for x in cites if _is_neutral(x)]
+            canonical = neutral[0] if neutral else cites[0]
+            d["cite"] = canonical
+            d["parallel_cites"] = [x for x in cites if x != canonical]
+            cases.append(d)
+
+        return {
+            "found": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "primary_citation": proofread.primary_cite(_citation_rows(conn, row["id"])),
+            "counts": {
+                "in_corpus_cases": len(cases),
+                "other_cases": len(other_cases),
+                "statutes": len(statutes),
+                "court_rules": len(court_rules),
+                "constitution": len(constitution),
+                "regulations": len(regulations),
+            },
+            "nd_cases": cases,
+            "other_cases": other_cases,
+            "statutes": statutes,
+            "court_rules": court_rules,
+            "constitution": constitution,
+            "regulations": regulations,
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def case_summary(citation: str) -> dict:
+    """One-call bench-memo front matter for a case.
+
+    Returns name, full caption, all parallel cites (Redbook-ordered; synthetic
+    [YYYY ND nnn] separate), date, author, panel, voting record, disposition,
+    paragraph count, syllabus points (pre-1953), and citation-graph counts.
+    `disposition` and `syllabus_points` are DERIVED/heuristic — verify against
+    the opinion.
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+    """
+    import json as _json
+
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        oid = row["id"]
+        text = row["text_content"]
+        cite_rows = _citation_rows(conn, oid)
+        ordered, synthetic = proofread.order_citations(cite_rows)
+        para_count = len(proofread.paragraph_markers(text))
+
+        cited_out = conn.execute(
+            "SELECT COUNT(*) AS n FROM cited_by WHERE citing_opinion_id = ?", (oid,)
+        ).fetchone()["n"]
+        cited_by_n = conn.execute(
+            "SELECT COUNT(*) AS n FROM cited_by WHERE cited_opinion_id = ?", (oid,)
+        ).fetchone()["n"]
+
+        return {
+            "found": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "case_name_full": row["case_name_full"],
+            "date_filed": row["date_filed"],
+            **({"date_rehearing": _col(row, "date_rehearing")}
+               if _col(row, "date_rehearing") else {}),
+            **_add_modified({}, row),
+            "author": row["author"],
+            "per_curiam": bool(row["per_curiam"]),
+            "court": row["court"],
+            "docket_number": row["docket_number"],
+            "case_type": row["case_type"],
+            "cites_redbook": [
+                {"cite": r["citation"], "reporter": r["reporter"],
+                 "is_primary": bool(r["is_primary"])}
+                for r in ordered
+            ],
+            "synthetic_cites": synthetic,
+            "formatted": proofread.format_redbook(row["case_name"], ordered,
+                                                  row["date_filed"]),
+            "panel": _json.loads(row["all_justices"]) if row["all_justices"] else None,
+            "voting_record": (_json.loads(row["voting_record"])
+                              if row["voting_record"] else None),
+            "unanimous": bool(row["unanimous"]) if row["unanimous"] is not None else None,
+            "paragraph_count": para_count or None,
+            "disposition": memo.extract_disposition(text),
+            "syllabus_points": memo.extract_syllabus(text),
+            "cited_by_count": cited_by_n,
+            "cites_out_count": cited_out,
+            "text_length": len(text),
+            **_best_url(row),
+            "derived_note": (
+                "`disposition` and `syllabus_points` are heuristically extracted "
+                "from the opinion text; verify before relying on them. Panel and "
+                "voting data exist for 1997+ opinions only."
+            ),
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_subsequent_history(citation: str) -> dict:
+    """Related opinions sharing the case's docket (rehearings, supplemental, etc.).
+
+    Finds other opinions on the same docket number, ordered by date, with a
+    relation hint. Docket-linking also surfaces companion opinions and same-
+    docket duplicates, so this is a research aid — verify the relationship.
+
+    Args:
+        citation: A citation or case name identifying the opinion.
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            result = {"found": False, "query": citation}
+            if candidates:
+                result["error"] = "Ambiguous — multiple opinions match."
+                result["candidates"] = candidates
+            else:
+                result["error"] = f"No opinion found for: {citation}"
+            return result
+
+        docket = (row["docket_number"] or "").strip()
+        base = {
+            "found": True,
+            "matched_by": matched_by,
+            "case_name": row["case_name"],
+            "date_filed": row["date_filed"],
+            "docket_number": docket or None,
+        }
+        reh = _col(row, "date_rehearing")
+        if reh:
+            base["date_rehearing"] = reh
+            base["rehearing_note"] = (
+                "This record is a composite: the original opinion and an "
+                "opinion (or order) on rehearing are printed together. "
+                "date_filed is the original decision date; date_rehearing "
+                "is the printed rehearing date."
+            )
+        if _col(row, "date_modified"):
+            _add_modified(base, row)
+            base["modified_note"] = (
+                f"The court re-issued this opinion under the same citation "
+                f"({_col(row, 'modified_kind')} {_col(row, 'date_modified')}); "
+                "the stored text is the re-issued form (Contract 6b)."
+            )
+        if not docket:
+            base["related"] = []
+            base["note"] = "No docket number recorded; cannot link related opinions."
+            return base
+
+        related_rows = conn.execute(
+            """SELECT id, case_name, date_filed FROM opinions
+               WHERE docket_number = ? AND id != ?
+               ORDER BY date_filed""",
+            (docket, row["id"]),
+        ).fetchall()
+
+        target_date = row["date_filed"] or ""
+        related = []
+        for r in related_rows:
+            d = r["date_filed"] or ""
+            if d > target_date:
+                hint = "later (rehearing / supplemental / remand?)"
+            elif d < target_date:
+                hint = "earlier (prior decision?)"
+            else:
+                hint = "same date (companion or duplicate?)"
+            related.append({
+                "oid": r["id"],
+                "case_name": r["case_name"],
+                "date_filed": r["date_filed"],
+                "citations": _get_citations(conn, r["id"]),
+                "relation_hint": hint,
+            })
+
+        base["related"] = related
+        base["note"] = (
+            "Linked by shared docket number. This also catches companion "
+            "opinions and same-docket duplicates — confirm the actual "
+            "relationship before citing as subsequent history."
+        )
+        return base
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def authoring_justice_on_issue(
+    justice: str,
+    issue: str,
+    limit: int = 15,
+) -> dict:
+    """Opinions a justice has authored on an issue (predictive bench-memo signal).
+
+    Full-text searches `issue` and filters to opinions authored by `justice`,
+    newest first, with snippets. Reflects authored majority/lead opinions
+    (the `author` field); separate writings are most fully attributed 1997+.
+
+    Args:
+        justice: Authoring justice's last name (e.g. "VandeWalle").
+        issue: Search terms for the issue (supports AND/OR/NOT, quoted phrases).
+        limit: Max results (default 15, max 50).
+    """
+    limit = min(limit, 50)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        rows = conn.execute(
+            """SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) AS snippet
+               FROM opinions_fts
+               JOIN opinions o ON o.id = opinions_fts.rowid
+               WHERE opinions_fts MATCH ? AND o.author LIKE ?
+               ORDER BY rank LIMIT ?""",
+            (issue, f"%{justice}%", limit),
+        ).fetchall()
+
+        total = conn.execute(
+            """SELECT COUNT(*) AS n FROM opinions_fts
+               JOIN opinions o ON o.id = opinions_fts.rowid
+               WHERE opinions_fts MATCH ? AND o.author LIKE ?""",
+            (issue, f"%{justice}%"),
+        ).fetchone()["n"]
+
+        results = []
+        for r in rows:
+            summary = _opinion_summary(r)
+            summary["citations"] = _get_citations(conn, r["id"])
+            summary["snippet"] = r["snippet"]
+            results.append(summary)
+
+        return {
+            "justice": justice,
+            "issue": issue,
+            "total_authored_matching": total,
+            "returned": len(results),
+            "opinions": results,
+            "note": (
+                "Matches opinions where `author` contains the justice's name "
+                "(authored majority/lead opinions). Separate concurrences/"
+                "dissents are most fully attributed for 1997+."
+            ),
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def search_boolean(
+    query: str,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    author: str | None = None,
+    limit: int = 20,
+) -> dict:
+    """Westlaw-style Boolean / proximity search.
+
+    Connectors: `&` (AND), `|` or `OR` (OR), `%` or `NOT` (BUT NOT), `/N`
+    (within N words), `/s` (same sentence ≈ NEAR/20), `/p` (same paragraph ≈
+    NEAR/50), `!` truncation (e.g. `negligen!` → negligen*), and "quoted
+    phrases". Because FTS5 has no sentence/paragraph unit, /s and /p are
+    token-distance approximations — the translated FTS query and any
+    approximation notes are returned for transparency.
+
+    Args:
+        query: A Westlaw-style query (e.g. `warrant /s nighttime % consent`).
+        date_from: Filter to opinions filed on/after this date (YYYY-MM-DD).
+        date_to: Filter to opinions filed on/before this date (YYYY-MM-DD).
+        author: Filter by authoring justice's last name.
+        limit: Maximum results (default 20, max 50).
+    """
+    limit = min(limit, 50)
+    fts, notes = research.translate_boolean(query)
+    if not fts:
+        return {"error": "Query is empty after translation.",
+                "translated_query": fts, "notes": notes}
+
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        sql = """
+            SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) AS snippet
+            FROM opinions_fts JOIN opinions o ON o.id = opinions_fts.rowid
+            WHERE opinions_fts MATCH ?
+        """
+        params: list = [fts]
+        if date_from:
+            sql += " AND o.date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            sql += " AND o.date_filed <= ?"
+            params.append(date_to)
+        if author:
+            sql += " AND o.author LIKE ?"
+            params.append(f"%{author}%")
+        sql += " ORDER BY rank LIMIT ?"
+        params.append(limit)
+
+        try:
+            rows = conn.execute(sql, params).fetchall()
+        except sqlite3.OperationalError as e:
+            return {"error": f"FTS5 rejected the translated query: {e}",
+                    "translated_query": fts, "notes": notes}
+
+        results = []
+        for row in rows:
+            r = _opinion_summary(row)
+            r["citations"] = _get_citations(conn, row["id"])
+            r["snippet"] = row["snippet"]
+            results.append(r)
+
+        return {
+            "query": query,
+            "translated_query": fts,
+            "notes": notes,
+            "count": len(results),
+            "results": results,
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def search_faceted(
+    query: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    author: str | None = None,
+    case_type: str | None = None,
+    disposition: str | None = None,
+    has_dissent: bool | None = None,
+    has_concurrence: bool | None = None,
+    unanimous: bool | None = None,
+    limit: int = 30,
+) -> list[dict]:
+    """Faceted opinion search: filter by metadata, optionally with full text.
+
+    Any combination of facets may be supplied. With `query`, results are FTS
+    relevance-ranked; otherwise newest first. Disposition is a partial match
+    (e.g. "REVERSED" matches "REVERSED AND REMANDED"). Dissent/concurrence/
+    unanimity derive from voting data present for 1997+ opinions only.
+
+    Args:
+        query: Optional full-text query (plain FTS5 syntax).
+        date_from: Filed on/after (YYYY-MM-DD).
+        date_to: Filed on/before (YYYY-MM-DD).
+        author: Authoring justice's last name (partial).
+        case_type: Case-type classification (partial).
+        disposition: Disposition substring (e.g. "REVERSED", "AFFIRMED", "DISMISSED").
+        has_dissent: Require (or exclude) a dissenting vote.
+        has_concurrence: Require (or exclude) a concurring/separate writing.
+        unanimous: Require (or exclude) a unanimous decision.
+        limit: Maximum results (default 30, max 100).
+    """
+    limit = min(limit, 100)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        params: list = []
+        if query:
+            sql = """
+                SELECT o.*, snippet(opinions_fts, 1, '>>>', '<<<', '...', 40) AS snippet
+                FROM opinions_fts JOIN opinions o ON o.id = opinions_fts.rowid
+                WHERE opinions_fts MATCH ?
+            """
+            params.append(query)
+        else:
+            sql = "SELECT o.* FROM opinions o WHERE 1=1"
+
+        if date_from:
+            sql += " AND o.date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            sql += " AND o.date_filed <= ?"
+            params.append(date_to)
+        if author:
+            sql += " AND o.author LIKE ?"
+            params.append(f"%{author}%")
+        if case_type:
+            sql += " AND o.case_type LIKE ?"
+            params.append(f"%{case_type}%")
+        if disposition:
+            sql += " AND o.disposition LIKE ?"
+            params.append(f"%{disposition.upper()}%")
+        if has_dissent is not None:
+            sql += (" AND o.voting_record LIKE '%dissent%'" if has_dissent
+                    else " AND (o.voting_record IS NULL OR o.voting_record NOT LIKE '%dissent%')")
+        if has_concurrence is not None:
+            sql += (" AND o.voting_record LIKE '%concurring%'" if has_concurrence
+                    else " AND (o.voting_record IS NULL OR o.voting_record NOT LIKE '%concurring%')")
+        if unanimous is not None:
+            sql += " AND o.unanimous = ?"
+            params.append(1 if unanimous else 0)
+
+        sql += " ORDER BY rank LIMIT ?" if query else " ORDER BY o.date_filed DESC LIMIT ?"
+        params.append(limit)
+
+        try:
+            rows = conn.execute(sql, params).fetchall()
+        except sqlite3.OperationalError as e:
+            return [{"error": f"Query rejected: {e}"}]
+
+        results = []
+        for row in rows:
+            r = _opinion_summary(row)
+            r["citations"] = _get_citations(conn, row["id"])
+            try:
+                if row["snippet"] is not None:
+                    r["snippet"] = row["snippet"]
+            except (IndexError, KeyError):
+                pass
+            results.append(r)
+        return results
+    finally:
+        conn.close()
+
+
+_LINEAGE_FROM_RE = re.compile(r"lineage_from=(\d{4}-\d{2}-\d{2})")
+
+
+def _const_predecessor_cites(conn, canonical: str) -> list[dict]:
+    """Era-gated predecessor (1889-numbering) cites for a modern const cite.
+
+    ``const_crosswalk`` rows (source_table 'parallel'/'adjudicated', old_kind
+    'section') map the pre-1981 sequential numbering to modern article-form
+    cites. A ``lineage_from=DATE`` note means the old section number belonged
+    to a DIFFERENT provision before that date (e.g. § 89 was the old
+    judicial-article supreme-court section before the 1976 replacement made it
+    the lineage of art. VI, § 5) — an old-cite match counts only for opinions
+    filed on/after that date. No note = continuous lineage, no gate.
+
+    Returns ``[{normalized, lineage_from}]``; empty when the constitution
+    corpus is not attached or the cite has no recorded predecessor.
+    """
+    calias = _attached_corpora(conn).get("const")
+    if not calias:
+        return []
+    try:
+        rows = conn.execute(
+            f"SELECT old_cite, note FROM {calias}.const_crosswalk "
+            f"WHERE new_cite = ? AND source_table IN ('parallel', 'adjudicated') "
+            f"AND old_kind = 'section'",
+            (canonical,),
+        ).fetchall()
+    except sqlite3.OperationalError:
+        return []
+    preds = []
+    for r in rows:
+        note = (r["note"] or "").strip()
+        m = _LINEAGE_FROM_RE.fullmatch(note)
+        if note and not m:
+            # any other note is a non-lineage annotation (appendix routing,
+            # caveats) — not a cite-union mapping
+            continue
+        preds.append({"normalized": r["old_cite"],
+                      "lineage_from": m.group(1) if m else None})
+    return preds
+
+
+def _const_citing_where(normalized: str, preds: list[dict],
+                        date_col: str = "o.date_filed") -> tuple[str, list]:
+    """WHERE fragment matching ``tc`` rows citing a const provision under
+    its modern cite OR an era-gated predecessor cite. Requires the query to
+    join the citation table tc with the document table supplying ``date_col``
+    (opinions o.date_filed; AG opinions a.date_issued) for the lineage_from
+    date gate."""
+    clauses = ["tc.normalized = ?"]
+    params: list = [normalized]
+    for p in preds:
+        if p["lineage_from"]:
+            clauses.append(f"(tc.normalized = ? AND {date_col} >= ?)")
+            params += [p["normalized"], p["lineage_from"]]
+        else:
+            clauses.append("tc.normalized = ?")
+            params.append(p["normalized"])
+    return "(" + " OR ".join(clauses) + ")", params
+
+
+def _match_cited_authorities(conn, spec: dict, authority: str) -> list[dict] | None:
+    """Resolve an authority reference to the canonical normalized string(s) it
+    appears under in ``text_citations``.
+
+    ``conn`` must have the primary-law corpora attached (``_conn_with_corpora``).
+    Returns a list of ``{normalized, url}`` (possibly empty), or None when no
+    statute/rule/const/admin reference could be parsed at all.
+    """
+    if spec["kind"] in ("constitution", "admin"):
+        # Constitution and admin-code cites match text_citations by canonical
+        # normalized string (jetcite's normalized form == the canonical
+        # citation). Canonicalize via the corpus if installed so varied input
+        # still matches; report the provision even if no opinion cites it.
+        canonical = spec["exact"] or authority
+        ckind = KIND_TO_CORPUS[spec["kind"]]
+        calias = _attached_corpora(conn).get(ckind)
+        if calias:
+            prow = conn.execute(
+                f"SELECT citation FROM {calias}.provisions WHERE cite_key = ?",
+                (corpus.cite_key(authority),),
+            ).fetchone()
+            if prow:
+                canonical = prow["citation"]
+        row = conn.execute(
+            "SELECT normalized, url FROM text_citations WHERE normalized = ? LIMIT 1",
+            (canonical,),
+        ).fetchone()
+        return [{"normalized": canonical, "url": row["url"] if row else None}]
+
+    if not spec["token"]:
+        return None
+    # Prefer an exact canonical match; else token-boundary matches.
+    matched: list[dict] = []
+    if spec["exact"]:
+        row = conn.execute(
+            "SELECT normalized, url FROM text_citations WHERE cite_type = ? AND normalized = ? LIMIT 1",
+            (spec["kind"], spec["exact"]),
+        ).fetchone()
+        if row:
+            matched = [{"normalized": row["normalized"], "url": row["url"]}]
+    if not matched:
+        cands = conn.execute(
+            "SELECT DISTINCT normalized, url FROM text_citations "
+            "WHERE cite_type = ? AND normalized LIKE ?",
+            (spec["kind"], f"%{spec['token']}"),
+        ).fetchall()
+        matched = [
+            {"normalized": c["normalized"], "url": c["url"]}
+            for c in cands
+            if research.authority_token_matches(c["normalized"], spec["token"])
+        ]
+    return matched
+
+
+@mcp.tool()
+def find_opinions_construing(authority: str, limit: int = 50) -> dict:
+    """Find opinions that cite/construe an N.D.C.C. section, court rule, or
+    constitutional provision.
+
+    Accepts forms like "14-09-06.2", "N.D.C.C. § 14-09-06.2", "chapter 28-32",
+    "N.D.R.Crim.P. 12", "Rule 56 NDRCivP", or "N.D. Const. art. I, § 8".
+    Returns the matched authority (or authorities, if the reference is
+    ambiguous) and the opinions citing it, newest first. When the cited
+    provision's corpus is installed, also returns the provision's own text.
+
+    Args:
+        authority: A statutory, court-rule, or constitutional reference.
+        limit: Max opinions per matched authority (default 50, max 200).
+    """
+    limit = min(limit, 200)
+    spec = research.normalize_authority(authority)
+
+    conn = _conn_with_corpora()
+    try:
+        matched = _match_cited_authorities(conn, spec, authority)
+        if matched is None:
+            return {"error": f"Couldn't parse a statute, court-rule, or constitutional reference from: {authority}"}
+
+        if not matched:
+            return {"found": False, "authority": authority,
+                    "parsed": spec,
+                    "error": f"No opinions cite {spec['exact'] or spec['token']}."}
+
+        groups = []
+        for a in matched:
+            preds = (_const_predecessor_cites(conn, a["normalized"])
+                     if spec["kind"] == "constitution" else [])
+            where, wparams = _const_citing_where(a["normalized"], preds)
+            ops = conn.execute(
+                f"""SELECT DISTINCT o.id, o.case_name, o.date_filed
+                    FROM text_citations tc JOIN opinions o ON o.id = tc.opinion_id
+                    WHERE {where}
+                    ORDER BY o.date_filed DESC LIMIT ?""",
+                (*wparams, limit),
+            ).fetchall()
+            total = conn.execute(
+                f"""SELECT COUNT(DISTINCT tc.opinion_id) AS n
+                    FROM text_citations tc JOIN opinions o ON o.id = tc.opinion_id
+                    WHERE {where}""",
+                wparams,
+            ).fetchone()["n"]
+            group = {
+                "authority": a["normalized"],
+                "url": a["url"],
+                "total_opinions": total,
+                "returned": len(ops),
+                "opinions": [
+                    {"oid": o["id"], "case_name": o["case_name"],
+                     "date_filed": o["date_filed"],
+                     "citations": _get_citations(conn, o["id"])}
+                    for o in ops
+                ],
+            }
+            if preds:
+                group["historical_cites"] = [
+                    p["normalized"] + (f" (from {p['lineage_from']})"
+                                       if p["lineage_from"] else "")
+                    for p in preds
+                ]
+                group["note"] = (
+                    "Includes opinions citing the provision's pre-1981 "
+                    "(1889 sequential numbering) cite, era-gated by the "
+                    "renumbering crosswalk."
+                )
+            groups.append(group)
+
+        result = {"found": True, "authority": authority, "parsed": spec,
+                  "matched_authorities": [g["authority"] for g in groups],
+                  "results": groups}
+        if len(groups) > 1:
+            result["note"] = (
+                "The reference matched multiple authorities (no rule-set/§ prefix "
+                "given); each is listed separately."
+            )
+
+        # If the cited primary-law corpus is installed, attach the provision's
+        # own text (point-in-time aware) so the caller sees what was construed.
+        ckind = KIND_TO_CORPUS.get(spec["kind"])
+        alias = _attached_corpora(conn).get(ckind) if ckind else None
+        if alias:
+            prov = corpus.lookup_provision_version(
+                conn, alias, _best_cite(conn, alias, spec, authority))
+            if prov:
+                result["provision"] = {
+                    "citation": prov["citation"],
+                    "heading": prov["heading"],
+                    "status": prov["status"],
+                    "current_text": prov["text_content"],
+                    "note": "Use lookup_authority(..., as_of_date=) for the version in force on a given date.",
+                }
+        return result
+    finally:
+        conn.close()
+
+
+def _version_for_date(versions, date_filed: str | None):
+    """The provision version row in force on ``date_filed``, or None."""
+    if not date_filed:
+        return None
+    for v in versions:
+        start = v["effective_start"] or "0000-01-01"
+        end = v["effective_end"] or corpus.OPEN_ENDED
+        if start <= date_filed <= end:
+            return v
+    return None
+
+
+def _sole_rule_set(conn, opinion_id: int, number: str) -> str | None:
+    """The ONE rule-set prefix under which this opinion is recorded as citing
+    rule ``number`` — or None when its recorded citations show several sets
+    (ambiguous) or none. The last-resort attribution for bare 'Rule N'."""
+    rows = conn.execute(
+        "SELECT normalized FROM text_citations "
+        "WHERE opinion_id = ? AND cite_type = 'court_rule'",
+        (opinion_id,),
+    ).fetchall()
+    sets = {
+        r["normalized"].rsplit(" ", 1)[0]
+        for r in rows
+        if research.authority_token_matches(r["normalized"], number)
+    }
+    return next(iter(sets)) if len(sets) == 1 else None
+
+
+_NOTES_ORDERS = ("weight", "recency", "depth")
+
+
+@mcp.tool()
+def get_notes_of_decisions(
+    authority: str,
+    subsection: str | None = None,
+    order: str = "weight",
+    date_from: str | None = None,
+    date_to: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
+    scan_limit: int = 300,
+) -> dict:
+    """Annotated "Notes of Decisions" for a statute, court rule, constitutional
+    provision, or admin-code section: every citing opinion with its citing
+    sentences (verbatim, with ¶ pinpoints), the SUBSECTION each mention cites,
+    and depth-of-treatment signals — a research view of how courts have applied
+    the provision, grouped and ranked (vs find_opinions_construing's bare list).
+
+    Per citing opinion: `mentions` (in-text occurrence count), `construes`
+    (interpretive vocabulary near a mention — heuristic), `quotes_provision`
+    (reproduces ≥8 consecutive words of the provision's text),
+    `subsections_cited` (parsed pinpoints, oracle-validated against the
+    provision's structured subsection index where available), the opinion's own
+    cited-by count, and the provision VERSION in force when it was filed. The
+    header aggregates a per-subsection citation outline and the provision's
+    amendment timeline, so notes can be read against text changes.
+
+    Signals are heuristic and NON-authoritative — read the returned context
+    (and the full opinion) before relying on any of them.
+
+    Args:
+        authority: e.g. "N.D.C.C. § 14-09-06.2", "N.D.R.Civ.P. 56",
+            "N.D. Const. art. I, § 8", "N.D.A.C. § 75-02-04.1-02".
+        subsection: Optional pinpoint filter, e.g. "(1)(j)" — only opinions
+            whose mentions cite that subsection (or a child of it).
+        order: "weight" (construes > quotes > mentions > cited-by > recency),
+            "recency", or "depth" (mention count).
+        date_from: Optional ISO date — only opinions filed on/after.
+        date_to: Optional ISO date — only opinions filed on/before.
+        limit: Max entries returned per call (default 20, max 100).
+        offset: Pagination offset into the ordered entry list.
+        scan_limit: Max (most-recent) citing opinions scanned (default 300);
+            aggregates cover the scanned set.
+    """
+    limit = min(limit, 100)
+    scan_limit = min(scan_limit, 500)
+    if order not in _NOTES_ORDERS:
+        return {"error": f"order must be one of {_NOTES_ORDERS}"}
+    spec = research.normalize_authority(authority)
+    if spec["kind"] is None:
+        return {"error": f"Couldn't parse a statute, court-rule, constitutional, "
+                         f"or admin-code reference from: {authority}"}
+
+    conn = _conn_with_corpora()
+    try:
+        matched = _match_cited_authorities(conn, spec, authority)
+        if matched is None:
+            return {"error": f"Couldn't parse a statute, court-rule, constitutional, "
+                             f"or admin-code reference from: {authority}"}
+        if not matched:
+            return {"found": False, "authority": authority, "parsed": spec,
+                    "error": f"No opinions cite {spec['exact'] or spec['token']}."}
+        if len(matched) > 1:
+            return {"found": False, "authority": authority,
+                    "matched_authorities": [m["normalized"] for m in matched],
+                    "error": "Ambiguous reference — it matched multiple "
+                             "authorities. Re-call with one precise citation."}
+        normalized = matched[0]["normalized"]
+        kind = spec["kind"]
+        const_preds = (_const_predecessor_cites(conn, normalized)
+                       if kind == "constitution" else [])
+
+        # --- provision layer: versions, subsection oracle, amendment timeline.
+        ckind = KIND_TO_CORPUS.get(kind)
+        alias = _attached_corpora(conn).get(ckind) if ckind else None
+        provision = None
+        versions: list = []
+        oracle: dict[int, set[str]] = {}   # version_id -> stored pincites
+        amendments: list = []
+        if alias:
+            q = f"{alias}."
+            stored_key = corpus.resolve_cite_key(
+                conn, alias, _best_cite(conn, alias, spec, authority))
+            prow = conn.execute(
+                f"SELECT id, citation, heading, status FROM {q}provisions "
+                f"WHERE cite_key = ?", (stored_key,),
+            ).fetchone() if stored_key else None
+            if prow:
+                provision = {"citation": prow["citation"],
+                             "heading": prow["heading"], "status": prow["status"]}
+                versions = conn.execute(
+                    f"""SELECT id, effective_start, effective_end, text_content
+                        FROM {q}provision_versions WHERE provision_id = ?
+                        ORDER BY COALESCE(effective_start, '0000-01-01')""",
+                    (prow["id"],),
+                ).fetchall()
+                # Subsection oracle — only where the corpus DB carries the
+                # structured index (NDCC today; others validate as 'no_index').
+                has_subsec = conn.execute(
+                    f"SELECT 1 FROM {q}sqlite_master WHERE type='table' "
+                    f"AND name='provision_subsections'").fetchone() is not None
+                for v in versions if has_subsec else []:
+                    pins = {
+                        p["pincite"] for p in conn.execute(
+                            f"SELECT pincite FROM {q}provision_subsections "
+                            f"WHERE version_id = ?", (v["id"],))
+                    }
+                    if pins:
+                        oracle[v["id"]] = pins
+                amendments = conn.execute(
+                    f"""SELECT amendment_number, action, effective_date, authority
+                        FROM {q}amendments WHERE provision_id = ?
+                        ORDER BY COALESCE(effective_date, '0000-01-01')""",
+                    (prow["id"],),
+                ).fetchall()
+        version_words = {v["id"]: notes.norm_words(v["text_content"])
+                         for v in versions}
+        current_version = versions[-1] if versions else None
+
+        # --- occurrence scanner for this authority's kind.
+        if kind in ("statute", "admin"):
+            token_pat = notes.section_token_re(normalized.split()[-1])
+            def spans_for(text, oid):
+                return [(m.start(), m.end()) for m in token_pat.finditer(text)]
+        elif kind == "constitution":
+            ct = notes.const_target(normalized)
+            # Scan for the modern article-form AND any predecessor
+            # (1889-numbering) form; candidates are already era-gated in SQL,
+            # so within a candidate every recorded form is fair to scan for.
+            const_targets = [t for t in
+                             [ct] + [notes.const_target(p["normalized"])
+                                     for p in const_preds]
+                             if t]
+            if const_targets:
+                def spans_for(text, oid):
+                    spans: list[tuple[int, int]] = []
+                    for t in const_targets:
+                        spans.extend(notes.const_occurrences(
+                            text, t["article"], t["section"]))
+                    return sorted(set(spans))
+            else:
+                def spans_for(text, oid):
+                    return []
+        else:  # court_rule
+            rt = notes.rule_target(normalized)
+            if rt:
+                def spans_for(text, oid):
+                    sole = _sole_rule_set(conn, oid, rt["number"])
+                    return notes.rule_occurrences(
+                        text, rt["prefix"], rt["number"], sole)
+            else:
+                def spans_for(text, oid):
+                    return []
+
+        # --- candidate citing opinions (newest first, date-window in SQL).
+        # Constitution provisions union in their era-gated predecessor
+        # (1889-numbering) cites; GROUP BY dedups an opinion recorded under
+        # both forms (MIN keeps a deterministic raw_text for the fallback).
+        cite_where, cite_params = _const_citing_where(normalized, const_preds)
+        total_citing = conn.execute(
+            f"SELECT COUNT(DISTINCT tc.opinion_id) AS n FROM text_citations tc "
+            f"JOIN opinions o ON o.id = tc.opinion_id WHERE {cite_where}",
+            cite_params,
+        ).fetchone()["n"]
+        cand_sql = (
+            "SELECT o.id, o.case_name, o.date_filed, o.author, "
+            "o.per_curiam, o.court, o.text_content, o.opinion_url, "
+            "o.absolute_url, MIN(tc.raw_text) AS raw_text, "
+            "(SELECT COUNT(*) FROM cited_by cb WHERE cb.cited_opinion_id = o.id)"
+            " AS inbound "
+            "FROM text_citations tc JOIN opinions o ON o.id = tc.opinion_id "
+            f"WHERE {cite_where}"
+        )
+        params: list = list(cite_params)
+        if date_from:
+            cand_sql += " AND o.date_filed >= ?"
+            params.append(date_from)
+        if date_to:
+            cand_sql += " AND o.date_filed <= ?"
+            params.append(date_to)
+        cand_sql += " GROUP BY o.id ORDER BY o.date_filed DESC LIMIT ?"
+        params.append(scan_limit)
+        rows = conn.execute(cand_sql, params).fetchall()
+
+        # --- scan every candidate; aggregate the subsection outline.
+        pin_filter = corpus.normalize_pincite(subsection) if subsection else None
+        subsection_counts: dict[str, int] = {}
+        entries: list[dict] = []
+        for r in rows:
+            text = r["text_content"] or ""
+            spans = spans_for(text, r["id"])
+            if spans:
+                occs, pincites = notes.occurrence_entries(text, spans,
+                                                          want_pincite=True)
+                mentions = len(spans)
+                occ_source = "text_scan"
+            else:
+                # The stored text uses a form the scanner doesn't recognize —
+                # fall back to the citation string recorded at extraction time.
+                ctx = memo.citing_context(text, (r["raw_text"] or "").strip())
+                occs = ([{"paragraph": ctx.get("paragraph"),
+                          "context": ctx["context"]}] if ctx.get("found") else [])
+                pincites = []
+                mentions = 1 if occs else 0
+                occ_source = "recorded_citation"
+
+            vrow = _version_for_date(versions, r["date_filed"])
+            oracle_pins = (oracle.get(vrow["id"]) if vrow else None) or \
+                          (oracle.get(current_version["id"]) if current_version else None)
+            subsections_cited = []
+            for p in pincites:
+                if oracle_pins is None:
+                    status = "no_index"
+                elif p in oracle_pins:
+                    status = "verified"
+                else:
+                    status = "not_in_index"
+                subsections_cited.append({"pincite": p, "oracle": status})
+                subsection_counts[p] = subsection_counts.get(p, 0) + 1
+
+            if pin_filter and not any(
+                p == pin_filter or p.startswith(pin_filter + "(")
+                for p in pincites
+            ):
+                continue
+
+            pw = (version_words.get(vrow["id"]) if vrow else None) or \
+                 (version_words.get(current_version["id"]) if current_version else None)
+            entry = {
+                "oid": r["id"],
+                "case_name": r["case_name"],
+                "date_filed": r["date_filed"],
+                "author": r["author"],
+                "per_curiam": bool(r["per_curiam"]),
+                "mentions": mentions,
+                "construes": any(notes.classify_construes(o["context"])
+                                 for o in occs),
+                "quotes_provision": (notes.quotes_provision(text, pw)
+                                     if pw else None),
+                "cited_by_count": r["inbound"],
+                "subsections_cited": subsections_cited,
+                "occurrence_source": occ_source,
+                "occurrences": occs,
+            }
+            if vrow is not None:
+                entry["provision_version_in_force"] = {
+                    "effective_start": vrow["effective_start"],
+                    "effective_end": vrow["effective_end"],
+                    "is_current": vrow["effective_end"] is None,
+                }
+            elif versions:
+                entry["provision_version_in_force"] = {
+                    "note": "predates the earliest captured version of this "
+                            "provision; its text then is not in the corpus",
+                }
+            entry.update(_best_url(r))
+            entries.append(entry)
+
+        # --- order, paginate, and fill parallel cites for the page only.
+        if order == "depth":
+            entries.sort(key=lambda e: e["date_filed"] or "", reverse=True)
+            entries.sort(key=lambda e: -e["mentions"])
+        elif order == "weight":
+            entries.sort(key=lambda e: e["date_filed"] or "", reverse=True)
+            entries.sort(key=lambda e: (
+                not e["construes"], not e["quotes_provision"],
+                -e["mentions"], -e["cited_by_count"]))
+        # "recency": already newest-first from SQL; filtering preserved order.
+        page = entries[offset:offset + limit]
+        for e in page:
+            e["citations"] = _get_citations(conn, e["oid"])
+
+        result = {
+            "found": True,
+            "authority": normalized,
+            "corpus": ckind,
+            "url": matched[0]["url"],
+            "total_citing_opinions": total_citing,
+            "scanned": len(rows),
+            "matching_entries": len(entries),
+            "returned": len(page),
+            "offset": offset,
+            "order": order,
+            "subsection_outline": [
+                {"pincite": p, "opinions": n}
+                for p, n in sorted(subsection_counts.items(),
+                                   key=lambda kv: (-kv[1], kv[0]))
+            ],
+            "entries": page,
+            "note": (
+                "Signals (construes / quotes_provision / subsections_cited) are "
+                "heuristic, scanned from the stored text — read each context and "
+                "the full opinion before relying on them. subsection_outline "
+                "counts cover the scanned set; filter with subsection= and page "
+                "with offset=. Use find_opinions_construing for a plain list, "
+                "lookup_authority(..., as_of_date=) to read any version's text."
+            ),
+        }
+        if const_preds:
+            result["historical_cites"] = [
+                p["normalized"] + (f" (from {p['lineage_from']})"
+                                   if p["lineage_from"] else "")
+                for p in const_preds
+            ]
+            result["historical_cites_note"] = (
+                "Citing opinions include the provision's pre-1981 (1889 "
+                "sequential numbering) cite, era-gated by the renumbering "
+                "crosswalk."
+            )
+        if provision:
+            result["provision"] = provision
+        if versions:
+            result["captured_versions"] = [
+                {"effective_start": v["effective_start"],
+                 "effective_end": v["effective_end"],
+                 "is_current": v["effective_end"] is None}
+                for v in versions
+            ]
+        if amendments:
+            result["amendment_count"] = len(amendments)
+            result["amendments"] = [
+                {"amendment_number": a["amendment_number"], "action": a["action"],
+                 "effective_date": a["effective_date"], "authority": a["authority"]}
+                for a in amendments[:40]
+            ]
+            if ckind == "const":
+                result["amendments_note"] = (
+                    "For the full merged amendment chronology across the 1981 "
+                    "reorganization, use get_authority_history."
+                )
+        if date_from or date_to:
+            result["date_window"] = {"from": date_from, "to": date_to}
+        return result
+    finally:
+        conn.close()
+
+
+_REORG_SOURCE = (
+    "1981 constitutional reorganization (N.D.C.C. Replacement Vol. 13 disposition tables)"
+)
+
+
+def _const_crosswalk_available(conn, alias) -> bool:
+    q = f"{alias}." if alias and alias != "main" else ""
+    return conn.execute(
+        f"SELECT 1 FROM {q}sqlite_master WHERE type='table' AND name='const_crosswalk'"
+    ).fetchone() is not None
+
+
+def _const_crosswalk_links(conn, alias, cite):
+    """Return (predecessors, successors) for a constitutional cite across the 1981
+    reorganization, as lists of the linked live provisions' citations.
+
+    predecessors: original §-cites that were renumbered *into* a modern cite
+    (populated only for a modern ``art.`` cite).
+    successors: modern art./§ cites an original §-cite / amendment article became
+    (populated for an original §-cite or ``amend. art.`` cite); ``('__appendix__',)``
+    signals the provision was retained in the appendix with no live successor.
+    """
+    q = f"{alias}." if alias and alias != "main" else ""
+    if cite.startswith("N.D. Const. art."):
+        preds = [r["old_cite"] for r in conn.execute(
+            f"SELECT DISTINCT old_cite FROM {q}const_crosswalk "
+            f"WHERE new_cite=? AND source_table='parallel' AND new_kind='modern'", (cite,))]
+        return preds, []
+    rows = conn.execute(
+        f"SELECT DISTINCT new_cite, new_kind FROM {q}const_crosswalk WHERE old_cite=?",
+        (cite,),
+    ).fetchall()
+    live = [r["new_cite"] for r in rows if r["new_kind"] == "modern" and r["new_cite"]]
+    if not live and any(r["new_kind"] in ("appendix", "appendix_amendment") for r in rows):
+        return [], ["__appendix__"]
+    return [], live
+
+
+_AMD_ROMAN = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def _amend_number_key(num) -> int | None:
+    """Normalize an amendment number ('XLIII' / '43' / 'Amd. I') to an int."""
+    s = (num or "").replace("Amd.", "").strip()
+    if re.fullmatch(r"\d+", s):
+        return int(s)
+    if s and re.fullmatch(r"[IVXLCDM]+", s):
+        v = 0
+        for i, ch in enumerate(s):
+            n = _AMD_ROMAN[ch]
+            v += -n if i + 1 < len(s) and _AMD_ROMAN[s[i + 1]] > n else n
+        return v
+    return None
+
+
+def _amend_affected_covers(affected: str, cites: list[str]) -> bool:
+    """Does an *unlinked* amendment-index row's ``affected`` string cover any of
+    ``cites``? Old-numbering conventions only (the unlinked rows are all
+    pre-1981): bare numbers / ranges = original sections; 'Art. N' / bare Roman
+    = articles of amendment. Precision-first — used only for rows that have no
+    linked counterpart anywhere."""
+    want_secs, want_amds = set(), set()
+    for c in cites:
+        m = re.fullmatch(r"N\.D\. Const\. § (\d+)", c)
+        if m:
+            want_secs.add(int(m.group(1)))
+        m = re.fullmatch(r"N\.D\. Const\. amend\. art\. ([IVXLCDM]+[A-Z]?)", c)
+        if m:
+            want_amds.add(m.group(1))
+    for tok in (t.strip() for t in (affected or "").split(",")):
+        m = re.fullmatch(r"(\d+)-(\d+)", tok)
+        if m and want_secs & set(range(int(m.group(1)), int(m.group(2)) + 1)):
+            return True
+        if re.fullmatch(r"\d+", tok) and int(tok) in want_secs:
+            return True
+        m = re.fullmatch(r"(?:Art\.\s*)?([IVXLCDM]+[A-Z]?)", tok)
+        if m and m.group(1) in want_amds:
+            return True
+    return False
+
+
+def _const_merged_amendments(conn, alias, prov_id, citation):
+    """One coherent amendment chronology for a constitutional provision across
+    the 1981 renumbering seam (TODO-const-history-validation.md #3).
+
+    Merges three event families: (a) session-law events keyed to the original
+    §-numbering, (b) ndconst.org events keyed to the modern art./§ numbering,
+    and (c) the pre-1981 amendment-index rows that could not be linked at ingest
+    (their old-§ targets were not in the modern provision index) — attached here
+    only when the measure has no linked row anywhere. Events recorded under both
+    numberings for the same measure are deduplicated by normalized amendment
+    number + effective-date proximity (<= 550 days, so a deferred effective date
+    like amend. 53's 1939-07-01 merges with its 1938 election-keyed twin, while
+    same-numbered events years apart — the amendment-I identity conflict — stay
+    distinct). Session-law rows win on effective_date/authority; ndconst.org
+    rows contribute source_url/subject."""
+    q = f"{alias}." if alias and alias != "main" else ""
+    ev_sql = ("SELECT action, effective_date, raw_date, election_date, affected, "
+              "amendment_number, authority, source_url, raw FROM {q}amendments "
+              "WHERE provision_id {op} ORDER BY COALESCE(effective_date,'0000-01-01')")
+
+    def fetch(where_op, args, recorded_under):
+        out = []
+        for r in conn.execute(ev_sql.format(q=q, op=where_op), args):
+            d = dict(r)
+            d["recorded_under"] = recorded_under
+            out.append(d)
+        return out
+
+    events = fetch("= ?", (prov_id,), citation)
+
+    # crosswalk counterparts (both parallel- and amendment-table links)
+    if citation.startswith("N.D. Const. art."):
+        cp_cites = [r[0] for r in conn.execute(
+            f"SELECT DISTINCT old_cite FROM {q}const_crosswalk "
+            f"WHERE new_cite=? AND new_kind='modern'", (citation,))]
+    else:
+        cp_cites = [r[0] for r in conn.execute(
+            f"SELECT DISTINCT new_cite FROM {q}const_crosswalk "
+            f"WHERE old_cite=? AND new_kind='modern' AND new_cite IS NOT NULL",
+            (citation,))]
+    for cite in cp_cites:
+        r = conn.execute(f"SELECT id FROM {q}provisions WHERE citation=?", (cite,)).fetchone()
+        if r:
+            events += fetch("= ?", (r["id"],), cite)
+
+    # unlinked amendment-index rows, attached only for measures with no linked
+    # row anywhere. A linked row suppresses an unlinked twin only when their
+    # dates are close ("same measure"); the amendment-I identity conflict (the
+    # 1889 census event vs the 1894 lottery amendment, same number) stays
+    # distinct. Combined numbers ("5 & 6") expand to every number they name.
+    def number_keys(num):
+        keys = set()
+        for tok in re.findall(r"\d+|[IVXLCDM]+", (num or "").replace("Amd.", "")):
+            k = _amend_number_key(tok)
+            if k is not None:
+                keys.add(k)
+        return keys
+
+    def day(d):
+        try:
+            return datetime.date.fromisoformat(d).toordinal()
+        except (TypeError, ValueError):
+            return None
+
+    linked_dates: dict[int, list] = {}
+    for num, eff in conn.execute(
+            f"SELECT DISTINCT amendment_number, effective_date FROM {q}amendments "
+            f"WHERE provision_id IS NOT NULL"):
+        for k in number_keys(num):
+            linked_dates.setdefault(k, []).append(day(eff))
+
+    def has_linked_twin(num, eff):
+        d = day(eff)
+        for k in number_keys(num):
+            for ld in linked_dates.get(k, ()):
+                if d is None or ld is None or abs(d - ld) <= 550:
+                    return True
+        return False
+
+    probe_cites = [citation] + cp_cites
+    for r in conn.execute(ev_sql.format(q=q, op="IS NULL"), ()):
+        if has_linked_twin(r["amendment_number"], r["effective_date"]):
+            continue
+        if _amend_affected_covers(r["affected"], probe_cites):
+            d = dict(r)
+            d["recorded_under"] = "(amendment index)"
+            events.append(d)
+
+    # dedup: cluster by normalized number + effective-date proximity
+    groups: dict = {}
+    for e in events:
+        k = _amend_number_key(e["amendment_number"])
+        groups.setdefault(k if k is not None else (e["amendment_number"], e["effective_date"]),
+                          []).append(e)
+    merged = []
+    for _, grp in groups.items():
+        grp.sort(key=lambda e: e["effective_date"] or "0000-01-01")
+        clusters, cur = [], []
+        for e in grp:
+            d = day(e["effective_date"])
+            if cur:
+                prev = next((day(x["effective_date"]) for x in reversed(cur)
+                             if day(x["effective_date"]) is not None), None)
+                if d is not None and prev is not None and abs(d - prev) > 550:
+                    clusters.append(cur)
+                    cur = []
+            cur.append(e)
+        if cur:
+            clusters.append(cur)
+        for cl in clusters:
+            base = next((e for e in cl if e["authority"]), cl[0])
+            dates = sorted({e["effective_date"] for e in cl if e["effective_date"]})
+            out = {
+                "amendment_number": base["amendment_number"],
+                "action": base["action"],
+                "effective_date": base["effective_date"],
+                "election_date": next((e["election_date"] for e in cl if e["election_date"]), None),
+                "affected": max((e["affected"] or "" for e in cl), key=len) or None,
+                "subject": max((e["raw"] or "" for e in cl), key=len) or None,
+                "authority": next((e["authority"] for e in cl if e["authority"]), None),
+                "source_url": next((e["source_url"] for e in cl if e["source_url"]), None),
+                "recorded_under": sorted({e["recorded_under"] for e in cl}),
+            }
+            if len(dates) > 1:
+                out["effective_date_variants"] = dates
+            merged.append(out)
+    merged.sort(key=lambda e: e["effective_date"] or "0000-01-01")
+    return merged
+
+
+# Articles replaced WHOLESALE after the 1981 reorganization, reusing their
+# section numbers for rewritten/renumbered content. A reverse lookup that
+# chains an original cite through its 1981 slot to a date at or past the
+# replacement is slot-faithful but may no longer show the original content —
+# no official post-1981 disposition table has been captured (the 1997 art V
+# revision rewrote sections; text similarity cannot establish lineage — same
+# doctrine as the 1981 crosswalk), so content-level chaining is NOT asserted.
+_CONST_ARTICLE_REPLACEMENTS = {
+    "IV": ("1986-12-01", "the 1986 legislative-article revision (measures #119/#120)"),
+    "V": ("1997-07-01", "the 1997 executive-article replacement (measure #135)"),
+    "VII": ("1982-07-08", "the 1982 home-rule article (measure #110)"),
+}
+
+
+def _const_replacement_caveat(linked_cite, linked_row, as_of_date):
+    """A caveat sentence when a crosswalk-returned successor version postdates a
+    wholesale article replacement (content may have moved/been rewritten)."""
+    m = re.match(r"N\.D\. Const\. art\. ([IVXL]+),", linked_cite or "")
+    if not m:
+        return None
+    rep = _CONST_ARTICLE_REPLACEMENTS.get(m.group(1))
+    if not rep:
+        return None
+    rep_date, measure = rep
+    start = linked_row["effective_start"] if linked_row else None
+    if not start or start < rep_date:
+        return None
+    if as_of_date is not None and as_of_date < rep_date:
+        return None
+    eve = (datetime.date.fromisoformat(rep_date)
+           - datetime.timedelta(days=1)).isoformat()
+    return (f" CAVEAT: article {m.group(1)} was replaced wholesale effective "
+            f"{rep_date} by {measure}, reusing its section numbers for rewritten "
+            f"content — the text shown follows the 1981-slot lineage but may no "
+            f"longer carry the original section's content. The slot's "
+            f"pre-replacement text is available with as_of_date='{eve}'. No "
+            f"official post-1981 disposition table has been captured; "
+            f"content-level lineage past {rep_date} is not asserted.")
+
+
+def _const_crosswalk_resolve(conn, alias, lookup_cite, as_of_date):
+    """When a constitutional cite has no captured version covering ``as_of_date``
+    because of the 1981 renumbering, follow ``const_crosswalk`` to the linked
+    provision. Returns a dict with an optional ``row`` (the linked version to
+    auto-return) + ``provenance``, and/or a ``note``; or ``None`` if inapplicable.
+    """
+    if not _const_crosswalk_available(conn, alias):
+        return None
+    q = f"{alias}." if alias and alias != "main" else ""
+    key = corpus.resolve_cite_key(conn, alias, lookup_cite)
+    prov = conn.execute(
+        f"SELECT citation FROM {q}provisions WHERE cite_key=?", (key,)
+    ).fetchone() if key else None
+    if not prov:
+        return None
+    cite = prov["citation"]
+    is_modern = cite.startswith("N.D. Const. art.")
+    preds, succs = _const_crosswalk_links(conn, alias, cite)
+    links = preds if is_modern else succs
+    if links == ["__appendix__"]:
+        return {"note": (
+            f"{cite} was repealed and retained in the appendix in the 1981 "
+            f"constitutional reorganization; it has no successor in the modern "
+            f"article/section text. (Crosswalk: N.D.C.C. Replacement Vol. 13.)")}
+    if not links:
+        return None
+    if len(set(links)) == 1:
+        linked = links[0]
+        linked_row = corpus.lookup_provision_version(conn, alias, linked, as_of_date)
+        if linked_row:
+            if is_modern:
+                note = (f"{cite} did not exist on {as_of_date}. Showing its predecessor "
+                        f"{linked} — the provision renumbered to {cite} in the 1981 "
+                        f"constitutional reorganization — as it read on {as_of_date}.")
+            else:
+                note = (f"{cite} was renumbered to {linked} in the 1981 constitutional "
+                        f"reorganization. Showing {linked} as it read on {as_of_date}.")
+                caveat = _const_replacement_caveat(linked, linked_row, as_of_date)
+                if caveat:
+                    note += caveat
+            return {"row": linked_row, "provenance": {
+                "requested_citation": cite, "returned_provision": linked,
+                "relation": "predecessor" if is_modern else "successor",
+                "linked_via": _REORG_SOURCE, "note": note}}
+        return {"note": (
+            f"{cite} links to {linked} across the 1981 reorganization, but no captured "
+            f"text of {linked} covers {as_of_date}.")}
+    rel = "predecessors" if is_modern else "successors"
+    return {"note": (
+        f"{cite} maps across the 1981 reorganization to multiple {rel} "
+        f"({', '.join(sorted(set(links)))}); look one up directly to read its text. "
+        f"(Crosswalk: N.D.C.C. Replacement Vol. 13.)")}
+
+
+def _has_xrefs(conn, alias: str) -> bool:
+    """True if ``alias``'s corpus DB carries the provision_xrefs edge table."""
+    q = f"{alias}." if alias and alias != "main" else ""
+    return conn.execute(
+        f"SELECT 1 FROM {q}sqlite_master WHERE type='table' "
+        f"AND name='provision_xrefs'").fetchone() is not None
+
+
+def _inbound_xref_where(as_of_date: str | None) -> tuple[str, list]:
+    """SQL fragment selecting citing VERSIONS in force (current or at a date)."""
+    if as_of_date is None:
+        return "v.effective_end IS NULL", []
+    # Half-open windows: a version ending on D was not in force on D (see
+    # corpus.lookup_provision_version).
+    return ("COALESCE(v.effective_start,'0000-01-01') <= ? "
+            "AND COALESCE(v.effective_end, ?) > ?",
+            [as_of_date, corpus.OPEN_ENDED, as_of_date])
+
+
+@mcp.tool()
+def get_provision_xrefs(
+    citation: str, as_of_date: str | None = None, limit: int = 50,
+) -> dict:
+    """Cross-references between primary-law provisions: what a statute / court
+    rule / constitutional / admin-code provision cites, and what cites it.
+
+    Outbound: every provision this one's text references ("as defined in
+    section 44-04-17.1", "subject to chapter 54-55"), resolved with heading and
+    status where the target corpus is installed. Inbound: every provision —
+    across ALL installed corpora — whose in-force text references this one:
+    the admin-code rules implementing an enabling statute, every section
+    incorporating a definition (the blast radius of amending it), rules citing
+    a constitutional provision.
+
+    Point-in-time: edges are asserted per text version, so `as_of_date`
+    returns the references in (and to) the versions in force on that date;
+    default is current text. Unresolved outbound targets (e.g. a chapter cite
+    — chapters aren't provisions — or a reference to a repealed section) are
+    listed with resolved=false rather than dropped.
+
+    Args:
+        citation: A statutory, court-rule, constitutional, or admin-code
+            reference.
+        as_of_date: Optional ISO date (default: current versions).
+        limit: Max entries per direction (default 50, max 200).
+    """
+    limit = min(limit, 200)
+    spec = research.normalize_authority(citation)
+    ckind = KIND_TO_CORPUS.get(spec["kind"])
+    if not ckind:
+        return {"error": f"Couldn't recognize a ND primary-law citation in: {citation}"}
+    conn = _conn_with_corpora()
+    try:
+        attached = _attached_corpora(conn)
+        alias = attached.get(ckind)
+        if not alias:
+            return {"found": False, "citation": citation, "corpus": ckind,
+                    "error": f"The {corpus.CORPORA[ckind]['label']} corpus is "
+                             "not installed."}
+        prov = corpus.lookup_provision_version(
+            conn, alias, _best_cite(conn, alias, spec, citation), as_of_date)
+        if prov is None:
+            asof = f" in force on {as_of_date}" if as_of_date else ""
+            return {"found": False, "citation": citation, "corpus": ckind,
+                    "error": f"No provision matching {citation!r}{asof}."}
+        q = f"{alias}."
+        result = {
+            "found": True, "corpus": ckind, "citation": prov["citation"],
+            "heading": prov["heading"], "status": prov["status"],
+            "as_of_date": as_of_date,
+            "version_window": {"effective_start": prov["effective_start"],
+                               "effective_end": prov["effective_end"]},
+        }
+
+        # ---- outbound: what this version cites ---------------------------
+        if _has_xrefs(conn, alias):
+            rows = conn.execute(
+                f"""SELECT to_corpus, to_citation, to_cite_key, raw_text
+                    FROM {q}provision_xrefs WHERE version_id = ?
+                    ORDER BY to_corpus, to_citation""",
+                (prov["id"],),
+            ).fetchall()
+            outbound = []
+            for r in rows[:limit]:
+                entry = {"corpus": r["to_corpus"], "citation": r["to_citation"],
+                         "as_printed": r["raw_text"], "resolved": False}
+                tal = attached.get(r["to_corpus"])
+                if tal:
+                    trow = conn.execute(
+                        f"SELECT citation, heading, status FROM {tal}.provisions "
+                        f"WHERE cite_key = ?", (r["to_cite_key"],),
+                    ).fetchone()
+                    if trow:
+                        entry.update({"resolved": True,
+                                      "citation": trow["citation"],
+                                      "heading": trow["heading"],
+                                      "status": trow["status"]})
+                outbound.append(entry)
+            result["cross_references"] = {
+                "count": len(rows), "returned": len(outbound),
+                "references": outbound,
+            }
+        else:
+            result["cross_references"] = {
+                "note": "provision_xrefs not extracted in this corpus DB "
+                        "(run xref_extract)."}
+
+        # ---- inbound: what cites this provision --------------------------
+        my_key = corpus.cite_key(prov["citation"])
+        where, wparams = _inbound_xref_where(as_of_date)
+        inbound: list[dict] = []
+        total_in = 0
+        for name, al in attached.items():
+            if not _has_xrefs(conn, al):
+                continue
+            rows = conn.execute(
+                f"""SELECT DISTINCT p.citation, p.heading, p.status, x.raw_text
+                    FROM {al}.provision_xrefs x
+                    JOIN {al}.provisions p ON p.id = x.provision_id
+                    JOIN {al}.provision_versions v ON v.id = x.version_id
+                    WHERE x.to_cite_key = ? AND {where}
+                    ORDER BY p.citation""",
+                [my_key] + wparams,
+            ).fetchall()
+            total_in += len(rows)
+            for r in rows:
+                inbound.append({"corpus": name, "citation": r["citation"],
+                                "heading": r["heading"], "status": r["status"],
+                                "as_printed": r["raw_text"]})
+        inbound.sort(key=lambda e: (e["corpus"], e["citation"]))
+        result["referenced_by"] = {
+            "count": total_in, "returned": min(limit, len(inbound)),
+            "references": inbound[:limit],
+        }
+        result["note"] = (
+            "Edges are extracted from the provision text in force "
+            f"({'on ' + as_of_date if as_of_date else 'currently'}); "
+            "resolved=false outbound targets are chapter-level cites or "
+            "references to provisions not in the corpus (incl. official-source "
+            "danglers preserved verbatim). Use lookup_authority to read any "
+            "referenced provision."
+        )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
+    """Retrieve the text of a ND constitutional, statutory, court-rule, or
+    administrative provision — optionally as it read on a specific date.
+
+    Resolves citations like "N.D. Const. art. I, § 8", "N.D.C.C. § 12.1-20-03",
+    "N.D.R.Civ.P. 56", or "N.D. Admin. Code § 75-02-01". When ``as_of_date`` is
+    given (ISO ``YYYY-MM-DD``), returns the version in force on that date; this
+    is what lets you read a statute "as the court applied it" in an older
+    opinion. Omit ``as_of_date`` for the current text.
+
+    For the Constitution, the 1889<->1981 renumbering is bridged automatically: a
+    modern cite (``art. V, § 2``) at a pre-1981 date returns its original-section
+    predecessor (``§ 72``), and an original §-cite (or ``amend. art.``) at a
+    post-1981 date returns its modern successor — each with ``requested_citation``,
+    ``returned_provision``, ``relation``, and a ``note`` explaining the link
+    (source: NDCC Replacement Vol. 13 disposition tables).
+
+    Returns the provision text, heading, effective window, enacting/amending
+    authority, source URL, and a count of opinions construing it. If the
+    relevant corpus is not installed, says so.
+
+    Args:
+        citation: A constitutional, statutory, court-rule, or admin-code reference.
+        as_of_date: Optional ISO date; the version in force then (default: current).
+    """
+    spec = research.normalize_authority(citation)
+    ckind = KIND_TO_CORPUS.get(spec["kind"])
+    if not ckind:
+        return {"error": f"Couldn't recognize a ND primary-law citation in: {citation}"}
+
+    conn = _conn_with_corpora()
+    try:
+        alias = _attached_corpora(conn).get(ckind)
+        if not alias:
+            return {
+                "found": False,
+                "citation": citation,
+                "corpus": ckind,
+                "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed on this server.",
+            }
+        lookup_cite = _best_cite(conn, alias, spec, citation)
+        row = corpus.lookup_provision_version(conn, alias, lookup_cite, as_of_date)
+        warning = None
+        provenance = None
+        if not row and as_of_date:
+            # No captured version covers as_of_date. For the Constitution, first
+            # try the 1889<->1981 renumbering crosswalk: a modern cite at a
+            # pre-reorganization date (or an original §-cite / amendment article at
+            # a post-reorg date) resolves to its linked provision's then-current
+            # text, with provenance.
+            cw = _const_crosswalk_resolve(conn, alias, lookup_cite, as_of_date) \
+                if ckind == "const" else None
+            if cw and cw.get("row"):
+                row = cw["row"]
+                provenance = cw["provenance"]
+            else:
+                # A dated lookup can miss three different ways, and they need
+                # different answers (the 2026-08-07 bug collapsed all three
+                # into "return the earliest version", serving 1987 text for a
+                # 2026 query on a repealed rule):
+                #   1. as_of predates our earliest capture — a capture gap;
+                #      the earliest version plus a warning is the best answer.
+                #   2. as_of falls between versions — a window gap (repeal-
+                #      and-readoption seam); report not in force, with the
+                #      flanking dates.
+                #   3. as_of is on/after the final effective_end of a
+                #      provision with no open version — repealed/expired;
+                #      report that and return no operative text.
+                q = f"{alias}."
+                cw_note = cw["note"] if cw and cw.get("note") else None
+                stored_key = corpus.resolve_cite_key(conn, alias, lookup_cite)
+                prov = conn.execute(
+                    f"SELECT id, citation, heading, status FROM {q}provisions "
+                    f"WHERE cite_key = ?", (stored_key,),
+                ).fetchone() if stored_key else None
+                b = conn.execute(
+                    f"SELECT MIN(COALESCE(effective_start,'0000-01-01')) AS lo, "
+                    f"       MAX(COALESCE(effective_end,'9999-12-31')) AS hi, "
+                    f"       COUNT(*) AS n, "
+                    f"       SUM(effective_end IS NULL) AS open_n "
+                    f"FROM {q}provision_versions WHERE provision_id = ?",
+                    (prov["id"],),
+                ).fetchone() if prov else None
+                if b and b["n"] and as_of_date >= b["lo"]:
+                    base = {
+                        "found": True, "corpus": ckind,
+                        "citation": prov["citation"],
+                        "heading": prov["heading"],
+                        "status": prov["status"],
+                        "as_of_date": as_of_date,
+                        "in_force": False, "text": None,
+                    }
+                    if not b["open_n"] and as_of_date >= b["hi"]:
+                        verb = ("repealed" if prov["status"] == "repealed"
+                                else "no longer in force")
+                        base["final_effective_end"] = b["hi"]
+                        base["warning"] = (
+                            f"{prov['citation']} was {verb} effective "
+                            f"{b['hi']}; no text was in force on {as_of_date}."
+                            f" See get_authority_history for the amendment "
+                            f"chronology."
+                            + (f" {cw_note}" if cw_note else ""))
+                        return base
+                    pred = conn.execute(
+                        f"SELECT effective_start, effective_end "
+                        f"FROM {q}provision_versions WHERE provision_id = ? "
+                        f"AND effective_end IS NOT NULL AND effective_end <= ? "
+                        f"ORDER BY effective_end DESC LIMIT 1",
+                        (prov["id"], as_of_date)).fetchone()
+                    nxt = conn.execute(
+                        f"SELECT MIN(COALESCE(effective_start,'0000-01-01')) AS s "
+                        f"FROM {q}provision_versions WHERE provision_id = ? "
+                        f"AND COALESCE(effective_start,'0000-01-01') > ?",
+                        (prov["id"], as_of_date)).fetchone()
+                    if pred and nxt and nxt["s"]:
+                        base["warning"] = (
+                            f"No version of {prov['citation']} was in force "
+                            f"on {as_of_date}: the version effective "
+                            f"{pred['effective_start']} ended "
+                            f"{pred['effective_end']}, and the next took "
+                            f"effect {nxt['s']}. See get_authority_history."
+                            + (f" {cw_note}" if cw_note else ""))
+                        return base
+                # capture gap: fall back to the provision's earliest captured
+                # version with a clear warning rather than nothing — earlier
+                # text may exist but is not yet captured.
+                if prov:
+                    row = conn.execute(
+                        f"SELECT p.citation, p.heading, p.status, v.* "
+                        f"FROM {q}provisions p JOIN {q}provision_versions v "
+                        f"  ON v.provision_id = p.id WHERE p.id = ? "
+                        f"ORDER BY COALESCE(v.effective_start,'0000-01-01') ASC LIMIT 1",
+                        (prov["id"],),
+                    ).fetchone()
+                    if row:
+                        warning = (
+                            f"No captured text is dated on or before {as_of_date}; "
+                            f"returning the earliest captured version (effective "
+                            f"{row['effective_start']}). Earlier text may exist but is "
+                            f"not yet captured — see get_authority_history for the "
+                            f"amendment chronology."
+                        )
+                if cw_note:
+                    warning = (warning + " " if warning else "") + cw_note
+        if not row:
+            asof = f" in force on {as_of_date}" if as_of_date else ""
+            return {"found": False, "citation": citation, "corpus": ckind,
+                    "error": f"No provision matching {citation!r}{asof}."}
+        # cross-link: how many opinions construe this authority (jetcite's
+        # normalized form equals the canonical citation). Constitution
+        # provisions union in their era-gated pre-1981 predecessor cites.
+        la_preds = (_const_predecessor_cites(conn, row["citation"])
+                    if ckind == "const" else [])
+        la_where, la_params = _const_citing_where(row["citation"], la_preds)
+        construing = conn.execute(
+            f"SELECT COUNT(DISTINCT tc.opinion_id) AS n FROM text_citations tc "
+            f"JOIN opinions o ON o.id = tc.opinion_id WHERE {la_where}",
+            la_params,
+        ).fetchone()["n"]
+        result = {
+            "found": True,
+            "corpus": ckind,
+            "citation": row["citation"],
+            "heading": row["heading"],
+            "status": row["status"],
+            "as_of_date": as_of_date,
+            "effective_start": row["effective_start"],
+            "effective_end": row["effective_end"],
+            "is_current": row["effective_end"] is None,
+            "source_authority": row["source_authority"],
+            "source_url": row["source_url"],
+            "text": row["text_content"],
+            "opinions_construing": construing,
+        }
+        if la_preds:
+            result["historical_cites"] = [
+                p["normalized"] + (f" (from {p['lineage_from']})"
+                                   if p["lineage_from"] else "")
+                for p in la_preds
+            ]
+        # cross-link: provision → provision references (where extracted).
+        if _has_xrefs(conn, alias):
+            result["cross_references"] = conn.execute(
+                f"SELECT COUNT(*) AS n FROM {alias}.provision_xrefs "
+                f"WHERE version_id = ?", (row["id"],),
+            ).fetchone()["n"]
+        my_key = corpus.cite_key(row["citation"])
+        in_where, in_params = _inbound_xref_where(as_of_date)
+        referenced_by = 0
+        any_xrefs = False
+        for _name, al in _attached_corpora(conn).items():
+            if not _has_xrefs(conn, al):
+                continue
+            any_xrefs = True
+            referenced_by += conn.execute(
+                f"""SELECT COUNT(DISTINCT x.provision_id) AS n
+                    FROM {al}.provision_xrefs x
+                    JOIN {al}.provision_versions v ON v.id = x.version_id
+                    WHERE x.to_cite_key = ? AND {in_where}""",
+                [my_key] + in_params,
+            ).fetchone()["n"]
+        if any_xrefs:
+            result["referenced_by_provisions"] = referenced_by
+        # cross-link: how many ND Attorney General opinions cite this authority.
+        # Constitution provisions union in the era-gated predecessor cites
+        # (the AG corpus reaches back to 1942, four decades pre-renumbering).
+        if _ag_attached(conn):
+            ag_where, ag_params = _const_citing_where(
+                row["citation"], la_preds, date_col="a.date_issued")
+            result["ag_opinions_construing"] = conn.execute(
+                f"SELECT COUNT(DISTINCT tc.ag_opinion_id) AS n "
+                f"FROM ag.ag_text_citations tc "
+                f"JOIN ag.ag_opinions a ON a.id = tc.ag_opinion_id "
+                f"WHERE {ag_where}",
+                ag_params,
+            ).fetchone()["n"]
+        # cross-link: how many JEAC opinions cite this authority (chiefly the
+        # Code of Judicial Conduct canons).
+        if _jeac_attached(conn):
+            n_jeac = conn.execute(
+                "SELECT COUNT(DISTINCT jeac_opinion_id) AS n FROM jeac.jeac_text_citations WHERE normalized = ?",
+                (row["citation"],),
+            ).fetchone()["n"]
+            if n_jeac:
+                result["jeac_opinions_construing"] = n_jeac
+        if warning:
+            result["warning"] = warning
+        if provenance:
+            # The returned text is a provision linked across the 1981 reorganization,
+            # not the literal citation asked for — say so explicitly.
+            result["requested_citation"] = provenance["requested_citation"]
+            result["returned_provision"] = provenance["returned_provision"]
+            result["relation"] = provenance["relation"]
+            result["linked_via"] = provenance["linked_via"]
+            result["note"] = provenance["note"]
+        # NDCC subsection pinpoint: if the citation carries a glued subsection
+        # path (e.g. "§ 12.1-20-03(2)(a)"), resolve it against the structured
+        # subsection index and return just that subtree's text.
+        if ckind == "ndcc":
+            tail = ""
+            tok = spec.get("token")
+            if tok:
+                idx = citation.find(tok)
+                if idx >= 0:
+                    m = re.match(r"((?:\([0-9a-zA-Z]{1,4}\))+)", citation[idx + len(tok):])
+                    if m:
+                        tail = m.group(1)
+            if tail:
+                subs = corpus.lookup_subsection(conn, alias, row["citation"], tail, as_of_date)
+                pin = corpus.normalize_pincite(tail)
+                if subs:
+                    result["pinpoint"] = {
+                        "pincite": f"{row['citation']}{pin}",
+                        "text": " ".join(s["text"] for s in subs),
+                        "subsections": [
+                            {"pincite": s["pincite"], "label": s["printed_label"], "text": s["text"]}
+                            for s in subs
+                        ],
+                    }
+                else:
+                    result["pinpoint_note"] = (
+                        f"Subsection {pin} is not separately indexed for "
+                        f"{row['citation']} (some complex sections — compacts, "
+                        f"schedules — are stored whole); read it within the full text."
+                    )
+        # Court-rule subsection pinpoint: a parenthesized chain glued to the
+        # rule number ("N.D.R.Civ.P. 56(e)(1)") resolves against the rules
+        # subsection index exactly like the NDCC branch above, and carries the
+        # web anchor ("e-1") that deep-links the provision page. §-style rule
+        # pinpoints ("Admin. R. 22, § 3(c)") and versions the precision gate
+        # held out of the index fall back to the whole-rule note. (Statutes/
+        # const use "§" for the section itself, so only flag the rule corpus.)
+        if ckind == "rule" and _PINPOINT_RE.search(citation):
+            tail = ""
+            tok = spec.get("token")
+            if tok:
+                idx = citation.find(tok)
+                if idx >= 0:
+                    m = re.match(r"((?:\([0-9a-zA-Z]{1,4}\))+)", citation[idx + len(tok):])
+                    if m:
+                        tail = m.group(1)
+            subs = corpus.lookup_subsection(
+                conn, alias, row["citation"], tail, as_of_date) if tail else []
+            if subs:
+                pin = corpus.normalize_pincite(tail)
+                result["pinpoint"] = {
+                    "pincite": f"{row['citation']}{pin}",
+                    "anchor": corpus.pincite_to_anchor(pin),
+                    "text": " ".join(s["text"] for s in subs),
+                    "subsections": [
+                        {"pincite": s["pincite"], "label": s["printed_label"], "text": s["text"]}
+                        for s in subs
+                    ],
+                }
+            else:
+                result["note"] = (
+                    f"Subsection not separately indexed for {row['citation']}; "
+                    "returning the full rule text. Read the relevant subsection "
+                    "within it."
+                )
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def constitutional_amendments(
+    date_from: str | None = None, date_to: str | None = None, limit: int = 200,
+) -> dict:
+    """List the chronology of amendments to the ND Constitution.
+
+    Returns every amendment from ndconst.org's authoritative table (1889–present,
+    ~167 amendments) with its effective date, election date, affected section(s),
+    subject, and a link to the enacting session law. Optionally filter by
+    effective-date range (ISO ``YYYY-MM-DD``). Note: pre-1996 amendments list the
+    section numbers in effect at the time (the Constitution was renumbered in
+    1996), so those do not map to current article/section citations.
+
+    Args:
+        date_from: Only amendments effective on/after this ISO date.
+        date_to: Only amendments effective on/before this ISO date.
+        limit: Max amendments to return (default 200).
+    """
+    conn = _conn_with_corpora()
+    try:
+        alias = _attached_corpora(conn).get("const")
+        if not alias:
+            return {"found": False,
+                    "error": "The ND Constitution corpus is not installed on this server."}
+        where = ["effective_date IS NOT NULL"]
+        params: list = []
+        if date_from:
+            where.append("effective_date >= ?"); params.append(date_from)
+        if date_to:
+            where.append("effective_date <= ?"); params.append(date_to)
+        params.append(min(limit, 500))
+        rows = conn.execute(
+            f"""SELECT DISTINCT amendment_number, effective_date, election_date,
+                       affected, raw AS subject, source_url
+                FROM {alias}.amendments
+                WHERE {' AND '.join(where)}
+                ORDER BY effective_date DESC, amendment_number LIMIT ?""",
+            params,
+        ).fetchall()
+        return {
+            "found": True,
+            "date_from": date_from,
+            "date_to": date_to,
+            "count": len(rows),
+            "amendments": [
+                {
+                    "amendment_number": r["amendment_number"],
+                    "effective_date": r["effective_date"],
+                    "election_date": r["election_date"],
+                    "affected": r["affected"],
+                    "subject": r["subject"],
+                    "source_url": r["source_url"],
+                }
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_authority_history(citation: str) -> dict:
+    """Show the amendment history of a ND constitutional, statutory, court-rule,
+    or administrative provision — every version with its effective dates and the
+    authority that enacted or amended it.
+
+    Use this to see how a provision changed over time, then call
+    ``lookup_authority`` with a specific ``as_of_date`` to read any version in
+    full. Version text is truncated here; full text comes from lookup_authority.
+
+    Args:
+        citation: A constitutional, statutory, court-rule, or admin-code reference.
+    """
+    spec = research.normalize_authority(citation)
+    ckind = KIND_TO_CORPUS.get(spec["kind"])
+    if not ckind:
+        return {"error": f"Couldn't recognize a ND primary-law citation in: {citation}"}
+
+    conn = _conn_with_corpora()
+    try:
+        alias = _attached_corpora(conn).get(ckind)
+        if not alias:
+            return {"found": False, "citation": citation, "corpus": ckind,
+                    "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed."}
+        q = f"{alias}."
+        stored_key = corpus.resolve_cite_key(conn, alias, _best_cite(conn, alias, spec, citation))
+        prov = conn.execute(
+            f"SELECT id, citation, heading, status FROM {q}provisions WHERE cite_key = ?",
+            (stored_key,),
+        ).fetchone() if stored_key else None
+        if not prov:
+            return {"found": False, "citation": citation, "corpus": ckind,
+                    "error": f"No provision matching {citation!r}."}
+        versions = conn.execute(
+            f"""SELECT effective_start, effective_end, source_authority, source_url,
+                       substr(text_content, 1, 240) AS excerpt, length(text_content) AS len
+                FROM {q}provision_versions WHERE provision_id = ?
+                ORDER BY COALESCE(effective_start, '0000-01-01')""",
+            (prov["id"],),
+        ).fetchall()
+        # Amendment events — the full chronology, including amendments whose
+        # prior full text has not yet been captured as a provision_version.
+        # For the constitution, merge the parallel chronologies (session-law
+        # events under the original §-numbering + ndconst.org events under the
+        # modern numbering + the unlinked pre-1981 index rows) into one deduped
+        # timeline across the 1981 renumbering seam.
+        merged_events = None
+        if ckind == "const" and _const_crosswalk_available(conn, alias):
+            merged_events = _const_merged_amendments(conn, alias, prov["id"],
+                                                     prov["citation"])
+        amendments = conn.execute(
+            f"""SELECT action, effective_date, raw_date, election_date, affected,
+                       amendment_number, authority, source_url, raw
+                FROM {q}amendments WHERE provision_id = ?
+                ORDER BY COALESCE(effective_date, '0000-01-01')""",
+            (prov["id"],),
+        ).fetchall() if merged_events is None else []
+        result = {
+            "found": True,
+            "corpus": ckind,
+            "citation": prov["citation"],
+            "heading": prov["heading"],
+            "status": prov["status"],
+            "version_count": len(versions),
+            "captured_versions": [
+                {
+                    "effective_start": v["effective_start"],
+                    "effective_end": v["effective_end"],
+                    "is_current": v["effective_end"] is None,
+                    "source_authority": v["source_authority"],
+                    "source_url": v["source_url"],
+                    "excerpt": v["excerpt"] + ("…" if v["len"] > 240 else ""),
+                }
+                for v in versions
+            ],
+            "amendment_count": len(merged_events if merged_events is not None
+                                   else amendments),
+            "amendments": merged_events if merged_events is not None else [
+                {
+                    "amendment_number": a["amendment_number"],
+                    "action": a["action"],
+                    "effective_date": a["effective_date"],
+                    "election_date": a["election_date"],
+                    "affected": a["affected"],
+                    "subject": a["raw"],
+                    "authority": a["authority"],
+                    "source_url": a["source_url"],
+                }
+                for a in amendments
+            ],
+        }
+        has_events = bool(result["amendments"])
+        if versions and not has_events:
+            result["note"] = (
+                "No amendment events recorded; the captured version is the text "
+                "as published. (Amendment chronology may be incomplete for v1.)"
+            )
+        elif has_events:
+            result["note"] = (
+                "Amendment events list the chronology; full prior text is only "
+                "available for captured_versions. Use lookup_authority(..., "
+                "as_of_date=) to read a captured version."
+            )
+            if merged_events is not None:
+                result["note"] += (
+                    " Events recorded under this provision's pre-1981 and modern "
+                    "numberings are merged into one timeline (see each event's "
+                    "recorded_under)."
+                )
+        # 1889<->1981 renumbering lineage: link an original §-cite / amendment
+        # article to its modern home, or a modern cite to its original predecessor.
+        if ckind == "const" and _const_crosswalk_available(conn, alias):
+            preds, succs = _const_crosswalk_links(conn, alias, prov["citation"])
+            reorg = {}
+            if preds:
+                reorg["renumbered_from"] = sorted(set(preds))
+            if succs == ["__appendix__"]:
+                reorg["renumbered_to"] = "repealed / retained in appendix (no modern successor)"
+            elif succs:
+                reorg["renumbered_to"] = sorted(set(succs))
+            if reorg:
+                reorg["source"] = _REORG_SOURCE
+                reorg["note"] = (
+                    "The 1981 reorganization renumbered the Constitution; read either "
+                    "citation at any date via lookup_authority(..., as_of_date=)."
+                )
+                result["reorganization"] = reorg
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def search_authority(
+    query: str, corpus_name: str | None = None,
+    as_of_date: str | None = None, limit: int = 20,
+) -> dict:
+    """Full-text search across ND primary law (Constitution, court rules,
+    statutes, administrative code).
+
+    Searches provision text and headings. By default returns the version
+    currently in force; pass ``as_of_date`` (ISO ``YYYY-MM-DD``) to search the
+    text as it read on that date. Restrict to one corpus with ``corpus_name``
+    ('const', 'rule', 'ndcc', or 'admin'). Each hit's ``excerpt`` is the
+    matched passage with the matching terms marked ``>>>term<<<`` (the same
+    convention as search_opinions); when the match falls only in the citation
+    or heading, the excerpt is that field instead.
+
+    Args:
+        query: Search terms (FTS5 syntax; e.g. 'search seizure', '"probable cause"').
+        corpus_name: Optional corpus filter ('const' | 'rule' | 'ndcc' | 'admin').
+        as_of_date: Optional ISO date; search text in force then (default: current).
+        limit: Max results across all corpora (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = _conn_with_corpora()
+    try:
+        attached = _attached_corpora(conn)
+        if corpus_name:
+            if corpus_name not in corpus.CORPORA:
+                return {"error": f"Unknown corpus {corpus_name!r}; expected one of {list(corpus.CORPORA)}."}
+            attached = {k: v for k, v in attached.items() if k == corpus_name}
+        if not attached:
+            return {"found": False, "query": query,
+                    "error": "No matching primary-law corpus is installed on this server."}
+
+        # Collect each corpus's best matches separately, then round-robin merge
+        # so no single corpus crowds the others out of a small result set.
+        per_corpus: dict[str, list[dict]] = {}
+        for name, alias in attached.items():
+            q = f"{alias}."
+            if as_of_date is None:
+                where = "v.id = p.current_version_id"
+                params: tuple = (query, limit)
+            else:
+                where = ("COALESCE(v.effective_start,'0000-01-01') <= ? "
+                         "AND COALESCE(v.effective_end, ?) > ?")
+                params = (query, as_of_date, corpus.OPEN_ENDED, as_of_date, limit)
+            # Two snippets: the text-column passage is what a reader wants,
+            # but when the only match is in the citation/heading column it
+            # comes back unmarked, so fall back to the best-scoring column.
+            sql = (
+                f"SELECT p.citation, p.heading, v.effective_start, v.effective_end, "
+                f"       snippet(f.provisions_fts, 2, '>>>', '<<<', '…', 40) AS excerpt, "
+                f"       snippet(f.provisions_fts, -1, '>>>', '<<<', '…', 40) AS excerpt_any "
+                f"FROM {q}provisions_fts f "
+                f"JOIN {q}provision_versions v ON v.id = f.rowid "
+                f"JOIN {q}provisions p ON p.id = v.provision_id "
+                f"WHERE f.provisions_fts MATCH ? AND {where} "
+                f"ORDER BY rank LIMIT ?"
+            )
+            try:
+                rows = conn.execute(sql, params).fetchall()
+            except sqlite3.OperationalError as e:
+                return {"error": f"search failed for corpus {name}: {e}"}
+            per_corpus[name] = [{
+                "corpus": name,
+                "citation": r["citation"],
+                "heading": r["heading"],
+                "effective_start": r["effective_start"],
+                "is_current": r["effective_end"] is None,
+                "excerpt": r["excerpt"] if ">>>" in r["excerpt"] else r["excerpt_any"],
+            } for r in rows]
+
+        # Round-robin: take the i-th best from each corpus in turn until full.
+        hits: list[dict] = []
+        for i in range(max((len(v) for v in per_corpus.values()), default=0)):
+            for name in attached:
+                if i < len(per_corpus[name]):
+                    hits.append(per_corpus[name][i])
+            if len(hits) >= limit:
+                break
+        hits = hits[:limit]
+        return {
+            "found": bool(hits),
+            "query": query,
+            "as_of_date": as_of_date,
+            "corpora_searched": list(attached),
+            "count": len(hits),
+            "results": hits,
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def more_like_this(citation: str, limit: int = 10) -> list[dict]:
+    """Find opinions doctrinally similar to a given case (hybrid ranking).
+
+    Blends two signals: co-citation (sharing the same cited authorities) and
+    keyword overlap (shared salient terms). Each result reports both sub-scores
+    so the ranking is explainable.
+
+    Args:
+        citation: A citation or case name identifying the seed opinion.
+        limit: Maximum related opinions (default 10, max 30).
+    """
+    limit = min(limit, 30)
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        row, _matched_by, candidates = _resolve_opinion(conn, citation)
+        if row is None:
+            err = {"error": (f"No opinion found for: {citation}" if not candidates
+                             else "Ambiguous — multiple opinions match.")}
+            if candidates:
+                err["candidates"] = candidates
+            return [err]
+
+        oid = row["id"]
+
+        cocite = conn.execute(
+            """SELECT tc2.opinion_id AS oid, COUNT(*) AS shared
+               FROM text_citations tc1
+               JOIN text_citations tc2 ON tc2.normalized = tc1.normalized
+               WHERE tc1.opinion_id = ? AND tc2.opinion_id != ?
+               GROUP BY tc2.opinion_id HAVING shared >= 2
+               ORDER BY shared DESC LIMIT 60""",
+            (oid, oid),
+        ).fetchall()
+        cocite_map = {r["oid"]: r["shared"] for r in cocite}
+
+        kw_map: dict[int, float] = {}
+        terms = research.salient_terms(row["text_content"], 12)
+        if terms:
+            fts = " OR ".join(f'"{t}"' for t in terms)
+            try:
+                kw_rows = conn.execute(
+                    """SELECT opinions_fts.rowid AS oid, rank
+                       FROM opinions_fts WHERE opinions_fts MATCH ?
+                       ORDER BY rank LIMIT 80""",
+                    (fts,),
+                ).fetchall()
+                for r in kw_rows:
+                    if r["oid"] != oid:
+                        kw_map[r["oid"]] = -float(r["rank"])  # higher = better
+            except sqlite3.OperationalError:
+                pass
+
+        cands = set(cocite_map) | set(kw_map)
+        if not cands:
+            return []
+        max_shared = max(cocite_map.values()) if cocite_map else 1
+        kw_vals = list(kw_map.values())
+        kw_lo, kw_hi = (min(kw_vals), max(kw_vals)) if kw_vals else (0.0, 1.0)
+        kw_span = (kw_hi - kw_lo) or 1.0
+
+        scored = []
+        for cid in cands:
+            shared = cocite_map.get(cid, 0)
+            n_cite = shared / max_shared
+            n_kw = ((kw_map[cid] - kw_lo) / kw_span) if cid in kw_map else 0.0
+            scored.append((0.5 * n_cite + 0.5 * n_kw, shared, n_kw, cid))
+        scored.sort(reverse=True)
+
+        results = []
+        for score, shared, n_kw, cid in scored[:limit]:
+            crow = conn.execute(
+                "SELECT id, case_name, date_filed FROM opinions WHERE id = ?", (cid,)
+            ).fetchone()
+            results.append({
+                "oid": cid,
+                "case_name": crow["case_name"],
+                "date_filed": crow["date_filed"],
+                "citations": _get_citations(conn, cid),
+                "shared_authorities": shared,
+                "keyword_score": round(n_kw, 3),
+                "score": round(score, 3),
+            })
+        return results
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def detect_overruled_in_draft(
+    draft_text: str,
+    scan_limit: int = 200,
+    max_cases: int = 60,
+) -> dict:
+    """Proofreading pass: flag cited cases that later opinions may have
+    overruled, superseded, abrogated, or distinguished.
+
+    Extracts every ND / N.W. / N.D. case citation in the draft, resolves each
+    to a corpus opinion, and runs it through the citator. Cases with a possible-
+    negative or distinguished signal are flagged with the citing context for
+    human verification; the rest are reported as clear.
+
+    IMPORTANT (same caution as the citator): signals are heuristic and
+    sentence-local, NOT a "still good law" verdict. ALWAYS read each flagged
+    entry — and the full citing opinion — before relying on it. Citations that
+    don't resolve to a corpus opinion (foreign/federal cases, or typos) are
+    listed under `unresolved` and were NOT checked; absence of a flag is not
+    assurance a case is good law.
+
+    Args:
+        draft_text: The text of the draft opinion or memo.
+        scan_limit: Max citing opinions to scan per cited case (default 200).
+        max_cases: Max distinct cited cases to check (default 60).
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        cites = research.extract_case_cites(draft_text)
+        resolved: dict[int, str] = {}
+        unresolved: list[str] = []
+        for c in cites:
+            r = conn.execute(
+                "SELECT opinion_id FROM citations WHERE citation = ?", (c,)
+            ).fetchone()
+            if r:
+                resolved.setdefault(r["opinion_id"], c)
+            else:
+                unresolved.append(c)
+
+        oids = list(resolved)[:max_cases]
+        flagged, clear = [], []
+        for oid in oids:
+            total, scanned, counts, entries = _scan_treatment(conn, oid, scan_limit)
+            neg = [e for e in entries
+                   if e["signal"] in (memo.NEGATIVE, memo.DISTINGUISHED)]
+            crow = conn.execute(
+                "SELECT case_name FROM opinions WHERE id = ?", (oid,)
+            ).fetchone()
+            item = {
+                "case_name": crow["case_name"],
+                "cited_as": resolved[oid],
+                "primary_citation": proofread.primary_cite(_citation_rows(conn, oid)),
+                "oid": oid,
+                "total_citing": total,
+                "scanned": scanned,
+                "signal_counts": counts,
+            }
+            if neg:
+                neg.sort(key=lambda e: e["date_filed"] or "", reverse=True)
+                neg.sort(key=lambda e: memo.SIGNAL_ORDER[e["signal"]])
+                item["treatment_entries"] = neg
+                flagged.append(item)
+            else:
+                clear.append(item)
+
+        flagged.sort(key=lambda i: i["signal_counts"][memo.NEGATIVE], reverse=True)
+
+        return {
+            "cases_cited": len(resolved),
+            "checked": len(oids),
+            "flagged_count": len(flagged),
+            "flagged": flagged,
+            "clear": clear,
+            "unresolved": unresolved,
+            "truncated": len(resolved) > max_cases,
+            "note": (
+                "Heuristic proofreading aid, NOT a still-good-law verdict. "
+                "Treatment signals are sentence-local and a citing sentence may "
+                "use a treatment word about a different case — ALWAYS read each "
+                "flagged entry and the full citing opinion. `unresolved` cites "
+                "(foreign/federal or not in the corpus) were NOT checked, and an "
+                "absent flag is not assurance a case remains good law."
+            ),
+        }
+    finally:
+        conn.close()
+
+
+_SEVERITY_RANK = {"S1": 1, "S2": 2, "S3": 3, "S4": 4, "S5": 5}
+_DRAFT_CHECKS = ("citations", "quotations", "treatment", "currency")
+
+
+def _draft_ctx(draft_text: str, start: int, end: int) -> str:
+    return memo.context_window(draft_text, start, end, before=100, after=100)
+
+
+def _flag(severity: str, ftype: str, message: str, **evidence) -> dict:
+    return {"severity": severity, "type": ftype, "message": message, **evidence}
+
+
+@mcp.tool()
+def check_draft(
+    draft_text: str,
+    as_of_date: str | None = None,
+    checks: list[str] | None = None,
+    max_cases: int = 60,
+    max_quotes: int = 40,
+    scan_limit: int = 200,
+) -> dict:
+    """One-call cite-check of a draft opinion, memo, or brief: verify every
+    citation, every attributed quotation, negative treatment of cited cases,
+    and the currency of cited authorities — a severity-ranked flag report.
+
+    Checks (all on by default, select with `checks`):
+      citations  — every ND case cite resolves (typo catch), case-name drift
+                   vs the canonical caption, missing neutral cite, statutory
+                   subsection pinpoints validated against the provision;
+      quotations — every quotation attributed to a nearby cite is located in
+                   that authority's text (typography-tolerant; word-level diff
+                   on mismatch); statutes/rules/const quotes are also retried
+                   against OTHER captured versions to catch quoting since-
+                   amended text;
+      treatment  — cited cases run through the citator; possible-negative /
+                   distinguished citing sentences surface (same engine as
+                   detect_overruled_in_draft, which remains the cheap
+                   treatment-only pass);
+      currency   — repealed / superseded / not-in-force authorities, checked
+                   at `as_of_date` when given (offense/contract date).
+
+    Severities: S1 misquotation or quote-of-superseded-text · S2 citation
+    doesn't resolve · S3 possible negative treatment · S4 authority currency /
+    bad pinpoint · S5 name drift / missing neutral cite.
+
+    Heuristic and NON-authoritative throughout: extraction is regex-based
+    (foreign/federal authority is listed as unchecked, not verified), quote
+    attribution follows the nearest-cite convention and can misattribute,
+    bracketed alterations and ellipses in quotes surface as differences, and
+    treatment signals are sentence-local. Read every flag's context before
+    acting on it. A draft spanning several operative dates needs per-authority
+    lookup_authority calls — `as_of_date` anchors the whole draft.
+
+    Args:
+        draft_text: The draft's full text.
+        as_of_date: Optional ISO date anchoring authority currency (default:
+            current law).
+        checks: Subset of ["citations","quotations","treatment","currency"]
+            (default all).
+        max_cases: Citator budget — max distinct cases scanned (default 60).
+        max_quotes: Max attributed quotations verified (default 40).
+        scan_limit: Citing-opinion scan cap per case (default 200).
+    """
+    active = set(checks) if checks else set(_DRAFT_CHECKS)
+    unknown = active - set(_DRAFT_CHECKS)
+    if unknown:
+        return {"error": f"Unknown checks {sorted(unknown)}; "
+                         f"valid: {list(_DRAFT_CHECKS)}"}
+
+    ext = draftcheck.extract_all(draft_text)
+    flags: list[dict] = []
+    clear_citations: list[dict] = []
+    unchecked: dict = {}
+
+    conn = _conn_with_corpora()
+    try:
+        attached = _attached_corpora(conn)
+
+        # ---- cases: resolve every distinct cite --------------------------
+        by_cite: dict[str, list[dict]] = {}
+        for c in ext["cases"]:
+            by_cite.setdefault(c["citation"], []).append(c)
+        resolved_cite_to_oid: dict[str, int] = {}
+        op_info: dict[int, dict] = {}
+        for cite, spans in by_cite.items():
+            row = conn.execute(
+                "SELECT o.* FROM citations c JOIN opinions o ON o.id = c.opinion_id "
+                "WHERE c.citation = ?", (cite,),
+            ).fetchone()
+            if row is None:
+                if "citations" in active:
+                    flags.append(_flag(
+                        "S2", "unresolved_case_cite",
+                        f"Citation {cite!r} does not resolve to any ND opinion "
+                        "— possible typo (or a non-ND case in an ND reporter "
+                        "format).",
+                        cited_as=cite,
+                        draft_context=_draft_ctx(draft_text, spans[0]["start"],
+                                                 spans[0]["end"]),
+                    ))
+                continue
+            resolved_cite_to_oid[cite] = row["id"]
+            info = op_info.setdefault(
+                row["id"], {"row": row, "cites": set(), "antecedents": set(),
+                            "first_span": spans[0]})
+            info["cites"].add(cite)
+            for s in spans:
+                if s.get("antecedent"):
+                    info["antecedents"].add(s["antecedent"])
+
+        if "citations" in active:
+            for oid, info in op_info.items():
+                row = info["row"]
+                canon_cmp = draftcheck.strip_caption_annotations(
+                    row["case_name"])
+                for name in sorted(info["antecedents"]):
+                    if not (proofread.names_match(name, row["case_name"])
+                            or proofread.names_match(name, canon_cmp)):
+                        flags.append(_flag(
+                            "S5", "case_name_drift",
+                            f"Draft cites {sorted(info['cites'])[0]} as "
+                            f"{name!r} but the canonical caption is "
+                            f"{row['case_name']!r} — verify the right case is "
+                            "cited.",
+                            written_name=name,
+                            canonical_name=row["case_name"],
+                            similarity=round(proofread.name_similarity(
+                                name, row["case_name"]), 3),
+                            cited_as=sorted(info["cites"]),
+                        ))
+                crows = _citation_rows(conn, oid)
+                neutral = next((c["citation"] for c in crows
+                                if c["reporter"] == "ND-neutral"), None)
+                if neutral and neutral not in info["cites"]:
+                    flags.append(_flag(
+                        "S5", "missing_neutral_cite",
+                        f"{row['case_name']} is cited without its neutral "
+                        f"cite {neutral}.",
+                        cited_as=sorted(info["cites"]),
+                        suggested_citation=proofread.format_redbook(
+                            row["case_name"],
+                            proofread.order_citations(crows)[0],
+                            row["date_filed"]),
+                    ))
+                clear_citations.append({
+                    "type": "case",
+                    "cited_as": sorted(info["cites"]),
+                    "canonical": row["case_name"],
+                    "primary_citation": proofread.primary_cite(crows),
+                })
+
+        # ---- authorities: resolve + currency + pinpoint oracle -----------
+        by_auth: dict[tuple[str, str], list[dict]] = {}
+        for a in ext["authorities"]:
+            by_auth.setdefault((a["kind"], a["citation"]), []).append(a)
+        auth_provisions: dict[str, sqlite3.Row] = {}   # citation -> version row
+        for (kind, citation), spans in sorted(by_auth.items(),
+                                              key=lambda kv: kv[0][1]):
+            alias = attached.get(KIND_TO_CORPUS[kind])
+            if not alias:
+                unchecked.setdefault("corpora_not_installed", set()).add(
+                    corpus.CORPORA[KIND_TO_CORPUS[kind]]["label"])
+                continue
+            q = f"{alias}."
+            if citation.startswith("N.D.C.C. ch. "):
+                chnum = citation.rsplit(" ", 1)[1]
+                exists = conn.execute(
+                    f"SELECT 1 FROM {q}provisions WHERE citation LIKE ? LIMIT 1",
+                    (f"N.D.C.C. § {chnum}-%",),
+                ).fetchone()
+                if exists:
+                    clear_citations.append({"type": kind, "cited_as": citation,
+                                            "canonical": citation})
+                elif "citations" in active:
+                    flags.append(_flag(
+                        "S2", "unresolved_authority",
+                        f"No N.D.C.C. chapter {chnum} exists — possible typo.",
+                        cited_as=citation,
+                        draft_context=_draft_ctx(draft_text, spans[0]["start"],
+                                                 spans[0]["end"]),
+                    ))
+                continue
+            prov = corpus.lookup_provision_version(conn, alias, citation,
+                                                   as_of_date)
+            if prov is None:
+                key = corpus.resolve_cite_key(conn, alias, citation)
+                if key is not None and "currency" in active:
+                    flags.append(_flag(
+                        "S4", "no_version_in_force",
+                        f"{citation} exists but has no version in force on "
+                        f"{as_of_date or 'the current date'} (repealed, or "
+                        "enacted later).",
+                        cited_as=citation, as_of_date=as_of_date,
+                        draft_context=_draft_ctx(draft_text, spans[0]["start"],
+                                                 spans[0]["end"]),
+                    ))
+                elif key is None and "citations" in active:
+                    flags.append(_flag(
+                        "S2", "unresolved_authority",
+                        f"{citation} does not match any provision in the "
+                        "corpus — possible typo.",
+                        cited_as=citation,
+                        draft_context=_draft_ctx(draft_text, spans[0]["start"],
+                                                 spans[0]["end"]),
+                    ))
+                continue
+            auth_provisions[citation] = prov
+            if "currency" in active and prov["status"] != "active":
+                flags.append(_flag(
+                    "S4", "authority_not_active",
+                    f"{prov['citation']} is {prov['status']}"
+                    + (f" (a version was in force on {as_of_date})"
+                       if as_of_date else "")
+                    + " — confirm the draft means the provision as it stood, "
+                      "not current law.",
+                    cited_as=citation, status=prov["status"],
+                ))
+            if "citations" in active and kind == "statute":
+                pins = {s["pincite"] for s in spans if s.get("pincite")}
+                if pins:
+                    stored = {
+                        r["pincite"] for r in conn.execute(
+                            f"SELECT pincite FROM {q}provision_subsections "
+                            f"WHERE version_id = ?", (prov["id"],))
+                    } if conn.execute(
+                        f"SELECT 1 FROM {q}sqlite_master WHERE type='table' "
+                        f"AND name='provision_subsections'").fetchone() else set()
+                    for p in sorted(pins - stored) if stored else []:
+                        flags.append(_flag(
+                            "S4", "pincite_not_in_provision",
+                            f"The draft pinpoints {prov['citation']}{p}, but "
+                            "the provision's subsection index has no such "
+                            "path — verify the subsection.",
+                            cited_as=f"{citation}{p}",
+                        ))
+            clear_citations.append({
+                "type": kind, "cited_as": citation,
+                "canonical": prov["citation"], "status": prov["status"],
+            })
+
+        # ---- quotations --------------------------------------------------
+        unattributed: list[dict] = []
+        quotes_checked = quotes_clear = quotes_over_budget = 0
+        if "quotations" in active:
+            for qt in ext["quotes"]:
+                cite = qt.get("cite")
+                if cite is None:
+                    unattributed.append({
+                        "quote": qt["quote"][:160]
+                        + ("…" if len(qt["quote"]) > 160 else ""),
+                        "draft_context": _draft_ctx(draft_text, qt["start"],
+                                                    qt["end"]),
+                    })
+                    continue
+                if quotes_checked >= max_quotes:
+                    quotes_over_budget += 1
+                    continue
+                quotes_checked += 1
+                attributed_to = cite["citation"]
+                if cite["kind"] == "case":
+                    oid = resolved_cite_to_oid.get(attributed_to)
+                    if oid is None:
+                        unchecked.setdefault(
+                            "quotes_with_unresolved_target", []).append(
+                                attributed_to)
+                        continue
+                    target_text = op_info[oid]["row"]["text_content"]
+                    target_label = (f"{op_info[oid]['row']['case_name']}, "
+                                    f"{attributed_to}")
+                else:
+                    prov = auth_provisions.get(attributed_to)
+                    if prov is None:
+                        unchecked.setdefault(
+                            "quotes_with_unresolved_target", []).append(
+                                attributed_to)
+                        continue
+                    target_text = prov["text_content"]
+                    target_label = prov["citation"]
+
+                loc = proofread.locate_quote(target_text, qt["quote"])
+                if loc.get("found"):
+                    quotes_clear += 1
+                    continue
+                # Provision miss: retry every other captured version — a hit
+                # means the draft quotes text that has since been amended.
+                drifted = None
+                if cite["kind"] != "case":
+                    prov = auth_provisions[attributed_to]
+                    for v in conn.execute(
+                        f"SELECT id, effective_start, effective_end, text_content "
+                        f"FROM {attached[KIND_TO_CORPUS[cite['kind']]]}."
+                        f"provision_versions WHERE provision_id = ? AND id != ?",
+                        (prov["provision_id"], prov["id"]),
+                    ):
+                        if proofread.locate_quote(
+                                v["text_content"], qt["quote"]).get("found"):
+                            drifted = v
+                            break
+                if drifted is not None:
+                    flags.append(_flag(
+                        "S1", "quotes_superseded_text",
+                        f"The quotation attributed to {target_label} matches "
+                        f"the version in force {drifted['effective_start'] or '?'}"
+                        f" – {drifted['effective_end'] or 'present'}, not the "
+                        f"version in force on "
+                        f"{as_of_date or 'the current date'} — the text has "
+                        "been amended.",
+                        attributed_to=target_label,
+                        quote=qt["quote"][:200],
+                        matched_version={
+                            "effective_start": drifted["effective_start"],
+                            "effective_end": drifted["effective_end"]},
+                        draft_context=_draft_ctx(draft_text, qt["start"],
+                                                 qt["end"]),
+                    ))
+                else:
+                    flags.append(_flag(
+                        "S1", "misquotation",
+                        f"The quotation attributed to {target_label} is not a "
+                        "verbatim match — see the word-level differences (or "
+                        "the attribution heuristic picked the wrong cite).",
+                        attributed_to=target_label,
+                        quote=qt["quote"][:200],
+                        similarity=loc.get("similarity"),
+                        differences=loc.get("differences"),
+                        closest_text=(loc.get("closest_text") or "")[:300] or None,
+                        draft_context=_draft_ctx(draft_text, qt["start"],
+                                                 qt["end"]),
+                    ))
+
+        # ---- treatment ---------------------------------------------------
+        treatment_checked = 0
+        if "treatment" in active:
+            oids = list(op_info)[:max_cases]
+            treatment_checked = len(oids)
+            for oid in oids:
+                total, scanned, counts, entries = _scan_treatment(
+                    conn, oid, scan_limit)
+                neg = [e for e in entries
+                       if e["signal"] in (memo.NEGATIVE, memo.DISTINGUISHED)]
+                if not neg:
+                    continue
+                neg.sort(key=lambda e: e["date_filed"] or "", reverse=True)
+                neg.sort(key=lambda e: memo.SIGNAL_ORDER[e["signal"]])
+                row = op_info[oid]["row"]
+                flags.append(_flag(
+                    "S3", "possible_negative_treatment",
+                    f"{row['case_name']} has "
+                    f"{counts[memo.NEGATIVE]} possible-negative and "
+                    f"{counts[memo.DISTINGUISHED]} distinguished citing "
+                    "sentences — read them before relying on the case.",
+                    cited_as=sorted(op_info[oid]["cites"]),
+                    signal_counts=counts, total_citing=total, scanned=scanned,
+                    treatment_entries=neg[:5],
+                ))
+            if len(op_info) > max_cases:
+                unchecked["cases_over_budget"] = len(op_info) - max_cases
+
+        # ---- report ------------------------------------------------------
+        flags.sort(key=lambda f: _SEVERITY_RANK[f["severity"]])
+        if ext["federal_rules"]:
+            unchecked["federal_rules"] = sorted(
+                {a["citation"] for a in ext["federal_rules"]})
+        if ext["ambiguous_rules"]:
+            unchecked["ambiguous_rule_references"] = [
+                _draft_ctx(draft_text, a["start"], a["end"])
+                for a in ext["ambiguous_rules"][:10]
+            ]
+        if quotes_over_budget:
+            unchecked["quotes_over_budget"] = quotes_over_budget
+        if "corpora_not_installed" in unchecked:
+            unchecked["corpora_not_installed"] = sorted(
+                unchecked["corpora_not_installed"])
+
+        flag_counts: dict[str, int] = {}
+        for f in flags:
+            flag_counts[f["severity"]] = flag_counts.get(f["severity"], 0) + 1
+
+        return {
+            "summary": {
+                "checks_run": sorted(active),
+                "as_of_date": as_of_date,
+                "case_citations": len(by_cite),
+                "cases_resolved": len(op_info),
+                "authority_citations": len(by_auth),
+                "quotations": len(ext["quotes"]),
+                "quotations_checked": quotes_checked,
+                "quotations_clear": quotes_clear,
+                "treatment_checked": treatment_checked,
+                "flag_counts": flag_counts,
+            },
+            "flags": flags,
+            "clear_citations": clear_citations,
+            "unattributed_quotes": unattributed,
+            "unchecked": unchecked,
+            "note": (
+                "Heuristic proofreading aid, NOT a verdict. Extraction is "
+                "regex-based; foreign/federal authority is unchecked; quote "
+                "attribution follows the nearest-cite convention and can "
+                "misattribute (a misquotation flag may mean wrong attribution); "
+                "bracketed alterations and ellipses surface as differences; "
+                "treatment signals are sentence-local. Block quotes without "
+                "quotation marks are not detected. Read each flag's context — "
+                "and drill down with verify_citation / verify_quotation / "
+                "check_treatment / lookup_authority — before acting."
+            ),
+        }
+    finally:
+        conn.close()
+
+
+# ── ND Attorney General opinions ───────────────────────────────────
+
+
+def _ag_conn_or_none():
+    """A read-only connection to the AG opinions DB, or None if not installed."""
+    path = ag_corpus.resolve_ag_db_path()
+    if not path.exists():
+        return None
+    return ag_corpus.get_ag_connection(path, read_only=True)
+
+
+_AG_NOT_INSTALLED = {
+    "error": "The ND Attorney General opinions corpus is not installed on this server."
+}
+
+
+def _ag_opinion_summary(row) -> dict:
+    return {
+        "opinion_number": row["opinion_number"],
+        "citation": row["ag_cite"],
+        "date_issued": _col(row, "date_issued"),
+        "issued_to": _col(row, "issued_to"),
+        "type": _col(row, "opinion_type"),
+        "source_url": _col(row, "source_url"),
+    }
+
+
+@mcp.tool()
+def search_ag_opinions(
+    query: str,
+    opinion_type: str | None = None,
+    year: int | None = None,
+    limit: int = 20,
+) -> list[dict]:
+    """Full-text search across ND Attorney General opinions (1942–present).
+
+    The AG's published opinions construe ND statutes, the Constitution, court
+    rules, and the open-records/open-meetings law. Returns matching opinions
+    ranked by relevance with snippets.
+
+    Args:
+        query: Search terms (FTS5: supports AND, OR, NOT, quoted phrases).
+        opinion_type: Filter by type code — "L" (Legal), "O" (Open
+            Records/Meetings), "F" (Formal), "A" (Advisory).
+        year: Filter to opinions issued in this calendar year.
+        limit: Maximum results (default 20, max 50).
+    """
+    limit = min(limit, 50)
+    conn = _ag_conn_or_none()
+    if conn is None:
+        return _AG_NOT_INSTALLED
+    try:
+        sql = """
+            SELECT a.*, snippet(ag_opinions_fts, 2, '>>>', '<<<', '...', 40) AS snippet, rank
+            FROM ag_opinions_fts
+            JOIN ag_opinions a ON a.id = ag_opinions_fts.rowid
+            WHERE ag_opinions_fts MATCH ?
+        """
+        params: list = [query]
+        if opinion_type:
+            sql += " AND a.type_code = ?"
+            params.append(opinion_type.strip().upper()[:1])
+        if year:
+            sql += " AND substr(a.date_issued, 1, 4) = ?"
+            params.append(str(year))
+        sql += " ORDER BY rank LIMIT ?"
+        params.append(limit)
+        out = []
+        for r in conn.execute(sql, params):
+            d = _ag_opinion_summary(r)
+            d["snippet"] = r["snippet"]
+            out.append(d)
+        return out
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def lookup_ag_opinion(
+    opinion_number: str, include_text: bool = False, text_limit: int = 5000
+) -> dict:
+    """Retrieve a ND Attorney General opinion by its number (e.g. "2015-L-12").
+
+    Returns the opinion's metadata, the ND primary-law authorities it cites
+    (extracted cross-links), and optionally its text.
+
+    Args:
+        opinion_number: The AG opinion number, e.g. "2024-O-01" or "96-L-205".
+        include_text: If true, include the opinion text (truncated to text_limit).
+        text_limit: Max characters of text to return (default 5000).
+    """
+    conn = _ag_conn_or_none()
+    if conn is None:
+        return _AG_NOT_INSTALLED
+    try:
+        key = ag_corpus.cite_key(opinion_number)
+        row = conn.execute(
+            "SELECT * FROM ag_opinions WHERE cite_key = ? OR opinion_number = ?",
+            (key, opinion_number),
+        ).fetchone()
+        if not row:
+            return {"found": False, "error": f"No AG opinion matching {opinion_number!r}."}
+        result = {"found": True, **_ag_opinion_summary(row), "text_source": _col(row, "text_source")}
+        cites = conn.execute(
+            "SELECT normalized, cite_type FROM ag_text_citations "
+            "WHERE ag_opinion_id = ? ORDER BY cite_type, normalized",
+            (row["id"],),
+        ).fetchall()
+        result["cites_authorities"] = [
+            {"citation": c["normalized"], "type": c["cite_type"]} for c in cites
+        ]
+        # inbound: how many court opinions cite THIS AG opinion (see
+        # get_court_opinions_citing_ag for the list). Table may be absent on an
+        # older DB that predates ag_backlink.
+        has_cbc = conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='ag_cited_by_court'"
+        ).fetchone()
+        if has_cbc:
+            result["cited_by_court_count"] = conn.execute(
+                "SELECT COUNT(*) FROM ag_cited_by_court WHERE ag_opinion_id = ?", (row["id"],)
+            ).fetchone()[0]
+        if include_text and row["text_content"]:
+            result["text"] = row["text_content"][:text_limit]
+            result["text_truncated"] = len(row["text_content"]) > text_limit
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_ag_opinions_citing(citation: str, limit: int = 20) -> dict:
+    """Find ND Attorney General opinions that cite a given authority.
+
+    Reverse index: give a statute, constitutional, court-rule, admin-code, or
+    case citation and get the AG opinions that cite it. Statutory/constitutional
+    citations are canonicalized against the installed corpora first, so
+    "N.D.C.C. § 44-04-18" and "44-04-18" both resolve.
+
+    Args:
+        citation: e.g. "N.D.C.C. § 44-04-18", "N.D. Const. art. XI, § 6",
+            "N.D.R.Civ.P. 56", or a case cite like "2020 ND 5".
+        limit: Maximum opinions to return (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = _conn_with_corpora()
+    try:
+        if not _ag_attached(conn):
+            return _AG_NOT_INSTALLED
+        # Canonicalize an authority citation to the stored normalized form.
+        target = citation
+        spec = research.normalize_authority(citation)
+        ckind = KIND_TO_CORPUS.get(spec.get("kind"))
+        if ckind:
+            alias = _attached_corpora(conn).get(ckind)
+            if alias:
+                lookup_cite = _best_cite(conn, alias, spec, citation)
+                prov = corpus.lookup_provision_version(conn, alias, lookup_cite, None)
+                if prov:
+                    target = prov["citation"]
+        # Constitution cites union in the era-gated pre-1981 predecessor
+        # numbering (the AG corpus reaches back to 1942).
+        preds = (_const_predecessor_cites(conn, target)
+                 if ckind == "const" else [])
+        ag_where, ag_params = _const_citing_where(
+            target, preds, date_col="a.date_issued")
+        rows = conn.execute(
+            f"""SELECT a.*, tc.cite_type, tc.normalized AS cited_as
+               FROM ag.ag_text_citations tc
+               JOIN ag.ag_opinions a ON a.id = tc.ag_opinion_id
+               WHERE {ag_where}
+               ORDER BY a.date_issued DESC LIMIT ?""",
+            ag_params + [limit],
+        ).fetchall()
+        total = conn.execute(
+            f"""SELECT COUNT(DISTINCT tc.ag_opinion_id) AS n
+               FROM ag.ag_text_citations tc
+               JOIN ag.ag_opinions a ON a.id = tc.ag_opinion_id
+               WHERE {ag_where}""",
+            ag_params,
+        ).fetchone()["n"]
+        result = {
+            "citation": target,
+            "count": total,
+            "ag_opinions": [
+                {**_ag_opinion_summary(r), "cite_type": r["cite_type"],
+                 **({"cited_as": r["cited_as"]} if r["cited_as"] != target else {})}
+                for r in rows
+            ],
+        }
+        if preds:
+            result["historical_cites"] = [
+                p["normalized"] + (f" (from {p['lineage_from']})"
+                                   if p["lineage_from"] else "")
+                for p in preds
+            ]
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_court_opinions_citing_ag(opinion_number: str, limit: int = 20) -> dict:
+    """Find ND Supreme Court / Court of Appeals opinions that cite a given AG opinion.
+
+    The inbound direction of the AG citation graph. Court opinions cite AG
+    opinions two ways — a docket cite (`N.D. Op. Att'y Gen. 2003-L-11`) or, more
+    often historically, a date reference (`Attorney General's opinion of
+    February 18, 1975`); both are captured (see ag_backlink). Returns the citing
+    court opinions, newest first.
+
+    Args:
+        opinion_number: The AG opinion number, e.g. "2015-O-13" or "75-18".
+        limit: Maximum court opinions to return (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = _conn_with_corpora()
+    try:
+        if not _ag_attached(conn):
+            return _AG_NOT_INSTALLED
+        has_cbc = conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='ag_cited_by_court'"
+        ).fetchone() or conn.execute(
+            "SELECT name FROM ag.sqlite_master WHERE type='table' AND name='ag_cited_by_court'"
+        ).fetchone()
+        if not has_cbc:
+            return {"error": "Inbound AG edges not built on this DB (run ag_backlink)."}
+        ag_row = conn.execute(
+            "SELECT id, ag_cite FROM ag.ag_opinions WHERE cite_key = ? OR opinion_number = ?",
+            (ag_corpus.cite_key(opinion_number), opinion_number),
+        ).fetchone()
+        if not ag_row:
+            return {"found": False, "error": f"No AG opinion matching {opinion_number!r}."}
+        rows = conn.execute(
+            """SELECT o.id, o.case_name, o.date_filed, o.docket_number,
+                      cbc.raw_text, cbc.match_kind, cbc.resolution
+               FROM ag.ag_cited_by_court cbc
+               JOIN opinions o ON o.id = cbc.court_opinion_id
+               WHERE cbc.ag_opinion_id = ?
+               ORDER BY o.date_filed DESC LIMIT ?""",
+            (ag_row["id"], limit),
+        ).fetchall()
+        total = conn.execute(
+            "SELECT COUNT(*) FROM ag.ag_cited_by_court WHERE ag_opinion_id = ?", (ag_row["id"],)
+        ).fetchone()[0]
+        return {
+            "ag_opinion": ag_row["ag_cite"],
+            "count": total,
+            "court_opinions": [
+                {
+                    "case_name": r["case_name"],
+                    "date_filed": r["date_filed"],
+                    "docket_number": r["docket_number"],
+                    "matched_reference": r["raw_text"],
+                    "match_kind": r["match_kind"],
+                    # 'exact' = the court's cite matched an opinion number/date
+                    # directly; 'fuzzy' = matched via year-width/leading-zero/
+                    # type-letter/near-date normalization (verify if it matters).
+                    "resolution": _col(r, "resolution") or "exact",
+                }
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+# ── ND Judicial Ethics Advisory Committee opinions ─────────────────
+
+
+def _jeac_conn_or_none():
+    """A read-only connection to the JEAC opinions DB, or None if not installed."""
+    path = jeac_corpus.resolve_jeac_db_path()
+    if not path.exists():
+        return None
+    return jeac_corpus.get_jeac_connection(path, read_only=True)
+
+
+_JEAC_NOT_INSTALLED = {
+    "error": "The ND Judicial Ethics Advisory Committee opinions corpus is not installed on this server."
+}
+
+
+def _jeac_attached(conn: sqlite3.Connection) -> bool:
+    return "jeac" in {r["name"] for r in conn.execute("PRAGMA database_list")}
+
+
+def _jeac_opinion_summary(row) -> dict:
+    return {
+        "opinion_number": row["opinion_number"],
+        "citation": row["jeac_cite"],
+        "year": _col(row, "year"),
+        "date_issued": _col(row, "date_issued"),
+        "digest": _col(row, "digest"),
+        "status": _col(row, "status"),
+        "source_url": _col(row, "source_url"),
+    }
+
+
+@mcp.tool()
+def search_jeac_opinions(query: str, year: int | None = None, limit: int = 20) -> list[dict]:
+    """Full-text search across ND Judicial Ethics Advisory Committee opinions
+    (1990–present).
+
+    The committee's advisory opinions construe the N.D. Code of Judicial
+    Conduct — recusal/disqualification, campaign conduct, extra-judicial
+    activities. NOTE (per the committee): before relying on an opinion,
+    compare its rule/canon references with the current Code — the Code has
+    been restructured since many were issued.
+
+    Args:
+        query: Search terms (FTS5: supports AND, OR, NOT, quoted phrases).
+        year: Filter to opinions issued in this calendar year.
+        limit: Maximum results (default 20, max 50).
+    """
+    limit = min(limit, 50)
+    conn = _jeac_conn_or_none()
+    if conn is None:
+        return _JEAC_NOT_INSTALLED
+    try:
+        sql = """
+            SELECT j.*, snippet(jeac_opinions_fts, 2, '>>>', '<<<', '...', 40) AS snippet, rank
+            FROM jeac_opinions_fts
+            JOIN jeac_opinions j ON j.id = jeac_opinions_fts.rowid
+            WHERE jeac_opinions_fts MATCH ?
+        """
+        params: list = [query]
+        if year:
+            sql += " AND j.year = ?"
+            params.append(year)
+        sql += " ORDER BY rank LIMIT ?"
+        params.append(limit)
+        out = []
+        for r in conn.execute(sql, params):
+            d = _jeac_opinion_summary(r)
+            d["snippet"] = r["snippet"]
+            out.append(d)
+        return out
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def lookup_jeac_opinion(
+    opinion_number: str, include_text: bool = False, text_limit: int = 8000
+) -> dict:
+    """Retrieve a ND Judicial Ethics Advisory Committee opinion by number
+    (e.g. "96-1" or "2016-2").
+
+    Returns the opinion's metadata (including the committee's question
+    digest), the authorities it cites (Code of Judicial Conduct canons/rules,
+    cases, statutes), and optionally its text. Two-digit and four-digit year
+    forms both resolve ("96-1" == "1996-1").
+
+    Args:
+        opinion_number: The opinion number, e.g. "90-1" or "2019-3".
+        include_text: If true, include the opinion text (truncated to text_limit).
+        text_limit: Max characters of text to return (default 8000).
+    """
+    conn = _jeac_conn_or_none()
+    if conn is None:
+        return _JEAC_NOT_INSTALLED
+    try:
+        key = jeac_corpus.cite_key(opinion_number)
+        row = conn.execute(
+            "SELECT * FROM jeac_opinions WHERE cite_key = ? OR opinion_number = ?",
+            (key, opinion_number),
+        ).fetchone()
+        if not row:
+            return {"found": False, "error": f"No JEAC opinion matching {opinion_number!r}."}
+        result = {"found": True, **_jeac_opinion_summary(row),
+                  "text_source": _col(row, "text_source")}
+        cites = conn.execute(
+            "SELECT normalized, cite_type FROM jeac_text_citations "
+            "WHERE jeac_opinion_id = ? ORDER BY cite_type, normalized",
+            (row["id"],),
+        ).fetchall()
+        result["cites_authorities"] = [
+            {"citation": c["normalized"], "type": c["cite_type"]} for c in cites
+        ]
+        result["cited_by_court_count"] = conn.execute(
+            "SELECT COUNT(*) FROM jeac_cited_by_court WHERE jeac_opinion_id = ?",
+            (row["id"],),
+        ).fetchone()[0]
+        if include_text and row["text_content"]:
+            result["text"] = row["text_content"][:text_limit]
+            result["text_truncated"] = len(row["text_content"]) > text_limit
+        return result
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_jeac_opinions_citing(citation: str, limit: int = 20) -> dict:
+    """Find ND Judicial Ethics Advisory Committee opinions that cite a given
+    authority.
+
+    Reverse index over the committee's citations — most useful for Code of
+    Judicial Conduct provisions ("N.D. Code Jud. Conduct canon 3"), but any
+    rule/statute/case citation works. Old-form Canon citations (pre-2007 Code)
+    are indexed at canon granularity.
+
+    Args:
+        citation: e.g. "N.D. Code Jud. Conduct canon 2", "N.D.R.Civ.P. 63",
+            or a case cite.
+        limit: Maximum opinions to return (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = _conn_with_corpora()
+    try:
+        if not _jeac_attached(conn):
+            return _JEAC_NOT_INSTALLED
+        target = citation
+        spec = research.normalize_authority(citation)
+        ckind = KIND_TO_CORPUS.get(spec.get("kind"))
+        if ckind:
+            alias = _attached_corpora(conn).get(ckind)
+            if alias:
+                lookup_cite = _best_cite(conn, alias, spec, citation)
+                prov = corpus.lookup_provision_version(conn, alias, lookup_cite, None)
+                if prov:
+                    target = prov["citation"]
+        rows = conn.execute(
+            """SELECT j.*, tc.cite_type
+               FROM jeac.jeac_text_citations tc
+               JOIN jeac.jeac_opinions j ON j.id = tc.jeac_opinion_id
+               WHERE tc.normalized = ?
+               ORDER BY j.year DESC LIMIT ?""",
+            (target, limit),
+        ).fetchall()
+        total = conn.execute(
+            "SELECT COUNT(DISTINCT jeac_opinion_id) AS n FROM jeac.jeac_text_citations "
+            "WHERE normalized = ?", (target,),
+        ).fetchone()["n"]
+        return {
+            "citation": target,
+            "count": total,
+            "jeac_opinions": [
+                {**_jeac_opinion_summary(r), "cite_type": r["cite_type"]} for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_court_opinions_citing_jeac(opinion_number: str | None = None, limit: int = 20) -> dict:
+    """Find ND Supreme Court / Court of Appeals opinions that reference a JEAC
+    opinion (or the committee at all).
+
+    The inbound direction of the JEAC citation graph. Courts rarely cite these
+    by number — most references are descriptive prose ("The trial court
+    contacted the Judicial Ethics Advisory Committee..."), captured with the
+    surrounding text. Call with no opinion_number to list ALL court references
+    to the committee, including unresolved prose references.
+
+    Args:
+        opinion_number: Optional JEAC opinion number, e.g. "2005-2". Omit to
+            list every court reference to the committee.
+        limit: Maximum court opinions to return (default 20, max 100).
+    """
+    limit = min(limit, 100)
+    conn = _conn_with_corpora()
+    try:
+        if not _jeac_attached(conn):
+            return _JEAC_NOT_INSTALLED
+        params: list = []
+        where = ""
+        label = "any JEAC reference"
+        if opinion_number:
+            jrow = conn.execute(
+                "SELECT id, jeac_cite FROM jeac.jeac_opinions WHERE cite_key = ? OR opinion_number = ?",
+                (jeac_corpus.cite_key(opinion_number), opinion_number),
+            ).fetchone()
+            if not jrow:
+                return {"found": False, "error": f"No JEAC opinion matching {opinion_number!r}."}
+            where = "WHERE cbc.jeac_opinion_id = ?"
+            params.append(jrow["id"])
+            label = jrow["jeac_cite"]
+        rows = conn.execute(
+            f"""SELECT o.id, o.case_name, o.date_filed, o.docket_number,
+                       cbc.raw_text, cbc.match_kind, cbc.resolution
+                FROM jeac.jeac_cited_by_court cbc
+                JOIN opinions o ON o.id = cbc.court_opinion_id
+                {where}
+                ORDER BY o.date_filed DESC LIMIT ?""",
+            (*params, limit),
+        ).fetchall()
+        return {
+            "jeac_opinion": label,
+            "count": len(rows),
+            "court_opinions": [
+                {
+                    "case_name": r["case_name"],
+                    "date_filed": r["date_filed"],
+                    "docket_number": r["docket_number"],
+                    "matched_reference": r["raw_text"],
+                    "match_kind": r["match_kind"],
+                    "resolution": _col(r, "resolution") or "unresolved",
+                }
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_opinion_figures(citation: str) -> dict:
+    """List the figures reproduced in an opinion (plat maps, survey drawings, photos,
+    diagrams, tables-as-image).
+
+    Returns lightweight metadata for each figure — its index, kind, a descriptive
+    caption, the PDF page, and dimensions. Fetch the actual image bytes for one figure
+    with get_opinion_figure_image(citation, fig_index). The captions are our editorial
+    descriptions (what the figure is), not the court's own text. Returns an empty list
+    if the opinion has no figures (or if figures.db is not installed).
+
+    Args:
+        citation: A legal citation like "2021 ND 152".
+    """
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        if not figures_corpus.attach_figures(conn, read_only=True):
+            return {"citation": citation, "figures": [], "note": "figures.db not installed"}
+        rows = conn.execute(
+            "SELECT fig_index, kind, caption, page, width, height, ext, source "
+            "FROM fig.opinion_figures WHERE cite = ? ORDER BY fig_index",
+            (citation.strip(),),
+        ).fetchall()
+        return {
+            "citation": citation,
+            "count": len(rows),
+            "figures": [
+                {
+                    "fig_index": r["fig_index"],
+                    "kind": r["kind"],
+                    "caption": r["caption"],
+                    "page": r["page"],
+                    "dimensions": f"{r['width']}x{r['height']}",
+                    "format": r["ext"],
+                }
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_opinion_figure_image(citation: str, fig_index: int = 1):
+    """Return one figure's image from an opinion, as viewable image content.
+
+    Use get_opinion_figures(citation) first to see how many figures exist and their
+    captions/kinds, then call this for a specific figure. One image per call keeps
+    responses manageable.
+
+    Args:
+        citation: A legal citation like "2021 ND 152".
+        fig_index: 1-based figure index within the opinion (default 1).
+    """
+    from fastmcp.utilities.types import Image
+
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        if not figures_corpus.attach_figures(conn, read_only=True):
+            return {"error": "figures.db not installed"}
+        row = conn.execute(
+            "SELECT caption, ext, image FROM fig.opinion_figures "
+            "WHERE cite = ? AND fig_index = ?",
+            (citation.strip(), fig_index),
+        ).fetchone()
+        if not row:
+            return {"error": f"No figure {fig_index} for {citation}"}
+        fmt = "jpeg" if row["ext"] == "jpeg" else "png"
+        return Image(data=row["image"], format=fmt)
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def get_opinion_tables(citation: str, format: str = "markdown") -> dict:
+    """Return the reconstructed data tables in an opinion, structured for reading.
+
+    Some opinions contain tables — numeric ones (apportionment counts, tax-
+    redemption schedules, caseload statistics) and, from 2026 ND 34 on, tables
+    whose cells are running text (a grid of case citations) — that flat opinion
+    text renders as a scrambled run of cells. Those tables are reconstructed from a geometry-bearing
+    source and served here structured. The opinion's own text_content carries the
+    same table inline as a fixed-width block under a "[Table N]" anchor; this tool
+    gives you a cleaner rendering for display or parsing.
+
+    Args:
+        citation: A legal citation like "113 N.W.2d 679" or "1999 ND 226".
+        format: "markdown" (default), "html", "monospace", or "cells" (raw grid).
+
+    Each table reports a "layout": "mono" (a numeric grid, best read as the
+    fixed-width block) or "prose" (long-text cells, best read as markdown/html).
+
+    Returns an empty list if the opinion has no reconstructed tables (or tables.db
+    is not installed).
+    """
+    import json as _json
+    col = {"markdown": "render_markdown", "html": "render_html",
+           "monospace": "render_monospace", "cells": "cells_json"}.get(format, "render_markdown")
+    conn = get_connection(DB_PATH, read_only=True)
+    try:
+        if not tables_corpus.attach_tables(conn, read_only=True):
+            return {"citation": citation, "tables": [], "note": "tables.db not installed"}
+        oid_row = conn.execute(
+            "SELECT opinion_id FROM citations WHERE citation = ? LIMIT 1",
+            (citation.strip(),)).fetchone()
+        if not oid_row:
+            return {"citation": citation, "tables": [], "note": "citation not found"}
+        try:
+            rows = conn.execute(
+                f"SELECT table_index, caption, ncols, layout, {col} AS body "
+                "FROM tbl.opinion_tables WHERE opinion_id = ? ORDER BY table_index",
+                (oid_row["opinion_id"],)).fetchall()
+        except sqlite3.OperationalError:     # tables.db predates the layout column
+            rows = conn.execute(
+                f"SELECT table_index, caption, ncols, 'mono' AS layout, {col} AS body "
+                "FROM tbl.opinion_tables WHERE opinion_id = ? ORDER BY table_index",
+                (oid_row["opinion_id"],)).fetchall()
+        return {
+            "citation": citation,
+            "count": len(rows),
+            "format": format,
+            "tables": [
+                {"table_index": r["table_index"], "caption": r["caption"],
+                 "columns": r["ncols"], "layout": r["layout"],
+                 "content": _json.loads(r["body"]) if format == "cells" else r["body"]}
+                for r in rows
+            ],
+        }
+    finally:
+        conn.close()
+
+
+# Citation-URL web interface (PLAN-web-interface.md): mounts /2020ND30-style
+# opinion pages, /cite resolver, and /citing//cited subpages on the same app
+# that serves /mcp. No-op for stdio transport (routes are never hit).
+from . import web as _web  # noqa: E402  (needs mcp + DB_PATH defined above)
+
+_web.register(mcp, DB_PATH)
+
+
+def main():
+    """Run the MCP server.
+
+    Defaults to stdio (how local MCP clients launch the server as a
+    subprocess — they pass no env, so this path is unchanged). For a
+    remote/team deployment set:
+
+      NDLAW_TRANSPORT=http   serve Streamable HTTP (or `sse`)
+      NDLAW_HOST=127.0.0.1   bind address (default localhost-only;
+                                front it with a TLS+auth reverse proxy)
+      NDLAW_PORT=8000        bind port
+
+    The server exposes read-only tools; auth/TLS belong in the proxy.
+    """
+    transport = (os.environ.get("NDLAW_TRANSPORT") or os.environ.get("NDCOURTS_TRANSPORT", "stdio")).lower()
+    if transport in ("http", "streamable-http", "sse"):
+        norm = "sse" if transport == "sse" else "http"
+        host = os.environ.get("NDLAW_HOST") or os.environ.get("NDCOURTS_HOST", "127.0.0.1")
+        port = int(os.environ.get("NDLAW_PORT") or os.environ.get("NDCOURTS_PORT", "8000"))
+        print(
+            f"ndcourts-mcp: serving {norm} on {host}:{port} "
+            "(front with a TLS+auth reverse proxy; tools are read-only)",
+            file=sys.stderr,
+        )
+        mcp.run(transport=norm, host=host, port=port)
+    else:
+        mcp.run()
+
+
+if __name__ == "__main__":
+    main()
