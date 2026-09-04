@@ -58,12 +58,16 @@ _REPORTER_CITE = re.compile(r"^\s*(\d+)\s+(N\.\s?W\.(?:\s?[23]d)?|N\.\s?D\.)\s+(
 _NOTES_HEADER = re.compile(r"\n[ \t]*NOTES[ \t]*\n")
 _FOOTNOTES_HEADER = re.compile(r"\n[ \t]*FOOTNOTES[ \t]*\n")
 # Separate-writing author line ("LEVINE, Justice, dissenting.") — ends a
-# per-writing FOOTNOTES section (convention ratified by JT 2026-07-29:
+# per-writing FOOTNOTES section. The modern title page's "Opinion of the
+# Court by McEvers, Justice." is caption furniture, not a byline (the name
+# slot admits spaces, so it matched until JT's 2026-09-02 web review); the
+# writing's own "McEvers, Justice." line follows and IS the byline.
+# Per-writing FOOTNOTES section (convention ratified by JT 2026-07-29:
 # each writing keeps its own section, numbering as printed). The canonical
 # pattern; web_templates builds its line-matcher from this string.
 WRITING_SEP_PAT = (
     r"(?:\[\*\d+\]\s+)?"
-    r"(?!The\b|Honorable\b|Hon\.)[A-Z][A-Za-z'’ .-]{1,40},\s+"
+    r"(?!The\b|Honorable\b|Hon\.|Opinion of the Court\b)[A-Z][A-Za-z'’ .-]{1,40},\s+"
     r"(?:Acting\s+|Chief\s+|Surrogate\s+|District\s+)*"
     r"(?:Justice|Judge|C\.\s?J\.|J\.)"
     r"(?:[,.]?\s*\(?(?:respectfully\s+|specially\s+)*"

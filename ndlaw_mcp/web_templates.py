@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import html
 import re
+from urllib.parse import quote
 
 from ndlaw_mcp import proofread, rule_subsections
 
@@ -79,6 +80,9 @@ _STYLE = """
   .ind4 { margin-left: 6.4rem; }
   .candidates li { margin: .4em 0; }
   .pager { margin: 1.2rem 0; }
+  td.num, td.eff { white-space: nowrap; }
+  span.status { color: #a33; font-size: .85em; }
+  p.bulk { margin-top: 2rem; font-size: .9em; color: #666; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;
            color: #666; font-size: .85em; }
   @media (prefers-color-scheme: dark) {
@@ -760,7 +764,163 @@ def render_body(text: str, tables: dict | None = None) -> str:
 _BOLD = re.compile(r"\*\*([^*\n]+)\*\*")
 
 
-def render_provision_body(text: str, *, anchors: bool = False) -> str:
+# ---------------------------------------------------------------------------
+# rule-set index pages (/rules, /rule/{set})
+# ---------------------------------------------------------------------------
+
+_BULK_DATA_LINE = (
+    '<p class="bulk">Bulk data: the complete SQLite databases are a '
+    '<a href="https://github.com/jet52/ndlaw/releases">free download</a> — '
+    'no need to crawl these pages.</p>')
+
+
+def render_rule_sets_master(sets: list[dict]) -> str:
+    """Body for /rules: every rule set with its provision count.
+
+    ``sets``: dicts with slug, prefix, name, count.
+    """
+    rows = "".join(
+        f'<tr><td><a href="/rule/{html.escape(s["slug"])}">'
+        f'{html.escape(s["name"])}</a></td>'
+        f'<td>{html.escape(s["prefix"])}</td>'
+        f'<td class="num">{s["count"]}</td></tr>'
+        for s in sets)
+    return (
+        '<p>Current North Dakota court rules, served as point-in-time '
+        'versioned provisions. Each set\'s index lists its rules with the '
+        'effective date of the version now in force.</p>'
+        '<table class="tbl-prose"><thead><tr><th>Rule set</th>'
+        '<th>Cited as</th><th>Provisions</th></tr></thead>'
+        f'<tbody>{rows}</tbody></table>' + _BULK_DATA_LINE)
+
+
+def dedup_designator(num: str, heading: str | None) -> str | None:
+    """Drop a heading's leading designator when it repeats the provision
+    number ('Appendix A' + 'APPENDIX A. SUMMONS …' -> 'SUMMONS …'). The
+    stored heading stays the court's H1 verbatim; this is display only.
+    None when the heading is ONLY the designator."""
+    if not heading:
+        return heading
+    h = heading.strip()
+    if h.upper().startswith(num.strip().upper()):
+        rest = h[len(num.strip()):].lstrip(" .:—–-")
+        return rest or None
+    return heading
+
+
+def render_rule_set_index(prefix: str, name: str,
+                          groups: list[tuple[str, list[dict]]]) -> str:
+    """Body for /rule/{set}: the set's provisions grouped (Rules / Tables /
+    Appendices / Forms), each row linking its canonical page.
+
+    Group rows: dicts with num, url, heading, status, effective.
+    """
+    dot = "" if prefix.endswith(".") else "."
+    parts = [f'<p>Cited as <strong>{html.escape(prefix)}</strong>{dot} '
+             'Dates show when the version now in force took effect; '
+             'each page carries the provision\'s full version history.</p>']
+    for label, rows in groups:
+        if not rows:
+            continue
+        if label:
+            parts.append(f"<h2>{html.escape(label)}</h2>")
+        body = []
+        for r in rows:
+            status = ""
+            if r["status"] and r["status"] != "active":
+                status = (f' <span class="status">'
+                          f'[{html.escape(r["status"])}]</span>')
+            eff = html.escape(r["effective"] or "date not published")
+            heading = dedup_designator(r["num"], r["heading"])
+            body.append(
+                f'<tr><td class="num"><a href="{html.escape(r["url"])}">'
+                f'{html.escape(r["num"])}</a></td>'
+                f'<td>{html.escape(heading or "")}{status}</td>'
+                f'<td class="eff">{eff}</td></tr>')
+        parts.append(
+            '<table class="tbl-prose"><thead><tr><th></th><th>Title</th>'
+            '<th>Effective</th></tr></thead>'
+            f'<tbody>{"".join(body)}</tbody></table>')
+    parts.append(_BULK_DATA_LINE)
+    return "".join(parts)
+
+
+# Markdown links the rules mirror writes into provision text: mirror-file
+# targets ("rule-Form-1.md", "../ndrct/rule-6.1.md") and absolute
+# ndcourts.gov URLs. Rendered as real anchors; a target of any other shape
+# stays literal text (never build an href from an unrecognized scheme).
+_MD_LINK = re.compile(r"\[([^\]\n]+)\]\(([^()\s]+)\)")
+_RULE_FILE_TARGET = re.compile(r"(?:\.\./([a-z]+)/)?rule-([^/]+)\.md$")
+
+
+def _rule_file_url(target: str, set_slug: str | None) -> str | None:
+    """'rule-Form-1.md' -> '/rule/{set_slug}/Form 1';
+    '../ndrct/rule-6.1.md' -> '/rule/ndrct/6.1'. None if not a mirror file
+    link or no set context. Mirrors ingest_rules.rule_number's stem rules."""
+    m = _RULE_FILE_TARGET.fullmatch(target)
+    if not m:
+        return None
+    slug = m.group(1) or set_slug
+    if not slug:
+        return None
+    stem = m.group(2)
+    if re.fullmatch(r"[0-9.]+", stem):
+        num = stem
+    elif re.fullmatch(r"\d+-\d+", stem):
+        num = stem.replace("-", ".")
+    else:
+        num = stem.replace("-", " ")
+    return f"/rule/{slug}/{quote(num)}"
+
+
+def _render_md_links(escaped: str, set_slug: str | None) -> str:
+    """Convert markdown links in an ALREADY-ESCAPED line to anchors."""
+    def repl(m: re.Match) -> str:
+        text, target = m.group(1), m.group(2)
+        url = _rule_file_url(target, set_slug)
+        if url is None and target.startswith(("https://", "http://")):
+            url = target
+        if url is None:
+            return m.group(0)
+        return f'<a href="{html.escape(url, quote=True)}">{text}</a>'
+    return _MD_LINK.sub(repl, escaped)
+
+
+# A markdown pipe row: `| cell | cell |`. Cells may carry escaped pipes
+# (`\|`, written by the scraper's cell flattener).
+_PIPE_ROW = re.compile(r"^\|.*\|$")
+_PIPE_SEP_ROW = re.compile(r"^\|(?:\s*-{3,}\s*\|)+$")
+
+
+def _pipe_cells(row: str) -> list[str]:
+    inner = row.strip()[1:-1]
+    return [c.replace("\\|", "|").strip()
+            for c in re.split(r"(?<!\\)\|", inner)]
+
+
+def _pipe_rows_to_html(rows: list[str]) -> str:
+    """Consecutive `| … |` lines -> a real HTML table. If the second row is
+    a `| --- |` separator, the first renders as a header row."""
+    header: list[str] | None = None
+    body = list(rows)
+    if len(body) >= 2 and _PIPE_SEP_ROW.match(body[1]):
+        header, body = _pipe_cells(body[0]), body[2:]
+    parts = ['<table class="tbl-prose">']
+    if header:
+        parts.append("<thead><tr>" + "".join(
+            f"<th>{html.escape(c)}</th>" for c in header) + "</tr></thead>")
+    parts.append("<tbody>")
+    for r in body:
+        if _PIPE_SEP_ROW.match(r):
+            continue
+        parts.append("<tr>" + "".join(
+            f"<td>{html.escape(c)}</td>" for c in _pipe_cells(r)) + "</tr>")
+    parts.append("</tbody></table>")
+    return "".join(parts)
+
+
+def render_provision_body(text: str, *, anchors: bool = False,
+                          set_slug: str | None = None) -> str:
     """Provision text -> HTML. The rules corpus stores markdown-lite:
     ``**bold**`` subdivision labels and ``> ``/``> > `` indent levels
     (N.D.C.C./N.D.A.C. text is plain and passes through unchanged).
@@ -774,7 +934,21 @@ def render_provision_body(text: str, *, anchors: bool = False) -> str:
     whole version parses clean (a wrong anchor is worse than none)."""
     amap = rule_subsections.anchor_map(text) if anchors else {}
     out = []
-    for idx, ln in enumerate(text.split("\n")):
+    lines = text.split("\n")
+    idx = 0
+    while idx < len(lines):
+        ln = lines[idx]
+        # Consecutive pipe rows (the rules corpus's inline tables: Table A,
+        # the statutes-superseded tables, appendix form captions) render as
+        # a real table. A `| --- |` second row marks the first as a header.
+        if _PIPE_ROW.match(ln.strip()):
+            run = []
+            while idx < len(lines) and _PIPE_ROW.match(lines[idx].strip()):
+                run.append(lines[idx].strip())
+                idx += 1
+            out.append(_pipe_rows_to_html(run))
+            continue
+        ln_idx, idx = idx, idx + 1
         if not ln.strip():
             continue
         depth = 0
@@ -783,8 +957,9 @@ def render_provision_body(text: str, *, anchors: bool = False) -> str:
             ln = ln[2:] if ln.startswith("> ") else ""
         esc = html.escape(ln.strip())
         esc = _BOLD.sub(r"<strong>\1</strong>", esc)
+        esc = _render_md_links(esc, set_slug)
         aid = ""
-        a = amap.get(idx)
+        a = amap.get(ln_idx)
         if a:
             aid = f' id="{a}"'
             # the paragraph's leading printed label becomes its self-link;

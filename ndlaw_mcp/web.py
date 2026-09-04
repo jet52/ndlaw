@@ -365,6 +365,99 @@ def _reset_short_index() -> None:
     """Drop the cached index (tests that swap corpus DBs mid-process)."""
     global _SHORT_INDEX
     _SHORT_INDEX = None
+    global _RULE_SET_INDEX
+    _RULE_SET_INDEX = None
+
+
+# ---------------------------------------------------------------------------
+# rule-set index pages (/rules, /rule/{set})
+# ---------------------------------------------------------------------------
+
+# slug -> provision rows, built once per process like the short index (the
+# corpus changes only via the weekly self-update, which restarts the
+# service). One fixed page per set, no query parameters: index pages are
+# rendered from this cache and served with the standard long-cache headers,
+# so repeat traffic stays at the CDN edge.
+_RULE_SET_INDEX: dict[str, list[dict]] | None = None
+
+
+def _rule_group_key(num: str):
+    """(group, numeric key, text key) — rules first (dotted-numeric, '9A',
+    'canon N'), then Tables, Appendices, Forms, then front/back matter."""
+    low = num.lower()
+    m = re.fullmatch(r"(\d+(?:\.\d+)*)([a-z])?", low)
+    if m:
+        return (0, tuple(int(p) for p in m.group(1).split(".")),
+                m.group(2) or "")
+    m = re.fullmatch(r"canon (\d+)", low)
+    if m:
+        return (0, (int(m.group(1)),), "canon")
+    if low.startswith("table"):
+        return (1, (), low)
+    if low.startswith("appendix"):
+        return (2, (), low)
+    m = re.fullmatch(r"form (\d+)([a-z]?)", low)
+    if m:
+        return (3, (int(m.group(1)),), m.group(2))
+    return (4, (), low)
+
+
+_RULE_GROUP_LABELS = {0: "", 1: "Tables", 2: "Appendices", 3: "Forms",
+                      4: "Other provisions"}
+
+
+def _rule_set_index() -> dict[str, list[dict]]:
+    global _RULE_SET_INDEX
+    if _RULE_SET_INDEX is not None:
+        return _RULE_SET_INDEX
+    out: dict[str, list[dict]] = {}
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            return out
+        if "rule" not in attached:
+            return out
+        al = corpus.CORPORA["rule"]["alias"]
+        rows = conn.execute(
+            f"""SELECT p.citation, p.heading, p.status,
+                       (SELECT pv.effective_start
+                        FROM {al}.provision_versions pv
+                        WHERE pv.provision_id = p.id
+                          AND pv.effective_end IS NULL
+                        ORDER BY pv.effective_start DESC LIMIT 1)
+                       AS effective_start
+                FROM {al}.provisions p
+                WHERE p.corpus = 'rule'""").fetchall()
+    finally:
+        conn.close()
+    for r in rows:
+        split = corpus.split_rule_citation(r["citation"])
+        if split is None:
+            continue
+        slug, num = split
+        out.setdefault(slug, []).append({
+            "num": num,
+            "url": f"/rule/{slug}/{quote(num)}",
+            "heading": r["heading"],
+            "status": r["status"],
+            "effective": r["effective_start"],
+        })
+    for rows_ in out.values():
+        rows_.sort(key=lambda r: _rule_group_key(r["num"]))
+    _RULE_SET_INDEX = out
+    return out
+
+
+def _rule_set_groups(rows: list[dict]) -> list[tuple[str, list[dict]]]:
+    groups: list[tuple[str, list[dict]]] = []
+    for r in rows:
+        label = _RULE_GROUP_LABELS[_rule_group_key(r["num"])[0]]
+        if not groups or groups[-1][0] != label:
+            groups.append((label, []))
+        groups[-1][1].append(r)
+    return groups
 
 
 _SUBDIVISION = re.compile(r"\s*\([^()]*\)\s*$")
@@ -557,7 +650,11 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
             history = (f"<h2>History</h2><table class=\"meta\">"
                        f"<tr><th>from</th><th>to</th><th>authority</th>"
                        f"</tr>{hrows}</table>")
-        paras = web_templates.render_provision_body(text, anchors=(name == "rule"))
+        rule_split = corpus.split_rule_citation(citation) if name == "rule" \
+            else None
+        paras = web_templates.render_provision_body(
+            text, anchors=(name == "rule"),
+            set_slug=rule_split[0] if rule_split else None)
         body = f"""
 <p class="meta">{' · '.join(meta)}</p>
 <div class="counts">
@@ -567,7 +664,12 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
 <div class="prov">{paras}</div>
 {history}
 """
-        h1 = citation + (f" — {prov['heading']}" if prov["heading"] else "")
+        heading = prov["heading"]
+        if rule_split:
+            # 'N.D.R.Ct. Appendix A — APPENDIX A. SUMMONS …' reads twice;
+            # drop the heading's designator where it repeats the number
+            heading = web_templates.dedup_designator(rule_split[1], heading)
+        h1 = citation + (f" — {heading}" if heading else "")
         return _html(request, web_templates.page(
             citation, body, h1=h1, official_url=official_fn(ver),
             canonical=canon))
@@ -810,6 +912,8 @@ def _not_found(request: Request, token: str) -> Response:
 <code>/ndcc/12.1-20-03</code> · <code>/rule/ndrappp/4</code> ·
 <code>/const/I/8</code> · <code>/ndac/75-02-04.1-01</code>, or the short form
 <code>/ndrappp4</code>.</p>
+<p>Rule-set indexes: <a href="/rules">/rules</a>, or
+<code>/rule/ndrcivp</code> for one set.</p>
 <p>Anything else: <code>/cite/&lt;citation&gt;</code>.</p>
 """
     return _html(request, web_templates.page("Not found", body, h1="Not found"),
@@ -1185,6 +1289,45 @@ def register(mcp, db_path=None) -> None:
     _prov_routes("const", "art", "sec")
     _prov_routes("rule", "set", "num")
 
+    @mcp.custom_route("/rules", methods=["GET"])
+    async def rule_sets_master(request: Request) -> Response:
+        idx = _rule_set_index()
+        sets = []
+        for prefix in corpus.RULE_SET_PREFIXES:
+            slug = corpus.rule_set_slug(prefix)
+            rows = idx.get(slug)
+            if not rows:
+                continue
+            sets.append({"slug": slug, "prefix": prefix,
+                         "name": corpus.RULE_SET_NAMES.get(prefix, prefix),
+                         "count": len(rows)})
+        if not sets:
+            return _not_found(request, "rules")
+        body = web_templates.render_rule_sets_master(sets)
+        return _html(request, web_templates.page(
+            "North Dakota Court Rules", body, h1="North Dakota Court Rules",
+            official_url=web_templates.OFFICIAL_FALLBACK["rule"]))
+
+    @mcp.custom_route("/rule/{set}", methods=["GET"])
+    async def rule_set_index_page(request: Request) -> Response:
+        raw = request.path_params["set"]
+        slug = corpus.RULE_SET_SLUG_ALIASES.get(raw.lower(), raw.lower())
+        prefix = corpus.rule_sets().get(slug)
+        if prefix is None:
+            return _not_found(request, raw)
+        if raw != slug:
+            return _redirect(f"/rule/{slug}")
+        rows = _rule_set_index().get(slug)
+        if not rows:
+            return _not_found(request, raw)
+        name = corpus.RULE_SET_NAMES.get(prefix, prefix)
+        body = web_templates.render_rule_set_index(
+            prefix, name, _rule_set_groups(rows))
+        return _html(request, web_templates.page(
+            name, body, h1=name,
+            official_url=web_templates.OFFICIAL_FALLBACK["rule"],
+            canonical=f"/rule/{slug}"))
+
     @mcp.custom_route("/ag/{number}", methods=["GET"])
     async def ag_doc(request: Request) -> Response:
         return _document_page(request, "ag", request.path_params["number"])
@@ -1245,6 +1388,11 @@ def register(mcp, db_path=None) -> None:
         spec = _provision_spec_for_text(token)
         if spec is not None:
             return _prov_page(request, *spec)
+        # bare rule-set token ("/ndrappp", "/civ") -> the set's index page
+        set_slug = corpus.RULE_SET_SLUG_ALIASES.get(token.lower(),
+                                                    token.lower())
+        if set_slug in corpus.rule_sets():
+            return _redirect(f"/rule/{set_slug}")
         return _not_found(request, token)
 
     @mcp.custom_route("/{token}/{sub}", methods=["GET"])

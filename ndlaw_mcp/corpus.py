@@ -153,6 +153,57 @@ RULE_SET_PREFIXES: tuple[str, ...] = (
     "Ltd. Practice of Law by Law Students R.",
 )
 
+# Connectives kept lowercase inside a word-numbered rule designator.
+_NUM_CONNECTIVES = {"to", "of", "by", "for", "and", "in", "the"}
+
+
+def case_rule_num(num: str) -> str:
+    """Designator-case a word-numbered rule identifier the mirror spells
+    lowercase: 'appendix a' -> 'Appendix A', 'appendix a to rule 8.9' ->
+    'Appendix A to Rule 8.9', 'canon 1' -> 'Canon 1'. Numeric tokens and
+    already-cased tokens pass through; cite_key is case-insensitive, so the
+    cased citation resolves identically."""
+    out = []
+    for i, w in enumerate(num.split()):
+        if any(c.isdigit() for c in w) or not w.islower():
+            out.append(w)
+        elif i > 0 and w in _NUM_CONNECTIVES:
+            out.append(w)
+        else:
+            out.append(w[0].upper() + w[1:])
+    return " ".join(out)
+
+
+# Full display names for the rule-set index pages, keyed by citation prefix.
+RULE_SET_NAMES: dict[str, str] = {
+    "N.D.R.App.P.": "North Dakota Rules of Appellate Procedure",
+    "N.D.R.Civ.P.": "North Dakota Rules of Civil Procedure",
+    "N.D.R.Crim.P.": "North Dakota Rules of Criminal Procedure",
+    "N.D.R.Ev.": "North Dakota Rules of Evidence",
+    "N.D.R.Juv.P.": "North Dakota Rules of Juvenile Procedure",
+    "N.D.R.Ct.": "North Dakota Rules of Court",
+    "N.D.R. Prof. Conduct": "North Dakota Rules of Professional Conduct",
+    "N.D. Code Jud. Conduct": "North Dakota Code of Judicial Conduct",
+    "N.D.R. Lawyer Discipl.": "North Dakota Rules for Lawyer Discipline",
+    "Admission to Practice R.": "Admission to Practice Rules",
+    "N.D.R. Continuing Legal Educ.":
+        "North Dakota Rules for Continuing Legal Education",
+    "N.D. Stds. Imposing Lawyer Sanctions":
+        "North Dakota Standards for Imposing Lawyer Sanctions",
+    "N.D. Sup. Ct. Admin. R.":
+        "North Dakota Supreme Court Administrative Rules",
+    "N.D. Sup. Ct. Admin. Order":
+        "North Dakota Supreme Court Administrative Orders",
+    "R. Jud. Conduct Comm.": "Rules of the Judicial Conduct Commission",
+    "N.D.R. Proc. R.": "Rules on Procedural Rules, Administrative Rules "
+                       "and Administrative Orders",
+    "N.D.R. Local Ct. Pr.": "Rules on Local Court Procedural Rules "
+                            "and Administrative Rules",
+    "N.D. Local Ct. R.": "Local Court Procedural and Administrative Rules",
+    "Ltd. Practice of Law by Law Students R.":
+        "Limited Practice of Law by Law Students",
+}
+
 # URL slugs that are not the mechanical ``short_key`` of their prefix: the six
 # friendly slugs v3.0.x served (kept so published links keep working) and the
 # two mirror directory names that diverge from the citation they produce.

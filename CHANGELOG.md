@@ -8,6 +8,53 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.4.1 — 2026-09-04
+
+- **The Constitution's paragraph structure is fixed.** 174 provisions stored
+  the ndconst.org wiki's editing line-wrap rather than its paragraphs, so
+  art. IV, § 13's seven paragraphs rendered as forty and `lookup_authority`
+  returned the same ragged text; 1,589 stored lines are now 311 paragraphs.
+  The structure comes from the upstream's own rendered page, which already
+  settles it — a lone newline is nothing there, a blank line is a paragraph
+  break — while every character is re-cut from the text the corpus already
+  held, so the change is whitespace-only. Justification multi-space runs
+  (`board  of  higher  education`) collapse in the same pass.
+- **DokuWiki markup no longer appears as constitutional text.** Ten provisions
+  (art. XIV §§ 1–4, art. XV §§ 1–6) opened with a `===== Section N. =====`
+  wiki heading that `lookup_authority` returned as part of the section; five
+  more carried `<WRAP indent>` markers, which now render as real indentation
+  (art. I § 25, Marsy's Law, gains 23 paragraphs with its lettered rights
+  indented; art. VIII § 6, art. X §§ 22 and 24).
+- **Five new Attorney General opinions** — 2026-O-15 through 2026-O-19, all
+  open records and meetings, issued August 28 and 31, 2026. AG opinions now
+  number 6,758.
+- **Those five also exposed, and fixed, an OCR-lineage defect.** Their PDFs are
+  scans whose text layer is Acrobat's own OCR, which the pipeline could not
+  distinguish from born-digital text. Read against the page images, all five
+  carried errors: **2026-O-17 was missing its entire second page** (that page
+  has no text layer at all, so the loss was silent), two lost their signature
+  blocks, and every opinion number and cross-reference read with a digit zero
+  in place of the letter O. All corrected. Extraction now identifies an OCR
+  text layer from the PDF producer and flags any page that yields no text, so
+  this class cannot enter the corpus unmarked again.
+- **Opinions — 764 corrections across 688 opinions in 36 batches.** The
+  CAP-diff guard-hold queue completed (402 of 566 sites applied, every one
+  image-read); the 2020s reflow arc drained its named holds across two more
+  rounds; four text-furniture classes were decided against the slip PDFs' own
+  text layer (inline page numbers, LaTeX escape runs, `[.]` fragments, glued
+  headings); the run-on signature-block queue closed; and the first two
+  batches of a new bound-volume OCR pass landed 105 corrections in
+  N.W.2d vols 56–61, each confirmed by two independent reads of the page
+  image.
+- **Court rules — 111 corrections**, including the September 2026 amendment
+  cycle's remaining provisions, the Criminal Procedure appendix form headings
+  taken from the court's own index, and Form 8's version history restored from
+  two pages the court files under Form 7(a).
+- **Web — rule-set index pages.** `/rules` lists every rule set with its
+  provision count, and `/rule/{set}` indexes that set's rules, tables and
+  appendix forms. Cross-references stored in rule text now render as links,
+  and inline pipe tables render as tables.
+
 ## v3.4.0 — 2026-08-30
 
 **Public history and release assets restart at this version.** The public
