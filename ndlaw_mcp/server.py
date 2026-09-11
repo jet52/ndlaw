@@ -1604,7 +1604,7 @@ def search_boolean(
     author: str | None = None,
     limit: int = 20,
 ) -> dict:
-    """Westlaw-style Boolean / proximity search.
+    """Terms-and-connectors Boolean / proximity search.
 
     Connectors: `&` (AND), `|` or `OR` (OR), `%` or `NOT` (BUT NOT), `/N`
     (within N words), `/s` (same sentence ≈ NEAR/20), `/p` (same paragraph ≈
@@ -1614,7 +1614,7 @@ def search_boolean(
     approximation notes are returned for transparency.
 
     Args:
-        query: A Westlaw-style query (e.g. `warrant /s nighttime % consent`).
+        query: A terms-and-connectors query (e.g. `warrant /s nighttime % consent`).
         date_from: Filter to opinions filed on/after this date (YYYY-MM-DD).
         date_to: Filter to opinions filed on/before this date (YYYY-MM-DD).
         author: Filter by authoring justice's last name.

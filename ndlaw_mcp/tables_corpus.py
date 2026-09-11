@@ -2,7 +2,7 @@
 
 A side channel that mirrors figures.db: the linearized-table cleanup (see
 scripts/scan_numeric_tables.py) reconstructs each table's geometry from a
-geometry-bearing source (Westlaw .doc / court PDF / archive HTML). The STRUCTURED
+geometry-bearing source (the reporter's edition / court PDF / archive HTML). The STRUCTURED
 CELLS are the single source of truth; the inline monospace block spliced into
 opinions.text_content (under a bracketed ``[Table N]`` anchor) and the markdown /
 HTML renderings stored here are ALL build products of those cells — so the two
@@ -112,7 +112,7 @@ def attach_tables(conn: sqlite3.Connection, *, read_only: bool = False) -> bool:
 def _split(grid: list[list[str]]):
     """Return (title, body, ncol). A leading single-cell row is a title. Ragged
     rows are padded to a common width, then trailing all-empty columns (a common
-    Westlaw/​extraction artifact) are dropped so the grid isn't padded wider than
+    extraction artifact) are dropped so the grid isn't padded wider than
     its real data."""
     title = None
     body = grid

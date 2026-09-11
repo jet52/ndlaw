@@ -1,13 +1,13 @@
 """Pure helpers for the human-research tools.
 
-Westlaw-style Boolean/proximity → FTS5 translation, statutory/rule authority
+Terms-and-connectors Boolean/proximity → FTS5 translation, statutory/rule authority
 normalization, and salient-term extraction for related-opinion search. No DB
 access; ``server.py`` holds the ``@mcp.tool()`` wrappers.
 """
 
 import re
 
-# --- Westlaw-style Boolean / proximity → FTS5 -------------------------------
+# --- Terms-and-connectors Boolean / proximity → FTS5 -------------------------------
 
 # Approximation note (surfaced to callers): FTS5 has no sentence or paragraph
 # unit, so /s and /p map to token-distance NEAR windows.
@@ -43,7 +43,7 @@ def _word_to_fts(w: str) -> str:
 
 
 def translate_boolean(query: str) -> tuple[str, list[str]]:
-    """Translate a Westlaw-style query to an FTS5 MATCH expression.
+    """Translate a terms-and-connectors query to an FTS5 MATCH expression.
 
     Supported: ``&`` (AND), ``|`` / ``OR`` (OR), ``%`` / ``NOT`` (BUT NOT),
     ``/N`` (within N tokens → NEAR/N), ``/s`` (same sentence ≈ NEAR/20),

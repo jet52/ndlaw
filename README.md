@@ -62,7 +62,7 @@ To install it, jump to [Quick start](#quick-start) below.
 | `case_summary`        | One-call bench-memo front matter: cites, panel, voting, disposition, ¶ count, syllabus points |
 | `get_subsequent_history` | Related opinions sharing the docket (rehearings, supplemental, companions)   |
 | `authoring_justice_on_issue` | A justice's authored opinions matching an issue (predictive bench-memo signal) |
-| `search_boolean`      | Westlaw-style Boolean/proximity search (`&` `\|` `%` `/N` `/s` `/p` `!`), translated to FTS5 |
+| `search_boolean`      | Boolean/proximity search (`&` `\|` `%` `/N` `/s` `/p` `!`), translated to FTS5 |
 | `search_faceted`      | Filter by date, author, case type, disposition, dissent/concurrence, unanimity (+ optional full text) |
 | `find_opinions_construing` | Every opinion citing an N.D.C.C. section or court rule, with the official source link |
 | `more_like_this`      | Doctrinally similar opinions (hybrid co-citation + keyword ranking)             |

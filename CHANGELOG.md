@@ -73,8 +73,8 @@ Release notes. This repository does not carry the development-correction history
 
 ### Data corrections since v3.4.1
 
-- **The court's syllabus restored to 1,602 opinions, 1890–1979.** West's
-  file carried it under a heading with the reporter's page number glued on
+- **The court's syllabus restored to 1,602 opinions, 1890–1979.** The N.W.2d
+  text carries it under a heading with the reporter's page number glued on
   (`*1026 Syllabus by the Court.`); the ingest parser did not recognise that
   as a heading and discarded everything above the synopsis, and the synopsis
   stripper had the same flaw at its section end. Both are fixed, and the
@@ -82,7 +82,7 @@ Release notes. This repository does not carry the development-correction history
   page markers inside it — now opens each of those opinions as the bound
   reporter prints it. Pre-1954 opinions with a stored syllabus: 6,429 of
   6,584.
-- **West's star pages restored to 39 opinions that stored none** (185
+- **Reporter page markers restored to 39 opinions that stored none** (185
   markers), placed at the witnessed page boundary; 4 that had landed in the
   body's restatement of a syllabus sentence were moved back into the
   syllabus with it.
@@ -115,8 +115,7 @@ Release notes. This repository does not carry the development-correction history
   step"). 34 sites held where the print's form is a whole citation or the
   print carries its own error.
 - **Sources:** 2,888 N.D. Reports image witnesses renamed to the CAP layout;
-  57 N.D. gained a Google scan witness (112 opinions); 60 West witness rows
-  re-pointed to the renamed `N.W.2d/` tree.
+  57 N.D. gained a Google scan witness (112 opinions).
 
 ## v3.4.1 — 2026-09-04
 
@@ -214,9 +213,9 @@ earlier entries below is in this release.
 ## v3.3.3 — 2026-08-26
 
 - **Data — the CAP-diff sweep completed.** Two passes over the
-  `gap_1953_1996` West-`.doc` lineage, every applied site image-read against
-  the printed page. Tier 1 (8,883 sites / 1,294 opinions): section symbols
-  restored where the lineage had typed `s`, paragraph marks restored,
+  1953–1996 text derived from the N.W.2d edition, every applied site image-read
+  against the printed page. Tier 1 (8,883 sites / 1,294 opinions): section symbols
+  restored where the text had typed `s`, paragraph marks restored,
   signature-block stamps rebuilt. Tier 2 (5,248 sites / 1,647 opinions):
   keyed word errors — dropped words, wrong function words, inflection slips,
   typos, misspelled names. A correction was applied only where the reader
@@ -233,7 +232,7 @@ earlier entries below is in this release.
   13,562 markers repaired.
 - **Citations**: full graph rebuild under jetcite 2.13.0 (unresolved gap
   1,717 → 1,369), 339 parallel cites backfilled from later citing opinions,
-  and 4 Spencer West `.doc` witnesses filed carrying 2 new N.W.3d citations.
+  and 2 new N.W.3d citations recorded from the reporter for Spencer opinions.
 - **First prose table in the corpus**: 2026 ND 34 ¶ 14, reconstructed from
   the slip PDF.
 
@@ -247,7 +246,7 @@ earlier entries below is in this release.
   comma-glue (11). Caption arc completed: party/label rows regrouped (1,484
   opinions) and row geometry ruled to the slip (206 + head-span 83). OCR:
   corpus-wide JOIN/possessive repair (~900 sites) and the two-witness
-  lineage repair (247 opinions / 715 sites). Signature-panel restorations
+  text repair (247 opinions / 715 sites). Signature-panel restorations
   (~190 opinions). G2 shatter eyeball tier drained (184 → 0).
 - **Corrections pipeline**: clerk-corrected opinions now detected
   automatically — a repaired ndcourts.gov link means the Clerk replaced the

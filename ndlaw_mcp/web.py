@@ -1162,8 +1162,8 @@ def _opinion_tables(conn, oid: int) -> dict:
 def _strip_duplicate_caption(text: str, h1: str | None) -> str:
     """Drop a leading body paragraph that IS the page's <h1> caption.
 
-    4,095 opinions (the 1890s West lineage and the 1990s–2010s
-    CourtListener lineage) store the caption as their first paragraph; the
+    4,095 opinions (the 1890s reporter-derived text and the 1990s–2010s
+    CourtListener text) store the caption as their first paragraph; the
     page already prints it as the heading, so on a long caption — 2018 ND
     180's fifty-party quiet-title action — the reader met it twice (JT web
     review 2026-09-11). Storage is untouched; equality is letters-and-digits
