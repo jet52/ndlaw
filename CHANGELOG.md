@@ -8,6 +8,116 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.4.2 — 2026-09-11
+
+- **Chapter citations resolve.** The two numbered codes are cited by chapter
+  constantly — 5,022 opinion references and 2,914 provision cross-references
+  name an N.D.C.C. chapter, `ch. 28-32` alone in 567 and 449 — and a chapter
+  had no page: `/ndcc/28-32` was a 404, `lookup_authority` answered "No
+  provision matching", and every chapter citation on an opinion's authorities
+  list rendered as dead text. A chapter now has an index page listing its
+  sections with their catchlines, its own count of the opinions construing it,
+  the provisions that cross-reference it, previous/next browse in code order,
+  and a sibling `/text` page carrying every section's full text. **4,934 of the
+  5,110 chapter references (96.6%) now reach a page**, along with 2,911 of the
+  2,914 N.D.C.C. chapter cross-references. `lookup_authority` answers a chapter
+  citation with its section index rather than an error — never the text, since
+  the largest chapter runs to 341 KB.
+- **URLs need no new shape.** Every N.D.C.C. section number is three
+  hyphen-components and every chapter two; every N.D.A.C. section is four and
+  every chapter three. So `/ndcc/28-32` can only be a chapter and
+  `/ndcc/28-32-46` can only be a section, and the guessable URL is the right
+  one. `/ndccch28-32` and `/cite/N.D.C.C. ch. 28-32` reach the same page, and
+  a leading-zero spelling (`/ndcc/09-03`, which is how the opinions cite it)
+  redirects to the canonical number.
+- **Chapters that left the code are answerable.** 778 N.D.C.C. chapters
+  repealed whole, contribute no sections, and so were absent entirely — yet 228
+  of them are still cited by name in the opinions. Each now has a page carrying
+  the repealing authority (`ch. 27-20`, the Uniform Juvenile Court Act:
+  "[Repealed by S.L. 2021, ch. 245, § 45]", 126 construing opinions), recovered
+  from the stub the code still publishes. A chapter can leave the code six
+  ways and the page says which: repealed, expired under its own sunset,
+  disapproved at a referendum (ch. 15-21.3, rejected by the voters in 1989),
+  held unconstitutional (ch. 15-55.1 — the page links the opinion that did it),
+  reserved, or transferred. Only a chapter the corpus actually carries is
+  linked, so an unresolvable citation stays plain text rather than becoming a
+  broken link.
+
+- **Citation resolution is no longer confused by a leading zero.** Three
+  N.D.C.C. sections are published with a zero-padded title in their own
+  citation (`§ 01-03-19`, `§ 05-02-10.1`, `§ 06-09-46.1`), so the ordinary
+  spelling of a real statute resolved to nothing — `/ndcc/1-03-19` was a 404
+  and `lookup_authority("N.D.C.C. § 1-03-19")` reported no such provision,
+  while the padded spelling served. Both spellings now reach the section.
+- **Rule pages link the rules, tables and appendices they name.** A rule refers
+  to its own set in short form — "as provided by Rule 11", "the form in
+  Table A" — and the reader got plain text. The citation graph could not
+  supply these: jetcite writes only the cross-set edges it can attribute, so
+  N.D.R.Civ.P. 81 had zero cross-reference rows despite naming Table A. The
+  page's own rule set is the missing context, and the renderer is where it
+  lives. **533 links across the 749 current provisions**, including the two
+  cases that motivated the work: N.D.R.Civ.P. 81 → Table A and N.D.R.Ct. 3.5 →
+  Appendix K. Nothing is linked unless the target provision exists, so a
+  reference to a page this corpus does not carry stays plain rather than
+  becoming a broken link; a reference that names its own set
+  (`Rule 32(f), N.D.R.Crim.P.`) is a cross-set citation and is left alone; and
+  a rule's reference to itself stays plain, since a link back to the page you
+  are reading is clutter rather than navigation.
+
+- **Multi-line block quotes render whole.** A quoted transcript, verdict
+  form, or signature stack stored as one paragraph with hard line breaks
+  rendered with only its first line inside the quote and the rest as body
+  text. Every line now stays in the blockquote at its depth.
+- **The caption prints once.** Opinions that store their caption as the
+  first paragraph no longer show it twice, as heading and again as text.
+
+### Data corrections since v3.4.1
+
+- **The court's syllabus restored to 1,602 opinions, 1890–1979.** West's
+  file carried it under a heading with the reporter's page number glued on
+  (`*1026 Syllabus by the Court.`); the ingest parser did not recognise that
+  as a heading and discarded everything above the synopsis, and the synopsis
+  stripper had the same flaw at its section end. Both are fixed, and the
+  syllabus — about 2.6 million characters of court-authored text, with 2,409
+  page markers inside it — now opens each of those opinions as the bound
+  reporter prints it. Pre-1954 opinions with a stored syllabus: 6,429 of
+  6,584.
+- **West's star pages restored to 39 opinions that stored none** (185
+  markers), placed at the witnessed page boundary; 4 that had landed in the
+  body's restatement of a syllabus sentence were moved back into the
+  syllabus with it.
+- **Footnotes.** 66 footnote calls restored from a witness and 27 more from
+  the page image; 18 opinions with two writings sharing one footnote section
+  rebuilt per writing; 21 unpaired footnote definitions given their calls.
+  Unpaired definitions corpus-wide: 1.
+- **Line and word repairs in the archive-era text.** 445 words split across a
+  spaced page marker rejoined (`substan[*201]tially`); 79 paragraph markers
+  split from their number rejoined; 1,034 lines shattered at italic and
+  citation boundaries inside one paragraph rejoined in 84 opinions (the site
+  had been hiding this at render time; storage now matches); 24 shattered
+  citations and detached calls in 1997–2004 repaired against the archive.
+- **Vulgar fractions read from the print** — 1,500 sites across ~400
+  opinions (`1/2` → `½` where the page prints the glyph), including 44 table
+  cells; 36 divergences held for the print.
+- **The surrogate-judge line** restored to the court's own wording in 529
+  opinions on the archive's 94% agreement with the printed slip, with 11
+  judges' given names West had dropped restored on two agreeing witnesses.
+- **OCR two-witness gate, round 3:** 102 corrections in N.W.2d vols 147–199
+  where Surya and CAP agree against the stored text.
+- **OCR two-witness gate, N.D. Reports 1–25:** 404 corrections in 311 opinions
+  (1890–1913). The North Dakota Reports scan is the print witness for this band;
+  where the two OCR engines agreed against the stored text and the stored word
+  was not a word, two independent image reads confirmed every one of 436 sites
+  (0 refuted). Transposed and dropped letters (`succcessor`, `Janaury`,
+  `tsetified`), garbled surnames (`Warvelk`→`Warvelle`, `Kellog`→`Kellogg`),
+  a duplicated `Id.,`, a `Bl.Comm.` the reporter sets as `Blackstone Comm.`,
+  and one dropped negation (21 N.D. 128: "the motion is *not* a necessary
+  step"). 34 sites held where the print's form is a whole citation or the
+  print carries its own error.
+- **Sources:** 2,888 N.D. Reports image witnesses renamed to the CAP layout;
+  57 N.D. gained a Google scan witness (112 opinions); 60 West witness rows
+  re-pointed to the renamed `N.W.2d/` tree.
+
 ## v3.4.1 — 2026-09-04
 
 - **The Constitution's paragraph structure is fixed.** 174 provisions stored

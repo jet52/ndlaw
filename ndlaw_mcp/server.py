@@ -98,6 +98,75 @@ def _strip_rule_pinpoint(citation: str) -> str:
     return out
 
 
+def _chapter_answer(conn, alias: str, ckind: str, spec: dict, citation: str,
+                    as_of_date: str | None) -> dict | None:
+    """``lookup_authority``'s answer for a CHAPTER citation, or None when the
+    citation does not name one.
+
+    A chapter is a container, not a provision: it has a catchline, a status and
+    a list of sections, and no text of its own. Returning its section index —
+    rather than the error a chapter cite used to get, or the whole chapter's
+    text, which runs to 341 KB at the largest — is what lets a caller holding
+    "N.D.C.C. ch. 28-32" find the section it actually needs.
+    """
+    if ckind not in corpus.NUMBERED_CODES:
+        return None
+    split = corpus.split_chapter_citation(spec.get("exact") or "")
+    if split is None:
+        split = corpus.split_chapter_citation(citation)
+    if split is None:
+        return None
+    name, number = split
+    if name != ckind:
+        return None
+    ch = corpus.lookup_chapter(conn, alias, ckind, number)
+    if ch is None:
+        return None
+    canonical = corpus.chapter_citation(ckind, ch["chapter_num"])
+    sections = corpus.chapter_sections(conn, alias, ckind, ch["chapter_num"])
+    construing = conn.execute(
+        "SELECT COUNT(DISTINCT opinion_id) AS n FROM text_citations "
+        "WHERE normalized = ?", (canonical,)).fetchone()["n"]
+    result = {
+        "found": True,
+        "unit": "chapter",
+        "corpus": ckind,
+        "citation": canonical,
+        "heading": ch["heading"],
+        "status": ch["status"],
+        "title": {"number": ch["title_num"], "name": ch["title_name"]},
+        "section_count": len(sections),
+        "sections": [{"citation": r["citation"], "heading": r["heading"],
+                      "status": r["status"]} for r in sections],
+        "opinions_construing": construing,
+        "source_url": ch["source_url"],
+        "note": "A chapter has no text of its own. Call lookup_authority on a "
+                "section for its text.",
+    }
+    if ch["parent_num"]:
+        result["article"] = {"number": ch["parent_num"],
+                             "name": ch["parent_name"]}
+    if ch["repeal_note"]:
+        result["chapter_note"] = ch["repeal_note"]
+    if ch["status"] != "active":
+        result["warning"] = (
+            f"{canonical} is {ch['status']}"
+            + (f" — {ch['repeal_note']}" if ch["repeal_note"] else "")
+            + ". Sections listed below, where any survive in the corpus, are "
+              "shown with their own status.")
+    if as_of_date:
+        # Chapter membership is not versioned: the table is a current-code
+        # index, so a dated question about a chapter can only be answered
+        # section by section. Say so rather than implying the list is dated.
+        result["as_of_date"] = as_of_date
+        result["as_of_warning"] = (
+            "The section list is the CURRENT membership of this chapter; it is "
+            "not point-in-time. Call lookup_authority with as_of_date on a "
+            "section for the text in force on that date."
+        )
+    return result
+
+
 def _best_cite(conn, alias: str, spec: dict, citation: str) -> str:
     """The citation string to resolve a provision by: raw first, then fallbacks.
 
@@ -2737,7 +2806,13 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
     administrative provision — optionally as it read on a specific date.
 
     Resolves citations like "N.D. Const. art. I, § 8", "N.D.C.C. § 12.1-20-03",
-    "N.D.R.Civ.P. 56", or "N.D. Admin. Code § 75-02-01". When ``as_of_date`` is
+    "N.D.R.Civ.P. 56", or "N.D. Admin. Code § 75-02-01". A CHAPTER of either
+    numbered code ("N.D.C.C. ch. 28-32", "N.D.A.C. ch. 75-02-04.1") answers
+    with ``unit: "chapter"`` — its catchline, status, and the index of its
+    sections with their catchlines — rather than text, because a chapter has
+    none of its own; call this tool again on the section you want. Chapters
+    that repealed entirely are answerable too, with the repealing authority.
+    When ``as_of_date`` is
     given (ISO ``YYYY-MM-DD``), returns the version in force on that date; this
     is what lets you read a statute "as the court applied it" in an older
     opinion. Omit ``as_of_date`` for the current text.
@@ -2751,7 +2826,9 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
 
     Returns the provision text, heading, effective window, enacting/amending
     authority, source URL, and a count of opinions construing it. If the
-    relevant corpus is not installed, says so.
+    relevant corpus is not installed, says so. Chapter answers carry the
+    section index and the chapter's own construing count (opinions citing the
+    chapter as a whole) in place of text and effective dates.
 
     Args:
         citation: A constitutional, statutory, court-rule, or admin-code reference.
@@ -2772,6 +2849,10 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 "corpus": ckind,
                 "error": f"The {corpus.CORPORA[ckind]['label']} corpus is not installed on this server.",
             }
+        chapter = _chapter_answer(conn, alias, ckind, spec, citation,
+                                  as_of_date)
+        if chapter is not None:
+            return chapter
         lookup_cite = _best_cite(conn, alias, spec, citation)
         row = corpus.lookup_provision_version(conn, alias, lookup_cite, as_of_date)
         warning = None

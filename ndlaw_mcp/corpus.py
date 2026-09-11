@@ -64,6 +64,149 @@ XREF_SCHEMA = """
 """
 
 
+# ---------------------------------------------------------------------------
+# chapters — the unit between a title and a section, in the two numbered codes
+# ---------------------------------------------------------------------------
+
+# The N.D.C.C. and the N.D.A.C. are cited by chapter as often as by section
+# (5,022 opinion edges and 2,914 provision cross-references name an N.D.C.C.
+# chapter), but a chapter is not a provision: it has a number, a catchline and
+# a repeal status, and no text of its own. It gets its own table rather than a
+# ``provisions`` row so chapter numbers stay out of the section counts and out
+# of the short-key uniqueness invariant.
+#
+# Populated for BOTH corpora, including chapters that repealed entirely: those
+# are absent from ``provisions`` (a wholly repealed chapter contributes no
+# sections) but present in the sources, and 228 of them are cited by name in
+# the opinions. See scripts/build_chapters.py.
+CHAPTER_SCHEMA = """
+    CREATE TABLE IF NOT EXISTS chapters (
+        id INTEGER PRIMARY KEY,
+        corpus TEXT NOT NULL,         -- 'ndcc' | 'admin'
+        citation TEXT NOT NULL,       -- canonical, e.g. 'N.D.C.C. ch. 28-32'
+        cite_key TEXT NOT NULL,       -- corpus.cite_key(citation)
+        chapter_num TEXT NOT NULL,    -- as the code prints it, '28-32' / '1-01'
+        chapter_key TEXT NOT NULL,    -- corpus.chapter_key(chapter_num), '28-32'
+        title_num TEXT,               -- '28'
+        title_name TEXT,
+        parent_num TEXT,              -- N.D.A.C. article ('75-02'); NULL for NDCC
+        parent_name TEXT,
+        heading TEXT,                 -- the chapter's catchline
+        status TEXT NOT NULL DEFAULT 'active',   -- active | repealed
+        repeal_note TEXT,             -- '[Repealed by S.L. 2021, ch. 245, § 45]'
+        source_url TEXT,
+        seq INTEGER NOT NULL,         -- code order, for prev/next browse
+        UNIQUE(corpus, chapter_key)
+    );
+    CREATE INDEX IF NOT EXISTS idx_chapters_key
+        ON chapters(corpus, chapter_key);
+    CREATE INDEX IF NOT EXISTS idx_chapters_seq ON chapters(corpus, seq);
+"""
+
+# corpus name -> (section citation prefix, chapter citation prefix, the number
+# of hyphen-separated components in a CHAPTER number). Section numbers carry
+# exactly one component more, which is what makes a bare number in a URL
+# unambiguous: every N.D.C.C. section is 3 components and every chapter 2;
+# every N.D.A.C. section is 4 and every chapter 3 (verified corpus-wide,
+# 29,107 and 14,030 provisions, 2026-09-10).
+NUMBERED_CODES: dict[str, tuple[str, str, int]] = {
+    "ndcc": ("N.D.C.C. \u00a7 ", "N.D.C.C. ch. ", 2),
+    "admin": ("N.D.A.C. \u00a7 ", "N.D.A.C. ch. ", 3),
+}
+
+
+def chapter_key(number: str) -> str:
+    """Zero-insensitive match key for a chapter or section number.
+
+    The sources are not consistent about leading zeros: the code prints
+    ``1-01`` but opinions cite ``ch. 09-03``, and three N.D.C.C. sections
+    carry a zero-padded TITLE in their own citation (``\u00a7 01-03-19``,
+    ``05-02-10.1``, ``06-09-46.1`` \u2014 an upstream century_code.json defect;
+    each contradicts its own ``hierarchy``, which says title 1, 5, 6).
+    Stripping leading zeros from every component collapses exactly those
+    variants and nothing else: on the authoritative 2,517-chapter export the
+    key is collision-free, and in the DBs the only collapses are those three
+    defects, which is the point.
+    """
+    return "-".join(p.lstrip("0") or "0" for p in number.split("-"))
+
+
+def chapter_natkey(number: str) -> list:
+    """Sort key putting chapter/section numbers in code order (``12.1-20``
+    after ``12-20``, ``28-32`` before ``28-32.1``)."""
+    out: list = []
+    for part in number.split("-"):
+        for bit in re.split(r"(\d+)", part):
+            out.append(int(bit) if bit.isdigit() else bit)
+    return out
+
+
+def chapter_citation(corpus_name: str, number: str) -> str:
+    """('ndcc', '28-32') -> 'N.D.C.C. ch. 28-32'."""
+    return NUMBERED_CODES[corpus_name][1] + number
+
+
+def split_chapter_citation(citation: str) -> tuple[str, str] | None:
+    """'N.D.C.C. ch. 28-32' -> ('ndcc', '28-32'), or None when the citation
+    does not name a chapter of a numbered code."""
+    for name, (_sec, chap, arity) in NUMBERED_CODES.items():
+        if citation.startswith(chap):
+            num = citation[len(chap):].strip()
+            if num and num.count("-") + 1 == arity:
+                return name, num
+    return None
+
+
+def chapter_of_section(corpus_name: str, section_num: str) -> str | None:
+    """The chapter a section belongs to: its number minus the last component
+    ('12.1-20-03' -> '12.1-20'). None when the arity is wrong."""
+    arity = NUMBERED_CODES[corpus_name][2]
+    parts = section_num.split("-")
+    if len(parts) != arity + 1:
+        return None
+    return "-".join(parts[:arity])
+
+
+def number_variants(number: str) -> list[str]:
+    """Every leading-zero spelling of a chapter/section number that the corpus
+    might actually store, canonical form first.
+
+    Needed because three N.D.C.C. sections carry a zero-padded title in their
+    own citation while their chapter does not (``\u00a7 01-03-19`` in chapter
+    ``1-03``). Only all-digit components can be padded, and only to two digits,
+    which is the one padding width the sources use \u2014 so this stays a
+    handful of spellings, not a combinatorial fan-out.
+    """
+    parts = number.split("-")
+    out = [""]
+    for part in parts:
+        forms = [part]
+        if part.isdigit():
+            for alt in (part.lstrip("0") or "0", part.zfill(2)):
+                if alt not in forms:
+                    forms.append(alt)
+        out = [(acc + "-" if acc else "") + f for acc in out for f in forms]
+    seen: list[str] = []
+    for cand in out:
+        if cand not in seen:
+            seen.append(cand)
+    return seen
+
+
+def section_number_ranges(corpus_name: str,
+                          chapter_num: str) -> list[tuple[str, str]]:
+    """Half-open ``cite_key`` bounds covering every section of a chapter, one
+    range per spelling, so membership is an index range scan rather than a
+    LIKE over the whole corpus. ``'.'`` (0x2E) is the first character above
+    ``'-'`` (0x2D) and no section number contains a character between them, so
+    ``[prefix + '-', prefix + '.')`` is exactly that chapter's sections."""
+    out = []
+    for num in number_variants(chapter_num):
+        prefix = cite_key(NUMBERED_CODES[corpus_name][0] + num)
+        out.append((prefix + "-", prefix + "."))
+    return out
+
+
 def resolve_corpus_db_path(corpus: str) -> Path:
     """Locate a corpus DB file independent of working directory or install layout.
 
@@ -252,6 +395,36 @@ def split_rule_citation(citation: str) -> tuple[str, str] | None:
     return None
 
 
+def lookup_chapter(conn: sqlite3.Connection, corpus_alias: str,
+                   corpus_name: str, number: str) -> sqlite3.Row | None:
+    """The ``chapters`` row a number names, however it is spelled, or None.
+    Returns None (rather than raising) on a corpus DB built before the table
+    existed, so a stale asset degrades to "no chapter pages" not "no server"."""
+    q = f"{corpus_alias}." if corpus_alias and corpus_alias != "main" else ""
+    try:
+        return conn.execute(
+            f"SELECT * FROM {q}chapters WHERE corpus=? AND chapter_key=?",
+            (corpus_name, chapter_key(number))).fetchone()
+    except sqlite3.OperationalError:
+        return None
+
+
+def chapter_sections(conn: sqlite3.Connection, corpus_alias: str,
+                     corpus_name: str, chapter_num: str) -> list[sqlite3.Row]:
+    """Every section of a chapter, in code order."""
+    q = f"{corpus_alias}." if corpus_alias and corpus_alias != "main" else ""
+    rows: dict[str, sqlite3.Row] = {}
+    for lo, hi in section_number_ranges(corpus_name, chapter_num):
+        for r in conn.execute(
+                f"""SELECT citation, heading, status FROM {q}provisions
+                    WHERE corpus=? AND cite_key >= ? AND cite_key < ?""",
+                (corpus_name, lo, hi)):
+            rows[r["citation"]] = r
+    prefix = NUMBERED_CODES[corpus_name][0]
+    return sorted(rows.values(),
+                  key=lambda r: chapter_natkey(r["citation"][len(prefix):]))
+
+
 def cite_variants(citation: str) -> list[str]:
     """The canonical citation plus every alternate spelling the citation
     graph may carry for it. Queries against ``text_citations.normalized``
@@ -271,6 +444,19 @@ def canonical_cite(citation: str) -> str:
         if citation.startswith(foreign + " "):
             return canon + citation[len(foreign):]
     return citation
+
+
+def cite_key_variants(key: str) -> list[str]:
+    """A cite key plus its leading-zero spellings, canonical first.
+
+    Only the trailing NUMBER is varied, and only when it is a hyphen-numeric
+    designation — so rule and constitutional keys ('ndrcivp 56', 'nd const art
+    i 8') come back unchanged.
+    """
+    head, _, tail = key.rpartition(" ")
+    if not head or not re.fullmatch(r"[0-9][0-9.]*(?:-[0-9][0-9.]*)+", tail):
+        return [key]
+    return [f"{head} {v}" for v in number_variants(tail)]
 
 
 def resolve_cite_key(
@@ -301,7 +487,26 @@ def resolve_cite_key(
         f"SELECT cite_key FROM {q}provisions WHERE REPLACE(cite_key, ' ', '') = ? LIMIT 1",
         (key.replace(" ", ""),),
     ).fetchone()
-    return hit["cite_key"] if hit else None
+    if hit:
+        return hit["cite_key"]
+    # Third tier: leading zeros. ``cite_key`` is whitespace- and punctuation-
+    # insensitive but not zero-insensitive, and the sources are not consistent
+    # — three N.D.C.C. sections are STORED with a zero-padded title
+    # (``§ 01-03-19``, ``05-02-10.1``, ``06-09-46.1``; each contradicts its own
+    # ``hierarchy``, an upstream century_code.json defect), so the ordinary
+    # spelling of a real statute resolved to nothing. Only the number is
+    # varied, and only where the stored form differs solely in padding — a
+    # corpus-wide check confirms this collapses no two distinct provisions
+    # together (the only three collisions ARE those defects).
+    for cand in cite_key_variants(key):
+        if cand == key:
+            continue
+        hit = conn.execute(
+            f"SELECT cite_key FROM {q}provisions WHERE cite_key = ? LIMIT 1",
+            (cand,)).fetchone()
+        if hit:
+            return hit["cite_key"]
+    return None
 
 
 def get_corpus_connection(

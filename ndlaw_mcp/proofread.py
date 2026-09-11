@@ -72,11 +72,20 @@ WRITING_SEP_PAT = (
     r"(?:Justice|Judge|C\.\s?J\.|J\.)"
     r"(?:[,.]?\s*\(?(?:respectfully\s+|specially\s+)*"
     r"(?:concurring|dissenting|writing\s+separately)[^.\n]{0,50}\.?"
+    # parenthesized status: "SAND, Justice (special concurrence and
+    # dissent).", "PAULSON, Justice (dissents).", "BURKE, J. (dissenting.)"
+    # -- the period inside the paren defeated the branch above (2026-09-10)
+    r"|\s*\((?:special\s+)?(?:concurrence|dissent|dissents|concurs|concurring|dissenting)[^)\n]{0,40}\)\.?"
+    # a rehearing writing: "PEDERSON, Justice, on petition for rehearing."
+    r"|,?\s*\(?on\s+petition\s+for\s+rehearing\)?\.?"
     r"|\.)\s*$")
 # Matches a full author line in either form: with participle ("LEVINE,
 # Justice, dissenting.", "ERICKSTAD, Chief Justice, respectfully
 # dissenting.", "VOGEL, Judge (dissenting).", "MESCHKE, Justice, writing
-# separately.") or bare ("ERICKSTAD, Chief Justice." — Sakellson's dissent
+# separately."), parenthesized ("SAND, Justice (special concurrence and
+# dissent).", "BURKE, J. (dissenting.)"), a rehearing writing ("PEDERSON,
+# Justice, on petition for rehearing." — 37 such lines corpus-wide, added
+# 2026-09-10) or bare ("ERICKSTAD, Chief Justice." — Sakellson's dissent
 # opens this way, the header having already said who dissents). A leading
 # star-page marker is allowed ("[*452] LEVINE, Justice, concurring in
 # result." — Wiederholt). The name part carries no comma, which excludes

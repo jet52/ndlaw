@@ -198,6 +198,23 @@ def _ndcc_official_url(section: str) -> str:
 
 
 
+# The two numbered codes publish one PDF per chapter, and a section's deep
+# link is that same PDF plus a named destination — so a chapter's official
+# source is the section URL minus the fragment.
+def _ndcc_chapter_official_url(number: str) -> str:
+    title, _, chapter = number.partition("-")
+    if not (title and chapter):
+        return web_templates.OFFICIAL_FALLBACK["ndcc"]
+    return (f"https://ndlegis.gov/cencode/t{title.replace('.', '-')}"
+            f"c{chapter.replace('.', '-')}.pdf")
+
+
+def _chapter_official_url(corpus_name: str, number: str) -> str:
+    if corpus_name == "admin":
+        return f"https://ndlegis.gov/information/acdata/pdf/{number}.pdf"
+    return _ndcc_chapter_official_url(number)
+
+
 _ROMAN = re.compile(r"^[IVXLC]+$", re.IGNORECASE)
 _CONST_CITE = re.compile(r"^N\.D\. Const\. art\. ([IVXLC]+), § (.+)$")
 # Constitutional provisions that no article/section path can name: the
@@ -208,10 +225,28 @@ _CONST_SHORT_ONLY = re.compile(
     r"|amend\. art\. [IVXLC]+)$")
 
 
+def _chapter_url(corpus_name: str, number: str) -> str:
+    """Canonical page path for a chapter ('/ndcc/28-32', '/ndac/75-02-04.1').
+    The URL kind is the corpus's public name, which for the admin code is
+    'ndac' rather than the internal corpus name 'admin'."""
+    kind = "ndac" if corpus_name == "admin" else "ndcc"
+    return f"/{kind}/{quote(number)}"
+
+
 def _prov_url(corpus_name: str, citation: str) -> str | None:
     """Canonical page path for a provision, or None when this corpus and
     citation shape have no page. Rule numbers can contain spaces
     ('N.D.R.Civ.P. Table B'), so the number is percent-encoded."""
+    # A chapter citation gets a URL only when the chapter is one this corpus
+    # actually carries. 44 of the 906 chapters the opinions name resolve to
+    # nothing at all — mostly bare 'ch. 75-02' forms that belong to the admin
+    # code, plus title-26 chapters replaced wholesale in 1983 — and linking
+    # those would manufacture 404s where plain text is the honest answer.
+    chapter = corpus.split_chapter_citation(citation)
+    if chapter is not None:
+        hit = _chapter_index()["by_key"].get(
+            (chapter[0], corpus.chapter_key(chapter[1])))
+        return _chapter_url(chapter[0], hit["num"]) if hit else None
     if corpus_name == "ndcc" and citation.startswith("N.D.C.C. § "):
         return "/ndcc/" + quote(citation[11:])
     if corpus_name == "admin" and citation.startswith("N.D.A.C. § "):
@@ -361,12 +396,141 @@ def _short_index() -> dict[str, tuple[str, str]]:
     return _SHORT_INDEX
 
 
+def _intra_set_url(key: str) -> str | None:
+    """URL for a short-form reference resolved against the page's own rule set.
+
+    `key` is a citation-ish string the renderer builds from the page's set and
+    the reference it found — "ndrcivp 4", "ndrcivp table a", "ndrct appendix k".
+    Returns a URL only when that provision EXISTS: the renderer links nothing
+    it cannot resolve, so a reference to a rule this corpus does not carry
+    (the ~45 versionless pages, the Admin. R. 9 sub-pages) stays plain text
+    rather than becoming a 404.
+    """
+    hit = _short_index().get(corpus.short_key(key))
+    if not hit:
+        return None
+    return _prov_url(*hit)
+
+
+
+# ---------------------------------------------------------------------------
+# chapters — the unit between a title and a section in the two numbered codes
+# ---------------------------------------------------------------------------
+
+# Built once per process, like the short index and for the same reason (the
+# corpora change only via the weekly self-update, which restarts the service).
+# Three views over the same ~4,500 rows: lookup by zero-insensitive key,
+# lookup by short-URL token, and per-corpus code order for prev/next.
+_CHAPTER_INDEX: dict | None = None
+
+
+def _build_chapter_index() -> dict:
+    by_key: dict[tuple[str, str], dict] = {}
+    by_token: dict[str, tuple[str, str]] = {}
+    order: dict[str, list[dict]] = {}
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        for name in attached:
+            if name not in corpus.NUMBERED_CODES:
+                continue
+            al = corpus.CORPORA[name]["alias"]
+            try:
+                rows = conn.execute(
+                    f"""SELECT chapter_num, chapter_key, title_num, title_name,
+                               parent_num, parent_name, heading, status,
+                               repeal_note, source_url
+                        FROM {al}.chapters WHERE corpus=? ORDER BY seq""",
+                    (name,)).fetchall()
+            except sqlite3.OperationalError:
+                continue        # corpus built before the chapters table
+            seq = []
+            for r in rows:
+                citation = corpus.chapter_citation(name, r["chapter_num"])
+                entry = {"corpus": name, "num": r["chapter_num"],
+                         "key": r["chapter_key"], "citation": citation,
+                         "title_num": r["title_num"],
+                         "title_name": r["title_name"],
+                         "parent_num": r["parent_num"],
+                         "parent_name": r["parent_name"],
+                         "heading": r["heading"], "status": r["status"],
+                         "repeal_note": r["repeal_note"],
+                         "source_url": r["source_url"]}
+                by_key[(name, r["chapter_key"])] = entry
+                by_token[corpus.short_key(citation)] = (name, r["chapter_key"])
+                seq.append(entry)
+            order[name] = seq
+    finally:
+        conn.close()
+    return {"by_key": by_key, "by_token": by_token, "order": order}
+
+
+def _chapter_index() -> dict:
+    global _CHAPTER_INDEX
+    if _CHAPTER_INDEX is None:
+        _CHAPTER_INDEX = _build_chapter_index()
+    return _CHAPTER_INDEX
+
+
+def _chapter_entry(corpus_name: str, number: str) -> dict | None:
+    """The indexed chapter a number names, however it is spelled ('09-03' and
+    '9-03' are the same chapter)."""
+    return _chapter_index()["by_key"].get(
+        (corpus_name, corpus.chapter_key(number)))
+
+
+# A chapter in compact short-key form: 'ndccch28-32', and the spellings that
+# reduce to the same thing ('N.D.C.C. chapter 28-32', 'NDAC ch 75-02-04.1').
+# Matching the compact key rather than the prose means every punctuation and
+# spacing variant is already normalized away by ``corpus.cite_key``.
+_CHAPTER_TOKEN = re.compile(
+    r"^(ndcc|ndac|ndadmincode|ndadmincd)(?:ch|chap|chapter)"
+    r"([0-9][0-9.\-]*)$")
+_TOKEN_CORPUS = {"ndcc": "ndcc", "ndac": "admin",
+                 "ndadmincode": "admin", "ndadmincd": "admin"}
+
+
+def _chapter_for_text(text: str) -> dict | None:
+    """The chapter free text or a short token names, or None.
+
+    Recognizes it only when the corpus actually carries the chapter, so an
+    unknown number falls through to the ordinary not-found path rather than
+    resolving to an empty page.
+    """
+    m = _CHAPTER_TOKEN.match(corpus.short_key(text))
+    if not m:
+        return None
+    return _chapter_entry(_TOKEN_CORPUS[m.group(1)], m.group(2))
+
+
+def _chapter_neighbors(entry: dict) -> tuple[dict | None, dict | None]:
+    """(previous, next) chapter in code order, for the browse nav."""
+    seq = _chapter_index()["order"].get(entry["corpus"], [])
+    try:
+        i = next(i for i, e in enumerate(seq) if e["key"] == entry["key"])
+    except StopIteration:
+        return None, None
+    return (seq[i - 1] if i > 0 else None,
+            seq[i + 1] if i + 1 < len(seq) else None)
+
+
+def _chapter_sections(conn, entry: dict) -> list[sqlite3.Row]:
+    """Every section of a chapter, in code order."""
+    return corpus.chapter_sections(conn, corpus.CORPORA[entry["corpus"]]["alias"],
+                                   entry["corpus"], entry["num"])
+
+
 def _reset_short_index() -> None:
     """Drop the cached index (tests that swap corpus DBs mid-process)."""
     global _SHORT_INDEX
     _SHORT_INDEX = None
     global _RULE_SET_INDEX
     _RULE_SET_INDEX = None
+    global _CHAPTER_INDEX
+    _CHAPTER_INDEX = None
 
 
 # ---------------------------------------------------------------------------
@@ -654,7 +818,9 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
             else None
         paras = web_templates.render_provision_body(
             text, anchors=(name == "rule"),
-            set_slug=rule_split[0] if rule_split else None)
+            set_slug=rule_split[0] if rule_split else None,
+            resolve_ref=_intra_set_url if name == "rule" else None,
+            self_url=canon if name == "rule" else None)
         body = f"""
 <p class="meta">{' · '.join(meta)}</p>
 <div class="counts">
@@ -673,6 +839,183 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         return _html(request, web_templates.page(
             citation, body, h1=h1, official_url=official_fn(ver),
             canonical=canon))
+    finally:
+        conn.close()
+
+
+def _chapter_official(entry: dict) -> str:
+    return entry.get("source_url") or _chapter_official_url(entry["corpus"],
+                                                            entry["num"])
+
+
+def _chapter_section_rows(conn, entry: dict) -> list[dict]:
+    prefix = corpus.NUMBERED_CODES[entry["corpus"]][0]
+    out = []
+    for r in _chapter_sections(conn, entry):
+        num = r["citation"][len(prefix):]
+        out.append({"num": num, "citation": r["citation"],
+                    "url": _prov_url(entry["corpus"], r["citation"]) or "#",
+                    "heading": r["heading"], "status": r["status"]})
+    return out
+
+
+def _chapter_referenced_by(conn, attached, citation: str) -> list[tuple[str, str]]:
+    """(corpus, citation) of every provision whose current version cites this
+    chapter. A chapter has no text of its own, so unlike a section page there
+    is no 'references out' half — only what points at it."""
+    out: list[tuple[str, str]] = []
+    for name in attached:
+        al = corpus.CORPORA[name]["alias"]
+        try:
+            rows = conn.execute(
+                f"""SELECT p.corpus, p.citation
+                    FROM {al}.provision_xrefs x
+                    JOIN {al}.provisions p ON p.id = x.provision_id
+                    JOIN {al}.provision_versions v
+                         ON v.id = x.version_id AND v.effective_end IS NULL
+                    WHERE x.to_citation = ?""", (citation,)).fetchall()
+        except sqlite3.OperationalError:
+            continue
+        out += [(r["corpus"], r["citation"]) for r in rows]
+    out.sort(key=lambda t: _natkey(t[1]))
+    return out
+
+
+def _chapter_nav_entry(e: dict | None) -> dict | None:
+    return None if e is None else {"num": e["num"],
+                                   "url": _chapter_url(e["corpus"], e["num"])}
+
+
+def _chapter_page(request: Request, entry: dict) -> Response:
+    """A chapter index: its sections, its place in the code, and the two
+    counts that make it a research page rather than a table of contents."""
+    canon = _chapter_url(entry["corpus"], entry["num"])
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        if entry["corpus"] not in attached:
+            return _not_found(request, entry["citation"])
+        sections = _chapter_section_rows(conn, entry)
+        prev, nxt = _chapter_neighbors(entry)
+        body = web_templates.render_chapter_index(
+            entry, sections,
+            prev=_chapter_nav_entry(prev), nxt=_chapter_nav_entry(nxt),
+            construing=_construing_count(conn, entry["citation"]),
+            referenced_by=len(_chapter_referenced_by(
+                conn, attached, entry["citation"])),
+            canon=canon)
+        h1 = entry["citation"] + (f" — {entry['heading']}"
+                                  if entry["heading"] else "")
+        return _html(request, web_templates.page(
+            entry["citation"], body, h1=h1,
+            official_url=_chapter_official(entry), canonical=canon))
+    finally:
+        conn.close()
+
+
+def _chapter_text_page(request: Request, entry: dict) -> Response:
+    """{chapter}/text — every section's current text, in order.
+
+    A sibling of the index rather than the chapter page itself: the median
+    chapter is 9 KB but the largest is 341 KB (ch. 10-19.1, the Business
+    Corporation Act), and the index is what a reader scanning for a section
+    wants. Whoever asks for the whole chapter gets the whole chapter.
+    """
+    canon = _chapter_url(entry["corpus"], entry["num"])
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        if entry["corpus"] not in attached:
+            return _not_found(request, entry["citation"])
+        al = corpus.CORPORA[entry["corpus"]]["alias"]
+        sections = _chapter_section_rows(conn, entry)
+        if not sections:
+            return _not_found(request, f"{entry['citation']}/text")
+        for sec in sections:
+            row = conn.execute(
+                f"""SELECT v.text_content FROM {al}.provisions p
+                    JOIN {al}.provision_versions v ON v.id = p.current_version_id
+                    WHERE p.corpus=? AND p.citation=?""",
+                (entry["corpus"], sec["citation"])).fetchone()
+            sec["body"] = web_templates.render_provision_body(
+                row["text_content"] if row else "")
+            sec["anchor"] = "s" + sec["num"]
+        title = f"{entry['citation']} — full text"
+        body = web_templates.render_chapter_text(entry, sections, canon=canon)
+        return _html(request, web_templates.page(
+            title, body, h1=title, official_url=_chapter_official(entry),
+            canonical=f"{canon}/text"))
+    finally:
+        conn.close()
+
+
+def _chapter_sub(request: Request, entry: dict, sub: str) -> Response:
+    """{chapter}/construing (opinions citing the chapter by name) and
+    {chapter}/xrefs (provisions that cite it)."""
+    if sub == "text":
+        return _chapter_text_page(request, entry)
+    if sub not in ("construing", "xrefs"):
+        return _not_found(request, f"{entry['citation']}/{sub}")
+    canon = _chapter_url(entry["corpus"], entry["num"])
+    citation = entry["citation"]
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        back = (f'<p class="meta"><a href="{canon}">'
+                f"← {html.escape(citation)}</a></p>")
+        if sub == "construing":
+            total = _construing_count(conn, citation)
+            pages = max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE)
+            try:
+                pageno = int(request.query_params.get("page", "1"))
+            except ValueError:
+                pageno = 0
+            if not (1 <= pageno <= pages):
+                return _not_found(request, f"{citation} construing page")
+            variants, marks = _construing_variants(citation)
+            oids = [r[0] for r in conn.execute(
+                f"""SELECT DISTINCT tc.opinion_id FROM text_citations tc
+                    JOIN opinions o ON o.id = tc.opinion_id
+                    WHERE tc.normalized IN ({marks})
+                    ORDER BY o.date_filed DESC, o.id
+                    LIMIT ? OFFSET ?""",
+                (*variants, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
+            pager = ""
+            if pages > 1:
+                bits = []
+                if pageno > 1:
+                    bits.append(f'<a href="{canon}/construing'
+                                f'?page={pageno-1}">← newer</a>')
+                bits.append(f"page {pageno} of {pages}")
+                if pageno < pages:
+                    bits.append(f'<a href="{canon}/construing'
+                                f'?page={pageno+1}">older →</a>')
+                pager = f'<p class="pager">{" · ".join(bits)}</p>'
+            body = (back + f'<p class="meta">{total} total — opinions citing '
+                    'this chapter as a whole; an opinion citing only one of '
+                    'its sections is listed on that section\'s page.</p>'
+                    + _link_list(conn, oids) + pager)
+            title = f"Opinions construing {citation}"
+        else:
+            items = "".join(
+                f"<li>{_prov_link(c, cite)}</li>"
+                for c, cite in _chapter_referenced_by(conn, attached, citation))
+            body = (back + "<h2>Referenced by</h2>"
+                    + (f'<ul class="candidates">{items}</ul>' if items
+                       else '<p class="meta">none</p>'))
+            title = f"Cross-references — {citation}"
+        return _html(request, web_templates.page(
+            title, body, h1=title, official_url=_chapter_official(entry),
+            canonical=f"{canon}/{sub}"))
     finally:
         conn.close()
 
@@ -816,6 +1159,27 @@ def _opinion_tables(conn, oid: int) -> dict:
                                "render_html": r["render_html"]} for r in rows}
 
 
+def _strip_duplicate_caption(text: str, h1: str | None) -> str:
+    """Drop a leading body paragraph that IS the page's <h1> caption.
+
+    4,095 opinions (the 1890s West lineage and the 1990s–2010s
+    CourtListener lineage) store the caption as their first paragraph; the
+    page already prints it as the heading, so on a long caption — 2018 ND
+    180's fifty-party quiet-title action — the reader met it twice (JT web
+    review 2026-09-11). Storage is untouched; equality is letters-and-digits
+    only, and anything short of identity is left alone.
+    """
+    if not h1 or not text:
+        return text
+    m = re.match(r"\s*(.+?)(?:\n\s*\n|\Z)", text, re.S)
+    if not m:
+        return text
+    norm = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())  # noqa: E731
+    if norm(m.group(1)) == norm(h1):
+        return text[m.end():]
+    return text
+
+
 def _opinion_page(conn, request: Request, row) -> Response:
     oid = row["id"]
     cited_by_n = conn.execute(
@@ -877,7 +1241,7 @@ def _opinion_page(conn, request: Request, row) -> Response:
   Cited by <a href="{canon}/citing">{cited_by_n} opinion{'s' if cited_by_n != 1 else ''}</a>
   · Cites <a href="{canon}/cited">{cites_out_n} authorit{'ies' if cites_out_n != 1 else 'y'}</a>
 </div>
-{web_templates.render_body(row['text_content'], _opinion_tables(conn, oid))}
+{web_templates.render_body(_strip_duplicate_caption(row['text_content'], row['case_name_full'] or row['case_name']), _opinion_tables(conn, oid))}
 {f'<p class="srcs">Source: {" · ".join(srcs)}</p>' if srcs else ''}
 """
     title = f"{row['case_name']}"
@@ -1222,6 +1586,9 @@ def register(mcp, db_path=None) -> None:
         oid = token_to_id(q)
         if oid is not None:
             return _id_redirect(request, oid)
+        chapter = _chapter_for_text(q)
+        if chapter is not None:
+            return _redirect(_chapter_url(chapter["corpus"], chapter["num"]))
         spec = _provision_spec_for_text(q)
         if spec is not None:
             return _redirect(spec[2])
@@ -1259,13 +1626,36 @@ def register(mcp, db_path=None) -> None:
         tail = f"/{sub}" if sub else ""
         return f"/rule/{canon_slug}/{quote(params['num'])}{tail}"
 
+    # One path shape serves both units of a numbered code, told apart by how
+    # many components the number has: every N.D.C.C. section is 3 and every
+    # chapter 2, every N.D.A.C. section 4 and every chapter 3 (verified over
+    # all 43,137 provisions). So '/ndcc/28-32' can only be a chapter and
+    # '/ndcc/28-32-46' can only be a section — no prefix or disambiguator
+    # needed, and the guessable URL is the right one.
+    def _chapter_in_path(kind: str, params: dict) -> dict | None:
+        name = {"ndcc": "ndcc", "ndac": "admin"}.get(kind)
+        if name is None or "section" not in params:
+            return None
+        num = params["section"]
+        if num.count("-") + 1 != corpus.NUMBERED_CODES[name][2]:
+            return None
+        return _chapter_entry(name, num)
+
     def _prov_routes(kind, *segs):
         path = "/" + kind + "".join("/{%s}" % g for g in segs)
+        chaptered = kind in ("ndcc", "ndac")
 
         async def prov(request: Request) -> Response:
             alias = _alias_redirect(kind, request.path_params, None)
             if alias:
                 return _redirect(alias)
+            if chaptered:
+                entry = _chapter_in_path(kind, request.path_params)
+                if entry is not None:
+                    canon = _chapter_url(entry["corpus"], entry["num"])
+                    if request.url.path != canon:
+                        return _redirect(canon)   # '/ndcc/09-03' -> '/ndcc/9-03'
+                    return _chapter_page(request, entry)
             spec = _prov_spec(kind, request.path_params)
             if spec is None:
                 return _not_found(request, request.url.path)
@@ -1276,6 +1666,13 @@ def register(mcp, db_path=None) -> None:
             alias = _alias_redirect(kind, request.path_params, sub)
             if alias:
                 return _redirect(alias)
+            if chaptered:
+                entry = _chapter_in_path(kind, request.path_params)
+                if entry is not None:
+                    canon = _chapter_url(entry["corpus"], entry["num"])
+                    if not request.url.path.startswith(canon + "/"):
+                        return _redirect(f"{canon}/{sub}")
+                    return _chapter_sub(request, entry, sub)
             spec = _prov_spec(kind, request.path_params)
             if spec is None:
                 return _not_found(request, request.url.path)
@@ -1385,6 +1782,9 @@ def register(mcp, db_path=None) -> None:
         cite = token_to_cite(token)
         if cite is not None:
             return _serve_cite(request, cite, request.url.path)
+        chapter = _chapter_for_text(token)
+        if chapter is not None:
+            return _chapter_page(request, chapter)
         spec = _provision_spec_for_text(token)
         if spec is not None:
             return _prov_page(request, *spec)
@@ -1409,6 +1809,9 @@ def register(mcp, db_path=None) -> None:
             if sub not in ("citing", "cited"):
                 return _not_found(request, f"{token}/{sub}")
             return _sub_page(request, cite, sub)
+        chapter = _chapter_for_text(token)
+        if chapter is not None:
+            return _chapter_sub(request, chapter, sub)
         spec = _provision_spec_for_text(token)
         if spec is not None and sub in ("construing", "xrefs"):
             return _prov_sub(request, *spec, sub)

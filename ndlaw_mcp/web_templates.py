@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import html
 import re
+from collections.abc import Callable
 from urllib.parse import quote
 
 from ndlaw_mcp import proofread, rule_subsections
@@ -585,14 +586,28 @@ def render_body(text: str, tables: dict | None = None) -> str:
     def close_quote():
         set_quote_depth(0)
 
+    prev_blank, prev_depth = True, 0
     for i, raw in enumerate(lines):
         stripped = raw.strip()
         if not stripped:
+            prev_blank = True
             continue
         # Contract 7: tab-leading paragraph = block quote; consecutive quote
         # paragraphs (blank lines between) group into one <blockquote>, and a
         # deeper tab run nests inside the level above it.
         depth = len(raw) - len(raw.lstrip("\t"))
+        # A col-0 line with NO blank line between it and a quote line above
+        # is a hard line break inside that quoted paragraph (the archive's
+        # <br>: a transcript's Q/A, a verdict form's answer line), not a
+        # return to body text. Until 2026-09-11 it closed the blockquote and
+        # the rest of the quote rendered as unquoted body paragraphs
+        # (2004 ND 104 ¶3, JT web review). A [¶N] paragraph or a writing
+        # byline is never continuation.
+        if (depth == 0 and not prev_blank and prev_depth > 0
+                and not re.match(r"\[¶\s?\d+\]", stripped)
+                and not WRITING_SEP.match(raw)):
+            depth = prev_depth
+        prev_blank, prev_depth = False, depth
         is_quote = depth > 0
         set_quote_depth(depth)
         esc = html.escape(raw.lstrip("\t") if is_quote else raw, quote=False)
@@ -845,6 +860,152 @@ def render_rule_set_index(prefix: str, name: str,
     return "".join(parts)
 
 
+# ---------------------------------------------------------------------------
+# chapter pages (/ndcc/28-32, /ndac/75-02-04.1)
+# ---------------------------------------------------------------------------
+
+# What a chapter with no sections of its own is: the number left the code, or
+# was never filled. The reason matters to a reader holding an older opinion —
+# "repealed" sends them to the session law, "reserved" tells them there was
+# never anything there — so the states are worded, not collapsed.
+_CHAPTER_STATE = {
+    "repealed": "This chapter has been repealed.",
+    "reserved": "This chapter number is reserved — no sections have been "
+                "promulgated under it.",
+    "transferred": "This chapter has been redesignated.",
+    "expired": "This chapter has expired under its own terms.",
+    "disapproved": "This chapter was enacted and then disapproved at a "
+                   "referendum; it never took effect.",
+    "unconstitutional": "This chapter was held unconstitutional.",
+}
+
+# A notation may name the opinion that did the work — 15-55.1 reads
+# "[Unconstitutional - Nord v. Guy (1966) 141 N.W.2d 395]" — and that opinion
+# is in this corpus, so the citation becomes a link rather than a dead string.
+_NOTE_CITE = re.compile(r"\b(\d{1,3}) (N\.W\.(?:2d|3d)?|N\.D\.) (\d{1,4})\b")
+_NOTE_FAM = {"N.W.": "NW", "N.W.2d": "NW2d", "N.W.3d": "NW2d", "N.D.": "ND"}
+
+
+def link_note_citations(escaped: str) -> str:
+    """Link ND reporter citations inside an already-escaped notation."""
+    def sub(m):
+        fam = _NOTE_FAM.get(m.group(2))
+        if fam is None:
+            return m.group(0)
+        return (f'<a href="/{fam}/{m.group(1)}/{m.group(3)}">'
+                f"{m.group(0)}</a>")
+    return _NOTE_CITE.sub(sub, escaped)
+
+
+def chapter_state_note(status: str, note: str | None) -> str:
+    """The banner for a chapter that is not active law, or '' when it is."""
+    if status == "active":
+        return ""
+    words = _CHAPTER_STATE.get(status, f"This chapter is {status}.")
+    if note:
+        words += f" {link_note_citations(html.escape(note))}"
+    return f'<p class="counts">{words}</p>'
+
+
+def _chapter_nav(prev: dict | None, nxt: dict | None) -> str:
+    """Previous/next chapter in code order — the browse rail that makes a
+    chapter page a place in the code rather than an isolated hit."""
+    parts = []
+    if prev:
+        parts.append(f'<a href="{html.escape(prev["url"])}">← '
+                     f'{html.escape(prev["num"])}</a>')
+    if nxt:
+        parts.append(f'<a href="{html.escape(nxt["url"])}">'
+                     f'{html.escape(nxt["num"])} →</a>')
+    return f'<p class="pager">{" · ".join(parts)}</p>' if parts else ""
+
+
+def render_chapter_index(entry: dict, sections: list[dict], *,
+                         prev: dict | None, nxt: dict | None,
+                         construing: int, referenced_by: int,
+                         canon: str) -> str:
+    """Body for a chapter page: what the chapter contains, and where it sits.
+
+    ``sections``: dicts with num, url, heading, status. ``entry``: the indexed
+    chapter (num, heading, status, title/parent names, repeal_note).
+    """
+    meta = []
+    if entry.get("title_num"):
+        bits = f'Title {entry["title_num"]}'
+        if entry.get("title_name"):
+            bits += f' — {entry["title_name"]}'
+        meta.append(bits)
+    if entry.get("parent_num"):
+        bits = f'Article {entry["parent_num"]}'
+        if entry.get("parent_name"):
+            bits += f' — {entry["parent_name"]}'
+        meta.append(bits)
+    parts = []
+    if meta:
+        parts.append('<p class="meta">'
+                     + " · ".join(html.escape(m) for m in meta) + "</p>")
+    parts.append(chapter_state_note(entry["status"], entry.get("repeal_note")))
+
+    counts = [f'Construed by <a href="{canon}/construing">{construing} '
+              f'opinion{"" if construing == 1 else "s"}</a>',
+              f'<a href="{canon}/xrefs">{referenced_by} cross-'
+              f'reference{"" if referenced_by == 1 else "s"}</a>']
+    if sections:
+        counts.append(f'<a href="{canon}/text">full text of all '
+                      f'{len(sections)} sections</a>')
+    parts.append(f'<div class="counts">{" · ".join(counts)}</div>')
+
+    if sections:
+        rows = []
+        for sec in sections:
+            status = ""
+            if sec["status"] and sec["status"] != "active":
+                status = (f' <span class="status">'
+                          f'[{html.escape(sec["status"])}]</span>')
+            rows.append(f'<tr><td class="num">'
+                        f'<a href="{html.escape(sec["url"])}">'
+                        f'{html.escape(sec["num"])}</a></td>'
+                        f'<td>{html.escape(sec["heading"] or "")}'
+                        f'{status}</td></tr>')
+        parts.append('<table class="tbl-prose"><thead><tr><th>Section</th>'
+                     '<th>Catchline</th></tr></thead>'
+                     f'<tbody>{"".join(rows)}</tbody></table>')
+    elif entry["status"] == "active":
+        # An active chapter with nothing in it is a defect, not a state; say
+        # so rather than rendering a page that silently looks empty.
+        parts.append('<p class="meta">No sections are recorded for this '
+                     'chapter in this corpus.</p>')
+
+    parts.append(_chapter_nav(prev, nxt))
+    parts.append(_BULK_DATA_LINE)
+    return "".join(parts)
+
+
+def render_chapter_text(entry: dict, sections: list[dict], *,
+                        canon: str) -> str:
+    """Body for {chapter}/text: every section's current text in order, each
+    under its own linked heading and anchored by section number, so a pinpoint
+    into the chapter page lands on the section it names."""
+    parts = [f'<p class="meta"><a href="{canon}">← '
+             f'{html.escape(entry["citation"])}</a>'
+             f' · {len(sections)} sections</p>']
+    parts.append(chapter_state_note(entry["status"], entry.get("repeal_note")))
+    for sec in sections:
+        head = html.escape(sec["num"])
+        if sec.get("heading"):
+            head += f' — {html.escape(sec["heading"])}'
+        status = ""
+        if sec["status"] and sec["status"] != "active":
+            status = (f' <span class="status">'
+                      f'[{html.escape(sec["status"])}]</span>')
+        parts.append(
+            f'<h2 id="{html.escape(sec["anchor"], quote=True)}">'
+            f'<a href="{html.escape(sec["url"])}">{head}</a>{status}</h2>'
+            f'<div class="prov">{sec["body"]}</div>')
+    parts.append(_BULK_DATA_LINE)
+    return "".join(parts)
+
+
 # Markdown links the rules mirror writes into provision text: mirror-file
 # targets ("rule-Form-1.md", "../ndrct/rule-6.1.md") and absolute
 # ndcourts.gov URLs. Rendered as real anchors; a target of any other shape
@@ -886,6 +1047,72 @@ def _render_md_links(escaped: str, set_slug: str | None) -> str:
     return _MD_LINK.sub(repl, escaped)
 
 
+# ---------------------------------------------------------------------------
+# intra-set references (JT 2026-08-29)
+# ---------------------------------------------------------------------------
+
+# A rule refers to its own set's rules, tables and appendices in short form —
+# "as provided by Rule 11", "the form in Table A" — and the reader gets plain
+# text. `provision_xrefs` cannot help: jetcite writes only the cross-set edges
+# it can attribute, so N.D.R.Civ.P. 81 has ZERO xref rows despite naming
+# Table A. Resolving the short form needs the page's own set as context, which
+# is exactly what the renderer has and the extractor does not.
+#
+# Renderer regexes are not storage regexes (the `[¶N]`/`[nN]` rule): a false
+# link is cheap to fix and invisible in the corpus, but it must still never
+# point somewhere wrong, so nothing is linked unless the target provision
+# EXISTS in this set.
+_INTRA_RULE = re.compile(r"\bRule\s+(\d+(?:\.\d+)*[A-Za-z]?)\b")
+_INTRA_TABLE = re.compile(r"\bTable\s+([A-Z])\b")
+_INTRA_APPENDIX = re.compile(r"\bAppendix\s+([A-Z])\b")
+# "Rule 32(f), N.D.R.Crim.P." names its OWN set and is not an intra-set
+# reference; linking it against the page's set would point at the wrong rule
+# of the wrong body. An optional subdivision may sit between.
+_NAMES_A_SET = re.compile(r"\s*(?:\([^)]{1,12}\)\s*)*,?\s*(?:N\.D\.R|F\.R|Fed\.R|"
+                          r"N\.D\.C\.C|of\s+the\s+(?:North\s+Dakota|Federal))")
+# Split an escaped line into tag / anchor-element / text runs so a reference
+# already inside a link (the mirror's `[Rule 3](rule-3.md)`) is left alone.
+_HTML_RUN = re.compile(r"(<a\b[^>]*>.*?</a>|<[^>]+>)", re.S)
+
+
+def _link_intra_set_refs(escaped: str, set_slug: str | None,
+                         resolve: Callable[[str], str | None] | None,
+                         self_url: str | None = None) -> str:
+    """Link short-form references to this rule set's own provisions.
+
+    A reference to the rule's OWN number is left plain: 255 of the first 788
+    links measured were self-references (`Rule 513(a)` inside N.D.R.Ev. 513),
+    and a link back to the page you are reading is clutter, not navigation.
+    Pointing those at the subdivision anchor instead — `#a`, via
+    `rule_subsections` / `corpus.pincite_to_anchor` — would be the useful
+    version and is left for later.
+    """
+    if not set_slug or resolve is None:
+        return escaped
+
+    def one(chunk: str) -> str:
+        def repl(pat_name: str):
+            def f(m: re.Match) -> str:
+                ident = m.group(1)
+                if pat_name == "rule" and _NAMES_A_SET.match(chunk[m.end():]):
+                    return m.group(0)
+                key = f"{set_slug} {ident}" if pat_name == "rule" \
+                    else f"{set_slug} {pat_name} {ident}"
+                url = resolve(key)
+                if not url or (self_url and url == self_url):
+                    return m.group(0)
+                return (f'<a class="xref" href="{html.escape(url, quote=True)}">'
+                        f'{m.group(0)}</a>')
+            return f
+        chunk = _INTRA_RULE.sub(repl("rule"), chunk)
+        chunk = _INTRA_TABLE.sub(repl("table"), chunk)
+        chunk = _INTRA_APPENDIX.sub(repl("appendix"), chunk)
+        return chunk
+
+    return "".join(part if i % 2 else one(part)
+                   for i, part in enumerate(_HTML_RUN.split(escaped)))
+
+
 # A markdown pipe row: `| cell | cell |`. Cells may carry escaped pipes
 # (`\|`, written by the scraper's cell flattener).
 _PIPE_ROW = re.compile(r"^\|.*\|$")
@@ -920,7 +1147,9 @@ def _pipe_rows_to_html(rows: list[str]) -> str:
 
 
 def render_provision_body(text: str, *, anchors: bool = False,
-                          set_slug: str | None = None) -> str:
+                          set_slug: str | None = None,
+                          resolve_ref: Callable[[str], str | None] | None = None,
+                          self_url: str | None = None) -> str:
     """Provision text -> HTML. The rules corpus stores markdown-lite:
     ``**bold**`` subdivision labels and ``> ``/``> > `` indent levels
     (N.D.C.C./N.D.A.C. text is plain and passes through unchanged).
@@ -958,6 +1187,7 @@ def render_provision_body(text: str, *, anchors: bool = False,
         esc = html.escape(ln.strip())
         esc = _BOLD.sub(r"<strong>\1</strong>", esc)
         esc = _render_md_links(esc, set_slug)
+        esc = _link_intra_set_refs(esc, set_slug, resolve_ref, self_url)
         aid = ""
         a = amap.get(ln_idx)
         if a:

@@ -223,6 +223,12 @@ def normalize_authority(query: str) -> dict:
     if "admincode" in low or low.startswith("ndac") or "adminc" in low:
         m = _SECTION_RE.search(q)
         sec = m.group(1) if m else None
+        # Three components is an admin-code CHAPTER (title-article-chapter);
+        # four is a section. Reading '75-02-04.1' as a section would answer a
+        # chapter question with "no such provision".
+        if sec and sec.count("-") + 1 == 3:
+            return {"kind": "admin", "token": sec,
+                    "exact": f"N.D.A.C. ch. {sec}"}
         exact = f"N.D.A.C. § {sec}" if sec else None
         return {"kind": "admin", "token": sec, "exact": exact}
 
