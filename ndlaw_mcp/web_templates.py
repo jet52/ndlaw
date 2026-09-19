@@ -47,6 +47,11 @@ _STYLE = """
   h1 { font-size: 1.35rem; margin-bottom: .2rem; line-height: 1.3; }
   h2 { font-size: 1.1rem; margin-top: 1.8rem; }
   h3.section { font-size: 1rem; margin: 1.5rem 0 .3rem; text-align: center; }
+  h4.subsection { font-size: 1rem; font-weight: normal; margin: 1.2rem 0 .3rem; text-align: center; }
+  /* a page marker glued to a heading (`[*241] I`) sits at the left margin so the
+     numeral itself stays centred, as the print sets it */
+  h3.section, h4.subsection { position: relative; }
+  h3.section .star, h4.subsection .star { position: absolute; left: 0; }
   a { color: #1a5276; }
   .meta { color: #444; font-size: .95em; margin: .15rem 0; }
   .meta b { color: #1a1a1a; }
@@ -290,6 +295,23 @@ WRITING_SEP = re.compile("^ *" + proofread.WRITING_SEP_PAT)
 # 4,576 opinions, zero heading forms), so heading-ness is a RENDER decision
 # (JT 2026-08-14: renderer-side, storage untouched).
 _ROMAN_LINE = re.compile(r"^(?=[IVX])(X{0,3})(IX|IV|V?I{0,3})\.?$")
+# A heading may carry the page break it opens on: `[*241] I` (both `I`s of
+# 265 N.W.2d 239 do; 81 pre-1997 and 83 modern opinions, 2026-09-18). The
+# marker is stripped for the heading test and kept in the render (its anchor
+# survives because heads render AFTER the star substitution).
+_HEAD_STAR = re.compile(r"^\[\*\*?\d{1,4}\]\s*")
+# Second-level letter heading under a promoted Roman section — "A", "B.".
+_ALPHA_LINE = re.compile(r"^[A-H]\.?$")
+
+
+def _head_token(raw: str) -> str | None:
+    """The heading candidate on a column-0 line, or None: strips one leading
+    star marker and returns the remaining text when it is a bare numeral or
+    letter; tab-led lines are quoted material and never candidates."""
+    if raw.startswith("\t"):
+        return None
+    s = _HEAD_STAR.sub("", raw.strip(), count=1)
+    return s if (_ROMAN_LINE.match(s) or _ALPHA_LINE.match(s)) else None
 
 
 def _roman_val(s: str) -> int:
@@ -335,50 +357,111 @@ def _roman_section_heads(lines: list[str], sections) -> set[int]:
       heading), and the content-follows condition is exactly what
       separates them. ``expected`` does not advance on a duplicate, so a
       court that recovers its numbering afterward still sequences.
+
+    **2026-09-18 (JT: "build both"):** the modern-band gate (a ``[¶N]``
+    marker present) is gone — the sequence gate alone decides. Two things
+    changed since 08-14: Contract 7 tab-led every block quote in every
+    era, so a quoted complaint's enumerators are excluded by the column-0
+    rule, not the era; and the CAP page image for 265 N.W.2d 239 shows the
+    print centring a standalone numeral whether it heads an analysis
+    section or an enumerated summary of contentions — the display is the
+    same either way, so promotion is print fidelity. A star marker glued
+    to the numeral (``[*241] I``) no longer breaks the run.
     """
-    if not any("[¶" in ln for ln in lines):
-        return set()
     fn_ranges = [(h, end) for h, _, end in sections]
+    seg_at = _segments(lines)
+    cands: list[tuple[int, int]] = []          # (line_idx, numeral value)
+    for i, raw in enumerate(lines):
+        tok = _head_token(raw)
+        if (tok and _ROMAN_LINE.match(tok)
+                and not any(h < i < e for h, e in fn_ranges)):
+            cands.append((i, _roman_val(tok)))
+    return _sequence_heads(lines, seg_at, cands, key=lambda i: seg_at[i])
+
+
+def _segments(lines: list[str]) -> list[int]:
+    """Writing-segment index per line (a byline starts a new segment)."""
     seg = 0
-    seg_at: list[int] = []
+    out: list[int] = []
     for raw in lines:
         if WRITING_SEP.match(raw):
             seg += 1
-        seg_at.append(seg)
-    cands: list[tuple[int, int]] = []          # (line_idx, numeral value)
-    for i, raw in enumerate(lines):
-        s = raw.strip()
-        if (s and not raw.startswith("\t") and _ROMAN_LINE.match(s)
-                and not any(h < i < e for h, e in fn_ranges)):
-            cands.append((i, _roman_val(s)))
+        out.append(seg)
+    return out
+
+
+def _sequence_heads(lines: list[str], seg_at: list[int],
+                    cands: list[tuple[int, int]], key) -> set[int]:
+    """Promote the candidates that form a strict run 1, 2, 3 … within each
+    group ``key(line_idx)`` (a writing segment for Roman heads, an enclosing
+    Roman section for letter heads), at least two members per group. A value
+    equal to the last accepted one is the court's own duplicate heading and
+    promotes when body content still follows in the same segment (2017 ND
+    152); ``expected`` does not advance on it."""
     def _body_follows(i: int) -> bool:
         sg = seg_at[i]
         for j in range(i + 1, len(lines)):
             if seg_at[j] != sg:
                 return False
-            if lines[j].lstrip().startswith("[¶"):
+            if lines[j].strip() and _head_token(lines[j]) is None:
                 return True
         return False
 
-    expected: dict[int, int] = {}
-    last: dict[int, int] = {}                  # segment -> last accepted value
-    ok: dict[int, int] = {}                    # line_idx -> segment
+    expected: dict = {}
+    last: dict = {}                            # group -> last accepted value
+    ok: dict[int, object] = {}                 # line_idx -> group
     for i, v in cands:
-        sg = seg_at[i]
+        g = key(i)
+        if g is None:
+            continue
         if v == 1:
-            expected[sg] = 2
-            last[sg] = 1
-            ok[i] = sg
-        elif expected.get(sg) == v:
-            expected[sg] = v + 1
-            last[sg] = v
-            ok[i] = sg
-        elif last.get(sg) == v and _body_follows(i):
-            ok[i] = sg                         # duplicate heading; expected stays
-    per_seg: dict[int, int] = {}
-    for sg in ok.values():
-        per_seg[sg] = per_seg.get(sg, 0) + 1
-    return {i for i, sg in ok.items() if per_seg[sg] >= 2}
+            expected[g] = 2
+            last[g] = 1
+            ok[i] = g
+        elif expected.get(g) == v:
+            expected[g] = v + 1
+            last[g] = v
+            ok[i] = g
+        elif last.get(g) == v and _body_follows(i):
+            ok[i] = g                          # duplicate heading; expected stays
+    per_group: dict = {}
+    for g in ok.values():
+        per_group[g] = per_group.get(g, 0) + 1
+    return {i for i, g in ok.items() if per_group[g] >= 2}
+
+
+def _alpha_section_heads(lines: list[str], sections, roman_heads: set[int]) -> set[int]:
+    """Line indexes to render as ``<h4 class="subsection">`` (JT 2026-09-18,
+    "build both"): the letter sub-headings "A", "B", "C" one level below the
+    Roman sections. The slip centres them exactly as it centres the
+    numerals (2025 ND 8: I/II/III and A/B/C at the same column, body at
+    column 0), so left-justified letters were the renderer's defect, not
+    the court's layout. Same strictness as the Roman rule, plus one more
+    gate: a letter run counts only INSIDE a promoted Roman section (its
+    group is the nearest promoted numeral above it in the same writing
+    segment); a run that follows a byline directly, or a lone "A", stays
+    the plain paragraph it was — erring toward not promoting."""
+    if not roman_heads:
+        return set()
+    fn_ranges = [(h, end) for h, _, end in sections]
+    seg_at = _segments(lines)
+    heads = sorted(roman_heads)
+    cands: list[tuple[int, int]] = []
+    for i, raw in enumerate(lines):
+        tok = _head_token(raw)
+        if (tok and _ALPHA_LINE.match(tok)
+                and not any(h < i < e for h, e in fn_ranges)):
+            cands.append((i, ord(tok[0]) - ord("A") + 1))
+
+    def enclosing(i: int):
+        best = None
+        for h in heads:
+            if h < i and seg_at[h] == seg_at[i]:
+                best = h
+            elif h > i:
+                break
+        return best
+    return _sequence_heads(lines, seg_at, cands, key=enclosing)
 
 
 def _collect_footnote_sections(lines: list[str]):
@@ -469,6 +552,7 @@ def render_body(text: str, tables: dict | None = None) -> str:
     sections = _collect_footnote_sections(lines)
     head_idxs = {h for h, _, _ in sections}
     roman_heads = _roman_section_heads(lines, sections)
+    alpha_heads = _alpha_section_heads(lines, sections, roman_heads)
 
     # Headingless opinions (the 2026-08-05 witness batches) carry `[nN]`
     # definitions with no FOOTNOTES heading to section them. When no heading
@@ -622,10 +706,6 @@ def render_body(text: str, tables: dict | None = None) -> str:
         if i in head_idxs:
             out.append(f"<h2>{html.escape(stripped)}</h2>")
             continue
-        if i in roman_heads:
-            # top-level section numeral, one level below the byline <h2>
-            out.append(f'<h3 class="section">{html.escape(stripped)}</h3>')
-            continue
         if _FIGURE.match(stripped):
             out.append(f'<p class="figure">{esc}</p>')
             continue
@@ -687,6 +767,17 @@ def render_body(text: str, tables: dict | None = None) -> str:
         esc = _PARA.sub(para_sub, esc)
         esc = _STAR.sub(star_sub, esc)
         esc = _STAR2.sub(star2_sub, esc)
+
+        # section headings render AFTER the marker substitutions so a
+        # numeral that opens on a page break (`[*241] I`) keeps its star
+        # anchor; the numeral itself is centred by the stylesheet
+        if i in roman_heads:
+            # top-level section numeral, one level below the byline <h2>
+            out.append(f'<h3 class="section">{esc.strip()}</h3>')
+            continue
+        if i in alpha_heads:
+            out.append(f'<h4 class="subsection">{esc.strip()}</h4>')
+            continue
 
         # separate-writing byline ("LEVINE, Justice, dissenting.",
         # "ERICKSTAD, Chief Justice.", star-page-prefixed forms) renders as

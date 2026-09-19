@@ -19,6 +19,13 @@ Environment=NDLAW_HOST=127.0.0.1
 Environment=NDLAW_PORT=8000
 Environment=NDLAW_DB=/srv/ndcourts/opinions.db
 
+# Per-call tool log (tool name, timing, size, session, client — never the
+# arguments or results). LogsDirectory= creates /var/log/ndlaw-mcp owned by
+# User= and keeps it writable under ProtectSystem=strict. Rotated by
+# deploy/logrotate-ndlaw-mcp; read by deploy/anti-scrape/daily-traffic-report.py.
+LogsDirectory=ndlaw-mcp
+Environment=NDLAW_TOOLLOG=/var/log/ndlaw-mcp/toolcalls.jsonl
+
 ExecStart=/srv/ndcourts/ndlaw-mcp/.venv/bin/ndlaw-mcp
 Restart=on-failure
 RestartSec=2

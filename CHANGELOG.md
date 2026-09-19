@@ -8,6 +8,57 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.0 — 2026-09-18
+
+- **Data, this week** (every batch is logged in the corpus changelog tables):
+  the court's own captions restored on **4,933** pre-1997 West-primary opinions from
+  the archive pages (`caption-restore-archive-2026-09-16`) plus 40 in 2019+ from
+  the slips; West's `Attorneys and Law Firms` / `Opinion` section labels stripped
+  from **12,437** opinions; the clerk's cTrack register read for every 1997+
+  docket — 19 clerk-corrected opinions re-served since our scrape applied from
+  the corrected PDFs and Contract 6b (`date_modified` / `modified_kind`)
+  backfilled on **590** more; N.D. Reports print errata and the N.D. 1–25
+  two-witness OCR rounds; the September 2026 statutes export (kratom ch. 51-38);
+  N.D. Sup. Ct. Admin. R. 36 amended eff. 2026-09-16 and the N.D.R.Ct. Appendix B
+  form corrected; AG opinion 2026-L-04; opinions through 2026 ND 162.
+- **Web renderer: section headings centred in every era, and the letter
+  sub-headings too** (JT 2026-09-18, "build both"). The Roman-numeral promotion
+  (`<h3 class="section">`, centred) no longer requires a `[¶N]` marker, so
+  pre-1997 opinions such as 265 N.W.2d 239 get it — the sequence gate (column 0,
+  outside footnotes, strict run from I with at least two members, per writing
+  segment) decides alone; a numeral glued to its page marker (`[*241] I`) now
+  counts and keeps its star anchor inside the heading. Letter sub-headings
+  "A", "B", "C" inside a promoted Roman section render as a centred
+  `<h4 class="subsection">` under the same strictness (run from A, two members,
+  never without a Roman parent). Storage untouched. Census: 591 pre-1997 and
+  4,815 modern opinions carry `<h3>`; 85 + 1,409 carry `<h4>`.
+- **Weekly cTrack register corrections probe** (`scripts/ctrack_corrections_probe.py`,
+  `weekly_scrape.sh` stage). Re-issued opinions keep their C-Track document id, so
+  the gov-link sweep never saw them; the probe refreshes the clerk's public-portal
+  register for every opinion filed in the last 120 days and reports each
+  `Correction - Opinion` entry not yet recorded under Contract 6b, re-reporting weekly
+  until it is. `ctrack_register_sweep.sweep()` gained `refresh=` / `--refresh`; the
+  reader's `classify()` is shared. Never writes the DB.
+- **ndconst tripwire** (`deploy/anti-scrape/ndconst-tripwire.py`): refused POSTs to
+  paths other than `doku.php` / `lib/exe/*.php` (WordPress-scanner sweeps the URL
+  rewrite routes to the POST-gate) are summarised in DETAIL instead of flagged; a 301
+  (the port-80 https redirect) counts as refused.
+- **statutes.db promoted to the 2026-09-15 Century Code export** (special-session
+  kratom chapter 51-38, 10 amended sections; chapters and cross-references rebuilt).
+  See CHANGELOG-data-primarylaw.md `statutes-ingest-json-2026-09-17`.
+- **Per-call tool log for the MCP server** (`ndlaw_mcp/toollog.py`). When
+  `NDLAW_TOOLLOG` names a file, a FastMCP middleware appends one JSON line per
+  `tools/call`: timestamp, tool name, ok/error, duration, bytes returned, MCP
+  session id, client address (first `X-Forwarded-For` hop) and User-Agent —
+  never the arguments or the result. A write failure is reported once and never
+  fails the call. Off by default; the deploy unit turns it on with
+  `LogsDirectory=ndlaw-mcp` and `deploy/logrotate-ndlaw-mcp` rotates it. It
+  feeds the daily traffic report's new § 8 (calls, sessions, errors, latency and
+  per-tool counts, last 24 h against the prior 14 days); § 7 adds a 14-day
+  client trend from the Apache client log, with claude.ai relay traffic told
+  apart from direct clients and direct clients labelled by network from the
+  cron file's `REPORT_KNOWN_NETS`.
+
 ## v3.4.2 — 2026-09-11
 
 - **Chapter citations resolve.** The two numbered codes are cited by chapter

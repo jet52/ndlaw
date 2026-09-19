@@ -1,0 +1,16 @@
+# logrotate for the MCP server's per-call tool log (NDLAW_TOOLLOG).
+# Install: sudo install -m644 -o root -g root logrotate-ndlaw-mcp /etc/logrotate.d/ndlaw-mcp
+#
+# The app opens/closes the file per write, so a plain rename is safe (no
+# copytruncate). Monthly with 6 kept: the daily report reads the last 14 days
+# from the live file plus .1, so a rotation never blanks the trend; and at
+# ~1–2 K lines a day the file stays small.
+/var/log/ndlaw-mcp/toolcalls.jsonl {
+    monthly
+    rotate 6
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 ndcourts adm
+}

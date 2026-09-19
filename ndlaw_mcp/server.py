@@ -63,6 +63,11 @@ mcp = FastMCP(
     ),
 )
 
+# Per-call tool log (one JSON line per tools/call; NO arguments or results) when
+# NDLAW_TOOLLOG names a file — feeds the daily traffic report's § 8. See toollog.py.
+from .toollog import install_tool_log  # noqa: E402
+install_tool_log(mcp)
+
 DB_PATH = DEFAULT_DB_PATH
 
 COURTLISTENER_BASE = "https://www.courtlistener.com"
