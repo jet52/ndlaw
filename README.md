@@ -509,6 +509,125 @@ what is published here is the North Dakota courts' own text. See
 
 ---
 
+## Building one for another jurisdiction
+
+Nothing here is North Dakota-specific except the sources and a few
+tables. (This repository is the serve-only half; the ingest pipeline lives
+in the development repository. The method is what transfers.) The shape:
+raw sources kept as untouched witnesses, one SQLite database per corpus, a citation graph, a
+correction log, and a thin MCP layer on top. This is the order that worked.
+
+### 1. Decide what the corpora are, and what the unit of each one is
+
+Two kinds of law need two data models. **Opinions** are immutable dated
+documents: one row per opinion, parallel citations in a side table, text
+searched with FTS5. **Codes** — constitution,
+statutes, court rules, regulations — are *versioned provisions*: a stable
+identity (`art. I, § 8`, `§ 28-32-46`, `Rule 12`) with dated text versions,
+so a query can ask for the text in force on a given date. Decide
+early how you will name every unit, because the citation graph resolves
+cross-references by exact string match on that canonical name.
+
+### 2. Locate the sources
+
+For each corpus, find the official publisher first, then the independent
+witnesses. What we used, and where the equivalents usually live:
+
+| Corpus | Official | Independent witnesses |
+|---|---|---|
+| Opinions, modern | The court's own site: slip PDFs plus a neutral-citation index (`2019 ND 54`); weekly scrape | [CourtListener](https://www.courtlistener.com) bulk data and API (Free Law Project); the court's legacy archive if one exists |
+| Opinions, pre-digital | The bound official reports (public domain for state government works) | CourtListener's historical case-law collection (texts and page scans); Google Books / HathiTrust scans of the reporter volumes; the regional reporter's own volumes |
+| Statutes | The legislature. Look for a structured export before scraping HTML — North Dakota's Legislative Council publishes the whole code as JSON | Session laws (for point-in-time history); the archived prior editions |
+| Constitution | Legislature or Secretary of State | A compiled amendment chronology (ballot measures, session laws) is what makes the history layer possible |
+| Court rules | The court's rules page; amending orders carry effective dates | The orders themselves |
+| Administrative code | Whoever publishes it (here, the Legislative Council) | The register / notices of adopted rules |
+| Attorney General, ethics advisory opinions | The issuing office's site | — |
+
+Read the terms of use and `robots.txt` for every source. Commercial
+reporter text is subscriber content: it can serve as a
+*validation* witness under your own subscription, but you cannot
+redistribute it, and your shipped database must contain only the
+government's own text plus factual record content. Write that scope down
+before you ingest anything ([`NOTICE.md`](NOTICE.md) is ours).
+
+### 3. Acquire, and keep the raw files forever
+
+Everything lands in a witness tree (a `refs/<state>/…` directory outside
+the repository) that the pipeline reads and never writes. A file there is
+authoritative about what the *source said*, never about what the opinion *should* say; corrections live
+only in the database and its changelog. Alongside each acquired file keep a
+small provenance sidecar (URL, fetch date, checksum). Scrape politely, with
+a fixed rate and a real user agent; some court sites sit behind Cloudflare
+and need TLS impersonation (`curl_cffi`) rather than plain `requests`.
+Automate the weekly pull (`launchd`/`cron`) from day one, because the
+corpus is only ever as current as the last run.
+
+### 4. Extract text with two witnesses per document
+
+- **Born-digital PDFs**: `pdftotext -layout`, then a reflow pass that
+  rejoins wrapped lines, keeps paragraph numbers, star pages, footnotes, and
+  block quotes, and strips clerk stamps and page furniture.
+- **Scanned pages**: OCR twice with different engines (we use tesseract via
+  `ocrmypdf` as the baseline and a vision-language model, Surya, as the
+  second witness) and accept a correction only where the two agree against
+  the stored text, then read the page image for anything digit-bearing.
+- **HTML**: a parser per site; the archive's `<u>` may be italics on one
+  page and inserted text on another, so decide per element with the page in
+  front of you.
+
+Pick unambiguous in-text sigils for structure (`[¶12]`, `[*363]`, `[n3]`)
+that cannot collide with the court's own bracketed material, and document
+them where every consumer will see them. Preserve
+the court's misprints verbatim and record them in a `print_anomalies`
+table with the intended reading; the citation graph resolves to the
+intended target while the text stays faithful.
+
+### 5. Load, deduplicate, and link
+
+Ingest each source separately, then merge by **parallel-citation
+matching**: the same opinion appears in the regional reporter, the state
+reports, the court's site, and CourtListener, and the citation set is the
+join key. Record every source that contributed in a sources table so a
+later audit can diff the stored text against each witness.
+Extract citations with a parser that knows your
+jurisdiction's reporters, rules, and statute forms — we use
+[`jetcite`](https://github.com/jet52/jetcite) — into an outbound table
+(document → authority) and derive the inbound side (cited-by, notes of
+decisions) from it. Provision-to-provision cross-references get the same
+treatment inside each code database, keyed to the version they appeared in.
+
+### 6. Serve
+
+[FastMCP](https://github.com/jlowin/fastmcp) turns plain functions into
+tools; `ndlaw_mcp/server.py` attaches the per-corpus databases to one
+connection and registers about forty. Name tools by the questions a lawyer
+asks (`lookup_opinion`, `get_citing_opinions`, `lookup_authority` with
+`as_of_date`, `check_draft`), keep responses paginated, and give every tool
+an end-to-end test. Ship a `get_database_stats` tool that reports the
+corpus counts and the date of the last update, so users can tell how
+current an instance is.
+
+### 7. Validate, log, release
+
+Write integrity invariants and run them after every data batch; log every
+correction as a batch with a reason and the witness it was checked against
+(a data changelog, separate from the code changelog); and plan an
+independent text-fidelity audit against the original sources. Release the databases as
+versioned assets on a fixed cadence, separate from the code, with the
+distribution copy stripped of anything you may not redistribute.
+
+### What to fork and what to rewrite
+
+Reuse as-is: the schemas, the server and web layers, the invariants
+framework, the changelog and release tooling, the two-witness OCR gate.
+Rewrite for your jurisdiction: the scrapers, the court-composition table
+(justices and terms), the reporter taxonomy and citation patterns, the
+text conventions of your court's print, and the redistribution scope.
+Budget most of the effort for step 4: acquiring sources is a week, getting
+the text right is the project.
+
+---
+
 ## Reporting errors
 
 This repository ships a validated, read-only corpus and the minimal server that
