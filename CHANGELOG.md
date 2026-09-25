@@ -8,6 +8,24 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.1 — 2026-09-25
+
+- **Data, this week** (every batch is logged in the corpus changelog tables):
+  the North Dakota Reports print read against the stored text in four more
+  two-witness rounds (N.D. vols 46–79: 364 + 696 sites, plus hand and two-read
+  lead passes); **Program A** — the cite-digit pass (131 digit corrections, 198
+  print misprints recorded rather than stored) and the clause pass (314 citation
+  clauses reset to the official print across 265 opinions, 189 more print
+  misprints recorded, a 40-unit blind audit); the punctuation-OCR class
+  (1,160+ sites), the bare-`s` section class, treatise subdivisions, and the
+  re-OCR of 81 junk-layer slips (2023 ND 185 regains its lost page 24); 2025 ND
+  199's February 2026 corrected re-issue; 12 N.D. 527's caption now follows the
+  official volume (`State ex rel. Styles v. Beaverstad`); opinions through
+  2026 ND 162, **including 2026 ND 160**, which the court's listing prints
+  without a citation.
+- **Release tooling:** `push-db.sh` waits up to ~17 minutes for GitHub to accept
+  a just-pushed release target (the measured lag is ~11 minutes).
+
 ## v3.5.0 — 2026-09-18
 
 - **Data, this week** (every batch is logged in the corpus changelog tables):
