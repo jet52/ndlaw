@@ -71,7 +71,9 @@ WRITING_SEP_PAT = (
     r"(?:Acting\s+|Chief\s+|Surrogate\s+|District\s+)*"
     r"(?:Justice|Judge|C\.\s?J\.|J\.)"
     r"(?:[,.]?\s*\(?(?:respectfully\s+|specially\s+)*"
-    r"(?:concurring|dissenting|writing\s+separately)[^.\n]{0,50}\.?"
+    # role words case-insensitive: the court's own heading can capitalize one
+    # ("Sandstrom, Justice, Dissenting.", 1997 ND 33 — 2026-10-01 author-heading restore)
+    r"(?i:concurring|dissenting|writing\s+separately)[^.\n]{0,50}\.?"
     # parenthesized status: "SAND, Justice (special concurrence and
     # dissent).", "PAULSON, Justice (dissents).", "BURKE, J. (dissenting.)"
     # -- the period inside the paren defeated the branch above (2026-09-10)
@@ -100,14 +102,20 @@ WRITING_SEP_PAT = (
 # (space-led-separators-census-2026-08-09), and a matcher blind to it let a
 # per-writing FOOTNOTES section run past the boundary into the next writing.
 _WRITING_SEP = re.compile(r"(?m)^ *" + WRITING_SEP_PAT)
-_BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[(\d{1,3})\]")   # line-anchored [N] body opener
+# line-anchored body opener under a NOTES heading: the corpus `[nN]` label or the legacy
+# `[N]` (2026-10-01: the `[nN]` notation passes converted NOTES-section labels, and this
+# opener still read only `[N]`, so 1999 ND 134 kept footnote 1 of 6 — the
+# footnote-pincite detector went 178/0 -> 169/10; residue `[N]` labels remain in 25 opinions)
+_BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[n?(\d{1,3})\]")
 # Inline footnote call. `[nN]` is the corpus notation (JT 2026-08-04): a bare
 # `[N]` cannot serve, because treatise subdivisions (`§ 34.11[5]`), bracketed
 # pages (`490 U.S. [163]`) and the courts' own enumerators (`described in [1]
 # or [2]`) share that shape. The bare form is still accepted — the notation
 # pass only reached opinions with a FOOTNOTES heading.
 _BRACKET_CALL = re.compile(r"\[n?(\d{1,3})\]")             # inline call (not [¶ N])
-_COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):[ \t]*$")  # "N:" body opener
+# "N:" body opener under a FOOTNOTES heading — alone on its line, or (2026-10-01) with the
+# body run onto the same line by a later reflow (2013 ND 99, 2017 ND 146: `1: Wotzka …`)
+_COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):(?:[ \t]*$|[ \t]+(?=\S))")
 # Repaired West/CL period form (batch `footnote-def-join-2026-07-24`): the label
 # and its orphaned period rejoined onto the body line — "1. See ABA Standards
 # ..." — which is what the court's archive HTML itself renders. Unlike the split

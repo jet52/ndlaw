@@ -753,6 +753,9 @@ def justice_info(
     If citation is provided, returns the voting record for that opinion.
     Otherwise, returns aggregate stats (authorship count, dissent rate, etc.)
     for the justice across all cases (optionally filtered by date range).
+    ``dissent`` counts full dissents plus dissents in part (broken out as
+    ``dissent_full`` / ``dissent_in_part``); ``concurring`` includes special
+    concurrences and concurrences in the result (also broken out).
 
     Only covers opinions from 1997–present (neutral-cite era with voting data).
 
@@ -803,47 +806,74 @@ def justice_info(
             params.append(date_to)
 
         rows = conn.execute(sql, params).fetchall()
-
-        total = 0
-        authored = 0
-        majority = 0
-        dissent = 0
-        concurring = 0
-        separate = 0
-
-        for row in rows:
-            vr = _json.loads(row["voting_record"]) if row["voting_record"] else {}
-            vote = None
-            for name, v in vr.items():
-                if name.lower() == justice.lower():
-                    vote = v
-                    break
-            if vote is None:
-                continue
-            total += 1
-            if vote == "majority":
-                majority += 1
-            elif vote == "dissent":
-                dissent += 1
-            elif vote == "concurring":
-                concurring += 1
-            elif vote == "separate":
-                separate += 1
-            if row["author"] and row["author"].lower() == justice.lower():
-                authored += 1
-
-        return {
-            "justice": justice,
-            "cases_participated": total,
-            "authored": authored,
-            "majority": majority,
-            "dissent": dissent,
-            "concurring": concurring,
-            "separate": separate,
-            "dissent_rate": round(dissent / total, 3) if total else 0,
-        }
+        return {"justice": justice, **_tally_votes(rows, justice)}
     finally:
         conn.close()
+
+
+# Stored voting_record labels (panel_extract) → justice_info buckets. The
+# aggregate once compared against "dissent", a label the corpus never uses,
+# so every justice reported 0 dissents; the concurring variants fell into no
+# bucket at all.
+_VOTE_BUCKETS = {
+    "majority": "majority",
+    "dissenting": "dissent",
+    "concurring_and_dissenting": "dissent_in_part",
+    "concurring": "concurring",
+    "concurring_specially": "concurring",
+    "concurring_in_result": "concurring",
+    "separate": "separate",
+}
+
+
+def _tally_votes(rows, justice: str) -> dict:
+    """Aggregate one justice's votes over opinion rows carrying
+    ``voting_record`` (JSON) and ``author``.
+
+    ``dissent`` counts full dissents plus dissents in part;
+    ``dissent_in_part`` breaks out the latter. Labels outside
+    ``_VOTE_BUCKETS`` land in ``other`` rather than vanishing.
+    """
+    import json as _json
+
+    counts = {"majority": 0, "dissent_full": 0, "dissent_in_part": 0,
+              "concurring": 0, "concurring_in_result": 0,
+              "concurring_specially": 0, "separate": 0, "other": 0}
+    total = authored = 0
+    key = justice.lower()
+    for row in rows:
+        vr = _json.loads(row["voting_record"]) if row["voting_record"] else {}
+        vote = next((v for name, v in vr.items() if name.lower() == key), None)
+        if vote is None:
+            continue
+        total += 1
+        bucket = _VOTE_BUCKETS.get(vote)
+        if bucket == "dissent":
+            counts["dissent_full"] += 1
+        elif bucket is None:
+            counts["other"] += 1
+        else:
+            counts[bucket] += 1
+            if vote in ("concurring_in_result", "concurring_specially"):
+                counts[vote] += 1
+        if row["author"] and row["author"].lower() == key:
+            authored += 1
+
+    dissent = counts["dissent_full"] + counts["dissent_in_part"]
+    return {
+        "cases_participated": total,
+        "authored": authored,
+        "majority": counts["majority"],
+        "dissent": dissent,
+        "dissent_full": counts["dissent_full"],
+        "dissent_in_part": counts["dissent_in_part"],
+        "concurring": counts["concurring"],
+        "concurring_specially": counts["concurring_specially"],
+        "concurring_in_result": counts["concurring_in_result"],
+        "separate": counts["separate"],
+        "other": counts["other"],
+        "dissent_rate": round(dissent / total, 3) if total else 0,
+    }
 
 
 @mcp.tool()

@@ -660,6 +660,86 @@ def _provision_spec_for_text(text: str):
     return None
 
 
+# Citation-shaped text pasted out of a sentence carries its surroundings:
+# 'N.D.C.C. § 16.1-08.1-05(1).', 'See 2020 ND 30, ¶ 12', '(N.D.R.Ev. 803)'.
+# Trailing punctuation alone defeats the exact-match resolvers (a final '.'
+# keeps _SUBDIVISION from peeling '(1)'), so the resolver also scans
+# whitespace windows of the query. Every provision short key carries its
+# corpus prefix ('ndcc…', 'ndrcivp…'), so a window can only resolve if it
+# actually names an authority.
+_EDGE_LEAD = re.compile(r"^[\"'“‘(\[{<]+")
+_EDGE_TRAIL = re.compile(r"[\"'”’\]}>.,;:!?]+$")
+_MAX_WINDOW_TOKENS = 12     # longest citation is ~6 tokens; headroom is cheap
+_MAX_SCAN_TOKENS = 60       # bound the work on a pasted paragraph
+
+
+def _trim_edges(text: str) -> str:
+    """Strip sentence punctuation and wrapping from both ends, keeping a
+    trailing ')' only while it closes a '(' in the text (a subdivision)."""
+    prev = None
+    while text != prev:
+        prev = text
+        text = _EDGE_TRAIL.sub("", _EDGE_LEAD.sub("", text.strip()))
+        if text.endswith(")") and text.count(")") > text.count("("):
+            text = text[:-1]
+    return text
+
+
+def _resolve_exact(text: str):
+    """('chapter', entry) | ('spec', spec) | ('cite', cite) for text that is
+    itself a citation, or None. Provisions before opinions — no provision
+    short key can spell an opinion neutral cite, so the order is safe and it
+    keeps 'N.D.C.C. § …' out of the opinion patterns."""
+    if not text:
+        return None
+    chapter = _chapter_for_text(text)
+    if chapter is not None:
+        return ("chapter", chapter)
+    spec = _provision_spec_for_text(text)
+    if spec is not None:
+        return ("spec", spec)
+    t = re.sub(r"\s+", " ", text).strip()
+    cite = token_to_cite(t)
+    if cite:
+        return ("cite", cite)
+    m = _NW_LOOSE.match(t)
+    if m:
+        series = {"2d": "N.W.2d", "3d": "N.W.3d", None: "N.W."}[
+            m.group(2).lower() if m.group(2) else None]
+        return ("cite", f"{m.group(1)} {series} {m.group(3)}")
+    m = _ND_LOOSE.match(t)
+    if m:
+        return ("cite", f"{m.group(1)} N.D. {m.group(2)}")
+    return None
+
+
+def resolve_free_text(q: str):
+    """The first citation in free text, as _resolve_exact's tuple, or None.
+
+    The whole query is tried first (as typed, then edge-trimmed); failing
+    that, whitespace windows are scanned leftmost first and, at each start,
+    longest first — so the first citation in the text wins, in its fullest
+    form ('N.D.C.C. § 1-02-05' rather than a shorter prefix of it). Last
+    resort is the opinion extractor, which also finds cites glued to
+    punctuation ('2020 ND 30,¶5').
+    """
+    q = re.sub(r"\s+", " ", q).strip()
+    for text in (q, _trim_edges(q)):
+        hit = _resolve_exact(text)
+        if hit:
+            return hit
+    tokens = q.split(" ")[:_MAX_SCAN_TOKENS]
+    for i in range(len(tokens)):
+        for j in range(min(len(tokens), i + _MAX_WINDOW_TOKENS), i, -1):
+            if i == 0 and j == len(tokens):
+                continue                    # the whole query, tried above
+            hit = _resolve_exact(_trim_edges(" ".join(tokens[i:j])))
+            if hit:
+                return hit
+    cite = proofread.extract_cite(q)
+    return ("cite", cite) if cite else None
+
+
 def _document_page(request: Request, kind: str, number: str) -> Response:
     """AG / JEAC opinion page: immutable dated document with its
     court-citations list; footer links the authoritative source PDF."""
@@ -1580,21 +1660,20 @@ def register(mcp, db_path=None) -> None:
 
     async def _resolve_free(request: Request, q: str) -> Response:
         """The /cite resolver: any citation in any corpus, however spelled,
-        301s to its canonical page. Provisions are tried first — no provision
-        short key can spell an opinion neutral cite, so the order is safe and
-        it keeps 'N.D.C.C. § …' out of the opinion extractor."""
+        301s to its canonical page — including one embedded in surrounding
+        text or punctuation (see resolve_free_text)."""
         oid = token_to_id(q)
         if oid is not None:
             return _id_redirect(request, oid)
-        chapter = _chapter_for_text(q)
-        if chapter is not None:
-            return _redirect(_chapter_url(chapter["corpus"], chapter["num"]))
-        spec = _provision_spec_for_text(q)
-        if spec is not None:
-            return _redirect(spec[2])
-        cite = free_text_to_cite(q)
-        if cite is None:
+        hit = resolve_free_text(q)
+        if hit is None:
             return _not_found(request, q)
+        kind, val = hit
+        if kind == "chapter":
+            return _redirect(_chapter_url(val["corpus"], val["num"]))
+        if kind == "spec":
+            return _redirect(val[2])
+        cite = val
         conn = _conn()
         try:
             rows = _rows_for_cite(conn, cite)

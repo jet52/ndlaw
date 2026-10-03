@@ -8,6 +8,32 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.2 — 2026-10-02
+
+- **Data, this week** (every batch is logged in the corpus changelog tables):
+  the North Dakota Reports print read against the stored text in rounds 8 and 9
+  of **Program A** (one-word, near-word, clause, and non-citation-number passes
+  across thousands of sites; print misprints recorded rather than stored, the
+  court's own typos restored with registry rows); West's "Additional Syllabus by
+  Editorial Staff" stripped from 357 opinions, keeping the court's own printed
+  syllabus wherever West's label sat over it; the court's mixed-case author
+  headings restored (3,761 headings in 3,172 opinions); court signature blocks
+  restored where West's one-line concurrence stood in (112 sites); escaped and
+  displaced star-page and paragraph markers reseated; voting records completed
+  and corrected (`separate` labels resolved from the justices' own words, missing
+  panel members restored, `justice_info` dissent counts fixed); footnote
+  pinpoints resolve again (179/179); opinions through **2026 ND 171**.
+- **Administrative Code:** the **October 1, 2026 supplement** — 28 amended
+  sections and one new section (N.D.A.C. § 67-15-02-04.1), each as a
+  point-in-time version effective 2026-10-01, plus four in-place publication
+  corrections.
+- **Court rules:** N.D. Sup. Ct. Admin. R. 36's September amendment re-dated to
+  **September 21, 2026**, matching the court's corrected page.
+- **Web:** the citation resolver (`/cite`) now finds a citation inside
+  surrounding text and punctuation — `See N.D.C.C. § 16.1-08.1-05(1).` resolves
+  to the section instead of returning not-found; the first citation in the text
+  wins.
+
 ## v3.5.1 — 2026-09-25
 
 - **Data, this week** (every batch is logged in the corpus changelog tables):
