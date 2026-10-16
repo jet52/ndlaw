@@ -8,6 +8,28 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.3 — 2026-10-16
+
+- **Data, these two weeks** (every batch is logged in the corpus changelog tables):
+  - **Voting records:** per curiam vs. signed opinions settled under one rule (21 opinions), plus 26 pre-1997 per curiam records. Remand-pair highlights re-bound.
+  - **Layout:** paragraph and layout repairs read against the slips:
+    - 480 body paragraphs rejoined where a stored blank line split them mid-sentence;
+    - 160 run-in `[¶N]` markers and 66 glued ones given their own paragraphs;
+    - West headnote callouts dropped before the court's markers;
+    - signature blocks split one signer per line;
+    - stray leading tabs removed, so body lines and captions no longer render as block quotes;
+    - 2023 ND 53's flattened paragraph breaks restored.
+  - **Corrected re-issue:** 2026 ND 156's corrected opinion of October 12, 2026.
+  - **Opinions** through **2026 ND 183**.
+- **Attorney General opinions:** 2026-O-20 through 2026-O-23.
+- **Court rules:** one correction to N.D. Sup. Ct. Admin. R. 58.
+- **Web:**
+  - Opinion front matter renders by block: caption line breaks are kept, wrapped prose is rejoined, and blank-separated caption parts render as one caption.
+  - The landing page has per-tool connect instructions.
+- **Server:**
+  - The MCP `serverInfo.version` reports the ndlaw release.
+  - There is a server-wide cap on in-flight requests.
+
 ## v3.5.2 — 2026-10-02
 
 - **Data, this week** (every batch is logged in the corpus changelog tables):

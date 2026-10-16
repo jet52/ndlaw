@@ -279,6 +279,214 @@ def _logical_lines(text: str) -> list[str]:
     return out
 
 
+# ---------------------------------------------------------------------------
+# front matter (JT 2026-10-14, ndlaw.org/2023ND103 review): the caption block
+# above the first [¶N] / byline is stored with the slip's PDF line breaks.
+# Through _logical_lines every wrapped line rendered as its own paragraph
+# ("…East Central Judicial District," / "the Honorable…"; "MacKenzie L." /
+# "Hertz…"), a space-led " v." fused onto the plaintiff's line, and in 554
+# 2019–23 slips the space-led running caption fused onto the last counsel line
+# ("…submitted on brief. State v. Heinrich No. 20220339"). Render-side only;
+# storage untouched. Each blank-line stanza is either LINE-SET (caption, court
+# title, filed stamp, running caption + docket: breaks kept as <br>) or PROSE
+# (appeal-from, byline, counsel: wrapped lines rejoined).
+# ---------------------------------------------------------------------------
+
+_BR = "\x01"  # in-paragraph line break, emitted as <br> after escaping
+_FM_MAX_LINES = 120
+_FM_MAX_CHARS = 400
+_ROLE = re.compile(
+    r"\b(?:Plaintiffs?|Defendants?|Petitioners?|Respondents?|Appellants?|Appellees?"
+    r"|Intervenors?|Claimants?|Garnishees?|Movants?|Complainants?)\b")
+_CONNECTOR = re.compile(r"^(?:v\.?|vs\.?|and|-and-|-vs-)$")
+_COURT_TITLE = re.compile(
+    r"^(?:FILED\b|IN THE (?:SUPREME )?COURT|I N +T H E\b|STATE OF NORTH DAKOTA$"
+    r"|(?:NORTH DAKOTA )?COURT OF APPEALS)")
+_DOCKET = re.compile(r"^(?:Civil |Criminal |Crim\. |Civ\. )?Nos?\.\s?\d")
+# a rule, a table sentinel or a figure line is a block of its own, never
+# joined into the prose around it
+_RULE_LINE = re.compile(r"^(?:-{3,}|\x00TBL\d+\x00|\[Figure \d+.*)$")
+_INITIAL_END = re.compile(r"(?:^|[\s(])[A-Z]\.$")
+# a line that is a block by itself: the neutral cite, an all-caps disposition
+# or title ("REVERSED.", "INTERIM SUSPENSION ORDERED"), the per curiam line
+_CITE_LINE = re.compile(r"^\d{4} ND (?:App )?\d+$")
+
+
+def _standalone(s: str) -> bool:
+    letters = re.sub(r"[^A-Za-z]", "", s)
+    return bool(_CITE_LINE.match(s) or re.match(r"Per Curiam\.?$", s)
+                or (len(letters) >= 4 and letters.isupper()))
+
+
+def _front_matter_end(raw: list[str]) -> int | None:
+    """Index of the first line past the front matter — the first [¶N] line,
+    writing byline, syllabus heading (star-prefixed too: "[*582] Syllabus by
+    the Court") or ## label — or None when none falls within the first
+    _FM_MAX_LINES lines, or a line on the way is paragraph-long (an opinion
+    body with no caption block: the early CL lineage), or nothing above it
+    reads as a caption (court title, cite, docket, party role or "v.")."""
+    for i, ln in enumerate(raw[:_FM_MAX_LINES]):
+        s = ln.strip()
+        s2 = _HEAD_STAR.sub("", s, count=1)
+        if (re.match(r"\[¶\s?\d+\]", s) or WRITING_SEP.match(ln.lstrip("\t"))
+                or _SYLLABUS.match(s2) or re.match(r"Syllabus\b", s2)
+                or _MD_HEAD.match(s)
+                or _FOOTNOTES_HEAD.match(s)):
+            caption = any(
+                _COURT_TITLE.match(x) or _CITE_LINE.match(x) or _DOCKET.match(x)
+                or _ROLE.search(x) or _CONNECTOR.match(x)
+                for x in (r.strip() for r in raw[:i]))
+            return i if caption else None
+        if len(s) > _FM_MAX_CHARS:
+            return None
+    return None
+
+
+def _is_line_set(stanza: list[str]) -> bool:
+    ss = [ln.strip() for ln in stanza]
+    return bool(_COURT_TITLE.match(ss[0]) or _DOCKET.match(ss[-1])
+                or any(_ROLE.search(s) or _CONNECTOR.match(s) for s in ss)
+                or (len(ss) == 1 and _standalone(ss[0])))
+
+
+def _prose_lines(stanza: list[str]) -> list[str]:
+    """Rejoin a prose stanza's wrapped lines. A line ending a sentence (., :)
+    still ends its paragraph when the next line opens uppercase — the archive
+    era stores one paragraph per line with no blank between ("…Judge." /
+    "AFFIRMED." / "Opinion of the Court by…"; two counsel entries) — unless it
+    ends on an initial ("MacKenzie L." / "Hertz")."""
+    paras: list[str] = []
+    cur = ""
+    for ln in stanza:
+        s = ln.strip()
+        if not cur:
+            cur = s
+            continue
+        if ((re.search(r"[.:]$", cur) and not _INITIAL_END.search(cur)
+                and not s[:1].islower())
+                or _standalone(cur) or _standalone(s)):
+            paras.append(cur)
+            cur = s
+        else:
+            cur = cur + " " + s
+    if cur:
+        paras.append(cur)
+    return paras
+
+
+def _caption_stop(st: list[str]) -> bool:
+    """A stanza that can never be part of a party name."""
+    s = st[0].strip()
+    return bool(_COURT_TITLE.match(s) or _DOCKET.match(st[-1].strip()) or _RULE_LINE.match(s)
+                or _CONNECTOR.match(s) or (len(st) == 1 and _standalone(s)))
+
+
+def _bare_role(st: list[str]) -> bool:
+    """A stanza of role words only, stranded from the party it belongs to
+    (the slip right-aligns roles; extraction can drop them below the caption)."""
+    rest = _ROLE.sub("", " ".join(ln.strip() for ln in st))
+    return bool(_ROLE.search(" ".join(st))) and not re.sub(r"[\s,.;]|\band\b", "", rest)
+
+
+def _glue_caption(stanzas: list[list[str]]) -> list[list[str]]:
+    """Rejoin a caption stored one slip line per blank-separated stanza (2,857
+    opinions, 1997–2026: "A, Plaintiff" / "" / "v." / "" / "B, Defendant"; 2026
+    ND 67's defendants over six stanzas). A lone connector stanza glues the
+    party before it to the party after it into one line-set. A party spread
+    over several stanzas runs to its first role-bearing stanza (at most 12);
+    without a role, the party is the next stanza alone. Its wrapped lines
+    rejoin with spaces; the connectors keep their own lines. The party before
+    the connector must read as one (a role, a connector, or a trailing comma):
+    not a disposition ("MOTION TO DISMISS APPEAL GRANTED." / "and"). A
+    connector between two complete captions (consolidated cases: "A v. B" /
+    "and" / "C v. D") is left alone."""
+    def has_conn(s: list[str]) -> bool:
+        return any(_CONNECTOR.match(ln.strip()) for ln in s)
+
+    out: list[list[str]] = []
+    i = 0
+    while i < len(stanzas):
+        st = stanzas[i]
+        left = out[-1] if out else None
+        if (len(st) == 1 and _CONNECTOR.match(st[0].strip()) and left
+                and not _caption_stop(left)
+                and (any(_ROLE.search(ln) for ln in left) or has_conn(left)
+                     or left[-1].strip().endswith(","))):
+            j, party = i + 1, []
+            while j < len(stanzas) and j <= i + 12 and not _caption_stop(stanzas[j]):
+                if _bare_role(stanzas[j]):
+                    break  # a stranded role ("Petitioner and Appellee") is not this party's
+                if has_conn(stanzas[j]):
+                    party = []
+                    break
+                party.append(stanzas[j])
+                if any(_ROLE.search(ln) for ln in stanzas[j]):
+                    break
+                j += 1
+            if party and not any(_ROLE.search(ln) for ln in party[-1]):
+                party = party[:1]
+            if party and has_conn(left) and not any(_ROLE.search(ln) for ln in party[-1]):
+                party = []  # "A v. B" / "and" / "In the Interest of X" / "C v. D"
+            if party:
+                lines = (party[0] if len(party) == 1
+                         else [" ".join(ln.strip() for p in party for ln in p)])
+                out[-1] = out[-1] + [st[0]] + lines
+                i += 1 + len(party)
+                continue
+        out.append(st)
+        i += 1
+    return out
+
+
+def _front_matter_lines(raw: list[str]) -> list[str]:
+    """Logical lines for the front matter: one per paragraph, blank between,
+    line-set breaks carried as _BR. Front matter is never quoted matter, so
+    leading tabs go (the 45 tab-led running captions/titles, 2026-10-14)."""
+    stanzas: list[list[str]] = []
+    cur: list[str] = []
+    for ln in raw:
+        s = ln.strip()
+        if not s:
+            if cur:
+                stanzas.append(cur)
+                cur = []
+            continue
+        if cur and (
+                # a space-led line after a sentence end opens a new block:
+                # the 2019–23 running caption under the counsel lines
+                (ln[:1] in " \t" and re.search(r"[.;:]$", cur[-1].strip())
+                 and not _INITIAL_END.search(cur[-1].strip()))
+                or _RULE_LINE.match(s) or _RULE_LINE.match(cur[-1].strip())):
+            stanzas.append(cur)
+            cur = []
+        cur.append(ln)
+    if cur:
+        stanzas.append(cur)
+
+    # A prose stanza cut mid-sentence by a stored blank line (the 2010s
+    # archive form: "…South Central Judicial" / "" / "District, the
+    # Honorable…"; "…N.D. 58501," / "" / "for plaintiff and appellant.")
+    # continues into the next prose stanza.
+    merged: list[list[str]] = []
+    for st in stanzas:
+        if (merged and not _is_line_set(merged[-1]) and not _is_line_set(st)
+                and not _RULE_LINE.match(st[0].strip())
+                and not _RULE_LINE.match(merged[-1][-1].strip())
+                and (re.search(r"[\w,]$", merged[-1][-1].strip())
+                     or st[0].strip()[:1].islower())):
+            merged[-1].extend(st)
+        else:
+            merged.append(st)
+
+    out: list[str] = []
+    for st in _glue_caption(merged):
+        paras = ([_BR.join(ln.strip() for ln in st)] if _is_line_set(st)
+                 else _prose_lines(st))
+        for p in paras:
+            out.extend([p, ""])
+    return out
+
+
 # Separate-writing author line ("VANDE WALLE, Justice, concurring specially.",
 # "LEVINE, Justice, dissenting.") — the boundary that ends a per-writing
 # FOOTNOTES section (convention ratified by JT 2026-07-29: each writing keeps
@@ -548,7 +756,13 @@ def render_body(text: str, tables: dict | None = None) -> str:
     an install with no tables.db falls back to it for everything.
     """
     text, tbl_blocks = _extract_table_blocks(text)
-    lines = _logical_lines(text)
+    raw_lines = text.split("\n")
+    fm_end = _front_matter_end(raw_lines)
+    if fm_end:
+        lines = (_front_matter_lines(raw_lines[:fm_end])
+                 + _logical_lines("\n".join(raw_lines[fm_end:])))
+    else:
+        lines = _logical_lines(text)
     sections = _collect_footnote_sections(lines)
     head_idxs = {h for h, _, _ in sections}
     roman_heads = _roman_section_heads(lines, sections)
@@ -864,7 +1078,7 @@ def render_body(text: str, tables: dict | None = None) -> str:
 
     close_quote()
     out.append("</div>")
-    return "\n".join(out)
+    return "\n".join(out).replace(_BR, "<br>")
 
 
 _BOLD = re.compile(r"\*\*([^*\n]+)\*\*")

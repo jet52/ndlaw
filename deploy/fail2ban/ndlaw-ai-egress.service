@@ -1,0 +1,10 @@
+# Refresh the AI-provider egress exemption for the ndlaw.org fail2ban jails.
+# Install with ndlaw-ai-egress.timer; see update-ai-egress.py.
+[Unit]
+Description=Refresh AI-provider egress exemptions for ndlaw.org fail2ban jails
+Wants=network-online.target
+After=network-online.target fail2ban.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/sbin/ndlaw-ai-egress-update

@@ -1,6 +1,7 @@
 """MCP server for North Dakota Supreme Court opinions."""
 
 import datetime
+import importlib.metadata
 import os
 import re
 import sqlite3
@@ -32,8 +33,16 @@ _RATE_NOTE = (
     "https://github.com/jet52/ndlaw/releases instead of crawling this API."
 ) if os.environ.get("NDLAW_RATE_NOTE") or os.environ.get("NDCOURTS_RATE_NOTE") else ""
 
+# serverInfo.version in the MCP handshake. Without this FastMCP reports its own
+# library version (the live server said "3.4.5" while running ndlaw v3.5.2).
+try:
+    _VERSION = importlib.metadata.version("ndlaw-mcp")
+except importlib.metadata.PackageNotFoundError:
+    _VERSION = None
+
 mcp = FastMCP(
     "ndlaw",
+    version=_VERSION,
     instructions=(
         "North Dakota primary law. Opinions (1889–present): use lookup_opinion "
         "for citation-based retrieval, search_opinions for full-text search, and "
@@ -4683,6 +4692,7 @@ def main():
       NDLAW_HOST=127.0.0.1   bind address (default localhost-only;
                                 front it with a TLS+auth reverse proxy)
       NDLAW_PORT=8000        bind port
+      NDLAW_MAX_INFLIGHT=N   server-wide in-flight request cap (concurrency.py)
 
     The server exposes read-only tools; auth/TLS belong in the proxy.
     """
@@ -4696,7 +4706,10 @@ def main():
             "(front with a TLS+auth reverse proxy; tools are read-only)",
             file=sys.stderr,
         )
-        mcp.run(transport=norm, host=host, port=port)
+        from .concurrency import middleware_from_env
+
+        mcp.run(transport=norm, host=host, port=port,
+                middleware=middleware_from_env())
     else:
         mcp.run()
 

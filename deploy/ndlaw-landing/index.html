@@ -16,10 +16,14 @@
   h2 { font-size: 1.15rem; margin-top: 2rem; }
   a { color: #1a5276; }
   .note { border-left: 3px solid #c9a227; padding: .5em 1em; background: #fbf7ec; margin: 1.5rem 0; }
+  details { margin: .6rem 0; }
+  summary { cursor: pointer; }
+  details ol { margin-bottom: .4rem; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;
            color: #666; font-size: .9em; }
   @media (prefers-color-scheme: dark) {
     body { background: #16181d; color: #d8d8d4; }
+    .sub { color: #9a9a96; }
     code, pre { background: #23262d; }
     a { color: #7fb3d5; }
     .note { background: #24211a; border-color: #c9a227; }
@@ -31,26 +35,82 @@
 <h1>ndlaw</h1>
 <p class="sub">North Dakota primary law as an MCP server — free, public, no account required.</p>
 
-<p>This endpoint gives AI assistants (Claude, and any MCP-capable client)
+<p>This endpoint gives AI assistants (Claude, ChatGPT, Gemini, and other MCP-capable tools)
 citation-verified access to North Dakota primary legal authority:</p>
 <ul>
-  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,117<!-- /COUNT --> opinions, full text, citation graph)</li>
+  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,129<!-- /COUNT --> opinions, full text, citation graph)</li>
   <li><strong>Constitution of North Dakota</strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
   <li><strong>N.D. Century Code</strong>, <strong>court rules</strong>, and <strong>administrative code</strong> — versioned provisions</li>
   <li><strong>Attorney General opinions</strong> (1942–present) and <strong>Judicial Ethics Advisory Committee opinions</strong></li>
 </ul>
 
 <p class="sub">Data current through opinions filed
-<!-- COUNT:current_through -->October 1, 2026<!-- /COUNT -->;
+<!-- COUNT:current_through -->October 15, 2026<!-- /COUNT -->;
 the corpus updates weekly.</p>
 
 <h2>Connect</h2>
-<p>MCP endpoint (Streamable HTTP):</p>
+<p>Add this address to your AI tool as an MCP server (sometimes called a
+"connector" or "app"). No account, key, or sign-in is needed.</p>
 <pre>https://ndlaw.org/mcp</pre>
+
+<details>
+<summary><strong>Claude</strong> — claude.ai and the desktop app</summary>
+<ol>
+  <li>Open <b>Customize → Connectors</b> and click <b>Add custom connector</b>.</li>
+  <li>Name it <code>ndlaw</code> and paste the address above. If asked about
+      authentication, choose <b>No sign-in</b>.</li>
+  <li>In a chat, open <b>+ → Connectors</b> and check that ndlaw is on.</li>
+</ol>
+<p class="sub">Works on every plan; the Free plan allows one custom connector.
+On Team and Enterprise plans, an Owner adds it under <b>Organization settings →
+Connectors</b>.</p>
+</details>
+
+<details>
+<summary><strong>ChatGPT</strong></summary>
+<ol>
+  <li>On chatgpt.com, open <b>Settings → Apps → Advanced settings</b> and turn
+      on <b>Developer mode</b>.</li>
+  <li>Click <b>Create app</b>. Name it <code>ndlaw</code>, paste the address
+      above, and set authentication to <b>No authentication</b>.</li>
+  <li>In a chat, open <b>+ → Developer mode</b> and select ndlaw.</li>
+</ol>
+<p class="sub">Requires a paid plan (Plus, Pro, Business, Enterprise, or Edu)
+and the web app. Not available on the free plan.</p>
+</details>
+
+<details>
+<summary><strong>Gemini</strong></summary>
+<ol>
+  <li>On gemini.google.com, open <b>Settings → Connected Apps</b>.</li>
+  <li>Under <b>Custom apps</b>, choose <b>Add a custom app</b>, paste the
+      address above, and click <b>Next</b>.</li>
+  <li>In a chat, type <code>@ndlaw</code> to use it.</li>
+</ol>
+<p class="sub">Google currently limits custom apps to US users 18+ on a
+personal Google account with Keep Activity on.</p>
+</details>
+
+<details>
+<summary><strong>Developer tools</strong> — Claude Code, Gemini CLI, Codex, Cursor, VS Code</summary>
 <p>Claude Code:</p>
 <pre>claude mcp add --transport http ndlaw https://ndlaw.org/mcp</pre>
-<p>Claude.ai / Claude Desktop: add a custom connector with the URL above.
-Any other MCP client: point its HTTP transport at the same URL.</p>
+<p>Gemini CLI:</p>
+<pre>gemini mcp add -s user --transport http ndlaw https://ndlaw.org/mcp</pre>
+<p>Codex CLI:</p>
+<pre>codex mcp add ndlaw --url https://ndlaw.org/mcp</pre>
+<p>Cursor (<code>~/.cursor/mcp.json</code>):</p>
+<pre>{ "mcpServers": { "ndlaw": { "url": "https://ndlaw.org/mcp" } } }</pre>
+<p>VS Code (<code>.vscode/mcp.json</code>):</p>
+<pre>{ "servers": {
+    "ndlaw": { "type": "http", "url": "https://ndlaw.org/mcp" } } }</pre>
+</details>
+
+<p><b>Other tools:</b> if yours has a place to add a remote MCP server by URL,
+use the address above. If it has none, it can't use ndlaw yet.</p>
+
+<p><b>Try it:</b> ask <i>"Using ndlaw, what is the standard of review for a
+district court's custody decision in North Dakota? Cite the cases."</i></p>
 
 <h2>Look up a citation</h2>
 <form action="/cite" method="get">
@@ -78,13 +138,15 @@ Run the server locally with the same package.</p>
 <p>This is the North Dakota courts' own published text, compiled and
 validated with care, but it is not an official publication of the State of
 North Dakota or its courts and no court stands behind it. Verify against the
-official source before filing.</p>
+official source before filing. ndlaw is a personal project of Jerod Tufte,
+built and maintained on his own time and equipment, without court staff or
+court resources.</p>
 
 <footer>
   Related: <a href="https://ndconst.org">ndconst.org</a> — the Constitution of
   North Dakota as an annotated wiki, built from the same corpus.
-  <br>Data last refreshed <!-- COUNT:refreshed -->October 2, 2026<!-- /COUNT -->
-  &middot; opinions current through <!-- COUNT:current_through -->October 1, 2026<!-- /COUNT -->.
+  <br>Data last refreshed <!-- COUNT:refreshed -->October 16, 2026<!-- /COUNT -->
+  &middot; opinions current through <!-- COUNT:current_through -->October 15, 2026<!-- /COUNT -->.
 </footer>
 </body>
 </html>

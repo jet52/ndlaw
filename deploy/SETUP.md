@@ -182,6 +182,31 @@ low enough to bite would have spared real users. See
 pattern (kernel conntrack limits, Apache accept-queue and timeout tuning, and
 collapsing a wiki's combinatorial URL space).
 
+### 6a. ndlaw.org: AI-provider exemption + server-wide cap
+
+The public endpoint's jails (`jail.d/apache-ndlaw.conf`) are per-IP, but
+claude.ai and ChatGPT reach it from shared provider addresses. Exempt those
+ranges from the jails and let the app's in-flight cap protect capacity:
+
+```bash
+R=/srv/ndcourts/ndlaw-mcp/deploy
+# cap: NDLAW_MAX_INFLIGHT=6 lives in the resource-caps drop-in
+sudo cp $R/ndlaw-mcp-resources.conf /etc/systemd/system/ndlaw-mcp.service.d/resources.conf
+sudo systemctl daemon-reload && sudo systemctl restart ndlaw-mcp
+# exemption list + weekly refresh
+sudo install -m 755 $R/fail2ban/update-ai-egress.py /usr/local/sbin/ndlaw-ai-egress-update
+sudo cp $R/fail2ban/ndlaw-ai-egress.{service,timer} /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo /usr/local/sbin/ndlaw-ai-egress-update     # writes jail.d/ndlaw-ai-egress.local, reloads
+sudo systemctl enable --now ndlaw-ai-egress.timer
+# verify: the exemption landed AND each jail still reads its log file
+sudo fail2ban-client get apache-ndlaw-rate ignoreip | grep -c 160.79.104.0/21
+sudo fail2ban-client status apache-ndlaw-rate | grep "File list"
+```
+
+Google publishes no egress range for Gemini custom apps, so Gemini traffic
+stays under the ordinary per-IP limits.
+
 ## 7. Connect a client
 
 Preset the credential header so the client never hits the 401 challenge
