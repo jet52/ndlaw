@@ -35,17 +35,17 @@
 <h1>ndlaw</h1>
 <p class="sub">North Dakota primary law as an MCP server — free, public, no account required.</p>
 
-<p>This endpoint gives AI assistants (Claude, ChatGPT, Gemini, and other MCP-capable tools)
+<p>This endpoint gives AI assistants (Claude, ChatGPT, Gemini, Grok, and other MCP-capable tools)
 citation-verified access to North Dakota primary legal authority:</p>
 <ul>
-  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,129<!-- /COUNT --> opinions, full text, citation graph)</li>
+  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,130<!-- /COUNT --> opinions, full text, citation graph)</li>
   <li><strong>Constitution of North Dakota</strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
   <li><strong>N.D. Century Code</strong>, <strong>court rules</strong>, and <strong>administrative code</strong> — versioned provisions</li>
   <li><strong>Attorney General opinions</strong> (1942–present) and <strong>Judicial Ethics Advisory Committee opinions</strong></li>
 </ul>
 
 <p class="sub">Data current through opinions filed
-<!-- COUNT:current_through -->October 15, 2026<!-- /COUNT -->;
+<!-- COUNT:current_through -->October 28, 2026<!-- /COUNT -->;
 the corpus updates weekly.</p>
 
 <h2>Connect</h2>
@@ -92,7 +92,20 @@ personal Google account with Keep Activity on.</p>
 </details>
 
 <details>
-<summary><strong>Developer tools</strong> — Claude Code, Gemini CLI, Codex, Cursor, VS Code</summary>
+<summary><strong>Grok</strong></summary>
+<ol>
+  <li>Go to <b>grok.com/connectors</b>, click <b>New Connector</b>, and choose
+      <b>Custom</b>.</li>
+  <li>Paste the address above. No authentication is needed.</li>
+  <li>In a chat, ask Grok to use ndlaw.</li>
+</ol>
+<p class="sub">On Grok Business and Enterprise plans, a team admin first adds it
+in the xAI console under <b>Grok Business → Connectors → Add Connector →
+Other</b>; members then turn it on at grok.com/connectors.</p>
+</details>
+
+<details>
+<summary><strong>Developer tools</strong> — Claude Code, Gemini CLI, Codex, Cursor, VS Code, xAI API</summary>
 <p>Claude Code:</p>
 <pre>claude mcp add --transport http ndlaw https://ndlaw.org/mcp</pre>
 <p>Gemini CLI:</p>
@@ -104,6 +117,8 @@ personal Google account with Keep Activity on.</p>
 <p>VS Code (<code>.vscode/mcp.json</code>):</p>
 <pre>{ "servers": {
     "ndlaw": { "type": "http", "url": "https://ndlaw.org/mcp" } } }</pre>
+<p>xAI API (Responses API, in the request's <code>tools</code> array):</p>
+<pre>{ "type": "mcp", "server_url": "https://ndlaw.org/mcp", "server_label": "ndlaw" }</pre>
 </details>
 
 <p><b>Other tools:</b> if yours has a place to add a remote MCP server by URL,
@@ -118,8 +133,14 @@ district court's custody decision in North Dakota? Cite the cases."</i></p>
          aria-label="Citation" style="font-size:1em; padding:.35em .5em;">
   <button type="submit" style="font-size:1em; padding:.35em .8em;">Go</button>
 </form>
-<p class="sub" style="font-size:.9em;">Accepted forms:
-2020 ND 30 · 604 N.W.2d 458 · 13 N.D. 359</p>
+<p class="sub" style="font-size:.9em;">Accepted forms (each is a working example):<br>
+Opinions: <a href="/cite?q=2020+ND+30">2020 ND 30</a> · <a href="/cite?q=545+N.W.2d+152">545 N.W.2d 152</a> · <a href="/cite?q=13+N.D.+359">13 N.D. 359</a><br>
+Constitution: <a href="/cite?q=N.D.+Const.+art.+I%2C+%C2%A7+8">N.D. Const. art. I, §&nbsp;8</a><br>
+Statutes: <a href="/cite?q=N.D.C.C.+%C2%A7+12.1-20-03">N.D.C.C. §&nbsp;12.1-20-03</a> · <a href="/cite?q=N.D.C.C.+ch.+28-32">N.D.C.C. ch. 28-32</a><br>
+Court rules: <a href="/cite?q=N.D.R.Civ.P.+56">N.D.R.Civ.P. 56</a> · <a href="/cite?q=N.D.R.Ev.+803">N.D.R.Ev. 803</a> · <a href="/cite?q=N.D.R.+Prof.+Conduct+5.5">N.D.R. Prof. Conduct 5.5</a><br>
+Administrative code: <a href="/cite?q=N.D.A.C.+%C2%A7+75-02-01.2-02">N.D.A.C. §&nbsp;75-02-01.2-02</a><br>
+Attorney General opinions: <a href="/cite?q=N.D.+Op.+Att%27y+Gen.+2026-L-04">N.D. Op. Att'y Gen. 2026-L-04</a><br>
+Judicial ethics opinions: <a href="/cite?q=JEAC+2019-3">JEAC 2019-3</a></p>
 
 <div class="note">
 <strong>Fair use.</strong> This is a shared public server on modest hardware.
@@ -145,8 +166,8 @@ court resources.</p>
 <footer>
   Related: <a href="https://ndconst.org">ndconst.org</a> — the Constitution of
   North Dakota as an annotated wiki, built from the same corpus.
-  <br>Data last refreshed <!-- COUNT:refreshed -->October 16, 2026<!-- /COUNT -->
-  &middot; opinions current through <!-- COUNT:current_through -->October 15, 2026<!-- /COUNT -->.
+  <br>Data last refreshed <!-- COUNT:refreshed -->October 30, 2026<!-- /COUNT -->
+  &middot; opinions current through <!-- COUNT:current_through -->October 28, 2026<!-- /COUNT -->.
 </footer>
 </body>
 </html>

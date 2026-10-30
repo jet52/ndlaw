@@ -8,6 +8,37 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.4 — 2026-10-30
+
+- **Data, these two weeks** (every batch is logged in the corpus changelog tables):
+  - **Voting records**, each read against the court's own text:
+    - A justice who signs a lead opinion that commands no majority of the panel is now labelled `plurality`, not `majority`. All 94 signed 1997+ records that might be pluralities were read: 31 pluralities, 26 partial majorities, 37 majorities.
+    - A census of all 7,268 opinions since 1997 added 49 joiners missing from their panels and rebuilt five panels.
+    - Vote labels corrected in 143 more opinions, and 19 one-line concurrences relabelled as concurring in the result.
+  - **Text restored:**
+    - 152 concurrence lines missing from 148 opinions;
+    - the closing blocks of 16 orders;
+    - 19 author headings and three signature blocks;
+    - 193 words split by star-page markers, across 177 opinions;
+    - smaller repairs read against the print in about 40 more opinions.
+  - **Opinions** through **2026 ND 184**.
+- **N.D.C.C.:**
+  - Repeal notes restored: 3,404 repealed sections had stored a truncated authority ("Repealed by S"), and 40 sections in force had wrongly picked up repeal notes.
+  - 412 sections that print only a notation (superseded, expired, omitted, redesignated, disapproved, reserved) now carry that status instead of "active."
+  - § 50-11.1-02.4 restored. The code prints it as 50-11-02.4, and that collision had dropped it. Three misprinted section numbers corrected.
+- **Court rules:**
+  - 23 rules the court has repealed or superseded were still served as in force, including COVID Admin. Orders 25–33, N.D.R.Civ.P. 30.1 and 82, N.D.R.Crim.P. 22, and N.D.R.Ev. 511. They now carry the court's notation.
+  - Amendment: Admission to Practice R. 6, effective November 1, 2026. An applicant's qualifying MPRE score may now be up to seven years old at filing, not five.
+  - Corrections to 18 more rules from the court's site.
+  - N.D.R. Prof. Conduct 5.5: the court's September 11 correction.
+- **Search and tools:**
+  - Full-text search no longer fails on hyphenated words or section numbers (`self-represented`, `29-32.1-09`). Quoted phrases, AND/OR/NOT, parentheses and prefix `*` work as before. Affects `search_opinions`, `search_faceted`, `search_authority`, `search_ag_opinions`, `search_jeac_opinions`, and `authoring_justice_on_issue`.
+  - `justice_info` reports plurality opinions as a separate count.
+  - `check_draft` reports a date earlier than the first captured version of a provision as a gap in the record, not as "repealed, or enacted later."
+- **Web:**
+  - The lookup box resolves AG opinions, JEAC opinions, and the long "N.D. Admin. Code §" form.
+  - The landing page gives citation examples for every corpus, plus connection steps for Grok.
+
 ## v3.5.3 — 2026-10-16
 
 - **Data, these two weeks** (every batch is logged in the corpus changelog tables):

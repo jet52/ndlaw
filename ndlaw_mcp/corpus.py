@@ -544,7 +544,7 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
             cite_key TEXT NOT NULL,      -- normalized lookup key (see corpus.cite_key)
             hierarchy TEXT,              -- JSON path: title/chapter/section | article/section | ruleset/number
             heading TEXT,                -- catchline / rule title
-            status TEXT NOT NULL DEFAULT 'active',  -- active | repealed | superseded
+            status TEXT NOT NULL DEFAULT 'active',  -- active | repealed | superseded | expired | redesignated | disapproved | omitted | reserved
             current_version_id INTEGER REFERENCES provision_versions(id),
             UNIQUE(corpus, cite_key)
         );

@@ -685,19 +685,72 @@ def _trim_edges(text: str) -> str:
     return text
 
 
+# 'N.D. Admin. Code § 75-02-01' is the long form of 'N.D.A.C. § 75-02-01'
+# (lookup_authority accepts both); the short keys carry only the latter.
+_ADMIN_CODE_LONG = re.compile(
+    r"\bN\.?\s?D\.?\s+Admin(?:istrative|\.)?\s+Code\b\.?", re.I)
+
+# AG and JEAC opinions. A letter-form AG number ('2026-L-04', '99-O-10') is
+# unambiguous on its own; the all-digit AG numbers ('92-9') and every JEAC
+# number ('2019-3') are not, so they resolve only after a naming prefix.
+_APOS = "['’]?"
+_AG_BARE = re.compile(r"^(?:\d{2}|\d{4})-[A-Z]-\d{1,3}$", re.I)
+_AG_PREFIXED = re.compile(
+    r"^(?:N\.?\s?D\.?\s+)?"
+    rf"(?:Op(?:inion)?s?\.?\s+(?:of\s+the\s+)?Att(?:orney|{_APOS}y)\.?\s+Gen(?:eral|\.)?"
+    rf"|Att(?:orney|{_APOS}y)\.?\s+Gen(?:eral|\.)?\s+Op(?:inion|\.)?"
+    r"|A\.?G\.?(?:\s+Op(?:inion|\.)?)?)"
+    r"\s*(?:No\.?\s*)?(?P<num>[0-9][0-9A-Za-z\-]*)$", re.I)
+_JEAC_PREFIXED = re.compile(
+    r"^(?:N\.?\s?D\.?\s+)?"
+    r"(?:JEAC|Jud(?:icial|\.)?\s+Ethics\s+Advisory(?:\s+Comm(?:ittee|\.)?)?)"
+    r"\s*(?:Op(?:inion|\.)?)?\s*(?:No\.?\s*)?(?P<num>\d{2,4}-\d{1,3})$", re.I)
+
+
+def _document_for_text(text: str) -> str | None:
+    """The /ag/… or /jeac/… path for an AG or JEAC opinion citation that
+    exists in the installed corpus, or None."""
+    from . import ag_corpus, jeac_corpus
+    t = re.sub(r"\s+", " ", text).strip()
+    m = _JEAC_PREFIXED.match(t)
+    if m:
+        kind, num, key = "jeac", m.group("num"), jeac_corpus.cite_key(m.group("num"))
+    else:
+        m = _AG_PREFIXED.match(t)
+        num = m.group("num") if m else (t if _AG_BARE.match(t) else None)
+        if num is None:
+            return None
+        kind, key = "ag", ag_corpus.cite_key(num)
+    conn = _conn()
+    try:
+        attach, tbl = ((ag_corpus.attach_ag, "ag.ag_opinions") if kind == "ag"
+                       else (jeac_corpus.attach_jeac, "jeac.jeac_opinions"))
+        if not attach(conn, read_only=True):
+            return None
+        row = conn.execute(f"SELECT opinion_number FROM {tbl} WHERE cite_key=? "
+                           "OR opinion_number=?", (key, num)).fetchone()
+        return f"/{kind}/{quote(row[0])}" if row else None
+    finally:
+        conn.close()
+
+
 def _resolve_exact(text: str):
-    """('chapter', entry) | ('spec', spec) | ('cite', cite) for text that is
-    itself a citation, or None. Provisions before opinions — no provision
-    short key can spell an opinion neutral cite, so the order is safe and it
-    keeps 'N.D.C.C. § …' out of the opinion patterns."""
+    """('chapter', entry) | ('spec', spec) | ('doc', path) | ('cite', cite)
+    for text that is itself a citation, or None. Provisions before opinions —
+    no provision short key can spell an opinion neutral cite, so the order is
+    safe and it keeps 'N.D.C.C. § …' out of the opinion patterns."""
     if not text:
         return None
+    text = _ADMIN_CODE_LONG.sub("N.D.A.C.", text)
     chapter = _chapter_for_text(text)
     if chapter is not None:
         return ("chapter", chapter)
     spec = _provision_spec_for_text(text)
     if spec is not None:
         return ("spec", spec)
+    doc = _document_for_text(text)
+    if doc is not None:
+        return ("doc", doc)
     t = re.sub(r"\s+", " ", text).strip()
     cite = token_to_cite(t)
     if cite:
@@ -1673,6 +1726,8 @@ def register(mcp, db_path=None) -> None:
             return _redirect(_chapter_url(val["corpus"], val["num"]))
         if kind == "spec":
             return _redirect(val[2])
+        if kind == "doc":
+            return _redirect(val)
         cite = val
         conn = _conn()
         try:

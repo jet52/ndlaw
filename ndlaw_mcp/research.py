@@ -42,6 +42,89 @@ def _word_to_fts(w: str) -> str:
     return w
 
 
+# --- Plain search text → a valid FTS5 MATCH expression ------------------------------
+
+# FTS5 reads a bareword as letters, digits, '_' and non-ASCII only; anything
+# else is syntax. So "self-represented" parsed as the column filter
+# "-represented" (no such column) and "29-32.1-09" died at the '.' — about
+# one search_opinions call in seven on 2026-10-28 failed that way.
+_FTS_BAREWORD = re.compile(r"[0-9A-Za-z_\u0080-\U0010FFFF]+\*?")
+_FTS_TOKEN = re.compile(r'"[^"]*"\*?|[^\s"]+')
+_FTS_OPS = {"AND", "OR", "NOT"}
+
+
+def fts_query(query: str) -> str:
+    """Make plain search text a valid FTS5 MATCH expression while keeping the
+    syntax the search tools advertise: uppercase AND / OR / NOT, "quoted
+    phrases", parentheses, and a trailing * prefix.
+
+    Any other term that is not an FTS5 bareword is quoted as a phrase, so
+    'self-represented' → '"self-represented"' and a statute number
+    '29-32.1-09' → '"29-32.1-09"' (the tokenizer splits it, the phrase keeps
+    its parts adjacent). Operators FTS5 would reject — leading, trailing,
+    doubled, or next to a parenthesis that cannot take them — are dropped, as
+    are unbalanced quotes and parentheses. Returns '' for text with no terms.
+    """
+    raw: list[str] = []
+    for t in _FTS_TOKEN.findall(query or ""):
+        if t.startswith('"'):
+            raw.append(t)
+            continue
+        # Grouping parens sit at a term's edges; a subdivision's are inside
+        # it ('Rule 4(b)', '28-32-46(1)') and stay part of the term.
+        lead = len(t) - len(t.lstrip("("))
+        t = t[lead:]
+        trail = 0
+        while t.endswith(")") and t.count(")") > t.count("("):
+            t, trail = t[:-1], trail + 1
+        raw += ["("] * lead + ([t] if t else []) + [")"] * trail
+    if raw.count("(") != raw.count(")"):
+        raw = [t for t in raw if t not in "()"]
+    toks: list[str] = []
+    for t in raw:
+        if t.startswith('"'):
+            if t.strip('"*'):
+                toks.append(t)
+        elif t in ("(", ")") or t in _FTS_OPS or _FTS_BAREWORD.fullmatch(t):
+            toks.append(t)
+        else:
+            star = t.endswith("*") and len(t) > 1
+            body = t[:-1] if star else t
+            toks.append('"' + body.replace('"', '""') + '"' + ("*" if star else ""))
+    # Operators are binary in FTS5: each needs a term (or ')' ) before it and a
+    # term (or '(') after it. Drop the ones that don't; repeat until stable.
+    changed = True
+    while changed:
+        changed = False
+        out: list[str] = []
+        for i, t in enumerate(toks):
+            if t in _FTS_OPS:
+                prev = out[-1] if out else None
+                nxt = toks[i + 1] if i + 1 < len(toks) else None
+                if (prev is None or prev in _FTS_OPS or prev == "("
+                        or nxt is None or nxt in _FTS_OPS or nxt == ")"):
+                    changed = True
+                    continue
+            out.append(t)
+        # an empty "( )" pair left behind
+        while "(" in out:
+            i = next((k for k in range(len(out) - 1)
+                      if out[k] == "(" and out[k + 1] == ")"), None)
+            if i is None:
+                break
+            del out[i:i + 2]
+            changed = True
+        toks = out
+    return " ".join(toks)
+
+
+def fts_query_quoted(query: str) -> str:
+    """Last-resort form: every term quoted, operators and parentheses dropped
+    (an implicit AND of literal terms). Always parses."""
+    words = [w for w in re.findall(r'[^\s()"]+', query or "") if w not in _FTS_OPS]
+    return " ".join('"' + w.replace('"', '""') + '"' for w in words)
+
+
 def translate_boolean(query: str) -> tuple[str, list[str]]:
     """Translate a terms-and-connectors query to an FTS5 MATCH expression.
 

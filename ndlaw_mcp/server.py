@@ -79,6 +79,28 @@ install_tool_log(mcp)
 
 DB_PATH = DEFAULT_DB_PATH
 
+
+def _fts(query: str) -> str:
+    """User search text -> an FTS5 MATCH expression that parses.
+
+    research.fts_query keeps AND/OR/NOT, quoted phrases, parentheses, and
+    prefix '*', and quotes any other term carrying FTS5 syntax characters
+    ('self-represented', 'N.D.C.C. § 29-32.1-09'). Its output is checked
+    against a scratch in-memory FTS5 table; anything that still fails to parse
+    (e.g. a malformed NEAR) falls back to every term quoted. A raw query used
+    to surface 'no such column: represented' to the caller instead."""
+    q = research.fts_query(query)
+    probe = sqlite3.connect(":memory:")
+    try:
+        probe.execute("CREATE VIRTUAL TABLE t USING fts5(x)")
+        try:
+            probe.execute("SELECT 1 FROM t WHERE t MATCH ?", (q,)).fetchall()
+            return q
+        except sqlite3.OperationalError:
+            return research.fts_query_quoted(query)
+    finally:
+        probe.close()
+
 COURTLISTENER_BASE = "https://www.courtlistener.com"
 
 # A subsection pinpoint trailing a court-rule citation, e.g. "§ 3(c)", "(c)",
@@ -536,7 +558,7 @@ def search_opinions(
             JOIN opinions o ON o.id = opinions_fts.rowid
             WHERE opinions_fts MATCH ?
         """
-        params: list = [query]
+        params: list = [_fts(query)]
 
         if date_from:
             sql += " AND o.date_filed >= ?"
@@ -765,6 +787,8 @@ def justice_info(
     ``dissent`` counts full dissents plus dissents in part (broken out as
     ``dissent_full`` / ``dissent_in_part``); ``concurring`` includes special
     concurrences and concurrences in the result (also broken out).
+    ``plurality`` counts votes joining a lead opinion that commanded no
+    majority of the panel; they are not included in ``majority``.
 
     Only covers opinions from 1997–present (neutral-cite era with voting data).
 
@@ -823,9 +847,11 @@ def justice_info(
 # Stored voting_record labels (panel_extract) → justice_info buckets. The
 # aggregate once compared against "dissent", a label the corpus never uses,
 # so every justice reported 0 dissents; the concurring variants fell into no
-# bucket at all.
+# bucket at all. `plurality` (JT 2026-10-25) is its own bucket, never counted
+# as a majority vote: the lead opinion it joined spoke for no majority.
 _VOTE_BUCKETS = {
     "majority": "majority",
+    "plurality": "plurality",
     "dissenting": "dissent",
     "concurring_and_dissenting": "dissent_in_part",
     "concurring": "concurring",
@@ -845,7 +871,7 @@ def _tally_votes(rows, justice: str) -> dict:
     """
     import json as _json
 
-    counts = {"majority": 0, "dissent_full": 0, "dissent_in_part": 0,
+    counts = {"majority": 0, "plurality": 0, "dissent_full": 0, "dissent_in_part": 0,
               "concurring": 0, "concurring_in_result": 0,
               "concurring_specially": 0, "separate": 0, "other": 0}
     total = authored = 0
@@ -873,6 +899,7 @@ def _tally_votes(rows, justice: str) -> dict:
         "cases_participated": total,
         "authored": authored,
         "majority": counts["majority"],
+        "plurality": counts["plurality"],
         "dissent": dissent,
         "dissent_full": counts["dissent_full"],
         "dissent_in_part": counts["dissent_in_part"],
@@ -1607,14 +1634,14 @@ def authoring_justice_on_issue(
                JOIN opinions o ON o.id = opinions_fts.rowid
                WHERE opinions_fts MATCH ? AND o.author LIKE ?
                ORDER BY rank LIMIT ?""",
-            (issue, f"%{justice}%", limit),
+            (_fts(issue), f"%{justice}%", limit),
         ).fetchall()
 
         total = conn.execute(
             """SELECT COUNT(*) AS n FROM opinions_fts
                JOIN opinions o ON o.id = opinions_fts.rowid
                WHERE opinions_fts MATCH ? AND o.author LIKE ?""",
-            (issue, f"%{justice}%"),
+            (_fts(issue), f"%{justice}%"),
         ).fetchone()["n"]
 
         results = []
@@ -1756,7 +1783,7 @@ def search_faceted(
                 FROM opinions_fts JOIN opinions o ON o.id = opinions_fts.rowid
                 WHERE opinions_fts MATCH ?
             """
-            params.append(query)
+            params.append(_fts(query))
         else:
             sql = "SELECT o.* FROM opinions o WHERE 1=1"
 
@@ -2993,11 +3020,17 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                     ).fetchone()
                     if row:
                         warning = (
-                            f"No captured text is dated on or before {as_of_date}; "
-                            f"returning the earliest captured version (effective "
-                            f"{row['effective_start']}). Earlier text may exist but is "
-                            f"not yet captured — see get_authority_history for the "
-                            f"amendment chronology."
+                            f"No captured text is dated on or before {as_of_date}. "
+                            f"This is the EARLIEST captured version (effective "
+                            f"{row['effective_start']}), not necessarily the text "
+                            f"in force on {as_of_date}: the corpus holds no earlier "
+                            f"version of this provision. Many provisions go "
+                            f"unamended for years, but before relying on this text "
+                            f"as the law on {as_of_date}, confirm the provision's "
+                            f"revision history between {as_of_date} and "
+                            f"{row['effective_start']} (e.g., in the session laws). "
+                            f"get_authority_history lists what the corpus records, "
+                            f"which may not include every amendment."
                         )
                 if cw_note:
                     warning = (warning + " " if warning else "") + cw_note
@@ -3395,11 +3428,11 @@ def search_authority(
             q = f"{alias}."
             if as_of_date is None:
                 where = "v.id = p.current_version_id"
-                params: tuple = (query, limit)
+                params: tuple = (_fts(query), limit)
             else:
                 where = ("COALESCE(v.effective_start,'0000-01-01') <= ? "
                          "AND COALESCE(v.effective_end, ?) > ?")
-                params = (query, as_of_date, corpus.OPEN_ENDED, as_of_date, limit)
+                params = (_fts(query), as_of_date, corpus.OPEN_ENDED, as_of_date, limit)
             # Two snippets: the text-column passage is what a reader wants,
             # but when the only match is in the citation/heading column it
             # comes back unmarked, so fall back to the best-scoring column.
@@ -3810,7 +3843,21 @@ def check_draft(
                                                    as_of_date)
             if prov is None:
                 key = corpus.resolve_cite_key(conn, alias, citation)
-                if key is not None and "currency" in active:
+                floor = (conn.execute(
+                    f"SELECT MIN(COALESCE(v.effective_start, '0000-01-01')) "
+                    f"FROM {alias}.provisions p JOIN {alias}.provision_versions v "
+                    f"  ON v.provision_id = p.id WHERE p.cite_key = ?",
+                    (key,)).fetchone()[0] if key is not None else None)
+                if (key is not None and "currency" in active and as_of_date
+                        and floor and as_of_date < floor):
+                    # A date before the earliest captured version is a gap in
+                    # the corpus, not a finding about the law: the provision
+                    # may well have been in force then (JT 2026-10-24).
+                    unchecked.setdefault("currency_capture_gap", []).append({
+                        "cited_as": citation,
+                        "reason": f"no text captured before {floor}",
+                    })
+                elif key is not None and "currency" in active:
                     flags.append(_flag(
                         "S4", "no_version_in_force",
                         f"{citation} exists but has no version in force on "
@@ -4093,7 +4140,7 @@ def search_ag_opinions(
             JOIN ag_opinions a ON a.id = ag_opinions_fts.rowid
             WHERE ag_opinions_fts MATCH ?
         """
-        params: list = [query]
+        params: list = [_fts(query)]
         if opinion_type:
             sql += " AND a.type_code = ?"
             params.append(opinion_type.strip().upper()[:1])
@@ -4360,7 +4407,7 @@ def search_jeac_opinions(query: str, year: int | None = None, limit: int = 20) -
             JOIN jeac_opinions j ON j.id = jeac_opinions_fts.rowid
             WHERE jeac_opinions_fts MATCH ?
         """
-        params: list = [query]
+        params: list = [_fts(query)]
         if year:
             sql += " AND j.year = ?"
             params.append(year)
