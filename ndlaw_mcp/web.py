@@ -41,12 +41,13 @@ import os
 import re
 import sqlite3
 import sys
+from datetime import date
 from urllib.parse import quote
 
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, RedirectResponse, Response
 
-from . import corpus, proofread, tables_corpus, web_templates
+from . import corpus, current_since, proofread, rule_notes, tables_corpus, web_templates
 from .db import DEFAULT_DB_PATH, get_connection
 
 PAGE_SIZE = 50
@@ -263,10 +264,28 @@ def _prov_url(corpus_name: str, citation: str) -> str | None:
             return _short_url(citation)
         return None
     if corpus_name == "rule":
-        split = corpus.split_rule_citation(corpus.canonical_cite(citation))
+        canonical = corpus.canonical_cite(citation)
+        # A Code of Judicial Conduct RULE is a block inside its Canon's
+        # page: link to the Canon at the rule's anchor.
+        jr = corpus.jud_conduct_rule(canonical)
+        if jr:
+            split = corpus.split_rule_citation(jr[0])
+            return (f"/rule/{split[0]}/{quote(split[1])}"
+                    f"#{corpus.jud_conduct_anchor(jr[1])}")
+        split = corpus.split_rule_citation(canonical)
         if split:
             return f"/rule/{split[0]}/{quote(split[1])}"
     return None
+
+
+def _jud_conduct_redirect(citation: str) -> str | None:
+    """Where a Code of Judicial Conduct RULE citation should send the reader:
+    its Canon's page at the rule's anchor — or None when the citation is not
+    such a rule or the corpus does not carry the Canon."""
+    jr = corpus.jud_conduct_rule(citation)
+    if not jr or corpus.short_key(jr[0]) not in _short_index():
+        return None
+    return _prov_url("rule", citation)
 
 
 def _short_url(citation: str) -> str:
@@ -316,6 +335,16 @@ def _spec_for(corpus_name: str, citation: str):
     else:
         official = _rule_official_fn
     return (corpus_name, citation, canon, official)
+
+
+_JUD_TOKEN = re.compile(r"^ndcodejudconduct(?:rule)?(\d+\.\d+)$")
+
+
+def _rule_cite_from_params(params: dict) -> str:
+    """The citation a /rule/{set}/{num} URL names ('' when the set is unknown)."""
+    slug = params["set"].lower()
+    prefix = corpus.rule_sets().get(corpus.RULE_SET_SLUG_ALIASES.get(slug, slug))
+    return f"{prefix} {params['num']}" if prefix else ""
 
 
 def _prov_spec(kind: str, params: dict):
@@ -408,6 +437,11 @@ def _intra_set_url(key: str) -> str | None:
     """
     hit = _short_index().get(corpus.short_key(key))
     if not hit:
+        # "See Rule 2.11(A)(1)" inside a Canon: the rule is a block of a
+        # Canon's page, not a provision of its own.
+        set_slug, _, num = key.partition(" ")
+        if set_slug == "ndcodejudconduct":
+            return _jud_conduct_redirect(f"{corpus.JUD_CONDUCT_PREFIX} {num}")
         return None
     return _prov_url(*hit)
 
@@ -523,6 +557,95 @@ def _chapter_sections(conn, entry: dict) -> list[sqlite3.Row]:
                                    entry["corpus"], entry["num"])
 
 
+# Section order for the section-to-section browse nav, built once per process
+# like the chapter index. corpus name -> {"order": [citation, ...],
+# "pos": {citation: index}} over every section of the two numbered codes
+# (~43,000 rows; one SELECT per corpus, then an in-memory sort).
+_SECTION_INDEX: dict | None = None
+
+
+def _build_section_index() -> dict:
+    """Every section of each numbered code, in code order.
+
+    Chapters run in ``chapters.seq`` order — the order the chapter nav
+    walks — and sections within a chapter in ``corpus.chapter_natkey`` order,
+    the order the chapter page lists them in, so the two navs never disagree
+    (``28-32-02.1`` between ``-02`` and ``-03``; ``.10`` after ``.9``). The
+    sequence runs straight across chapter boundaries: next after a chapter's
+    last section is the first section of the next chapter that has any (a
+    chapter repealed whole has no section rows and is simply passed over).
+
+    Every section is in the sequence whatever its status, as on the chapter
+    page: a repealed section is a page with its repeal notation, not a hole.
+    A section whose chapter is not in the ``chapters`` table (none as of
+    2026-10-31), or every section on a DB built before that table existed,
+    falls back to number order after the indexed chapters.
+    """
+    chapters = _chapter_index()["order"]
+    out: dict[str, dict] = {}
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        for name in attached:
+            if name not in corpus.NUMBERED_CODES:
+                continue
+            prefix = corpus.NUMBERED_CODES[name][0]
+            rank = {e["key"]: i for i, e in enumerate(chapters.get(name, []))}
+            try:
+                cites = [r[0] for r in conn.execute(
+                    f"SELECT citation FROM {corpus.CORPORA[name]['alias']}"
+                    ".provisions WHERE corpus=?", (name,))]
+            except sqlite3.OperationalError:
+                continue
+
+            def key(cite: str, prefix=prefix, rank=rank, name=name):
+                num = cite[len(prefix):]
+                chap = corpus.chapter_of_section(name, num)
+                r = rank.get(corpus.chapter_key(chap)) if chap else None
+                return ((0, r) if r is not None else (1, 0),
+                        corpus.chapter_natkey(num))
+
+            order = sorted((c for c in cites if c.startswith(prefix)), key=key)
+            out[name] = {"order": order,
+                         "pos": {c: i for i, c in enumerate(order)}}
+    finally:
+        conn.close()
+    return out
+
+
+def _section_index() -> dict:
+    global _SECTION_INDEX
+    if _SECTION_INDEX is None:
+        _SECTION_INDEX = _build_section_index()
+    return _SECTION_INDEX
+
+
+def _section_neighbors(corpus_name: str,
+                       citation: str) -> tuple[str | None, str | None]:
+    """(previous, next) section citation in code order, for the browse nav;
+    (None, None) for anything that is not an indexed section."""
+    idx = _section_index().get(corpus_name)
+    i = idx["pos"].get(citation) if idx else None
+    if i is None:
+        return None, None
+    seq = idx["order"]
+    return (seq[i - 1] if i > 0 else None,
+            seq[i + 1] if i + 1 < len(seq) else None)
+
+
+def _section_nav_entry(corpus_name: str, citation: str | None) -> dict | None:
+    if citation is None:
+        return None
+    url = _prov_url(corpus_name, citation)
+    if url is None:
+        return None
+    return {"num": citation[len(corpus.NUMBERED_CODES[corpus_name][0]):],
+            "url": url}
+
+
 def _reset_short_index() -> None:
     """Drop the cached index (tests that swap corpus DBs mid-process)."""
     global _SHORT_INDEX
@@ -531,6 +654,8 @@ def _reset_short_index() -> None:
     _RULE_SET_INDEX = None
     global _CHAPTER_INDEX
     _CHAPTER_INDEX = None
+    global _SECTION_INDEX
+    _SECTION_INDEX = None
 
 
 # ---------------------------------------------------------------------------
@@ -748,6 +873,17 @@ def _resolve_exact(text: str):
     spec = _provision_spec_for_text(text)
     if spec is not None:
         return ("spec", spec)
+    # a Code of Judicial Conduct RULE (with or without a pinpoint): its
+    # Canon's page at the rule's anchor
+    t0 = re.sub(r"\s+", " ", text).strip()
+    for _ in range(_MAX_SUBDIVISION_DEPTH + 1):
+        target = _jud_conduct_redirect(corpus.canonical_cite(t0))
+        if target:
+            return ("url", target)
+        stripped = _SUBDIVISION.sub("", t0)
+        if stripped == t0:
+            break
+        t0 = stripped
     doc = _document_for_text(text)
     if doc is not None:
         return ("doc", doc)
@@ -862,18 +998,86 @@ def _find_provision(conn, alias: str, name: str, citation: str):
         "WHERE corpus=? AND cite_key=?", (name, key)).fetchone()
 
 
-def _construing_variants(citation: str) -> tuple[list[str], str]:
-    """(bound parameters, SQL placeholder list) covering every spelling the
-    citation graph uses for ``citation`` — see corpus.cite_variants."""
+def _construing_cond(citation: str, col: str = "normalized") -> tuple[str, list]:
+    """(SQL condition over ``col``, bound parameters) matching every spelling
+    the citation graph uses for ``citation`` — see corpus.cite_variants. A
+    Code of Judicial Conduct CANON also matches the rules it contains
+    ('N.D. Code Jud. Conduct 2.11' construes Canon 2's page), since the
+    opinions cite rules and the corpus pages Canons."""
     variants = corpus.cite_variants(citation)
-    return variants, ",".join("?" * len(variants))
+    cond = f"{col} IN ({','.join('?' * len(variants))})"
+    params: list = list(variants)
+    cm = _JUD_CANON_CITE.match(citation)
+    if cm:
+        cond = f"({cond} OR {col} LIKE ?)"
+        params.append(f"{corpus.JUD_CONDUCT_PREFIX} {cm.group(1)}.%")
+    return cond, params
+
+
+_JUD_CANON_CITE = re.compile(
+    re.escape(corpus.JUD_CONDUCT_PREFIX) + r" Canon (\d+)$")
+
+
+_MD_LINK = re.compile(r"\[([^\]]*)\]\((https?://[^)\s]*)\)")
+
+
+def _render_explanatory_note(note: dict) -> str:
+    """The court's cumulative explanatory note as a section: each paragraph
+    escaped, the court's own links kept (the opening line links each
+    amendment date to that version's page), a provenance line last."""
+    paras = []
+    for p in re.split(r"\n\s*\n", note["text_content"].strip()):
+        p = html.escape(p.strip())
+        if not p:
+            continue
+        p = _MD_LINK.sub(lambda m: f'<a href="{m.group(2)}" rel="nofollow">{m.group(1)}</a>', p)
+        paras.append(f"<p>{p}</p>")
+    prov = []
+    if note.get("source_url"):
+        prov.append(f'<a href="{html.escape(note["source_url"])}" rel="nofollow">'
+                    "ndcourts.gov</a>")
+    if note.get("observed_at"):
+        prov.append(f"as published {html.escape(note['observed_at'])}")
+    prov_html = (f'<p class="meta">Source: {" · ".join(prov)}</p>' if prov else "")
+    return (f'<h2>Explanatory Note</h2><div class="note">{"".join(paras)}</div>'
+            f"{prov_html}")
 
 
 def _construing_count(conn, citation: str) -> int:
-    variants, marks = _construing_variants(citation)
+    cond, params = _construing_cond(citation)
     return conn.execute(
         "SELECT COUNT(DISTINCT opinion_id) FROM text_citations "
-        f"WHERE normalized IN ({marks})", variants).fetchone()[0]
+        f"WHERE {cond}", params).fetchone()[0]
+
+
+_ACT_YEAR = re.compile(r"\bS\.L\. (\d{4})\b")
+
+
+def _ndcc_current_window(ver, stamp: dict | None, today: date | None = None) -> str:
+    """The window line for the OPEN N.D.C.C. version (JT 2026-11-06).
+
+    The export dates every section 2025-07-01, which is the compilation date,
+    not the section's effective date, so the line reads "Code as compiled
+    July 1, 2025" (derived from the version's own ``effective_start``, so a
+    promoted export relabels itself). A section an act LATER than that
+    compilation wrote (the 2026 special sessions, as things stand) carries
+    its own act's date instead: "effective Jan. 23, 2026 – current" — or
+    "takes effect Aug. 1, 2027" while the date is still ahead, matching the
+    current_since sentence beneath it. Keyed on the act's year being after
+    the compilation year, not on a literal 2026, so the exception closes by
+    itself once an export that carries those acts is promoted."""
+    compiled = ver["effective_start"] or ""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", compiled):
+        return f"effective {compiled or 'date not published by the court'} – current"
+    if stamp and stamp.get("kind") == "act" and stamp.get("effective"):
+        years = [int(y) for y in _ACT_YEAR.findall(stamp.get("acts") or "")]
+        if years and max(years) > int(compiled[:4]):
+            eff = stamp["effective"][:10]
+            when = current_since.fmt_date(eff)
+            if eff > (today or date.today()).isoformat():
+                return f"takes effect {when}"
+            return f"effective {when} – current"
+    return f"Code as compiled {current_since.fmt_date(compiled)}"
 
 
 def _prov_page(request: Request, name: str, citation: str, canon: str,
@@ -934,19 +1138,43 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         # page 01/01/0001 (45 rules as of 2026-08-30; CLERK-ERRATA.md).
         start = ver["effective_start"] or "date not published by the court"
         window = f"effective {start} – {ver['effective_end'] or 'current'}"
+        # The N.D.C.C. version is dated by the export, not by the act that
+        # wrote its words: say which act did and when (current text only).
+        since = ""
+        if name == "ndcc" and ver["effective_end"] is None:
+            stamp = current_since.fetch(conn, al, prov["id"])
+            window = _ndcc_current_window(ver, stamp)
+            line = current_since.sentence(stamp)
+            if line:
+                since = f'<p class="meta current-since">{html.escape(line)}</p>'
         meta = [f"<b>{html.escape(window)}</b>"]
         if prov["status"] != "active":
             meta.append(f"<b>Status</b> {html.escape(prov['status'])}")
         history = ""
         if len(versions) > 1:
+            # The authority column is the note's slice for the version's
+            # date (several paragraphs, markdown links): show the first
+            # paragraph, links reduced to their text, the rest on hover; the
+            # whole note is printed below the table (2026-11-04).
+            def _auth_td(v):
+                short, full = rule_notes.authority_cell(v["source_authority"])
+                title = f' title="{html.escape(full, quote=True)}"' if full != short else ""
+                return f"<td{title}>{html.escape(short)}</td>"
             hrows = "".join(
                 f"<tr><td>{html.escape(v['effective_start'] or '?')}</td>"
                 f"<td>{html.escape(v['effective_end'] or 'current')}</td>"
-                f"<td>{html.escape(v['source_authority'] or '')}</td></tr>"
+                f"{_auth_td(v)}</tr>"
                 for v in versions)
             history = (f"<h2>History</h2><table class=\"meta\">"
                        f"<tr><th>from</th><th>to</th><th>authority</th>"
                        f"</tr>{hrows}</table>")
+        # Court rules: the court's cumulative explanatory note, verbatim,
+        # after the history (it is one document for every version).
+        note_html = ""
+        if name == "rule":
+            note = rule_notes.fetch_text(conn, al, prov["id"])
+            if note and note["text_content"]:
+                note_html = _render_explanatory_note(note)
         rule_split = corpus.split_rule_citation(citation) if name == "rule" \
             else None
         paras = web_templates.render_provision_body(
@@ -954,14 +1182,29 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
             set_slug=rule_split[0] if rule_split else None,
             resolve_ref=_intra_set_url if name == "rule" else None,
             self_url=canon if name == "rule" else None)
+        # Section-to-section browse, numbered codes only. The links are bare
+        # (no ?as_of) and the sequence is not filtered by date: neither code
+        # records when a section came into existence — every N.D.C.C. section
+        # has one version dated 2025-07-01, the snapshot date — so a date
+        # filter would empty the N.D.C.C. sequence for any earlier as_of. A
+        # neighbor with no version in force on a date would in any case show
+        # its current version, exactly as this page does.
+        pager = ""
+        if name in corpus.NUMBERED_CODES:
+            prev, nxt = _section_neighbors(name, citation)
+            pager = web_templates.browse_nav(_section_nav_entry(name, prev),
+                                             _section_nav_entry(name, nxt))
         body = f"""
 <p class="meta">{' · '.join(meta)}</p>
+{since}
 <div class="counts">
   Construed by <a href="{canon}/construing">{construing} opinion{'s' if construing != 1 else ''}</a>
   · <a href="{canon}/xrefs">{xrefs_out} cross-reference{'s' if xrefs_out != 1 else ''}</a>
 </div>
 <div class="prov">{paras}</div>
 {history}
+{note_html}
+{pager}
 """
         heading = prov["heading"]
         if rule_split:
@@ -1114,14 +1357,14 @@ def _chapter_sub(request: Request, entry: dict, sub: str) -> Response:
                 pageno = 0
             if not (1 <= pageno <= pages):
                 return _not_found(request, f"{citation} construing page")
-            variants, marks = _construing_variants(citation)
+            cond, params = _construing_cond(citation, "tc.normalized")
             oids = [r[0] for r in conn.execute(
                 f"""SELECT DISTINCT tc.opinion_id FROM text_citations tc
                     JOIN opinions o ON o.id = tc.opinion_id
-                    WHERE tc.normalized IN ({marks})
+                    WHERE {cond}
                     ORDER BY o.date_filed DESC, o.id
                     LIMIT ? OFFSET ?""",
-                (*variants, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
+                (*params, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
             pager = ""
             if pages > 1:
                 bits = []
@@ -1185,14 +1428,14 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
                 pageno = 0
             if not (1 <= pageno <= pages):
                 return _not_found(request, f"{citation} construing page")
-            variants, marks = _construing_variants(citation)
+            cond, params = _construing_cond(citation, "tc.normalized")
             oids = [r[0] for r in conn.execute(
                 f"""SELECT DISTINCT tc.opinion_id FROM text_citations tc
                    JOIN opinions o ON o.id = tc.opinion_id
-                   WHERE tc.normalized IN ({marks})
+                   WHERE {cond}
                    ORDER BY o.date_filed DESC, o.id
                    LIMIT ? OFFSET ?""",
-                (*variants, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
+                (*params, PAGE_SIZE, (pageno - 1) * PAGE_SIZE))]
             pager = ""
             if pages > 1:
                 parts = []
@@ -1204,8 +1447,21 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
                     parts.append(f'<a href="{canon}/construing'
                                  f'?page={pageno+1}">older →</a>')
                 pager = f'<p class="pager">{" · ".join(parts)}</p>'
-            body = (back + f'<p class="meta">{total} total</p>'
-                    + _link_list(conn, oids) + pager)
+            # N.D.C.C.: mark the opinions filed before the current text took effect
+            stamp = (current_since.fetch(conn, al, prov["id"])
+                     if name == "ndcc" else None)
+            mark, since = None, ""
+            if stamp:
+                line = current_since.sentence(stamp)
+                if line:
+                    since = f'<p class="meta current-since">{html.escape(line)}</p>'
+
+                def mark(date_filed):
+                    if current_since.opinion_relation(stamp, date_filed) == "earlier":
+                        return ' <span class="earlier-version">construed an earlier version</span>'
+                    return ""
+            body = (back + since + f'<p class="meta">{total} total</p>'
+                    + _link_list(conn, oids, mark=mark) + pager)
             title = f"Opinions construing {citation}"
         else:
             cur = conn.execute(
@@ -1460,7 +1716,8 @@ def _serve_cite(request: Request, cite: str, current_path: str) -> Response:
 # citing / cited subpages
 # ---------------------------------------------------------------------------
 
-def _link_list(conn, oids: list[int]) -> str:
+def _link_list(conn, oids: list[int], mark=None) -> str:
+    """Opinion links; ``mark(date_filed)`` returns trailing HTML per item."""
     items = []
     for oid in oids:
         r = conn.execute(
@@ -1471,7 +1728,8 @@ def _link_list(conn, oids: list[int]) -> str:
         canon = canonical_path(conn, r["id"])
         items.append(f'<li><a href="{canon}">{html.escape(r["case_name"])}</a> '
                      f'<span class="meta">({html.escape(r["date_filed"])}) — '
-                     f'{_cites_line(conn, r["id"])}</span></li>')
+                     f'{_cites_line(conn, r["id"])}</span>'
+                     f'{mark(r["date_filed"]) if mark else ""}</li>')
     return f'<ul class="candidates">{"".join(items)}</ul>'
 
 
@@ -1726,6 +1984,8 @@ def register(mcp, db_path=None) -> None:
             return _redirect(_chapter_url(val["corpus"], val["num"]))
         if kind == "spec":
             return _redirect(val[2])
+        if kind == "url":
+            return _redirect(val)
         if kind == "doc":
             return _redirect(val)
         cite = val
@@ -1790,6 +2050,13 @@ def register(mcp, db_path=None) -> None:
                     if request.url.path != canon:
                         return _redirect(canon)   # '/ndcc/09-03' -> '/ndcc/9-03'
                     return _chapter_page(request, entry)
+            if kind == "rule":
+                # '/rule/ndcodejudconduct/2.11' names a rule that is a block
+                # of its Canon's page: send the reader to the anchor.
+                target = _jud_conduct_redirect(_rule_cite_from_params(
+                    request.path_params))
+                if target:
+                    return _redirect(target)
             spec = _prov_spec(kind, request.path_params)
             if spec is None:
                 return _not_found(request, request.url.path)
@@ -1927,6 +2194,14 @@ def register(mcp, db_path=None) -> None:
                                                     token.lower())
         if set_slug in corpus.rule_sets():
             return _redirect(f"/rule/{set_slug}")
+        # "/ndcodejudconduct2.11" — a Code of Judicial Conduct rule, which
+        # is a block of its Canon's page
+        jm = _JUD_TOKEN.match(token.lower())
+        if jm:
+            target = _jud_conduct_redirect(
+                f"{corpus.JUD_CONDUCT_PREFIX} {jm.group(1)}")
+            if target:
+                return _redirect(target)
         return _not_found(request, token)
 
     @mcp.custom_route("/{token}/{sub}", methods=["GET"])

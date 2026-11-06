@@ -35,7 +35,7 @@ import re
 from collections.abc import Callable
 from urllib.parse import quote
 
-from ndlaw_mcp import proofread, rule_subsections
+from ndlaw_mcp import corpus, proofread, rule_subsections
 
 # ---------------------------------------------------------------------------
 # page shell
@@ -88,6 +88,7 @@ _STYLE = """
   .pager { margin: 1.2rem 0; }
   td.num, td.eff { white-space: nowrap; }
   span.status { color: #a33; font-size: .85em; }
+  span.earlier-version { color: #8a6d1a; font-size: .85em; font-style: italic; }
   p.bulk { margin-top: 2rem; font-size: .9em; color: #666; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;
            color: #666; font-size: .85em; }
@@ -97,6 +98,7 @@ _STYLE = """
     a { color: #7fb3d5; }
     .counts { background: #23262d; }
     .star { color: #c9a227; }
+    span.earlier-version { color: #c9a227; }
     del.redline { color: #e07a5f; } ins.redline { color: #7fd58a; }
     .figure { color: #999; }
     blockquote { border-color: #444; }
@@ -1082,6 +1084,8 @@ def render_body(text: str, tables: dict | None = None) -> str:
 
 
 _BOLD = re.compile(r"\*\*([^*\n]+)\*\*")
+_HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
+_RULE_HEADING = re.compile(r"^RULE\s+(\d+\.\d+)\b", re.I)
 
 
 # ---------------------------------------------------------------------------
@@ -1212,9 +1216,10 @@ def chapter_state_note(status: str, note: str | None) -> str:
     return f'<p class="counts">{words}</p>'
 
 
-def _chapter_nav(prev: dict | None, nxt: dict | None) -> str:
-    """Previous/next chapter in code order — the browse rail that makes a
-    chapter page a place in the code rather than an isolated hit."""
+def browse_nav(prev: dict | None, nxt: dict | None) -> str:
+    """Previous/next unit in code order — the browse rail that makes a
+    chapter or section page a place in the code rather than an isolated hit.
+    ``prev``/``nxt``: dicts with num and url, or None at either end."""
     parts = []
     if prev:
         parts.append(f'<a href="{html.escape(prev["url"])}">← '
@@ -1281,7 +1286,7 @@ def render_chapter_index(entry: dict, sections: list[dict], *,
         parts.append('<p class="meta">No sections are recorded for this '
                      'chapter in this corpus.</p>')
 
-    parts.append(_chapter_nav(prev, nxt))
+    parts.append(browse_nav(prev, nxt))
     parts.append(_BULK_DATA_LINE)
     return "".join(parts)
 
@@ -1470,8 +1475,33 @@ def render_provision_body(text: str, *, anchors: bool = False,
     out = []
     lines = text.split("\n")
     idx = 0
+    last_rule_anchor: str | None = None
     while idx < len(lines):
         ln = lines[idx]
+        # Heading lines. Only the Code of Judicial Conduct carries them: each
+        # Canon's text holds its rules as '## RULE 2.11 Disqualification'
+        # followed by '## COMMENT'. A rule heading gets the anchor the
+        # citation resolver sends readers to ('/…canon2#rule-2.11'); its
+        # COMMENT gets 'rule-2.11-comment'; the Canon's own statement line
+        # and anything else heads without an id.
+        hm = _HEADING.match(ln)
+        if hm:
+            idx += 1
+            level, title = len(hm.group(1)), hm.group(2).strip()
+            rm = _RULE_HEADING.match(title)
+            hid = ""
+            if rm:
+                last_rule_anchor = corpus.jud_conduct_anchor(rm.group(1))
+                hid = f' id="{last_rule_anchor}"'
+            elif title.upper() == "COMMENT" and last_rule_anchor:
+                hid = f' id="{last_rule_anchor}-comment"'
+                level = max(level, 3)
+            tag = f"h{min(max(level, 2), 4)}"
+            t_esc = _ITAL.sub(r"<em>\1</em>", html.escape(title))
+            if hid:
+                t_esc = f'<a class="pm" href="#{hid[5:-1]}">{t_esc}</a>'
+            out.append(f"<{tag}{hid}>{t_esc}</{tag}>")
+            continue
         # Consecutive pipe rows (the rules corpus's inline tables: Table A,
         # the statutes-superseded tables, appendix form captions) render as
         # a real table. A `| --- |` second row marks the first as a header.
@@ -1491,6 +1521,13 @@ def render_provision_body(text: str, *, anchors: bool = False,
             ln = ln[2:] if ln.startswith("> ") else ""
         esc = html.escape(ln.strip())
         esc = _BOLD.sub(r"<strong>\1</strong>", esc)
+        # Single-star emphasis — the Code of Judicial Conduct's '*Reference*:'
+        # lines and the rules' occasional italic phrase. The opinions' span
+        # grammar applies: its opening star must not follow a word character,
+        # so the Code's trailing defined-term stars ('impartiality*') never
+        # open a span.
+        if esc.count("*") >= 2:
+            esc = _ITAL.sub(r"<em>\1</em>", esc)
         esc = _render_md_links(esc, set_slug)
         esc = _link_intra_set_refs(esc, set_slug, resolve_ref, self_url)
         aid = ""

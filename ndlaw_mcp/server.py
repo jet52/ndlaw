@@ -10,8 +10,8 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
-from . import (ag_corpus, corpus, draftcheck, figures_corpus, jeac_corpus, tables_corpus,
-               memo, notes, proofread, research)
+from . import (ag_corpus, corpus, current_since, draftcheck, figures_corpus, jeac_corpus, tables_corpus,
+               memo, notes, proofread, research, rule_notes)
 from .db import DEFAULT_DB_PATH, get_connection
 
 # Public deployments (ndlaw.org) set NDLAW_RATE_NOTE=1 so connected LLM
@@ -223,6 +223,12 @@ def _best_cite(conn, alias: str, spec: dict, citation: str) -> str:
         stripped = _strip_rule_pinpoint(citation)
         if stripped != citation and corpus.resolve_cite_key(conn, alias, stripped):
             return stripped
+        # A Code of Judicial Conduct RULE ('… 2.11') is stored inside its
+        # Canon; resolve to the Canon (lookup_authority then serves the
+        # rule's own block — see corpus.jud_conduct_rule_slice).
+        jr = corpus.jud_conduct_rule(stripped)
+        if jr and corpus.resolve_cite_key(conn, alias, jr[0]):
+            return jr[0]
     exact = spec.get("exact")
     if exact and corpus.resolve_cite_key(conn, alias, exact):
         return exact
@@ -1960,6 +1966,9 @@ def find_opinions_construing(authority: str, limit: int = 50) -> dict:
     Returns the matched authority (or authorities, if the reference is
     ambiguous) and the opinions citing it, newest first. When the cited
     provision's corpus is installed, also returns the provision's own text.
+    For an N.D.C.C. section, each opinion carries ``construed_version``:
+    'current' (filed after the current text took effect), 'earlier', or
+    'unknown'.
 
     Args:
         authority: A statutory, court-rule, or constitutional reference.
@@ -2046,6 +2055,18 @@ def find_opinions_construing(authority: str, limit: int = 50) -> dict:
                     "current_text": prov["text_content"],
                     "note": "Use lookup_authority(..., as_of_date=) for the version in force on a given date.",
                 }
+                # N.D.C.C.: whether each opinion construed the current text
+                # ('current') or an earlier version ('earlier'), by its filing
+                # date against the date the current text took effect.
+                stamp = (current_since.fetch(conn, alias, prov["provision_id"])
+                         if ckind == "ndcc" else None)
+                if stamp:
+                    result["provision"]["current_since"] = current_since.sentence(stamp)
+                    for g in groups:
+                        if g["authority"] == prov["citation"]:
+                            for o in g["opinions"]:
+                                o["construed_version"] = current_since.opinion_relation(
+                                    stamp, o["date_filed"])
         return result
     finally:
         conn.close()
@@ -2105,7 +2126,9 @@ def get_notes_of_decisions(
     (reproduces ≥8 consecutive words of the provision's text),
     `subsections_cited` (parsed pinpoints, oracle-validated against the
     provision's structured subsection index where available), the opinion's own
-    cited-by count, and the provision VERSION in force when it was filed. The
+    cited-by count, and the provision VERSION in force when it was filed (for an
+    N.D.C.C. section, ``construed_version``: 'current' / 'earlier' / 'unknown',
+    from the date the current text took effect). The
     header aggregates a per-subsection citation outline and the provision's
     amendment timeline, so notes can be read against text changes.
 
@@ -2159,6 +2182,7 @@ def get_notes_of_decisions(
         alias = _attached_corpora(conn).get(ckind) if ckind else None
         provision = None
         versions: list = []
+        stamp = None                         # N.D.C.C. current-since stamp
         oracle: dict[int, set[str]] = {}   # version_id -> stored pincites
         amendments: list = []
         if alias:
@@ -2172,6 +2196,10 @@ def get_notes_of_decisions(
             if prow:
                 provision = {"citation": prow["citation"],
                              "heading": prow["heading"], "status": prow["status"]}
+                if ckind == "ndcc":
+                    stamp = current_since.fetch(conn, alias, prow["id"])
+                    if stamp:
+                        provision["current_since"] = current_since.sentence(stamp)
                 versions = conn.execute(
                     f"""SELECT id, effective_start, effective_end, text_content
                         FROM {q}provision_versions WHERE provision_id = ?
@@ -2337,6 +2365,11 @@ def get_notes_of_decisions(
                     "note": "predates the earliest captured version of this "
                             "provision; its text then is not in the corpus",
                 }
+            if stamp:
+                # the N.D.C.C. has one captured version, dated by the export;
+                # the stamp says whether this opinion construed today's words
+                entry["construed_version"] = current_since.opinion_relation(
+                    stamp, r["date_filed"])
             entry.update(_best_url(r))
             entries.append(entry)
 
@@ -2858,6 +2891,43 @@ def get_provision_xrefs(
             "count": total_in, "returned": min(limit, len(inbound)),
             "references": inbound[:limit],
         }
+
+        # ---- the court's explanatory notes (rules.db, 2026-11-04) ---------
+        # Note citations are not provision text and are not version-keyed,
+        # so they ride beside the graph rather than inside it: what this
+        # rule's note cites (CROSS REFERENCE, STATUTES AFFECTED, derivation),
+        # and every rule whose note cites this provision.
+        ral = attached.get("rule")
+        if ral and rule_notes.has_notes(conn, ral):
+            if ckind == "rule":
+                out_n = []
+                for x in rule_notes.note_xrefs(conn, ral, prov["id"])[:limit]:
+                    entry = {"kind": x["kind"], "corpus": x["to_corpus"],
+                             "citation": x["to_citation"], "as_printed": x["raw_text"],
+                             "resolved": False}
+                    tal = attached.get(x["to_corpus"]) if x["to_corpus"] else None
+                    if tal and x["to_cite_key"]:
+                        trow = conn.execute(
+                            f"SELECT citation, heading, status FROM {tal}.provisions "
+                            f"WHERE cite_key = ?", (x["to_cite_key"],)).fetchone()
+                        if trow:
+                            entry.update({"resolved": True, "citation": trow["citation"],
+                                          "heading": trow["heading"], "status": trow["status"]})
+                    out_n.append(entry)
+                result["explanatory_note_references"] = {
+                    "count": len(out_n), "references": out_n,
+                    "note": "Authorities the court's explanatory note for this rule cites "
+                            "(cross_reference / superseded / considered / derived_from); "
+                            "not version-keyed; corpus null = a non-ND target."}
+            citing = rule_notes.notes_citing(conn, ral, ckind, my_key)
+            result["cited_in_explanatory_notes"] = {
+                "count": len(citing), "returned": min(limit, len(citing)),
+                "rules": [{"citation": c["citation"], "heading": c["heading"],
+                           "status": c["status"], "kind": c["kind"],
+                           "as_printed": c["raw_text"]} for c in citing[:limit]],
+                "note": "Court rules whose explanatory note names this provision — "
+                        "the statute a rule superseded or considered, or a rule cited "
+                        "under CROSS REFERENCE."}
         result["note"] = (
             "Edges are extracted from the provision text in force "
             f"({'on ' + as_of_date if as_of_date else 'currently'}); "
@@ -2896,7 +2966,10 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
     (source: NDCC Replacement Vol. 13 disposition tables).
 
     Returns the provision text, heading, effective window, enacting/amending
-    authority, source URL, and a count of opinions construing it. If the
+    authority, source URL, and a count of opinions construing it. For a
+    current N.D.C.C. section, ``current_since`` says which session law wrote
+    the current text and when it took effect (the version's own
+    effective_start is the code export's date, not the act's). If the
     relevant corpus is not installed, says so. Chapter answers carry the
     section index and the chapter's own construing count (opinions citing the
     chapter as a whole) in place of text and effective dates.
@@ -3064,6 +3137,43 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
             "text": row["text_content"],
             "opinions_construing": construing,
         }
+        # Code of Judicial Conduct: a RULE citation resolved to its Canon.
+        # Serve the rule's own block (heading, text, COMMENT) as the text,
+        # count the opinions citing the RULE, and say what happened.
+        jr = corpus.jud_conduct_rule(_strip_rule_pinpoint(citation)) \
+            if ckind == "rule" else None
+        if jr and row["citation"] == jr[0]:
+            rule_cite = f"{corpus.JUD_CONDUCT_PREFIX} {jr[1]}"
+            block = corpus.jud_conduct_rule_slice(row["text_content"], jr[1])
+            result["rule"] = {
+                "citation": rule_cite,
+                "canon": jr[0],
+                "anchor": corpus.jud_conduct_anchor(jr[1]),
+                "note": ("The Code is stored by Canon; this rule is a block "
+                         "of its Canon's text. 'text' is that block"
+                         + ("" if block else " — not found under this number; "
+                            "the whole Canon is returned")
+                         + "; 'canon_text' has the whole Canon."),
+            }
+            if block:
+                result["canon_text"] = row["text_content"]
+                result["text"] = block
+            result["opinions_construing"] = conn.execute(
+                "SELECT COUNT(DISTINCT tc.opinion_id) AS n FROM text_citations tc "
+                "WHERE tc.normalized = ?", (rule_cite,)).fetchone()["n"]
+        # N.D.C.C.: the version is dated by the code export (2025-07-01), not by
+        # the act that wrote its words; say which act did and when.
+        if ckind == "ndcc" and row["effective_end"] is None:
+            stamp = current_since.fetch(conn, alias, row["provision_id"])
+            if stamp:
+                result["current_since"] = {
+                    "statement": current_since.sentence(stamp),
+                    "kind": stamp["kind"],
+                    "acts": stamp["acts"],
+                    "effective": stamp["effective"],
+                    "basis": stamp["basis"],
+                    **({"rule": stamp["rule"]} if stamp["rule"] else {}),
+                }
         if la_preds:
             result["historical_cites"] = [
                 p["normalized"] + (f" (from {p['lineage_from']})"
@@ -3076,6 +3186,12 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 f"SELECT COUNT(*) AS n FROM {alias}.provision_xrefs "
                 f"WHERE version_id = ?", (row["id"],),
             ).fetchone()["n"]
+        # Court rules: the court's explanatory note is served in full by
+        # get_authority_history; say here that one exists and how long it is.
+        if ckind == "rule":
+            n_paras = rule_notes.paragraph_count(conn, alias, row["provision_id"])
+            if n_paras is not None:
+                result["explanatory_note_paragraphs"] = n_paras
         my_key = corpus.cite_key(row["citation"])
         in_where, in_params = _inbound_xref_where(as_of_date)
         referenced_by = 0
@@ -3382,6 +3498,12 @@ def get_authority_history(citation: str) -> dict:
                     "citation at any date via lookup_authority(..., as_of_date=)."
                 )
                 result["reorganization"] = reorg
+        # Court rules: the court's cumulative explanatory note, verbatim,
+        # with its dated paragraphs, SOURCES rows and cross references.
+        if ckind == "rule":
+            note = rule_notes.fetch(conn, alias, prov["id"])
+            if note:
+                result["explanatory_note"] = note
         return result
     finally:
         conn.close()
@@ -3696,7 +3818,10 @@ def check_draft(
                    detect_overruled_in_draft, which remains the cheap
                    treatment-only pass);
       currency   — repealed / superseded / not-in-force authorities, checked
-                   at `as_of_date` when given (offense/contract date).
+                   at `as_of_date` when given (offense/contract date); and a
+                   cited case that cites an N.D.C.C. section but was filed
+                   before the section's current text took effect
+                   (`construed_earlier_version`, S4).
 
     Severities: S1 misquotation or quote-of-superseded-text · S2 citation
     doesn't resolve · S3 possible negative treatment · S4 authority currency /
@@ -3878,6 +4003,36 @@ def check_draft(
                     ))
                 continue
             auth_provisions[citation] = prov
+            # A cited case that itself cites this N.D.C.C. section but was filed
+            # before the section's current text took effect construed an earlier
+            # version. Skipped when the draft is anchored before that date: then
+            # the earlier text is the one the draft means.
+            if ("currency" in active and KIND_TO_CORPUS[kind] == "ndcc"
+                    and prov["effective_end"] is None and op_info):
+                stamp = current_since.fetch(conn, alias, prov["provision_id"])
+                if stamp and stamp["effective"] and not (
+                        as_of_date and as_of_date < stamp["effective"]):
+                    for oid, info in sorted(op_info.items()):
+                        row = info["row"]
+                        if current_since.opinion_relation(stamp, row["date_filed"]) != "earlier":
+                            continue
+                        if not conn.execute(
+                                "SELECT 1 FROM text_citations WHERE opinion_id = ? "
+                                "AND normalized = ? LIMIT 1",
+                                (oid, prov["citation"])).fetchone():
+                            continue
+                        flags.append(_flag(
+                            "S4", "construed_earlier_version",
+                            f"{row['case_name']} ({row['date_filed'][:4]}) cites "
+                            f"{prov['citation']} but was filed before its current "
+                            f"text took effect: "
+                            f"{current_since.sentence(stamp)} Confirm the case "
+                            "construed language the current text keeps.",
+                            cited_as=sorted(info["cites"]),
+                            authority=prov["citation"],
+                            current_text_effective=stamp["effective"],
+                            acts=stamp["acts"],
+                        ))
             if "currency" in active and prov["status"] != "active":
                 flags.append(_flag(
                     "S4", "authority_not_active",

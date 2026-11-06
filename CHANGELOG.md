@@ -8,6 +8,21 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v3.5.5 — 2026-11-06
+
+- **N.D.C.C. effective dates — new, and a work in progress.** Every Century Code section now carries a "Current text effective …" line naming the session law that wrote its present words and the date that text took effect, derived from the Legislative Council's effective-date lists (1997–2025; the 1999 list was located this week), the session laws, and the code's own capture history. Of 25,198 sections, 13,778 are traced to an act, 9,033 show no amendment since 1997, and 2,214 carry wording no session law accounts for. Shown on the section page and its construing list, in `lookup_authority`, `find_opinions_construing`, `get_notes_of_decisions`, and `check_draft` (which now flags a cited opinion that construed an earlier version). Contingent acts are dated where the certification has been found (the Department of Environmental Quality transfer, S.L. 2017, ch. 199, in force April 29, 2019). The version line on statute pages reads "Code as compiled July 1, 2025" instead of a per-section "effective" date the export never carried. **These stamps are incomplete and not fully reliable**: a 50-row hand check found 5 errors, each traced to a rule and corrected, with no re-check yet; reviser changes are only partly traced; pre-1997 history is not compiled; prior versions of statute text are not yet served. Treat an effective-date line as a lead to confirm in the session laws. The README and landing page carry the same notice.
+- **Court rules:** the court's explanatory notes are stored verbatim for every rule page that carries one (749 notes, 3,445 paragraphs, 2,020 cross-references) and shown on the rule page and in `get_authority_history` / `lookup_authority`; the amendment dates on rule versions were restamped from the notes. Rules of the Code of Judicial Conduct are now addressable inside their Canon, so `N.D. Code Jud. Conduct 2.11` resolves and the Canon's construing list includes rule-level citations.
+- **Opinions (text), every batch logged in the corpus changelog tables:**
+  - the clerk's five-line e-filing stamp removed from the head of 466 opinions (2020–2024);
+  - italic markup repaired at about 3,000 sites where West's conversion had split one run into two or set the court's punctuation in a run of its own;
+  - 117 bare paragraph markers rejoined to their paragraphs; 1,029 non-breaking-space separators normalized in 51 opinions;
+  - heading seams, glued page numbers, and duplicated paragraphs repaired across the slip and archive eras (about 730 heading seams, 95 page numbers, 137 headings);
+  - 1999 ND 244 renumbered to the published paragraph numbering; the slip's departure logged as clerk errata.
+  - **Opinions** through **2026 ND 204** (20 filed November 6, 2026).
+- **Attorney General opinions** through **2026-O-27** (four open-meetings summary opinions of November 2, 2026, each read against its page images and repaired).
+- **Court rules:** five pages the court publishes with no rule body (N.D.R.Crim.P. 6, 42, 53, 54; N.D.R.Ev. 303) are now stub provisions carrying the court's own disposition sentence; Crim.P. 42's repeal is dated by the court's note (March 1, 1994).
+- **Citation graph** rebuilt from scratch under the pinned jetcite 2.15.0: the installed extractor had drifted two releases behind the pin since September. A release gate now refuses to cut under drift.
+
 ## v3.5.4 — 2026-10-30
 
 - **Data, these two weeks** (every batch is logged in the corpus changelog tables):

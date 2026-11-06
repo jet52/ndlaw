@@ -103,6 +103,39 @@ CHAPTER_SCHEMA = """
     CREATE INDEX IF NOT EXISTS idx_chapters_seq ON chapters(corpus, seq);
 """
 
+# ---------------------------------------------------------------------------
+# current_since — when each current N.D.C.C. section's text took effect
+# ---------------------------------------------------------------------------
+
+# statutes.db holds one version of each section, dated by the export
+# (2025-07-01), not by the session law that produced its words. This table
+# says which act did and when its text took effect (PLAN-session-laws § 4a,
+# Stage 1), so a reader knows whether an older opinion construed the same
+# words. Derived: loaded from data/ndcc_current_since.tsv by
+# scripts/build_current_since.py, which marks a row stale when the section's
+# current text no longer matches the text the stamp describes. Wording and the
+# citator relation live in ndlaw_mcp/current_since.py.
+CURRENT_SINCE_SCHEMA = """
+    CREATE TABLE IF NOT EXISTS current_since (
+        id INTEGER PRIMARY KEY,
+        provision_id INTEGER NOT NULL REFERENCES provisions(id),
+        citation TEXT NOT NULL,       -- 'N.D.C.C. § 12.1-32-09'
+        kind TEXT NOT NULL,           -- act | unchanged | reviser | directive | uncaptured
+        acts TEXT,                    -- 'S.L. 2025, ch. 124' ('; ' between several)
+        effective TEXT,               -- ISO date the current text took (or takes) effect; NULL = none found / contingent
+        basis TEXT,                   -- how the date was found: council, council-note, default-aug1, contingent, ...
+        rule TEXT,                    -- an applicability / retroactivity / contingency clause, in the source's words
+        window_lo TEXT,               -- YYYYMMDD capture before the last change (kind act / reviser)
+        window_hi TEXT,               -- YYYYMMDD capture after it
+        unchanged_since TEXT,         -- YYYYMMDD first capture holding today's text (kind unchanged)
+        record_floor TEXT,            -- YYYYMMDD earliest capture of the section's chapter
+        flags TEXT,
+        text_sha256 TEXT NOT NULL,    -- the current text the stamp describes
+        stale INTEGER NOT NULL DEFAULT 0,   -- 1: the section's text has changed since; do not show
+        UNIQUE(provision_id)
+    );
+"""
+
 # corpus name -> (section citation prefix, chapter citation prefix, the number
 # of hyphen-separated components in a CHAPTER number). Section numbers carry
 # exactly one component more, which is what makes a bare number in a URL
@@ -385,6 +418,59 @@ def rule_sets() -> dict[str, str]:
     return {rule_set_slug(p): p for p in RULE_SET_PREFIXES}
 
 
+# Mirror directory (the ndcourts.gov URL slug the rules-scraper files each
+# set under) -> canonical citation prefix. The VALUES are RULE_SET_PREFIXES;
+# a test asserts the two stay identical. Lived in ``ingest_rules`` until
+# 2026-11-02; moved here so the serve-time ``rule_notes`` module can map a
+# sidecar path to its provision without importing the ingest module (the
+# publish gate's import closure).
+RULE_SET_DIRS: dict[str, str] = {
+    "ndrappp": "N.D.R.App.P.",
+    "ndrcivp": "N.D.R.Civ.P.",
+    "ndrcrimp": "N.D.R.Crim.P.",
+    "ndrev": "N.D.R.Ev.",
+    "ndrjuvp": "N.D.R.Juv.P.",
+    "ndrct": "N.D.R.Ct.",
+    "ndrprofconduct": "N.D.R. Prof. Conduct",
+    "ndcodejudconduct": "N.D. Code Jud. Conduct",
+    "ndrlawyerdiscipl": "N.D.R. Lawyer Discipl.",
+    "admissiontopracticer": "Admission to Practice R.",
+    "ndrcontinuinglegaled": "N.D.R. Continuing Legal Educ.",
+    "ndstdsimposinglawyersanctions": "N.D. Stds. Imposing Lawyer Sanctions",
+    "ndsupctadminr": "N.D. Sup. Ct. Admin. R.",
+    "ndsupctadminorder": "N.D. Sup. Ct. Admin. Order",
+    "rjudconductcomm": "R. Jud. Conduct Comm.",
+    "ndrprocr": "N.D.R. Proc. R.",
+    "ndrlocalctpr": "N.D.R. Local Ct. Pr.",
+    "local": "N.D. Local Ct. R.",
+    "rltdpracticeoflawbylawstudents": "Ltd. Practice of Law by Law Students R.",
+}
+
+
+def rule_number_from_filename(filename: str) -> str:
+    """'rule-56.md' -> '56', 'rule-1.0.md' -> '1.0', 'rule-Table-B.md' -> 'Table B',
+    'rule-1-0.md' -> '1.0'.
+
+    The last form is the Standards for Imposing Lawyer Sanctions, whose mirror
+    files spell the decimal point as a hyphen ('rule-1-0.md' for standard 1.0).
+    Without the digit-hyphen-digit case they ingested as 'Sanctions 1 0' — a
+    citation no opinion could ever match, orphaning all 268 graph cites to that
+    set. Safe because no ND rule number contains a hyphen: of 631 mirror files
+    only the 9 sanctions ones are digit-hyphen-digit (checked 2026-07-31), and
+    word-numbered files ('rule-appendix-a-to-rule-8.6.md') never match.
+    """
+    stem = filename[len("rule-"):-len(".md")]
+    if re.fullmatch(r"[0-9.]+", stem):
+        return stem
+    if re.fullmatch(r"\d+-\d+", stem):
+        return stem.replace("-", ".")
+    # word-numbered instruments carry the designator cased ('Appendix A',
+    # not the mirror filename's 'appendix a') — the court's own citation
+    # form ("N.D.R.Ct. Appendix G", so cited in the opinions); cite_key is
+    # case-insensitive, so existing provisions match either way
+    return case_rule_num(stem.replace("-", " "))
+
+
 def split_rule_citation(citation: str) -> tuple[str, str] | None:
     """'N.D.R.App.P. 4' -> ('ndrappp', '4'), or None if no rule set matches.
     Longest prefix wins ('N.D. Sup. Ct. Admin. Order' before '... Admin. R.'
@@ -393,6 +479,53 @@ def split_rule_citation(citation: str) -> tuple[str, str] | None:
         if citation.startswith(prefix + " "):
             return rule_set_slug(prefix), citation[len(prefix) + 1:]
     return None
+
+
+# ---------------------------------------------------------------------------
+# Code of Judicial Conduct — rules live INSIDE their Canon's provision
+# ---------------------------------------------------------------------------
+
+# The corpus stores the Code at Canon granularity ('N.D. Code Jud. Conduct
+# Canon 2'); each Canon's text carries its rules as '## RULE 2.11 …' heading
+# lines, each followed by the rule's '## COMMENT'. Opinions cite the RULE
+# ('N.D. Code Jud. Conduct 2.11', jetcite's normalized form — 20 such edges,
+# none to a Canon), so a rule citation resolves to its Canon's page at the
+# rule's anchor, and lookup_authority serves the rule's own block.
+JUD_CONDUCT_PREFIX = "N.D. Code Jud. Conduct"
+_JUD_RULE_NUM = re.compile(r"^(?:Rule\s+)?(\d+)\.(\d+)$", re.I)
+_JUD_RULE_HEADING = re.compile(r"^##\s+RULE\s+(\d+\.\d+)\b", re.I)
+_JUD_HEADING = re.compile(r"^##\s+")
+
+
+def jud_conduct_rule(citation: str) -> tuple[str, str] | None:
+    """'N.D. Code Jud. Conduct 2.11' -> ('N.D. Code Jud. Conduct Canon 2',
+    '2.11'); None for a Canon, the Preamble, or any other rule set."""
+    c = canonical_cite(citation).strip()
+    if not c.startswith(JUD_CONDUCT_PREFIX + " "):
+        return None
+    m = _JUD_RULE_NUM.match(c[len(JUD_CONDUCT_PREFIX) + 1:].strip())
+    if not m:
+        return None
+    return f"{JUD_CONDUCT_PREFIX} Canon {m.group(1)}", f"{m.group(1)}.{m.group(2)}"
+
+
+def jud_conduct_anchor(rule_num: str) -> str:
+    """The page anchor of a rule inside its Canon: 'rule-2.11'."""
+    return f"rule-{rule_num}"
+
+
+def jud_conduct_rule_slice(text: str, rule_num: str) -> str | None:
+    """The rule's own block of its Canon's text — its heading line, text and
+    COMMENT, up to the next rule heading — or None when the Canon's text has
+    no such heading (a rule number the Code does not use)."""
+    lines = text.split("\n")
+    start = next((i for i, ln in enumerate(lines)
+                  if (m := _JUD_RULE_HEADING.match(ln)) and m.group(1) == rule_num), None)
+    if start is None:
+        return None
+    end = next((i for i in range(start + 1, len(lines))
+                if _JUD_RULE_HEADING.match(lines[i])), len(lines))
+    return "\n".join(lines[start:end]).strip()
 
 
 def lookup_chapter(conn: sqlite3.Connection, corpus_alias: str,
