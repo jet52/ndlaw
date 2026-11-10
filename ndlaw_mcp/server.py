@@ -10,8 +10,8 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
-from . import (ag_corpus, corpus, current_since, draftcheck, figures_corpus, jeac_corpus, tables_corpus,
-               memo, notes, proofread, research, rule_notes)
+from . import (ag_corpus, corpus, corpus_reports, current_since, draftcheck, figures_corpus, jeac_corpus,
+               tables_corpus, memo, notes, posted_text, proofread, research, rule_notes)
 from .db import DEFAULT_DB_PATH, get_connection
 
 # Public deployments (ndlaw.org) set NDLAW_RATE_NOTE=1 so connected LLM
@@ -49,8 +49,10 @@ mcp = FastMCP(
         "get_citing_opinions to find cases that cite a given opinion. Constitution, "
         "court rules, statutes (N.D.C.C.), and administrative code (where installed): "
         "use lookup_authority for the text of a provision (with as_of_date for the "
-        "version in force on a given date), get_authority_history for its amendment "
-        "history, get_provision_xrefs for the cross-references between provisions "
+        "version in force on a given date — for N.D.C.C. sections the dated versions "
+        "reach back to the first capture of the compiled code, 1997–2004, each with "
+        "a date_basis and a warning where the date is estimated), get_authority_history "
+        "for its amendment history and dated versions, get_provision_xrefs for the cross-references between provisions "
         "(what a provision cites and everything that cites it, across corpora), "
         "search_authority for full-text search across these sources, and "
         "get_notes_of_decisions for an annotated notes-of-decisions view of the "
@@ -68,7 +70,12 @@ mcp = FastMCP(
         "advisory opinions on the Code of Judicial Conduct (recusal, campaign "
         "conduct, extra-judicial activities), get_jeac_opinions_citing for the "
         "opinions construing a canon or rule, and get_court_opinions_citing_jeac "
-        "for court references to the committee." + _RATE_NOTE
+        "for court references to the committee. "
+        "If text you retrieve looks wrong — garbled words, a missing or misplaced "
+        "paragraph or footnote, a statute version that cannot be the one in force "
+        "on the date, a citation resolving to the wrong document — call "
+        "report_corpus_issue with the citation and what you saw; a person reviews "
+        "every report against the official source." + _RATE_NOTE
     ),
 )
 
@@ -772,9 +779,38 @@ def get_database_stats() -> dict:
                  "rows_affected": r["rows_affected"], "notes": r["notes"]}
                 for r in last_runs
             ]
+        # Which file answers for each primary-law corpus, and whether the
+        # N.D.C.C. corpus is point-in-time (dated versions) or a single
+        # snapshot. Basename only: a path is a deployment fact, not data.
+        stats["corpora"] = _corpora_stats()
         return stats
     finally:
         conn.close()
+
+
+def _corpora_stats() -> dict:
+    out: dict = {}
+    for name, info in corpus.served_corpus_files().items():
+        if not info["exists"]:
+            continue
+        entry: dict = {"file": info["path"].name, "derived": info["derived"]}
+        try:
+            c = sqlite3.connect(f"file:{info['path']}?mode=ro", uri=True)
+            try:
+                entry["provisions"] = c.execute("SELECT COUNT(*) FROM provisions").fetchone()[0]
+                entry["versions"] = c.execute("SELECT COUNT(*) FROM provision_versions").fetchone()[0]
+                entry["multi_version_provisions"] = c.execute(
+                    "SELECT COUNT(*) FROM (SELECT provision_id FROM provision_versions "
+                    "GROUP BY provision_id HAVING COUNT(*) > 1)").fetchone()[0]
+                entry["earliest_version_start"] = c.execute(
+                    "SELECT MIN(effective_start) FROM provision_versions WHERE effective_start IS NOT NULL").fetchone()[0]
+            finally:
+                c.close()
+        except sqlite3.Error:
+            pass
+        entry["point_in_time"] = entry.get("multi_version_provisions", 0) > 0
+        out[name] = entry
+    return out
 
 
 @mcp.tool()
@@ -2430,7 +2466,7 @@ def get_notes_of_decisions(
             result["captured_versions"] = [
                 {"effective_start": v["effective_start"],
                  "effective_end": v["effective_end"],
-                 "is_current": v["effective_end"] is None}
+                 "is_current": corpus.row_in_force(v)}
                 for v in versions
             ]
         if amendments:
@@ -2768,7 +2804,9 @@ def _has_xrefs(conn, alias: str) -> bool:
 def _inbound_xref_where(as_of_date: str | None) -> tuple[str, list]:
     """SQL fragment selecting citing VERSIONS in force (current or at a date)."""
     if as_of_date is None:
-        return "v.effective_end IS NULL", []
+        # in force TODAY, not "open": a posted future version is the open row
+        # of its provision and its references are not yet the law (rulings 23–24)
+        return corpus.in_force_now("v"), []
     # Half-open windows: a version ending on D was not in force on D (see
     # corpus.lookup_provision_version).
     return ("COALESCE(v.effective_start,'0000-01-01') <= ? "
@@ -3040,6 +3078,18 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                     f"FROM {q}provision_versions WHERE provision_id = ?",
                     (prov["id"],),
                 ).fetchone() if prov else None
+                if b and b["n"] and as_of_date < b["lo"] and b["lo"] > datetime.date.today().isoformat():
+                    # a future-only section (Stage 2 ruling 24): its only text is
+                    # posted for a day still ahead; nothing was in force on as_of
+                    return {
+                        "found": True, "corpus": ckind, "citation": prov["citation"],
+                        "heading": prov["heading"], "status": prov["status"],
+                        "as_of_date": as_of_date, "in_force": False, "text": None,
+                        "takes_effect": b["lo"],
+                        "warning": (f"{prov['citation']} takes effect {current_since.fmt_date(b['lo'])}; "
+                                    f"no text was in force on {as_of_date}. lookup_authority without "
+                                    f"as_of_date returns the posted text."),
+                    }
                 if b and b["n"] and as_of_date >= b["lo"]:
                     base = {
                         "found": True, "corpus": ckind,
@@ -3111,6 +3161,60 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
             asof = f" in force on {as_of_date}" if as_of_date else ""
             return {"found": False, "citation": citation, "corpus": ckind,
                     "error": f"No provision matching {citation!r}{asof}."}
+        # Stage 2 ruling 2(b): an act inside a capture bracket that also holds
+        # a later act is recorded as an UNWITNESSED amendment (amendments row,
+        # version_id NULL) — its text was never compiled. A dated lookup that
+        # falls after such an act and before the next captured version gets
+        # the warning and no text, rather than the pre-amendment version.
+        if ckind == "ndcc" and as_of_date:
+            unw = conn.execute(
+                f"SELECT effective_date, authority FROM {alias}.amendments "
+                f"WHERE provision_id = ? AND version_id IS NULL "
+                f"AND raw LIKE 'unwitnessed:%' AND effective_date IS NOT NULL "
+                f"AND effective_date > COALESCE(?, '0000-01-01') AND effective_date <= ? "
+                f"ORDER BY effective_date",
+                (row["provision_id"], row["effective_start"], as_of_date)).fetchall()
+            if unw:
+                acts = "; ".join(f"{u['authority']} (effective {u['effective_date']})" for u in unw)
+                return {
+                    "found": True, "corpus": ckind, "citation": row["citation"],
+                    "heading": row["heading"], "status": row["status"],
+                    "as_of_date": as_of_date, "in_force": True,
+                    "text": None, "text_not_compiled": True,
+                    "effective_start": row["effective_start"],
+                    "effective_end": row["effective_end"],
+                    "unwitnessed_amendments": [dict(u) for u in unw],
+                    "warning": (
+                        f"{row['citation']} was amended by {acts}, but the amended text "
+                        f"was never captured in the compiled code: the next captured "
+                        f"version ({row['effective_end'] or 'current'}) carries that act's "
+                        f"change together with later ones. No text is served for "
+                        f"{as_of_date}. The text effective {row['effective_start']} is "
+                        f"the last one captured BEFORE the amendment; read the act itself "
+                        f"(session laws) for the words in force on {as_of_date}. See "
+                        f"get_authority_history."),
+                }
+        # JT ruling 2026-11-10 (4 of 4): a version two or more acts changed between
+        # captures is dated by the later act; inside the earlier act's window the
+        # prior text is served WITH a warning naming the act (loader `multi-act:` rows),
+        # not withheld as an unwitnessed gap is.
+        intervening = []
+        if ckind == "ndcc" and as_of_date:
+            intervening = [dict(u) for u in conn.execute(
+                f"SELECT effective_date, authority FROM {alias}.amendments "
+                f"WHERE provision_id = ? AND version_id IS NULL "
+                f"AND raw LIKE 'multi-act:%' AND effective_date IS NOT NULL "
+                f"AND effective_date > COALESCE(?, '0000-01-01') AND effective_date <= ? "
+                f"ORDER BY effective_date",
+                (row["provision_id"], row["effective_start"], as_of_date)).fetchall()]
+            if intervening:
+                acts = "; ".join(f"{u['authority']} (effective {u['effective_date']})" for u in intervening)
+                ma_note = (f"{row['citation']} was amended by {acts}, after this version's date and "
+                           f"before {as_of_date}, but the amended text was not captured on its own: the "
+                           f"next captured version ({row['effective_end'] or 'current'}) carries that "
+                           f"change together with later ones. The text below may predate the amendment; "
+                           f"read the act itself (session laws) for the words in force on {as_of_date}.")
+                warning = (warning + " " if warning else "") + ma_note
         # cross-link: how many opinions construe this authority (jetcite's
         # normalized form equals the canonical citation). Constitution
         # provisions union in their era-gated pre-1981 predecessor cites.
@@ -3131,12 +3235,77 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
             "as_of_date": as_of_date,
             "effective_start": row["effective_start"],
             "effective_end": row["effective_end"],
-            "is_current": row["effective_end"] is None,
+            "is_current": corpus.row_in_force(row),
             "source_authority": row["source_authority"],
             "source_url": row["source_url"],
             "text": row["text_content"],
             "opinions_construing": construing,
         }
+        # The export prints every pending version of an N.D.C.C. section in
+        # one text (JT 2026-11-07). `text` stays whole (quotation checks run
+        # against stored text); `versions_in_text` says where it splits and
+        # what each note means, so a reader does not take a future text for
+        # the law in force.
+        if ckind in corpus.NUMBERED_CODES and corpus.row_in_force(row):
+            blocks = posted_text.split_versions(row["text_content"], row["heading"])
+            if len(blocks) > 1:
+                result["versions_in_text"] = [
+                    {"status": posted_text.describe(b["note"]), "note": b["note"],
+                     "header": b["header"], "text": b["text"]}
+                    for b in blocks]
+                result["text_in_force"] = blocks[0]["text"]
+                warning = ((warning + " " if warning else "")
+                           + f"`text` holds {len(blocks)} versions of this section as the code prints "
+                             f"them; only the first is in force. See `versions_in_text`.")
+        # Stage 2 (the derived statutes.stage2.db): the loader's date basis
+        # and the reader warning it implies (D2). The shipped DBs carry no
+        # such columns, and then nothing is added.
+        if _col(row, "date_basis"):
+            result["date_basis"] = row["date_basis"]
+            result["date_estimated"] = bool(_col(row, "date_estimated"))
+            dw = corpus.version_date_warning(row)
+            if dw:
+                warning = (warning + " " if warning else "") + dw
+            # Posted future text as its own version (Stage 2 rulings 23–26, JT
+            # 2026-11-07): a row dated ahead is the code's posting of a pending
+            # amendment, and a current row with a successor has one coming.
+            today_iso = datetime.date.today().isoformat()
+            start = row["effective_start"] or ""
+            if start > today_iso:
+                result["takes_effect"] = start
+                how = ("per the effective-date note the code posts with it; no act is identified"
+                       if row["date_basis"] == "posted-note" else f"({row['source_authority']})")
+                if as_of_date is None:
+                    result["in_force"] = False
+                    msg = (f"This text is NOT yet in force: it takes effect "
+                           f"{current_since.fmt_date(start)} {how}. No earlier text of this "
+                           f"section is compiled.")
+                else:
+                    msg = (f"This is posted text that takes effect {current_since.fmt_date(start)} "
+                           f"{how}; it is in force on {as_of_date} but not today.")
+                warning = (warning + " " if warning else "") + msg
+            elif as_of_date is None and row["effective_end"]:
+                nxt = conn.execute(
+                    f"SELECT effective_start, source_authority, date_basis, loader_flags "
+                    f"FROM {alias}.provision_versions WHERE provision_id = ? "
+                    f"AND effective_start >= ? ORDER BY effective_start LIMIT 1",
+                    (row["provision_id"], row["effective_end"])).fetchone()
+                if nxt:
+                    note = posted_text.flag_note(nxt["loader_flags"])
+                    reversion = "posted-reversion" in (nxt["loader_flags"] or "")
+                    result["pending_version"] = {
+                        "effective_start": nxt["effective_start"],
+                        "source_authority": nxt["source_authority"] if nxt["date_basis"] == "act" else None,
+                        "date_basis": nxt["date_basis"], "note": note,
+                        **({"reversion": True} if reversion else {})}
+                    by = (f"{nxt['source_authority']}" if nxt["date_basis"] == "act"
+                          else "per the effective-date note the code posts with it; no act is identified")
+                    what = ("The current text is a temporary amendment; the prior text returns on "
+                            if reversion else "A later version of this section takes effect ")
+                    warning = ((warning + " " if warning else "")
+                               + f"{what}{current_since.fmt_date(nxt['effective_start'])} ({by}). "
+                                 f"lookup_authority with as_of_date on or after that day returns it; "
+                                 f"get_authority_history lists both.")
         # Code of Judicial Conduct: a RULE citation resolved to its Canon.
         # Serve the rule's own block (heading, text, COMMENT) as the text,
         # count the opinions citing the RULE, and say what happened.
@@ -3162,8 +3331,12 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 "SELECT COUNT(DISTINCT tc.opinion_id) AS n FROM text_citations tc "
                 "WHERE tc.normalized = ?", (rule_cite,)).fetchone()["n"]
         # N.D.C.C.: the version is dated by the code export (2025-07-01), not by
-        # the act that wrote its words; say which act did and when.
-        if ckind == "ndcc" and row["effective_end"] is None:
+        # the act that wrote its words; say which act did and when. The stamp
+        # describes the row IN FORCE — which, where a later version is posted
+        # (Contract 2, rulings 23–24), has an effective_end and is not the open
+        # row; `effective_end IS NULL` dropped the stamp on every such section
+        # (11-23-02, 57-39.2-26, 57-40.2-03.3 …; found 2026-11-08).
+        if ckind == "ndcc" and corpus.row_in_force(row):
             stamp = current_since.fetch(conn, alias, row["provision_id"])
             if stamp:
                 result["current_since"] = {
@@ -3233,6 +3406,8 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
                 result["jeac_opinions_construing"] = n_jeac
         if warning:
             result["warning"] = warning
+        if intervening:
+            result["intervening_amendments"] = intervening
         if provenance:
             # The returned text is a provision linked across the 1981 reorganization,
             # not the literal citation asked for — say so explicitly.
@@ -3404,9 +3579,11 @@ def get_authority_history(citation: str) -> dict:
         if not prov:
             return {"found": False, "citation": citation, "corpus": ckind,
                     "error": f"No provision matching {citation!r}."}
+        s2cols = corpus.stage2_select_cols(conn, alias)
         versions = conn.execute(
             f"""SELECT effective_start, effective_end, source_authority, source_url,
                        substr(text_content, 1, 240) AS excerpt, length(text_content) AS len
+                       {s2cols}
                 FROM {q}provision_versions WHERE provision_id = ?
                 ORDER BY COALESCE(effective_start, '0000-01-01')""",
             (prov["id"],),
@@ -3439,10 +3616,17 @@ def get_authority_history(citation: str) -> dict:
                 {
                     "effective_start": v["effective_start"],
                     "effective_end": v["effective_end"],
-                    "is_current": v["effective_end"] is None,
+                    "is_current": corpus.row_in_force(v),
+                    **({"not_yet_in_force": True}
+                       if (v["effective_start"] or "") > datetime.date.today().isoformat() else {}),
                     "source_authority": v["source_authority"],
                     "source_url": v["source_url"],
                     "excerpt": v["excerpt"] + ("…" if v["len"] > 240 else ""),
+                    # Stage 2 derived DB only: how the date was found
+                    **({"date_basis": v["date_basis"],
+                        "date_estimated": bool(v["date_estimated"]),
+                        **({"warning": w} if (w := corpus.version_date_warning(v)) else {})}
+                       if s2cols else {}),
                 }
                 for v in versions
             ],
@@ -3463,10 +3647,23 @@ def get_authority_history(citation: str) -> dict:
             ],
         }
         has_events = bool(result["amendments"])
-        if versions and not has_events:
+        dated_acts = sum(1 for v in versions if v["source_authority"])
+        if versions and not has_events and (len(versions) > 1 or dated_acts):
+            # The point-in-time corpora (N.D.C.C. Stage 2 derived DB; const /
+            # rules / admin with several versions) carry the chronology IN the
+            # versions: each names the act that wrote it. Saying "no amendment
+            # events recorded" there misreads a full history as an empty one.
             result["note"] = (
-                "No amendment events recorded; the captured version is the text "
-                "as published. (Amendment chronology may be incomplete for v1.)"
+                f"{len(versions)} dated version(s), {dated_acts} with a named enacting authority "
+                "(source_authority); the chronology is the captured_versions list, "
+                "not a separate amendment table. A version's date_basis says how "
+                "its start date is known (act, floor, reviser-estimated, ...). "
+                "Use lookup_authority(..., as_of_date=...) for any version's full text."
+            )
+        elif versions and not has_events:
+            result["note"] = (
+                "No amendment events recorded and a single captured version with no "
+                "enacting authority: the text as published, history not compiled."
             )
         elif has_events:
             result["note"] = (
@@ -4878,6 +5075,52 @@ def get_opinion_tables(citation: str, format: str = "markdown") -> dict:
 # Citation-URL web interface (PLAN-web-interface.md): mounts /2020ND30-style
 # opinion pages, /cite resolver, and /citing//cited subpages on the same app
 # that serves /mcp. No-op for stdio transport (routes are never hit).
+@mcp.tool()
+def report_corpus_issue(
+    citation: str, issue: str, text_as_served: str | None = None,
+    text_expected: str | None = None, source_url: str | None = None,
+) -> dict:
+    """Report an apparent defect in this corpus's text so a person can check it.
+
+    Use it when an authority you retrieved from this server looks wrong: garbled
+    or OCR-mangled words, a paragraph or footnote missing or in the wrong place,
+    a syllabus or caption that does not belong, a statute or rule version that
+    cannot be the one in force on the date you asked for, a citation that
+    resolves to the wrong document, a quotation the court made that this
+    server's text cannot match. Do NOT use it for disagreement with what the
+    law says, for questions, or for anything but the fidelity of the stored text
+    to the official source.
+
+    The report is recorded with the canonical citation and the exact version
+    this server serves today, and is read by a person; nothing changes
+    automatically. You get a receipt with a report id.
+
+    Args:
+        citation: The authority whose text looks wrong (opinion, N.D.C.C.
+            section, rule, constitutional provision, admin-code section) —
+            as precise as you can (include as_of_date context in `issue`).
+        issue: One to three sentences: what looks wrong, where in the text
+            (paragraph / subsection), and why you think so.
+        text_as_served: The passage as this server returned it (optional,
+            up to 4,000 characters).
+        text_expected: The passage as the official source has it, if you
+            checked (optional, up to 4,000 characters).
+        source_url: Where the expected text can be seen (optional).
+    """
+    conn = _conn_with_corpora()
+    try:
+        try:
+            from fastmcp.server.dependencies import get_context
+            ctx = get_context()
+        except Exception:  # noqa: BLE001 — outside a live call
+            ctx = None
+        from .toollog import client_info
+        return corpus_reports.submit(conn, citation, issue, text_as_served, text_expected, source_url,
+                                     client=client_info(ctx))
+    finally:
+        conn.close()
+
+
 from . import web as _web  # noqa: E402  (needs mcp + DB_PATH defined above)
 
 _web.register(mcp, DB_PATH)
@@ -4899,6 +5142,12 @@ def main():
     The server exposes read-only tools; auth/TLS belong in the proxy.
     """
     transport = (os.environ.get("NDLAW_TRANSPORT") or os.environ.get("NDCOURTS_TRANSPORT", "stdio")).lower()
+    # Name the file each corpus is served from (stderr: the MCP host's log for
+    # stdio, the journal for http). "derived" marks the Stage 2 point-in-time
+    # build picked over its source file; a missing corpus is reported too.
+    for name, info in corpus.served_corpus_files().items():
+        state = ("derived" if info["derived"] else "source") if info["exists"] else "MISSING"
+        print(f"ndlaw-mcp: corpus {name}: {info['path']} [{state}]", file=sys.stderr)
     if transport in ("http", "streamable-http", "sse"):
         norm = "sse" if transport == "sse" else "http"
         host = os.environ.get("NDLAW_HOST") or os.environ.get("NDCOURTS_HOST", "127.0.0.1")

@@ -47,7 +47,7 @@ from urllib.parse import quote
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, RedirectResponse, Response
 
-from . import corpus, current_since, proofread, rule_notes, tables_corpus, web_templates
+from . import corpus, current_since, posted_text, proofread, rule_notes, tables_corpus, web_templates
 from .db import DEFAULT_DB_PATH, get_connection
 
 PAGE_SIZE = 50
@@ -986,7 +986,7 @@ def _find_provision(conn, alias: str, name: str, citation: str):
     ``cite_key`` so spacing, punctuation, and case variants of the same
     citation all land on the same page."""
     row = conn.execute(
-        f"SELECT id, citation, heading, status FROM {alias}.provisions "
+        f"SELECT id, citation, heading, status, current_version_id FROM {alias}.provisions "
         "WHERE corpus=? AND citation=?", (name, citation)).fetchone()
     if row is not None:
         return row
@@ -994,7 +994,7 @@ def _find_provision(conn, alias: str, name: str, citation: str):
     if key is None:
         return None
     return conn.execute(
-        f"SELECT id, citation, heading, status FROM {alias}.provisions "
+        f"SELECT id, citation, heading, status, current_version_id FROM {alias}.provisions "
         "WHERE corpus=? AND cite_key=?", (name, key)).fetchone()
 
 
@@ -1069,6 +1069,18 @@ def _ndcc_current_window(ver, stamp: dict | None, today: date | None = None) -> 
     compiled = ver["effective_start"] or ""
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", compiled):
         return f"effective {compiled or 'date not published by the court'} – current"
+    if corpus._row_get(ver, "date_basis"):
+        # Stage 2 derived DB (D5): the row's start IS the act's (or estimated)
+        # date, which the current_since sentence beneath already states; the
+        # "Code as compiled" label is the shipped DB's, not this one's.
+        when = current_since.fmt_date(compiled)
+        if compiled > (today or date.today()).isoformat():
+            return f"takes effect {when}"
+        end = corpus._row_get(ver, "effective_end")
+        if end and re.fullmatch(r"\d{4}-\d{2}-\d{2}", end):
+            # rulings 23–24: the current row closes where a posted version begins
+            return f"effective {when} – current; a later version takes effect {current_since.fmt_date(end)}"
+        return f"effective {when} – current"
     if stamp and stamp.get("kind") == "act" and stamp.get("effective"):
         years = [int(y) for y in _ACT_YEAR.findall(stamp.get("acts") or "")]
         if years and max(years) > int(compiled[:4]):
@@ -1107,6 +1119,7 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         versions = conn.execute(
             f"""SELECT id, effective_start, effective_end,
                        source_authority, source_url
+                       {corpus.stage2_select_cols(conn, al)}
                FROM {al}.provision_versions WHERE provision_id=?
                ORDER BY effective_start""", (prov["id"],)).fetchall()
         if not versions:
@@ -1121,8 +1134,19 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
                     ver = v
                     break
         if ver is None:
-            ver = next((v for v in versions if v["effective_end"] is None),
-                       versions[-1])
+            # the row in force today is current_version_id, not the open row:
+            # a posted future version is open and not yet the law (Stage 2
+            # rulings 23–24); a future-only section's cvid is its future row
+            cvid = prov["current_version_id"]
+            ver = (next((v for v in versions if v["id"] == cvid), None)
+                   or next((v for v in versions if v["effective_end"] is None),
+                           versions[-1]))
+        # (a seed with no cvid — cvid_integrity forbids it in a shipped DB — falls
+        # back to the open row, as before the posted-version rows existed)
+        is_cur = ver["id"] == (prov["current_version_id"]
+                               if prov["current_version_id"] is not None
+                               else next((v["id"] for v in versions if v["effective_end"] is None), None))
+        today_iso = date.today().isoformat()
         text = conn.execute(
             f"SELECT text_content FROM {al}.provision_versions "
             "WHERE id=?", (ver["id"],)).fetchone()[0]
@@ -1141,7 +1165,7 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         # The N.D.C.C. version is dated by the export, not by the act that
         # wrote its words: say which act did and when (current text only).
         since = ""
-        if name == "ndcc" and ver["effective_end"] is None:
+        if name == "ndcc" and is_cur:
             stamp = current_since.fetch(conn, al, prov["id"])
             window = _ndcc_current_window(ver, stamp)
             line = current_since.sentence(stamp)
@@ -1150,6 +1174,10 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
         meta = [f"<b>{html.escape(window)}</b>"]
         if prov["status"] != "active":
             meta.append(f"<b>Status</b> {html.escape(prov['status'])}")
+        # Stage 2 derived DB: an estimated or floored date carries its warning
+        date_warning = corpus.version_date_warning(ver)
+        if date_warning:
+            since += f'<p class="meta date-warning">{html.escape(date_warning)}</p>'
         history = ""
         if len(versions) > 1:
             # The authority column is the note's slice for the version's
@@ -1177,11 +1205,39 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
                 note_html = _render_explanatory_note(note)
         rule_split = corpus.split_rule_citation(citation) if name == "rule" \
             else None
-        paras = web_templates.render_provision_body(
-            text, anchors=(name == "rule"),
-            set_slug=rule_split[0] if rule_split else None,
-            resolve_ref=_intra_set_url if name == "rule" else None,
-            self_url=canon if name == "rule" else None)
+        def _paras(t):
+            return web_templates.render_provision_body(
+                t, anchors=(name == "rule"),
+                set_slug=rule_split[0] if rule_split else None,
+                resolve_ref=_intra_set_url if name == "rule" else None,
+                self_url=canon if name == "rule" else None)
+        # The export prints every pending version of an N.D.C.C. section in
+        # one text (JT 2026-11-07): cut it at each repeated catchline + note
+        # and head each later version with what its note means.
+        blocks = posted_text.split_versions(text, prov["heading"]) \
+            if name in corpus.NUMBERED_CODES and is_cur else None
+        if blocks and len(blocks) > 1:
+            paras = web_templates.render_posted_blocks(blocks, _paras)
+        else:
+            # Stage 2 derived DB (rulings 23–26): the posted future versions are
+            # their own rows; show them beneath the text in force the way the
+            # export prints them, each under its note
+            future = [v for v in versions
+                      if is_cur and not as_of and v["id"] != ver["id"]
+                      and (v["effective_start"] or "") > today_iso] \
+                if name in corpus.NUMBERED_CODES else []
+            if future:
+                fb = [{"note": posted_text.heading_note(prov["heading"]), "header": None, "text": text}]
+                for v in future:
+                    frow = conn.execute(
+                        f"SELECT text_content, loader_flags FROM {al}.provision_versions WHERE id=?",
+                        (v["id"],)).fetchone()
+                    note = posted_text.flag_note(frow["loader_flags"])
+                    fb.append({"note": note, "text": frow["text_content"],
+                               "header": posted_text.posted_header(prov["heading"], note) if note else None})
+                paras = web_templates.render_posted_blocks(fb, _paras)
+            else:
+                paras = _paras(text)
         # Section-to-section browse, numbered codes only. The links are bare
         # (no ?as_of) and the sequence is not filtered by date: neither code
         # records when a section came into existence — every N.D.C.C. section
@@ -1248,7 +1304,7 @@ def _chapter_referenced_by(conn, attached, citation: str) -> list[tuple[str, str
                     FROM {al}.provision_xrefs x
                     JOIN {al}.provisions p ON p.id = x.provision_id
                     JOIN {al}.provision_versions v
-                         ON v.id = x.version_id AND v.effective_end IS NULL
+                         ON v.id = x.version_id AND {corpus.in_force_now('v')}
                     WHERE x.to_citation = ?""", (citation,)).fetchall()
         except sqlite3.OperationalError:
             continue
@@ -1467,7 +1523,7 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
             cur = conn.execute(
                 f"""SELECT id, effective_start, effective_end, source_url
                    FROM {al}.provision_versions
-                   WHERE provision_id=? AND effective_end IS NULL
+                   WHERE provision_id=? AND {corpus.in_force_now('')}
                    ORDER BY effective_start DESC LIMIT 1""",
                 (prov["id"],)).fetchone()
             items = []
@@ -1499,7 +1555,7 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
                             JOIN {al}.provisions p ON p.id = x.provision_id
                             JOIN {al}.provision_versions v
                                  ON v.id = x.version_id
-                                 AND v.effective_end IS NULL
+                                 AND {corpus.in_force_now('v')}
                             WHERE x.to_citation = ?
                             ORDER BY p.citation""",
                         (citation,)).fetchall()

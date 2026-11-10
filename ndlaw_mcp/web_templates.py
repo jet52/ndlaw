@@ -59,6 +59,14 @@ _STYLE = """
   .counts { margin: 1rem 0; padding: .5em .9em; background: #f4f4f2;
             border-radius: 4px; font-size: .95em; }
   .body p { margin: .65em 0; }
+  .posted-status { color: #444; font-size: .95em; margin: .3rem 0 .6rem; font-style: italic; }
+  .posted { margin-top: 1.6rem; padding: .7rem 1rem .4rem; border-top: 3px double #777;
+            border-left: 4px solid #1a5276; background: #f4f6f8; }
+  .posted-head { margin: 0 0 .25rem; font-weight: bold; }
+  .posted-badge { display: inline-block; padding: 0 .45em; margin-right: .5em; border: 1px solid #1a5276;
+                  border-radius: 3px; font-size: .8em; letter-spacing: .03em; text-transform: uppercase;
+                  color: #1a5276; vertical-align: middle; }
+  .posted-catchline { margin: 0 0 .5rem; color: #444; font-size: .95em; }
   .pm { text-decoration: none; color: inherit; font-weight: bold; }
   .pm:hover { color: #1a5276; }
   .star { color: #8a6d1a; font-size: .85em; vertical-align: super; }
@@ -97,6 +105,9 @@ _STYLE = """
     .meta { color: #aaa; } .meta b { color: #d8d8d4; }
     a { color: #7fb3d5; }
     .counts { background: #23262d; }
+    .posted { background: #1e2228; border-top-color: #777; border-left-color: #7fb3d5; }
+    .posted-badge { color: #7fb3d5; border-color: #7fb3d5; }
+    .posted-status, .posted-catchline { color: #aaa; }
     .star { color: #c9a227; }
     span.earlier-version { color: #c9a227; }
     del.redline { color: #e07a5f; } ins.redline { color: #7fd58a; }
@@ -1454,6 +1465,32 @@ def _pipe_rows_to_html(rows: list[str]) -> str:
             f"<td>{html.escape(c)}</td>" for c in _pipe_cells(r)) + "</tr>")
     parts.append("</tbody></table>")
     return "".join(parts)
+
+
+def render_posted_blocks(blocks: list[dict], render) -> str:
+    """The export's several versions of one section, each under its own status
+    line (posted_text.split_versions → describe). The first block is the text
+    in force; its note comes from the page heading. Every later block keeps
+    the Council's repeated catchline line as its header, then the plain
+    reading of the note ("Takes effect July 1, 2029 — not yet in force")."""
+    from . import posted_text
+    out = []
+    first = blocks[0]
+    d0 = posted_text.describe(first["note"])
+    if d0:
+        out.append(f'<p class="posted-status in-force">{html.escape(d0)}</p>')
+    out.append(render(first["text"]))
+    for b in blocks[1:]:
+        d = posted_text.describe(b["note"]) or ""
+        badge = "Not yet in force" if "not yet in force" in d else "Later version"
+        out.append(
+            f'<section class="posted">'
+            f'<p class="posted-head"><span class="posted-badge">{html.escape(badge)}</span> '
+            f'{html.escape(d.replace(" — not yet in force", ""))}</p>'
+            f'<p class="posted-catchline">{html.escape(b["header"] or "")}</p>'
+            f'{render(b["text"])}'
+            f'</section>')
+    return "".join(out)
 
 
 def render_provision_body(text: str, *, anchors: bool = False,

@@ -274,6 +274,11 @@ def normalize_cite_string(cite: str) -> str:
     """Collapse whitespace and edition spacing so a draft cite matches the DB
     form ('N.W. 2d' → 'N.W.2d', '2013  ND 169' → '2013 ND 169')."""
     c = re.sub(r"\s+", " ", cite.strip())
+    # The older opinions space the reporter abbreviation ("4 N. D. 1",
+    # "58 N. W. 454"); the DB form is unspaced. Found by the 2026-11-07
+    # check_draft self-sweep: 3,186 distinct cites / 10,954 sites failed to
+    # resolve for this alone.
+    c = re.sub(r"\bN\.\s+(W|D)\.", r"N.\1.", c)
     return re.sub(r"(\.\s?[A-Z]\.)\s*(\d[a-z]+)", lambda m: m.group(0).replace(" ", ""), c)
 
 

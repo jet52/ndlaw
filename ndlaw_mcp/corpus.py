@@ -22,6 +22,7 @@ from __future__ import annotations
 import os
 import re
 import sqlite3
+from datetime import date
 from pathlib import Path
 
 from platformdirs import user_data_path
@@ -32,12 +33,36 @@ from platformdirs import user_data_path
 CORPORA: dict[str, dict[str, str]] = {
     "const": {"file": "constitution.db", "alias": "const", "label": "ND Constitution"},
     "rule": {"file": "rules.db", "alias": "rules", "label": "ND Court Rules"},
-    "ndcc": {"file": "statutes.db", "alias": "statutes", "label": "N.D.C.C. (statutes)"},
+    # ``derived``: a build artifact that READERS prefer when it sits beside the
+    # source file (the Stage 2 point-in-time build; option 1, JT 2026-11-08).
+    # Writers (ingest, stamps, xrefs) never resolve to it.
+    "ndcc": {"file": "statutes.db", "alias": "statutes", "label": "N.D.C.C. (statutes)",
+             "derived": "statutes.stage2.db"},
     "admin": {"file": "admincode.db", "alias": "admin", "label": "ND Admin. Code"},
 }
 
 # Far-future sentinel for "still in force" so BETWEEN comparisons are total.
 OPEN_ENDED = "9999-12-31"
+
+
+def in_force_now(v: str = "v") -> str:
+    """SQL: version alias ``v`` is in force today (half-open window). The test
+    for "current" since Stage 2 rulings 23–24 (JT 2026-11-07): a posted FUTURE
+    version is the open row (effective_end NULL) of its provision but is not yet
+    the law, so `effective_end IS NULL` no longer means in force. Shipped DBs
+    carry no future-dated rows, so for them this equals the old test. ``v`` ''
+    means the bare column names."""
+    p = f"{v}." if v else ""
+    return (f"COALESCE({p}effective_start,'0000-01-01') <= date('now') "
+            f"AND COALESCE({p}effective_end,'{OPEN_ENDED}') > date('now')")
+
+
+def row_in_force(row, today: str | None = None) -> bool:
+    """Python twin of ``in_force_now`` for a fetched version row."""
+    t = today or date.today().isoformat()
+    start = _row_get(row, "effective_start") or "0000-01-01"
+    end = _row_get(row, "effective_end") or OPEN_ENDED
+    return start <= t < end
 
 # Provision → provision cross-reference edges, extracted from version text by
 # ``xref_extract`` (jetcite). Edges live in the SOURCE provision's DB and are
@@ -240,24 +265,53 @@ def section_number_ranges(corpus_name: str,
     return out
 
 
-def resolve_corpus_db_path(corpus: str) -> Path:
+def resolve_corpus_db_path(corpus: str, *, serve: bool = False) -> Path:
     """Locate a corpus DB file independent of working directory or install layout.
 
     Resolution order mirrors ``db.resolve_db_path``:
-      1. ``NDCOURTS_<CORPUS>_DB`` env var (e.g. ``NDCOURTS_CONST_DB``).
-      2. The file bundled alongside the source tree / release tarball.
-      3. The per-user data directory.
+      1. ``NDLAW_<CORPUS>_DB`` env var (e.g. ``NDLAW_NDCC_DB``), or the
+         deprecated ``NDCOURTS_<CORPUS>_DB`` spelling — either selects a
+         different file for one corpus. Wins for readers and writers alike.
+      2. ``serve=True`` only: the corpus's ``derived`` build artifact (the
+         Stage 2 point-in-time ``statutes.stage2.db``) when it exists beside
+         the source file — in the source tree or the per-user data directory.
+         The derived file is what ships (as ``statutes.db``, v4.0.0), so a
+         dev server that prefers it serves what the public gets; a deployed
+         install has no derived file beside its asset and nothing changes.
+         Writers resolve with the default ``serve=False`` and never touch it
+         (option 1, JT 2026-11-08; the single-file layout is the later step).
+      3. The file bundled alongside the source tree / release tarball.
+      4. The per-user data directory.
     """
     if corpus not in CORPORA:
         raise ValueError(f"unknown corpus {corpus!r}; expected one of {list(CORPORA)}")
-    env = os.environ.get(f"NDCOURTS_{corpus.upper()}_DB")
+    env = (os.environ.get(f"NDLAW_{corpus.upper()}_DB")
+           or os.environ.get(f"NDCOURTS_{corpus.upper()}_DB"))
     if env:
         return Path(env).expanduser()
     filename = CORPORA[corpus]["file"]
     bundled = Path(__file__).resolve().parent.parent / filename
-    if bundled.exists():
-        return bundled
-    return user_data_path("ndcourts-mcp", appauthor=False) / filename
+    source = bundled if bundled.exists() else user_data_path("ndcourts-mcp", appauthor=False) / filename
+    if serve:
+        derived_name = CORPORA[corpus].get("derived")
+        if derived_name:
+            derived = source.parent / derived_name
+            if derived.exists():
+                return derived
+    return source
+
+
+def served_corpus_files() -> dict[str, dict[str, object]]:
+    """What a READER opens for each corpus: ``{name: {path, exists, derived}}``.
+    ``derived`` is True when the path is the corpus's build artifact rather
+    than its source file (so a log line or ``get_database_stats`` can say which
+    N.D.C.C. file answered — the 2026-11-08 confusion this exists to prevent)."""
+    out: dict[str, dict[str, object]] = {}
+    for name, meta in CORPORA.items():
+        p = resolve_corpus_db_path(name, serve=True)
+        out[name] = {"path": p, "exists": p.exists(),
+                     "derived": bool(meta.get("derived")) and p.name == meta.get("derived")}
+    return out
 
 
 def cite_key(citation: str) -> str:
@@ -694,7 +748,12 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
             source_url TEXT,
             source_path TEXT,
             added_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S', 'now')),
-            batch TEXT
+            batch TEXT,
+            html TEXT,                   -- authoritative structured markup where the source gives one
+            -- 'compiled': the text as the code reviser compiled it (every row so
+            -- far); 'enacted': the words of the act itself (PLAN-session-laws
+            -- § 4a Stage 2 ruling 1, all four corpora).
+            provenance TEXT NOT NULL DEFAULT 'compiled'
         );
 
         CREATE INDEX IF NOT EXISTS idx_provisions_cite_key ON provisions(cite_key);
@@ -807,12 +866,121 @@ def create_corpus_schema(conn: sqlite3.Connection) -> None:
     pv_cols = {r[1] for r in conn.execute("PRAGMA table_info(provision_versions)")}
     if "html" not in pv_cols:
         conn.execute("ALTER TABLE provision_versions ADD COLUMN html TEXT")
+    # provision_versions.provenance: compiled | enacted (Stage 2 ruling 1,
+    # D6 2026-11-07). Existing rows are all compiled text, which the DEFAULT
+    # states; no row changes.
+    if "provenance" not in pv_cols:
+        conn.execute("ALTER TABLE provision_versions ADD COLUMN provenance TEXT "
+                     "NOT NULL DEFAULT 'compiled'")
     migrate_provisions_fts(conn)
     conn.executescript(XREF_SCHEMA)
     conn.commit()
 
 
 PROVISIONS_FTS_CONTENT = "provisions_fts_content"
+
+
+# ---------------------------------------------------------------------------
+# Stage 2 (derived statutes.stage2.db): loader-only columns and the reader
+# warning they imply. The shipped corpus DBs carry none of these columns, so
+# every consumer probes first and composes the wording in ONE place (D2).
+STAGE2_COLUMNS = ("date_basis", "date_estimated", "loader_flags")
+
+
+def stage2_select_cols(conn: sqlite3.Connection, alias: str = "") -> str:
+    """', date_basis, date_estimated, loader_flags' when the attached corpus
+    carries the loader columns, else '' — for splicing into a SELECT."""
+    q = f"{alias}." if alias and alias != "main" else ""
+    try:
+        have = {r[1] for r in conn.execute(f"PRAGMA {q}table_info(provision_versions)")}
+    except sqlite3.OperationalError:
+        return ""
+    if all(c in have for c in STAGE2_COLUMNS):
+        return ", " + ", ".join(STAGE2_COLUMNS)
+    return ""
+
+
+def _row_get(row, name):
+    try:
+        return row[name]
+    except (IndexError, KeyError, TypeError):
+        return None
+
+
+def version_date_warning(row) -> str | None:
+    """The reader warning for a version's dating (Stage 2 rulings 2, 17; D2–D4),
+    composed from ``date_basis`` / ``loader_flags``; None when the row carries
+    no basis or the date is act-traced with nothing to warn about."""
+    basis = _row_get(row, "date_basis")
+    if not basis:
+        return None
+    start = _row_get(row, "effective_start") or "its first capture"
+    flags = _row_get(row, "loader_flags") or ""
+    auth = _row_get(row, "source_authority")
+    # closing rows of dead / repealed sections (hand read 2026-11-10; CORPUS-SCHEMA § loader_flags)
+    m = re.search(r"posted-long-after-act:([^@|]+)@(\d{4}-\d{2}-\d{2})", flags)
+    if m:
+        return (f"The date this section left the code is NOT established. The chapter's note names "
+                f"{m.group(1).strip()}, effective {m.group(2)}, but the compiled code kept printing the "
+                f"section for more than two years after that, so the note may not describe this "
+                f"section's repeal; {start} is the first capture showing the notation. Read the act.")
+    if "repeal-act:heading-note" in flags:
+        return (f"Dated by the Council's own \"(Repealed effective {start})\" note printed in the "
+                f"section's catchline; no act clause or Council footnote names this section's repeal date.")
+    m = re.search(r"posted-after-repeal:cap(\d{4})(\d{2})(\d{2})", flags)
+    if m:
+        return (f"The act's date governs ({start}); the compiled code kept printing the section's text "
+                f"until at least {m.group(1)}-{m.group(2)}-{m.group(3)}, a stale posting, which is not served "
+                f"for dates on or after {start}.")
+    if "stale-posting-dropped:" in flags:
+        return (f"The act's date governs ({start}); the compiled code printed this section only in "
+                f"captures made after that date, a stale posting of text in force earlier, which is "
+                f"not served. No earlier capture holds the text.")
+    if basis == "reviser-estimated":
+        return (f"The effective date of this version is ESTIMATED. Its text cannot be "
+                f"traced to legislation: the last legislation-supported text differs from "
+                f"it in ways consistent with code-reviser changes. {start} is the date the "
+                f"compiled code was first captured showing this text; it may have been in "
+                f"force earlier.")
+    if basis == "floor" and ("dead-stub-in-chain" in flags or "stub-rows-dropped" in flags):
+        return (f"The date this section left the code is NOT established: every capture of the "
+                f"compiled code, from the first ({start}), already prints the notation, so it left "
+                f"no later than that day and may have left long before. No text was captured.")
+    if basis == "floor":
+        if "uncaptured" in flags:
+            return (f"No capture of this section's compiled text is held; {start} is the "
+                    f"code export it was taken from, not an effective date. The text may "
+                    f"have been in force long before.")
+        return (f"{start} is a FLOOR, not an effective date: the text was in force no "
+                f"later than that (its first capture in the compiled code) and may have "
+                f"been in force long before. No earlier version is captured.")
+    if basis == "repeal-estimated":
+        return (f"The date this section's text left the code is NOT established: {start} is the day "
+                f"after its last capture still showing text in the compiled code"
+                + (f"; the chapter's note names {auth}, whose effective date for this section is not compiled"
+                   if auth else "; the chapter's note names no datable act")
+                + ". The text may have remained in force after that day.")
+    if basis == "contingent-undated":
+        return (f"This version is the text of a contingent act ({auth or 'act not named'}) "
+                f"whose effective date is not established; it is dated to the first "
+                f"capture showing it ({start}). Confirm the contingency before relying "
+                f"on the date.")
+    if "folded-reviser:" in flags:
+        return (f"Dated to the act's effective date ({start}); the text as captured also "
+                f"carries later code-reviser changes that cannot be traced to "
+                f"legislation.")
+    if "act-at-record-start" in flags:
+        # D3: the record's first version is the FIRST CAPTURE's text dated back to the
+        # last act before it. Any code-reviser change made between that act and the
+        # capture rides along under the act's date — the 2003 renaming of the Workers
+        # Compensation Bureau to Workforce Safety and Insurance ("the organization") is
+        # the measured case: 2002 ND 85 quotes "The bureau shall deduct … workers'
+        # compensation laws", the 2001-dated version reads "The organization … workforce
+        # safety and insurance laws" (hand read 2026-11-08, PLAN § 4a ruling 30).
+        return (f"Dated to the act's effective date ({start}); the text is the compiled code's "
+                f"first capture of this section, so code-reviser changes made between that act "
+                f"and the capture, if any, are included under the act's date.")
+    return None
 _LEGACY_FTS_CONTENT = "content='provision_versions'"
 
 
@@ -1012,7 +1180,7 @@ def attach_corpora(conn: sqlite3.Connection, *, read_only: bool = False) -> list
         if alias in existing:
             attached.append(name)
             continue
-        path = resolve_corpus_db_path(name)
+        path = resolve_corpus_db_path(name, serve=True)
         if not path.exists():
             continue
         target = f"file:{path}?mode=ro" if read_only else str(path)

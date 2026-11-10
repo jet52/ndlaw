@@ -10,10 +10,17 @@ file named by `NDLAW_TOOLLOG` (nothing is installed when it is unset):
      "ms": 12, "bytes": 4531, "session": "9f1c…", "ip": "160.79.106.160",
      "ua": "Claude-User"}
 
-What is deliberately NOT logged: the tool's arguments and its result. A query
-may name a case, a party, or a draft's text; the log answers "how much, how
-fast, from which client" and nothing about content. `bytes` is the size of
-the text returned, not the text.
+What is deliberately NOT logged: the tool's arguments — with ONE exception
+since 2026-11-07 (JT) — and its result. A query may name a party or carry a
+draft's text; the log answers "how much, how fast, from which client" and
+nothing about content. `bytes` is the size of the text returned, not the text.
+The exception is the argument named `citation` (`lookup_opinion`,
+`lookup_authority`, `get_authority_history`, `verify_quotation`, …): a citation
+names published law, not a person, and knowing WHICH authorities are retrieved
+is the denominator the corpus-issue reports (corpus_reports.py) are read
+against. Free-text arguments (`query`, `text`, `quote`, draft bodies) are never
+logged; the key is matched by name, so a tool must call its argument
+`citation` to be logged at all. Truncated to 160 characters.
 
 `ip` is the first `X-Forwarded-For` hop when a reverse proxy set one (Apache's
 mod_proxy does), else the peer address; `session` is the MCP session id, which
@@ -51,22 +58,7 @@ class ToolCallLog(Middleware):
     @staticmethod
     def _client(context: MiddlewareContext) -> tuple[str | None, str | None, str | None]:
         """(session id, client ip, user agent) — each None when unavailable (stdio, tests)."""
-        session = ip = ua = None
-        ctx = context.fastmcp_context
-        if ctx is not None:
-            try:
-                session = ctx.session_id
-            except Exception:  # noqa: BLE001 — no session outside a live connection
-                session = None
-        try:
-            from fastmcp.server.dependencies import get_http_request
-            req = get_http_request()
-            xff = req.headers.get("x-forwarded-for")
-            ip = xff.split(",")[0].strip() if xff else (req.client.host if req.client else None)
-            ua = req.headers.get("user-agent")
-        except Exception:  # noqa: BLE001 — not an HTTP transport
-            pass
-        return session, ip, ua
+        return client_info(context.fastmcp_context)
 
     @staticmethod
     def _size(result) -> int:
@@ -90,6 +82,9 @@ class ToolCallLog(Middleware):
         session, ip, ua = self._client(context)
         t0 = time.perf_counter()
         rec = {"ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "tool": name}
+        cite = citation_arg(getattr(context.message, "arguments", None))
+        if cite is not None:
+            rec["citation"] = cite
         try:
             result = await call_next(context)
         except Exception as exc:
@@ -101,6 +96,42 @@ class ToolCallLog(Middleware):
                    bytes=self._size(result), session=session, ip=ip, ua=ua)
         self._write(rec)
         return result
+
+
+CITATION_MAX = 160
+
+
+def citation_arg(arguments) -> str | None:
+    """The `citation` argument as logged: the string value of that one key,
+    truncated; None when absent or not a string. No other key is ever read."""
+    if not isinstance(arguments, dict):
+        return None
+    v = arguments.get("citation")
+    if not isinstance(v, str) or not v.strip():
+        return None
+    v = " ".join(v.split())
+    return v[:CITATION_MAX]
+
+
+def client_info(ctx) -> tuple[str | None, str | None, str | None]:
+    """(session id, client ip, user agent) for the current call — each None when
+    unavailable (stdio, tests). ``ctx`` is a fastmcp Context or None. Shared by
+    the tool log and the corpus-issue reports."""
+    session = ip = ua = None
+    if ctx is not None:
+        try:
+            session = ctx.session_id
+        except Exception:  # noqa: BLE001 — no session outside a live connection
+            session = None
+    try:
+        from fastmcp.server.dependencies import get_http_request
+        req = get_http_request()
+        xff = req.headers.get("x-forwarded-for")
+        ip = xff.split(",")[0].strip() if xff else (req.client.host if req.client else None)
+        ua = req.headers.get("user-agent")
+    except Exception:  # noqa: BLE001 — not an HTTP transport
+        pass
+    return session, ip, ua
 
 
 def install_tool_log(mcp, path: str | os.PathLike[str] | None = None) -> ToolCallLog | None:

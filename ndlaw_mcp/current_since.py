@@ -82,8 +82,10 @@ def sentence(stamp: dict | None, today: date | None = None) -> str | None:
     if kind == "unchanged":
         return "No amendment found since 1997; earlier history not yet compiled."
     if kind == "reviser":
+        c = _ceiling(stamp)
+        quoted = f", and a court quoted it on {fmt_date(c[0])} (so it was in force by then)" if c else ""
         return (f"Current wording first appears in the code "
-                f"{_years(stamp['window_lo'], stamp['window_hi'])}; "
+                f"{_years(stamp['window_lo'], stamp['window_hi'])}{quoted}; "
                 f"no session law found for the change.")
     if kind == "directive":
         return (f"Current wording reflects the agency-name substitution {DIRECTIVE} "
@@ -104,6 +106,12 @@ def sentence(stamp: dict | None, today: date | None = None) -> str | None:
         return (f"Current text effective by {when} ({acts}), or earlier on a certification "
                 f"the act provides for. {_CAVEAT}")
     tail = ""
+    if basis == "expiry":
+        # Stage 2 ruling 28 (2026-11-08): the text in force is what remained when a temporary
+        # amendment expired on its act's own clause — the act is named as the one that
+        # expired, not as the one that wrote these words
+        return (f"Current text effective {when}, when the temporary amendment made by {acts} "
+                f"expired. {_CAVEAT}{_pending(stamp, today_iso)}")
     if basis == "contingent-certified":
         acts += ", effective on certification"
     elif basis == "note-expired":
@@ -112,20 +120,44 @@ def sentence(stamp: dict | None, today: date | None = None) -> str | None:
         acts += ", per the effective-date note the code carried until that date"
         if rule and re.search(r"taxable|occurring|for .{0,40}(years?|periods?)", rule):
             tail = _rule_clause(rule)
+    elif basis == "posted-note":
+        # ruling 20 (2026-11-07): the code printed this text beside the old one under an
+        # effective-date note, then dropped the old; the note dates it, no act is identified
+        acts = "per the effective-date note the code carried with this text; act not identified"
     elif basis == "contingent-dated":
         tail = ", on a condition the act states"
     elif rule and ("applicability" in basis or "retroactive" in basis):
         tail = _rule_clause(rule)
-    return f"Current text effective {when} ({acts}){tail}. {_CAVEAT}{_pending(stamp)}"
+    return f"Current text effective {when} ({acts}){tail}. {_CAVEAT}{_pending(stamp, today_iso)}"
 
 
-def _pending(stamp: dict) -> str:
+def _ceiling(stamp: dict) -> tuple[str, str] | None:
+    """(date, opinion id) from the Stage 2 loader's `quote-ceiling:op<id>@<date>` flag: a
+    court quoted the current wording on that day, before the capture that first shows it."""
+    for f in (stamp.get("flags") or "").split():
+        if f.startswith("quote-ceiling:op"):
+            op, _, when = f[len("quote-ceiling:op"):].partition("@")
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", when):
+                return when, op
+    return None
+
+
+def _pending(stamp: dict, today_iso: str | None = None) -> str:
     """A later act's section not yet in force, from the pending-amendment flag."""
     for f in (stamp.get("flags") or "").split():
         if f.startswith("pending-amendment:"):
             sess, ch, sec = f.split(":", 1)[1].split("/")
             return (f" A later amendment, S.L. {sess}, ch. {ch}, § {sec}, takes effect on a "
                     f"certification not yet made.")
+        if f.startswith("pending-posted:"):
+            # ruling 20 (2026-11-07): the code prints the amended text beside this one under an
+            # effective-date note; the amendment is pending (acts and date with '_' for spaces)
+            acts, _, when = f.split(":", 1)[1].partition("@")
+            acts = acts.replace("_", " ")
+            if when and re.fullmatch(r"\d{4}-\d{2}-\d{2}", when):
+                verb = "takes effect" if when > (today_iso or date.today().isoformat()) else "took effect"
+                return f" A later amendment ({acts}) {verb} {fmt_date(when)}; the code prints both texts."
+            return f" A later amendment ({acts}) is pending on a date not yet established; the code prints both texts."
     return ""
 
 
@@ -147,6 +179,9 @@ def opinion_relation(stamp: dict | None, date_filed: str | None) -> str:
     # no exact date (reviser change, undated certification, an outer bound): the
     # capture window brackets the change
     if eff and filed >= eff:
+        return "current"
+    c = _ceiling(stamp)
+    if c and filed >= c[0]:
         return "current"
     if hi_iso and filed >= hi_iso:
         return "current"

@@ -7,7 +7,7 @@ Appeals decisions). Coverage is complete since statehood (November 2,
 FTS5 full-text search and served via
 [FastMCP](https://github.com/jlowin/fastmcp).
 
-The opinions corpus currently contains **<!-- COUNT:opinions -->20,150<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,530<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
+The opinions corpus currently contains **<!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,505<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
 release notes. Where the court's own print contains an
 apparent typo, the text is preserved verbatim; where that typo is in a
 citation, the citation graph still resolves it to the case the court meant.
@@ -54,6 +54,7 @@ To install it, jump to [Quick start](#quick-start) below.
 | `search_by_case_type` | Filter by case type (criminal, civil, etc.)                                     |
 | `get_citing_opinions` | Find opinions that cite a given opinion                                         |
 | `verify_citation`     | Confirm a cite/case name and return its canonical form + Redbook-ordered cites; flags name drift |
+| `report_corpus_issue` | Flag an apparent defect in stored text (garbled words, misplaced footnote, wrong version for a date) for human review |
 | `get_parallel_citations` | Return a case's full parallel-cite set (synthetic IDs bracketed separately)  |
 | `verify_quotation`    | Confirm a quoted passage is verbatim (typography-tolerant) and return the pinpoint ¶ |
 | `get_pinpoint`        | Resolve a paragraph number to its text, or a quote to the ¶ it lives in          |
@@ -78,29 +79,36 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,150<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,530<!-- /COUNT --> citation links, 1889–present |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,505<!-- /COUNT --> citation links, 1889–present |
 | `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
-| `statutes.db`     | N.D.C.C. (statutes) | ~29,100 Century Code sections |
+| `statutes.db`     | N.D.C.C. (statutes) | ~32,800 Century Code sections, ~54,600 dated versions (point-in-time since the first capture, 1997–2004) |
 | `rules.db`        | ND court rules | ~650 rule provisions |
 | `admincode.db`    | ND Administrative Code | ~13,800 provisions |
 | `ag_opinions.db`  | ND Attorney General opinions | ~6,750 published opinions, 1942–present, cross-linked to the statutes/Constitution/rules/admin/opinions they cite (~35,000 citation links) |
 
-> **Work in progress: effective dates for N.D.C.C. sections.** Each
-> Century Code section now carries a "current text effective …" line naming
-> the session law that wrote its present words and the date that text took
-> effect. These stamps are derived by matching the Legislative Council's
-> effective-date lists and the code's own source notes against the session
-> laws (1997–present); a little over half of all sections are stamped to an
-> act, and the rest read "no amendment found since 1997," "no session law
-> found for the change," or "date not compiled." The work is **incomplete and
-> not fully reliable**: a 50-row hand check found 5 stamps wrong in the act or
-> the date (each traced to a rule and corrected corpus-wide, with no re-check
-> yet), the contingent-effective acts are still being dated, changes the
-> code's reviser made without a session law are only partly traced, and
-> pre-1997 history is not compiled at all. A dated history of
-> every section's prior text (point-in-time `as_of_date` for statutes) is in
-> prototype and is not yet served. Treat every effective-date line as a lead
-> to confirm in the session laws, not as a finding.
+> **N.D.C.C. point-in-time text (since v4.0.0).** `statutes.db` carries every
+> compiled version of each Century Code section since the Legislative Council's
+> PDFs were first captured (1997–2004 for most chapters; 54,600 dated versions
+> of 32,800 sections), so `as_of_date` returns the text in force on a date and
+> `get_authority_history` lists the versions with the session law behind each.
+> Read the dating with care, and read the `warning` the tools attach: a date
+> traced to an act is reliable; a `reviser-estimated` date is the first capture
+> showing a change no session law explains and the text may have been in force
+> earlier; a `floor` date is only "in force no later than"; text the Council
+> posts ahead of its effective date is served as a separate, dated version; and
+> where an act amended a section between two captures and the amended text was
+> never captured, a dated lookup inside that gap returns no text and names the
+> act. Sections the code no longer prints at all (3,644 in chapters repealed,
+> expired, redesignated or superseded by the court rules since 2003) are served from the capture chain with the
+> Council's repeal notation as their final version, dated for the act section
+> the notation names (a deferred repeal keeps its deferred date; an expiry ends
+> the day after its "through" date) or by the Council's own "(Repealed effective
+> …)" note, and only where none dates it a flagged estimate or, where no text was
+> ever captured, a floor at the stub's first capture;
+> text the Council kept posting after a repeal took effect ends at the act's date; 66 more are held back (superseded-chapter sections whose
+> captures still print text, and a few parse-suspect captures). Pre-1997 text is not compiled, and
+> the "current text effective …" stamps remain a lead to confirm in the session
+> laws, not a finding.
 
 Each ships as its own GitHub release asset (`<name>.db.zip` + `.sha256`) — see
 [Quick start](#quick-start) to install them locally and `deploy/SETUP.md` for the
@@ -138,10 +146,21 @@ Claude](#connecting-to-claude) to wire it into an MCP client.
 
 ---
 
+### What a public server records
+
+A deployment that sets `NDLAW_TOOLLOG` writes one line per tool call: the
+tool's name, timing, response size, an opaque per-connection session id, the
+client's IP hop and User-Agent, and — only for tools whose argument is named
+`citation` — that citation. Free-text arguments (search queries, draft text,
+quotations) and results are never logged. `report_corpus_issue` reports are
+written in full to `NDLAW_REPORTLOG` for human review and are never applied to
+the corpus automatically. See `ndlaw_mcp/toollog.py` and
+`ndlaw_mcp/corpus_reports.py` for the exact fields.
+
 ## What's in the database
 
 Counts below are as of 2026-08-21; the corpus total is
-**<!-- COUNT:opinions -->20,150<!-- /COUNT --> opinions** (of which 80 are
+**<!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions** (of which 80 are
 North Dakota Court of Appeals decisions and the rest North Dakota Supreme
 Court) — rerun `sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"` for
 the live total.
@@ -269,7 +288,7 @@ Confirm the database is wired correctly:
 sqlite3 opinions.db "SELECT COUNT(*) FROM opinions"          # exact count
 # Primary-law corpora (if you downloaded them):
 sqlite3 constitution.db "SELECT COUNT(*) FROM provisions"    # ~496
-sqlite3 statutes.db     "SELECT COUNT(*) FROM provisions"    # ~29,100
+sqlite3 statutes.db     "SELECT COUNT(*) FROM provisions"    # ~32,800
 ```
 
 ### Updating to a newer database release

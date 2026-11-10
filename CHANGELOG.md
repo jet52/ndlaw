@@ -8,6 +8,104 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v4.0.0 — 2026-11-10
+
+**The N.D.C.C. becomes point-in-time.** `statutes.db` now carries every compiled
+version of every Century Code section the Legislative Council has posted since its
+PDFs were first captured (1997–2004 for most chapters) — 54,576 dated versions of
+32,760 sections, 21,783 of them historical (the dead sections described below included) — so `lookup_authority(…, as_of_date=)`
+returns the text in force on a date, `get_authority_history` lists the versions with
+the session law behind each, and `search_authority(…, as_of_date=)` searches the
+text of that date. Each version carries how its date was found (`date_basis`:
+`act` from the session law or the Council's effective-date list; `note-expired`;
+`directive`; `reviser-estimated`, the first capture showing an untraced change —
+flagged, may have been in force earlier; `floor`, the first capture of a text whose
+start is unknown — flagged; `contingent-undated`; `posted-note`, the Council's own
+effective-date note on text posted ahead of its date) and the tools say so in a
+`warning`. Text the Council posts for a future date is its own version: the current
+answer stays the text in force, with a `pending_version` note; a section whose only
+text is not yet in force answers `in_force: false` with its date. Where an act
+amended a section inside a capture gap and the amended text was never captured, a
+dated lookup inside that gap returns no text and names the act (`text_not_compiled`)
+rather than the pre-amendment version — where the loader recorded the gap (898
+`unwitnessed` amendment rows). It did not record every one: 735 sections carry a
+version that two acts changed between captures (`loader_flags` `multi-act`); the
+version is dated by the later act, and a lookup inside the earlier act's window
+serves the prior text and says so — a `warning` naming the act and its date, and an
+`intervening_amendments` list — since the amended words were never captured on their
+own. Stage 4 reconstructs them.
+
+**Dead sections (Stage 2b).** 3,644 sections the code no longer prints — their whole
+chapter repealed, expired, redesignated or superseded by the court rules since the captures began — now resolve:
+a `provisions` row in the chapter's state (`repealed` / `expired` / `redesignated`),
+their captured texts as dated versions, and the Council's own notation from the
+chapter stub as the final, open version (`Repealed by S.L. 2021, ch. 245, § 45.`),
+dated for the act SECTION the stub names — the Council list's footnote for it, a
+contingent act's certification, or the act's own effective-date clause (a deferred
+repeal keeps its deferred date: 2005 ch. 151 § 15 took effect August 1, 2007, not with
+its bill) — else by the bill, else by the catchline's own "(Repealed effective D)"
+note — an expiry ends the day after the act's "through" date or the last of its
+taxable years, not on the act's start — and only where none of these dates it
+`repeal-estimated` (one section) or, where the chain never printed text at all, a
+`floor` at the stub's first capture (141 sections; flagged, with a warning). Text the
+Council kept posting after a repeal took effect is a stale posting, not a version: it
+ends at the act's date, or is dropped where every capture of it postdates the act (6
+sections). A chain row that is itself the Council's stub is no version (168 rows), nor
+is the Council's prospective-repeal note printed after a section's last sentence. Where
+two acts repealed a section, the earliest in force after the text governs. The same
+ladder dates the export's own repeal stubs where a captured text precedes them. The Uniform Juvenile
+Court Act, ch. 27-20, is the largest: 79 sections, about 570 opinion citations.
+Provisions 29,116 → 32,760. Held back, not loaded: 37 sections of chapters superseded
+by the court rules whose captures still print statute text, 9 sections of active
+chapters absent from the export, 20 parse-suspect captures. A 45-section hand read
+against the Wayback captures, the session laws and the Council's lists (dev repo,
+`CHECKPOINT-2B-2026-11-08.md` § Hand read) found the act-dated and stub classes clean
+and the estimated class wrong in every sampled case; the ladder above is the fix, built
+in four rounds, each re-read: a 105-section re-read of every closing row the first round
+moved, an 86-section verification of the second, and the third and fourth rounds confined to
+what those reads found.
+
+**Why 4.0.** This changes the published data contract. In every `provision_versions`
+table, `effective_end IS NULL` now marks the OPEN row of a provision, which may be a
+posted amendment dated ahead; "in force today" is `provisions.current_version_id`
+(the shipped DBs other than statutes have no future-dated row, so for them the two
+coincide). Anyone reading the databases directly with `effective_end IS NULL` as
+"current" should switch to `current_version_id` or the `corpus.in_force_now()`
+test. **No MCP tool signature changed**; responses gained keys (`date_basis`,
+`date_estimated`, `pending_version`, `takes_effect`, `in_force`,
+`not_yet_in_force`).
+
+**Measured before shipping.** 5,523 quotations of N.D.C.C. sections in 1997+ opinions
+were scored against the version in force on the filing date and against the current
+text: 53.6% match both, 12.9% match only the dated version (text the previous release
+answered wrongly for every date), 0.2% (10) match only the current text — all ten
+read, none a wrong text for the date (three are reviser-estimated dates set late, as
+their warning says; one is the court quoting an amendment a month before its
+effective date) — and 33.4% match neither, at the same rate for current and
+historical rows (quotation-extraction noise, not dating). Full report in the dev
+repo.
+
+**Known limits, open:** 24 versions dated by the Council's own note with no act
+traced to the day (`posted-note`; none is future-dated); a small number of versions
+whose text still prints two postings (22 when last counted, most of them in chapters
+54-52 and 54-52.6; 7 current sections whose second posting is contingent and undated
+are kept whole by design); 66 dead sections held back (above); pre-1997 text not
+compiled.
+
+- **N.D.C.C. captured texts:** 781 dated versions (639 of live sections) opened with the section's own
+  catchline, or the second line of a catchline that wrapped — the capture had been cut at the first
+  line break after the section number. Removed; the body now begins with the section's first words.
+- **New tool `report_corpus_issue`:** an agent that sees garbled text, a misplaced
+  footnote, a wrong version for a date, or a citation resolving to the wrong document
+  can file a report (citation, what it saw, the text as served and as expected); the
+  server records it with the exact version served, for human review. Reports never
+  change the corpus.
+- **Tool log:** a deployment that logs tool calls now also records the `citation`
+  argument of the lookup and verify tools — never search queries, draft text or
+  quotations — see README § "What a public server records".
+- **Opinions** and **Attorney General opinions** as of the November 6 scrape (20,146 opinions;
+  no new court opinions this week).
+
 ## v3.5.5 — 2026-11-06
 
 - **N.D.C.C. effective dates — new, and a work in progress.** Every Century Code section now carries a "Current text effective …" line naming the session law that wrote its present words and the date that text took effect, derived from the Legislative Council's effective-date lists (1997–2025; the 1999 list was located this week), the session laws, and the code's own capture history. Of 25,198 sections, 13,778 are traced to an act, 9,033 show no amendment since 1997, and 2,214 carry wording no session law accounts for. Shown on the section page and its construing list, in `lookup_authority`, `find_opinions_construing`, `get_notes_of_decisions`, and `check_draft` (which now flags a cited opinion that construed an earlier version). Contingent acts are dated where the certification has been found (the Department of Environmental Quality transfer, S.L. 2017, ch. 199, in force April 29, 2019). The version line on statute pages reads "Code as compiled July 1, 2025" instead of a per-section "effective" date the export never carried. **These stamps are incomplete and not fully reliable**: a 50-row hand check found 5 errors, each traced to a rule and corrected, with no re-check yet; reviser changes are only partly traced; pre-1997 history is not compiled; prior versions of statute text are not yet served. Treat an effective-date line as a lead to confirm in the session laws. The README and landing page carry the same notice.
