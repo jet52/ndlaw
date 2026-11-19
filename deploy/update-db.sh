@@ -82,6 +82,14 @@ if [ -n "$jeac_dest" ]; then
 else
   say "WARN: cannot resolve dest for JEAC opinions DB — skipping"
 fi
+# Session laws — acts as dated events, its own tables; resolve via sl_corpus.
+# Optional: a server whose code predates sl_corpus skips it.
+sl_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.sl_corpus import resolve_sl_db_path; print(resolve_sl_db_path())" 2>/dev/null)" || sl_dest=""
+if [ -n "$sl_dest" ]; then
+  ROWS+=("sl|sessionlaws.db|SELECT COUNT(*) FROM sl_chapters|30000|0|$sl_dest")
+else
+  say "WARN: cannot resolve dest for session laws DB — skipping"
+fi
 # Figures — reproduced-figure image DB; resolve via figures_corpus.
 fig_dest="$(as_run_user "$VENV/bin/python" -c "from ndlaw_mcp.figures_corpus import resolve_figures_db_path; print(resolve_figures_db_path())" 2>/dev/null)" || fig_dest=""
 if [ -n "$fig_dest" ]; then

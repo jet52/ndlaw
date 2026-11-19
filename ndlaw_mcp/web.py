@@ -347,6 +347,16 @@ def _rule_cite_from_params(params: dict) -> str:
     return f"{prefix} {params['num']}" if prefix else ""
 
 
+def _date_note(inner: str) -> str:
+    """Box the editorial dating notes (the current-since sentence, an
+    estimated-date warning) so they cannot be read as the provision's text."""
+    if not inner:
+        return ""
+    return ('<aside class="date-note" aria-label="About this version\'s date">'
+            '<span class="date-note-label">Effective-date note</span>'
+            f'{inner}</aside>')
+
+
 def _prov_spec(kind: str, params: dict):
     """(corpus_name, citation, canon, official_fn) for a provision URL,
     or None when the URL can't name a provision."""
@@ -981,6 +991,105 @@ def _document_page(request: Request, kind: str, number: str) -> Response:
         conn.close()
 
 
+_SL_ACTIONS = {"amend": "amends", "create": "creates", "repeal": "repeals",
+               "amend-session-law": "amends a session law", "effective-date": "effective date",
+               "expiration-date": "expiration date", "emergency": "emergency clause",
+               "application": "application", "appropriation": "appropriation", "other": ""}
+
+
+def _session_law_page(request: Request, session: str, chapter: str) -> Response:
+    """A session-law chapter: the act's record, its sections, the Code sections
+    it touched, and the opinions citing it. ``session`` is a year (``2019``)
+    or a session key (``2021ss``, ``1889t``). The text of an amending section
+    is never shown (the volume prints struck and added words unmarked)."""
+    from . import ag_corpus, sl_corpus
+    token = f"sl/{session}/{chapter}"
+    if not chapter.isdigit():
+        return _not_found(request, token)
+    conn = _conn()
+    try:
+        if not sl_corpus.attach_sl(conn, read_only=True):
+            return _not_found(request, token)
+        try:
+            ag_corpus.attach_ag(conn, read_only=True)
+        except Exception:
+            pass
+        ch = conn.execute("SELECT * FROM sl.sl_chapters WHERE session=? AND chapter=?",
+                          (session, int(chapter))).fetchone()
+        if ch is None:
+            ch = sl_corpus.find_chapter(conn, {"year": session, "chapter": int(chapter),
+                                               "special": False, "territorial": False})
+        if ch is None:
+            return _not_found(request, token)
+        ans = sl_corpus.chapter_answer(
+            conn, {"year": "", "chapter": 0, "section": None, "special": False, "territorial": False},
+            ch["citation"], row=ch)
+        e = html.escape
+        meta = [f"<b>{e(ch['bill'])}</b>"] if ch["bill"] else []
+        if ch["status"]:
+            meta.append(e(ch["status"].replace("-", " ")))
+        for col, label in (("approved_date", "Approved"), ("filed_date", "Filed")):
+            if ch[col]:
+                meta.append(f"<b>{label}</b> {e(ch[col])}")
+        if ch["effective_date"]:
+            meta.append(f"<b>Effective</b> {e(ch['effective_date'])}")
+        body = [f'<p class="meta">{" · ".join(meta)}</p>'] if meta else []
+        if ch["title"]:
+            body.append(f"<p>An Act {e(ch['title'])}{'' if not ch['title_truncated'] else ' …'}</p>")
+        for w in ans.get("warnings", []):
+            body.append(f'<p class="meta">{e(w)}</p>')
+
+        def code_link(cite):
+            url = _prov_url("ndcc", cite) if not cite.startswith("N.D.C.C. tit.") else None
+            return f'<a href="{url}">{e(cite)}</a>' if url else e(cite)
+
+        secs = conn.execute("SELECT * FROM sl.sl_sections WHERE chapter_id=? ORDER BY section_no",
+                            (ch["id"],)).fetchall()
+        if secs:
+            tg = {}
+            for sid, target in conn.execute(
+                    "SELECT t.section_id, t.target FROM sl.sl_section_targets t JOIN sl.sl_sections s "
+                    "ON s.id=t.section_id WHERE s.chapter_id=? ORDER BY t.rowid", (ch["id"],)):
+                tg.setdefault(sid, []).append(target)
+            items = []
+            for s_ in secs:
+                what = _SL_ACTIONS.get(s_["action"], s_["action"])
+                targets = ", ".join(code_link(t) for t in tg.get(s_["id"], []))
+                head = f"<b>§ {s_['section_no']}.</b> " + " ".join(
+                    x for x in (e(s_["caption"].title()) + "." if s_["caption"] else "", what if targets else "",
+                                targets) if x)
+                text = "".join(f"<p>{e(par)}</p>" for par in (s_["text"] or "").split("\n\n") if par.strip())
+                items.append(f'<li id="s{s_["section_no"]}">{head}{text}</li>')
+            body.append(f'<h2>Sections of the act</h2><ul class="candidates">{"".join(items)}</ul>')
+        aff = ans.get("sections_affected") or []
+        if aff:
+            rows = "".join(
+                f"<li>{code_link(a['ndcc_section'])}{' ' + e(a['sub']) if a['sub'] else ''} — {e(a['action'])}"
+                f"{', effective ' + e(a['effective_date']) if a['effective_date'] else ''}"
+                f"{' (' + e(a['rule']) + ')' if a['rule'] else ''}</li>" for a in aff)
+            body.append(f'<h2>Century Code sections affected</h2><ul class="candidates">{rows}</ul>')
+        forms = [r[0] for r in conn.execute(
+            "SELECT alias FROM sl.sl_chapter_aliases WHERE chapter_id=? AND form='canonical'", (ch["id"],))]
+        marks = ",".join("?" * len(forms))
+        citers = [r[0] for r in conn.execute(
+            f"SELECT DISTINCT o.id FROM text_citations t JOIN opinions o ON o.id=t.opinion_id "
+            f"WHERE t.cite_type='session_law' AND lower(t.normalized) IN ({marks}) "
+            f"ORDER BY o.date_filed DESC", forms)] if forms else []
+        if citers:
+            body.append(f"<h2>Cited by the court</h2>{_link_list(conn, citers)}")
+        ags = ans.get("citing_ag_opinions") or []
+        if ags:
+            body.append("<h2>Cited by the Attorney General</h2><ul class=\"candidates\">" + "".join(
+                f"<li>{e(a['citation'])} <span class=\"meta\">({e(a['date_issued'] or '')})</span></li>"
+                for a in ags) + "</ul>")
+        return _html(request, web_templates.page(
+            ch["citation"], "".join(body), h1=ch["citation"],
+            official_url=ch["source_url"] or web_templates.OFFICIAL_FALLBACK["sl"],
+            canonical=f"/sl/{ch['session']}/{ch['chapter']}"))
+    finally:
+        conn.close()
+
+
 def _find_provision(conn, alias: str, name: str, citation: str):
     """The provision row for ``citation`` — exact match first, then by
     ``cite_key`` so spacing, punctuation, and case variants of the same
@@ -1170,14 +1279,15 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
             window = _ndcc_current_window(ver, stamp)
             line = current_since.sentence(stamp)
             if line:
-                since = f'<p class="meta current-since">{html.escape(line)}</p>'
+                since = f'<p class="current-since">{html.escape(line)}</p>'
         meta = [f"<b>{html.escape(window)}</b>"]
         if prov["status"] != "active":
             meta.append(f"<b>Status</b> {html.escape(prov['status'])}")
         # Stage 2 derived DB: an estimated or floored date carries its warning
         date_warning = corpus.version_date_warning(ver)
         if date_warning:
-            since += f'<p class="meta date-warning">{html.escape(date_warning)}</p>'
+            since += f'<p class="date-warning">{html.escape(date_warning)}</p>'
+        since = _date_note(since)
         history = ""
         if len(versions) > 1:
             # The authority column is the note's slice for the version's
@@ -1252,15 +1362,15 @@ def _prov_page(request: Request, name: str, citation: str, canon: str,
                                              _section_nav_entry(name, nxt))
         body = f"""
 <p class="meta">{' · '.join(meta)}</p>
-{since}
+{pager}
+<div class="prov">{paras}</div>
 <div class="counts">
   Construed by <a href="{canon}/construing">{construing} opinion{'s' if construing != 1 else ''}</a>
   · <a href="{canon}/xrefs">{xrefs_out} cross-reference{'s' if xrefs_out != 1 else ''}</a>
 </div>
-<div class="prov">{paras}</div>
+{since}
 {history}
 {note_html}
-{pager}
 """
         heading = prov["heading"]
         if rule_split:
@@ -1510,7 +1620,8 @@ def _prov_sub(request: Request, name: str, citation: str, canon: str,
             if stamp:
                 line = current_since.sentence(stamp)
                 if line:
-                    since = f'<p class="meta current-since">{html.escape(line)}</p>'
+                    since = _date_note(
+                        f'<p class="current-since">{html.escape(line)}</p>')
 
                 def mark(date_filed):
                     if current_since.opinion_relation(stamp, date_filed) == "earlier":
@@ -2185,6 +2296,11 @@ def register(mcp, db_path=None) -> None:
     @mcp.custom_route("/ag/{number}", methods=["GET"])
     async def ag_doc(request: Request) -> Response:
         return _document_page(request, "ag", request.path_params["number"])
+
+    @mcp.custom_route("/sl/{session}/{chapter}", methods=["GET"])
+    async def session_law_doc(request: Request) -> Response:
+        return _session_law_page(request, request.path_params["session"],
+                                 request.path_params["chapter"])
 
     @mcp.custom_route("/jeac/{number}", methods=["GET"])
     async def jeac_doc(request: Request) -> Response:

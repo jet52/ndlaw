@@ -91,11 +91,17 @@ def _flex_prefix_pattern(prefix: str) -> str:
     """A regex for a rule-set prefix tolerant of spacing variants.
 
     'N.D.R.Civ.P.' matches 'N.D.R.Civ.P.', 'N. D. R. Civ. P.'; the spaced
-    canonicals ('N.D. Sup. Ct. Admin. R.') also match their compact forms."""
-    out = []
+    canonicals ('N.D. Sup. Ct. Admin. R.') also match their compact forms.
+
+    The periods are optional (2026-11-18): the Court of the 1980s and 1990s
+    wrote the sets without them, 'Rule 56, NDRCivP' (about 1,500 sites), and
+    a form this pattern did not know was not a marker at all, so the bare
+    rule beside it fell through to whichever set had been named earlier.
+    A letter may not stand directly before the prefix."""
+    out = [r"(?<![A-Za-z])"]
     for ch in prefix:
         if ch == ".":
-            out.append(r"\.\s*")
+            out.append(r"\.?\s*")
         elif ch == " ":
             out.append(r"\s*")
         else:
@@ -121,11 +127,13 @@ _SPELLED_MARKERS = {
     "N.D.R.Crim.P.": [r"North Dakota Rules of Criminal Procedure",
                       r"Rules of Criminal Procedure"],
     "N.D.R.Ev.": [r"North Dakota Rules? of Evidence",
-                  r"Rules? of Evidence"],
+                  r"Rules? of Evidence",
+                  r"(?<![A-Za-z])N\.?\s?D\.?\s?R\.?\s?Evid\.?"],
     "N.D.R.App.P.": [r"North Dakota Rules of Appellate Procedure",
                      r"Rules of Appellate Procedure"],
     "N.D.R.Ct.": [r"North Dakota Rules of Court",
-                  r"Rules of Court"],
+                  r"Rules of Court",
+                  r"(?<![A-Za-z])N\.?D\.?R\.?O\.?C\.?(?![A-Za-z])"],      # NDROC, N.D.R.O.C.
     "N.D.R.Juv.P.": [r"North Dakota Rules of Juvenile Procedure",
                      r"Rules of Juvenile Procedure"],
     "N.D. Sup. Ct. Admin. R.": [
@@ -137,7 +145,8 @@ _SPELLED_MARKERS = {
         r"Supreme Court Administrative Orders?",
         r"Administrative Order"],
     "N.D.R. Prof. Conduct": [r"North Dakota Rules of Professional Conduct",
-                             r"Rules of Professional Conduct"],
+                             r"Rules of Professional Conduct",
+                             r"(?<![A-Za-z])N\.?D\.?R\.?P\.?C\.?(?![A-Za-z])"],   # NDRPC
     "N.D. Code Jud. Conduct": [r"North Dakota Code of Judicial Conduct",
                                r"Code of Judicial Conduct"],
     # The four sets below use THIS corpus's citation prefixes (ingest_rules
@@ -149,7 +158,8 @@ _SPELLED_MARKERS = {
     # Spelled vocabulary kept in lockstep with jetcite's _SPELLED_MARKERS
     # (jetcite TODO, "six ND rule sets have no spelled-out marker").
     "N.D.R. Lawyer Discipl.": [r"North Dakota Rules for Lawyer Discipline",
-                               r"Rules for Lawyer Discipline"],
+                               r"Rules for Lawyer Discipline",
+                               r"(?<![A-Za-z])N\.?D\.?R\.?L\.?D\.?(?![A-Za-z])"],  # NDRLD
     "Admission to Practice R.": [
         r"North Dakota Admission to Practice Rules?",
         r"Admission to Practice Rules?"],

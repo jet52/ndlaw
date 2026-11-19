@@ -11,7 +11,7 @@ from pathlib import Path
 from fastmcp import FastMCP
 
 from . import (ag_corpus, corpus, corpus_reports, current_since, draftcheck, figures_corpus, jeac_corpus,
-               tables_corpus, memo, notes, posted_text, proofread, research, rule_notes)
+               tables_corpus, memo, notes, posted_text, proofread, research, rule_notes, sl_corpus)
 from .db import DEFAULT_DB_PATH, get_connection
 
 # Public deployments (ndlaw.org) set NDLAW_RATE_NOTE=1 so connected LLM
@@ -71,6 +71,13 @@ mcp = FastMCP(
         "conduct, extra-judicial activities), get_jeac_opinions_citing for the "
         "opinions construing a canon or rule, and get_court_opinions_citing_jeac "
         "for court references to the committee. "
+        "Session laws (where installed): lookup_authority also takes a session-law "
+        "citation ('2019 N.D. Sess. Laws ch. 404', 'S.L. 2019, ch. 404', with ', § 2' "
+        "for one act section) and answers with the act's record: bill, title, "
+        "status, approval and effective dates, its sections, the Century Code "
+        "sections it amended, created or repealed, and the court and AG opinions "
+        "citing it. Sessions from 1997 carry that detail; earlier chapters are "
+        "index-only. The text of an amending section is not served. "
         "If text you retrieve looks wrong — garbled words, a missing or misplaced "
         "paragraph or footnote, a statute version that cannot be the one in force "
         "on the date, a citation resolving to the wrong document — call "
@@ -267,6 +274,10 @@ def _conn_with_corpora() -> sqlite3.Connection:
         pass
     try:
         jeac_corpus.attach_jeac(conn, read_only=True)
+    except Exception:
+        pass
+    try:
+        sl_corpus.attach_sl(conn, read_only=True)
     except Exception:
         pass
     try:
@@ -810,6 +821,29 @@ def _corpora_stats() -> dict:
             pass
         entry["point_in_time"] = entry.get("multi_version_provisions", 0) > 0
         out[name] = entry
+    # Session laws: acts are dated events, not versioned provisions, so the
+    # block reports its own counts. Omitted when the file is not installed.
+    sl_path = sl_corpus.resolve_sl_db_path()
+    if sl_path.exists():
+        try:
+            c = sqlite3.connect(f"file:{sl_path}?mode=ro", uri=True)
+            try:
+                one = lambda q: c.execute(q).fetchone()[0]
+                out["sl"] = {
+                    "file": sl_path.name,
+                    "sessions": one("SELECT COUNT(*) FROM sl_sessions"),
+                    "chapters": one("SELECT COUNT(*) FROM sl_chapters"),
+                    "chapters_with_detail": one("SELECT COUNT(*) FROM sl_chapters WHERE detail='full'"),
+                    "detail_from": one("SELECT MIN(year) FROM sl_sessions WHERE detail='full'"),
+                    "earliest_session": one("SELECT MIN(year) FROM sl_sessions"),
+                    "latest_session": one("SELECT session FROM sl_sessions ORDER BY year DESC, session DESC LIMIT 1"),
+                    "act_sections": one("SELECT COUNT(*) FROM sl_sections"),
+                    "sections_affected_rows": one("SELECT COUNT(*) FROM sl_affected"),
+                }
+            finally:
+                c.close()
+        except sqlite3.Error:
+            pass
     return out
 
 
@@ -3003,6 +3037,12 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
     ``returned_provision``, ``relation``, and a ``note`` explaining the link
     (source: NDCC Replacement Vol. 13 disposition tables).
 
+    A SESSION-LAW citation ("2019 N.D. Sess. Laws ch. 404", "S.L. 2019, ch. 404",
+    with ", § 2" for one act section) answers with the act's record: bill, title,
+    status, approval and effective dates with their basis, the act's sections and
+    the Code sections it amended, created or repealed (1997 on; earlier sessions
+    are index-only). The text of an amending section is not served.
+
     Returns the provision text, heading, effective window, enacting/amending
     authority, source URL, and a count of opinions construing it. For a
     current N.D.C.C. section, ``current_since`` says which session law wrote
@@ -3016,6 +3056,20 @@ def lookup_authority(citation: str, as_of_date: str | None = None) -> dict:
         citation: A constitutional, statutory, court-rule, or admin-code reference.
         as_of_date: Optional ISO date; the version in force then (default: current).
     """
+    sl_spec = sl_corpus.parse_cite(citation)
+    if sl_spec:
+        # A session-law chapter or act section ("2019 N.D. Sess. Laws ch. 404, § 2",
+        # "S.L. 2019, ch. 404"): an act is a dated event, so the answer is the act's
+        # record — bill, title, status, effective date, the sections it touched —
+        # and as_of_date does not apply.
+        conn = _conn_with_corpora()
+        try:
+            if "sl" not in {r["name"] for r in conn.execute("PRAGMA database_list")}:
+                return {"found": False, "citation": citation, "corpus": "sl",
+                        "error": f"The {sl_corpus.SL_CORPUS['label']} corpus is not installed on this server."}
+            return sl_corpus.chapter_answer(conn, sl_spec, citation)
+        finally:
+            conn.close()
     spec = research.normalize_authority(citation)
     ckind = KIND_TO_CORPUS.get(spec["kind"])
     if not ckind:

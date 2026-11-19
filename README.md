@@ -7,7 +7,7 @@ Appeals decisions). Coverage is complete since statehood (November 2,
 FTS5 full-text search and served via
 [FastMCP](https://github.com/jlowin/fastmcp).
 
-The opinions corpus currently contains **<!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,505<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
+The opinions corpus currently contains **<!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions** with **<!-- COUNT:citelinks -->127,550<!-- /COUNT --> citation links** between them, with per-release corrections summarized in the
 release notes. Where the court's own print contains an
 apparent typo, the text is preserved verbatim; where that typo is in a
 citation, the citation graph still resolves it to the case the court meant.
@@ -79,12 +79,13 @@ point-in-time *versioned-provision* schema, so `lookup_authority` accepts an
 
 | Database | Corpus | Contents (approx.) |
 |----------|--------|--------------------|
-| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,505<!-- /COUNT --> citation links, 1889–present |
+| `opinions.db`     | ND Supreme Court opinions (+ some Court of Appeals) | <!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions, <!-- COUNT:citelinks -->127,550<!-- /COUNT --> citation links, 1889–present |
 | `constitution.db` | ND Constitution | ~496 provisions / 774 dated versions, **point-in-time across the full 1889–present span**: a modern article/§ layer (1981–present, with the 1981/1986/1997 article reorganizations and post-1981 amendments reconstructed) + a historical layer in the original 1889 numbering (§§ 1–217 + Schedule + amendment articles, in force 1889–1980), plus the amendment chronology |
 | `statutes.db`     | N.D.C.C. (statutes) | ~32,800 Century Code sections, ~54,600 dated versions (point-in-time since the first capture, 1997–2004) |
 | `rules.db`        | ND court rules | ~650 rule provisions |
 | `admincode.db`    | ND Administrative Code | ~13,800 provisions |
 | `ag_opinions.db`  | ND Attorney General opinions | ~6,750 published opinions, 1942–present, cross-linked to the statutes/Constitution/rules/admin/opinions they cite (~35,000 citation links) |
+| `sessionlaws.db`  | ND Session Laws | ~32,000 chapters indexed across 97 sessions, 1862–2026; for 1997 on, each act's bill, title, status, approval and effective dates, its sections, and the Century Code sections it amended, created or repealed. The text of an amending section is not carried. |
 
 > **N.D.C.C. point-in-time text (since v4.0.0).** `statutes.db` carries every
 > compiled version of each Century Code section since the Legislative Council's
@@ -446,6 +447,7 @@ The only thing the app itself needs is three environment variables:
 | `NDLAW_RULE_DB` | path to `rules.db` (court-rules corpus) | bundled / app-data |
 | `NDLAW_ADMIN_DB` | path to `admincode.db` (Admin. Code corpus) | bundled / app-data |
 | `NDLAW_AG_DB` | path to `ag_opinions.db` (Attorney General opinions) | bundled / app-data |
+| `NDLAW_SL_DB` | path to `sessionlaws.db` (Session Laws) | bundled / app-data |
 
 The MCP endpoint is **`/mcp`** (no trailing slash — `/mcp/` issues a 307
 redirect, which some clients mishandle on POST).

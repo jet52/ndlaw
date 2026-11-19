@@ -108,7 +108,8 @@ def resolve(conn, citation: str) -> dict:
         row, how, _cands = server._resolve_opinion(conn, citation)
         if row is not None:
             cites = [r[0] for r in conn.execute(
-                "SELECT citation FROM citations WHERE opinion_id = ? ORDER BY id", (row["id"],))]
+                "SELECT citation FROM citations WHERE opinion_id = ? "
+                "ORDER BY is_primary DESC, id", (row["id"],))]
             out.update(resolved=True, kind="opinion", corpus="opinions", citation=cites[0] if cites else citation,
                        opinion_id=row["id"], case_name=row["case_name"], date_filed=row["date_filed"],
                        matched_by=how, text_sha16=_sha16(row["text_content"]), _text=row["text_content"])

@@ -56,6 +56,14 @@ _STYLE = """
   .meta { color: #444; font-size: .95em; margin: .15rem 0; }
   .meta b { color: #1a1a1a; }
   .cites { margin: .3rem 0 .1rem; }
+  /* editorial dating notes above the text: boxed, small and sans-serif so
+     they are not taken for the provision's own words */
+  .date-note { margin: .7rem 0 1rem; padding: .45em .9em .5em; border: 1px solid #c9c9c4;
+               border-left: 4px solid #888; border-radius: 3px; color: #555;
+               font: .82em/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .date-note p { margin: .3em 0; }
+  .date-note-label { display: block; font-size: .85em; font-weight: 600; color: #666;
+                     text-transform: uppercase; letter-spacing: .06em; }
   .counts { margin: 1rem 0; padding: .5em .9em; background: #f4f4f2;
             border-radius: 4px; font-size: .95em; }
   .body p { margin: .65em 0; }
@@ -105,6 +113,8 @@ _STYLE = """
     .meta { color: #aaa; } .meta b { color: #d8d8d4; }
     a { color: #7fb3d5; }
     .counts { background: #23262d; }
+    .date-note { border-color: #3a3e47; border-left-color: #777; color: #a8a8a4; }
+    .date-note-label { color: #999; }
     .posted { background: #1e2228; border-top-color: #777; border-left-color: #7fb3d5; }
     .posted-badge { color: #7fb3d5; border-color: #7fb3d5; }
     .posted-status, .posted-catchline { color: #aaa; }
@@ -142,6 +152,7 @@ OFFICIAL_FALLBACK = {
     "rule": "https://www.ndcourts.gov/legal-resources/rules",
     "ag": "https://attorneygeneral.nd.gov/",
     "jeac": "https://www.ndcourts.gov/committees/judicial-ethics-advisory-committee",
+    "sl": "https://ndlegis.gov/research-center/library/session-laws",
 }
 
 

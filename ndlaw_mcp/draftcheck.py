@@ -116,6 +116,8 @@ _SECTION_CTX_RE = re.compile(
 _ADMIN_NEAR_RE = re.compile(
     r"N\.?\s?D\.?\s?A\.?\s?C\.?|Admin(?:istrative)?\.?\s?Code")
 _CHAPTER_CTX_RE = re.compile(r"(?:[Cc]hapters?|[Cc]h\.)[\s,]*$")
+_CHAPTER_OR_CODE_CTX_RE = re.compile(r"(?:[Cc]hapters?|[Cc]h\.|N\.?\s?D\.?\s?C\.?\s?C\.?)[\s,]*$")
+_MAX_NDCC_TITLE = 65.0
 
 
 def statute_admin_spans(text: str) -> list[dict]:
@@ -144,6 +146,14 @@ def statute_admin_spans(text: str) -> list[dict]:
         else:  # 2 segments = NDCC chapter
             if admin_near:
                 continue
+            # Only with chapter words or the Code's name directly before it,
+            # and only where the first number can be a title of the Code.
+            # After "§§" or "sections" a two-number token is a RANGE of
+            # sections ("Rev. Codes 1899, §§ 5034-5037"; "sections 12-14 of
+            # the act"), which the 2026-11-07 sweep found reported as
+            # `N.D.C.C. ch. 5034-5037`.
+            if not _CHAPTER_OR_CODE_CTX_RE.search(before) or float(segs[0]) > _MAX_NDCC_TITLE:
+                continue
             kind, citation = "statute", f"N.D.C.C. ch. {tok}"
         out.append({
             "start": m.start(1), "end": m.end(1), "kind": kind,
@@ -158,6 +168,11 @@ _ND_RULE_PREFIXES = sorted(
     key=len, reverse=True,
 )
 _RULE_NUM_GROUP = r"(\d+(?:[.-]\d+)*[A-Za-z]?)"
+
+
+# After a bare "Rule 12(b)": a comma or space, then something shaped like a
+# North Dakota rule-set abbreviation ("NDRDP", "N.D.R.Adm.").
+_UNKNOWN_TRAILING_SET = re.compile(r"[\s,]*(?:\([^)]{1,20}\))*[\s,]+N\.?\s?D\.?\s?R\.?\s?[A-Z]")
 
 
 def rule_cite_spans(text: str) -> list[dict]:
@@ -198,7 +213,12 @@ def rule_cite_spans(text: str) -> list[dict]:
             if e <= ms <= e + 80 and notes._TRAILING_GAP_RE.fullmatch(text[e:ms]):
                 attributed = canon
                 break
-        if attributed is None:
+        if attributed is None and _UNKNOWN_TRAILING_SET.match(text, e):
+            # "Rule 12, NDRDP": a trailing rule-set abbreviation no marker
+            # knows. The set is named and it is not the one mentioned earlier,
+            # so the nearest preceding marker would be a guess: ambiguous.
+            preceding = []
+        elif attributed is None:
             preceding = [c for ms, _me, c in markers if ms < s]
             attributed = preceding[-1] if preceding else None
         if attributed is None:

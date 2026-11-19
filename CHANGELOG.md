@@ -8,6 +8,60 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v4.1.0 — 2026-11-19
+
+**Session laws become a corpus.** A new asset, `sessionlaws.db`, indexes about
+32,000 chapters of the North Dakota Session Laws across 99 sessions, 1862–2026. For
+the sessions from 1997 on it carries each act's bill, title, status, approval and
+filing dates, effective date and how that date was found, the act's sections with
+what each does, and the Century Code sections it amended, created or repealed
+(the Legislative Council's own tables from 2005; an index read from the act text
+for 1997–2003). `lookup_authority` takes a session-law citation in the form the
+Court prints (`2019 N.D. Sess. Laws ch. 404`, with `, § 2` for one act section) or
+the Century Code's (`S.L. 2019, ch. 404`; `S.L. 2021 (sp.), ch. 553`) and answers
+with that record and with the court and Attorney General opinions citing the
+chapter. Each chapter has a page at `/sl/<year>/<chapter>`.
+
+The special sessions of November 2011 and August 2016 are index-only for now
+(title, bill, link), like the sessions before 1997.
+
+Read three limits before relying on it. The text of an amending, creating or
+repealing section is **not** served: the volumes print struck and added words
+together and the redline is not yet captured, so only sections that print no
+redline (emergency clauses, effective-date and application sections, studies,
+appropriations) carry text. Sessions before 1997 are index-only (title, bill,
+link), and that index has holes, about 2% of chapters by number, most of them in
+1919 and the 1890s. And only reporter-style citations are linked: a prose
+reference ("chapter 67 of the Session Laws of 1897") names no state and is not
+extracted.
+
+**Citation extraction** moves to jetcite 2.18.1. Besides the session-law cite
+type (about 2,200 links from 1,340 court opinions, 850 from Attorney General
+opinions), a citation with a reporter's page-break marker printed inside it
+(`447 [*442] N.W.2d 286`) is now read, which restores 36 opinion-to-opinion links.
+
+**`check_draft`** reads two forms it used to get wrong. A rule cited with its set
+after it and no periods (`Rule 403, NDREv`; `Rule 60(b), NDRCivP`; also
+`N.D.R.Evid.` and `NDROC`) is now attributed to that set instead of to whichever
+set the draft had named earlier, and a trailing abbreviation the tool does not
+know is reported as ambiguous. A range of old-code sections
+(`Rev. Codes 1899, §§ 5034-5037`) is no longer reported as a Century Code chapter.
+
+**Text corrections** since v4.0.0 include italics on about 2,000 cited case names
+(new slips are now italicized at ingest), the court's hyphen restored in 746
+statute numbers that held a dash, and about 2,000 scanner misreads corrected
+against the court's archive page, the slip opinion or West's text.
+
+**Provision pages** put the text first. On a Century Code, rule or administrative
+code page the previous and next section links now sit above the text, and the
+"Construed by" line follows it. The note explaining a Century Code section's
+effective date comes after that, boxed, labelled and set in smaller sans-serif
+type so it cannot be read as part of the section.
+
+**The MCP endpoints no longer hold an event stream open.** `GET /mcp` now
+answers 405; tool calls (POST) are unchanged. Idle streams from one
+connector had occupied every web-server worker for 15 minutes on November 19.
+
 ## v4.0.0 — 2026-11-10
 
 **The N.D.C.C. becomes point-in-time.** `statutes.db` now carries every compiled
