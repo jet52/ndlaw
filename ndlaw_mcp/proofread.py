@@ -113,6 +113,7 @@ _BRACKET_NOTE = re.compile(r"(?m)^[ \t]*\[n?(\d{1,3})\]")
 # or [2]`) share that shape. The bare form is still accepted — the notation
 # pass only reached opinions with a FOOTNOTES heading.
 _BRACKET_CALL = re.compile(r"\[n?(\d{1,3})\]")             # inline call (not [¶ N])
+_N_CALL = re.compile(r"\[n(\d{1,3})\]")                # the [nN] sigil only: unambiguous
 # "N:" body opener under a FOOTNOTES heading — alone on its line, or (2026-10-01) with the
 # body run onto the same line by a later reflow (2013 ND 99, 2017 ND 146: `1: Wotzka …`)
 _COLON_NOTE = re.compile(r"(?m)^[ \t]*(\d{1,2}):(?:[ \t]*$|[ \t]+(?=\S))")
@@ -339,9 +340,16 @@ def _section_footnotes(text: str) -> dict | None:
                 # real call is at ¶4 and a spurious [1] sits at ¶16). The call
                 # search window is this writing's text: [prev section end,
                 # this heading).
-                cp = next((prev_end + m.start() for m in
-                           _STANDALONE_NUM.finditer(text[prev_end:hm.start()])
-                           if int(m.group(1)) == num), None)
+                # The [nN] sigil (2026-08) is unambiguous, so a unique one
+                # outranks a bare-number line, which may be a part heading
+                # ("2", "3" centred between parts: 1998 ND 133).
+                ncalls = [m for m in _N_CALL.finditer(text, prev_end, hm.start())
+                          if int(m.group(1)) == num]
+                cp = ncalls[0].start() if len(ncalls) == 1 else None
+                if cp is None:
+                    cp = next((prev_end + m.start() for m in
+                               _STANDALONE_NUM.finditer(text[prev_end:hm.start()])
+                               if int(m.group(1)) == num), None)
                 if cp is None:
                     hits = [m for m in _BRACKET_CALL.finditer(
                                 text, prev_end, hm.start())
@@ -466,6 +474,14 @@ def _standalone_footnotes(text: str) -> dict:
     body_nums = {n for n, _, _ in bodies}
     body_start = {n: ls for n, ls, _ in bodies}
     call_para, call_at = {}, {}
+    # A unique [nN] sigil before the body outranks a bare-number line (which
+    # may be a part heading); same rule as the FOOTNOTES-section path.
+    for num in body_nums:
+        hits = [m for m in _N_CALL.finditer(text, 0, body_start[num])
+                if int(m.group(1)) == num]
+        if len(hits) == 1:
+            call_para[num] = find_paragraph(text, hits[0].start(), markers)
+            call_at[num] = hits[0].start()
     for num, ls, after, period in occ:
         if ls in body_at:
             continue

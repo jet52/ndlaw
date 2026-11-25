@@ -869,6 +869,29 @@ def _document_for_text(text: str) -> str | None:
         conn.close()
 
 
+def _session_law_for_text(text: str) -> str | None:
+    """The /sl/<session>/<chapter> path for a session-law citation in any
+    form sl_corpus.parse_cite reads ('2019 N.D. Sess. Laws ch. 404',
+    'S.L. 2019, ch. 404', 'S.L. 2021 (sp.), ch. 553'), with '#s<N>' for an
+    act-section pinpoint; None when the text is not one or the index does
+    not carry the chapter."""
+    from . import sl_corpus
+    spec = sl_corpus.parse_cite(text)
+    if spec is None:
+        return None
+    conn = _conn()
+    try:
+        if not sl_corpus.attach_sl(conn, read_only=True):
+            return None
+        ch = sl_corpus.find_chapter(conn, spec)
+        if ch is None:
+            return None
+        frag = f"#s{spec['section']}" if spec["section"] else ""
+        return f"/sl/{ch['session']}/{ch['chapter']}{frag}"
+    finally:
+        conn.close()
+
+
 def _resolve_exact(text: str):
     """('chapter', entry) | ('spec', spec) | ('doc', path) | ('cite', cite)
     for text that is itself a citation, or None. Provisions before opinions —
@@ -877,6 +900,11 @@ def _resolve_exact(text: str):
     if not text:
         return None
     text = _ADMIN_CODE_LONG.sub("N.D.A.C.", text)
+    # a session law first: its forms carry 'ch. N', which the code-chapter
+    # matcher must not get to read
+    sl_path = _session_law_for_text(text)
+    if sl_path is not None:
+        return ("doc", sl_path)
     chapter = _chapter_for_text(text)
     if chapter is not None:
         return ("chapter", chapter)
@@ -977,11 +1005,14 @@ def _document_page(request: Request, kind: str, number: str) -> Response:
                 ORDER BY o.date_filed DESC""", (row["id"],))]
         cited = (f"<h2>Cited by the court</h2>{_link_list(conn, citers)}"
                  if citers else "")
-        paras = "".join(f"<p>{html.escape(ln)}</p>"
-                        for ln in row["text_content"].split("\n")
-                        if ln.strip())
-        body = (f'<p class="meta">{" · ".join(meta)}</p>'
-                f'<div class="prov">{paras}</div>{cited}')
+        if "text_layout" in row.keys() and row["text_layout"] == "reflow":
+            text_html = web_templates.render_document_body(row["text_content"])
+        else:                       # raw PDF lines: one line, one paragraph
+            paras = "".join(f"<p>{html.escape(ln)}</p>"
+                            for ln in row["text_content"].split("\n")
+                            if ln.strip())
+            text_html = f'<div class="prov">{paras}</div>'
+        body = f'<p class="meta">{" · ".join(meta)}</p>{text_html}{cited}'
         official = (row["source_url"]
                     or web_templates.OFFICIAL_FALLBACK[fallback])
         title = row[cite_col]
@@ -1086,6 +1117,80 @@ def _session_law_page(request: Request, session: str, chapter: str) -> Response:
             ch["citation"], "".join(body), h1=ch["citation"],
             official_url=ch["source_url"] or web_templates.OFFICIAL_FALLBACK["sl"],
             canonical=f"/sl/{ch['session']}/{ch['chapter']}"))
+    finally:
+        conn.close()
+
+
+_NDJI_NUM = re.compile(r"^([CKck])-?(\d{1,3}\.\d{1,3})$")
+_NDJI_BOLD = re.compile(r"\*\*(.+?)\*\*")
+_NDJI_ITAL = re.compile(r"(?<![*\w])\*(?!\s)([^*]+?)(?<!\s)\*(?![*\w])")
+
+
+def _ndji_par(par: str) -> str:
+    """One stored paragraph of an instruction as HTML: ``**bold**``, ``*italic*``, a
+    ``> `` blockquote, the source's table rows (cells joined by `` | ``)."""
+    e = html.escape
+    quote = par.startswith("> ")
+    t = e(par[2:] if quote else par)
+    t = _NDJI_BOLD.sub(r"<b>\1</b>", t)
+    t = _NDJI_ITAL.sub(r"<em>\1</em>", t)
+    return f"<blockquote><p>{t}</p></blockquote>" if quote else f"<p>{t}</p>"
+
+
+def _ndji_page(request: Request, number: str) -> Response:
+    """A pattern jury instruction (LOCAL ONLY corpus; a server without ndji.db answers 404):
+    text, notes, the authorities it cites, related instructions, and the opinions citing it."""
+    from . import ndji_corpus
+    token = f"ndji/{number}"
+    m = _NDJI_NUM.match(number)
+    if not m:
+        return _not_found(request, token)
+    conn = _conn()
+    try:
+        if not ndji_corpus.attach_ndji(conn, read_only=True):
+            return _not_found(request, token)
+        spec = {"letter": m.group(1).upper(), "number": f"{m.group(1).upper()}-{m.group(2)}",
+                "citation": ndji_corpus.canonical(m.group(1), m.group(2))}
+        r = ndji_corpus.instruction_answer(conn, spec, spec["citation"])
+        if not r.get("found"):
+            return _not_found(request, token)
+        e = html.escape
+        meta = [f"<b>{e(r['edition'])}</b>", f"revised {r['revision_year']}" if r["revision_year"] else "",
+                e(r["section"] or "")]
+        if r["status"] != "current":
+            meta.append(f"<b>{e(r['status'].upper())}</b>"
+                        + (f" — see <a href=\"/ndji/{e(r['successor'].split()[-1])}\">{e(r['successor'])}</a>"
+                           if r["successor"] else ""))
+        body = [f'<p class="meta">{" · ".join(x for x in meta if x)}</p>']
+        if r.get("warning"):
+            body.append(f'<p class="meta">{e(r["warning"])}</p>')
+        body += [_ndji_par(p) for p in (r["text"] or "").split("\n\n") if p.strip()]
+        if r["notes"]:
+            body.append("<h2>Notes and authorities</h2>")
+            body += [_ndji_par(p) for p in r["notes"].split("\n\n") if p.strip()]
+
+        def cite_link(c):
+            return f'<a href="/cite/{quote(c)}">{e(c)}</a>'
+        if r["cites"]:
+            body.append('<h2>Authorities cited</h2><ul class="candidates">' + "".join(
+                f"<li>{cite_link(c['citation']) if c['resolved'] else e(c['citation'])}"
+                f"{'' if c['resolved'] else ' <span class=meta>(not held)</span>'}</li>" for c in r["cites"]) + "</ul>")
+        rel = [(x["citation"], x.get("title")) for x in r["refers_to"]] + \
+              [(x["citation"], x.get("title")) for x in r["referred_by"]]
+        if rel:
+            body.append('<h2>Related instructions</h2><ul class="candidates">' + "".join(
+                f'<li><a href="/ndji/{e(c.split()[-1])}">{e(c)}</a> {e(t or "")}</li>' for c, t in dict(rel).items())
+                + "</ul>")
+        if r["cited_by_opinions"]:
+            body.append('<h2>Cited by the court</h2><ul class="candidates">' + "".join(
+                f"<li>{cite_link(c['citation'])} <i>{e(c['case_name'] or '')}</i> "
+                f"<span class=\"meta\">({e(c['date_filed'] or '')}"
+                f"{'; before this revision' if c['predates_revision'] else ''})</span></li>"
+                for c in r["cited_by_opinions"]) + "</ul>")
+        body.append(f'<p class="meta">{e(r["notice"])} {e(r["source"] or "")}</p>')
+        return _html(request, web_templates.page(
+            f"{r['citation']} {r['title']}", "".join(body), h1=f"{r['citation']} — {r['title']}",
+            canonical=f"/ndji/{spec['number']}"))
     finally:
         conn.close()
 
@@ -1428,6 +1533,304 @@ def _chapter_nav_entry(e: dict | None) -> dict | None:
                                    "url": _chapter_url(e["corpus"], e["num"])}
 
 
+# ---------------------------------------------------------------------------
+# corpus index pages — PLAN-web-interface.md §6 as amended 2026-11-20
+# (Phase 1: /const, /ndcc, /ndac and their title pages, /jeac; /rules is
+# older). The opinion, AG and session-law indexes are Phase 2.
+# ---------------------------------------------------------------------------
+
+_CODE_KIND = {"ndcc": "ndcc", "admin": "ndac"}
+_KIND_CODE = {v: k for k, v in _CODE_KIND.items()}
+_CODE_NAMES = {"ndcc": ("North Dakota Century Code", "N.D.C.C."),
+               "admin": ("North Dakota Administrative Code", "N.D.A.C.")}
+
+# Article titles of the current numbering, from the Legislative Council's
+# table of contents (https://ndlegis.gov/constitution, read 2026-11-20). The
+# corpus stores sections only; no table carries the article names.
+_CONST_ARTICLE_TITLES = {
+    "I": "Declaration of Rights",
+    "II": "Elective Franchise",
+    "III": "Powers Reserved to the People",
+    "IV": "Legislative Branch",
+    "V": "Executive Branch",
+    "VI": "Judicial Branch",
+    "VII": "Political Subdivisions",
+    "VIII": "Education",
+    "IX": "Trust Lands",
+    "X": "Finance and Public Debt",
+    "XI": "General Provisions",
+    "XII": "Corporations Other Than Municipal",
+    "XIII": "Compact with the United States",
+    "XIV": "Ethics",
+    "XV": "Term Limits",
+    "XVI": "Congressional Age Limits",
+}
+_ROMAN_VALUES = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100}
+
+
+def _roman_int(s: str) -> int:
+    vals = [_ROMAN_VALUES.get(c, 0) for c in s.upper()]
+    return sum(-v if i + 1 < len(vals) and v < vals[i + 1] else v
+               for i, v in enumerate(vals))
+
+
+def _title_key(num: str) -> str:
+    """'04.1' and '4.1' are the same title, as '09-03' and '9-03' are the
+    same chapter."""
+    return ".".join(str(int(p)) if p.isdigit() else p.lower()
+                    for p in num.split("."))
+
+
+def _title_url(corpus_name: str, num: str) -> str:
+    return f"/{_CODE_KIND[corpus_name]}/{quote(num)}"
+
+
+def _code_titles(corpus_name: str) -> list[dict]:
+    """The code's titles in code order, each with its chapters (from the
+    chapter index, so repealed-whole chapters count)."""
+    titles: dict[str, dict] = {}
+    for e in _chapter_index()["order"].get(corpus_name, []):
+        if not e["title_num"]:
+            continue
+        t = titles.setdefault(_title_key(e["title_num"]),
+                              {"num": e["title_num"], "name": e["title_name"],
+                               "chapters": []})
+        t["chapters"].append(e)
+    # numeric title order ('4' < '4.1' < '12' < '12.1'), whatever seq says
+    return sorted(titles.values(), key=lambda t: _natkey(t["num"]))
+
+
+def _code_titles_page(request: Request, corpus_name: str) -> Response:
+    """/ndcc, /ndac: every title, linking its chapter list."""
+    kind = _CODE_KIND[corpus_name]
+    titles = _code_titles(corpus_name)
+    if not titles:
+        return _not_found(request, kind)
+    rows = [{"num": t["num"], "url": _title_url(corpus_name, t["num"]),
+             "name": t["name"], "chapters": len(t["chapters"]),
+             "active": sum(1 for c in t["chapters"]
+                           if c["status"] == "active")}
+            for t in titles]
+    name, abbrev = _CODE_NAMES[corpus_name]
+    intro = (f"Cited as <strong>{abbrev}</strong> Each title lists its "
+             "chapters; each chapter, its sections. Chapters no longer in "
+             "force are listed with their status.")
+    return _html(request, web_templates.page(
+        name, web_templates.render_code_titles(intro, rows), h1=name,
+        official_url=web_templates.OFFICIAL_FALLBACK[kind],
+        canonical=f"/{kind}"))
+
+
+def _code_title_page(request: Request, corpus_name: str,
+                     num: str) -> Response | None:
+    """/ndcc/{title}, /ndac/{title}: one title's chapters, or None when the
+    code has no such title (the caller falls through to its 404)."""
+    titles = _code_titles(corpus_name)
+    key = _title_key(num)
+    i = next((i for i, t in enumerate(titles)
+              if _title_key(t["num"]) == key), None)
+    if i is None:
+        return None
+    t = titles[i]
+    canon = _title_url(corpus_name, t["num"])
+    if request.url.path != canon:
+        return _redirect(canon)          # '/ndcc/04.1' -> '/ndcc/4.1'
+    groups: list[tuple[str | None, list[dict]]] = []
+    for e in t["chapters"]:
+        label = None
+        if e["parent_num"]:
+            label = f'Article {e["parent_num"]}'
+            if e["parent_name"]:
+                label += f' — {e["parent_name"]}'
+        if not groups or groups[-1][0] != label:
+            groups.append((label, []))
+        groups[-1][1].append({"num": e["num"],
+                              "url": _chapter_url(corpus_name, e["num"]),
+                              "heading": e["heading"], "status": e["status"]})
+
+    def nav(j):
+        if 0 <= j < len(titles):
+            return {"num": f'Title {titles[j]["num"]}',
+                    "url": _title_url(corpus_name, titles[j]["num"])}
+        return None
+
+    name, abbrev = _CODE_NAMES[corpus_name]
+    h1 = f'{abbrev} Title {t["num"]}' + (f' — {t["name"]}' if t["name"]
+                                          else "")
+    body = web_templates.render_code_title(
+        groups, up=(f"/{_CODE_KIND[corpus_name]}", f"{name}: all titles"),
+        prev=nav(i - 1), nxt=nav(i + 1))
+    return _html(request, web_templates.page(
+        f'{abbrev} Title {t["num"]}', body, h1=h1,
+        official_url=web_templates.OFFICIAL_FALLBACK[_CODE_KIND[corpus_name]],
+        canonical=canon))
+
+
+def _const_index_page(request: Request) -> Response:
+    """/const: every section of the current numbering, by article. The 1889
+    numbering's sections keep their own pages, reached by citation."""
+    conn = _conn()
+    try:
+        try:
+            attached = corpus.attach_corpora(conn, read_only=True)
+        except sqlite3.Error:
+            attached = []
+        if "const" not in attached:
+            return _not_found(request, "const")
+        al = corpus.CORPORA["const"]["alias"]
+        rows = conn.execute(
+            f"SELECT citation, heading, status FROM {al}.provisions "
+            "WHERE corpus = 'const'").fetchall()
+    finally:
+        conn.close()
+    arts: dict[str, list[dict]] = {}
+    preamble = None
+    for r in rows:
+        m = _CONST_CITE.match(r["citation"])
+        if m:
+            heading, status = r["heading"], r["status"]
+            # a repealed section's stored heading is the bare word, which
+            # the status tag already says
+            if status != "active" and (heading or "").strip().lower() \
+                    == "repealed":
+                heading = None
+            arts.setdefault(m.group(1).upper(), []).append(
+                {"num": m.group(2), "heading": heading, "status": status,
+                 "url": _prov_url("const", r["citation"]) or "#"})
+        elif r["citation"] == "N.D. Const. pmbl.":
+            preamble = _prov_url("const", r["citation"])
+    if not arts:
+        return _not_found(request, "const")
+    articles = [{"roman": roman, "title": _CONST_ARTICLE_TITLES.get(roman),
+                 "sections": sorted(secs, key=lambda s: _natkey(s["num"]))}
+                for roman, secs in sorted(arts.items(),
+                                          key=lambda kv: _roman_int(kv[0]))]
+    title = "Constitution of North Dakota"
+    return _html(request, web_templates.page(
+        title, web_templates.render_const_index(articles, preamble),
+        h1=title, official_url=web_templates.OFFICIAL_FALLBACK["const"],
+        canonical="/const"))
+
+
+def _jeac_number_key(num: str) -> tuple:
+    """'2019-3' -> (2019, 3); the 1990s numbers carry two-digit years."""
+    parts = num.split("-")
+    year = int(parts[0]) if parts[0].isdigit() else 0
+    if year < 100:
+        year += 1900 if year >= 50 else 2000
+    seq = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 0
+    return (year, seq)
+
+
+def _jeac_index_page(request: Request) -> Response:
+    """/jeac: every committee opinion that has a page, newest first."""
+    from . import jeac_corpus
+    conn = _conn()
+    try:
+        if not jeac_corpus.attach_jeac(conn, read_only=True):
+            return _not_found(request, "jeac")
+        rows = conn.execute("SELECT * FROM jeac.jeac_opinions").fetchall()
+    finally:
+        conn.close()
+    # only what /jeac/{number} will serve: it 404s an opinion with no text
+    items = [{"num": r["opinion_number"],
+              "url": f"/jeac/{quote(r['opinion_number'])}",
+              "digest": r["digest"] if "digest" in r.keys() else None}
+             for r in rows if r["text_content"]]
+    if not items:
+        return _not_found(request, "jeac")
+    items.sort(key=lambda d: _jeac_number_key(d["num"]), reverse=True)
+    title = "Judicial Ethics Advisory Committee Opinions"
+    return _html(request, web_templates.page(
+        title, web_templates.render_jeac_index(items), h1=title,
+        official_url=web_templates.OFFICIAL_FALLBACK["jeac"],
+        canonical="/jeac"))
+
+
+# AG opinion numbers carry their year: '2015-O-04', '94-L-199', '71-461',
+# and the advisory letters' MMDDYY-Name form ('031490-Koppy_0'). Used only to
+# file the few opinions with no recorded date under a year; never displayed
+# as a date.
+_AG_ADVISORY_NUM = re.compile(r"^\d{4}(\d{2})-")
+_AG_YEAR_NUM = re.compile(r"^(\d{4}|\d{2})-")
+_YEAR_TOKEN = re.compile(r"^\d{4}$")
+
+
+def _ag_year(date_issued: str | None, number: str) -> int | None:
+    if date_issued and date_issued[:4].isdigit():
+        return int(date_issued[:4])
+    m = _AG_ADVISORY_NUM.match(number) or _AG_YEAR_NUM.match(number)
+    if not m:
+        return None
+    yy = int(m.group(1))
+    if yy >= 1000:
+        return yy
+    return 1900 + yy if yy >= 42 else 2000 + yy     # the series opens 1942
+
+
+def _ag_by_year() -> dict[int, list[dict]] | None:
+    """Every AG opinion that has a page, by year; None without the corpus.
+    An opinion with no text is left out: /ag/{number} 404s it."""
+    from . import ag_corpus
+    conn = _conn()
+    try:
+        if not ag_corpus.attach_ag(conn, read_only=True):
+            return None
+        rows = conn.execute(
+            "SELECT * FROM ag.ag_opinions WHERE text_content IS NOT NULL "
+            "AND text_content != ''").fetchall()
+    finally:
+        conn.close()
+    years: dict[int, list[dict]] = {}
+    for r in rows:
+        keys = r.keys()
+        y = _ag_year(r["date_issued"], r["opinion_number"])
+        if y is None:
+            continue
+        years.setdefault(y, []).append({
+            "num": r["opinion_number"],
+            "url": f"/ag/{quote(r['opinion_number'])}",
+            "date": r["date_issued"] or None,
+            "issued_to": r["issued_to"] if "issued_to" in keys else None,
+            "type": r["opinion_type"] if "opinion_type" in keys else None})
+    return years
+
+
+def _ag_years_page(request: Request) -> Response:
+    """/ag: every year, newest first, with its count."""
+    years = _ag_by_year()
+    if not years:
+        return _not_found(request, "ag")
+    rows = [{"year": y, "url": f"/ag/{y}", "count": len(years[y])}
+            for y in sorted(years, reverse=True)]
+    title = "Attorney General Opinions"
+    return _html(request, web_templates.page(
+        title, web_templates.render_ag_years(rows), h1=title,
+        official_url=web_templates.OFFICIAL_FALLBACK["ag"], canonical="/ag"))
+
+
+def _ag_year_page(request: Request, year: int) -> Response:
+    """/ag/{year}: the year's opinions, by date then number."""
+    years = _ag_by_year()
+    if not years or year not in years:
+        return _not_found(request, f"ag/{year}")
+    rows = sorted(years[year],
+                  key=lambda r: (r["date"] or "9999", _natkey(r["num"])))
+    order = sorted(years)
+    i = order.index(year)
+
+    def nav(j):
+        return ({"num": str(order[j]), "url": f"/ag/{order[j]}"}
+                if 0 <= j < len(order) else None)
+
+    title = f"Attorney General Opinions, {year}"
+    return _html(request, web_templates.page(
+        title, web_templates.render_ag_year(rows, prev=nav(i - 1),
+                                            nxt=nav(i + 1)),
+        h1=title, official_url=web_templates.OFFICIAL_FALLBACK["ag"],
+        canonical=f"/ag/{year}"))
+
+
 def _chapter_page(request: Request, entry: dict) -> Response:
     """A chapter index: its sections, its place in the code, and the two
     counts that make it a research page rather than a table of contents."""
@@ -1448,7 +1851,9 @@ def _chapter_page(request: Request, entry: dict) -> Response:
             construing=_construing_count(conn, entry["citation"]),
             referenced_by=len(_chapter_referenced_by(
                 conn, attached, entry["citation"])),
-            canon=canon)
+            canon=canon,
+            title_url=(_title_url(entry["corpus"], entry["title_num"])
+                       if entry.get("title_num") else None))
         h1 = entry["citation"] + (f" — {entry['heading']}"
                                   if entry["heading"] else "")
         return _html(request, web_templates.page(
@@ -1832,8 +2237,11 @@ def _not_found(request: Request, token: str) -> Response:
 <code>/ndcc/12.1-20-03</code> · <code>/rule/ndrappp/4</code> ·
 <code>/const/I/8</code> · <code>/ndac/75-02-04.1-01</code>, or the short form
 <code>/ndrappp4</code>.</p>
-<p>Rule-set indexes: <a href="/rules">/rules</a>, or
-<code>/rule/ndrcivp</code> for one set.</p>
+<p>Indexes: <a href="/const">Constitution</a> ·
+<a href="/ndcc">Century Code</a> · <a href="/rules">court rules</a> ·
+<a href="/ndac">Administrative Code</a> ·
+<a href="/ag">Attorney General opinions</a> ·
+<a href="/jeac">judicial ethics opinions</a>.</p>
 <p>Anything else: <code>/cite/&lt;citation&gt;</code>.</p>
 """
     return _html(request, web_templates.page("Not found", body, h1="Not found"),
@@ -1956,6 +2364,56 @@ def _const_item(conn, citation: str) -> str:
     return f'{esc} <span class="meta">— now {tail}</span>'
 
 
+def _session_law_items(conn, cites: list[str]) -> list[str]:
+    """Session-law list items, each linked to its /sl/<session>/<chapter>
+    page. A cite resolves through the chapter's canonical alias — the same
+    match _session_law_page uses for its "Cited by the court" list, so the
+    two directions agree. Unresolved cites (or no sessionlaws.db) stay text."""
+    from . import sl_corpus
+    paths: dict[str, str] = {}
+    try:
+        if sl_corpus.attach_sl(conn, read_only=True):
+            marks = ",".join("?" * len(cites))
+            for r in conn.execute(
+                    "SELECT a.alias, c.session, c.chapter "
+                    "FROM sl.sl_chapter_aliases a "
+                    "JOIN sl.sl_chapters c ON c.id = a.chapter_id "
+                    f"WHERE a.form = 'canonical' AND a.alias IN ({marks})",
+                    [c.lower() for c in cites]):
+                paths[r["alias"]] = f"/sl/{r['session']}/{r['chapter']}"
+    except sqlite3.Error:
+        pass
+    items = []
+    for c in sorted(cites, key=_natkey):
+        p = paths.get(c.lower())
+        items.append(f'<a href="{html.escape(p, quote=True)}">{html.escape(c)}</a>'
+                     if p else html.escape(c))
+    return items
+
+
+def _jury_instruction_items(conn, cites: list[str]) -> list[str]:
+    """Pattern-jury-instruction list items ("NDJI-Civil C-2.05"), each linked to
+    its /ndji/<number> page where ndji.db is installed and holds the number.
+    Without that file (it is not distributed), or for a number the held edition
+    lacks, the cite stays text: /ndji/<number> would 404."""
+    from . import ndji_corpus
+    held: set[str] = set()
+    try:
+        if ndji_corpus.attach_ndji(conn, read_only=True):
+            marks = ",".join("?" * len(cites))
+            held = {r[0] for r in conn.execute(
+                f"SELECT citation FROM ndji.ndji_instructions WHERE citation IN ({marks})",
+                cites)}
+    except sqlite3.Error:
+        pass
+    items = []
+    for c in sorted(cites, key=_natkey):
+        esc = html.escape(c)
+        items.append(f'<a href="/ndji/{html.escape(c.split()[-1], quote=True)}">{esc}</a>'
+                     if c in held else esc)
+    return items
+
+
 def _authority_sections(conn, oid: int) -> str:
     """Non-case authorities cited by an opinion, grouped by type, plus
     out-of-corpus cases — the /cited page's sections above the in-corpus
@@ -1983,6 +2441,18 @@ def _authority_sections(conn, oid: int) -> str:
                             for c in cites)
         parts.append(f'<h2>{label}</h2>'
                      f'<ul class="candidates">{items}</ul>')
+    sl_cites = by_type.get("session_law")
+    if sl_cites:
+        parts.append('<h2>Session laws</h2><ul class="candidates">'
+                     + "".join(f"<li>{x}</li>"
+                               for x in _session_law_items(conn, sl_cites))
+                     + "</ul>")
+    ji_cites = by_type.get("jury_instruction")
+    if ji_cites:
+        parts.append('<h2>Pattern jury instructions</h2><ul class="candidates">'
+                     + "".join(f"<li>{x}</li>"
+                               for x in _jury_instruction_items(conn, ji_cites))
+                     + "</ul>")
     # out-of-corpus cases: one entry per parallel group, named where jetcite
     # captured an antecedent, linked to the external source when known
     groups: dict = {}
@@ -2210,6 +2680,12 @@ def register(mcp, db_path=None) -> None:
             alias = _alias_redirect(kind, request.path_params, None)
             if alias:
                 return _redirect(alias)
+            if chaptered and "-" not in request.path_params["section"]:
+                # one component: a title ('/ndcc/12.1', '/ndac/75')
+                page_ = _code_title_page(request, _KIND_CODE[kind],
+                                         request.path_params["section"])
+                if page_ is not None:
+                    return page_
             if chaptered:
                 entry = _chapter_in_path(kind, request.path_params)
                 if entry is not None:
@@ -2293,14 +2769,45 @@ def register(mcp, db_path=None) -> None:
             official_url=web_templates.OFFICIAL_FALLBACK["rule"],
             canonical=f"/rule/{slug}"))
 
+    # Corpus indexes (Phase 1). Registered before the bare-token catch-all,
+    # which would otherwise answer '/ndcc' with its not-found page.
+    @mcp.custom_route("/const", methods=["GET"])
+    async def const_index(request: Request) -> Response:
+        return _const_index_page(request)
+
+    @mcp.custom_route("/ndcc", methods=["GET"])
+    async def ndcc_index(request: Request) -> Response:
+        return _code_titles_page(request, "ndcc")
+
+    @mcp.custom_route("/ndac", methods=["GET"])
+    async def ndac_index(request: Request) -> Response:
+        return _code_titles_page(request, "admin")
+
+    @mcp.custom_route("/jeac", methods=["GET"])
+    async def jeac_index(request: Request) -> Response:
+        return _jeac_index_page(request)
+
+    @mcp.custom_route("/ag", methods=["GET"])
+    async def ag_index(request: Request) -> Response:
+        return _ag_years_page(request)
+
     @mcp.custom_route("/ag/{number}", methods=["GET"])
     async def ag_doc(request: Request) -> Response:
-        return _document_page(request, "ag", request.path_params["number"])
+        number = request.path_params["number"]
+        # a bare four-digit year is a year index: no AG opinion number is
+        # four digits alone ('2026-L-04', '94-L-199', '71-461')
+        if _YEAR_TOKEN.match(number):
+            return _ag_year_page(request, int(number))
+        return _document_page(request, "ag", number)
 
     @mcp.custom_route("/sl/{session}/{chapter}", methods=["GET"])
     async def session_law_doc(request: Request) -> Response:
         return _session_law_page(request, request.path_params["session"],
                                  request.path_params["chapter"])
+
+    @mcp.custom_route("/ndji/{number}", methods=["GET"])
+    async def ndji_doc(request: Request) -> Response:
+        return _ndji_page(request, request.path_params["number"])
 
     @mcp.custom_route("/jeac/{number}", methods=["GET"])
     async def jeac_doc(request: Request) -> Response:

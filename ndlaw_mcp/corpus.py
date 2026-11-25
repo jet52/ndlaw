@@ -907,6 +907,15 @@ def _row_get(row, name):
         return None
 
 
+def recital_of(row) -> dict | None:
+    """``{"act", "unverified"}`` when a version row is a RECITAL (Stage 4: the existing law as
+    a later amending act printed it), read from ``loader_flags``; None for any other row."""
+    m = re.search(r"recited-by:([^|]+)", _row_get(row, "loader_flags") or "")
+    if not m:
+        return None
+    return {"act": m.group(1).strip(), "unverified": "unverified-recital" in (_row_get(row, "loader_flags") or "")}
+
+
 def version_date_warning(row) -> str | None:
     """The reader warning for a version's dating (Stage 2 rulings 2, 17; D2–D4),
     composed from ``date_basis`` / ``loader_flags``; None when the row carries
@@ -917,6 +926,21 @@ def version_date_warning(row) -> str | None:
     start = _row_get(row, "effective_start") or "its first capture"
     flags = _row_get(row, "loader_flags") or ""
     auth = _row_get(row, "source_authority")
+    # Stage 4 (rulings 2, 4): a version recited by a later amending act, not compiled
+    m = re.search(r"recited-by:([^|]+)", flags)
+    if m:
+        act = m.group(1).strip()
+        w = (f"This text is a RECITAL, not a compiled version: it is the existing law as {act} printed it "
+             f"when amending the section (the act's struck words kept, its added words left out). ")
+        w += ("No other source in the corpus confirms it. " if "unverified-recital" in flags else
+              "The previous act's text for this section says the same. ")
+        w += (f"{start} is a FLOOR, not an effective date: the text was in force no later than the act and "
+              f"may have been in force long before." if basis == "floor" else
+              f"It is dated from {start}, the effective date of the previous act indexed for this section.")
+        c = re.search(r"catchline-then:([^|]+)", flags)
+        if c:
+            w += f" The section's catchline was then: {c.group(1).strip()}"
+        return w
     # closing rows of dead / repealed sections (hand read 2026-11-10; CORPUS-SCHEMA § loader_flags)
     m = re.search(r"posted-long-after-act:([^@|]+)@(\d{4}-\d{2}-\d{2})", flags)
     if m:

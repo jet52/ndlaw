@@ -129,6 +129,7 @@ def create_ag_schema(conn: sqlite3.Connection) -> None:
             opinion_type TEXT,              -- verbatim "Type" column
             type_code TEXT,                 -- L | O | F | ... (best-effort)
             text_content TEXT,              -- populated in Phase 2 (NULL until then)
+            text_layout TEXT,               -- 'reflow' = paragraphs/tab quotes/[nN] footnotes; NULL = raw PDF lines
             text_source TEXT,               -- 'pdf-text' | 'ocr' | NULL
             ocr_quality INTEGER,            -- artifact count for OCR text; NULL for pdf-text
             source_url TEXT,                -- absolute AG PDF URL (authoritative copy)
@@ -239,6 +240,9 @@ def create_ag_schema(conn: sqlite3.Connection) -> None:
     """)
     # Additive migration: `resolution` was added after the first ag_cited_by_court
     # ships (CREATE TABLE IF NOT EXISTS won't alter an existing table).
+    ag_cols = {r[1] for r in conn.execute("PRAGMA table_info(ag_opinions)")}
+    if ag_cols and "text_layout" not in ag_cols:
+        conn.execute("ALTER TABLE ag_opinions ADD COLUMN text_layout TEXT")
     cbc_cols = {r[1] for r in conn.execute("PRAGMA table_info(ag_cited_by_court)")}
     if cbc_cols and "resolution" not in cbc_cols:
         conn.execute("ALTER TABLE ag_cited_by_court ADD COLUMN resolution TEXT")

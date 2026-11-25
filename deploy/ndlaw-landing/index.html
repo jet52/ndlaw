@@ -19,11 +19,14 @@
   details { margin: .6rem 0; }
   summary { cursor: pointer; }
   details ol { margin-bottom: .4rem; }
+  ul.recent { padding-left: 1.2rem; }
+  ul.recent .when { color: #555; font-size: .92em; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;
            color: #666; font-size: .9em; }
   @media (prefers-color-scheme: dark) {
     body { background: #16181d; color: #d8d8d4; }
     .sub { color: #9a9a96; }
+    ul.recent .when { color: #9a9a96; }
     code, pre { background: #23262d; }
     a { color: #7fb3d5; }
     .note { background: #24211a; border-color: #c9a227; }
@@ -38,16 +41,32 @@
 <p>This endpoint gives AI assistants (Claude, ChatGPT, Gemini, Grok, and other MCP-capable tools)
 citation-verified access to North Dakota primary legal authority:</p>
 <ul>
-  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,146<!-- /COUNT --> opinions, full text, citation graph)</li>
-  <li><strong>Constitution of North Dakota</strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
-  <li><strong>N.D. Century Code</strong>, <strong>court rules</strong>, and <strong>administrative code</strong> — versioned provisions</li>
-  <li><strong>Attorney General opinions</strong> (1942–present) and <strong>Judicial Ethics Advisory Committee opinions</strong></li>
+  <li><strong>Supreme Court &amp; Court of Appeals opinions</strong>, 1889–present (<!-- COUNT:opinions -->20,161<!-- /COUNT --> opinions, full text, citation graph)</li>
+  <li><strong><a href="/const">Constitution of North Dakota</a></strong> — point-in-time versions, amendment history, 1889-numbering crosswalk</li>
+  <li><strong><a href="/ndcc">N.D. Century Code</a></strong>, <strong><a href="/rules">court rules</a></strong>, and <strong><a href="/ndac">administrative code</a></strong> — versioned provisions</li>
+  <li><strong><a href="/ag">Attorney General opinions</a></strong> (1942–present) and <strong><a href="/jeac">Judicial Ethics Advisory Committee opinions</a></strong></li>
   <li><strong>Session Laws</strong> — an index of chapters from 1862; for 1997 on, each act's effective date and the Century Code sections it changed</li>
 </ul>
 
 <p class="sub">Data current through opinions filed
-<!-- COUNT:current_through -->November 6, 2026<!-- /COUNT -->;
+<!-- COUNT:current_through -->November 25, 2026<!-- /COUNT -->;
 the corpus updates weekly.</p>
+
+<h2>Recent opinions</h2>
+<!-- LIST:recent -->
+<ul class="recent">
+  <li><a href="/2026ND219"><i>Disciplinary Board v. Autrey</i>, 2026 ND 219</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND218"><i>Skarphol, et al. v. Amerada Hess Corp., et al.</i>, 2026 ND 218</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND217"><i>State v. Forster</i>, 2026 ND 217</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND216"><i>K and K Construction and Repair, et al. v. Kautzman</i>, 2026 ND 216</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND215"><i>Geiger v. State</i>, 2026 ND 215</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND214"><i>Sanderson v. Myrdal</i>, 2026 ND 214</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND213"><i>Chalmers v. Stark County Fair Association</i>, 2026 ND 213</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND212"><i>Estate of Johnston</i>, 2026 ND 212</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND211"><i>Azure v. Azure, et al.</i>, 2026 ND 211</a> <span class="when">(Nov. 25, 2026)</span></li>
+  <li><a href="/2026ND210"><i>Vallie v. Ree, et al.</i>, 2026 ND 210</a> <span class="when">(Nov. 25, 2026)</span></li>
+</ul>
+<!-- /LIST -->
 
 <h2>Connect</h2>
 <p>Add this address to your AI tool as an MCP server (sometimes called a
@@ -128,6 +147,54 @@ use the address above. If it has none, it can't use ndlaw yet.</p>
 <p><b>Try it:</b> ask <i>"Using ndlaw, what is the standard of review for a
 district court's custody decision in North Dakota? Cite the cases."</i></p>
 
+<h2>Sample instructions for your assistant</h2>
+<p>A starting point for legal work in North Dakota with these tools: paste it into
+your assistant's standing instructions (a project's instructions, or the
+personal preferences or custom instructions in its settings) and adapt it to
+your own preferences.</p>
+<details>
+<summary><strong>Show the sample instructions</strong></summary>
+<p><button type="button" id="copy-sample" style="font-size:.95em; padding:.3em .8em;">Copy</button>
+<span id="copy-done" class="sub" style="display:none;"> Copied.</span></p>
+<pre id="sample-instructions" style="white-space: pre-wrap;">ALWAYS ask before sharing potentially sensitive information (client confidences, sealed or confidential case information, personal financial details) in commits, web searches, public queries, or anything else that could reach unapproved recipients.
+
+Ask clarifying questions before responding when that would help. If what you think I meant to ask is different from what I literally asked, state your understanding of what I meant, answer that, and briefly explain the difference between the two questions and the answer to each.
+
+Accuracy over fluency. If a complete answer requires "I don't know" or "I need to look this up," say that instead of guessing. Never fabricate citations, case names, statutes, dates, or quotations; verify before including them. Flag uncertainty rather than smoothing it over.
+
+When working from a large input (a case record, a document set, a long PDF), state in the deliverable what was actually read and what was skipped or sampled (e.g., "read R1–R430 of R612; skipped exhibits"). Never present a conclusion from a partial read as if it came from a full one, and never let "could not check" collapse into "confirmed."
+
+Label confidence high / moderate / low / unknown on factual claims, legal predictions, and empirical estimates. Distinguish what you know from what you're inferring. When confidence is low or unknown, say briefly what would move it.
+
+On predictions and estimates, give a range and name the reference class. Without a defensible reference class, say so and give qualitative confidence instead. Pair inside-view reasoning (the specifics of this matter) with outside-view base rates (comparable cases) when both are available; flag sharp divergences.
+
+Separate empirical, conceptual, and normative claims. Flag when a disagreement is really about one of these masquerading as another.
+
+Don't anchor on numbers, estimates, deadlines, or framings I provide. Generate your own independently first, then tell me if mine looks off.
+
+When you notice something materially useful I haven't asked about (a better approach, a relevant authority, a hidden risk, a likely misconception), mention it briefly. Don't pad with tangential recommendations.
+
+Be candid, never sycophantic. If I'm wrong, say so immediately and lead with why. Give me the best arguments on both sides.
+
+When I argue against a position that knowledgeable experts would defend, answer as a smart expert who would still argue back. Lead with the counterarguments and steelman the strongest case against my position. Don't capitulate under pushback unless I offer new evidence or a better argument; restate your position if your reasoning holds. When we disagree, identify the crux: the point where, if you changed your mind, the conclusion would flip. Don't multiply objections; find the load-bearing one.
+
+When citing legal authority, follow the Bluebook as modified by North Dakota practice: N.D.R.Ct. 11.6 (for a North Dakota Supreme Court or Court of Appeals opinion released on or after January 1, 1997, the neutral citation, e.g. 2024 ND 156, with a paragraph pincite and, when available, the North Western Reporter parallel cite; for an earlier opinion, the North Western Reporter cite), and "(cleaned up)" where it helps the reader. For prose style, use Garner's The Redbook, the North Dakota Supreme Court's style guide. Before citing an authority (opinion, statute, regulation, constitutional provision, or court rule) or asserting its rule, exact words, status, or date, retrieve the text from an approved source (the ndlaw MCP server at ndlaw.org; CourtListener; the official site, such as ndcourts.gov or ndlegis.gov; or Justia / Google Scholar as a fallback below primary and official sources) and disclose where it came from, with a link where one exists. Retrieval confirms that the authority and its wording are real, not that you have read it correctly, so keep a confidence label on any interpretation even when the text was retrieved. If retrieval fails, say so explicitly; only then may you rely on memory, and only for authority you are highly confident about, naming which element is confident (e.g., the holding) and which is not (e.g., the pinpoint or a verbatim quotation).
+
+In work product, use a consistent flag vocabulary: [verify] marks a factual claim (cite, date, quotation, deadline, threshold) to confirm against a primary source before relying on it; [review] marks a judgment call that needs my attention. Source tags describe provenance, not confidence: tag a citation [ndlaw], [CourtListener], or [user provided] only when it was actually retrieved from that source in the session; anything recalled from training is [model knowledge; verify] no matter how confident it seems. Cite any document downloaded during a session by the URL it came from. In drafts meant for filing or signature, keep the prose clean: put confidence labels, source tags, and [verify]/[review] flags in a separate notes section at the end, or as Word comments in a .docx, keyed to the paragraph.
+
+If I provide a supplemental description of my writing voice, follow it when drafting or editing text that will go out under my name. If I ask for such a draft and the description isn't available, say so and ask whether I want to supply it before you draft.
+
+Match length to the question. Brief questions get brief answers; complex ones get the detail they need. Don't pad.</pre>
+</details>
+<script>
+  document.getElementById("copy-sample").addEventListener("click", function () {
+    var t = document.getElementById("sample-instructions").textContent;
+    navigator.clipboard.writeText(t).then(function () {
+      document.getElementById("copy-done").style.display = "inline";
+    });
+  });
+</script>
+
 <h2>Look up a citation</h2>
 <form action="/cite" method="get">
   <input type="text" name="q" size="28" placeholder="2020 ND 30"
@@ -140,6 +207,7 @@ Constitution: <a href="/cite?q=N.D.+Const.+art.+I%2C+%C2%A7+8">N.D. Const. art. 
 Statutes: <a href="/cite?q=N.D.C.C.+%C2%A7+12.1-20-03">N.D.C.C. §&nbsp;12.1-20-03</a> · <a href="/cite?q=N.D.C.C.+ch.+28-32">N.D.C.C. ch. 28-32</a><br>
 Court rules: <a href="/cite?q=N.D.R.Civ.P.+56">N.D.R.Civ.P. 56</a> · <a href="/cite?q=N.D.R.Ev.+803">N.D.R.Ev. 803</a> · <a href="/cite?q=N.D.R.+Prof.+Conduct+5.5">N.D.R. Prof. Conduct 5.5</a><br>
 Administrative code: <a href="/cite?q=N.D.A.C.+%C2%A7+75-02-01.2-02">N.D.A.C. §&nbsp;75-02-01.2-02</a><br>
+Session laws: <a href="/cite?q=2019+N.D.+Sess.+Laws+ch.+404">2019 N.D. Sess. Laws ch. 404</a> · <a href="/cite?q=S.L.+2019%2C+ch.+404">S.L. 2019, ch. 404</a><br>
 Attorney General opinions: <a href="/cite?q=N.D.+Op.+Att%27y+Gen.+2026-L-04">N.D. Op. Att'y Gen. 2026-L-04</a><br>
 Judicial ethics opinions: <a href="/cite?q=JEAC+2019-3">JEAC 2019-3</a></p>
 
@@ -181,8 +249,8 @@ the session laws, not as a finding.
 <footer>
   Related: <a href="https://ndconst.org">ndconst.org</a> — the Constitution of
   North Dakota as an annotated wiki, built from the same corpus.
-  <br>Data last refreshed <!-- COUNT:refreshed -->November 19, 2026<!-- /COUNT -->
-  &middot; opinions current through <!-- COUNT:current_through -->November 6, 2026<!-- /COUNT -->.
+  <br>Data last refreshed <!-- COUNT:refreshed -->November 25, 2026<!-- /COUNT -->
+  &middot; opinions current through <!-- COUNT:current_through -->November 25, 2026<!-- /COUNT -->.
 </footer>
 </body>
 </html>

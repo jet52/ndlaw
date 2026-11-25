@@ -8,6 +8,80 @@ repository is the serve-only runtime and its deployment/auto-update tooling.
 Per-release database corrections are summarized in the corresponding GitHub
 Release notes. This repository does not carry the development-correction history.
 
+## v4.2.0 — 2026-11-25
+
+**Attorney General opinions read as documents.** The text of an Attorney General
+opinion had been stored as the lines of its PDF, with footnotes as loose numbered
+lines at each page foot and a running head between pages. 6,651 of the 6,767
+opinions now store paragraphs, block quotes, and footnotes marked `[n1]` at the
+call and gathered under FOOTNOTES at the end, as court opinions do; the page for
+each shows linked footnotes and indented quotations. No word of any opinion
+changed. The other 116 are unchanged and still show the PDF's lines.
+
+**Session-law citations in prose are linked.** Court opinions through the 1960s
+cite the session laws in running text ("chapter 67 of the Session Laws of 1897",
+"chapter 70, Laws 1907", "Laws 1925, c. 169"). Those now link to the act, which
+more than doubles the session-law links from court opinions (2,203 to 5,016,
+in 2,838 opinions instead of 1,342) and from Attorney General opinions (850 to
+1,765). A prose citation names no state, so one that follows another state's
+name in the same sentence is left unlinked. A bare "Laws 1889" is read as the
+last territorial session. Citation extraction moves to jetcite 2.19.1.
+
+**A dated Century Code lookup inside an uncaptured amendment now always returns
+text.** Where an act amended a section and a later act amended it again before
+the compiled code was next captured, the amended text was never captured on its
+own. Some of those lookups returned no text and others the earlier text with a
+warning. All now return the last captured text, a warning naming the
+intervening act, and `text_predates_amendment: true` with the act listed in
+`intervening_amendments`. The text is the last captured before the amendment,
+not the text in force on the date asked; read the act for that.
+
+**No more phantom court-rule citations.** A rule cited after its number
+("Rule 56, N.D.R.Civ.P.") was also being found where the number in that place
+belonged to something else: the last part of a Century Code section ("§ 28-26-06(5),
+N.D.R.Civ.P." read as Rule 6), a section of the 1943 Revised Code ("Section
+32-1503, N.D.Rev.Code of 1943" read as Evidence Rule 1503), or a number in the
+paragraph before. Those 20 citations in court opinions and 3 in Attorney General
+opinions are gone, and no real one was lost. Citation extraction moves to
+jetcite 2.19.2.
+
+**Citations to the codes before the Century Code are recorded.** Opinions
+through the 1960s cite the Revised Code of 1943, the Compiled Laws of 1913 and
+its 1925 Supplement, the Revised Codes of 1905, 1899 and 1895, and the Dakota
+Compiled Laws of 1887. Those are now in the citation graph under their own
+code's name ("N.D.R.C. 1943 § 32-1501", "N.D.C.L. 1913 § 7412"): 13,553
+citations in court opinions and 1,515 in Attorney General opinions. They are
+listed among an opinion's authorities but link to no page, because the text of
+those codes is not served. A chapter cited under the 1943 code's name
+("Chapter 27-16, NDRC 1943") had been recorded as the Century Code chapter of
+the same number; those 192 citations in court opinions and 136 in Attorney
+General opinions now name the 1943 code instead. Citations to the North Dakota
+Pattern Jury Instructions by number are recorded as well (47, in 35 opinions)
+and listed on an opinion's "Authorities cited" page. No link between opinions
+changed. The cross-references between provisions were re-extracted too: 11
+between sections of the Constitution are new, and a reference now shows its
+subsection as printed ("N.D.R.Civ.P. 54(b)"). Citation extraction moves to
+jetcite 3.0.0.
+
+**Index pages, and recent opinions on the landing page.** New browse pages list
+the Constitution by article (`/const`, current numbering), the Century Code and
+the Administrative Code by title and then by chapter (`/ndcc`, `/ndcc/12.1`,
+`/ndac`, `/ndac/75`), the Attorney General's opinions by year (`/ag`,
+`/ag/2026`), and the Judicial Ethics Advisory Committee's opinions (`/jeac`). A chapter page links its title. The landing page links each of these,
+along with the existing court-rules index (`/rules`), and lists the ten most recent
+opinions.
+
+**Opinions link to the session laws they cite.** An opinion's "Authorities cited"
+page (`/<cite>/cited`) now lists the session-law chapters the opinion cites, each
+linked to its `/sl/<year>/<chapter>` page, which already lists the opinions citing
+the chapter. A chapter the index does not carry is shown as text.
+
+**The citation lookup takes session laws.** `/cite` (and the landing page's lookup
+box) resolves a session-law citation in the Court's form (`2019 N.D. Sess. Laws
+ch. 404`) or the Century Code's (`S.L. 2019, ch. 404`; `S.L. 2021 (sp.), ch. 553`)
+to the chapter's page; an act-section pinpoint (`, § 2`) lands on that section.
+The landing page lists both forms among its examples.
+
 ## v4.1.0 — 2026-11-19
 
 **Session laws become a corpus.** A new asset, `sessionlaws.db`, indexes about

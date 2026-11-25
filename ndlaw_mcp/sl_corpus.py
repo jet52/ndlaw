@@ -173,10 +173,10 @@ def citing(conn: sqlite3.Connection, chapter_id: int, limit: int = 25) -> dict:
     """Court and AG opinions that cite the chapter (jetcite `session_law` rows).
 
     Matches on every canonical-form alias, since an opinion may write a
-    special session's chapter with or without "Spec. Sess.". Only the
-    reporter-style forms are extracted (PLAN-session-laws § 4a, Stage 3
-    ruling 2), so prose cites ("chapter 67 of the Session Laws of 1897") are
-    not counted here."""
+    special session's chapter with or without "Spec. Sess.". Since jetcite
+    2.19.0 the prose forms ("chapter 67 of the Session Laws of 1897") are
+    extracted too, in court opinions; a prose cite the matcher reads as
+    another jurisdiction's laws is not counted."""
     forms = [r[0] for r in conn.execute(
         "SELECT alias FROM sl.sl_chapter_aliases WHERE chapter_id = ? AND form = 'canonical'", (chapter_id,))]
     marks = ",".join("?" * len(forms))

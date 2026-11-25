@@ -33,8 +33,8 @@ def extract_disposition(text: str) -> str | None:
     # a generous prefix when the opinion carries no markers.
     head_end = text.find("[¶")
     head = text[: head_end if head_end != -1 else 4000]
-    for raw in head.splitlines():
-        line = raw.strip()
+    lines = [ln.strip() for ln in head.splitlines()]
+    for k, line in enumerate(lines):
         if not (8 <= len(line) <= 80):
             continue
         core = line.rstrip(".")
@@ -44,6 +44,17 @@ def extract_disposition(text: str) -> str | None:
         if not any(w in core for w in _DISPOSITION_WORDS):
             continue
         if re.fullmatch(r"[A-Z0-9 ,;.'\-/]+", core):
+            # A long disposition wraps onto the next line(s) of the slip
+            # ("AFFIRMED IN PART, REVERSED IN PART, AND REMANDED WITH" /
+            # "INSTRUCTIONS."); until 2026-11-20 only the first line was read.
+            # Join all-caps continuation lines until one ends with a period.
+            j = k
+            while not lines[j].endswith(".") and j + 1 < len(lines):
+                nxt = lines[j + 1]
+                if not nxt or nxt != nxt.upper() or not re.fullmatch(r"[A-Z0-9 ,;.'\-/]+", nxt):
+                    break
+                j += 1
+                core = f"{core} {nxt.rstrip('.')}"
             return core
     return None
 

@@ -85,6 +85,8 @@ _STYLE = """
   .figure { font-style: italic; color: #555; }
   pre.tbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             font-size: .85em; overflow-x: auto; line-height: 1.45; }
+  pre.cols { font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+             font-size: .8em; overflow-x: auto; line-height: 1.4; }
   .tblwrap { overflow-x: auto; margin: 1em 0; }
   table.tbl-prose { border-collapse: collapse; font-size: .88em;
                     line-height: 1.4; min-width: 100%; }
@@ -123,6 +125,8 @@ _STYLE = """
     del.redline { color: #e07a5f; } ins.redline { color: #7fd58a; }
     .figure { color: #999; }
     blockquote { border-color: #444; }
+    table.tbl-prose th, table.tbl-prose td { border-color: #3a3e47; }
+    table.tbl-prose th { background: #23262d; color: #d8d8d4; }
     footer { border-color: #333; color: #999; }
   }
 """
@@ -1105,6 +1109,61 @@ def render_body(text: str, tables: dict | None = None) -> str:
     return "\n".join(out).replace(_BR, "<br>")
 
 
+_DOC_COLS = re.compile(r"\S {3,}\S|^ +\S", re.M)
+_DOC_FN_HEAD = "\n\nFOOTNOTES\n\n"
+
+
+def render_document_body(text: str) -> str:
+    """HTML for a reflowed Attorney General opinion (``text_layout='reflow'``).
+
+    The stored conventions are the court opinions' own (paragraphs parted by a
+    blank line, a block quote opening with a tab, ``[nN]`` for a footnote call
+    and its definition under ``FOOTNOTES``) plus two a letter needs: a
+    paragraph of several lines is a stanza (letterhead, address, signature)
+    and keeps its line breaks, and a paragraph whose lines carry runs of
+    spaces is a row of columns, drawn in fixed-width type so they stay
+    aligned. Deliberately not ``render_body``: that one reads court front
+    matter, writings and section heads, none of which a letter has."""
+    body, _, notes = text.partition(_DOC_FN_HEAD)
+    defs = set(re.findall(r"^\[n(\d{1,3})\]", notes, re.M))
+    seen: set[str] = set()
+
+    def calls(esc: str) -> str:
+        def sub(m: re.Match) -> str:
+            n = m.group(1)
+            if n not in defs:
+                return f"<sup>[{n}]</sup>"
+            anchor = "" if n in seen else f' id="fnref{n}"'
+            seen.add(n)
+            return f'<a class="fn-ref"{anchor} href="#fn{n}"><sup>[{n}]</sup></a>'
+        return _FN_REF.sub(sub, esc)
+
+    out = ['<div class="body">']
+    for para in body.split("\n\n"):
+        if not para.strip():
+            continue
+        if para.startswith("\t"):
+            inner = calls(html.escape(para[1:])).replace("\n", "<br>")
+            out.append(f"<blockquote><p>{inner}</p></blockquote>")
+        elif _DOC_COLS.search(para):
+            out.append(f'<pre class="cols">{calls(html.escape(para))}</pre>')
+        else:
+            out.append("<p>" + calls(html.escape(para)).replace("\n", "<br>") + "</p>")
+    if notes:
+        out.append("<h2>FOOTNOTES</h2>")
+        for para in notes.split("\n\n"):
+            m = re.match(r"\[n(\d{1,3})\] ?", para)
+            if not m:
+                out.append(f'<p class="fn">{html.escape(para)}</p>')
+                continue
+            n = m.group(1)
+            back = f' <a href="#fnref{n}">↩</a>' if n in seen else ""
+            out.append(f'<p class="fn" id="fn{n}"><b>{n}.</b> '
+                       f"{html.escape(para[m.end():])}{back}</p>")
+    out.append("</div>")
+    return "\n".join(out)
+
+
 _BOLD = re.compile(r"\*\*([^*\n]+)\*\*")
 _HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 _RULE_HEADING = re.compile(r"^RULE\s+(\d+\.\d+)\b", re.I)
@@ -1192,6 +1251,160 @@ def render_rule_set_index(prefix: str, name: str,
 
 
 # ---------------------------------------------------------------------------
+# corpus index pages (/const, /ndcc, /ndcc/{title}, /ndac, /ndac/{title},
+# /jeac) — PLAN-web-interface.md §6 as amended 2026-11-20 (Phase 1)
+# ---------------------------------------------------------------------------
+
+def _status_tag(status: str | None) -> str:
+    if status and status != "active":
+        return f' <span class="status">[{html.escape(status)}]</span>'
+    return ""
+
+
+def render_code_titles(intro: str, titles: list[dict]) -> str:
+    """Body for /ndcc and /ndac: every title with its chapter counts.
+
+    ``titles``: dicts with num, url, name, chapters (total), active.
+    """
+    rows = []
+    for t in titles:
+        counts = f'{t["active"]} of {t["chapters"]}'
+        if t["active"] == t["chapters"]:
+            counts = str(t["chapters"])
+        rows.append(f'<tr><td class="num"><a href="{html.escape(t["url"])}">'
+                    f'{html.escape(t["num"])}</a></td>'
+                    f'<td>{html.escape(t["name"] or "")}</td>'
+                    f'<td class="num">{counts}</td></tr>')
+    return (f"<p>{intro}</p>"
+            '<table class="tbl-prose"><thead><tr><th>Title</th><th>Name</th>'
+            '<th>Chapters in force</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table>' + _BULK_DATA_LINE)
+
+
+def render_code_title(groups: list[tuple[str | None, list[dict]]], *,
+                      up: tuple[str, str], prev: dict | None,
+                      nxt: dict | None) -> str:
+    """Body for /ndcc/{title} and /ndac/{title}: the title's chapters in code
+    order, grouped under their article where the code has articles (the
+    admin code does, the Century Code does not).
+
+    ``groups``: (label or None, rows); rows are dicts with num, url,
+    heading, status. ``up``: (url, label) of the corpus index.
+    """
+    parts = [f'<p class="meta"><a href="{html.escape(up[0])}">'
+             f'{html.escape(up[1])}</a></p>']
+    for label, rows in groups:
+        if label:
+            parts.append(f"<h2>{html.escape(label)}</h2>")
+        body = "".join(
+            f'<tr><td class="num"><a href="{html.escape(r["url"])}">'
+            f'{html.escape(r["num"])}</a></td>'
+            f'<td>{html.escape(r["heading"] or "")}'
+            f'{_status_tag(r["status"])}</td></tr>'
+            for r in rows)
+        parts.append('<table class="tbl-prose"><thead><tr><th>Chapter</th>'
+                     '<th>Heading</th></tr></thead>'
+                     f'<tbody>{body}</tbody></table>')
+    parts.append(browse_nav(prev, nxt))
+    parts.append(_BULK_DATA_LINE)
+    return "".join(parts)
+
+
+def render_const_index(articles: list[dict],
+                       preamble_url: str | None) -> str:
+    """Body for /const: the Constitution in its current numbering, article
+    by article.
+
+    ``articles``: dicts with roman, title, sections; sections are dicts with
+    num, url, heading, status.
+    """
+    toc = " · ".join(
+        f'<a href="#art-{html.escape(a["roman"])}">{html.escape(a["roman"])}</a>'
+        for a in articles)
+    parts = ['<p>The Constitution of North Dakota in its current numbering. '
+             'Each section\'s page carries its amendment history and '
+             'point-in-time versions.</p>']
+    if preamble_url:
+        parts.append(f'<p><a href="{html.escape(preamble_url)}">Preamble</a>'
+                     '</p>')
+    parts.append(f'<p class="meta">Articles: {toc}</p>')
+    for a in articles:
+        head = f'Article {a["roman"]}'
+        if a["title"]:
+            head += f' — {a["title"]}'
+        parts.append(f'<h2 id="art-{html.escape(a["roman"])}">'
+                     f'{html.escape(head)}</h2>')
+        body = "".join(
+            f'<tr><td class="num"><a href="{html.escape(s["url"])}">'
+            f'§&nbsp;{html.escape(s["num"])}</a></td>'
+            f'<td>{html.escape(s["heading"] or "")}'
+            f'{_status_tag(s["status"])}</td></tr>'
+            for s in a["sections"])
+        parts.append('<table class="tbl-prose"><thead><tr><th>Section</th>'
+                     '<th>Heading</th></tr></thead>'
+                     f'<tbody>{body}</tbody></table>')
+    parts.append(_BULK_DATA_LINE)
+    return "".join(parts)
+
+
+def render_ag_years(years: list[dict]) -> str:
+    """Body for /ag: every year with its opinion count, newest first.
+
+    ``years``: dicts with year, url, count.
+    """
+    rows = "".join(
+        f'<tr><td class="num"><a href="{html.escape(y["url"])}">'
+        f'{y["year"]}</a></td><td class="num">{y["count"]}</td></tr>'
+        for y in years)
+    return ('<p>Opinions of the North Dakota Attorney General, 1942 to the '
+            'present: legal and advisory opinions and open records and '
+            'meetings opinions. Each page lists the court opinions that cite '
+            'it.</p>'
+            '<table class="tbl-prose"><thead><tr><th>Year</th>'
+            '<th>Opinions</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table>' + _BULK_DATA_LINE)
+
+
+def render_ag_year(rows: list[dict], *, prev: dict | None,
+                   nxt: dict | None) -> str:
+    """Body for /ag/{year}: the year's opinions in date order.
+
+    ``rows``: dicts with num, url, date, issued_to, type.
+    """
+    body = "".join(
+        f'<tr><td class="num"><a href="{html.escape(r["url"])}">'
+        f'{html.escape(r["num"])}</a></td>'
+        f'<td class="eff">{html.escape(r["date"] or "not recorded")}</td>'
+        f'<td>{html.escape(r["issued_to"] or "")}</td>'
+        f'<td>{html.escape(r["type"] or "")}</td></tr>'
+        for r in rows)
+    return ('<p class="meta"><a href="/ag">Attorney General opinions: all '
+            'years</a></p>'
+            '<table class="tbl-prose"><thead><tr><th>Opinion</th>'
+            '<th>Issued</th><th>Issued to</th><th>Type</th></tr></thead>'
+            f'<tbody>{body}</tbody></table>'
+            + browse_nav(prev, nxt) + _BULK_DATA_LINE)
+
+
+def render_jeac_index(rows: list[dict]) -> str:
+    """Body for /jeac: every committee opinion, newest first.
+
+    ``rows``: dicts with num, url, digest.
+    """
+    body = "".join(
+        f'<tr><td class="num"><a href="{html.escape(r["url"])}">'
+        f'{html.escape(r["num"])}</a></td>'
+        f'<td>{html.escape(r["digest"] or "")}</td></tr>'
+        for r in rows)
+    return ('<p>Advisory opinions of the North Dakota Judicial Ethics '
+            'Advisory Committee on the Code of Judicial Conduct, newest '
+            'first. Each page lists the court opinions that cite it.</p>'
+            '<table class="tbl-prose"><thead><tr><th>Opinion</th>'
+            '<th>Question</th></tr></thead>'
+            f'<tbody>{body}</tbody></table>' + _BULK_DATA_LINE)
+
+
+# ---------------------------------------------------------------------------
 # chapter pages (/ndcc/28-32, /ndac/75-02-04.1)
 # ---------------------------------------------------------------------------
 
@@ -1255,27 +1468,29 @@ def browse_nav(prev: dict | None, nxt: dict | None) -> str:
 def render_chapter_index(entry: dict, sections: list[dict], *,
                          prev: dict | None, nxt: dict | None,
                          construing: int, referenced_by: int,
-                         canon: str) -> str:
+                         canon: str, title_url: str | None = None) -> str:
     """Body for a chapter page: what the chapter contains, and where it sits.
 
     ``sections``: dicts with num, url, heading, status. ``entry``: the indexed
     chapter (num, heading, status, title/parent names, repeal_note).
+    ``title_url``: the title's index page, which the "Title N" label links.
     """
     meta = []
     if entry.get("title_num"):
-        bits = f'Title {entry["title_num"]}'
+        label = html.escape(f'Title {entry["title_num"]}')
+        if title_url:
+            label = f'<a href="{html.escape(title_url)}">{label}</a>'
         if entry.get("title_name"):
-            bits += f' — {entry["title_name"]}'
-        meta.append(bits)
+            label += f' — {html.escape(entry["title_name"])}'
+        meta.append(label)
     if entry.get("parent_num"):
         bits = f'Article {entry["parent_num"]}'
         if entry.get("parent_name"):
             bits += f' — {entry["parent_name"]}'
-        meta.append(bits)
+        meta.append(html.escape(bits))
     parts = []
     if meta:
-        parts.append('<p class="meta">'
-                     + " · ".join(html.escape(m) for m in meta) + "</p>")
+        parts.append('<p class="meta">' + " · ".join(meta) + "</p>")
     parts.append(chapter_state_note(entry["status"], entry.get("repeal_note")))
 
     counts = [f'Construed by <a href="{canon}/construing">{construing} '
